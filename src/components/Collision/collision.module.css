@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.text, .textShow {
+  color: #646a96;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.text {
+  visibility: hidden;
+}
+
+.textShow {
+  visibility: visible;
+}
+
+.textShow:hover {
+  text-decoration: underline;
+}
+
+.content {
+  line-height: 20px;
+  font-size: 12px;
+  color: #2A2CB1;
+  border-radius: 6px;
+  width: 180px;
+  padding: 0.5rem;
+  background: #DFE3FF;
+  margin-bottom: 0.5rem;
+  z-index: 3;
+}

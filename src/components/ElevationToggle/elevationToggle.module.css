@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 33.33%;
+  justify-content: center;
+}
+
+.toggle {
+  font-family: "Chromatica", sans-serif;
+  border: 1px solid transparent;
+  background: none;
+  box-sizing: border-box;
+  padding: 0.25rem 0.5rem;
+  max-width: 100px;
+  border-radius: 8px;
+  transition: border 0.1s, background-color 0.1s, border-radius 0.1s, color 0.1s;
+}
+
+.toggle:hover, .toggleSelected {
+  font-family: "Chromatica Bold", sans-serif;
+  border: 1px solid #2A2CB1;
+  background-color: #DFE3FF;
+  color: #2A2CB1;
+  cursor: pointer;
+}

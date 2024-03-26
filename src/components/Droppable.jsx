@@ -1,0 +1,36 @@
+import React from "react";
+import { useDroppable } from "@dnd-kit/core";
+import { generateImgSrc, toScale } from "../utils/utils";
+
+export function Droppable({ children, selectedElevation }) {
+  const { isOver, setNodeRef } = useDroppable({
+    id: "droppable"
+  });
+
+  const style = {
+    color: isOver ? "green" : undefined
+  };
+
+  const CustomStyle = {
+    display: "flex",
+    width: `${toScale(selectedElevation.objWidth)}px`,
+    height: `${toScale(selectedElevation.objHeight)}px`,
+    boxSizing: "border-box",
+    margin: "0 auto",
+    position: "relative",
+  };
+
+  return (
+    <div ref={setNodeRef} style={{ ...style, ...CustomStyle }}>
+      <img
+        src={generateImgSrc(selectedElevation.imgName)}
+        alt="Elevation"
+        style={{
+          width: `${toScale(selectedElevation.objWidth)}px`,
+          height: `${toScale(selectedElevation.objHeight)}px`
+        }}
+      />
+      {children}
+    </div>
+  );
+}

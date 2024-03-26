@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  position: absolute;
+  transform: translate(-50%, 50%);
+  left: 50%;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: 18px;
+  cursor: pointer;
+  height: 36px;
+  width: 32px;
+  border-radius: 8px;
+  background: #646A96;
+  box-shadow: 0px 1.188px 2.375px -0.891px rgba(24, 39, 75, 0.08), 0px 0.891px 1.188px -0.891px rgba(24, 39, 75, 0.12);
+}
+
+.content {
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-size: 12px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.60);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08), 0px 6px 32px 0px rgba(0, 0, 0, 0.12);
+  margin-bottom: .5rem;
+}

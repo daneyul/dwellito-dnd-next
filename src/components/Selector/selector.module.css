@@ -1,0 +1,53 @@
+.container {
+  display: inline-block;
+  margin: 4rem 0;
+  border: 1px solid #DFE3FF;
+  box-shadow: 0px 1.188px 2.375px -0.891px rgba(24, 39, 75, 0.08), 0px 0.891px 1.188px -0.891px rgba(24, 39, 75, 0.12);
+  border-radius: 0.5rem;
+  width: auto;
+  padding: 1.5rem 1rem;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: white;
+  z-index: 2;
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.container {
+  height: auto;
+}
+
+.titleTop {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.expandedTitleTop {
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.titleTop, .title, .expandedTitleTop {
+  font-family: "Chromatica Bold", sans-serif;
+  font-size: 14px;
+  text-align: left;
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+
+.objectContainer {
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.expandedContent {
+  max-height: 500px;
+  overflow: visible;
+}

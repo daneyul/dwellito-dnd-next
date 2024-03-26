@@ -1,0 +1,27 @@
+.container {
+  width: 100vw;
+  min-height: 150px;
+  height: auto;
+  border-top: 1px solid #DFE3FF;
+  background: linear-gradient(180deg, #F8F8FF 0%, #FFF 100%);
+  position: relative;
+}
+
+.subContainer {
+  display: flex;
+  position: absolute;
+  bottom: 2rem;
+  align-items: center;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  width: 33.33%;
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
+
+.empty {
+  width: 33.33%;
+}
