@@ -30,6 +30,8 @@ import Footer from "@/components/Footer/Footer";
 import Logo from "@/components/Logo";
 import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
 import Collision from "@/components/Collision/Collision";
+import Thing from "@/components/Thing";
+import Thing2 from "@/components/Thing2";
 
 export default function Home() {
   const [hasCollisions, setHasCollisions] = useState(false);
