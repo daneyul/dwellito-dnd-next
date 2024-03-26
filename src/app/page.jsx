@@ -9,9 +9,9 @@ import {
   droppableWidth,
   snapToIncrement,
   toScale,
-} from "@/utils";
-import { Draggable } from "./components/Draggable";
-import { Droppable } from "./components/Droppable";
+} from "@/utils/utils";
+import { Draggable } from "@/components/Draggable";
+import { Droppable } from "@/components/Droppable";
 import {
   restrictToHorizontalAxis,
   restrictToParentElement,
@@ -22,12 +22,12 @@ import {
   snapToGridModifier,
   COMPONENT_TYPES,
   ELEVATION_NAMES,
-} from "./utils/library";
-import Selector from "./components/Selector/Selector";
-import Footer from "./components/Footer/Footer";
-import Logo from "./components/Logo";
-import DeleteBtn from "./components/DeleteBtn/DeleteBtn";
-import Collision from "./components/Collision/Collision";
+} from "@/utils/library";
+import Selector from "@/components/Selector/Selector";
+import Footer from "@/components/Footer/Footer";
+import Logo from "@/components/Logo";
+import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
+import Collision from "@/components/Collision/Collision";
 
 export default function Home() {
   const [hasCollisions, setHasCollisions] = useState(false);
@@ -43,7 +43,6 @@ export default function Home() {
   }, {});
 
   const [orderTotal, setOrderTotal] = useState(0);
-  THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
   // Calculate the total price of all selected components
   useEffect(() => {

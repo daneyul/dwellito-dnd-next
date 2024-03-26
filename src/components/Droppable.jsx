@@ -1,6 +1,7 @@
 import React from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { generateImgSrc, toScale } from "../utils/utils";
+import Image from "next/image";
 
 export function Droppable({ children, selectedElevation }) {
   const { isOver, setNodeRef } = useDroppable({
@@ -22,13 +23,11 @@ export function Droppable({ children, selectedElevation }) {
 
   return (
     <div ref={setNodeRef} style={{ ...style, ...CustomStyle }}>
-      <img
+      <Image
         src={generateImgSrc(selectedElevation.imgName)}
         alt="Elevation"
-        style={{
-          width: `${toScale(selectedElevation.objWidth)}px`,
-          height: `${toScale(selectedElevation.objHeight)}px`
-        }}
+        width={toScale(selectedElevation.objWidth)}
+        height={toScale(selectedElevation.objHeight)}
       />
       {children}
     </div>

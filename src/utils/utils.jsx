@@ -2,7 +2,7 @@ import { DIMENSIONS, ELEVATION_NAMES } from "./library";
 import { v4 as uuid } from "uuid";
 
 export const generateImgSrc = (imgName) =>
-  `${process.env.PUBLIC_URL}/images/CustomContainer/${imgName}`;
+  `../../../images/CustomContainer/${imgName}`;
 
 export const checkCollision = (item1, item2, selectedElevation) => {
   // First, check if both items are on the selected elevation.
