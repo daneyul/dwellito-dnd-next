@@ -1,5 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from '@react-three/drei'
 
 import { DndContext } from "@dnd-kit/core";
 import {
@@ -276,6 +278,17 @@ export default function Home() {
         setSelectedElevation={setSelectedElevation}
         selectedComponents={selectedComponents}
       />
+      <div
+        id="canvas-container"
+        style={{ width: "100vw", height: "500px", position: "relative" }}
+      >
+        <Canvas>
+          <ambientLight intensity={0.5} />
+          <Thing />
+          <Thing2 />
+          <OrbitControls />
+        </Canvas>
+      </div>
     </>
   );
 }
