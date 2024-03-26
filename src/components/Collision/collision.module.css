@@ -5,18 +5,10 @@
   position: relative;
 }
 
-.text, .textShow {
+.textShow {
   color: #646a96;
   cursor: pointer;
   font-weight: 700;
-}
-
-.text {
-  visibility: hidden;
-}
-
-.textShow {
-  visibility: visible;
 }
 
 .textShow:hover {
