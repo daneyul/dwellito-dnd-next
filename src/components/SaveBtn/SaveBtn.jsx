@@ -34,7 +34,7 @@ const SaveBtn = ({ selectedComponents, orderTotal }) => {
                   <div className={style.partNumber}>{component.partNumber}</div>
                   <div className={style.desc}>{component.desc}</div>
                   <div className={style.distance}>
-                    {distance.left}" from left, {distance.right}" from right
+                    {distance.left}&quot; from left, {distance.right}&quot; from right
                   </div>
                 </div>
                 <div className={style.price}>${component.price}</div>
