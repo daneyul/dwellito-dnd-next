@@ -1,45 +1,47 @@
+import {
+  OrbitControls,
+} from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
-import { OrthographicCamera } from "@react-three/drei";
-import { useEffect } from "react";
-import { Box3, Vector3 } from 'three';
-import Thing from "../Thing";
-import Thing2 from "../Thing2";
+import ShippingContainer from "../ShippingContainer";
+import Environment from "../Environment";
+import * as THREE from "three";
+import { useEffect, useRef } from "react";
 
-function CameraSetup() {
-  const { camera, scene } = useThree();
+const ControlledCamera = () => {
+  const {
+    camera,
+    gl: { domElement }
+  } = useThree();
+  const controls = useRef();
 
   useEffect(() => {
-    const box = new Box3().setFromObject(scene);
-    const center = box.getCenter(new Vector3());
-    const size = box.getSize(new Vector3());
+    // This sets the minimum and maximum angles at which the camera can orbit vertically
+    const minPolarAngle = Math.PI / 4;  // Adjust this value to restrict downward movement
+    const maxPolarAngle = Math.PI / 2;  // Maximum should be Pi/2, which is the horizon level
 
-    const maxSize = Math.max(size.x, size.y, size.z);
-    const cameraPosition = maxSize * 1.5; // Adjust the multiplier to ensure all objects are visible
+    controls.current.minPolarAngle = minPolarAngle;
+    controls.current.maxPolarAngle = maxPolarAngle;
 
-    camera.position.set(center.x, center.y, cameraPosition);
-    camera.lookAt(center);
-    camera.zoom = 1; // Adjust zoom level as needed
-    camera.near = 0.1;
-    camera.far = cameraPosition * 2;
-    camera.updateProjectionMatrix();
-  }, [camera, scene]);
-}
+    // Optional: Adjust these to limit zoom or distance
+    controls.current.minDistance = 10;
+    controls.current.maxDistance = 150;
+
+  }, [controls]);
+
+  return <OrbitControls ref={controls} args={[camera, domElement]} />;
+};
 
 const Models = () => {
   return (
-    <Canvas>
-      <OrthographicCamera
-        makeDefault
-        position={[0, 0, 100]} // Initial position, will be overridden
-        near={-100}
-        far={100}
-      />
-      <ambientLight intensity={0.5} />
-      <Thing />
-      <Thing2 />
-      <CameraSetup />
+    <Canvas shadows camera={{ position: [-15, 10, 15], fov: 25 }}>
+      <color attach="background" args={["white"]} />
+      <ShippingContainer />
+      {/* <House /> */}
+      <Environment />
+      <OrbitControls makeDefault />
+      <ControlledCamera />
     </Canvas>
   );
-}
+};
 
 export default Models;

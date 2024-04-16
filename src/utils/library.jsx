@@ -141,6 +141,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2000,
+    model: "SM_PDoor_LockBoxLHR_01.obj"
   },
   {
     name: COMPONENT_NAMES.PERSONNEL_DOOR_LHR,
@@ -156,6 +157,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2000,
+    model: "SM_PDoor_LockBoxLHR_01.obj"
   },
   {
     name: COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_RHR,
@@ -171,6 +173,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2000,
+    model: "SM_PDoor_LockBoxRHR_01.obj"
   },
   {
     name: COMPONENT_NAMES.PERSONNEL_DOOR_RHR,
@@ -186,6 +189,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2000,
+    model: "SM_PDoor_LockBoxRHR_01.obj"
   },
   {
     name: COMPONENT_NAMES.SLIDING_GLASS_DOOR,
@@ -201,6 +205,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 3025,
+    model: "SM_Wide_Sliding_Glass_Door_01.obj"
   },
   {
     name: COMPONENT_NAMES.FRENCH_DOOR,
@@ -216,6 +221,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 4550,
+    model: "SM_French_Door_01.obj"
   },
   {
     name: COMPONENT_NAMES.WINDOW_WHITE_SECURITY,
@@ -231,6 +237,7 @@ const componentData = [
     objHeight: DIMENSIONS.WINDOW.WHITE.HEIGHT,
     objType: COMPONENT_TYPES.WINDOW,
     price: 1720,
+    model: "SM_Window 48x36_Hinged_Security_01.obj"
   },
   {
     name: COMPONENT_NAMES.WINDOW_WHITE_WO_SECURITY,
@@ -246,6 +253,7 @@ const componentData = [
     objHeight: DIMENSIONS.WINDOW.WHITE.HEIGHT,
     objType: COMPONENT_TYPES.WINDOW,
     price: 1080,
+    model: "SM_Window_48x36_01.obj"
   },
   {
     name: COMPONENT_NAMES.VENT_12,
@@ -261,6 +269,7 @@ const componentData = [
     objHeight: DIMENSIONS.VENT.SQ_12.HEIGHT,
     objType: COMPONENT_TYPES.VENT,
     price: 440,
+    model: "SM_fixed_louvre_bolt_12_01.obj"
   },
   {
     name: COMPONENT_NAMES.VENT_20,
@@ -276,6 +285,7 @@ const componentData = [
     objHeight: DIMENSIONS.VENT.SQ_20.HEIGHT,
     objType: COMPONENT_TYPES.VENT,
     price: 490,
+    model: "SM_fixed_louvre_bolt_20_01.obj"
   },
   {
     name: COMPONENT_NAMES.VENT_24,
@@ -291,6 +301,7 @@ const componentData = [
     objHeight: DIMENSIONS.VENT.SQ_24.HEIGHT,
     objType: COMPONENT_TYPES.VENT,
     price: 540,
+    model: "SM_fixed_louvre_bolt_24_01.obj"
   },
   {
     name: COMPONENT_NAMES.ROLL_UP_DOOR,
@@ -306,6 +317,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2625,
+    model: "SM_RollUp_Door_01.obj"
   },
 ].map((item) => ({
   id: uuid(),
