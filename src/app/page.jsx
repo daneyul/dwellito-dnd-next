@@ -1,7 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from '@react-three/drei'
 
 import { DndContext } from "@dnd-kit/core";
 import {
@@ -30,8 +28,7 @@ import Footer from "@/components/Footer/Footer";
 import Logo from "@/components/Logo";
 import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
 import Collision from "@/components/Collision/Collision";
-import Thing from "@/components/Thing";
-import Thing2 from "@/components/Thing2";
+import Models from "@/components/Models/Models";
 
 export default function Home() {
   const [hasCollisions, setHasCollisions] = useState(false);
@@ -284,12 +281,7 @@ export default function Home() {
         id="canvas-container"
         style={{ width: "100vw", height: "500px", position: "relative" }}
       >
-        <Canvas>
-          <ambientLight intensity={0.5} />
-          <Thing />
-          <Thing2 />
-          <OrbitControls />
-        </Canvas>
+        <Models />
       </div>
     </>
   );
