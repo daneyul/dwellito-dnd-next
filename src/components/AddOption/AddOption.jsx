@@ -1,4 +1,4 @@
-import { generateImgSrc, handleAddComponent } from "../../utils/utils";
+import { generateImgSrc, handleAddComponent } from "../../utils/2D/utils";
 import style from "./addOption.module.css";
 
 const AddOption = ({

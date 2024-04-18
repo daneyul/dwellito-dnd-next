@@ -1,4 +1,4 @@
-import { checkDistance } from "../utils/utils";
+import { checkDistance } from "../utils/2D/utils";
 
 const Calculations = ({ piece }) => {
   return (

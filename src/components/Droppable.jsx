@@ -1,6 +1,6 @@
 import React from "react";
 import { useDroppable } from "@dnd-kit/core";
-import { generateImgSrc, toScale } from "../utils/utils";
+import { generateImgSrc, toScale } from "../utils/2D/utils";
 import Image from "next/image";
 
 export function Droppable({ children, selectedElevation }) {

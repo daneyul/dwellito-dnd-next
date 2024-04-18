@@ -1,6 +1,6 @@
 import AddOption from "../AddOption/AddOption";
 import style from "./selector.module.css";
-import { componentData, COMPONENT_TYPES } from "../../utils/library";
+import { componentData, COMPONENT_TYPES } from "../../utils/2D/library";
 import { useRef, useState, useEffect } from "react";
 
 const Selector = ({

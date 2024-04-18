@@ -1,4 +1,4 @@
-import { elevationData } from "../../utils/library";
+import { elevationData } from "../../utils/2D/library";
 import style from "./elevationToggle.module.css";
 
 const ElevationToggle = ({ selectedElevation, setSelectedElevation }) => {

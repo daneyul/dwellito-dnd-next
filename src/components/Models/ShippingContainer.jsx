@@ -2,8 +2,7 @@ import { useLoader } from "@react-three/fiber";
 import { useRef } from "react";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MeshStandardMaterial } from "three";
-import { CANVAS_SCALE_FACTOR } from "@/utils/3dLibrary";
-import BoundingBox from "./BoundingBox";
+import { CANVAS_SCALE_FACTOR } from "@/utils/3D/library";
 
 export default function ShippingContainer() {
   const ref = useRef();
@@ -24,14 +23,12 @@ export default function ShippingContainer() {
   });
 
   return (
-    <BoundingBox>
-      <primitive
-        ref={ref}
-        object={obj}
-        scale={CANVAS_SCALE_FACTOR}
-        position={[0, 0, 0]}
-        material={material}
-      />
-    </BoundingBox>
+    <primitive
+      ref={ref}
+      object={obj}
+      scale={CANVAS_SCALE_FACTOR}
+      position={[0, 0, 0]}
+      material={material}
+    />
   );
 }

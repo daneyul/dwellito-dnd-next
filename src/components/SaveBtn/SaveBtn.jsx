@@ -1,7 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import style from "./saveBtn.module.css";
-import { getUniqueElevationObjects, checkDistance, generateImgSrc } from "../../utils/utils";
+import { getUniqueElevationObjects, checkDistance, generateImgSrc } from "../../utils/2D/utils";
 
 const SaveBtn = ({ selectedComponents, orderTotal }) => {
   const [open, setOpen] = useState(false);

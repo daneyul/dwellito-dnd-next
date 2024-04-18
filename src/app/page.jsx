@@ -1,17 +1,11 @@
 "use client";
 import React, { useState, useEffect, createContext } from "react";
 
-import { DndContext } from "@dnd-kit/core";
 import {
   checkCloseness,
   checkCollision,
-  checkDistance,
-  droppableWidth,
   snapToIncrement,
-  toScale,
-} from "@/utils/utils";
-import { Draggable } from "@/components/Draggable";
-import { Droppable } from "@/components/Droppable";
+} from "@/utils/2D/utils";
 import {
   restrictToHorizontalAxis,
   restrictToParentElement,
@@ -21,14 +15,7 @@ import {
   DEFAULT_ELEVATION,
   snapToGridModifier,
   COMPONENT_TYPES,
-  ELEVATION_NAMES,
-} from "@/utils/library";
-import Selector from "@/components/Selector/Selector";
-import Footer from "@/components/Footer/Footer";
-import Logo from "@/components/Logo";
-import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
-import Collision from "@/components/Collision/Collision";
-import Models from "@/components/Models/Models";
+} from "@/utils/2D/library";
 import HomeContent from "./pageContext";
 
 export const PageDataContext = createContext();

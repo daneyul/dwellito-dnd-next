@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
-import { toScale, generateImgSrc } from "../utils/utils";
+import { toScale, generateImgSrc } from "../utils/2D/utils";
 
 export function Draggable({ id, styles, piece, onSelect }, ref) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({

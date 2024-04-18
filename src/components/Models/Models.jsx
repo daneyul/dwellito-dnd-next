@@ -1,9 +1,11 @@
 import { OrbitControls } from "@react-three/drei";
-import { Canvas, useThree, extend } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import ShippingContainer from "./ShippingContainer";
-import Environment from "../../utils/Environment";
-import { useEffect, useRef } from "react";
+import Environment from "../../utils/3D/Environment";
+import { useContext, useEffect, useRef } from "react";
 import Door from "./Door";
+import { PageDataContext } from "src/app/page";
+import { COMPONENT_TYPES } from "@/utils/2D/library";
 
 const ControlledCamera = () => {
   const {
@@ -29,6 +31,8 @@ const ControlledCamera = () => {
 };
 
 const Models = () => {
+  const { selectedComponents } = useContext(PageDataContext);
+  const doors = selectedComponents.filter((component) => component.objType === COMPONENT_TYPES.DOOR);
   return (
     <div
       id="canvas-container"
@@ -37,7 +41,9 @@ const Models = () => {
       <Canvas shadows camera={{ position: [-55, 50, 55], fov: 35 }}>
         <color attach="background" args={["white"]} />
         <ShippingContainer />
-        <Door />
+        {doors.map((door, index) => (
+          <Door key={index} selectedComponent={door} />
+        ))}
         <Environment />
         <OrbitControls makeDefault />
         <ControlledCamera />

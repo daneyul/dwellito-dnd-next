@@ -6,8 +6,8 @@ import { Draggable } from "@/components/Draggable";
 import { DndContext } from "@dnd-kit/core";
 import { useContext } from "react";
 import { PageDataContext } from "./page";
-import { ELEVATION_NAMES } from "@/utils/library";
-import { checkDistance, droppableWidth, toScale } from "@/utils/utils";
+import { ELEVATION_NAMES } from "@/utils/2D/library";
+import { checkDistance, droppableWidth, toScale } from "@/utils/2D/utils";
 import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
 import Footer from "@/components/Footer/Footer";
 import Models from "@/components/Models/Models";
@@ -30,7 +30,7 @@ const HomeContent = () => {
     showCollision,
     draggableRefs,
     isAnyItemSelected
-  } = useContext(PageDataContext); // Using the useContext hook to access the context
+  } = useContext(PageDataContext);
 
   return (
     <>
