@@ -10,7 +10,7 @@ const SaveBtn = ({ selectedComponents, orderTotal }) => {
 
   const Section = ({ elevation }) => {
     const componentsForElevation = selectedComponents.filter((component) =>
-      component.elevations.some((i) => i.name === elevation.name)
+      component.elevation.some((i) => i.name === elevation.name)
     );
 
     return (

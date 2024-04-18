@@ -134,13 +134,13 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/personnel-wo-security-lhr.svg`,
     desc: `Personnel Door 3'x6'8" LHR`,
     objWidth: DIMENSIONS.DOOR.PERSONNEL.WO_SECURITY.WIDTH,
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2000,
+    model: "SM_PDoor_LockBoxLHR_01.obj"
   },
   {
     name: COMPONENT_NAMES.PERSONNEL_DOOR_LHR,
@@ -149,13 +149,13 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/personnel-security-lhr.svg`,
     desc: `Personnel Door w/Hardware and Lock Box 3'x6'8" LHR`,
     objWidth: DIMENSIONS.DOOR.PERSONNEL.W_SECURITY.WIDTH,
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2000,
+    model: "SM_PDoor_LockBoxLHR_01.obj"
   },
   {
     name: COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_RHR,
@@ -164,13 +164,13 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/personnel-wo-security-rhr.svg`,
     desc: `Personnel Door 3'x6'8" RHR`,
     objWidth: DIMENSIONS.DOOR.PERSONNEL.WO_SECURITY.WIDTH,
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2000,
+    model: "SM_PDoor_LockBoxRHR_01.obj"
   },
   {
     name: COMPONENT_NAMES.PERSONNEL_DOOR_RHR,
@@ -179,13 +179,13 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/personnel-security-rhr.svg`,
     desc: `Personnel Door w/Hardware and Lock Box 3'x6'8" RHR`,
     objWidth: DIMENSIONS.DOOR.PERSONNEL.W_SECURITY.WIDTH,
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2000,
+    model: "SM_PDoor_LockBoxRHR_01.obj"
   },
   {
     name: COMPONENT_NAMES.SLIDING_GLASS_DOOR,
@@ -194,13 +194,13 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/sliding-glass.svg`,
     desc: `5' Wide Sliding Glass Door - White Vinyl`,
     objWidth: DIMENSIONS.DOOR.SLIDING.WIDTH,
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 3025,
+    model: "SM_Wide_Sliding_Glass_Door_01.obj"
   },
   {
     name: COMPONENT_NAMES.FRENCH_DOOR,
@@ -209,13 +209,13 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/french.svg`,
     desc: `5' Wide French Door Full`,
     objWidth: DIMENSIONS.DOOR.FRENCH.WIDTH,
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 4550,
+    model: "SM_French_Door_01.obj"
   },
   {
     name: COMPONENT_NAMES.WINDOW_WHITE_SECURITY,
@@ -224,13 +224,13 @@ const componentData = [
       x: DIMENSIONS.WINDOW.WHITE.POSITION.x,
       y: DIMENSIONS.WINDOW.WHITE.POSITION.y
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.WINDOW}/window-security.svg`,
     desc: `48" x 36" White Window w/HD Steel Frame & Hinged Security`,
     objWidth: DIMENSIONS.WINDOW.WHITE.WIDTH,
     objHeight: DIMENSIONS.WINDOW.WHITE.HEIGHT,
     objType: COMPONENT_TYPES.WINDOW,
     price: 1720,
+    model: "SM_Window 48x36_Hinged_Security_01.obj"
   },
   {
     name: COMPONENT_NAMES.WINDOW_WHITE_WO_SECURITY,
@@ -239,13 +239,13 @@ const componentData = [
       x: DIMENSIONS.WINDOW.WHITE.POSITION.x,
       y: DIMENSIONS.WINDOW.WHITE.POSITION.y
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.WINDOW}/window-wo-security.svg`,
     desc: `48" x 36" White Window w/HD Steel Frame & Hinged Security`,
     objWidth: DIMENSIONS.WINDOW.WHITE.WIDTH,
     objHeight: DIMENSIONS.WINDOW.WHITE.HEIGHT,
     objType: COMPONENT_TYPES.WINDOW,
     price: 1080,
+    model: "SM_Window_48x36_01.obj"
   },
   {
     name: COMPONENT_NAMES.VENT_12,
@@ -254,13 +254,13 @@ const componentData = [
       x: DIMENSIONS.VENT.SQ_12.POSITION.x,
       y: DIMENSIONS.VENT.SQ_12.POSITION.y
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.VENT}/12x12.svg`,
     desc: `12"x12" Aluminum Fixed Louver w/HSS Weld Frame 300mmx300mm`,
     objWidth: DIMENSIONS.VENT.SQ_12.WIDTH,
     objHeight: DIMENSIONS.VENT.SQ_12.HEIGHT,
     objType: COMPONENT_TYPES.VENT,
     price: 440,
+    model: "SM_fixed_louvre_bolt_12_01.obj"
   },
   {
     name: COMPONENT_NAMES.VENT_20,
@@ -269,13 +269,13 @@ const componentData = [
       x: DIMENSIONS.VENT.SQ_20.POSITION.x,
       y: DIMENSIONS.VENT.SQ_20.POSITION.y
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.VENT}/20x20.svg`,
     desc: `20"x20" Aluminum Fixed Louver w/HSS Weld Frame 500mmx500mm`,
     objWidth: DIMENSIONS.VENT.SQ_20.WIDTH,
     objHeight: DIMENSIONS.VENT.SQ_20.HEIGHT,
     objType: COMPONENT_TYPES.VENT,
     price: 490,
+    model: "SM_fixed_louvre_bolt_20_01.obj"
   },
   {
     name: COMPONENT_NAMES.VENT_24,
@@ -284,13 +284,13 @@ const componentData = [
       x: DIMENSIONS.VENT.SQ_24.POSITION.x,
       y: DIMENSIONS.VENT.SQ_24.POSITION.y
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.VENT}/24x24.svg`,
     desc: `24"x24" Aluminum Fixed Louver w/HSS Weld Frame 600mmx600mm`,
     objWidth: DIMENSIONS.VENT.SQ_24.WIDTH,
     objHeight: DIMENSIONS.VENT.SQ_24.HEIGHT,
     objType: COMPONENT_TYPES.VENT,
     price: 540,
+    model: "SM_fixed_louvre_bolt_24_01.obj"
   },
   {
     name: COMPONENT_NAMES.ROLL_UP_DOOR,
@@ -299,13 +299,13 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/rollup.svg`,
     desc: `Roll Up Door - 6ft`,
     objWidth: DIMENSIONS.DOOR.ROLL_UP.WIDTH,
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2625,
+    model: "SM_RollUp_Door_01.obj"
   },
 ].map((item) => ({
   id: uuid(),
@@ -314,6 +314,7 @@ const componentData = [
   isColliding: false,
   isSelected: false,
   isTooClose: false,
+  elevation: [],
   ...item,
 }));
 

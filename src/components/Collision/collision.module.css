@@ -1,11 +1,15 @@
-.container {
+.container, .containerHover {
   display: flex;
   justify-content: center;
   margin-bottom: 1.5rem;
   position: relative;
 }
 
-.textShow {
+.containerHover {
+  pointer-events: none;
+}
+
+.text, .textShow {
   color: #646a96;
   cursor: pointer;
   font-weight: 700;

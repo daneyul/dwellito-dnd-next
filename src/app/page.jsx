@@ -28,6 +28,7 @@ import Footer from "@/components/Footer/Footer";
 import Logo from "@/components/Logo";
 import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
 import Collision from "@/components/Collision/Collision";
+import Models from "@/components/Models/Models";
 
 export default function Home() {
   const [hasCollisions, setHasCollisions] = useState(false);
@@ -206,6 +207,8 @@ export default function Home() {
     (component) => component.isSelected
   );
 
+  console.log(selectedComponents);
+
   return (
     <>
       <div style={{ display: "flex", padding: "2rem", position: "relative" }}>
@@ -247,7 +250,7 @@ export default function Home() {
               }}
             >
               {selectedComponents
-                .filter((piece) => piece.elevations.includes(selectedElevation))
+                .filter((piece) => piece.elevation.includes(selectedElevation))
                 .map((piece) => {
                   console.log(
                     checkDistance({ component: piece, selectedElevation })
@@ -276,6 +279,7 @@ export default function Home() {
         setSelectedElevation={setSelectedElevation}
         selectedComponents={selectedComponents}
       />
+      {/* <Models /> */}
     </>
   );
 }
