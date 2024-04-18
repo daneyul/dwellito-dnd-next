@@ -2,6 +2,8 @@ import { useLoader } from "@react-three/fiber";
 import { useRef } from "react";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MeshStandardMaterial } from "three";
+import { CANVAS_SCALE_FACTOR } from "@/utils/3dLibrary";
+import BoundingBox from "./BoundingBox";
 
 export default function ShippingContainer() {
   const ref = useRef();
@@ -10,7 +12,7 @@ export default function ShippingContainer() {
   // Create a white standard material with some roughness
   const material = new MeshStandardMaterial({
     envMapIntensity: 0.25,
-    color: "white"
+    color: "white",
   });
 
   obj.traverse((child) => {
@@ -22,12 +24,14 @@ export default function ShippingContainer() {
   });
 
   return (
-    <primitive
-      ref={ref}
-      object={obj}
-      scale={0.015}
-      position={[0, 0, 0]}
-      material={material}
-    />
+    <BoundingBox>
+      <primitive
+        ref={ref}
+        object={obj}
+        scale={CANVAS_SCALE_FACTOR}
+        position={[0, 0, 0]}
+        material={material}
+      />
+    </BoundingBox>
   );
 }

@@ -1,9 +1,9 @@
 import { OrbitControls } from "@react-three/drei";
-import { Canvas, useThree } from "@react-three/fiber";
-import ShippingContainer from "../ShippingContainer";
-import Environment from "../Environment";
-import * as THREE from "three";
+import { Canvas, useThree, extend } from "@react-three/fiber";
+import ShippingContainer from "./ShippingContainer";
+import Environment from "../../utils/Environment";
 import { useEffect, useRef } from "react";
+import Door from "./Door";
 
 const ControlledCamera = () => {
   const {
@@ -22,7 +22,7 @@ const ControlledCamera = () => {
 
     // Optional: Adjust these to limit zoom or distance
     controls.current.minDistance = 10;
-    controls.current.maxDistance = 150;
+    controls.current.maxDistance = 300;
   }, [controls]);
 
   return <OrbitControls ref={controls} args={[camera, domElement]} />;
@@ -34,10 +34,10 @@ const Models = () => {
       id="canvas-container"
       style={{ width: "100vw", height: "500px", position: "relative" }}
     >
-      <Canvas shadows camera={{ position: [-15, 10, 15], fov: 25 }}>
+      <Canvas shadows camera={{ position: [-55, 50, 55], fov: 35 }}>
         <color attach="background" args={["white"]} />
         <ShippingContainer />
-        {/* <House /> */}
+        <Door />
         <Environment />
         <OrbitControls makeDefault />
         <ControlledCamera />
