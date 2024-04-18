@@ -134,7 +134,6 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/personnel-wo-security-lhr.svg`,
     desc: `Personnel Door 3'x6'8" LHR`,
     objWidth: DIMENSIONS.DOOR.PERSONNEL.WO_SECURITY.WIDTH,
@@ -150,7 +149,6 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/personnel-security-lhr.svg`,
     desc: `Personnel Door w/Hardware and Lock Box 3'x6'8" LHR`,
     objWidth: DIMENSIONS.DOOR.PERSONNEL.W_SECURITY.WIDTH,
@@ -166,7 +164,6 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/personnel-wo-security-rhr.svg`,
     desc: `Personnel Door 3'x6'8" RHR`,
     objWidth: DIMENSIONS.DOOR.PERSONNEL.WO_SECURITY.WIDTH,
@@ -182,7 +179,6 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/personnel-security-rhr.svg`,
     desc: `Personnel Door w/Hardware and Lock Box 3'x6'8" RHR`,
     objWidth: DIMENSIONS.DOOR.PERSONNEL.W_SECURITY.WIDTH,
@@ -198,7 +194,6 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/sliding-glass.svg`,
     desc: `5' Wide Sliding Glass Door - White Vinyl`,
     objWidth: DIMENSIONS.DOOR.SLIDING.WIDTH,
@@ -214,7 +209,6 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/french.svg`,
     desc: `5' Wide French Door Full`,
     objWidth: DIMENSIONS.DOOR.FRENCH.WIDTH,
@@ -230,7 +224,6 @@ const componentData = [
       x: DIMENSIONS.WINDOW.WHITE.POSITION.x,
       y: DIMENSIONS.WINDOW.WHITE.POSITION.y
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.WINDOW}/window-security.svg`,
     desc: `48" x 36" White Window w/HD Steel Frame & Hinged Security`,
     objWidth: DIMENSIONS.WINDOW.WHITE.WIDTH,
@@ -246,7 +239,6 @@ const componentData = [
       x: DIMENSIONS.WINDOW.WHITE.POSITION.x,
       y: DIMENSIONS.WINDOW.WHITE.POSITION.y
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.WINDOW}/window-wo-security.svg`,
     desc: `48" x 36" White Window w/HD Steel Frame & Hinged Security`,
     objWidth: DIMENSIONS.WINDOW.WHITE.WIDTH,
@@ -262,7 +254,6 @@ const componentData = [
       x: DIMENSIONS.VENT.SQ_12.POSITION.x,
       y: DIMENSIONS.VENT.SQ_12.POSITION.y
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.VENT}/12x12.svg`,
     desc: `12"x12" Aluminum Fixed Louver w/HSS Weld Frame 300mmx300mm`,
     objWidth: DIMENSIONS.VENT.SQ_12.WIDTH,
@@ -278,7 +269,6 @@ const componentData = [
       x: DIMENSIONS.VENT.SQ_20.POSITION.x,
       y: DIMENSIONS.VENT.SQ_20.POSITION.y
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.VENT}/20x20.svg`,
     desc: `20"x20" Aluminum Fixed Louver w/HSS Weld Frame 500mmx500mm`,
     objWidth: DIMENSIONS.VENT.SQ_20.WIDTH,
@@ -294,7 +284,6 @@ const componentData = [
       x: DIMENSIONS.VENT.SQ_24.POSITION.x,
       y: DIMENSIONS.VENT.SQ_24.POSITION.y
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.VENT}/24x24.svg`,
     desc: `24"x24" Aluminum Fixed Louver w/HSS Weld Frame 600mmx600mm`,
     objWidth: DIMENSIONS.VENT.SQ_24.WIDTH,
@@ -310,7 +299,6 @@ const componentData = [
       x: DIMENSIONS.DOOR.POSITION.x,
       y: DIMENSIONS.DOOR.POSITION.y,
     },
-    elevations: [],
     imgName: `${COMPONENT_TYPES.DOOR}/rollup.svg`,
     desc: `Roll Up Door - 6ft`,
     objWidth: DIMENSIONS.DOOR.ROLL_UP.WIDTH,
@@ -326,6 +314,7 @@ const componentData = [
   isColliding: false,
   isSelected: false,
   isTooClose: false,
+  elevation: [],
   ...item,
 }));
 

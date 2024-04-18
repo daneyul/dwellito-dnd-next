@@ -3,7 +3,7 @@ import * as HoverCard from '@radix-ui/react-hover-card';
 
 const Collision = ({ showCollision }) => {
   return (
-    <div className={style.container}>
+    <div className={showCollision ? style.container : style.containerHover}>
       <HoverCard.Root openDelay={0} closeDelay={0}>
         <HoverCard.Trigger>
           <div className={showCollision ? style.textShow : style.text}>

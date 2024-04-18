@@ -6,10 +6,10 @@ export const generateImgSrc = (imgName) =>
 
 export const checkCollision = (item1, item2, selectedElevation) => {
   // First, check if both items are on the selected elevation.
-  // This assumes every item has an `elevations` array and that `selectedElevation` is a singular value or an identifier.
+  // This assumes every item has an `elevation` array and that `selectedElevation` is a singular value or an identifier.
   const isOnSelectedElevation =
-    item1.elevations.includes(selectedElevation) &&
-    item2.elevations.includes(selectedElevation);
+    item1.elevation.includes(selectedElevation) &&
+    item2.elevation.includes(selectedElevation);
 
   if (!isOnSelectedElevation) {
     // If one or both items are not on the selected elevation, they cannot collide.
@@ -75,7 +75,7 @@ export const handleAddComponent = (
       ...item,
       id: uuid(),
       position: { ...item.position },
-      elevations: [...item.elevations, selectedElevation],
+      elevation: [...item.elevation, selectedElevation],
     };
 
     // Check for collision with each previously selected component
@@ -117,7 +117,7 @@ export const handleRemoveComponent = (itemToRemove, setSelectedComponents) => {
 };
 
 export const getUniqueElevationObjects = (selectedComponents) => {
-  const allElevations = selectedComponents.flatMap((component) => component.elevations);
+  const allElevations = selectedComponents.flatMap((component) => component.elevation);
 
   const uniqueElevationObjects = allElevations.reduce((acc, currentElevation) => {
     if (!acc.some((elevation) => elevation.name === currentElevation.name)) {
@@ -149,8 +149,8 @@ export const checkCloseness = (item1, item2, selectedElevation) => {
   const closenessThreshold = 6 * DIMENSIONS.SCALE_FACTOR;
 
   const isOnSelectedElevation =
-    item1.elevations.includes(selectedElevation) &&
-    item2.elevations.includes(selectedElevation);
+    item1.elevation.includes(selectedElevation) &&
+    item2.elevation.includes(selectedElevation);
 
   if (!isOnSelectedElevation) {
     return false;

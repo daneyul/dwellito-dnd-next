@@ -207,6 +207,8 @@ export default function Home() {
     (component) => component.isSelected
   );
 
+  console.log(selectedComponents);
+
   return (
     <>
       <div style={{ display: "flex", padding: "2rem", position: "relative" }}>
@@ -248,7 +250,7 @@ export default function Home() {
               }}
             >
               {selectedComponents
-                .filter((piece) => piece.elevations.includes(selectedElevation))
+                .filter((piece) => piece.elevation.includes(selectedElevation))
                 .map((piece) => {
                   console.log(
                     checkDistance({ component: piece, selectedElevation })
@@ -277,12 +279,7 @@ export default function Home() {
         setSelectedElevation={setSelectedElevation}
         selectedComponents={selectedComponents}
       />
-      <div
-        id="canvas-container"
-        style={{ width: "100vw", height: "500px", position: "relative" }}
-      >
-        <Models />
-      </div>
+      {/* <Models /> */}
     </>
   );
 }

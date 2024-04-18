@@ -1,8 +1,12 @@
-.container {
+.container, .containerHover {
   display: flex;
   justify-content: center;
   margin-bottom: 1.5rem;
   position: relative;
+}
+
+.containerHover {
+  pointer-events: none;
 }
 
 .text, .textShow {
