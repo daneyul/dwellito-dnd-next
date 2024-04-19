@@ -1,4 +1,4 @@
-import { elevationData } from "../2D/library";
+import { DIMENSIONS, elevationData } from "../2D/library";
 import { SCALE_FACTOR_FOR_CALCULATIONS } from "./library";
 
 const degrees = {
@@ -26,7 +26,7 @@ const calcRotation = (elevation) => {
   }
 }
 
-const rightSideCoordinates = ({ distanceObject, objType }) => {
+const rightSideCoordinates = ({ distanceObject }) => {
   let xPosition = distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS;
   let yPosition = 0;
   let zPosition = (parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
@@ -37,7 +37,17 @@ const rightSideCoordinates = ({ distanceObject, objType }) => {
     yPosition
   ]
 }
-const leftSideCoordinates = () => {
+const leftSideCoordinates = ({ distanceObject }) => {
+  let xPosition = (DIMENSIONS.CONTAINER.SIDE.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS;
+  let yPosition = DIMENSIONS.CONTAINER.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS;
+  let zPosition = 0;
+  return [
+    xPosition,
+    zPosition,
+    yPosition
+  ]
+}
+const frontSideCoordinates = ({ distanceObject }) => {
   let xPosition = 0;
   let yPosition = 0;
   let zPosition = 0;
@@ -47,17 +57,7 @@ const leftSideCoordinates = () => {
     yPosition
   ]
 }
-const frontSideCoordinates = () => {
-  let xPosition = 0;
-  let yPosition = 0;
-  let zPosition = 0;
-  return [
-    xPosition,
-    zPosition,
-    yPosition
-  ]
-}
-const backSideCoordinates = () => {
+const backSideCoordinates = ({ distanceObject }) => {
   let xPosition = 0;
   let yPosition = 0;
   let zPosition = 0;

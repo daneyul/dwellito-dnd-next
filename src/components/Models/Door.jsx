@@ -25,9 +25,11 @@ function Door({ component }) {
     });
   }, [obj, material]);
 
+  const selectedElevation = component.elevation[0];
+
   const distanceObject = checkDistance({
-    component: component,
-    selectedElevation: component.elevation[0],
+    component,
+    selectedElevation,
   });
 
   const xPosition = distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS;
@@ -35,7 +37,7 @@ function Door({ component }) {
   const zPosition = (parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
 
   const position = [xPosition, zPosition, yPosition];
-  const rotation = [0, calcRotation(component.elevation[0]), 0];
+  const rotation = [0, calcRotation(selectedElevation), 0];
 
   return (
     <primitive
