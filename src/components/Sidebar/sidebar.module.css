@@ -1,13 +1,31 @@
 .container {
-  width: 25%;
+  width: 33.33%;
   background-color: #FCFCFC;
   border-left: 1px solid #E3E4E7;
   font-weight: 300;
+  padding: 8rem 4rem; 
+  right: 0;
+  z-index: 10;
+  overflow-y: auto;
   height: 100vh;
 }
 
 .header {
-  font-family: "Linotype Light", serif;
+  font-family: "Linotype", serif;
+  font-weight: 300;
   font-size: 40px;
   text-align: center;
+  color: #03163B;
+}
+
+.supplier {
+  font-family: "Chromatica", serif;
+  font-weight: 700;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.description {
+  text-align: center;
+  margin: 2rem 0;
 }

@@ -93,7 +93,7 @@ const DIMENSIONS = {
       }
     },
   },
-  SCALE_FACTOR: 3.5,
+  SCALE_FACTOR: 2.5,
   GRID_SIZE: 1,
   BOUNDARIES: {
     x: 16.125

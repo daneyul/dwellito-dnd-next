@@ -1,33 +1,37 @@
+/* eslint-disable @next/next/no-img-element */
+import { useContext } from "react";
 import { generateImgSrc, handleAddComponent } from "../../utils/2D/utils";
 import style from "./addOption.module.css";
+import { PageDataContext } from "@/app/page";
+import * as HoverCard from "@radix-ui/react-hover-card";
 
-const AddOption = ({
-  options,
-  setSelectedComponents,
-  selectedElevation,
-  setHasCollisions,
-  setIsExpanded,
-}) => {
-  return options.map((item, index) => {
+const AddOption = ({ options }) => {
+  const { setSelectedComponents, selectedElevation, setHasCollisions } =
+    useContext(PageDataContext);
+  return options.map((item) => {
     return (
-      <div className={style.tooltipContainer} key={index}>
-        <img
-          key={item.id}
-          src={generateImgSrc(item.imgName)}
-          alt={item.name}
-          onClick={() =>
-            handleAddComponent(
-              item,
-              setSelectedComponents,
-              selectedElevation,
-              setHasCollisions,
-              setIsExpanded
-            )
-          }
-          className={style.objImg}
-        />
-        <div className={style.tooltipText}>{item.name}</div>
-      </div>
+      <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
+        <HoverCard.Trigger>
+          <img
+            src={generateImgSrc(item.imgName)}
+            alt={item.name}
+            onClick={() =>
+              handleAddComponent(
+                item,
+                setSelectedComponents,
+                selectedElevation,
+                setHasCollisions
+              )
+            }
+            className={style.objImg}
+          />
+        </HoverCard.Trigger>
+        <HoverCard.Portal>
+          <HoverCard.Content className={style.tooltipText} side="top">
+            {item.name}
+          </HoverCard.Content>
+        </HoverCard.Portal>
+      </HoverCard.Root>
     );
   });
 };

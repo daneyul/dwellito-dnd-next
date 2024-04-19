@@ -1,0 +1,25 @@
+.img {
+  background-color: color(lightBlue);
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: space(8);
+}
+
+.buttonWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.buttonText {
+  color: color(blue);
+  font-weight: 700;
+  margin-left: space(4);
+}

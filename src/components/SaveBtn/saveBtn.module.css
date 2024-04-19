@@ -3,7 +3,8 @@
   background-color: #2a2cb1;
   border: none;
   color: white;
-  font-family: "Chromatica Bold", sans-serif;
+  font-family: "Chromatica", sans-serif;
+  font-weight: 700;
   border-radius: 0.5rem;
   padding: 1rem 2rem;
   cursor: pointer;
@@ -77,7 +78,8 @@
   font-size: 12px;
   font-weight: 700;
   line-height: 24px;
-  font-family: "Chromatica Bold", sans-serif;
+  font-family: "Chromatica", sans-serif;
+  font-weight: 700;
 }
 
 .distance {
@@ -91,7 +93,8 @@
 }
 
 .total {
-  font-family: "Chromatica Bold", sans-serif;
+  font-family: "Chromatica", sans-serif;
+  font-weight: 700;
   border-radius: 8px;
   background: #f8f8ff;
   font-weight: 700;
@@ -106,7 +109,8 @@
 .confirm {
   cursor: pointer;
   color: white;
-  font-family: "Chromatica Bold", sans-serif;
+  font-family: "Chromatica", sans-serif;
+  font-weight: 700;
   border-radius: 8px;
   border: 1px solid #2a2cb1;
   background: #2a2cb1;

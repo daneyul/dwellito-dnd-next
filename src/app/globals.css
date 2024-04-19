@@ -31,20 +31,24 @@ a {
 
 @font-face {
   font-family: "Chromatica";
+  font-weight: 400;
   src: url('../fonts/Chromatica-Regular.otf') format("opentype");
 }
 
 @font-face {
-  font-family: "Chromatica Medium";
+  font-family: "Chromatica";
+  font-weight: 600;
   src: url('../fonts/Chromatica-Medium.otf') format("opentype");
 }
 
 @font-face {
-  font-family: "Chromatica Bold";
+  font-family: "Chromatica";
+  font-weight: 700;
   src: url('../fonts/Chromatica-Bold.otf') format("opentype");
 }
 
 @font-face {
-  font-family: "Linotype Light";
+  font-family: "Linotype";
+  font-weight: 300;
   src: url('../fonts/Linotype-Light.ttf') format("truetype");
 }

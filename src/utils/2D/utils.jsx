@@ -67,8 +67,7 @@ export const handleAddComponent = (
   item,
   setSelectedComponents,
   selectedElevation,
-  setHasCollisions,
-  setIsExpanded
+  setHasCollisions
 ) => {
   setSelectedComponents((prevSelectedComponents) => {
     const newItem = {
@@ -92,7 +91,6 @@ export const handleAddComponent = (
       return [...prevSelectedComponents, newItem];
     }
   });
-  setIsExpanded(false);
 };
 
 export const handleRemoveComponent = (itemToRemove, setSelectedComponents) => {

@@ -16,15 +16,15 @@ import {
   snapToGridModifier,
   COMPONENT_TYPES,
 } from "@/utils/2D/library";
-import HomeContent from "./pageContext";
 import Logo from "@/components/Logo";
-import Viewer from "./pageContext";
+import Viewer from "../components/Viewer/Viewer";
 import Sidebar from "@/components/Sidebar/Sidebar";
 
 export const PageDataContext = createContext();
 
 const PageDataProvider = ({ children }) => {
   const [hasCollisions, setHasCollisions] = useState(false);
+  const [showYourOrder, setShowYourOrder] = useState(false);
   const [, setIsTooClose] = useState(false);
   const [showCollision, setShowCollision] = useState(false);
   const [selectedComponents, setSelectedComponents] =
@@ -223,6 +223,8 @@ const PageDataProvider = ({ children }) => {
         setHasCollisions,
         modifiers,
         isAnyItemSelected,
+        showYourOrder,
+        setShowYourOrder
       }}
     >
       {children}
@@ -236,11 +238,14 @@ const Home = () => {
       <div style={{ position: "absolute", top: "2rem", left: "2rem" }}>
         <Logo />
       </div>
-      <Viewer />
-      {/* <div style={{ display: "flex" }}>
+      <div
+        style={{
+          display: "flex"
+        }}
+      >
         <Viewer />
         <Sidebar />
-      </div> */}
+      </div>
     </PageDataProvider>
   );
 };

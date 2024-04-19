@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.heading {
+  font-size: 32px;
+  font-family: "Linotype", serif;
+}
+
+.subheading {
+  font-size: 18px;
+  margin-top: space(6);
+}
+
+.button {
+  margin: space(8) 0;
+  border-radius: 2px;
+  background-color: color(blue);
+  color: color(white);
+  padding: space(4);
+  height: auto;
+  width: 100%;
+  cursor: pointer;
+}

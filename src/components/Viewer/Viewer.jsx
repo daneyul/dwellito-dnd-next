@@ -5,7 +5,7 @@ import Selector from "@/components/Selector/Selector";
 import { Draggable } from "@/components/Draggable";
 import { DndContext } from "@dnd-kit/core";
 import { useContext } from "react";
-import { PageDataContext } from "./page";
+import { PageDataContext } from "../../app/page";
 import { ELEVATION_NAMES } from "@/utils/2D/library";
 import { checkDistance, droppableWidth, toScale } from "@/utils/2D/utils";
 import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
@@ -29,30 +29,18 @@ const Viewer = () => {
     handleDeleteSelected,
     showCollision,
     draggableRefs,
-    isAnyItemSelected
+    isAnyItemSelected,
   } = useContext(PageDataContext);
 
   return (
     <>
       <div
         style={{
-          position: "absolute",
-          top: "0",
-          zIndex: "2",
-          left: "50%",
-          transform: "translateX(-50%)",
+          width: "66.66%",
+          position: "sticky",
+          marginTop: "10rem",
         }}
       >
-        {selectedElevation.name !== ELEVATION_NAMES.FRONT ? (
-          <Selector
-            setSelectedComponents={setSelectedComponents}
-            setOrderTotal={setOrderTotal}
-            selectedElevation={selectedElevation}
-            setHasCollisions={setHasCollisions}
-          />
-        ) : null}
-      </div>
-      <div style={{ marginTop: "10rem", width: "75%" }}>
         <Collision showCollision={showCollision} />
         <DndContext
           onDragStart={handleDragStart}
@@ -72,9 +60,6 @@ const Viewer = () => {
               {selectedComponents
                 .filter((piece) => piece.elevation.includes(selectedElevation))
                 .map((piece) => {
-                  console.log(
-                    checkDistance({ component: piece, selectedElevation })
-                  );
                   return (
                     <Draggable
                       piece={piece}
@@ -89,17 +74,17 @@ const Viewer = () => {
             </div>
           </Droppable>
         </DndContext>
-      </div>
-      {isAnyItemSelected && (
+        {isAnyItemSelected && (
         <DeleteBtn onDeleteSelected={handleDeleteSelected} />
       )}
-      <Footer
+      </div>
+      {/* <Footer
         orderTotal={orderTotal}
         selectedElevation={selectedElevation}
         setSelectedElevation={setSelectedElevation}
         selectedComponents={selectedComponents}
       />
-      <Models />
+      <Models /> */}
     </>
   );
 };
