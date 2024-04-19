@@ -41,8 +41,8 @@ const Models = () => {
       <Canvas shadows camera={{ position: [-55, 50, 55], fov: 35 }}>
         <color attach="background" args={["white"]} />
         <ShippingContainer />
-        {doors.map((door, index) => (
-          <Door key={index} selectedComponent={door} />
+        {doors.map((door) => (
+          <Door key={door.id} component={door} />
         ))}
         <Environment />
         <OrbitControls makeDefault />

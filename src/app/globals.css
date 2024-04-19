@@ -43,3 +43,8 @@ a {
   font-family: "Chromatica Bold";
   src: url('../fonts/Chromatica-Bold.otf') format("opentype");
 }
+
+@font-face {
+  font-family: "Linotype Light";
+  src: url('../fonts/Linotype-Light.ttf') format("truetype");
+}

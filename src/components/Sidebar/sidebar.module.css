@@ -1,0 +1,13 @@
+.container {
+  width: 25%;
+  background-color: #FCFCFC;
+  border-left: 1px solid #E3E4E7;
+  font-weight: 300;
+  height: 100vh;
+}
+
+.header {
+  font-family: "Linotype Light", serif;
+  font-size: 40px;
+  text-align: center;
+}

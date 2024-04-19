@@ -17,6 +17,9 @@ import {
   COMPONENT_TYPES,
 } from "@/utils/2D/library";
 import HomeContent from "./pageContext";
+import Logo from "@/components/Logo";
+import Viewer from "./pageContext";
+import Sidebar from "@/components/Sidebar/Sidebar";
 
 export const PageDataContext = createContext();
 
@@ -219,7 +222,7 @@ const PageDataProvider = ({ children }) => {
         hasCollisions,
         setHasCollisions,
         modifiers,
-        isAnyItemSelected
+        isAnyItemSelected,
       }}
     >
       {children}
@@ -230,7 +233,14 @@ const PageDataProvider = ({ children }) => {
 const Home = () => {
   return (
     <PageDataProvider>
-      <HomeContent />
+      <div style={{ position: "absolute", top: "2rem", left: "2rem" }}>
+        <Logo />
+      </div>
+      <Viewer />
+      {/* <div style={{ display: "flex" }}>
+        <Viewer />
+        <Sidebar />
+      </div> */}
     </PageDataProvider>
   );
 };

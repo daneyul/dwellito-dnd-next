@@ -13,7 +13,7 @@ import Footer from "@/components/Footer/Footer";
 import Models from "@/components/Models/Models";
 
 // Create a separate component that will actually consume the context
-const HomeContent = () => {
+const Viewer = () => {
   const {
     selectedComponents,
     setSelectedComponents,
@@ -34,9 +34,6 @@ const HomeContent = () => {
 
   return (
     <>
-      <div style={{ display: "flex", padding: "2rem", position: "relative" }}>
-        <Logo />
-      </div>
       <div
         style={{
           position: "absolute",
@@ -55,7 +52,7 @@ const HomeContent = () => {
           />
         ) : null}
       </div>
-      <div style={{ marginTop: "10rem" }}>
+      <div style={{ marginTop: "10rem", width: "75%" }}>
         <Collision showCollision={showCollision} />
         <DndContext
           onDragStart={handleDragStart}
@@ -107,4 +104,4 @@ const HomeContent = () => {
   );
 };
 
-export default HomeContent;
+export default Viewer;
