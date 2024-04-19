@@ -6,7 +6,7 @@ import {
   SCALE_FACTOR_FOR_CALCULATIONS,
   CANVAS_SCALE_FACTOR,
 } from "@/utils/3D/library";
-import { calcRotation } from "@/utils/3D/utils";
+import { calcPosition, calcRotation } from "@/utils/3D/utils";
 import { checkDistance } from "@/utils/2D/utils";
 
 function Door({ component }) {
@@ -32,11 +32,6 @@ function Door({ component }) {
     selectedElevation,
   });
 
-  const xPosition = distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS;
-  const yPosition = 0;
-  const zPosition = (parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
-
-  const position = [xPosition, zPosition, yPosition];
   const rotation = [0, calcRotation(selectedElevation), 0];
 
   return (
@@ -45,7 +40,7 @@ function Door({ component }) {
       object={obj.clone()}
       rotation={rotation}
       scale={CANVAS_SCALE_FACTOR}
-      position={position}
+      position={calcPosition(selectedElevation, distanceObject)}
       material={material}
     />
   );
