@@ -23,31 +23,6 @@ const Models = () => {
   const cameraRot = [-0.32, 0.58, 0.18];
   const cameraTar = [-452, -222, -703];
 
-  const CameraLogger = () => {
-    const { camera } = useThree();
-    const targetRef = useRef(new THREE.Vector3());
-  
-    useEffect(() => {
-      const logCameraPosition = () => {
-        console.log("Position:", camera.position);
-        console.log("Rotation:", camera.rotation);
-    
-        // Calculate the camera target
-        const target = new THREE.Vector3();
-        camera.getWorldDirection(target);
-        target.multiplyScalar(1000).add(camera.position);  // Adjust scalar as needed based on your scene scale
-        console.log("Target:", target);
-    
-        // Optionally store the camera state
-        // localStorage.setItem('cameraState', JSON.stringify({position: camera.position.toArray(), rotation: camera.rotation.toArray(), target: target.toArray()}));
-      };
-    
-      logCameraPosition();
-    }, [camera]);
-  
-    return null;
-  };
-
   return (
     <div
       id="canvas-container"
@@ -55,7 +30,7 @@ const Models = () => {
     >
       <Canvas
         shadows
-        camera={{ position: cameraPos, fov: 35, near: 1, far: 500 }}
+        camera={{ position: cameraPos, rotation: cameraRot, target: cameraTar, fov: 35, near: 1, far: 500 }}
       >
         <color attach="background" args={["#fdfdf7"]} />
 
@@ -99,7 +74,7 @@ const Models = () => {
           />
         </AccumulativeShadows>
         <Environment files="/adamsbridge.hdr" />
-        {/* <EffectComposer disableNormalPass multisampling={0}>
+        <EffectComposer disableNormalPass multisampling={0}>
           <N8AO
             halfRes
             color="black"
@@ -109,13 +84,12 @@ const Models = () => {
             denoiseSamples={4}
           />
           <SMAA />
-        </EffectComposer> */}
+        </EffectComposer>
         <OrbitControls
           makeDefault
           minPolarAngle={0}
           maxPolarAngle={Math.PI / 2}
         />
-        <CameraLogger />
         {/* <OrthographicCamera
           makeDefault
           position={cameraPos}
