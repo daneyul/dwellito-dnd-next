@@ -1,10 +1,10 @@
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import style from "./saveOrder.module.scss";
 import { PageDataContext } from "@/app/page";
 
 const SaveOrder = () => {
-  const { setShowYourOrder } = useContext(PageDataContext);
+  const { toggleOrder } = useContext(PageDataContext);
   return (
     <div className={style.container}>
       <div className={style.heading}>Save Your Order</div>
@@ -13,7 +13,7 @@ const SaveOrder = () => {
       </div>
       <div
         className={style.button}
-        onClick={setShowYourOrder(true)}
+        onClick={toggleOrder}
       >
         Continue
       </div>

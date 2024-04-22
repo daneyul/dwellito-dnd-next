@@ -4,9 +4,9 @@ import style from "./editDesignBtn.module.scss"
 import { PageDataContext } from "@/app/page";
 
 const EditDesignBtn = () => {
-  const { setShowYourOrder } = useContext(PageDataContext);
+  const { toggleOrder } = useContext(PageDataContext);
   return (
-    <div className={style.buttonContainer} onClick={setShowYourOrder(false)}>
+    <div className={style.buttonContainer} onClick={toggleOrder}>
         <div className={style.buttonWrapper}>
           <div className={style.img}>
             <ChevronLeftBlue />

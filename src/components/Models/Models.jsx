@@ -36,9 +36,9 @@ const Models = () => {
   return (
     <div
       id="canvas-container"
-      style={{ width: "100vw", height: "500px", position: "relative" }}
+      style={{ width: "auto", height: "100vh", position: "relative" }}
     >
-      <Canvas shadows camera={{ position: [-55, 50, 55], fov: 35 }}>
+      <Canvas shadows camera={{ position: [-75, 75, 75], fov: 35 }}>
         <color attach="background" args={["white"]} />
         <ShippingContainer />
         {doors.map((door) => (

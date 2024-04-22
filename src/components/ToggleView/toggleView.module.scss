@@ -1,0 +1,17 @@
+.container {
+  width: 115px;
+  height: 95px;
+  border-radius: 8px;
+  border: 1px solid color(indigo);
+  position: absolute;
+  bottom: 1.5rem;
+  right: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container:hover {
+  box-shadow: 0px 4px 30px 0px rgba(128, 129, 238, 0.19);
+}

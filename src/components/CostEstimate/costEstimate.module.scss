@@ -1,0 +1,32 @@
+.container {
+  padding: space(4);
+  border-radius: 8px;
+}
+
+.title {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: space(8);
+}
+
+.separator {
+  height: 1px;
+  margin: space(4) 0;
+  background-color: color(grey);
+  width: 100%;
+}
+
+.lineItem, .total {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: space(4);
+  margin-top: space(4);
+}
+
+.lineItem {
+  border-bottom: 1px solid color(grey);
+}
+
+.total {
+  font-weight: 700;
+}

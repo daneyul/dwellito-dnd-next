@@ -24,8 +24,10 @@ import PriceTotal from "@/components/PriceTotal/PriceTotal";
 export const PageDataContext = createContext();
 
 const PageDataProvider = ({ children }) => {
+  const [show3d, setShow3d] = useState(false);
   const [hasCollisions, setHasCollisions] = useState(false);
   const [showYourOrder, setShowYourOrder] = useState(false);
+  const [zipCode, setZipCode] = useState("");
   const [, setIsTooClose] = useState(false);
   const [showCollision, setShowCollision] = useState(false);
   const [selectedComponents, setSelectedComponents] =
@@ -39,6 +41,14 @@ const PageDataProvider = ({ children }) => {
   }, {});
 
   const [orderTotal, setOrderTotal] = useState(0);
+
+  const toggleOrder = () => {
+    setShowYourOrder(!showYourOrder);
+  };
+
+  const toggleView = () => {
+    setShow3d(!show3d);
+  }
 
   // Calculate the total price of all selected components
   useEffect(() => {
@@ -226,9 +236,13 @@ const PageDataProvider = ({ children }) => {
         modifiers,
         isAnyItemSelected,
         showYourOrder,
-        setShowYourOrder,
+        toggleOrder,
         selectedElevationIndex,
-        setSelectedElevationIndex
+        setSelectedElevationIndex,
+        zipCode,
+        setZipCode,
+        show3d,
+        toggleView
       }}
     >
       {children}

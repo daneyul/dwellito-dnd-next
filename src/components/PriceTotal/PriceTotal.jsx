@@ -1,68 +1,92 @@
+/* eslint-disable @next/next/no-img-element */
 import { useContext, useState } from "react";
 import style from "./priceTotal.module.scss";
 import * as Dialog from "@radix-ui/react-dialog";
+import { PageDataContext } from "@/app/page";
+import { checkDistance, generateImgSrc, getUniqueElevationObjects } from "@/utils/2D/utils";
 
 const PriceTotal = () => {
-  const [email, setEmail] = useState("");
-  const [validationMessage, setValidationMessage] = useState("");
+  const { orderTotal, selectedComponents } = useContext(PageDataContext);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
+  const tax = 1000;
+
+  const Section = ({ elevation }) => {
+    const componentsForElevation = selectedComponents.filter((component) =>
+      component.elevation.some((i) => i.name === elevation.name)
+    );
+
+    return (
+      <div className={style.section}>
+        <div className={style.elevationName}>{elevation.name}</div>
+        <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
+          {componentsForElevation.map((component) => {
+
+            const distance = checkDistance({component: component, selectedElevation: elevation});
+
+            return (
+              <li key={component.id} className={style.lineItem}>
+                <div className={style.thumbnailContainer}>
+                  <img
+                    src={generateImgSrc(component.imgName)}
+                    alt={component.desc}
+                    className={style.thumbnailImg}
+                  />
+                </div>
+                <div className={style.description}>
+                  <div className={style.partNumber}>{component.partNumber}</div>
+                  <div className={style.desc}>{component.desc}</div>
+                  <div className={style.distance}>
+                    {distance.left}&quot; from left, {distance.right}&quot; from right
+                  </div>
+                </div>
+                <div className={style.price}>${component.price}</div>
+              </li>
+            )}
+          )}
+        </ul>
+      </div>
+    );
+  };
+
+  const Total = ({ text, value }) => {
+    return (
+      <div className={style.total}>
+        <div>{text}</div>
+        <div>{value}</div>
+      </div>
+    );
+  };
 
   return (
     <Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
       <Dialog.Trigger asChild>
         <div className={style.container}>
-          <div className={style.price}>$267,249</div>
-          <div className={style.text}> as low as $1,200 / mo</div>
+          <div className={style.price}>${orderTotal.toLocaleString()}</div>
+          <div className={style.text}>&nbsp;as low as $1,200 / mo</div>
         </div>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className={style.dialogOverlay} />
-        <Dialog.Content className={style.dialogContent}>
-          <Dialog.Title className={style.dialogTitle}>
-            Order Summary
-          </Dialog.Title>
-          <Dialog.Description className={style.dialogDescription}>
-            Estimated Delivery: October 2024
-          </Dialog.Description>
-          <div className={style.lineItem}>
-            <div>Base Unit</div>
-            <div>$267,249</div>
-          </div>
-          <div className={style.lineItem}>
-            <div>Upgrades</div>
-            <div>$0</div>
-          </div>
-          <div className={style.total}>
-            <div>Total</div>
-            <div>$267,249</div>
-          </div>
-          <div className={style.ctaContainer}>
-            <div className={style.saveText}>Save Your Design</div>
-            <div className={style.sendText}>
-              Send this design configuration to your email
-            </div>
-          </div>
-          <fieldset className={style.fieldset}>
-            <input
-              className={style.input}
-              id="name"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
+        <Dialog.Overlay className={style.overlay}>
+          <Dialog.Content className={style.content}>
+            <Dialog.Title className={style.title}>Order Summary</Dialog.Title>
+            {uniqueElevationNames.map((elevation, index) => (
+              <Section key={index} elevation={elevation} />
+            ))}
+            <Total text="Sub Total" value={`$${orderTotal.toLocaleString()}`} />
+            <Total text="Tax" value={`$${tax.toLocaleString()}`} />
+            <Total
+              text="Total"
+              value={`$${(orderTotal + tax).toLocaleString()}`}
             />
-          </fieldset>
-          {validationMessage && <div className={style.validationMessage}>{validationMessage}</div>}
-          <div
-            style={{
-              display: "flex",
-              marginTop: 25,
-              justifyContent: "flex-end",
-            }}
-          >
-            <Dialog.Close asChild>
-              <button className={style.button} onClick={() => console.log("Send email")}>Send to Email</button>
-            </Dialog.Close>
-          </div>
-        </Dialog.Content>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Dialog.Close className={style.confirm}>
+                Confirm Order
+              </Dialog.Close>
+            </div>
+          </Dialog.Content>
+        </Dialog.Overlay>
       </Dialog.Portal>
     </Dialog.Root>
   );
