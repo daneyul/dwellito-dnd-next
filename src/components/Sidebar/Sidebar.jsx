@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import Badges from "../Badges/Badges";
 import BasePriceDesc from "../BasePriceDesc/BasePriceDesc";
-import SaveOrder from "../SaveOrder/SaveOrder";
 import Selector from "../Selector/Selector";
 import style from "./sidebar.module.css";
 import { PageDataContext } from "@/app/page";
-import YourOrder from "../YourOrder/YourOrder";
+import PriceSummary from "../PriceSummary/PriceSummary";
+import SaveBtn from "../SaveBtn/SaveBtn";
 
-const NotYourOrder = () => {
+const NotYourOrder = ({ orderTotal, selectedComponents }) => {
   return (
     <>
       <div className={style.header}>20&apos; Custom Cube</div>
@@ -19,16 +19,26 @@ const NotYourOrder = () => {
       <Badges />
       <BasePriceDesc />
       <Selector />
-      <SaveOrder />
+      <div className={style.order}>
+        <PriceSummary orderTotal={orderTotal} />
+        <SaveBtn
+          selectedComponents={selectedComponents}
+          orderTotal={orderTotal}
+        />
+      </div>
+      {/* <SaveOrder /> */}
     </>
   );
 };
 
 const Sidebar = () => {
-  const { showYourOrder } = useContext(PageDataContext);
+  const { showYourOrder, orderTotal, selectedComponents } = useContext(PageDataContext);
   return (
     <div className={style.container}>
-      {showYourOrder ? <YourOrder /> : <NotYourOrder />}
+      <NotYourOrder
+        orderTotal={orderTotal}
+        selectedComponents={selectedComponents}
+      />
     </div>
   );
 };

@@ -7,15 +7,10 @@ const Footer = ({ orderTotal, selectedElevation, setSelectedElevation, selectedC
   return (
     <div className={style.container}>
       <div className={style.subContainer}>
-        <div className={style.empty}></div>
         <ElevationToggle
           selectedElevation={selectedElevation}
           setSelectedElevation={setSelectedElevation}
         />
-        <div className={style.content}>
-          <PriceSummary orderTotal={orderTotal} />
-          <SaveBtn selectedComponents={selectedComponents} orderTotal={orderTotal} />
-        </div>
       </div>
     </div>
   );

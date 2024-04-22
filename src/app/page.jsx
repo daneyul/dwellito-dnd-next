@@ -19,6 +19,7 @@ import {
 import Logo from "@/components/Logo";
 import Viewer from "../components/Viewer/Viewer";
 import Sidebar from "@/components/Sidebar/Sidebar";
+import PriceTotal from "@/components/PriceTotal/PriceTotal";
 
 export const PageDataContext = createContext();
 
@@ -30,6 +31,7 @@ const PageDataProvider = ({ children }) => {
   const [selectedComponents, setSelectedComponents] =
     useState(DEFAULT_COMPONENTS);
   const [selectedElevation, setSelectedElevation] = useState(DEFAULT_ELEVATION);
+  const [selectedElevationIndex, setSelectedElevationIndex] = useState(0);
   const [modifiers, setModifiers] = useState([]);
   const draggableRefs = selectedComponents.reduce((acc, component) => {
     acc[component.id] = React.createRef();
@@ -224,7 +226,9 @@ const PageDataProvider = ({ children }) => {
         modifiers,
         isAnyItemSelected,
         showYourOrder,
-        setShowYourOrder
+        setShowYourOrder,
+        selectedElevationIndex,
+        setSelectedElevationIndex
       }}
     >
       {children}
@@ -240,11 +244,13 @@ const Home = () => {
       </div>
       <div
         style={{
-          display: "flex"
+          display: "flex",
+          position: "relative"
         }}
       >
         <Viewer />
         <Sidebar />
+        <PriceTotal />
       </div>
     </PageDataProvider>
   );

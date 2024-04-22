@@ -1,11 +1,10 @@
 .container {
   width: 33.33%;
-  background-color: #FCFCFC;
+  background-color: #F8F8F7;
   border-left: 1px solid #E3E4E7;
   font-weight: 300;
   padding: 8rem 4rem; 
   right: 0;
-  z-index: 10;
   overflow-y: auto;
   height: 100vh;
 }
@@ -28,4 +27,8 @@
 .description {
   text-align: center;
   margin: 2rem 0;
+}
+
+.order {
+  text-align: center;
 }

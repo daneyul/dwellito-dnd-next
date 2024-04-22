@@ -1,28 +1,23 @@
 import Collision from "@/components/Collision/Collision";
 import { Droppable } from "@/components/Droppable";
-import Logo from "@/components/Logo";
-import Selector from "@/components/Selector/Selector";
 import { Draggable } from "@/components/Draggable";
 import { DndContext } from "@dnd-kit/core";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { PageDataContext } from "../../app/page";
-import { ELEVATION_NAMES } from "@/utils/2D/library";
 import { checkDistance, droppableWidth, toScale } from "@/utils/2D/utils";
 import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
-import Footer from "@/components/Footer/Footer";
-import Models from "@/components/Models/Models";
+import ChevronLeftBlack from "../ChevronLeftBlack";
+import ChevronRightBlack from "../ChevronRightBlack";
+import style from "./viewer.module.scss";
+import { elevationData } from "@/utils/2D/library";
 
-// Create a separate component that will actually consume the context
 const Viewer = () => {
   const {
     selectedComponents,
-    setSelectedComponents,
     selectedElevation,
     setSelectedElevation,
     orderTotal,
-    setOrderTotal,
     modifiers,
-    setHasCollisions,
     handleDragStart,
     handleDragEnd,
     handleSelect,
@@ -30,7 +25,37 @@ const Viewer = () => {
     showCollision,
     draggableRefs,
     isAnyItemSelected,
+    selectedElevationIndex,
+    setSelectedElevationIndex
   } = useContext(PageDataContext);
+
+  const LeftArrow = () => {
+    return (
+      <div className={style.left} onClick={handlePrevious}>
+        <ChevronLeftBlack />
+      </div>
+    );
+  };
+
+  const RightArrow = () => {
+    return (
+      <div className={style.right} onClick={handleNext}>
+        <ChevronRightBlack />
+      </div>
+    );
+  };
+
+  const handleNext = () => {
+    setSelectedElevationIndex((prevIndex) => (prevIndex + 1) % elevationData.length);
+  };
+
+  const handlePrevious = () => {
+    setSelectedElevationIndex((prevIndex) => (prevIndex - 1 + elevationData.length) % elevationData.length);
+  };
+
+  useEffect(() => {
+    setSelectedElevation(elevationData[selectedElevationIndex]);
+  }, [selectedElevationIndex, setSelectedElevation]);
 
   return (
     <>
@@ -38,7 +63,9 @@ const Viewer = () => {
         style={{
           width: "66.66%",
           position: "sticky",
-          marginTop: "10rem",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center"
         }}
       >
         <Collision showCollision={showCollision} />
@@ -60,6 +87,10 @@ const Viewer = () => {
               {selectedComponents
                 .filter((piece) => piece.elevation.includes(selectedElevation))
                 .map((piece) => {
+                  console.log(checkDistance({
+                    component: piece,
+                    selectedElevation,
+                  }))
                   return (
                     <Draggable
                       piece={piece}
@@ -74,17 +105,16 @@ const Viewer = () => {
             </div>
           </Droppable>
         </DndContext>
-        {isAnyItemSelected && (
+        {selectedElevationIndex > 0 && (
+          <LeftArrow />
+        )}
+        {selectedElevationIndex < elevationData.length - 1 && (
+          <RightArrow />
+        )}
+      {isAnyItemSelected && (
         <DeleteBtn onDeleteSelected={handleDeleteSelected} />
       )}
       </div>
-      {/* <Footer
-        orderTotal={orderTotal}
-        selectedElevation={selectedElevation}
-        setSelectedElevation={setSelectedElevation}
-        selectedComponents={selectedComponents}
-      />
-      <Models /> */}
     </>
   );
 };

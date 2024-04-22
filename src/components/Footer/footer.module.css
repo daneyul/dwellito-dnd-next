@@ -1,5 +1,5 @@
 .container {
-  width: 100vw;
+  width: auto;
   min-height: 150px;
   height: auto;
   border-top: 1px solid #DFE3FF;
@@ -9,19 +9,16 @@
 
 .subContainer {
   display: flex;
-  position: absolute;
+  margin-top: 4rem;
   bottom: 2rem;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
+  padding: 0 2rem;
 }
 
 .content {
   display: flex;
-  width: 33.33%;
   justify-content: flex-end;
   padding-right: 2rem;
-}
-
-.empty {
-  width: 33.33%;
 }

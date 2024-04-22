@@ -13,9 +13,7 @@ const SaveOrder = () => {
       </div>
       <div
         className={style.button}
-        onClick={() => {
-          setShowYourOrder(true);
-        }}
+        onClick={setShowYourOrder(true)}
       >
         Continue
       </div>

@@ -17,7 +17,7 @@ const DIMENSIONS = {
     HEIGHT: 93,
     POSITION: {
       x: 0,
-      y: 13,
+      y: 9,
     },
     PERSONNEL: {
       W_SECURITY: {
@@ -344,18 +344,19 @@ const elevationData = [
     objHeight: DIMENSIONS.CONTAINER.FRONT.HEIGHT,
   },
   {
-    name: ELEVATION_NAMES.RIGHT,
-    imgName: "elevation/side.svg",
-    objWidth: DIMENSIONS.CONTAINER.SIDE.WIDTH,
-    objHeight: DIMENSIONS.CONTAINER.SIDE.HEIGHT,
-  },
-  {
     name: ELEVATION_NAMES.BACK,
     imgName: "elevation/back.svg",
     objWidth: DIMENSIONS.CONTAINER.FRONT.WIDTH,
     objHeight: DIMENSIONS.CONTAINER.FRONT.HEIGHT,
   },
-].map((item) => ({
+  {
+    name: ELEVATION_NAMES.RIGHT,
+    imgName: "elevation/side.svg",
+    objWidth: DIMENSIONS.CONTAINER.SIDE.WIDTH,
+    objHeight: DIMENSIONS.CONTAINER.SIDE.HEIGHT,
+  }
+].filter(item => item.name !== ELEVATION_NAMES.FRONT)
+.map((item) => ({
   id: uuid(),
   width: "100%",
   height: "auto",
