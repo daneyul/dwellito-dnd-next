@@ -12,33 +12,40 @@ import Door from "./Door";
 import { PageDataContext } from "src/app/page";
 import { COMPONENT_TYPES } from "@/utils/2D/library";
 import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
+import * as THREE from 'three'
 
 const Models = () => {
   const { selectedComponents } = useContext(PageDataContext);
   const doors = selectedComponents.filter(
     (component) => component.objType === COMPONENT_TYPES.DOOR
   );
-  const cameraPos = [50, 28, 39];
+  const cameraPos = [127, 38, 69];
+  const cameraRot = [-0.32, 0.58, 0.18];
+  const cameraTar = [-452, -222, -703];
 
   const CameraLogger = () => {
     const { camera } = useThree();
-
+    const targetRef = useRef(new THREE.Vector3());
+  
     useEffect(() => {
       const logCameraPosition = () => {
         console.log("Position:", camera.position);
         console.log("Rotation:", camera.rotation);
+    
+        // Calculate the camera target
+        const target = new THREE.Vector3();
+        camera.getWorldDirection(target);
+        target.multiplyScalar(1000).add(camera.position);  // Adjust scalar as needed based on your scene scale
+        console.log("Target:", target);
+    
+        // Optionally store the camera state
+        // localStorage.setItem('cameraState', JSON.stringify({position: camera.position.toArray(), rotation: camera.rotation.toArray(), target: target.toArray()}));
       };
-
+    
       logCameraPosition();
-
-      // Optional: Log on every frame (for dynamic updates while moving the camera)
-      const handle = setInterval(logCameraPosition, 1000); // Log every second
-
-      // Clean up the interval on component unmount
-      return () => clearInterval(handle);
-    }, [camera]); // Dependency array includes camera to re-bind if camera changes
-
-    return null; // This component does not render anything
+    }, [camera]);
+  
+    return null;
   };
 
   return (
@@ -109,7 +116,7 @@ const Models = () => {
           maxPolarAngle={Math.PI / 2}
         />
         <CameraLogger />
-        <OrthographicCamera
+        {/* <OrthographicCamera
           makeDefault
           position={cameraPos}
           near={0.1}
@@ -118,7 +125,7 @@ const Models = () => {
           right={50}
           top={50}
           bottom={-50}
-        />
+        /> */}
       </Canvas>
     </div>
   );
