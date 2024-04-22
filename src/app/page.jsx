@@ -119,7 +119,7 @@ const PageDataProvider = ({ children }) => {
     } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.WINDOW) {
       setModifiers([...doorWindowModifiers, snapToIncrement(6)]);
     } else {
-      setModifiers([defaultModifiers]);
+      setModifiers([...defaultModifiers]);
     }
   };
 
