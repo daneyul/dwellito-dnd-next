@@ -8,14 +8,18 @@ export default function ShippingContainer() {
   const ref = useRef();
   const obj = useLoader(OBJLoader, "/models/container.obj");
 
-  // Create a white standard material with some roughness
   const material = new MeshStandardMaterial({
-    envMapIntensity: 0.25,
-    color: "white",
+    color: 'white',
+    roughness: 0.8,
+    envMapIntensity: 1,
+    emissive: '#000000',
+    metalness: 0.15
+    // flatShading: true
   });
 
   obj.traverse((child) => {
     obj.castShadow = true;
+    obj.receiveShadow = true;
     if (child.isMesh) {
       child.material = material;
       child.castShadow = true;

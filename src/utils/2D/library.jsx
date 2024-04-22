@@ -332,6 +332,18 @@ export const ELEVATION_NAMES = {
 
 const elevationData = [
   {
+    name: ELEVATION_NAMES.RIGHT,
+    imgName: "elevation/side.svg",
+    objWidth: DIMENSIONS.CONTAINER.SIDE.WIDTH,
+    objHeight: DIMENSIONS.CONTAINER.SIDE.HEIGHT,
+  },
+  {
+    name: ELEVATION_NAMES.BACK,
+    imgName: "elevation/back.svg",
+    objWidth: DIMENSIONS.CONTAINER.FRONT.WIDTH,
+    objHeight: DIMENSIONS.CONTAINER.FRONT.HEIGHT,
+  },
+  {
     name: ELEVATION_NAMES.LEFT,
     imgName: "elevation/side.svg",
     objWidth: DIMENSIONS.CONTAINER.SIDE.WIDTH,
@@ -343,18 +355,6 @@ const elevationData = [
     objWidth: DIMENSIONS.CONTAINER.FRONT.WIDTH,
     objHeight: DIMENSIONS.CONTAINER.FRONT.HEIGHT,
   },
-  {
-    name: ELEVATION_NAMES.BACK,
-    imgName: "elevation/back.svg",
-    objWidth: DIMENSIONS.CONTAINER.FRONT.WIDTH,
-    objHeight: DIMENSIONS.CONTAINER.FRONT.HEIGHT,
-  },
-  {
-    name: ELEVATION_NAMES.RIGHT,
-    imgName: "elevation/side.svg",
-    objWidth: DIMENSIONS.CONTAINER.SIDE.WIDTH,
-    objHeight: DIMENSIONS.CONTAINER.SIDE.HEIGHT,
-  }
 ].filter(item => item.name !== ELEVATION_NAMES.FRONT)
 .map((item) => ({
   id: uuid(),

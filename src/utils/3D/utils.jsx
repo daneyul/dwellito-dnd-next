@@ -8,18 +8,19 @@ const degrees = {
 }
 
 const calcRotation = (elevation) => {
+  console.log(elevation)
   switch (elevation) {
     // Left
-    case elevationData[0]:
+    case elevationData[2]:
       return degrees[180];
     // Front
-    case elevationData[1]:
+    case elevationData[3]:
       return degrees[270]
     // Right
-    case elevationData[2]:
+    case elevationData[0]:
       return 0
     // Back
-    case elevationData[3]:
+    case elevationData[1]:
       return degrees[90]
     default:
       break;
@@ -29,16 +30,16 @@ const calcRotation = (elevation) => {
 const calcPosition = (elevation, distanceObject) => {
   switch (elevation) {
     // Left
-    case elevationData[0]:
+    case elevationData[2]:
       return leftSideCoordinates({ distanceObject });
     // Front
-    case elevationData[1]:
+    case elevationData[3]:
       return frontSideCoordinates({ distanceObject });
     // Right
-    case elevationData[2]:
+    case elevationData[0]:
       return rightSideCoordinates({ distanceObject });
     // Back
-    case elevationData[3]:
+    case elevationData[1]:
       return backSideCoordinates({ distanceObject });
     default:
       break;

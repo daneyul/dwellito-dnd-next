@@ -11,19 +11,22 @@ import { checkDistance } from "@/utils/2D/utils";
 
 function Door({ component }) {
   const obj = useLoader(OBJLoader, `/models/${component.model}`);
-  const material = useMemo(() => new MeshStandardMaterial({
-    envMapIntensity: 0.25,
-    color: "white",
-  }), []);
+  const material = new MeshStandardMaterial({
+    color: 'white',
+    roughness: 0.8,
+    envMapIntensity: 1,
+    emissive: '#000000',
+    metalness: 0.15
+    // flatShading: true
+  });
 
-  useMemo(() => {
-    obj.traverse((child) => {
-      if (child.isMesh) {
-        child.material = material;
-        child.castShadow = true;
-      }
-    });
-  }, [obj, material]);
+  obj.traverse((child) => {
+    obj.castShadow = true;
+    if (child.isMesh) {
+      child.material = material;
+      child.castShadow = true;
+    }
+  });
 
   const selectedElevation = component.elevation[0];
 

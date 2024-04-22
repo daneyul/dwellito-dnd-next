@@ -19,6 +19,7 @@
     "@react-three/csg": "^3.2.0",
     "@react-three/drei": "^9.102.6",
     "@react-three/fiber": "^8.16.0",
+    "@react-three/postprocessing": "^2.16.2",
     "next": "14.1.4",
     "node-sass": "^9.0.0",
     "react": "^18",
