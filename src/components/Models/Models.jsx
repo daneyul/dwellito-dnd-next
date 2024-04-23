@@ -14,7 +14,6 @@ import Door from "./Door";
 import { PageDataContext } from "src/app/page";
 import { COMPONENT_TYPES } from "@/utils/2D/library";
 import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
-import Loading from "../Loading/Loading";
 
 const Models = () => {
   const { selectedComponents } = useContext(PageDataContext);
