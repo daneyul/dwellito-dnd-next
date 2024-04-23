@@ -4,42 +4,46 @@ import {
   Environment,
   RandomizedLight,
   OrthographicCamera,
+  Loader,
+  useProgress,
 } from "@react-three/drei";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import ShippingContainer from "./ShippingContainer";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect } from "react";
 import Door from "./Door";
 import { PageDataContext } from "src/app/page";
 import { COMPONENT_TYPES } from "@/utils/2D/library";
 import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
-import * as THREE from 'three'
+import Loading from "../Loading/Loading";
 
 const Models = () => {
   const { selectedComponents } = useContext(PageDataContext);
   const doors = selectedComponents.filter(
     (component) => component.objType === COMPONENT_TYPES.DOOR
   );
-  const cameraPos = [127, 38, 69];
-  const cameraRot = [-0.32, 0.58, 0.18];
-  const cameraTar = [-452, -222, -703];
+  const cameraPos = [100, 50, 100];
+  // const { progress } = useProgress();
 
   return (
+    <>
     <div
       id="canvas-container"
       style={{ width: "auto", height: "100vh", position: "relative" }}
     >
       <Canvas
         shadows
-        camera={{ position: cameraPos, rotation: cameraRot, target: cameraTar, fov: 35, near: 1, far: 500 }}
+        camera={{
+          position: cameraPos,
+          fov: 35,
+          near: 1,
+          far: 1000,
+        }}
       >
         <color attach="background" args={["#fdfdf7"]} />
-
         <ShippingContainer />
         {doors.map((door, index) => (
           <Door key={index} component={door} />
         ))}
-
-        {/** Soft shadows */}
         <ambientLight intensity={0.15} />
         <spotLight
           intensity={0.65}
@@ -61,8 +65,8 @@ const Models = () => {
           color="#fdfdf7"
           colorBlend={1}
           opacity={1}
-          scale={150}
-          position={[0, -0.3, 0]}
+          scale={300}
+          position={[0, -0.5, 0]}
         >
           <RandomizedLight
             amount={8}
@@ -102,6 +106,7 @@ const Models = () => {
         /> */}
       </Canvas>
     </div>
+    </>
   );
 };
 
