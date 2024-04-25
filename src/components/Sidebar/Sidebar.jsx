@@ -2,10 +2,12 @@ import { useContext } from "react";
 import Badges from "../Badges/Badges";
 import BasePriceDesc from "../BasePriceDesc/BasePriceDesc";
 import Selector from "../Selector/Selector";
-import style from "./sidebar.module.css";
+import style from "./sidebar.module.scss";
 import { PageDataContext } from "@/app/page";
 import SaveOrder from "../SaveOrder/SaveOrder";
 import YourOrder from "../YourOrder/YourOrder";
+import SingleSelect from "../SingleSelect/SingleSelect";
+import { EXTERIOR, INTERIOR } from "@/utils/3D/library";
 
 const Sidebar = () => {
   const { showYourOrder } = useContext(PageDataContext);
@@ -22,6 +24,14 @@ const Sidebar = () => {
         <Badges />
         <BasePriceDesc />
         <Selector />
+        <div className={style.selectionTagName}>
+          Exterior Siding
+        </div>
+        <SingleSelect type={EXTERIOR} />
+        <div className={style.selectionTagName}>
+          Interior
+        </div>
+        <SingleSelect type={INTERIOR} />
         <SaveOrder />
       </>
     );

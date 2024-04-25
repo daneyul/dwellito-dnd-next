@@ -20,6 +20,7 @@ import Logo from "@/components/Logo";
 import Viewer from "../components/Viewer/Viewer";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import PriceTotal from "@/components/PriceTotal/PriceTotal";
+import { INTERIOR_OPTIONS } from "@/utils/3D/library";
 
 export const PageDataContext = createContext();
 
@@ -212,6 +213,10 @@ const PageDataProvider = ({ children }) => {
     (component) => component.isSelected
   );
 
+  const [color, setColor] = useState('#F2F2F2');
+  const [interior, setInterior] = useState(INTERIOR_OPTIONS[0]);
+  console.log(interior)
+
   return (
     <PageDataContext.Provider
       value={{
@@ -242,7 +247,11 @@ const PageDataProvider = ({ children }) => {
         zipCode,
         setZipCode,
         show3d,
-        toggleView
+        toggleView,
+        color,
+        setColor,
+        interior,
+        setInterior
       }}
     >
       {children}

@@ -16,4 +16,27 @@ const CANVAS_SCALE_FACTOR = 0.1;
 // divided by the 3D canvas dimensions
 const SCALE_FACTOR_FOR_CALCULATIONS = 3.93;
 
-export { DIMENSIONS, CANVAS_SCALE_FACTOR, SCALE_FACTOR_FOR_CALCULATIONS };
+const EXTERIOR = "exterior";
+const INTERIOR = "interior";
+const INTERIOR_OPTIONS = [
+  {name: "Plywood", hex: "#C19A6B"},
+  {name: "Pre-finished Drywall", hex: "#F2F2F2"}
+]
+
+const colors = [
+  { name: 'White', hex: '#F2F2F2' },
+  { name: 'Blue', hex: '#003366' },
+  { name: 'Green', hex: '#2E8B57' },
+  { name: 'Slate Grey', hex: '#6C7B8B' },
+  { name: 'Red', hex: '#800000' }
+];
+
+export {
+  DIMENSIONS,
+  CANVAS_SCALE_FACTOR,
+  SCALE_FACTOR_FOR_CALCULATIONS,
+  colors,
+  EXTERIOR,
+  INTERIOR,
+  INTERIOR_OPTIONS
+};

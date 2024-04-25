@@ -1,0 +1,86 @@
+.selectionTagName {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+  margin-bottom: space(5);
+}
+
+.optionContainer {
+  border: 1px solid color(lightBlue);
+}
+
+.optionContainer > div, .optionContainerSelected > div {
+  border-radius: 40px;
+  width: 72px;
+  height: 72px;
+}
+
+.optionContainer, .optionContainerSelected {
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  padding: space(4);
+  cursor: pointer;
+  margin-bottom: space(2);
+}
+
+.optionContainer:hover, .optionContainerSelected {
+  box-shadow: 0 0 0 1px color(blue);
+  border: 1px solid color(lightGrey);
+}
+
+.multiSelectWrapper {
+  margin-bottom: space(24);
+}
+
+.thumbnailContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: space(4);
+  position: relative;
+}
+
+
+.selectionTagName {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+  margin-bottom: space(5);
+}
+
+.singleSelDescriptionContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: space(2) 0 space(12) 0;
+  width: 100%;
+}
+
+.description {
+  text-align: center;
+}
+
+.multiSelDescriptionContainer {
+  margin-left: space(4);
+}
+
+.thumbnail > div, .thumbnailSelected > div {
+  border-radius: 40px;
+  border: 4px solid color(white);
+  width: 72px;
+  height: 72px;
+}
+
+.thumbnail > div:hover, .thumbnailSelected > div {
+  box-shadow: 0 0 0 1px color(blue);
+  background-color: color(lightBlue);
+  border: 4px solid color(lightGrey);
+}
+
+.thumbnail, .thumbnailSelected {
+  cursor: pointer;
+}
+

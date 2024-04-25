@@ -2,35 +2,45 @@ import {
   AccumulativeShadows,
   OrbitControls,
   Environment,
-  RandomizedLight,
-  OrthographicCamera,
-  Loader,
-  useProgress,
+  RandomizedLight
 } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import ShippingContainer from "./ShippingContainer";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Door from "./Door";
 import { PageDataContext } from "src/app/page";
 import { COMPONENT_TYPES } from "@/utils/2D/library";
 import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 
 const Models = () => {
-  const { selectedComponents } = useContext(PageDataContext);
+  const { selectedComponents, color, interior } = useContext(PageDataContext);
   const doors = selectedComponents.filter(
     (component) => component.objType === COMPONENT_TYPES.DOOR
   );
   const cameraPos = [100, 50, 100];
   // const { progress } = useProgress();
-  const [color, setColor] = useState('#F2F2F2'); // Default color
 
-  const colors = [
-    { name: 'White', hex: '#F2F2F2' },
-    { name: 'Blue', hex: '#003366' },
-    { name: 'Green', hex: '#2E8B57' },
-    { name: 'Slate Grey', hex: '#6C7B8B' },
-    { name: 'Red', hex: '#800000' }
-  ];
+  const CameraLogger = () => {
+    const { camera } = useThree();
+  
+    useEffect(() => {
+      const logCameraPosition = () => {
+        console.log('Camera Position:', camera.position);
+      };
+  
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'l') {
+          logCameraPosition();
+        }
+      });
+  
+      return () => {
+        document.removeEventListener('keydown', logCameraPosition);
+      };
+    }, [camera]);
+  
+    return null;
+  };
 
   return (
     <>
@@ -38,16 +48,6 @@ const Models = () => {
       id="canvas-container"
       style={{ width: "auto", height: "100vh", position: "relative" }}
     >
-      <div style={{ position: 'absolute', zIndex: 10, top: 20, left: 20 }}>
-        {colors.map((c, index) => (
-          <button
-            key={index}
-            onClick={() => setColor(c.hex)}
-            style={{ backgroundColor: c.hex, width: 50, height: 50, margin: '0 10px', cursor: 'pointer' }}
-            title={c.name}
-          />
-        ))}
-      </div>
       <Canvas
         shadows
         camera={{
@@ -57,8 +57,9 @@ const Models = () => {
           far: 1000,
         }}
       >
+        <CameraLogger />
         <color attach="background" args={["#fdfdf7"]} />
-        <ShippingContainer color={color} />
+        <ShippingContainer color={color} interior={interior} />
         {doors.map((door, index) => (
           <Door key={index} component={door} />
         ))}
