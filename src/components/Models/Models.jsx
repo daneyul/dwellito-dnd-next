@@ -31,22 +31,18 @@ const Models = () => {
   const [cameraReady, setCameraReady] = useState(true);
   const orbitRef = useRef();
 
-  function CameraRig({ position, rotation }) {
+  function CameraRig() {
     const { camera } = useThree();
-    const targetPosition = new Vector3(...position);
-    const lookAtPosition = new Vector3(...rotation);
-
-    camera.position.lerp(targetPosition, 0.1);
-    camera.lookAt(lookAtPosition);
-    camera.fov = camFov;
-    camera.updateProjectionMatrix();
+    const targetPosition = new Vector3(...cameraPos);
+    const lookAtPosition = new Vector3(...cameraRot);
 
     useFrame(() => {
+      camera.fov = camFov;
+      camera.updateProjectionMatrix();
+      
       if (!isOrbiting && !cameraReady) {
         camera.position.lerp(targetPosition, 0.1);
         camera.lookAt(lookAtPosition);
-        camera.fov = camFov;
-        camera.updateProjectionMatrix();
 
         // Check if the camera is close enough to the target position
         if (camera.position.distanceTo(targetPosition) < 0.01) {
@@ -94,10 +90,7 @@ const Models = () => {
       >
         <Canvas
           shadows
-          camera={{
-            near: 1,
-            far: 1000,
-          }}
+          camera={{ position: cameraPos, fov: camFov }}
         >
           <color attach="background" args={["#fdfdf7"]} />
           <ShippingContainer color={color} interior={interior} />
@@ -149,13 +142,13 @@ const Models = () => {
             />
             <SMAA />
           </EffectComposer>
-          <CameraRig position={cameraPos} rotation={cameraRot} />
+          <CameraRig />
           <OrbitControls
             makeDefault
             ref={orbitRef}
             minPolarAngle={0}
             maxPolarAngle={Math.PI / 2}
-            enablePan={showExterior}
+            enablePan={false}
             enableRotate={true}
           />
         </Canvas>
