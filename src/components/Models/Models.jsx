@@ -40,13 +40,26 @@ const Models = () => {
       if (!isOrbiting && !cameraReady) {
         camera.position.lerp(targetPosition, 0.1);
         camera.lookAt(lookAtPosition);
+        camera.fov = camFov;
+        camera.updateProjectionMatrix();
 
-        if (camera.position.distanceTo(targetPosition) === 0) {
-          setCameraReady(true);
+        // Check if the camera is close enough to the target position
+        if (camera.position.distanceTo(targetPosition) < 0.01) {
+          camera.position.copy(targetPosition); // Optionally lock the position
+          setCameraReady(true); // Set the camera as ready
         }
       }
     });
-  }
+
+    useEffect(() => {
+      // Make sure OrbitControls is enabled/disabled based on the camera readiness
+      const controls = orbitRef.current;
+      if (controls) {
+        controls.enabled = cameraReady && showExterior;
+      }
+    }, [cameraReady, showExterior]);
+}
+
 
   // This detects when the user is orbiting the camera
   // We want to disable the CameraRig logic when the user is orbiting
