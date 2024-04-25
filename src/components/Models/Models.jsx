@@ -36,6 +36,11 @@ const Models = () => {
     const targetPosition = new Vector3(...position);
     const lookAtPosition = new Vector3(...rotation);
 
+    camera.position.lerp(targetPosition, 0.1);
+    camera.lookAt(lookAtPosition);
+    camera.fov = camFov;
+    camera.updateProjectionMatrix();
+
     useFrame(() => {
       if (!isOrbiting && !cameraReady) {
         camera.position.lerp(targetPosition, 0.1);
@@ -90,8 +95,6 @@ const Models = () => {
         <Canvas
           shadows
           camera={{
-            position: cameraPos,
-            fov: camFov,
             near: 1,
             far: 1000,
           }}
@@ -153,7 +156,7 @@ const Models = () => {
             minPolarAngle={0}
             maxPolarAngle={Math.PI / 2}
             enablePan={showExterior}
-            enableRotate={showExterior}
+            enableRotate={true}
           />
         </Canvas>
       </div>
