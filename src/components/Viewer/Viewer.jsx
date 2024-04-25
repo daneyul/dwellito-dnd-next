@@ -12,6 +12,7 @@ import style from "./viewer.module.scss";
 import { elevationData } from "@/utils/2D/library";
 import ToggleView from "../ToggleView/ToggleView";
 import Models from "../Models/Models";
+import ToggleCamera from "../ToggleCamera/ToggleCamera";
 
 const Viewer = () => {
   const {
@@ -68,7 +69,7 @@ const Viewer = () => {
     <>
       <div
         style={{
-          width: "66.66%",
+          width: "70%",
           position: "sticky",
           display: "flex",
           flexDirection: "column",
@@ -127,6 +128,7 @@ const Viewer = () => {
             )}
           </>
         )}
+        <ToggleCamera />
         <ToggleView />
       </div>
     </>

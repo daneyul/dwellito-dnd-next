@@ -26,6 +26,7 @@ export const PageDataContext = createContext();
 
 const PageDataProvider = ({ children }) => {
   const [show3d, setShow3d] = useState(false);
+  const [showExterior, setShowExterior] = useState(true);
   const [hasCollisions, setHasCollisions] = useState(false);
   const [showYourOrder, setShowYourOrder] = useState(false);
   const [zipCode, setZipCode] = useState("");
@@ -215,7 +216,6 @@ const PageDataProvider = ({ children }) => {
 
   const [color, setColor] = useState('#F2F2F2');
   const [interior, setInterior] = useState(INTERIOR_OPTIONS[0]);
-  console.log(interior)
 
   return (
     <PageDataContext.Provider
@@ -251,7 +251,9 @@ const PageDataProvider = ({ children }) => {
         color,
         setColor,
         interior,
-        setInterior
+        setInterior,
+        showExterior,
+        setShowExterior
       }}
     >
       {children}

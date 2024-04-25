@@ -1,0 +1,27 @@
+.container {
+  border-radius: 12px;
+  border: 1px solid color(indigo);
+  position: absolute;
+  bottom: 1.5rem;
+  right: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.5);
+  color: color(white);
+  padding: space(1);
+  justify-content: space-between;
+}
+
+.button, .buttonSelected {
+  padding: space(2);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.buttonSelected {
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.2)
+}
