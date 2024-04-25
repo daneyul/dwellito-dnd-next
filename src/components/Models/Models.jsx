@@ -9,7 +9,7 @@ import {
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import ShippingContainer from "./ShippingContainer";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Door from "./Door";
 import { PageDataContext } from "src/app/page";
 import { COMPONENT_TYPES } from "@/utils/2D/library";
@@ -22,6 +22,15 @@ const Models = () => {
   );
   const cameraPos = [100, 50, 100];
   // const { progress } = useProgress();
+  const [color, setColor] = useState('#F2F2F2'); // Default color
+
+  const colors = [
+    { name: 'White', hex: '#F2F2F2' },
+    { name: 'Blue', hex: '#003366' },
+    { name: 'Green', hex: '#2E8B57' },
+    { name: 'Slate Grey', hex: '#6C7B8B' },
+    { name: 'Red', hex: '#800000' }
+  ];
 
   return (
     <>
@@ -29,6 +38,16 @@ const Models = () => {
       id="canvas-container"
       style={{ width: "auto", height: "100vh", position: "relative" }}
     >
+      <div style={{ position: 'absolute', zIndex: 10, top: 20, left: 20 }}>
+        {colors.map((c, index) => (
+          <button
+            key={index}
+            onClick={() => setColor(c.hex)}
+            style={{ backgroundColor: c.hex, width: 50, height: 50, margin: '0 10px', cursor: 'pointer' }}
+            title={c.name}
+          />
+        ))}
+      </div>
       <Canvas
         shadows
         camera={{
@@ -39,7 +58,7 @@ const Models = () => {
         }}
       >
         <color attach="background" args={["#fdfdf7"]} />
-        <ShippingContainer />
+        <ShippingContainer color={color} />
         {doors.map((door, index) => (
           <Door key={index} component={door} />
         ))}
