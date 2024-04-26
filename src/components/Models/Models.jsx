@@ -3,7 +3,6 @@ import {
   OrbitControls,
   Environment,
   RandomizedLight,
-  PerspectiveCamera,
 } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import ShippingContainer from "./ShippingContainer";

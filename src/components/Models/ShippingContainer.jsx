@@ -66,7 +66,7 @@ export default function ShippingContainer({ color, interior }) {
     }
   };
 
-  return (
+  const containerMesh = (
     <group
       dispose={null}
       scale={[10, 10, 10]}
@@ -193,7 +193,9 @@ export default function ShippingContainer({ color, interior }) {
         />
       </group>
     </group>
-  );
+  )
+
+  return containerMesh;
 }
 
 useGLTF.preload("/container.glb");

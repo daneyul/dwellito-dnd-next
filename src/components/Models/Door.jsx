@@ -1,10 +1,10 @@
-import { useMemo } from "react";
 import { useLoader } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MeshStandardMaterial } from "three";
 import { CANVAS_SCALE_FACTOR } from "@/utils/3D/library";
 import { calcPosition, calcRotation } from "@/utils/3D/utils";
 import { checkDistance } from "@/utils/2D/utils";
+import { useCSG } from "@react-three/csg";
 
 function Door({ component }) {
   const obj = useLoader(OBJLoader, `/models/${component.model}`);
