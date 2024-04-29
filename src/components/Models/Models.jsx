@@ -14,6 +14,7 @@ import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 import { Vector3 } from "three";
 import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
+import { Base, Geometry } from "@react-three/csg";
 
 const Models = () => {
   const { selectedComponents, color, interior, showExterior } =
@@ -37,6 +38,7 @@ const Models = () => {
   const [isOrbiting, setIsOrbiting] = useState(false);
   const [cameraReady, setCameraReady] = useState(true);
   const orbitRef = useRef();
+  const containerRef = useRef();
 
   function CameraRig() {
     const { camera } = useThree();
@@ -46,7 +48,7 @@ const Models = () => {
     useFrame(() => {
       camera.fov = camFov;
       camera.updateProjectionMatrix();
-      
+
       if (!isOrbiting && !cameraReady) {
         camera.position.lerp(targetPosition, 0.1);
         camera.lookAt(lookAtPosition);
@@ -66,8 +68,7 @@ const Models = () => {
         controls.enabled = cameraReady && showExterior;
       }
     }, [cameraReady, showExterior]);
-}
-
+  }
 
   // This detects when the user is orbiting the camera
   // We want to disable the CameraRig logic when the user is orbiting
@@ -95,21 +96,26 @@ const Models = () => {
         id="canvas-container"
         style={{ width: "auto", height: "100vh", position: "relative" }}
       >
-        <Canvas
-          shadows
-          camera={{ position: cameraPos, fov: camFov }}
-        >
+        <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
           <color attach="background" args={["#fdfdf7"]} />
-          <ShippingContainer color={color} interior={interior} />
-          {doors.map((door, index) => (
-            <Door key={index} component={door} />
-          ))}
-          {windows.map((window, index) => (
-            <Window key={index} component={window} />
-          ))}
-          {vents.map((vent, index) => (
-            <Vent key={index} component={vent} />
-          ))}
+          <Geometry showOperations>
+            <Base>
+              <ShippingContainer
+                color={color}
+                interior={interior}
+                ref={containerRef}
+              />
+            </Base>
+            {doors.map((door, index) => (
+              <Door key={index} component={door} />
+            ))}
+            {windows.map((window, index) => (
+              <Window key={index} component={window} />
+            ))}
+            {vents.map((vent, index) => (
+              <Vent key={index} component={vent} />
+            ))}
+          </Geometry>
           <ambientLight intensity={0.15} />
           <spotLight
             intensity={0.65}

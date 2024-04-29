@@ -25,7 +25,7 @@ const White = ({ component }) => {
       position={calcPosition(selectedElevation, distanceObject)}
       rotation={rotation}
     >
-      <group position={[0.65, 1.145, 0]} scale={[-1, 1, 1]}>
+      <group position={[0.65, 2.3, 0]} scale={[-1, 1, 1]}>
         <group scale={0.01}>
           <mesh
             castShadow

@@ -2,8 +2,9 @@ import { useGLTF } from "@react-three/drei";
 import { MeshStandardMaterial } from "three";
 import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { INTERIOR_OPTIONS } from "@/utils/3D/library";
+import { Base, Geometry } from "@react-three/csg";
 
-export default function ShippingContainer({ color, interior }) {
+export default function ShippingContainer({ color, interior, ref }) {
   const { nodes, materials } = useGLTF("/models/container.glb");
   const material = new MeshStandardMaterial({ color: color });
 
@@ -71,6 +72,7 @@ export default function ShippingContainer({ color, interior }) {
       dispose={null}
       scale={[10, 10, 10]}
       position={[adjustForX, 0, adjustForY]}
+      ref={ref}
     >
       <group position={[1.157, 2.407, -1.214]} rotation={[-Math.PI / 2, 0, 0]}>
         <group scale={0.01}>
