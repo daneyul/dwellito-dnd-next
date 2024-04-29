@@ -139,8 +139,9 @@ const componentData = [
     objWidth: DIMENSIONS.DOOR.PERSONNEL.WO_SECURITY.WIDTH,
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
+    misc: "left",
     price: 2000,
-    model: "SM_PDoor_LockBoxLHR_01.obj"
+    model: "P202-1-102_Personnel_Door_w_Hardware and Lock Box 3ft_x_6ft8in_LHR.glb"
   },
   {
     name: COMPONENT_NAMES.PERSONNEL_DOOR_LHR,
@@ -155,7 +156,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2000,
-    model: "SM_PDoor_LockBoxLHR_01.obj"
+    model: "P202-1-102_Personnel_Door_w_Hardware and Lock Box 3ft_x_6ft8in_LHR.glb"
   },
   {
     name: COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_RHR,
@@ -170,7 +171,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2000,
-    model: "SM_PDoor_LockBoxRHR_01.obj"
+    model: "P202-1-101_Personnel_Door_w_Hardware and Lock Box 3ft_x_6ft8in_RHR.glb"
   },
   {
     name: COMPONENT_NAMES.PERSONNEL_DOOR_RHR,
@@ -185,7 +186,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2000,
-    model: "SM_PDoor_LockBoxRHR_01.obj"
+    model: "P202-1-101_Personnel_Door_w_Hardware and Lock Box 3ft_x_6ft8in_RHR.glb"
   },
   {
     name: COMPONENT_NAMES.SLIDING_GLASS_DOOR,
@@ -200,7 +201,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 3025,
-    model: "SM_Wide_Sliding_Glass_Door_01.obj"
+    model: "P202-1-304_6ft_Wide_Sliding_Glass_Door_White_Vinyl.glb"
   },
   {
     name: COMPONENT_NAMES.FRENCH_DOOR,
@@ -215,7 +216,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 4550,
-    model: "SM_French_Door_01.obj"
+    model: "P202-1-503_6ft_6ft8in_Height_French Door White_and_Black Frame.glb"
   },
   {
     name: COMPONENT_NAMES.WINDOW_WHITE_SECURITY,
@@ -230,7 +231,7 @@ const componentData = [
     objHeight: DIMENSIONS.WINDOW.WHITE.HEIGHT,
     objType: COMPONENT_TYPES.WINDOW,
     price: 1720,
-    model: "SM_Window 48x36_Hinged_Security_01.obj"
+    model: "P201-1-01_48in_w_x_36in_H_White_Window_w_HD_Steel_Frame_&_Hinged_Security.glb"
   },
   {
     name: COMPONENT_NAMES.WINDOW_WHITE_WO_SECURITY,
@@ -245,7 +246,7 @@ const componentData = [
     objHeight: DIMENSIONS.WINDOW.WHITE.HEIGHT,
     objType: COMPONENT_TYPES.WINDOW,
     price: 1080,
-    model: "SM_Window_48x36_01.obj"
+    model: "P201-1-03_48in_w_x_36in_h_White_Window_with_Basic_16ga_Steel_Frame-No_Security.glb"
   },
   {
     name: COMPONENT_NAMES.VENT_12,
@@ -260,7 +261,7 @@ const componentData = [
     objHeight: DIMENSIONS.VENT.SQ_12.HEIGHT,
     objType: COMPONENT_TYPES.VENT,
     price: 440,
-    model: "SM_fixed_louvre_bolt_12_01.obj"
+    model: "P203-1-304_12in_x_12in Aluminum Fixed Louver 16ga Bolt on Frame.glb"
   },
   {
     name: COMPONENT_NAMES.VENT_20,
@@ -275,7 +276,7 @@ const componentData = [
     objHeight: DIMENSIONS.VENT.SQ_20.HEIGHT,
     objType: COMPONENT_TYPES.VENT,
     price: 490,
-    model: "SM_fixed_louvre_bolt_20_01.obj"
+    model: "P203-1-305_20in_x_20in Aluminum Fixed Louver 16ga Bolt on Frame.glb"
   },
   {
     name: COMPONENT_NAMES.VENT_24,
@@ -290,7 +291,7 @@ const componentData = [
     objHeight: DIMENSIONS.VENT.SQ_24.HEIGHT,
     objType: COMPONENT_TYPES.VENT,
     price: 540,
-    model: "SM_fixed_louvre_bolt_24_01.obj"
+    model: "P203-1-306_24in_x_24in Aluminum Fixed Louver 16ga Bolt on Frame.glb"
   },
   {
     name: COMPONENT_NAMES.ROLL_UP_DOOR,
@@ -305,7 +306,7 @@ const componentData = [
     objHeight: DIMENSIONS.DOOR.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 2625,
-    model: "SM_RollUp_Door_01.obj"
+    model: "P215-1-02_Roll_Up_Door_Front_End_6ft8in_W_X_6ft4in_H_Ext_Int_Lock.glb"
   },
 ].map((item) => ({
   id: uuid(),

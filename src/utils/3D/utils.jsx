@@ -43,13 +43,12 @@ const calcPosition = (elevation, distanceObject) => {
     default:
       break;
   }
-
 }
 
 const rightSideCoordinates = ({ distanceObject }) => {
   let xPosition = distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX;
   let yPosition = 0 + adjustForY;
-  let zPosition = (parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
+  let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
   
   return [
     xPosition,
@@ -59,8 +58,8 @@ const rightSideCoordinates = ({ distanceObject }) => {
 }
 const leftSideCoordinates = ({ distanceObject }) => {
   let xPosition = (DIMENSIONS.CONTAINER.SIDE.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX;
-  let yPosition = -DIMENSIONS.CONTAINER.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY;
-  let zPosition = (parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
+  let yPosition = -DIMENSIONS.CONTAINER.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY + 0.4;
+  let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
   return [
     xPosition,
     zPosition,
@@ -70,7 +69,7 @@ const leftSideCoordinates = ({ distanceObject }) => {
 const frontSideCoordinates = ({ distanceObject }) => {
   let xPosition = 0 + adjustForX;
   let yPosition = (DIMENSIONS.CONTAINER.FRONT.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY;
-  let zPosition = (parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
+  let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
   return [
     xPosition,
     zPosition,
@@ -78,9 +77,9 @@ const frontSideCoordinates = ({ distanceObject }) => {
   ]
 }
 const backSideCoordinates = ({ distanceObject }) => {
-  let xPosition = DIMENSIONS.CONTAINER.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX;
+  let xPosition = DIMENSIONS.CONTAINER.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX - 0.55;
   let yPosition = -distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY;
-  let zPosition = (parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;;
+  let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;;
   return [
     xPosition,
     zPosition,

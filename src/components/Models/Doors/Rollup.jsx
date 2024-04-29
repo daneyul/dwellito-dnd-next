@@ -1,0 +1,48 @@
+import { checkDistance } from "@/utils/2D/utils";
+import { preloadGLTFModel } from "@/utils/3D/preloadGLTFModel";
+import { calcPosition, calcRotation } from "@/utils/3D/utils";
+import { useGLTF } from "@react-three/drei";
+import { useEffect } from "react";
+
+const Rollup = ({ component }) => {
+  const { nodes, materials } = useGLTF(`/models/${component.model}`);
+  const selectedElevation = component.elevation[0];
+  const distanceObject = checkDistance({
+    component,
+    selectedElevation,
+  });
+
+  const rotation = [0, calcRotation(selectedElevation), 0];
+
+  useEffect(() => {
+    preloadGLTFModel(component.model);
+  }, [component.model]);
+
+  return (
+    <group
+      dispose={null}
+      scale={[10.4, 10.4, 10.4]}
+      position={calcPosition(selectedElevation, distanceObject)}
+      rotation={rotation}
+    >
+      <group
+        position={[1.096, 1.83, -0.106]}
+        rotation={[-Math.PI, 0, -Math.PI]}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={
+            nodes[
+              "P215-1-02_Roll_Up_Door_Front_End_6ft8in_W_X_6ft4in_H_Ext_Int_Lock"
+            ].geometry
+          }
+          material={materials.Aluminum_01}
+          scale={0.01}
+        />
+      </group>
+    </group>
+  );
+};
+
+export default Rollup;

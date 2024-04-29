@@ -7,17 +7,25 @@ import {
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import ShippingContainer from "./ShippingContainer";
 import { useContext, useEffect, useRef, useState } from "react";
-import Door from "./Door";
+import Door from "./Doors/Door";
 import { PageDataContext } from "src/app/page";
 import { COMPONENT_TYPES } from "@/utils/2D/library";
 import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 import { Vector3 } from "three";
+import Window from "./Windows/Window";
+import Vent from "./Vents/Vent";
 
 const Models = () => {
   const { selectedComponents, color, interior, showExterior } =
     useContext(PageDataContext);
   const doors = selectedComponents.filter(
     (component) => component.objType === COMPONENT_TYPES.DOOR
+  );
+  const windows = selectedComponents.filter(
+    (component) => component.objType === COMPONENT_TYPES.WINDOW
+  );
+  const vents = selectedComponents.filter(
+    (component) => component.objType === COMPONENT_TYPES.VENT
   );
   const exteriorCamPos = [100, 50, 100];
   const interiorCamPos = [28.68, 12, -0.88];
@@ -95,6 +103,12 @@ const Models = () => {
           <ShippingContainer color={color} interior={interior} />
           {doors.map((door, index) => (
             <Door key={index} component={door} />
+          ))}
+          {windows.map((window, index) => (
+            <Window key={index} component={window} />
+          ))}
+          {vents.map((vent, index) => (
+            <Vent key={index} component={vent} />
           ))}
           <ambientLight intensity={0.15} />
           <spotLight
