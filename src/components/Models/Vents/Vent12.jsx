@@ -25,7 +25,7 @@ const Vent12 = ({ component }) => {
       position={calcPosition(selectedElevation, distanceObject)}
       rotation={rotation}
     >
-      <group position={[0.152, 1.9, -0.037]} rotation={[-Math.PI / 2, 0, 0]}>
+      <group position={[0.152, 2.6, -0.037]} rotation={[-Math.PI / 2, 0, 0]}>
         <mesh
           castShadow
           receiveShadow
