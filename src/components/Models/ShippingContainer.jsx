@@ -5,7 +5,7 @@ import { INTERIOR_OPTIONS } from "@/utils/3D/library";
 import { Base, Geometry } from "@react-three/csg";
 
 export default function ShippingContainer({ color, interior, ref }) {
-  const { nodes, materials } = useGLTF("/models/container.glb");
+  const { nodes, materials } = useGLTF("/models/container1.glb");
   const material = new MeshStandardMaterial({ color: color });
 
   const Plywood = () => {
@@ -15,13 +15,20 @@ export default function ShippingContainer({ color, interior, ref }) {
           position={[3.031, 0.173, -1.192]}
           rotation={[-Math.PI / 2, 0, 0]}
         >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.SM_L01_PlywoodWall_001.geometry}
-            material={materials.Plywood_Texture_01}
-            scale={0.01}
-          />
+          <group scale={0.01}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.SM_L01_PlywoodWall_01_1.geometry}
+              material={materials.Black_Vinyl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.SM_L01_PlywoodWall_01_2.geometry}
+              material={materials.Plywood_Texture_01}
+            />
+          </group>
         </group>
       );
     }
@@ -39,28 +46,22 @@ export default function ShippingContainer({ color, interior, ref }) {
               <mesh
                 castShadow
                 receiveShadow
-                geometry={nodes.SM_L01_DryWall_01_1.geometry}
+                geometry={nodes.SM_Blank_DryWall_01_1.geometry}
                 material={materials.Black_Paint_01}
               />
               <mesh
                 castShadow
                 receiveShadow
-                geometry={nodes.SM_L01_DryWall_01_2.geometry}
+                geometry={nodes.SM_Blank_DryWall_01_2.geometry}
+                material={materials.Black_Rubber_01}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.SM_Blank_DryWall_01_3.geometry}
                 material={materials.White_Drywall_Wall}
               />
             </group>
-          </group>
-          <group
-            position={[3.021, 0.173, -1.212]}
-            rotation={[-Math.PI / 2, 0, 0]}
-          >
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.SM_L01_Gasket_Drywall_01.geometry}
-              material={materials.Black_Rubber_01}
-              scale={0.01}
-            />
           </group>
         </>
       );
@@ -79,108 +80,19 @@ export default function ShippingContainer({ color, interior, ref }) {
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.SM_L01_LED_DW_Light_Fixture_01_1.geometry}
+            geometry={nodes.SM_LED_DW_Light_Fixture_01_1.geometry}
             material={materials.Emissive_Light}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.SM_L01_LED_DW_Light_Fixture_01_2.geometry}
-            material={materials.White_Mtl}
-          />
-        </group>
-      </group>
-      <group position={[3.019, 2.407, -1.214]} rotation={[-Math.PI / 2, 0, 0]}>
-        <group scale={0.01}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.SM_L01_LED_DW_Light_Fixture_02_1.geometry}
-            material={materials.Emissive_Light}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.SM_L01_LED_DW_Light_Fixture_02_2.geometry}
-            material={materials.White_Mtl}
-          />
-        </group>
-      </group>
-      <group position={[4.906, 2.407, -1.214]} rotation={[-Math.PI / 2, 0, 0]}>
-        <group scale={0.01}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.SM_L01_LED_DW_Light_Fixture_03_1.geometry}
-            material={materials.Emissive_Light}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.SM_L01_LED_DW_Light_Fixture_03_2.geometry}
+            geometry={nodes.SM_LED_DW_Light_Fixture_01_2.geometry}
             material={materials.White_Mtl}
           />
         </group>
       </group>
       <Plywood />
       <Drywall />
-      <group position={[3.001, 0.173, -1.212]} rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.SM_L01_Gasket_PlywoodWalll_01.geometry}
-          material={materials.Black_Vinyl}
-          scale={0.01}
-        />
-      </group>
-      <group position={[1.157, 2.434, -1.214]} rotation={[-Math.PI / 2, 0, 0]}>
-        <group scale={0.01}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.SM_L01_LED_PW_Light_Fixture_03_1.geometry}
-            material={materials.Emissive_Light}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.SM_L01_LED_PW_Light_Fixture_03_2.geometry}
-            material={materials.White_Mtl}
-          />
-        </group>
-      </group>
-      <group position={[3.019, 2.434, -1.214]} rotation={[-Math.PI / 2, 0, 0]}>
-        <group scale={0.01}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Obj_SM_L01_LED_DW_Light_Fixture_01_1.geometry}
-            material={materials.Emissive_Light}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Obj_SM_L01_LED_DW_Light_Fixture_01_2.geometry}
-            material={materials.White_Mtl}
-          />
-        </group>
-      </group>
-      <group position={[4.916, 2.434, -1.214]} rotation={[-Math.PI / 2, 0, 0]}>
-        <group scale={0.01}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Obj_SM_L01_LED_DW_Light_Fixture_02_1.geometry}
-            material={materials.Emissive_Light}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Obj_SM_L01_LED_DW_Light_Fixture_02_2.geometry}
-            material={materials.White_Mtl}
-          />
-        </group>
-      </group>
       <group
         position={[6.019, 1.138, -4.267]}
         rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
@@ -189,15 +101,40 @@ export default function ShippingContainer({ color, interior, ref }) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.SM_Exterior_Blank_01.geometry}
-          material={material}
+          geometry={nodes.Container_Exterior_Blank_01.geometry}
+          material={materials.White}
+          scale={0.01}
+        />
+      </group>
+      <group position={[1.157, 2.407, -1.214]} rotation={[-Math.PI / 2, 0, 0]}>
+        <group scale={0.01}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.SM_LED_PW_Light_Fixture_01_1.geometry}
+            material={materials.Emissive_Light}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.SM_LED_PW_Light_Fixture_01_2.geometry}
+            material={materials.White_Mtl}
+          />
+        </group>
+      </group>
+      <group position={[3.031, 0.173, -1.212]} rotation={[-Math.PI / 2, 0, 0]}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.SM_Interior_Blank_Floor_01.geometry}
+          material={materials.Echo}
           scale={0.01}
         />
       </group>
     </group>
-  )
+  );
 
   return containerMesh;
 }
 
-useGLTF.preload("/container.glb");
+useGLTF.preload("/container1.glb");

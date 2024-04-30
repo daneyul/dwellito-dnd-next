@@ -6,7 +6,7 @@ import {
 } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import ShippingContainer from "./ShippingContainer";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import Door from "./Doors/Door";
 import { PageDataContext } from "src/app/page";
 import { COMPONENT_TYPES } from "@/utils/2D/library";
@@ -14,13 +14,19 @@ import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 import { Vector3 } from "three";
 import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
-import { Base, Geometry } from "@react-three/csg";
+import { Base, Geometry, Subtraction } from "@react-three/csg";
+import * as THREE from "three";
+import Lhr from "./Doors/Lhr";
 
 const Models = () => {
   const { selectedComponents, color, interior, showExterior } =
     useContext(PageDataContext);
-  const doors = selectedComponents.filter(
-    (component) => component.objType === COMPONENT_TYPES.DOOR
+  const doors = useMemo(
+    () =>
+      selectedComponents.filter(
+        (comp) => comp.objType === COMPONENT_TYPES.DOOR
+      ),
+    [selectedComponents]
   );
   const windows = selectedComponents.filter(
     (component) => component.objType === COMPONENT_TYPES.WINDOW
@@ -90,6 +96,12 @@ const Models = () => {
     }
   }, [orbitRef, showExterior]);
 
+  const [boundingBoxes, setBoundingBoxes] = useState({});
+
+  const handleBoundingBox = useCallback((index, data) => {
+    setBoundingBoxes(prev => ({ ...prev, [index]: data }));
+  }, []);
+
   return (
     <>
       <div
@@ -107,7 +119,11 @@ const Models = () => {
               />
             </Base>
             {doors.map((door, index) => (
-              <Door key={index} component={door} />
+              <Door
+                key={index}
+                component={door}
+                onBoundingBox={(data) => handleBoundingBox(index, data)}
+              />
             ))}
             {windows.map((window, index) => (
               <Window key={index} component={window} />
