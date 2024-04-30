@@ -21,7 +21,7 @@ import { Vector3 } from "three";
 import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
 
-const Models = ({ show3d }) => {
+const Models = () => {
   const { selectedComponents, color, interior, showExterior } =
     useContext(PageDataContext);
   const doors = useMemo(
@@ -109,7 +109,7 @@ const Models = ({ show3d }) => {
     <>
       <div
         id="canvas-container"
-        style={{ width: "auto", height: "100vh", position: "relative", zIndex: "-1"}}
+        style={{ width: "auto", height: "100vh", position: "relative" }}
       >
         <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
           <color attach="background" args={["#fdfdf7"]} />

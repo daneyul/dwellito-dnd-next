@@ -18,9 +18,7 @@ export function Droppable({ children, selectedElevation }) {
     height: `${toScale(selectedElevation.objHeight)}px`,
     boxSizing: "border-box",
     margin: "0 auto",
-    position: "relative",
-    top: "50%",
-    transform: "translateY(-50%)"
+    position: "relative"
   };
 
   return (

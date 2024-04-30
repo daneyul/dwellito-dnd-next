@@ -76,67 +76,56 @@ const Viewer = () => {
           justifyContent: "center",
         }}
       >
+        {show3d ? (
+          <Models />
+        ) : (
+          <>
+            <Collision showCollision={showCollision} />
+            <DndContext
+              onDragStart={handleDragStart}
+              onDragEnd={handleDragEnd}
+              modifiers={modifiers}
+            >
+              <Droppable selectedElevation={selectedElevation}>
+                <div
+                  style={{
+                    width: `${toScale(droppableWidth(selectedElevation))}px`,
+                    height: "100%",
+                    position: "absolute",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                  }}
+                >
+                  {selectedComponents
+                    .filter((piece) =>
+                      piece.elevation.includes(selectedElevation)
+                    )
+                    .map((piece) => {
+                      return (
+                        <Draggable
+                          piece={piece}
+                          key={piece.id}
+                          id={piece.id}
+                          imgName={piece.imgName}
+                          onSelect={() => handleSelect(piece.id)}
+                          ref={draggableRefs[piece.id]}
+                        />
+                      );
+                    })}
+                </div>
+              </Droppable>
+            </DndContext>
+            {selectedElevationIndex > 0 && <LeftArrow />}
+            {selectedElevationIndex < elevationData.length - 1 && (
+              <RightArrow />
+            )}
+            {isAnyItemSelected && (
+              <DeleteBtn onDeleteSelected={handleDeleteSelected} />
+            )}
+          </>
+        )}
         <ToggleCamera />
         <ToggleView />
-        <div
-          style={{
-            visibility: show3d ? "visible" : "hidden",
-          }}
-        >
-          <Models />
-        </div>
-        <div
-          style={{
-            width: "100%",
-            height: "100vh",
-            position: "absolute",
-            top: "50%",
-            transform: "translateY(-50%)",
-            backgroundColor: "white",
-            visibility: show3d ? "hidden" : "visible",
-          }}
-        >
-          <Collision showCollision={showCollision} />
-          <DndContext
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            modifiers={modifiers}
-          >
-            <Droppable selectedElevation={selectedElevation}>
-              <div
-                style={{
-                  width: `${toScale(droppableWidth(selectedElevation))}px`,
-                  height: "100%",
-                  position: "absolute",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                }}
-              >
-                {selectedComponents
-                  .filter((piece) =>
-                    piece.elevation.includes(selectedElevation)
-                  )
-                  .map((piece) => {
-                    return (
-                      <Draggable
-                        piece={piece}
-                        key={piece.id}
-                        id={piece.id}
-                        imgName={piece.imgName}
-                        onSelect={() => handleSelect(piece.id)}
-                        ref={draggableRefs[piece.id]}
-                      />
-                    );
-                  })}
-              </div>
-            </Droppable>
-          </DndContext>
-          {selectedElevationIndex > 0 && <LeftArrow />}
-          {selectedElevationIndex < elevationData.length - 1 && <RightArrow />}
-          {isAnyItemSelected && (
-            <DeleteBtn onDeleteSelected={handleDeleteSelected} />
-          )}
-        </div>
       </div>
     </>
   );
