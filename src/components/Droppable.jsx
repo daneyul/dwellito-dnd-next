@@ -19,6 +19,8 @@ export function Droppable({ children, selectedElevation }) {
     boxSizing: "border-box",
     margin: "0 auto",
     position: "relative",
+    top: "50%",
+    transform: "translateY(-50%)"
   };
 
   return (

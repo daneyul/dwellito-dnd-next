@@ -109,7 +109,7 @@ const Models = ({ show3d }) => {
     <>
       <div
         id="canvas-container"
-        style={{ width: "auto", height: "100vh", position: "relative", display: show3d ? "block" : "none", zIndex: "-1"}}
+        style={{ width: "auto", height: "100vh", position: "relative", zIndex: "-1"}}
       >
         <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
           <color attach="background" args={["#fdfdf7"]} />
