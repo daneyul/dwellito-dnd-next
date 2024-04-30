@@ -2,11 +2,12 @@ import { useGLTF } from "@react-three/drei";
 import { MeshStandardMaterial } from "three";
 import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { INTERIOR_OPTIONS } from "@/utils/3D/library";
-import { Base, Geometry } from "@react-three/csg";
+import { useRef } from "react";
 
-export default function ShippingContainer({ color, interior, ref }) {
+export default function ShippingContainer({ color, interior }) {
   const { nodes, materials } = useGLTF("/models/container1.glb");
   const material = new MeshStandardMaterial({ color: color });
+  const ref = useRef();
 
   const Plywood = () => {
     if (interior === INTERIOR_OPTIONS[0]) {
@@ -68,6 +69,65 @@ export default function ShippingContainer({ color, interior, ref }) {
     }
   };
 
+  const Lighting = () => {
+    return (
+      <>
+        <group
+          position={[1.157, 2.407, -1.214]}
+          rotation={[-Math.PI / 2, 0, 0]}
+        >
+          <group scale={0.01}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.SM_LED_PW_Light_Fixture_01_1.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.SM_LED_PW_Light_Fixture_01_2.geometry}
+              material={material}
+            />
+          </group>
+        </group>
+        <group
+          position={[1.157, 2.407, -1.214]}
+          rotation={[-Math.PI / 2, 0, 0]}
+        >
+          <group scale={0.01}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.SM_LED_DW_Light_Fixture_01_1.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.SM_LED_DW_Light_Fixture_01_2.geometry}
+              material={materials.White_Mtl}
+            />
+          </group>
+        </group>
+      </>
+    );
+  };
+
+  const Flooring = () => {
+    return (
+      <group position={[3.031, 0.173, -1.212]} rotation={[-Math.PI / 2, 0, 0]}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.SM_Interior_Blank_Floor_01.geometry}
+          material={materials.Echo}
+          scale={0.01}
+        />
+      </group>
+    );
+  };
+
   const containerMesh = (
     <group
       dispose={null}
@@ -75,24 +135,6 @@ export default function ShippingContainer({ color, interior, ref }) {
       position={[adjustForX, 0, adjustForY]}
       ref={ref}
     >
-      <group position={[1.157, 2.407, -1.214]} rotation={[-Math.PI / 2, 0, 0]}>
-        <group scale={0.01}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.SM_LED_DW_Light_Fixture_01_1.geometry}
-            material={materials.Emissive_Light}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.SM_LED_DW_Light_Fixture_01_2.geometry}
-            material={materials.White_Mtl}
-          />
-        </group>
-      </group>
-      <Plywood />
-      <Drywall />
       <group
         position={[6.019, 1.138, -4.267]}
         rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
@@ -106,31 +148,10 @@ export default function ShippingContainer({ color, interior, ref }) {
           scale={0.01}
         />
       </group>
-      <group position={[1.157, 2.407, -1.214]} rotation={[-Math.PI / 2, 0, 0]}>
-        <group scale={0.01}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.SM_LED_PW_Light_Fixture_01_1.geometry}
-            material={materials.Emissive_Light}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.SM_LED_PW_Light_Fixture_01_2.geometry}
-            material={materials.White_Mtl}
-          />
-        </group>
-      </group>
-      <group position={[3.031, 0.173, -1.212]} rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.SM_Interior_Blank_Floor_01.geometry}
-          material={materials.Echo}
-          scale={0.01}
-        />
-      </group>
+      <Lighting />
+      <Flooring />
+      <Plywood />
+      <Drywall />
     </group>
   );
 

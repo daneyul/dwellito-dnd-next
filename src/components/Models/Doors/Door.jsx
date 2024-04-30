@@ -5,11 +5,11 @@ import Sliding from "./Sliding";
 import French from "./French";
 import Rollup from "./Rollup";
 
-export default function Door({ component, onBoundingBox }) {
+export default function Door({ component }) {
   switch (component.name) {
     case COMPONENT_NAMES.PERSONNEL_DOOR_LHR:
     case COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_LHR:
-      return <Lhr component={component} onBoundingBox={onBoundingBox}/>;
+      return <Lhr component={component} />;
     case COMPONENT_NAMES.PERSONNEL_DOOR_RHR:
     case COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_RHR:
       return <Rhr component={component} />;

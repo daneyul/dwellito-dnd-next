@@ -6,7 +6,13 @@ import {
 } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import ShippingContainer from "./ShippingContainer";
-import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Door from "./Doors/Door";
 import { PageDataContext } from "src/app/page";
 import { COMPONENT_TYPES } from "@/utils/2D/library";
@@ -14,11 +20,8 @@ import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 import { Vector3 } from "three";
 import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
-import { Base, Geometry, Subtraction } from "@react-three/csg";
-import * as THREE from "three";
-import Lhr from "./Doors/Lhr";
 
-const Models = () => {
+const Models = ({ show3d }) => {
   const { selectedComponents, color, interior, showExterior } =
     useContext(PageDataContext);
   const doors = useMemo(
@@ -96,42 +99,37 @@ const Models = () => {
     }
   }, [orbitRef, showExterior]);
 
-  const [boundingBoxes, setBoundingBoxes] = useState({});
+  // const [boundingBoxes, setBoundingBoxes] = useState({});
 
-  const handleBoundingBox = useCallback((index, data) => {
-    setBoundingBoxes(prev => ({ ...prev, [index]: data }));
-  }, []);
+  // const handleBoundingBox = useCallback((index, data) => {
+  //   setBoundingBoxes((prev) => ({ ...prev, [index]: data }));
+  // }, []);
 
   return (
     <>
       <div
         id="canvas-container"
-        style={{ width: "auto", height: "100vh", position: "relative" }}
+        style={{ width: "auto", height: "100vh", position: "relative", display: show3d ? "block" : "none", zIndex: "-1"}}
       >
         <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
           <color attach="background" args={["#fdfdf7"]} />
-          <Geometry showOperations>
-            <Base>
-              <ShippingContainer
-                color={color}
-                interior={interior}
-                ref={containerRef}
-              />
-            </Base>
-            {doors.map((door, index) => (
-              <Door
-                key={index}
-                component={door}
-                onBoundingBox={(data) => handleBoundingBox(index, data)}
-              />
-            ))}
-            {windows.map((window, index) => (
-              <Window key={index} component={window} />
-            ))}
-            {vents.map((vent, index) => (
-              <Vent key={index} component={vent} />
-            ))}
-          </Geometry>
+          <ShippingContainer
+            color={color}
+            interior={interior}
+            ref={containerRef}
+          />
+          {doors.map((door, index) => (
+            <Door
+              key={index}
+              component={door}
+            />
+          ))}
+          {windows.map((window, index) => (
+            <Window key={index} component={window} />
+          ))}
+          {vents.map((vent, index) => (
+            <Vent key={index} component={vent} />
+          ))}
           <ambientLight intensity={0.15} />
           <spotLight
             intensity={0.65}

@@ -2,11 +2,10 @@
 import { checkDistance } from "@/utils/2D/utils";
 import { preloadGLTFModel } from "@/utils/3D/preloadGLTFModel";
 import { calcPosition, calcRotation } from "@/utils/3D/utils";
-import { Box, useGLTF } from "@react-three/drei";
-import React, { useEffect, useRef } from "react";
-import { Box3, Vector3 } from "three";
+import { useGLTF } from "@react-three/drei";
+import React, { useEffect } from "react";
 
-const Lhr = React.memo(({ component, onBoundingBox }) => {
+const Lhr = React.memo(({ component }) => {
   const { nodes, materials } = useGLTF(`/models/${component.model}`);
   const selectedElevation = component.elevation[0];
   const distanceObject = checkDistance({
@@ -15,18 +14,6 @@ const Lhr = React.memo(({ component, onBoundingBox }) => {
   });
 
   const rotation = [0, calcRotation(selectedElevation), 0];
-  const ref = useRef();
-
-  useEffect(() => {
-    if (ref.current) {
-      const bbox = new Box3().setFromObject(ref.current);
-      const size = new Vector3();
-      const center = new Vector3();
-      bbox.getSize(size);
-      bbox.getCenter(center);
-      onBoundingBox({ size, center });
-    }
-  }, [ref.current]);
 
   useEffect(() => {
     preloadGLTFModel(component.model);
@@ -34,7 +21,6 @@ const Lhr = React.memo(({ component, onBoundingBox }) => {
 
   return (
     <group
-      ref={ref}
       dispose={null}
       scale={[10, 10, 10]}
       position={calcPosition(selectedElevation, distanceObject)}
