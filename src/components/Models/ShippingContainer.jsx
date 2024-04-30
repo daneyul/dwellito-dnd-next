@@ -144,7 +144,7 @@ export default function ShippingContainer({ color, interior }) {
           castShadow
           receiveShadow
           geometry={nodes.Container_Exterior_Blank_01.geometry}
-          material={materials.White}
+          material={material}
           scale={0.01}
         />
       </group>
