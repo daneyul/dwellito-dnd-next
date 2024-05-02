@@ -5,7 +5,7 @@ import { INTERIOR_OPTIONS } from "@/utils/3D/library";
 import { useRef } from "react";
 
 export default function ShippingContainer({ color, interior }) {
-  const { nodes, materials } = useGLTF("/models/container1.glb");
+  const { nodes, materials } = useGLTF("/models/container.glb");
   const material = new MeshStandardMaterial({ color: color });
   const ref = useRef();
 
@@ -158,4 +158,4 @@ export default function ShippingContainer({ color, interior }) {
   return containerMesh;
 }
 
-useGLTF.preload("/container1.glb");
+useGLTF.preload("/models/container.glb");

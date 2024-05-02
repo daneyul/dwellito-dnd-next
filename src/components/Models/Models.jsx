@@ -113,7 +113,6 @@ const Models = () => {
           {/* <ShippingContainer
             color={color}
             interior={interior}
-            ref={containerRef}
           /> */}
           {doors.map((door, index) => (
             <Door key={index} component={door} />
