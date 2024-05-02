@@ -6,13 +6,7 @@ import {
 } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import ShippingContainer from "./ShippingContainer";
-import {
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import Door from "./Doors/Door";
 import { PageDataContext } from "src/app/page";
 import { COMPONENT_TYPES } from "@/utils/2D/library";
@@ -20,6 +14,8 @@ import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 import { Vector3 } from "three";
 import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
+import { Test } from "./Test";
+import { TestDoor } from "./TestDoor";
 
 const Models = () => {
   const { selectedComponents, color, interior, showExterior } =
@@ -113,16 +109,14 @@ const Models = () => {
       >
         <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
           <color attach="background" args={["#fdfdf7"]} />
-          <ShippingContainer
+          <Test />
+          {/* <ShippingContainer
             color={color}
             interior={interior}
             ref={containerRef}
-          />
+          /> */}
           {doors.map((door, index) => (
-            <Door
-              key={index}
-              component={door}
-            />
+            <Door key={index} component={door} />
           ))}
           {windows.map((window, index) => (
             <Window key={index} component={window} />
