@@ -109,11 +109,11 @@ const Models = () => {
       >
         <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
           <color attach="background" args={["#fdfdf7"]} />
-          {/* <Test color={color} /> */}
-          <ShippingContainer
+          <Test color={color} />
+          {/* <ShippingContainer
             color={color}
             interior={interior}
-          />
+          /> */}
           {doors.map((door, index) => (
             <Door key={index} component={door} />
           ))}
