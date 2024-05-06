@@ -13,17 +13,20 @@ export function Test({ color, doorBoundingBoxes }) {
   const csg = useRef();
   const material = new MeshStandardMaterial({ color: color });
 
-  const boundingBoxGeometries = useMemo(
-    () =>
-      Object.entries(doorBoundingBoxes).map(([id, bbox]) => (
-        <Base
-          key={id}
-          geometry={new BoxGeometry(bbox.size.x, bbox.size.y, bbox.size.z)}
-          position={[bbox.center.x, bbox.center.y, bbox.center.z]}
-        />
-      )),
-    [doorBoundingBoxes]
-  );
+  const boundingBoxGeometries = useMemo(() => {
+    return Object.entries(doorBoundingBoxes).map(([id, bbox]) => (
+      <group key={id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
+        <Subtraction>
+          {/* Geometry with bounding box size */}
+          <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
+          <mesh>
+            {/* Material applied to a mesh, not directly in Subtraction */}
+            <meshStandardMaterial attach="material" color="white" side={THREE.DoubleSide} />
+          </mesh>
+        </Subtraction>
+      </group>
+    ));
+  }, [doorBoundingBoxes]);
 
   return (
     <mesh receiveShadow castShadow>
@@ -46,12 +49,7 @@ export function Test({ color, doorBoundingBoxes }) {
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
-        <group scale={10} position={[adjustForX, 0, adjustForY]}>
-          <Subtraction>
-            <boxGeometry args={[3, 2, 3]} />
-            <meshStandardMaterial color="white" side={THREE.DoubleSide} />
-          </Subtraction>
-        </group>
+        {boundingBoxGeometries}
       </Geometry>
     </mesh>
   );
