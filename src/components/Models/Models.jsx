@@ -6,7 +6,14 @@ import {
 } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import ShippingContainer from "./ShippingContainer";
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Door from "./Doors/Door";
 import { PageDataContext } from "src/app/page";
 import { COMPONENT_TYPES } from "@/utils/2D/library";
@@ -16,6 +23,7 @@ import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
 import { Test } from "./Test";
 import { TestDoor } from "./TestDoor";
+import BoundingBoxVisual from "./BoundingBoxVisual";
 
 const Models = () => {
   const { selectedComponents, color, interior, showExterior } =
@@ -95,11 +103,10 @@ const Models = () => {
     }
   }, [orbitRef, showExterior]);
 
-  // const [boundingBoxes, setBoundingBoxes] = useState({});
-
-  // const handleBoundingBox = useCallback((index, data) => {
-  //   setBoundingBoxes((prev) => ({ ...prev, [index]: data }));
-  // }, []);
+  const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
+  const handleDoorBoundingBox = useCallback((index, data) => {
+    setDoorBoundingBoxes(prev => ({ ...prev, [index]: data }));
+  }, []);
 
   return (
     <>
@@ -109,13 +116,13 @@ const Models = () => {
       >
         <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
           <color attach="background" args={["#fdfdf7"]} />
-          <Test color={color} />
-          {/* <ShippingContainer
-            color={color}
-            interior={interior}
-          /> */}
+          <Test color={color} doorBoundingBoxes={doorBoundingBoxes} />
           {doors.map((door, index) => (
-            <Door key={index} component={door} />
+            <Door
+              key={door.id}
+              component={door}
+              onBoundingBoxChange={(data) => handleDoorBoundingBox(index, data)}
+            />
           ))}
           {windows.map((window, index) => (
             <Window key={index} component={window} />
