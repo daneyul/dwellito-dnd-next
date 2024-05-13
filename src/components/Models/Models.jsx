@@ -5,7 +5,6 @@ import {
   RandomizedLight,
 } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import ShippingContainer from "./ShippingContainer";
 import {
   useCallback,
   useContext,
@@ -21,9 +20,8 @@ import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 import { Vector3 } from "three";
 import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
-import { Test } from "./Test";
-import { TestDoor } from "./TestDoor";
-import BoundingBoxVisual from "./BoundingBoxVisual";
+import { CsgGeometries } from "./CsgGeometries";
+import ContainerExterior from "./ContainerExterior";
 
 const Models = () => {
   const { selectedComponents, color, interior, showExterior } =
@@ -116,7 +114,8 @@ const Models = () => {
       >
         <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
           <color attach="background" args={["#fdfdf7"]} />
-          <Test color={color} doorBoundingBoxes={doorBoundingBoxes} />
+          {/* <ContainerExterior color={color} interior={interior}/> */}
+          <CsgGeometries color={color} doorBoundingBoxes={doorBoundingBoxes} interior={interior} />
           {doors.map((door, index) => (
             <Door
               key={door.id}
