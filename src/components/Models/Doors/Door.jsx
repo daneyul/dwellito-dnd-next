@@ -12,13 +12,13 @@ export default function Door({ onBoundingBoxChange, component }) {
       return <Lhr component={component} onBoundingBoxChange={onBoundingBoxChange} />;
     case COMPONENT_NAMES.PERSONNEL_DOOR_RHR:
     case COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_RHR:
-      return <Rhr component={component} />;
+      return <Rhr component={component} onBoundingBoxChange={onBoundingBoxChange} />;
     case COMPONENT_NAMES.SLIDING_GLASS_DOOR:
-      return <Sliding component={component} />;
+      return <Sliding component={component} onBoundingBoxChange={onBoundingBoxChange} />;
     case COMPONENT_NAMES.FRENCH_DOOR:
-      return <French component={component} />;
+      return <French component={component} onBoundingBoxChange={onBoundingBoxChange} />;
     case COMPONENT_NAMES.ROLL_UP_DOOR:
-      return <Rollup component={component} />;
+      return <Rollup component={component} onBoundingBoxChange={onBoundingBoxChange} />;
     default:
       return null;
   }

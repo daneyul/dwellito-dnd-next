@@ -22,6 +22,7 @@ import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
 import { CsgGeometries } from "./CsgGeometries";
 import ContainerExterior from "./ContainerExterior";
+import ShippingContainer from "./ShippingContainer";
 
 const Models = () => {
   const { selectedComponents, color, interior, showExterior } =
@@ -102,8 +103,16 @@ const Models = () => {
   }, [orbitRef, showExterior]);
 
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
+  const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
+  const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
   const handleDoorBoundingBox = useCallback((index, data) => {
-    setDoorBoundingBoxes(prev => ({ ...prev, [index]: data }));
+    setDoorBoundingBoxes((prev) => ({ ...prev, [index]: data }));
+  }, []);
+  const handleWindowBoundingBox = useCallback((index, data) => {
+    setWindowBoundingBoxes((prev) => ({ ...prev, [index]: data }));
+  }, []);
+  const handleVentBoundingBox = useCallback((index, data) => {
+    setVentBoundingBoxes((prev) => ({ ...prev, [index]: data }));
   }, []);
 
   return (
@@ -114,8 +123,12 @@ const Models = () => {
       >
         <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
           <color attach="background" args={["#fdfdf7"]} />
-          {/* <ContainerExterior color={color} interior={interior}/> */}
-          <CsgGeometries color={color} doorBoundingBoxes={doorBoundingBoxes} interior={interior} />
+          <ContainerExterior color={color} interior={interior} />
+          <CsgGeometries
+            color={color}
+            doorBoundingBoxes={doorBoundingBoxes}
+            interior={interior}
+          />
           {doors.map((door, index) => (
             <Door
               key={door.id}
