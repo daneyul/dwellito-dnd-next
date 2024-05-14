@@ -6,7 +6,7 @@ import * as THREE from "three";
 import { MeshStandardMaterial } from "three";
 import { INTERIOR_OPTIONS } from "@/utils/3D/library";
 
-export function CsgGeometries({ color, doorBoundingBoxes, interior }) {
+export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, ventBoundingBoxes, interior }) {
   const { nodes: cRightNodes } = useGLTF(
     "/models/container/container-exterior-right.glb"
   );
@@ -30,7 +30,7 @@ export function CsgGeometries({ color, doorBoundingBoxes, interior }) {
     "/models/container/container.glb"
   );
 
-  const boundingBoxGeometries = useMemo(() => {
+  const doorBoundingBoxGeometries = useMemo(() => {
     return Object.entries(doorBoundingBoxes).map(([id, bbox]) => (
       <group key={id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
         <Subtraction>
@@ -48,6 +48,44 @@ export function CsgGeometries({ color, doorBoundingBoxes, interior }) {
       </group>
     ));
   }, [doorBoundingBoxes]);
+
+  const windowBoundingBoxGeometries = useMemo(() => {
+    return Object.entries(windowBoundingBoxes).map(([id, bbox]) => (
+      <group key={id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
+        <Subtraction>
+          {/* Geometry with bounding box size */}
+          <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
+          <mesh>
+            {/* Material applied to a mesh, not directly in Subtraction */}
+            <meshStandardMaterial
+              attach="material"
+              color="white"
+              side={THREE.DoubleSide}
+            />
+          </mesh>
+        </Subtraction>
+      </group>
+    ));
+  }, [windowBoundingBoxes]);
+
+  const ventBoundingBoxGeometries = useMemo(() => {
+    return Object.entries(ventBoundingBoxes).map(([id, bbox]) => (
+      <group key={id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
+        <Subtraction>
+          {/* Geometry with bounding box size */}
+          <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
+          <mesh>
+            {/* Material applied to a mesh, not directly in Subtraction */}
+            <meshStandardMaterial
+              attach="material"
+              color="white"
+              side={THREE.DoubleSide}
+            />
+          </mesh>
+        </Subtraction>
+      </group>
+    ));
+  }, [ventBoundingBoxes]);
 
   return (
     <mesh receiveShadow castShadow>
@@ -116,7 +154,9 @@ export function CsgGeometries({ color, doorBoundingBoxes, interior }) {
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
-        {boundingBoxGeometries}
+        {doorBoundingBoxGeometries}
+        {windowBoundingBoxGeometries}
+        {ventBoundingBoxGeometries}
       </Geometry>
     </mesh>
   );

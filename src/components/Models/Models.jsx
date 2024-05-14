@@ -127,6 +127,8 @@ const Models = () => {
           <CsgGeometries
             color={color}
             doorBoundingBoxes={doorBoundingBoxes}
+            windowBoundingBoxes={windowBoundingBoxes}
+            ventBoundingBoxes={ventBoundingBoxes}
             interior={interior}
           />
           {doors.map((door, index) => (
@@ -137,10 +139,20 @@ const Models = () => {
             />
           ))}
           {windows.map((window, index) => (
-            <Window key={index} component={window} />
+            <Window
+              key={index}
+              component={window}
+              onBoundingBoxChange={(data) =>
+                handleWindowBoundingBox(index, data)
+              }
+            />
           ))}
           {vents.map((vent, index) => (
-            <Vent key={index} component={vent} />
+            <Vent
+              key={index}
+              component={vent}
+              onBoundingBoxChange={(data) => handleVentBoundingBox(index, data)}
+            />
           ))}
           <ambientLight intensity={0.15} />
           <spotLight

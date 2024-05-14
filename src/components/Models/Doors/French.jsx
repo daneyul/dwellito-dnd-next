@@ -6,7 +6,7 @@ import { useGLTF } from "@react-three/drei";
 import React, { useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
-const French = React.memo(({ component }) => {
+const French = React.memo(({ component, onBoundingBoxChange }) => {
   const { nodes, materials } = useGLTF(`/models/${component.model}`);
   const selectedElevation = component.elevation[0];
   const distanceObject = checkDistance({

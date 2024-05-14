@@ -1,25 +1,43 @@
+/* eslint-disable react/display-name */
 import { checkDistance } from "@/utils/2D/utils";
 import { preloadGLTFModel } from "@/utils/3D/preloadGLTFModel";
 import { calcPosition, calcRotation } from "@/utils/3D/utils";
 import { useGLTF } from "@react-three/drei";
-import { useEffect } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
+import { Box3, Vector3 } from "three";
 
-const Vent20 = ({ component }) => {
+const Vent20 = React.memo(({ component, onBoundingBoxChange }) => {
   const { nodes, materials } = useGLTF(`/models/${component.model}`);
   const selectedElevation = component.elevation[0];
   const distanceObject = checkDistance({
     component,
     selectedElevation,
   });
+  const ref = useRef();
 
-  const rotation = [0, calcRotation(selectedElevation), 0];
+  const rotation = useMemo(
+    () => [0, calcRotation(selectedElevation), 0],
+    [selectedElevation]
+  );
 
   useEffect(() => {
     preloadGLTFModel(component.model);
   }, [component.model]);
 
+  useEffect(() => {
+    if (ref.current) {
+      const bbox = new Box3().setFromObject(ref.current);
+      const size = new Vector3();
+      const center = new Vector3();
+      bbox.getSize(size);
+      bbox.getCenter(center);
+      onBoundingBoxChange({ size, center });
+    }
+  }, [ref.current]);
+
   return (
     <group
+      ref={ref}
       dispose={null}
       scale={[10, 10, 10]}
       position={calcPosition(selectedElevation, distanceObject)}
@@ -30,7 +48,9 @@ const Vent20 = ({ component }) => {
           castShadow
           receiveShadow
           geometry={
-            nodes['P203-1-305_20in_x_20in_Aluminum_Fixed_Louver_16ga_Bolt_on_Frame'].geometry
+            nodes[
+              "P203-1-305_20in_x_20in_Aluminum_Fixed_Louver_16ga_Bolt_on_Frame"
+            ].geometry
           }
           material={materials.Aluminum_01}
           scale={0.01}
@@ -38,6 +58,6 @@ const Vent20 = ({ component }) => {
       </group>
     </group>
   );
-};
+});
 
 export default Vent20;
