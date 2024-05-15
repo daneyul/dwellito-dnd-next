@@ -25,10 +25,10 @@ export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, v
   const { nodes: pBackNodes } = useGLTF("/models/plywood/plywood-back.glb");
 
   const csg = useRef();
-  const material = new MeshStandardMaterial({ color: color });
   const { materials: containerMaterials } = useGLTF(
     "/models/container/container.glb"
   );
+  const { materials: exteriorMaterials } = useGLTF("/models/container/exterior.glb");
 
   const doorBoundingBoxGeometries = useMemo(() => {
     return Object.entries(doorBoundingBoxes).map(([id, bbox]) => (
@@ -138,19 +138,19 @@ export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, v
         }
         <Base
           geometry={cRightNodes.mesh_0.geometry}
-          material={material}
+          material={exteriorMaterials["Green"]}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
         <Base
           geometry={cBackNodes.mesh_0.geometry}
-          material={material}
+          material={exteriorMaterials["Green"]}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
         <Base
           geometry={cLeftNodes.mesh_0.geometry}
-          material={material}
+          material={exteriorMaterials["Green"]}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />

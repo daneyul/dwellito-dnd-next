@@ -6,6 +6,7 @@ import { useRef } from "react";
 
 export default function ContainerExterior({ color, interior }) {
   const { nodes, materials } = useGLTF("/models/container/container-exterior.glb");
+  const { materials: exteriorMaterials } = useGLTF("/models/container/exterior.glb");
   const material = new MeshStandardMaterial({ color: color });
   const ref = useRef();
 
@@ -89,7 +90,7 @@ export default function ContainerExterior({ color, interior }) {
           castShadow
           receiveShadow
           geometry={nodes.Container_Exterior_Blank_Bottom_01.geometry}
-          material={material}
+          material={exteriorMaterials["Green"]}
         />
         <mesh
           castShadow
@@ -112,7 +113,7 @@ export default function ContainerExterior({ color, interior }) {
         castShadow
         receiveShadow
         geometry={nodes.Container_Exterior_Blank_RearTop_01.geometry}
-        material={material}
+        material={exteriorMaterials["Green"]}
       />
       <Lighting />
       <Flooring />
