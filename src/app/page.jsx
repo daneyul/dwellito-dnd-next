@@ -1,12 +1,12 @@
 import Content from "@/components/Content/Content";
+import { getSupplierData } from "@/utils/api";
 
 export default async function Page({ params, searchParams }) {
   try {
-    console.log('blah')
+    const supplierData = await getSupplierData();
+    console.log(supplierData)
     return (
-      <>
-        <Content />
-      </>
+      <Content />
     );
   } catch (error) {
     console.error("Failed to fetch data:", error);

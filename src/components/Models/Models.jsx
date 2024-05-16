@@ -21,7 +21,6 @@ import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
 import { CsgGeometries } from "./CsgGeometries";
 import ContainerExterior from "./ContainerExterior";
-import ShippingContainer from "./ShippingContainer";
 import { PageDataContext } from "../Content/Content";
 
 const Models = () => {
@@ -50,7 +49,6 @@ const Models = () => {
   const [isOrbiting, setIsOrbiting] = useState(false);
   const [cameraReady, setCameraReady] = useState(true);
   const orbitRef = useRef();
-  const containerRef = useRef();
 
   function CameraRig() {
     const { camera } = useThree();
