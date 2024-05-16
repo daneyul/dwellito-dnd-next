@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 import style from "./priceTotal.module.scss";
 import * as Dialog from "@radix-ui/react-dialog";
-import { PageDataContext } from "@/app/page";
+import { PageDataContext } from "@/components/Content/Content";
 import { checkDistance, generateImgSrc, getUniqueElevationObjects } from "@/utils/2D/utils";
 
 const PriceTotal = () => {

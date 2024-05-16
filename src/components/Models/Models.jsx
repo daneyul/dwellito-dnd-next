@@ -14,7 +14,6 @@ import {
   useState,
 } from "react";
 import Door from "./Doors/Door";
-import { PageDataContext } from "src/app/page";
 import { COMPONENT_TYPES } from "@/utils/2D/library";
 import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 import { Vector3 } from "three";
@@ -23,6 +22,7 @@ import Vent from "./Vents/Vent";
 import { CsgGeometries } from "./CsgGeometries";
 import ContainerExterior from "./ContainerExterior";
 import ShippingContainer from "./ShippingContainer";
+import { PageDataContext } from "../Content/Content";
 
 const Models = () => {
   const { selectedComponents, color, interior, showExterior } =

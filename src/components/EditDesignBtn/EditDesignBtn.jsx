@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import ChevronLeftBlue from "../ChevronLeftBlue";
 import style from "./editDesignBtn.module.scss"
-import { PageDataContext } from "@/app/page";
+import { PageDataContext } from "@/components/Content/Content";
 
 const EditDesignBtn = () => {
   const { toggleOrder } = useContext(PageDataContext);

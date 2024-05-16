@@ -5,7 +5,7 @@ import * as Form from "@radix-ui/react-form";
 import { useRouter } from "next/navigation";
 import NewLink from "../NewLink";
 import { usePlacesWidget } from "react-google-autocomplete";
-import { PageDataContext } from "@/app/page";
+import { PageDataContext } from "@/components/Content/Content";
 
 const ProjectDetails = () => {
   const router = useRouter();

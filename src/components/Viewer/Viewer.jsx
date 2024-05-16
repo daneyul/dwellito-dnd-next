@@ -3,7 +3,6 @@ import { Droppable } from "@/components/Droppable";
 import { Draggable } from "@/components/Draggable";
 import { DndContext } from "@dnd-kit/core";
 import { useContext, useEffect } from "react";
-import { PageDataContext } from "../../app/page";
 import { checkDistance, droppableWidth, toScale } from "@/utils/2D/utils";
 import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
 import ChevronLeftBlack from "../ChevronLeftBlack";
@@ -13,6 +12,7 @@ import { elevationData } from "@/utils/2D/library";
 import ToggleView from "../ToggleView/ToggleView";
 import Models from "../Models/Models";
 import ToggleCamera from "../ToggleCamera/ToggleCamera";
+import { PageDataContext } from "../Content/Content";
 
 const Viewer = () => {
   const {

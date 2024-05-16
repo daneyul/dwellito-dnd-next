@@ -3,7 +3,7 @@ import Badges from "../Badges/Badges";
 import BasePriceDesc from "../BasePriceDesc/BasePriceDesc";
 import Selector from "../Selector/Selector";
 import style from "./sidebar.module.scss";
-import { PageDataContext } from "@/app/page";
+import { PageDataContext } from "@/components/Content/Content";
 import SaveOrder from "../SaveOrder/SaveOrder";
 import YourOrder from "../YourOrder/YourOrder";
 import SingleSelect from "../SingleSelect/SingleSelect";

@@ -1,6 +1,6 @@
-import { PageDataContext } from "@/app/page";
 import { useContext } from "react";
 import style from "./toggleCamera.module.scss";
+import { PageDataContext } from "../Content/Content";
 
 const ToggleCamera = () => {
   const { show3d, showExterior, setShowExterior } = useContext(PageDataContext);

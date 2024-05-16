@@ -1,6 +1,6 @@
-import { PageDataContext } from "@/app/page";
 import { useContext } from "react";
 import style from "./toggleView.module.scss";
+import { PageDataContext } from "../Content/Content";
 
 const ToggleView = () => {
   const { show3d, toggleView } = useContext(PageDataContext)

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Subtitle from "../Subtitle/Subtitle";
 import style from "./singleSelect.module.scss";
-import { PageDataContext } from "@/app/page";
+import { PageDataContext } from "@/components/Content/Content";
 import { EXTERIOR, INTERIOR_OPTIONS, colors } from "@/utils/3D/library";
 
 /* eslint-disable @next/next/no-img-element */

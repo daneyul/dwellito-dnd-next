@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import style from "./costEstimate.module.scss";
-import { PageDataContext } from "@/app/page";
+import { PageDataContext } from "@/components/Content/Content";
 
 const CostEstimate = () => {
   return (
