@@ -14,38 +14,38 @@ const DIMENSIONS = {
     },
   },
   DOOR: {
-    HEIGHT: 93,
+    HEIGHT: 95,
     POSITION: {
       x: 0,
-      y: 9,
+      y: 4,
     },
     PERSONNEL: {
       W_SECURITY: {
         WIDTH: 44
       },
       WO_SECURITY: {
-        WIDTH: 42
+        WIDTH: 44
       },
       ACTUAL: {
-        WIDTH: 36
+        WIDTH: 44
       },
     },
     SLIDING: {
-      WIDTH: 84,
+      WIDTH: 88,
       ACTUAL: {
-        WIDTH: 60
+        WIDTH: 88
       },
     },
     FRENCH: {
-      WIDTH: 84,
+      WIDTH: 88,
       ACTUAL: {
-        WIDTH: 60
+        WIDTH: 88
       },
     },
     ROLL_UP: {
       WIDTH: 102,
       ACTUAL: {
-        WIDTH: 70
+        WIDTH: 102
       },
     },
   },
@@ -96,7 +96,7 @@ const DIMENSIONS = {
   SCALE_FACTOR: 2.5,
   GRID_SIZE: 1,
   BOUNDARIES: {
-    x: 16.125
+    x: 17
   }
 };
 
