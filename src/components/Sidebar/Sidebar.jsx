@@ -10,15 +10,16 @@ import SingleSelect from "../SingleSelect/SingleSelect";
 import { EXTERIOR, INTERIOR } from "@/utils/3D/library";
 
 const Sidebar = () => {
-  const { showYourOrder } = useContext(PageDataContext);
+  const { showYourOrder, supplierData } = useContext(PageDataContext);
+  const supplierName = supplierData["Name"];
 
   const NotYourOrder = () => {
     return (
       <>
-        <div className={style.header}>20&apos; Custom Cube</div>
-        <div className={style.supplier}>By Custom Cubes</div>
+        <div className={style.header}>{supplierName}</div>
+        <div className={style.supplier}>By {supplierName}</div>
         <div className={style.description}>
-          Custom Cubes offers shipping containers for sale and modifications.
+          {supplierName} offers shipping containers for sale and modifications.
           Whether its for storage purposes or mobile office space we got it!
         </div>
         <Badges />

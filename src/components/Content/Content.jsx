@@ -21,10 +21,15 @@ import Viewer from "@/components/Viewer/Viewer";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import PriceTotal from "@/components/PriceTotal/PriceTotal";
 import { INTERIOR_OPTIONS } from "@/utils/3D/library";
+import { Utility3dDataProvider, UtilityDataProvider } from "@/utils/3D/3dLibraryContext";
 
 export const PageDataContext = createContext();
 
-const PageDataProvider = ({ children }) => {
+const PageDataProvider = ({ children, data }) => {
+  // API Data
+  const supplierData = data?.supplierData[0];
+  const materialsData = data?.materialsData[0];
+
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);
   const [hasCollisions, setHasCollisions] = useState(false);
@@ -50,7 +55,7 @@ const PageDataProvider = ({ children }) => {
 
   const toggleView = () => {
     setShow3d(!show3d);
-  }
+  };
 
   // Calculate the total price of all selected components
   useEffect(() => {
@@ -214,7 +219,7 @@ const PageDataProvider = ({ children }) => {
     (component) => component.isSelected
   );
 
-  const [color, setColor] = useState('#F2F2F2');
+  const [color, setColor] = useState("#F2F2F2");
   const [interior, setInterior] = useState(INTERIOR_OPTIONS[0]);
 
   return (
@@ -253,7 +258,9 @@ const PageDataProvider = ({ children }) => {
         interior,
         setInterior,
         showExterior,
-        setShowExterior
+        setShowExterior,
+        supplierData,
+        materialsData,
       }}
     >
       {children}
@@ -261,23 +268,27 @@ const PageDataProvider = ({ children }) => {
   );
 };
 
-const Content = () => {
+const Content = ({ data }) => {
   return (
-    <PageDataProvider>
-      <div style={{ position: "absolute", top: "2rem", left: "2rem" }}>
-        <Logo />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          position: "relative"
-        }}
-      >
-        <Viewer />
-        <Sidebar />
-        <PriceTotal />
-      </div>
-    </PageDataProvider>
+    <Utility3dDataProvider
+      materialsData={data.materialsData[0]}
+    >
+      <PageDataProvider data={data}>
+        <div style={{ position: "absolute", top: "2rem", left: "2rem" }}>
+          <Logo />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            position: "relative",
+          }}
+        >
+          <Viewer />
+          <Sidebar />
+          <PriceTotal />
+        </div>
+      </PageDataProvider>
+    </Utility3dDataProvider>
   );
 };
 

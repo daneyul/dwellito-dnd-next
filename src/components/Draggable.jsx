@@ -1,8 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { toScale, generateImgSrc } from "../utils/2D/utils";
 
-export function Draggable({ id, styles, piece, onSelect }, ref) {
+export function Draggable({ id, styles, piece, onSelect }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
@@ -44,7 +45,8 @@ export function Draggable({ id, styles, piece, onSelect }, ref) {
           alt={piece.name}
           style={{
             width: "100%",
-            height: "auto",
+            height: "100%",
+            objectFit: "fill"
           }}
         />
       </div>

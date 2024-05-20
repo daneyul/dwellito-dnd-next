@@ -21,3 +21,11 @@ export const getSupplierData = cache(async () => {
 
   return records.map(transformRecord);
 });
+
+export const getMaterialsData = cache(async () => {
+  const records = await base(process.env.NEXT_PUBLIC_AIRTABLE_MATERIALS_TABLE_ID)
+  .select()
+  .all();
+
+  return records.map(transformRecord);
+});

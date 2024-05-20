@@ -2,11 +2,14 @@ import { useContext } from "react";
 import Subtitle from "../Subtitle/Subtitle";
 import style from "./singleSelect.module.scss";
 import { PageDataContext } from "@/components/Content/Content";
-import { EXTERIOR, INTERIOR_OPTIONS, colors } from "@/utils/3D/library";
+import { EXTERIOR, INTERIOR_OPTIONS } from "@/utils/3D/library";
+import { Utility3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 /* eslint-disable @next/next/no-img-element */
 const SingleSelect = ({ type }) => {
   const { color, setColor, interior, setInterior } = useContext(PageDataContext);
+  const { colors } = useContext(Utility3dDataContext);
+
   const isExterior = type === EXTERIOR;
   const exteriorSelections = () => {
     return colors.map((selection) => {

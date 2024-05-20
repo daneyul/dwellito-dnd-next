@@ -7,9 +7,9 @@ const DIMENSIONS = {
     SIDE: {
       WIDTH: 240,
       HEIGHT: 102,
-    },
+    }, 
     FRONT: {
-      WIDTH: 96.125,
+      WIDTH: 96,
       HEIGHT: 102,
     },
   },
@@ -31,7 +31,7 @@ const DIMENSIONS = {
       },
     },
     SLIDING: {
-      WIDTH: 82.5,
+      WIDTH: 84,
       ACTUAL: {
         WIDTH: 60
       },

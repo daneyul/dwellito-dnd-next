@@ -29,7 +29,7 @@ const Viewer = () => {
     isAnyItemSelected,
     selectedElevationIndex,
     setSelectedElevationIndex,
-    show3d,
+    show3d
   } = useContext(PageDataContext);
 
   const LeftArrow = () => {
