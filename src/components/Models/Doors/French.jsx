@@ -45,8 +45,8 @@ const French = React.memo(({ component, onBoundingBoxChange }) => {
     <group
       ref={ref}
       dispose={null}
-      scale={[11.15, 11.15, 11.15]}
-      position={calcPosition(selectedElevation, distanceObject, SCALE_FACTOR_FOR_CALCULATIONS)}
+      scale={[10, 10, 10]}
+      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
       rotation={rotation}
     >
       <group position={[0.81, 1.51, -0.007]}>

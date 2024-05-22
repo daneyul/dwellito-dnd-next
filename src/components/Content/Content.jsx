@@ -129,9 +129,9 @@ const PageDataProvider = ({ children, data }) => {
 
     // Handles component snapping
     if (draggedItem && draggedItem.objType === COMPONENT_TYPES.DOOR) {
-      setModifiers([...doorWindowModifiers, snapToIncrement(11)]);
+      setModifiers([...doorWindowModifiers, snapToIncrement(11 * DIMENSIONS.SCALE_FACTOR)]);
     } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.WINDOW) {
-      setModifiers([...doorWindowModifiers, snapToIncrement(6)]);
+      setModifiers([...doorWindowModifiers, snapToIncrement(6 * DIMENSIONS.SCALE_FACTOR)]);
     } else {
       setModifiers([...defaultModifiers]);
     }
@@ -180,7 +180,7 @@ const PageDataProvider = ({ children, data }) => {
         // Check for closeness and update the state accordingly
         if (
           draggedPiece &&
-          checkCloseness(draggedPiece, piece, selectedElevation)
+          checkCloseness(draggedPiece, piece, selectedElevation, DIMENSIONS)
         ) {
           updatedPieces[index].isTooClose = true;
           const draggedPieceIndex = updatedPieces.findIndex(

@@ -40,47 +40,28 @@ const Lhr = React.memo(({ component, onBoundingBoxChange }) => {
       onBoundingBoxChange({ size, center });
     }
   }, [ref.current]);
-  console.log(nodes, materials)
 
   return (
     <group
       ref={ref}
       dispose={null}
       scale={[10, 10, 10]}
-      position={calcPosition(selectedElevation, distanceObject, SCALE_FACTOR_FOR_CALCULATIONS)}
+      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
       rotation={rotation}
     >
-      <group position={[0.458, 1.53, 0]} scale={[-1, 1, 1]}>
+      <group position={[0.559, 1.46, -0.01]} rotation={[-Math.PI / 2, 0, 0]} scale={[-1, 1, 1]}>
         <group scale={0.01}>
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              nodes[
-                `${component.model}`
-              ].geometry
-            }
-            material={materials.Blk_Handle_PD}
+            geometry={nodes.SM_PDoor_LockBoxLHR_01_1.geometry}
+            material={materials.Door}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              nodes[
-                `${component.model}_1`
-              ].geometry
-            }
-            material={materials.Blk_PD}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              nodes[
-                `${component.model}_2`
-              ].geometry
-            }
-            material={materials.Wht_PD}
+            geometry={nodes.SM_PDoor_LockBoxLHR_01_2.geometry}
+            material={materials.Metall}
           />
         </group>
       </group>

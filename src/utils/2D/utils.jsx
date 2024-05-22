@@ -189,7 +189,7 @@ export const droppableWidth = (
   }
 };
 
-export const checkCloseness = (item1, item2, selectedElevation) => {
+export const checkCloseness = (item1, item2, selectedElevation, DIMENSIONS) => {
   const closenessThreshold = 6 * DIMENSIONS.SCALE_FACTOR;
 
   const isOnSelectedElevation =

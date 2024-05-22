@@ -5,7 +5,7 @@ import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 import { preloadGLTFModel } from "@/utils/3D/preloadGLTFModel";
 import { calcPosition, calcRotation } from "@/utils/3D/utils";
 import { useGLTF } from "@react-three/drei";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
 const White = React.memo(({ component, onBoundingBoxChange }) => {
@@ -46,30 +46,22 @@ const White = React.memo(({ component, onBoundingBoxChange }) => {
       ref={ref}
       dispose={null}
       scale={[10, 10, 10]}
-      position={calcPosition(selectedElevation, distanceObject, SCALE_FACTOR_FOR_CALCULATIONS)}
+      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
       rotation={rotation}
     >
-      <group position={[0.65, 2.3, 0]} scale={[-1, 1, 1]}>
+      <group position={[0.65, 2.3, -0.12]} rotation={[-Math.PI, 0, -Math.PI]}>
         <group scale={0.01}>
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              nodes[
-                "P201-1-03_48in_w_x_36in_h_White_Window_with_Basic_16ga_Steel_Frame-No_Security_1"
-              ].geometry
-            }
-            material={materials.Glass}
+            geometry={nodes.SM_Window_48x36_01_No_Security_1.geometry}
+            material={materials.Material__104}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              nodes[
-                "P201-1-03_48in_w_x_36in_h_White_Window_with_Basic_16ga_Steel_Frame-No_Security_2"
-              ].geometry
-            }
-            material={materials.White_Vinyl}
+            geometry={nodes.SM_Window_48x36_01_No_Security_2.geometry}
+            material={materials.Metal}
           />
         </group>
       </group>

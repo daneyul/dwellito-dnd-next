@@ -5,7 +5,7 @@ import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 import { preloadGLTFModel } from "@/utils/3D/preloadGLTFModel";
 import { calcPosition, calcRotation } from "@/utils/3D/utils";
 import { useGLTF } from "@react-three/drei";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
 const Vent12 = React.memo(({ component, onBoundingBoxChange }) => {
@@ -46,17 +46,15 @@ const Vent12 = React.memo(({ component, onBoundingBoxChange }) => {
       ref={ref}
       dispose={null}
       scale={[10, 10, 10]}
-      position={calcPosition(selectedElevation, distanceObject, SCALE_FACTOR_FOR_CALCULATIONS)}
+      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
       rotation={rotation}
     >
-      <group position={[0.152, 2.6, -0.037]} rotation={[-Math.PI / 2, 0, 0]}>
+      <group position={[0, 2.4, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <mesh
           castShadow
           receiveShadow
           geometry={
-            nodes[
-              "P203-1-304_12in_x_12in_Aluminum_Fixed_Louver_16ga_Bolt_on_Frame"
-            ].geometry
+            nodes['P203-1-304_12in_x_12in_Aluminum_Fixed_Louver_16ga_Bolt_on_Frame'].geometry
           }
           material={materials.Aluminum_01}
           scale={0.01}

@@ -5,7 +5,7 @@ import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 import { preloadGLTFModel } from "@/utils/3D/preloadGLTFModel";
 import { calcPosition, calcRotation } from "@/utils/3D/utils";
 import { useGLTF } from "@react-three/drei";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
 const Rollup = React.memo(({ component, onBoundingBoxChange }) => {
@@ -45,12 +45,12 @@ const Rollup = React.memo(({ component, onBoundingBoxChange }) => {
     <group
       ref={ref}
       dispose={null}
-      scale={[10.4, 10.4, 10.4]}
-      position={calcPosition(selectedElevation, distanceObject, SCALE_FACTOR_FOR_CALCULATIONS)}
+      scale={[10, 10, 10]}
+      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
       rotation={rotation}
     >
       <group
-        position={[1.096, 1.83, -0.106]}
+        position={[3.84, 2.05, 0]}
         rotation={[-Math.PI, 0, -Math.PI]}
       >
         <mesh
@@ -58,10 +58,21 @@ const Rollup = React.memo(({ component, onBoundingBoxChange }) => {
           receiveShadow
           geometry={
             nodes[
-              "P215-1-02_Roll_Up_Door_Front_End_6ft8in_W_X_6ft4in_H_Ext_Int_Lock"
+              `SM_RollUp_Door_6'x7'4"_1`
             ].geometry
           }
-          material={materials.Aluminum_01}
+          material={materials.Metal_01}
+          scale={0.01}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={
+            nodes[
+              `SM_RollUp_Door_6'x7'4"_2`
+            ].geometry
+          }
+          material={materials.Metal_01}
           scale={0.01}
         />
       </group>

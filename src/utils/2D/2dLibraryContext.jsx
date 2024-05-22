@@ -241,7 +241,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
       objType: COMPONENT_TYPES.WINDOW,
       price: 1720,
       model:
-        "P201-1-01_48in_w_x_36in_H_White_Window_w_HD_Steel_Frame_&_Hinged_Security",
+        "SM_Window 48x36_Hinged_Security_01",
     },
     {
       name: COMPONENT_NAMES.WINDOW_WHITE_WO_SECURITY,
@@ -257,7 +257,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
       objType: COMPONENT_TYPES.WINDOW,
       price: 1080,
       model:
-        "P201-1-03_48in_w_x_36in_h_White_Window_with_Basic_16ga_Steel_Frame-No_Security",
+        "SM_Window_48x36_01_No_Security",
     },
     {
       name: COMPONENT_NAMES.VENT_12,

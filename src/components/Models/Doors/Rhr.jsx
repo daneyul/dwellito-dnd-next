@@ -5,7 +5,7 @@ import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 import { preloadGLTFModel } from "@/utils/3D/preloadGLTFModel";
 import { calcPosition, calcRotation } from "@/utils/3D/utils";
 import { useGLTF } from "@react-three/drei";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
 const Rhr = React.memo(({ component, onBoundingBoxChange }) => {
@@ -46,40 +46,28 @@ const Rhr = React.memo(({ component, onBoundingBoxChange }) => {
       ref={ref}
       dispose={null}
       scale={[10, 10, 10]}
-      position={calcPosition(selectedElevation, distanceObject, SCALE_FACTOR_FOR_CALCULATIONS)}
+      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
       rotation={rotation}
     >
-      <group position={[0.458, 1.53, 0]}>
+      <group position={[0.559, 1.46, -0.01]} rotation={[-Math.PI / 2, 0, 0]}>
         <group scale={0.01}>
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              nodes[
-                `${component.model}`
-              ].geometry
-            }
-            material={materials.Blk_Handle_PD}
+            geometry={nodes.SM_PDoor_LockBoxRHR_01_1.geometry}
+            material={materials.Door}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              nodes[
-                `${component.model}_1`
-              ].geometry
-            }
-            material={materials.Blk_PD}
+            geometry={nodes.SM_PDoor_LockBoxRHR_01_2.geometry}
+            material={materials.Glass}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              nodes[
-                `${component.model}_2`
-              ].geometry
-            }
-            material={materials.Wht_PD}
+            geometry={nodes.SM_PDoor_LockBoxRHR_01_3.geometry}
+            material={materials.Metall}
           />
         </group>
       </group>
