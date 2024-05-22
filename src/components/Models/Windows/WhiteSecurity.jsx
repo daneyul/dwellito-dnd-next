@@ -9,7 +9,7 @@ import React, { useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
 const WhiteSecurity = React.memo(({ component, onBoundingBoxChange }) => {
-  const { nodes, materials } = useGLTF(`/models/${component.model}`);
+  const { nodes, materials } = useGLTF(`/models/windows/${component.model}.glb`);
   const { elevationData, ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
   const selectedElevation = component.elevation[0];
@@ -27,7 +27,7 @@ const WhiteSecurity = React.memo(({ component, onBoundingBoxChange }) => {
   );
 
   useEffect(() => {
-    preloadGLTFModel(component.model);
+    preloadGLTFModel(`windows/${component.model}`);
   }, [component.model]);
 
   useEffect(() => {

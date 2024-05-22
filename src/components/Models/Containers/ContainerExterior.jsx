@@ -5,8 +5,8 @@ import { useContext, useRef } from "react";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 export default function ContainerExterior({ color, interior }) {
-  const { nodes, materials } = useGLTF("/models/container/container-exterior.glb");
-  const { materials: exteriorMaterials } = useGLTF("/models/container/exterior.glb");
+  const { nodes, materials } = useGLTF("/models/container/20/container-exterior.glb");
+  const { materials: exteriorMaterials } = useGLTF("/models/container/20/exterior.glb");
   const { INTERIOR_OPTIONS } = useContext(Library3dDataContext);
   const material = new MeshStandardMaterial({ color: color });
   const ref = useRef();
@@ -91,7 +91,7 @@ export default function ContainerExterior({ color, interior }) {
           castShadow
           receiveShadow
           geometry={nodes.Container_Exterior_Blank_Bottom_01.geometry}
-          material={exteriorMaterials["Green"]}
+          material={exteriorMaterials["White"]}
         />
         <mesh
           castShadow
@@ -114,7 +114,8 @@ export default function ContainerExterior({ color, interior }) {
         castShadow
         receiveShadow
         geometry={nodes.Container_Exterior_Blank_RearTop_01.geometry}
-        material={exteriorMaterials["Green"]}
+        // Exterior paint
+        material={material}
       />
       <Lighting />
       <Flooring />

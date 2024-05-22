@@ -9,7 +9,7 @@ import React, { useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
 const Rhr = React.memo(({ component, onBoundingBoxChange }) => {
-  const { nodes, materials } = useGLTF(`/models/${component.model}`);
+  const { nodes, materials } = useGLTF(`/models/doors/${component.model}.glb`);
   const { elevationData, ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
   const selectedElevation = component.elevation[0];
@@ -27,7 +27,7 @@ const Rhr = React.memo(({ component, onBoundingBoxChange }) => {
   );
 
   useEffect(() => {
-    preloadGLTFModel(component.model);
+    preloadGLTFModel(`doors/${component.model}`);
   }, [component.model]);
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const Rhr = React.memo(({ component, onBoundingBoxChange }) => {
             receiveShadow
             geometry={
               nodes[
-                "P202-1-101_Personnel_Door_w_Hardware_and_Lock_Box_3ft_x_6ft8in_RHR_1"
+                `${component.model}`
               ].geometry
             }
             material={materials.Blk_Handle_PD}
@@ -66,7 +66,7 @@ const Rhr = React.memo(({ component, onBoundingBoxChange }) => {
             receiveShadow
             geometry={
               nodes[
-                "P202-1-101_Personnel_Door_w_Hardware_and_Lock_Box_3ft_x_6ft8in_RHR_2"
+                `${component.model}_1`
               ].geometry
             }
             material={materials.Blk_PD}
@@ -76,7 +76,7 @@ const Rhr = React.memo(({ component, onBoundingBoxChange }) => {
             receiveShadow
             geometry={
               nodes[
-                "P202-1-101_Personnel_Door_w_Hardware_and_Lock_Box_3ft_x_6ft8in_RHR_3"
+                `${component.model}_2`
               ].geometry
             }
             material={materials.Wht_PD}

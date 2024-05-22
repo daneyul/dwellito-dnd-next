@@ -5,11 +5,11 @@ import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 import { preloadGLTFModel } from "@/utils/3D/preloadGLTFModel";
 import { calcPosition, calcRotation } from "@/utils/3D/utils";
 import { useGLTF } from "@react-three/drei";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
 const Lhr = React.memo(({ component, onBoundingBoxChange }) => {
-  const { nodes, materials } = useGLTF(`/models/${component.model}`);
+  const { nodes, materials } = useGLTF(`/models/doors/${component.model}.glb`);
   const { elevationData, ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
   const selectedElevation = component.elevation[0];
@@ -27,7 +27,7 @@ const Lhr = React.memo(({ component, onBoundingBoxChange }) => {
   );
 
   useEffect(() => {
-    preloadGLTFModel(component.model);
+    preloadGLTFModel(`doors/${component.model}`);
   }, [component.model]);
 
   useEffect(() => {
@@ -40,6 +40,7 @@ const Lhr = React.memo(({ component, onBoundingBoxChange }) => {
       onBoundingBoxChange({ size, center });
     }
   }, [ref.current]);
+  console.log(nodes, materials)
 
   return (
     <group
@@ -56,7 +57,7 @@ const Lhr = React.memo(({ component, onBoundingBoxChange }) => {
             receiveShadow
             geometry={
               nodes[
-                "P202-1-102_Personnel_Door_w_Hardware_and_Lock_Box_3ft_x_6ft8in_LHR_1"
+                `${component.model}`
               ].geometry
             }
             material={materials.Blk_Handle_PD}
@@ -66,7 +67,7 @@ const Lhr = React.memo(({ component, onBoundingBoxChange }) => {
             receiveShadow
             geometry={
               nodes[
-                "P202-1-102_Personnel_Door_w_Hardware_and_Lock_Box_3ft_x_6ft8in_LHR_2"
+                `${component.model}_1`
               ].geometry
             }
             material={materials.Blk_PD}
@@ -76,7 +77,7 @@ const Lhr = React.memo(({ component, onBoundingBoxChange }) => {
             receiveShadow
             geometry={
               nodes[
-                "P202-1-102_Personnel_Door_w_Hardware_and_Lock_Box_3ft_x_6ft8in_LHR_3"
+                `${component.model}_2`
               ].geometry
             }
             material={materials.Wht_PD}

@@ -3,19 +3,18 @@ import { useGLTF } from "@react-three/drei";
 import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { Base, Geometry, Subtraction } from "@react-three/csg";
 import * as THREE from "three";
-import { MeshStandardMaterial } from "three";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, ventBoundingBoxes, interior }) {
   const { INTERIOR_OPTIONS } = useContext(Library3dDataContext);
   const { nodes: cRightNodes } = useGLTF(
-    "/models/container/container-exterior-right.glb"
+    "/models/container/20/container-exterior-right.glb"
   );
   const { nodes: cBackNodes } = useGLTF(
-    "/models/container/container-exterior-back.glb"
+    "/models/container/20/container-exterior-back.glb"
   );
   const { nodes: cLeftNodes } = useGLTF(
-    "/models/container/container-exterior-left.glb"
+    "/models/container/20/container-exterior-left.glb"
   );
   const { nodes: dRightNodes } = useGLTF("/models/drywall/drywall-right.glb");
   const { nodes: dLeftNodes } = useGLTF("/models/drywall/drywall-left.glb");
@@ -27,9 +26,9 @@ export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, v
 
   const csg = useRef();
   const { materials: containerMaterials } = useGLTF(
-    "/models/container/container.glb"
+    "/models/container/20/container.glb"
   );
-  const { materials: exteriorMaterials } = useGLTF("/models/container/exterior.glb");
+  const { materials: exteriorMaterials } = useGLTF("/models/container/20/exterior.glb");
 
   const doorBoundingBoxGeometries = useMemo(() => {
     return Object.entries(doorBoundingBoxes).map(([id, bbox]) => (
@@ -139,19 +138,19 @@ export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, v
         }
         <Base
           geometry={cRightNodes.mesh_0.geometry}
-          material={exteriorMaterials["Green"]}
+          material={exteriorMaterials["White"]}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
         <Base
           geometry={cBackNodes.mesh_0.geometry}
-          material={exteriorMaterials["Green"]}
+          material={exteriorMaterials["White"]}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
         <Base
           geometry={cLeftNodes.mesh_0.geometry}
-          material={exteriorMaterials["Green"]}
+          material={exteriorMaterials["White"]}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />

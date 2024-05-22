@@ -11,7 +11,7 @@ import { Box3, Vector3 } from "three";
 const French = React.memo(({ component, onBoundingBoxChange }) => {
   const { elevationData, ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
-  const { nodes, materials } = useGLTF(`/models/${component.model}`);
+  const { nodes, materials } = useGLTF(`/models/doors/${component.model}.glb`);
   const selectedElevation = component.elevation[0];
   const distanceObject = checkDistance({
     component,
@@ -27,7 +27,7 @@ const French = React.memo(({ component, onBoundingBoxChange }) => {
   );
 
   useEffect(() => {
-    preloadGLTFModel(component.model);
+    preloadGLTFModel(`doors/${component.model}`);
   }, [component.model]);
 
   useEffect(() => {

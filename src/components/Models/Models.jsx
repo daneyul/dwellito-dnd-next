@@ -19,7 +19,7 @@ import { Vector3 } from "three";
 import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
 import { CsgGeometries } from "./CsgGeometries";
-import ContainerExterior from "./ContainerExterior";
+import ContainerExterior from "./Containers/ContainerExterior";
 import { PageDataContext } from "../Content/Content";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
