@@ -1,12 +1,13 @@
 import { useGLTF } from "@react-three/drei";
 import { MeshStandardMaterial } from "three";
 import { adjustForX, adjustForY } from "@/utils/3D/utils";
-import { INTERIOR_OPTIONS } from "@/utils/3D/library";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 export default function ContainerExterior({ color, interior }) {
   const { nodes, materials } = useGLTF("/models/container/container-exterior.glb");
   const { materials: exteriorMaterials } = useGLTF("/models/container/exterior.glb");
+  const { INTERIOR_OPTIONS } = useContext(Library3dDataContext);
   const material = new MeshStandardMaterial({ color: color });
   const ref = useRef();
 

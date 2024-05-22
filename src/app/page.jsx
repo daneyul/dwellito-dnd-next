@@ -1,15 +1,17 @@
 import Content from "@/components/Content/Content";
-import { getMaterialsData, getSupplierData } from "@/utils/api";
+import { getMaterialsData, getSupplierData, getThumbnailsData } from "@/utils/api";
 
 export default async function Page({ params, searchParams }) {
   try {
     const supplierData = await getSupplierData();
     const materialsData = await getMaterialsData();
+    const thumbnailsData = await getThumbnailsData();
     return (
       <Content
         data={{
           supplierData,
-          materialsData
+          materialsData,
+          thumbnailsData
         }}
       />
     );

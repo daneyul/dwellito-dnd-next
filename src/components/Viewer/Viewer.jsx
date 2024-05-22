@@ -8,11 +8,11 @@ import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
 import ChevronLeftBlack from "../ChevronLeftBlack";
 import ChevronRightBlack from "../ChevronRightBlack";
 import style from "./viewer.module.scss";
-import { elevationData } from "@/utils/2D/library";
 import ToggleView from "../ToggleView/ToggleView";
 import Models from "../Models/Models";
 import ToggleCamera from "../ToggleCamera/ToggleCamera";
 import { PageDataContext } from "../Content/Content";
+import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const Viewer = () => {
   const {
@@ -31,7 +31,8 @@ const Viewer = () => {
     setSelectedElevationIndex,
     show3d
   } = useContext(PageDataContext);
-
+  const { elevationData, DIMENSIONS, ELEVATION_NAMES } = useContext(Library2dDataContext);
+  
   const LeftArrow = () => {
     return (
       <div className={style.left} onClick={handlePrevious}>
@@ -89,7 +90,7 @@ const Viewer = () => {
               <Droppable selectedElevation={selectedElevation}>
                 <div
                   style={{
-                    width: `${toScale(droppableWidth(selectedElevation))}px`,
+                    width: `${toScale(droppableWidth(selectedElevation, DIMENSIONS, ELEVATION_NAMES), DIMENSIONS)}px`,
                     height: "100%",
                     position: "absolute",
                     left: "50%",
@@ -101,7 +102,7 @@ const Viewer = () => {
                       piece.elevation.includes(selectedElevation)
                     )
                     .map((piece) => {
-                      console.log(checkDistance({ component: piece, selectedElevation }))
+                      console.log(checkDistance({ component: piece, selectedElevation, DIMENSIONS, ELEVATION_NAMES }))
                       return (
                         <Draggable
                           piece={piece}

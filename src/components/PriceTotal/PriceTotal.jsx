@@ -4,9 +4,11 @@ import style from "./priceTotal.module.scss";
 import * as Dialog from "@radix-ui/react-dialog";
 import { PageDataContext } from "@/components/Content/Content";
 import { checkDistance, generateImgSrc, getUniqueElevationObjects } from "@/utils/2D/utils";
+import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const PriceTotal = () => {
   const { orderTotal, selectedComponents } = useContext(PageDataContext);
+  const { ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
@@ -23,7 +25,7 @@ const PriceTotal = () => {
         <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
           {componentsForElevation.map((component) => {
 
-            const distance = checkDistance({component: component, selectedElevation: elevation});
+            const distance = checkDistance({component: component, selectedElevation: elevation, DIMENSIONS, ELEVATION_NAMES});
 
             return (
               <li key={component.id} className={style.lineItem}>

@@ -1,7 +1,9 @@
-import { elevationData } from "../../utils/2D/library";
+import { useContext } from "react";
 import style from "./elevationToggle.module.css";
+import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const ElevationToggle = ({ selectedElevation, setSelectedElevation }) => {
+  const { elevationData } = useContext(Library2dDataContext);
   return (
     <div className={style.container}>
       {

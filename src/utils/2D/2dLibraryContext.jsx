@@ -2,54 +2,54 @@ import React, { createContext } from "react";
 import { v4 as uuid } from "uuid";
 import { createSnapModifier } from "@dnd-kit/modifiers";
 
-export const Utility2dDataContext = createContext();
+export const Library2dDataContext = createContext();
 
-export const Utility2dDataProvider = ({ children }) => {
+export const Library2dDataProvider = ({ children, materialsData }) => {
   // This is the actual container dimensions in inches
   const DIMENSIONS = {
     CONTAINER: {
       SIDE: {
         WIDTH: 240,
         HEIGHT: 102,
-      },
+      }, 
       FRONT: {
-        WIDTH: 96.125,
+        WIDTH: 96,
         HEIGHT: 102,
       },
     },
     DOOR: {
-      HEIGHT: 90,
+      HEIGHT: 95,
       POSITION: {
         x: 0,
-        y: 9,
+        y: 4,
       },
       PERSONNEL: {
         W_SECURITY: {
-          WIDTH: 36,
+          WIDTH: 44
         },
         WO_SECURITY: {
-          WIDTH: 36,
+          WIDTH: 44
         },
         ACTUAL: {
-          WIDTH: 36,
+          WIDTH: 44
         },
       },
       SLIDING: {
-        WIDTH: 82.5,
+        WIDTH: 88,
         ACTUAL: {
-          WIDTH: 60,
+          WIDTH: 88
         },
       },
       FRENCH: {
-        WIDTH: 84,
+        WIDTH: 88,
         ACTUAL: {
-          WIDTH: 60,
+          WIDTH: 88
         },
       },
       ROLL_UP: {
         WIDTH: 102,
         ACTUAL: {
-          WIDTH: 70,
+          WIDTH: 102
         },
       },
     },
@@ -64,44 +64,44 @@ export const Utility2dDataProvider = ({ children }) => {
         POSITION: {
           x: 0,
           y: 45,
-        },
+        }
       },
       CLEAR: {
         WIDTH: 24,
-        HEIGHT: 30,
+        HEIGHT: 30
       },
     },
     VENT: {
       SQ_12: {
         WIDTH: 12,
         HEIGHT: 12,
-        POSITION: {
+        POSITION : {
           x: 0,
-          y: 20,
-        },
+          y: 20
+        }
       },
       SQ_20: {
         WIDTH: 20,
         HEIGHT: 20,
-        POSITION: {
+        POSITION : {
           x: 0,
-          y: 20,
-        },
+          y: 20
+        }
       },
       SQ_24: {
         WIDTH: 24,
         HEIGHT: 24,
-        POSITION: {
+        POSITION : {
           x: 0,
-          y: 20,
-        },
+          y: 20
+        }
       },
     },
     SCALE_FACTOR: 2.5,
     GRID_SIZE: 1,
     BOUNDARIES: {
-      x: 16.125,
-    },
+      x: 17
+    }
   };
 
   // COMPONENTS
@@ -144,7 +144,6 @@ export const Utility2dDataProvider = ({ children }) => {
       objWidth: DIMENSIONS.DOOR.PERSONNEL.WO_SECURITY.WIDTH,
       objHeight: DIMENSIONS.DOOR.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
-      misc: "left",
       price: 2000,
       model:
         "P202-1-102_Personnel_Door_w_Hardware and Lock Box 3ft_x_6ft8in_LHR.glb",
@@ -384,9 +383,22 @@ export const Utility2dDataProvider = ({ children }) => {
   const DEFAULT_ELEVATION = elevationData.find(
     (item) => item.name === ELEVATION_NAMES.RIGHT
   );
+
   return (
-    <Utility2dDataContext.Provider value={{}}>
+    <Library2dDataContext.Provider
+      value={{
+        DIMENSIONS,
+        COMPONENT_NAMES,
+        COMPONENT_TYPES,
+        snapToGridModifier,
+        componentData,
+        DEFAULT_COMPONENTS,
+        DEFAULT_ELEVATION,
+        elevationData,
+        ELEVATION_NAMES,
+      }}
+    >
       {children}
-    </Utility2dDataContext.Provider>
+    </Library2dDataContext.Provider>
   );
 };

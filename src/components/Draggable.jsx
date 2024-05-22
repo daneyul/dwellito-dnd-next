@@ -1,12 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { toScale, generateImgSrc } from "../utils/2D/utils";
+import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 export function Draggable({ id, styles, piece, onSelect }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
+  const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -14,8 +16,8 @@ export function Draggable({ id, styles, piece, onSelect }) {
     position: "absolute",
     display: "flex",
     cursor: "pointer",
-    width: `${toScale(piece.objWidth)}px`,
-    height: `${toScale(piece.objHeight)}px`,
+    width: `${toScale(piece.objWidth, DIMENSIONS)}px`,
+    height: `${toScale(piece.objHeight, DIMENSIONS)}px`,
     left: `${piece.position.x}px`,
     top: `${piece.position.y}px`,
     boxShadow: isHovered || piece.isSelected ? "0px 4px 30px 0px rgba(128, 129, 238, 0.19)" : "none",

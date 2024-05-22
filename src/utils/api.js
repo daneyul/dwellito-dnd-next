@@ -29,3 +29,11 @@ export const getMaterialsData = cache(async () => {
 
   return records.map(transformRecord);
 });
+
+export const getThumbnailsData = cache(async () => {
+  const records = await base(process.env.NEXT_PUBLIC_AIRTABLE_THUMBNAILS_TABLE_ID)
+  .select()
+  .all();
+
+  return records.map(transformRecord);
+});

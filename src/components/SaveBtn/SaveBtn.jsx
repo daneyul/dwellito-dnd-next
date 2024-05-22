@@ -3,9 +3,11 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import style from "./saveBtn.module.css";
 import { getUniqueElevationObjects, checkDistance, generateImgSrc } from "../../utils/2D/utils";
+import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const SaveBtn = ({ selectedComponents, orderTotal }) => {
   const [open, setOpen] = useState(false);
+  const { ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
 
@@ -20,7 +22,7 @@ const SaveBtn = ({ selectedComponents, orderTotal }) => {
         <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
           {componentsForElevation.map((component) => {
 
-            const distance = checkDistance({component: component, selectedElevation: elevation});
+            const distance = checkDistance({component: component, selectedElevation: elevation, DIMENSIONS, ELEVATION_NAMES});
 
             return (
               <li key={component.id} className={style.lineItem}>

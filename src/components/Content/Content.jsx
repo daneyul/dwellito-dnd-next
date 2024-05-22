@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 
 import {
   checkCloseness,
@@ -10,25 +10,31 @@ import {
   restrictToHorizontalAxis,
   restrictToParentElement,
 } from "@dnd-kit/modifiers";
-import {
-  DEFAULT_COMPONENTS,
-  DEFAULT_ELEVATION,
-  snapToGridModifier,
-  COMPONENT_TYPES,
-} from "@/utils/2D/library";
 import Logo from "@/components/Logo";
 import Viewer from "@/components/Viewer/Viewer";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import PriceTotal from "@/components/PriceTotal/PriceTotal";
-import { INTERIOR_OPTIONS } from "@/utils/3D/library";
-import { Utility3dDataProvider, UtilityDataProvider } from "@/utils/3D/3dLibraryContext";
+import { Library3dDataContext, Library3dDataProvider } from "@/utils/3D/3dLibraryContext";
+import { Library2dDataContext, Library2dDataProvider } from "@/utils/2D/2dLibraryContext";
 
 export const PageDataContext = createContext();
 
 const PageDataProvider = ({ children, data }) => {
   // API Data
   const supplierData = data?.supplierData[0];
-  const materialsData = data?.materialsData[0];
+  const thumbnailsData = data?.thumbnailsData;
+
+  // 2D Library
+  const {
+    DEFAULT_COMPONENTS,
+    DEFAULT_ELEVATION,
+    snapToGridModifier,
+    COMPONENT_TYPES,
+    DIMENSIONS
+  } = useContext(Library2dDataContext);
+
+  // 3D Library 
+  const { INTERIOR_OPTIONS } = useContext(Library3dDataContext);
 
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);
@@ -121,6 +127,7 @@ const PageDataProvider = ({ children, data }) => {
 
     const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];
 
+    // Handles component snapping
     if (draggedItem && draggedItem.objType === COMPONENT_TYPES.DOOR) {
       setModifiers([...doorWindowModifiers, snapToIncrement(11)]);
     } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.WINDOW) {
@@ -161,7 +168,7 @@ const PageDataProvider = ({ children, data }) => {
         // Check for collisions and update the state accordingly
         if (
           draggedPiece &&
-          checkCollision(draggedPiece, piece, selectedElevation)
+          checkCollision(draggedPiece, piece, selectedElevation, DIMENSIONS)
         ) {
           updatedPieces[index].isColliding = true;
           const draggedPieceIndex = updatedPieces.findIndex(
@@ -260,7 +267,6 @@ const PageDataProvider = ({ children, data }) => {
         showExterior,
         setShowExterior,
         supplierData,
-        materialsData,
       }}
     >
       {children}
@@ -270,25 +276,25 @@ const PageDataProvider = ({ children, data }) => {
 
 const Content = ({ data }) => {
   return (
-    <Utility3dDataProvider
-      materialsData={data.materialsData[0]}
-    >
-      <PageDataProvider data={data}>
-        <div style={{ position: "absolute", top: "2rem", left: "2rem" }}>
-          <Logo />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            position: "relative",
-          }}
-        >
-          <Viewer />
-          <Sidebar />
-          <PriceTotal />
-        </div>
-      </PageDataProvider>
-    </Utility3dDataProvider>
+    <Library2dDataProvider materialsData={data.materialsData}>
+      <Library3dDataProvider materialsData={data.materialsData} thumbnailsData={data.thumbnailsData}>
+        <PageDataProvider data={data}>
+          <div style={{ position: "absolute", top: "2rem", left: "2rem" }}>
+            <Logo />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              position: "relative",
+            }}
+          >
+            <Viewer />
+            <Sidebar />
+            <PriceTotal />
+          </div>
+        </PageDataProvider>
+      </Library3dDataProvider>
+    </Library2dDataProvider>
   );
 };
 

@@ -7,10 +7,11 @@ import { PageDataContext } from "@/components/Content/Content";
 import SaveOrder from "../SaveOrder/SaveOrder";
 import YourOrder from "../YourOrder/YourOrder";
 import SingleSelect from "../SingleSelect/SingleSelect";
-import { EXTERIOR, INTERIOR } from "@/utils/3D/library";
+import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 const Sidebar = () => {
   const { showYourOrder, supplierData } = useContext(PageDataContext);
+  const { EXTERIOR, INTERIOR } = useContext(Library3dDataContext);
   const supplierName = supplierData["Name"];
 
   const NotYourOrder = () => {

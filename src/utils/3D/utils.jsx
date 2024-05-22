@@ -1,13 +1,10 @@
-import { DIMENSIONS, elevationData } from "../2D/library";
-import { SCALE_FACTOR_FOR_CALCULATIONS } from "./library";
-
 const degrees = {
   90: Math.PI / 2,
   180: Math.PI,
   270: Math.PI + Math.PI / 2,
 }
 
-const calcRotation = (elevation) => {
+const calcRotation = (elevation, elevationData) => {
   switch (elevation) {
     // Left
     case elevationData[2]:
@@ -26,26 +23,26 @@ const calcRotation = (elevation) => {
   }
 }
 
-const calcPosition = (elevation, distanceObject) => {
+const calcPosition = (elevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS) => {
   switch (elevation) {
     // Left
     case elevationData[2]:
-      return leftSideCoordinates({ distanceObject });
+      return leftSideCoordinates({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS });
     // Front
     case elevationData[3]:
-      return frontSideCoordinates({ distanceObject });
+      return frontSideCoordinates({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS });
     // Right
     case elevationData[0]:
-      return rightSideCoordinates({ distanceObject });
+      return rightSideCoordinates({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS });
     // Back
     case elevationData[1]:
-      return backSideCoordinates({ distanceObject });
+      return backSideCoordinates({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS });
     default:
       break;
   }
 }
 
-const rightSideCoordinates = ({ distanceObject }) => {
+const rightSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS }) => {
   let xPosition = distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX;
   let yPosition = 0 + adjustForY - 0.2;
   let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
@@ -56,7 +53,7 @@ const rightSideCoordinates = ({ distanceObject }) => {
     yPosition
   ]
 }
-const leftSideCoordinates = ({ distanceObject }) => {
+const leftSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS }) => {
   let xPosition = (DIMENSIONS.CONTAINER.SIDE.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX;
   let yPosition = -DIMENSIONS.CONTAINER.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY + 0.4;
   let zPosition = (parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
@@ -66,7 +63,7 @@ const leftSideCoordinates = ({ distanceObject }) => {
     yPosition
   ]
 }
-const frontSideCoordinates = ({ distanceObject }) => {
+const frontSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS }) => {
   let xPosition = 0 + adjustForX;
   let yPosition = (DIMENSIONS.CONTAINER.FRONT.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY;
   let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
@@ -76,7 +73,7 @@ const frontSideCoordinates = ({ distanceObject }) => {
     yPosition
   ]
 }
-const backSideCoordinates = ({ distanceObject }) => {
+const backSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS }) => {
   let xPosition = DIMENSIONS.CONTAINER.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX - 0.55;
   let yPosition = -distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY;
   let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;

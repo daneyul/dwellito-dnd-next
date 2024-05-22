@@ -1,23 +1,29 @@
 /* eslint-disable react/display-name */
+import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { checkDistance } from "@/utils/2D/utils";
+import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 import { preloadGLTFModel } from "@/utils/3D/preloadGLTFModel";
 import { calcPosition, calcRotation } from "@/utils/3D/utils";
 import { useGLTF } from "@react-three/drei";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
 const French = React.memo(({ component, onBoundingBoxChange }) => {
+  const { elevationData, ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
+  const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
   const { nodes, materials } = useGLTF(`/models/${component.model}`);
   const selectedElevation = component.elevation[0];
   const distanceObject = checkDistance({
     component,
     selectedElevation,
+    DIMENSIONS,
+    ELEVATION_NAMES
   });
   const ref = useRef();
 
   const rotation = useMemo(
-    () => [0, calcRotation(selectedElevation), 0],
-    [selectedElevation]
+    () => [0, calcRotation(selectedElevation, elevationData), 0],
+    [selectedElevation, elevationData]
   );
 
   useEffect(() => {
@@ -40,7 +46,7 @@ const French = React.memo(({ component, onBoundingBoxChange }) => {
       ref={ref}
       dispose={null}
       scale={[11.15, 11.15, 11.15]}
-      position={calcPosition(selectedElevation, distanceObject)}
+      position={calcPosition(selectedElevation, distanceObject, SCALE_FACTOR_FOR_CALCULATIONS)}
       rotation={rotation}
     >
       <group position={[0.81, 1.51, -0.007]}>

@@ -1,12 +1,13 @@
-import React, { useMemo, useRef } from "react";
+import React, { useContext, useMemo, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { Base, Geometry, Subtraction } from "@react-three/csg";
 import * as THREE from "three";
 import { MeshStandardMaterial } from "three";
-import { INTERIOR_OPTIONS } from "@/utils/3D/library";
+import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, ventBoundingBoxes, interior }) {
+  const { INTERIOR_OPTIONS } = useContext(Library3dDataContext);
   const { nodes: cRightNodes } = useGLTF(
     "/models/container/container-exterior-right.glb"
   );

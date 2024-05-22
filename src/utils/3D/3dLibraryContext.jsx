@@ -1,8 +1,9 @@
 import React, { createContext } from "react";
 
-export const Utility3dDataContext = createContext();
+export const Library3dDataContext = createContext();
 
-export const Utility3dDataProvider = ({ children, materialsData }) => {
+export const Library3dDataProvider = ({ children, materialsData }) => {
+
   const DIMENSIONS = {
     CONTAINER: {
       SIDE: {
@@ -27,17 +28,13 @@ export const Utility3dDataProvider = ({ children, materialsData }) => {
     {name: "Plywood", hex: "#C19A6B"},
     {name: "Pre-finished Drywall", hex: "#F2F2F2"}
   ]
-  
-  const colors = [
-    { name: 'White', hex: '#F2F2F2' },
-    { name: 'Blue', hex: '#003366' },
-    { name: 'Green', hex: '#2E8B57' },
-    { name: 'Slate Grey', hex: '#6C7B8B' },
-    { name: 'Red', hex: '#800000' }
-  ];
+
+  const colors = materialsData.map((material) => {
+    return { name: material["Title"], hex: `#${material["HEX"]}`, img: ""}
+  })
   
   return (
-    <Utility3dDataContext.Provider
+    <Library3dDataContext.Provider
       value={{
         DIMENSIONS,
         CANVAS_SCALE_FACTOR,
@@ -49,6 +46,6 @@ export const Utility3dDataProvider = ({ children, materialsData }) => {
       }}
     >
       {children}
-    </Utility3dDataContext.Provider>
+    </Library3dDataContext.Provider>
   );
 }

@@ -14,7 +14,6 @@ import {
   useState,
 } from "react";
 import Door from "./Doors/Door";
-import { COMPONENT_TYPES } from "@/utils/2D/library";
 import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 import { Vector3 } from "three";
 import Window from "./Windows/Window";
@@ -22,10 +21,13 @@ import Vent from "./Vents/Vent";
 import { CsgGeometries } from "./CsgGeometries";
 import ContainerExterior from "./ContainerExterior";
 import { PageDataContext } from "../Content/Content";
+import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const Models = () => {
   const { selectedComponents, color, interior, showExterior } =
     useContext(PageDataContext);
+  const { COMPONENT_TYPES } = useContext(Library2dDataContext);
+
   const doors = useMemo(
     () =>
       selectedComponents.filter(
