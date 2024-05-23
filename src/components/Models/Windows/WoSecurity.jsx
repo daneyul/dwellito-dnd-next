@@ -8,7 +8,7 @@ import { useGLTF } from "@react-three/drei";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
-const WhiteSecurity = React.memo(({ component, onBoundingBoxChange }) => {
+const WoSecurity = React.memo(({ component, onBoundingBoxChange }) => {
   const { nodes, materials } = useGLTF(`/models/windows/${component.model}.glb`);
   const { elevationData, ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
@@ -49,18 +49,18 @@ const WhiteSecurity = React.memo(({ component, onBoundingBoxChange }) => {
       position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
       rotation={rotation}
     >
-      <group position={[0.65, 2.3, -0.02]}>
+      <group position={[0.745, 2.225, -0.02]} rotation={[-Math.PI, 0, -Math.PI]}>
         <group scale={0.01}>
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.SM_Window_48x36_Hinged_Security_01_1.geometry}
+            geometry={nodes.SM_Window_48x36_01_No_Security_1.geometry}
             material={materials.Material__104}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.SM_Window_48x36_Hinged_Security_01_2.geometry}
+            geometry={nodes.SM_Window_48x36_01_No_Security_2.geometry}
             material={materials.Metal}
           />
         </group>
@@ -69,4 +69,4 @@ const WhiteSecurity = React.memo(({ component, onBoundingBoxChange }) => {
   );
 });
 
-export default WhiteSecurity;
+export default WoSecurity;

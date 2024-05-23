@@ -49,7 +49,7 @@ const Rhr = React.memo(({ component, onBoundingBoxChange }) => {
       position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
       rotation={rotation}
     >
-      <group position={[0.559, 1.46, -0.01]} rotation={[-Math.PI / 2, 0, 0]}>
+      <group position={[0.559, 1.44, -0.01]} rotation={[-Math.PI / 2, 0, 0]}>
         <group scale={0.01}>
           <mesh
             castShadow

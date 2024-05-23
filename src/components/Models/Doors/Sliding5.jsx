@@ -49,7 +49,7 @@ const Sliding5 = React.memo(({ component, onBoundingBoxChange }) => {
       position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
       rotation={rotation}
     >
-      <group position={[0.886, 1.48, 0]}>
+      <group position={[0.886, 1.457, 0]}>
         <group scale={0.01}>
           <mesh
             castShadow
