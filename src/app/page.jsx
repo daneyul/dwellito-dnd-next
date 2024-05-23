@@ -3,16 +3,16 @@ import { getMaterialsData, getSupplierData, getThumbnailsData } from "@/utils/ap
 
 export default async function Page({ params, searchParams }) {
   try {
-    const supplierData = await getSupplierData();
-    const materialsData = await getMaterialsData();
-    const thumbnailsData = await getThumbnailsData();
+    // const supplierData = await getSupplierData();
+    // const materialsData = await getMaterialsData();
+    // const thumbnailsData = await getThumbnailsData();
     return (
       <Content
-        data={{
-          supplierData,
-          materialsData,
-          thumbnailsData
-        }}
+        // data={{
+        //   supplierData,
+        //   materialsData,
+        //   thumbnailsData
+        // }}
       />
     );
   } catch (error) {

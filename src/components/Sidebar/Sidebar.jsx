@@ -10,9 +10,10 @@ import SingleSelect from "../SingleSelect/SingleSelect";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 const Sidebar = () => {
-  const { showYourOrder, supplierData } = useContext(PageDataContext);
+  const { showYourOrder } = useContext(PageDataContext);
   const { EXTERIOR, INTERIOR } = useContext(Library3dDataContext);
-  const supplierName = supplierData["Name"];
+  // const supplierName = supplierData["Name"];
+  const supplierName = "Custom Cubes";
 
   const NotYourOrder = () => {
     return (

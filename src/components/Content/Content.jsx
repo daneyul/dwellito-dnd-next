@@ -21,8 +21,8 @@ export const PageDataContext = createContext();
 
 const PageDataProvider = ({ children, data }) => {
   // API Data
-  const supplierData = data?.supplierData[0];
-  const thumbnailsData = data?.thumbnailsData;
+  // const supplierData = data?.supplierData[0];
+  // const thumbnailsData = data?.thumbnailsData;
 
   // 2D Library
   const {
@@ -266,7 +266,6 @@ const PageDataProvider = ({ children, data }) => {
         setInterior,
         showExterior,
         setShowExterior,
-        supplierData,
       }}
     >
       {children}
@@ -276,8 +275,8 @@ const PageDataProvider = ({ children, data }) => {
 
 const Content = ({ data }) => {
   return (
-    <Library2dDataProvider materialsData={data.materialsData}>
-      <Library3dDataProvider materialsData={data.materialsData} thumbnailsData={data.thumbnailsData}>
+    <Library2dDataProvider>
+      <Library3dDataProvider>
         <PageDataProvider data={data}>
           <div style={{ position: "absolute", top: "2rem", left: "2rem" }}>
             <Logo />

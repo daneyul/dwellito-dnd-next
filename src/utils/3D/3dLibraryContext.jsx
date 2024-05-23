@@ -29,9 +29,17 @@ export const Library3dDataProvider = ({ children, materialsData }) => {
     {name: "Pre-finished Drywall", hex: "#F2F2F2"}
   ]
 
-  const colors = materialsData.map((material) => {
-    return { name: material["Title"], hex: `#${material["HEX"]}`, img: ""}
-  })
+  // const colors = materialsData.map((material) => {
+  //   return { name: material["Title"], hex: `#${material["HEX"]}`, img: ""}
+  // })
+
+  const colors = [
+    { name: 'White', hex: '#F2F2F2' },
+    { name: 'Blue', hex: '#003366' },
+    { name: 'Green', hex: '#2E8B57' },
+    { name: 'Slate Grey', hex: '#6C7B8B' },
+    { name: 'Red', hex: '#800000' }
+  ];
   
   return (
     <Library3dDataContext.Provider
