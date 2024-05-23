@@ -8,7 +8,7 @@ import { useGLTF } from "@react-three/drei";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
-const Sliding = React.memo(({ component, onBoundingBoxChange }) => {
+const Sliding5 = React.memo(({ component, onBoundingBoxChange }) => {
   const { nodes, materials } = useGLTF(`/models/doors/${component.model}.glb`);
   const { elevationData, ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
@@ -49,24 +49,24 @@ const Sliding = React.memo(({ component, onBoundingBoxChange }) => {
       position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
       rotation={rotation}
     >
-      <group position={[0.81, 1.48, 0]}>
+      <group position={[0.886, 1.48, 0]}>
         <group scale={0.01}>
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.SM_Wide_Sliding_Glass_Door_6feet_1.geometry}
+            geometry={nodes.SM_Wide_Sliding_Glass_Door_5feet_1.geometry}
             material={materials.Glass}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.SM_Wide_Sliding_Glass_Door_6feet_2.geometry}
+            geometry={nodes.SM_Wide_Sliding_Glass_Door_5feet_2.geometry}
             material={materials.Metal_01}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.SM_Wide_Sliding_Glass_Door_6feet_3.geometry}
+            geometry={nodes.SM_Wide_Sliding_Glass_Door_5feet_3.geometry}
             material={materials.Metal_02}
           />
         </group>
@@ -75,4 +75,4 @@ const Sliding = React.memo(({ component, onBoundingBoxChange }) => {
   );
 });
 
-export default Sliding;
+export default Sliding5;

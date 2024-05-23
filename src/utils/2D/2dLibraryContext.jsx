@@ -11,116 +11,151 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
       SIDE: {
         WIDTH: 240,
         HEIGHT: 102,
-      }, 
+      },
       FRONT: {
         WIDTH: 96,
         HEIGHT: 102,
       },
     },
     DOOR: {
-      HEIGHT: 95,
-      POSITION: {
-        x: 0,
-        y: 4,
-      },
       PERSONNEL: {
-        W_SECURITY: {
-          WIDTH: 44
-        },
-        WO_SECURITY: {
-          WIDTH: 44
-        },
-        ACTUAL: {
-          WIDTH: 44
+        WIDTH: 44,
+        HEIGHT: 95,
+        POSITION: {
+          x: 0,
+          y: 4,
         },
       },
-      SLIDING: {
-        WIDTH: 88,
-        ACTUAL: {
-          WIDTH: 88
+      SLIDING_FIVE: {
+        WIDTH: 66,
+        HEIGHT: 95,
+        POSITION: {
+          x: 0,
+          y: 4,
+        },
+      },
+      SLIDING_SIX: {
+        WIDTH:  72,
+        HEIGHT: 80,
+        POSITION: {
+          x: 0,
+          y: 41,
         },
       },
       FRENCH: {
-        HEIGHT: 80,
         WIDTH: 72,
-        ACTUAL: {
-          WIDTH: 72
+        HEIGHT: 80,
+        POSITION: {
+          x: 0,
+          y: 41,
         },
       },
-      ROLL_UP: {
+      ROLL_UP_6: {
         WIDTH: 102,
-        ACTUAL: {
-          WIDTH: 102
+        HEIGHT: 95,
+        POSITION: {
+          x: 0,
+          y: 4,
+        },
+      },
+      ROLL_UP_8: {
+        WIDTH: 102,
+        HEIGHT: 95,
+        POSITION: {
+          x: 0,
+          y: 4,
+        },
+      },
+      ROLL_UP_10: {
+        WIDTH: 102,
+        HEIGHT: 95,
+        POSITION: {
+          x: 0,
+          y: 4,
+        },
+      },
+      ROLL_UP_12: {
+        WIDTH: 102,
+        HEIGHT: 95,
+        POSITION: {
+          x: 0,
+          y: 4,
         },
       },
     },
     WINDOW: {
-      WHITE: {
-        WIDTH: 48,
-        HEIGHT: 36,
-        ACTUAL: {
-          WIDTH: 48,
-          HEIGHT: 36,
-        },
+      WINDOW_WO_SECURITY: {
+        WIDTH: 55,
+        HEIGHT: 42,
         POSITION: {
           x: 0,
           y: 45,
-        }
+        },
       },
-      CLEAR: {
-        WIDTH: 24,
-        HEIGHT: 30
+      WINDOW_SECURITY: {
+        WIDTH: 55,
+        HEIGHT: 41,
+        POSITION: {
+          x: 0,
+          y: 45,
+        },
       },
     },
     VENT: {
       SQ_12: {
         WIDTH: 12,
         HEIGHT: 12,
-        POSITION : {
+        POSITION: {
           x: 0,
-          y: 20
-        }
+          y: 20,
+        },
       },
       SQ_20: {
         WIDTH: 20,
         HEIGHT: 20,
-        POSITION : {
+        POSITION: {
           x: 0,
-          y: 20
-        }
+          y: 20,
+        },
       },
       SQ_24: {
         WIDTH: 24,
         HEIGHT: 24,
-        POSITION : {
+        POSITION: {
           x: 0,
-          y: 20
-        }
+          y: 20,
+        },
       },
     },
     SCALE_FACTOR: 2.5,
     GRID_SIZE: 1,
     BOUNDARIES: {
-      x: 17
-    }
+      x: 17,
+    },
   };
 
   // COMPONENTS
   const COMPONENT_NAMES = {
-    PERSONNEL_DOOR_WO_SECURITY_LHR: "Personnel Door - without security LHR",
-    PERSONNEL_DOOR_LHR: "Personnel Door - LHR",
-    PERSONNEL_DOOR_WO_SECURITY_RHR: "Personnel Door - without security RHR",
-    PERSONNEL_DOOR_RHR: "Personnel Door - RHR",
+    PERSONNEL_DOOR_WO_SECURITY_LHR:
+      "Personnel Door Left Handed Reverse - without security",
+    PERSONNEL_DOOR_LHR: "Personnel Door Left Handed Reverse",
+    PERSONNEL_DOOR_WO_SECURITY_RHR:
+      "Personnel Door Right Handed Reverse - without security",
+    PERSONNEL_DOOR_RHR: "Personnel Door Right Handed Reverse",
     DOUBLE_DOOR: "Double Door",
-    SLIDING_GLASS_DOOR: "Sliding Glass",
-    FRENCH_DOOR: "French Door",
+    SLIDING_GLASS_DOOR_5: "5' Wide Sliding Glass Door",
+    SLIDING_GLASS_DOOR_6: "6' Wide Sliding Glass Door",
+    FRENCH_DOOR: "5' Wide French Door Full",
     WINDOW_WHITE_SECURITY: "White Window w/HD Steel Frame & Hinged Security",
     WINDOW_WHITE_WO_SECURITY:
       "White Window w/Basic 16ga Steel Frame-No Security",
-    VENT_12: "12x12 Vent",
-    VENT_20: "20x20 Vent",
-    VENT_24: "24x24 Vent",
-    ROLL_UP_DOOR: "Roll up door",
+    VENT_12: `12"x12" Aluminum Fixed Louver w/HSS Weld Frame 300mmx300mm`,
+    VENT_20: `20"x20" Aluminum Fixed Louver w/HSS Weld Frame 500mmx500mm`,
+    VENT_24: `24"x24" Aluminum Fixed Louver w/HSS Weld Frame 600mmx600mm`,
+    ROLL_UP_DOOR_6: "Roll Up Door - 6ft",
+    ROLL_UP_DOOR_8: "Roll Up Door - 8ft",
+    ROLL_UP_DOOR_10: "Roll Up Door - 10ft",
+    ROLL_UP_DOOR_12: "Roll Up Door - 12ft",
   };
 
   const COMPONENT_TYPES = {
@@ -135,194 +170,227 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
   const componentData = [
     {
       name: COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_LHR,
-      partNumber: "P202-1-102",
       position: {
-        x: DIMENSIONS.DOOR.POSITION.x,
-        y: DIMENSIONS.DOOR.POSITION.y,
+        x: DIMENSIONS.DOOR.PERSONNEL.POSITION.x,
+        y: DIMENSIONS.DOOR.PERSONNEL.POSITION.y,
       },
       imgName: `${COMPONENT_TYPES.DOOR}/personnel-wo-security-lhr.svg`,
-      desc: `Personnel Door 3'x6'8" LHR`,
-      objWidth: DIMENSIONS.DOOR.PERSONNEL.WO_SECURITY.WIDTH,
-      objHeight: DIMENSIONS.DOOR.HEIGHT,
+      desc: COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_LHR,
+      objWidth: DIMENSIONS.DOOR.PERSONNEL.WIDTH,
+      objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2000,
-      model:
-        "SM_PDoor_LockBoxLHR_01",
+      model: "SM_PDoor_LockBoxLHR_01",
     },
     {
       name: COMPONENT_NAMES.PERSONNEL_DOOR_LHR,
-      partNumber: "P202-1-102",
       position: {
-        x: DIMENSIONS.DOOR.POSITION.x,
-        y: DIMENSIONS.DOOR.POSITION.y,
+        x: DIMENSIONS.DOOR.PERSONNEL.POSITION.x,
+        y: DIMENSIONS.DOOR.PERSONNEL.POSITION.y,
       },
       imgName: `${COMPONENT_TYPES.DOOR}/personnel-security-lhr.svg`,
-      desc: `Personnel Door w/Hardware and Lock Box 3'x6'8" LHR`,
-      objWidth: DIMENSIONS.DOOR.PERSONNEL.W_SECURITY.WIDTH,
-      objHeight: DIMENSIONS.DOOR.HEIGHT,
+      desc: COMPONENT_NAMES.PERSONNEL_DOOR_LHR,
+      objWidth: DIMENSIONS.DOOR.PERSONNEL.WIDTH,
+      objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2000,
-      model:
-        "SM_PDoor_LockBoxLHR_01",
+      model: "SM_PDoor_LockBoxLHR_01",
     },
     {
       name: COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_RHR,
-      partNumber: "P202-1-101",
       position: {
-        x: DIMENSIONS.DOOR.POSITION.x,
-        y: DIMENSIONS.DOOR.POSITION.y,
+        x: DIMENSIONS.DOOR.PERSONNEL.POSITION.x,
+        y: DIMENSIONS.DOOR.PERSONNEL.POSITION.y,
       },
       imgName: `${COMPONENT_TYPES.DOOR}/personnel-wo-security-rhr.svg`,
-      desc: `Personnel Door 3'x6'8" RHR`,
-      objWidth: DIMENSIONS.DOOR.PERSONNEL.WO_SECURITY.WIDTH,
-      objHeight: DIMENSIONS.DOOR.HEIGHT,
+      desc: COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_RHR,
+      objWidth: DIMENSIONS.DOOR.PERSONNEL.WIDTH,
+      objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2000,
-      model:
-        "SM_PDoor_LockBoxRHR_01",
+      model: "SM_PDoor_LockBoxRHR_01",
     },
     {
       name: COMPONENT_NAMES.PERSONNEL_DOOR_RHR,
-      partNumber: "P202-1-101",
       position: {
-        x: DIMENSIONS.DOOR.POSITION.x,
-        y: DIMENSIONS.DOOR.POSITION.y,
+        x: DIMENSIONS.DOOR.PERSONNEL.POSITION.x,
+        y: DIMENSIONS.DOOR.PERSONNEL.POSITION.y,
       },
       imgName: `${COMPONENT_TYPES.DOOR}/personnel-security-rhr.svg`,
-      desc: `Personnel Door w/Hardware and Lock Box 3'x6'8" RHR`,
-      objWidth: DIMENSIONS.DOOR.PERSONNEL.W_SECURITY.WIDTH,
-      objHeight: DIMENSIONS.DOOR.HEIGHT,
+      desc: COMPONENT_NAMES.PERSONNEL_DOOR_RHR,
+      objWidth: DIMENSIONS.DOOR.PERSONNEL.WIDTH,
+      objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2000,
-      model:
-        "SM_PDoor_LockBoxRHR_01",
+      model: "SM_PDoor_LockBoxRHR_01",
     },
     {
-      name: COMPONENT_NAMES.SLIDING_GLASS_DOOR,
-      partNumber: "P202-1-301",
+      name: COMPONENT_NAMES.SLIDING_GLASS_DOOR_5,
       position: {
-        x: DIMENSIONS.DOOR.POSITION.x,
-        y: DIMENSIONS.DOOR.POSITION.y,
+        x: DIMENSIONS.DOOR.SLIDING_FIVE.POSITION.x,
+        y: DIMENSIONS.DOOR.SLIDING_FIVE.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.DOOR}/sliding-glass.svg`,
-      desc: `5' Wide Sliding Glass Door - White Vinyl`,
-      objWidth: DIMENSIONS.DOOR.SLIDING.WIDTH,
-      objHeight: DIMENSIONS.DOOR.HEIGHT,
+      imgName: `${COMPONENT_TYPES.DOOR}/sliding-5.svg`,
+      desc: COMPONENT_NAMES.SLIDING_GLASS_DOOR_5,
+      objWidth: DIMENSIONS.DOOR.SLIDING_FIVE.WIDTH,
+      objHeight: DIMENSIONS.DOOR.SLIDING_FIVE.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 3025,
+      model: "SM_Wide_Sliding_Glass_Door_5feet",
+    },
+    {
+      name: COMPONENT_NAMES.SLIDING_GLASS_DOOR_6,
+      position: {
+        x: DIMENSIONS.DOOR.SLIDING_SIX.POSITION.x,
+        y: DIMENSIONS.DOOR.SLIDING_SIX.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/sliding-6.svg`,
+      desc: COMPONENT_NAMES.SLIDING_GLASS_DOOR_6,
+      objWidth: DIMENSIONS.DOOR.SLIDING_SIX.WIDTH,
+      objHeight: DIMENSIONS.DOOR.SLIDING_SIX.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 3025,
       model: "SM_Wide_Sliding_Glass_Door_6feet",
     },
     {
       name: COMPONENT_NAMES.FRENCH_DOOR,
-      partNumber: "P202-1-501",
       position: {
-        x: DIMENSIONS.DOOR.POSITION.x,
-        y: DIMENSIONS.DOOR.POSITION.y,
+        x: DIMENSIONS.DOOR.FRENCH.POSITION.x,
+        y: DIMENSIONS.DOOR.FRENCH.POSITION.y,
       },
       imgName: `${COMPONENT_TYPES.DOOR}/french.svg`,
-      desc: `5' Wide French Door Full`,
+      desc: COMPONENT_NAMES.FRENCH_DOOR,
       objWidth: DIMENSIONS.DOOR.FRENCH.WIDTH,
       objHeight: DIMENSIONS.DOOR.FRENCH.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 4550,
-      model:
-        "P202-1-503_6ft_6ft8in_Height_French Door White_and_Black Frame",
+      model: "P202-1-503_6ft_6ft8in_Height_French Door White_and_Black Frame",
+    },
+    {
+      name: COMPONENT_NAMES.ROLL_UP_DOOR_6,
+      position: {
+        x: DIMENSIONS.DOOR.ROLL_UP_6.POSITION.x,
+        y: DIMENSIONS.DOOR.ROLL_UP_6.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/rollup.svg`,
+      desc: COMPONENT_NAMES.ROLL_UP_DOOR_6,
+      objWidth: DIMENSIONS.DOOR.ROLL_UP_6.WIDTH,
+      objHeight: DIMENSIONS.DOOR.ROLL_UP_6.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 2625,
+      model: "SM_RollUp_Door_6x74",
+    },
+    {
+      name: COMPONENT_NAMES.ROLL_UP_DOOR_8,
+      position: {
+        x: DIMENSIONS.DOOR.ROLL_UP_8.POSITION.x,
+        y: DIMENSIONS.DOOR.ROLL_UP_8.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/rollup.svg`,
+      desc: COMPONENT_NAMES.ROLL_UP_DOOR_8,
+      objWidth: DIMENSIONS.DOOR.ROLL_UP_8.WIDTH,
+      objHeight: DIMENSIONS.DOOR.ROLL_UP_8.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 2625,
+      model: "SM_RollUp_Door_6x74",
+    },
+    {
+      name: COMPONENT_NAMES.ROLL_UP_DOOR_10,
+      position: {
+        x: DIMENSIONS.DOOR.ROLL_UP_10.POSITION.x,
+        y: DIMENSIONS.DOOR.ROLL_UP_10.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/rollup.svg`,
+      desc: COMPONENT_NAMES.ROLL_UP_DOOR_10,
+      objWidth: DIMENSIONS.DOOR.ROLL_UP_10.WIDTH,
+      objHeight: DIMENSIONS.DOOR.ROLL_UP_10.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 2625,
+      model: "SM_RollUp_Door_6x74",
+    },
+    {
+      name: COMPONENT_NAMES.ROLL_UP_DOOR_12,
+      position: {
+        x: DIMENSIONS.DOOR.ROLL_UP_12.POSITION.x,
+        y: DIMENSIONS.DOOR.ROLL_UP_12.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/rollup.svg`,
+      desc: COMPONENT_NAMES.ROLL_UP_DOOR_12,
+      objWidth: DIMENSIONS.DOOR.ROLL_UP_12.WIDTH,
+      objHeight: DIMENSIONS.DOOR.ROLL_UP_12.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 2625,
+      model: "SM_RollUp_Door_6x74",
     },
     {
       name: COMPONENT_NAMES.WINDOW_WHITE_SECURITY,
-      partNumber: "P201-1-01",
       position: {
-        x: DIMENSIONS.WINDOW.WHITE.POSITION.x,
-        y: DIMENSIONS.WINDOW.WHITE.POSITION.y,
+        x: DIMENSIONS.WINDOW.WINDOW_SECURITY.POSITION.x,
+        y: DIMENSIONS.WINDOW.WINDOW_SECURITY.POSITION.y,
       },
       imgName: `${COMPONENT_TYPES.WINDOW}/window-security.svg`,
-      desc: `48" x 36" White Window w/HD Steel Frame & Hinged Security`,
-      objWidth: DIMENSIONS.WINDOW.WHITE.WIDTH,
-      objHeight: DIMENSIONS.WINDOW.WHITE.HEIGHT,
+      desc: COMPONENT_NAMES.WINDOW_WHITE_SECURITY,
+      objWidth: DIMENSIONS.WINDOW.WINDOW_SECURITY.WIDTH,
+      objHeight: DIMENSIONS.WINDOW.WINDOW_SECURITY.HEIGHT,
       objType: COMPONENT_TYPES.WINDOW,
       price: 1720,
-      model:
-        "SM_Window 48x36_Hinged_Security_01",
+      model: "SM_Window 48x36_Hinged_Security_01",
     },
     {
       name: COMPONENT_NAMES.WINDOW_WHITE_WO_SECURITY,
-      partNumber: "P201-1-03",
       position: {
-        x: DIMENSIONS.WINDOW.WHITE.POSITION.x,
-        y: DIMENSIONS.WINDOW.WHITE.POSITION.y,
+        x: DIMENSIONS.WINDOW.WINDOW_WO_SECURITY.POSITION.x,
+        y: DIMENSIONS.WINDOW.WINDOW_WO_SECURITY.POSITION.y,
       },
       imgName: `${COMPONENT_TYPES.WINDOW}/window-wo-security.svg`,
-      desc: `48" x 36" White Window w/HD Steel Frame & Hinged Security`,
-      objWidth: DIMENSIONS.WINDOW.WHITE.WIDTH,
-      objHeight: DIMENSIONS.WINDOW.WHITE.HEIGHT,
+      desc: COMPONENT_NAMES.WINDOW_WHITE_WO_SECURITY,
+      objWidth: DIMENSIONS.WINDOW.WINDOW_WO_SECURITY.WIDTH,
+      objHeight: DIMENSIONS.WINDOW.WINDOW_WO_SECURITY.HEIGHT,
       objType: COMPONENT_TYPES.WINDOW,
       price: 1080,
-      model:
-        "SM_Window_48x36_01_No_Security",
+      model: "SM_Window_48x36_01_No_Security",
     },
     {
       name: COMPONENT_NAMES.VENT_12,
-      partNumber: "P203-1-301",
       position: {
         x: DIMENSIONS.VENT.SQ_12.POSITION.x,
         y: DIMENSIONS.VENT.SQ_12.POSITION.y,
       },
       imgName: `${COMPONENT_TYPES.VENT}/12x12.svg`,
-      desc: `12"x12" Aluminum Fixed Louver w/HSS Weld Frame 300mmx300mm`,
+      desc: COMPONENT_NAMES.VENT_12,
       objWidth: DIMENSIONS.VENT.SQ_12.WIDTH,
       objHeight: DIMENSIONS.VENT.SQ_12.HEIGHT,
       objType: COMPONENT_TYPES.VENT,
       price: 440,
-      model:
-        "P203-1-304_12in_x_12in Aluminum Fixed Louver 16ga Bolt on Frame",
+      model: "P203-1-304_12in_x_12in Aluminum Fixed Louver 16ga Bolt on Frame",
     },
     {
       name: COMPONENT_NAMES.VENT_20,
-      partNumber: "P203-1-302",
       position: {
         x: DIMENSIONS.VENT.SQ_20.POSITION.x,
         y: DIMENSIONS.VENT.SQ_20.POSITION.y,
       },
       imgName: `${COMPONENT_TYPES.VENT}/20x20.svg`,
-      desc: `20"x20" Aluminum Fixed Louver w/HSS Weld Frame 500mmx500mm`,
+      desc: COMPONENT_NAMES.VENT_20,
       objWidth: DIMENSIONS.VENT.SQ_20.WIDTH,
       objHeight: DIMENSIONS.VENT.SQ_20.HEIGHT,
       objType: COMPONENT_TYPES.VENT,
       price: 490,
-      model:
-        "P203-1-305_20in_x_20in Aluminum Fixed Louver 16ga Bolt on Frame",
+      model: "P203-1-305_20in_x_20in Aluminum Fixed Louver 16ga Bolt on Frame",
     },
     {
       name: COMPONENT_NAMES.VENT_24,
-      partNumber: "P203-1-303",
       position: {
         x: DIMENSIONS.VENT.SQ_24.POSITION.x,
         y: DIMENSIONS.VENT.SQ_24.POSITION.y,
       },
       imgName: `${COMPONENT_TYPES.VENT}/24x24.svg`,
-      desc: `24"x24" Aluminum Fixed Louver w/HSS Weld Frame 600mmx600mm`,
+      desc: COMPONENT_NAMES.VENT_24,
       objWidth: DIMENSIONS.VENT.SQ_24.WIDTH,
       objHeight: DIMENSIONS.VENT.SQ_24.HEIGHT,
       objType: COMPONENT_TYPES.VENT,
       price: 540,
-      model:
-        "P203-1-306_24in_x_24in Aluminum Fixed Louver 16ga Bolt on Frame",
-    },
-    {
-      name: COMPONENT_NAMES.ROLL_UP_DOOR,
-      partNumber: "P215-45-01",
-      position: {
-        x: DIMENSIONS.DOOR.POSITION.x,
-        y: DIMENSIONS.DOOR.POSITION.y,
-      },
-      imgName: `${COMPONENT_TYPES.DOOR}/rollup.svg`,
-      desc: `Roll Up Door - 6ft`,
-      objWidth: DIMENSIONS.DOOR.ROLL_UP.WIDTH,
-      objHeight: DIMENSIONS.DOOR.HEIGHT,
-      objType: COMPONENT_TYPES.DOOR,
-      price: 2625,
-      model:
-        "SM_RollUp_Door_6x74",
+      model: "P203-1-306_24in_x_24in Aluminum Fixed Louver 16ga Bolt on Frame",
     },
   ].map((item) => ({
     id: uuid(),
