@@ -9,7 +9,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
   const DIMENSIONS = {
     CONTAINER: {
       SIDE: {
-        WIDTH: 240,
+        WIDTH: 238,
         HEIGHT: 102,
       },
       FRONT: {
@@ -23,7 +23,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 4,
+          y: 2,
         },
       },
       SLIDING_FIVE: {
@@ -31,7 +31,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 4,
+          y: 2,
         },
       },
       SLIDING_SIX: {
@@ -39,7 +39,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 80,
         POSITION: {
           x: 0,
-          y: 41,
+          y: 39,
         },
       },
       FRENCH: {
@@ -47,7 +47,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 80,
         POSITION: {
           x: 0,
-          y: 41,
+          y: 39,
         },
       },
       ROLL_UP_6: {
@@ -55,7 +55,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 4,
+          y: 2,
         },
       },
       ROLL_UP_8: {
@@ -63,7 +63,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 4,
+          y: 2,
         },
       },
       ROLL_UP_10: {
@@ -71,7 +71,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 4,
+          y: 2,
         },
       },
       ROLL_UP_12: {
@@ -79,7 +79,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 4,
+          y: 2,
         },
       },
     },
@@ -89,7 +89,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 42,
         POSITION: {
           x: 0,
-          y: 45,
+          y: 43,
         },
       },
       WINDOW_SECURITY: {
@@ -97,7 +97,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 41,
         POSITION: {
           x: 0,
-          y: 45,
+          y: 43,
         },
       },
     },
@@ -107,7 +107,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 12,
         POSITION: {
           x: 0,
-          y: 20,
+          y: 18,
         },
       },
       SQ_20: {
@@ -115,7 +115,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 20,
         POSITION: {
           x: 0,
-          y: 20,
+          y: 18,
         },
       },
       SQ_24: {
@@ -123,7 +123,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 24,
         POSITION: {
           x: 0,
-          y: 20,
+          y: 18,
         },
       },
     },
