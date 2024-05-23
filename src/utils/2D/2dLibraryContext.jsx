@@ -41,9 +41,10 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         },
       },
       FRENCH: {
-        WIDTH: 88,
+        HEIGHT: 80,
+        WIDTH: 72,
         ACTUAL: {
-          WIDTH: 88
+          WIDTH: 72
         },
       },
       ROLL_UP: {
@@ -221,7 +222,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
       imgName: `${COMPONENT_TYPES.DOOR}/french.svg`,
       desc: `5' Wide French Door Full`,
       objWidth: DIMENSIONS.DOOR.FRENCH.WIDTH,
-      objHeight: DIMENSIONS.DOOR.HEIGHT,
+      objHeight: DIMENSIONS.DOOR.FRENCH.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 4550,
       model:
