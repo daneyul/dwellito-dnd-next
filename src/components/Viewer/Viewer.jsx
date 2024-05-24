@@ -78,7 +78,7 @@ const Viewer = () => {
           justifyContent: "center",
         }}
       >
-        <div style={{ visibility: show3d ? "visible" : "hidden", position: "absolute", width: "100%" }}>
+        {/* <div style={{ visibility: show3d ? "visible" : "hidden", position: "absolute", width: "100%" }}>
           <Models />
         </div>
         <div  style={{ visibility: show3d ? "hidden" : "visible", position: "absolute", width: "100%"}}>
@@ -137,8 +137,8 @@ const Viewer = () => {
           {isAnyItemSelected && (
             <DeleteBtn onDeleteSelected={handleDeleteSelected} />
           )}
-        </div>
-        {/* {show3d ? (
+        </div> */}
+        {show3d ? (
           <div>
             <Models />
           </div>
@@ -202,7 +202,7 @@ const Viewer = () => {
               <DeleteBtn onDeleteSelected={handleDeleteSelected} />
             )}
           </div>
-        )} */}
+        )}
         <ToggleCamera />
         <ToggleView />
       </div>
