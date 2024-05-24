@@ -29,10 +29,11 @@ const Viewer = () => {
     isAnyItemSelected,
     selectedElevationIndex,
     setSelectedElevationIndex,
-    show3d
+    show3d,
   } = useContext(PageDataContext);
-  const { elevationData, DIMENSIONS, ELEVATION_NAMES } = useContext(Library2dDataContext);
-  
+  const { elevationData, DIMENSIONS, ELEVATION_NAMES } =
+    useContext(Library2dDataContext);
+
   const LeftArrow = () => {
     return (
       <div className={style.left} onClick={handlePrevious}>
@@ -77,10 +78,72 @@ const Viewer = () => {
           justifyContent: "center",
         }}
       >
-        {show3d ? (
+        <div style={{ visibility: show3d ? "visible" : "hidden", position: "absolute", width: "100%" }}>
           <Models />
+        </div>
+        <div  style={{ visibility: show3d ? "hidden" : "visible", position: "absolute", width: "100%"}}>
+          <Collision showCollision={showCollision} />
+          <DndContext
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
+            modifiers={modifiers}
+          >
+            <Droppable selectedElevation={selectedElevation}>
+              <div
+                style={{
+                  width: `${toScale(
+                    droppableWidth(
+                      selectedElevation,
+                      DIMENSIONS,
+                      ELEVATION_NAMES
+                    ),
+                    DIMENSIONS
+                  )}px`,
+                  height: "100%",
+                  position: "absolute",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                }}
+              >
+                {selectedComponents
+                  .filter((piece) =>
+                    piece.elevation.includes(selectedElevation)
+                  )
+                  .map((piece) => {
+                    console.log(
+                      checkDistance({
+                        component: piece,
+                        selectedElevation,
+                        DIMENSIONS,
+                        ELEVATION_NAMES,
+                      })
+                    );
+                    return (
+                      <Draggable
+                        piece={piece}
+                        key={piece.id}
+                        id={piece.id}
+                        imgName={piece.imgName}
+                        onSelect={() => handleSelect(piece.id)}
+                        ref={draggableRefs[piece.id]}
+                      />
+                    );
+                  })}
+              </div>
+            </Droppable>
+          </DndContext>
+          {selectedElevationIndex > 0 && <LeftArrow />}
+          {selectedElevationIndex < elevationData.length - 1 && <RightArrow />}
+          {isAnyItemSelected && (
+            <DeleteBtn onDeleteSelected={handleDeleteSelected} />
+          )}
+        </div>
+        {/* {show3d ? (
+          <div>
+            <Models />
+          </div>
         ) : (
-          <>
+          <div>
             <Collision showCollision={showCollision} />
             <DndContext
               onDragStart={handleDragStart}
@@ -90,7 +153,14 @@ const Viewer = () => {
               <Droppable selectedElevation={selectedElevation}>
                 <div
                   style={{
-                    width: `${toScale(droppableWidth(selectedElevation, DIMENSIONS, ELEVATION_NAMES), DIMENSIONS)}px`,
+                    width: `${toScale(
+                      droppableWidth(
+                        selectedElevation,
+                        DIMENSIONS,
+                        ELEVATION_NAMES
+                      ),
+                      DIMENSIONS
+                    )}px`,
                     height: "100%",
                     position: "absolute",
                     left: "50%",
@@ -102,7 +172,14 @@ const Viewer = () => {
                       piece.elevation.includes(selectedElevation)
                     )
                     .map((piece) => {
-                      console.log(checkDistance({ component: piece, selectedElevation, DIMENSIONS, ELEVATION_NAMES }))
+                      console.log(
+                        checkDistance({
+                          component: piece,
+                          selectedElevation,
+                          DIMENSIONS,
+                          ELEVATION_NAMES,
+                        })
+                      );
                       return (
                         <Draggable
                           piece={piece}
@@ -124,8 +201,8 @@ const Viewer = () => {
             {isAnyItemSelected && (
               <DeleteBtn onDeleteSelected={handleDeleteSelected} />
             )}
-          </>
-        )}
+          </div>
+        )} */}
         <ToggleCamera />
         <ToggleView />
       </div>
