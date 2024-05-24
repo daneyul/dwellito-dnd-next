@@ -32,7 +32,7 @@ export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, v
   const { materials: exteriorMaterials } = useGLTF("/models/container/20/exterior.glb");
   const material = new MeshStandardMaterial({ color: color });
 
-  const doorBoundingBoxGeometries = useMemo(() => {
+  const doorBoundingBoxGeometries = () => {
     return Object.entries(doorBoundingBoxes).map(([id, bbox]) => (
       <group key={id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
         <Subtraction>
@@ -49,9 +49,9 @@ export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, v
         </Subtraction>
       </group>
     ));
-  }, [doorBoundingBoxes]);
+  };
 
-  const windowBoundingBoxGeometries = useMemo(() => {
+  const windowBoundingBoxGeometries = () => {
     return Object.entries(windowBoundingBoxes).map(([id, bbox]) => (
       <group key={id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
         <Subtraction>
@@ -68,9 +68,9 @@ export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, v
         </Subtraction>
       </group>
     ));
-  }, [windowBoundingBoxes]);
+  };
 
-  const ventBoundingBoxGeometries = useMemo(() => {
+  const ventBoundingBoxGeometries = () => {
     return Object.entries(ventBoundingBoxes).map(([id, bbox]) => (
       <group key={id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
         <Subtraction>
@@ -87,7 +87,7 @@ export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, v
         </Subtraction>
       </group>
     ));
-  }, [ventBoundingBoxes]);
+  };
 
   return (
     <mesh receiveShadow castShadow>
