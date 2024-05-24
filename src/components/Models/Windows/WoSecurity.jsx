@@ -41,6 +41,15 @@ const WoSecurity = React.memo(({ component, onBoundingBoxChange }) => {
     }
   }, [ref.current]);
 
+  useEffect(() => {
+    if (materials.Material__104) {
+      materials.Material__104.transparent = true;
+      materials.Material__104.opacity = 0.6; // Adjust opacity as needed
+      materials.Material__104.roughness = 0.1; // Glass is generally smooth
+      materials.Material__104.metalness = 0.0; // Glass isn't metallic
+    }
+  }, [materials]);
+
   return (
     <group
       ref={ref}

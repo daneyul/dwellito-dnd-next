@@ -23,7 +23,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 2,
+          y: 8,
         },
       },
       SLIDING_FIVE: {
@@ -31,7 +31,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 2,
+          y: 8,
         },
       },
       SLIDING_SIX: {
@@ -39,7 +39,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 80,
         POSITION: {
           x: 0,
-          y: 39,
+          y: 45,
         },
       },
       FRENCH: {
@@ -47,39 +47,47 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 80,
         POSITION: {
           x: 0,
-          y: 39,
+          y: 45,
         },
       },
       ROLL_UP_6: {
-        WIDTH: 102,
+        WIDTH: 88,
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 2,
+          y: 8,
         },
       },
       ROLL_UP_8: {
-        WIDTH: 102,
+        WIDTH: 104,
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 2,
+          y: 8,
         },
       },
       ROLL_UP_10: {
-        WIDTH: 102,
+        WIDTH: 128,
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 2,
+          y: 8,
         },
       },
       ROLL_UP_12: {
-        WIDTH: 102,
+        WIDTH: 152,
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 2,
+          y: 8,
+        },
+      },
+      ROLL_UP_15: {
+        WIDTH: 188,
+        HEIGHT: 95,
+        POSITION: {
+          x: 0,
+          y: 8,
         },
       },
     },
@@ -89,7 +97,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 42,
         POSITION: {
           x: 0,
-          y: 43,
+          y: 49,
         },
       },
       WINDOW_SECURITY: {
@@ -97,7 +105,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 41,
         POSITION: {
           x: 0,
-          y: 43,
+          y: 49,
         },
       },
     },
@@ -107,7 +115,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 12,
         POSITION: {
           x: 0,
-          y: 18,
+          y: 24,
         },
       },
       SQ_20: {
@@ -115,7 +123,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 20,
         POSITION: {
           x: 0,
-          y: 18,
+          y: 24,
         },
       },
       SQ_24: {
@@ -123,7 +131,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 24,
         POSITION: {
           x: 0,
-          y: 18,
+          y: 24,
         },
       },
     },
@@ -136,12 +144,8 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
 
   // COMPONENTS
   const COMPONENT_NAMES = {
-    PERSONNEL_DOOR_WO_SECURITY_LHR:
-      "Personnel Door Left Handed Reverse - without security",
-    PERSONNEL_DOOR_LHR: "Personnel Door Left Handed Reverse",
-    PERSONNEL_DOOR_WO_SECURITY_RHR:
-      "Personnel Door Right Handed Reverse - without security",
-    PERSONNEL_DOOR_RHR: "Personnel Door Right Handed Reverse",
+    PERSONNEL_DOOR_LHR: `Personnel Door w/Hardware and Lock Box 3'x6'8" RLHR`,
+    PERSONNEL_DOOR_RHR: `Personnel Door w/Hardware and Lock Box 3'x6'8" RHR`,
     DOUBLE_DOOR: "Double Door",
     SLIDING_GLASS_DOOR_5: "5' Wide Sliding Glass Door",
     SLIDING_GLASS_DOOR_6: "6' Wide Sliding Glass Door",
@@ -152,10 +156,11 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
     VENT_12: `12"x12" Aluminum Fixed Louver w/HSS Weld Frame 300mmx300mm`,
     VENT_20: `20"x20" Aluminum Fixed Louver w/HSS Weld Frame 500mmx500mm`,
     VENT_24: `24"x24" Aluminum Fixed Louver w/HSS Weld Frame 600mmx600mm`,
-    ROLL_UP_DOOR_6: "Roll Up Door - 6ft",
-    ROLL_UP_DOOR_8: "Roll Up Door - 8ft",
-    ROLL_UP_DOOR_10: "Roll Up Door - 10ft",
-    ROLL_UP_DOOR_12: "Roll Up Door - 12ft",
+    ROLL_UP_DOOR_6: `Heavy Duty Roll Up Door 6' Wide x 7'4" High`,
+    ROLL_UP_DOOR_8: `Heavy Duty  Roll Up Door 8' Wide x 7'4" High`,
+    ROLL_UP_DOOR_10: `Heavy Duty Roll Up Door 10' Wide x 7'4" High`,
+    ROLL_UP_DOOR_12: `Heavy Duty Roll Up Door 12' Wide x 7'4" High`,
+    ROLL_UP_DOOR_15: `Heavy Duty Roll Up Door 15' Wide x 7'4" High`,
   };
 
   const COMPONENT_TYPES = {
@@ -169,26 +174,12 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
 
   const componentData = [
     {
-      name: COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_LHR,
-      position: {
-        x: DIMENSIONS.DOOR.PERSONNEL.POSITION.x,
-        y: DIMENSIONS.DOOR.PERSONNEL.POSITION.y,
-      },
-      imgName: `${COMPONENT_TYPES.DOOR}/personnel-wo-security-lhr.svg`,
-      desc: COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_LHR,
-      objWidth: DIMENSIONS.DOOR.PERSONNEL.WIDTH,
-      objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
-      objType: COMPONENT_TYPES.DOOR,
-      price: 2000,
-      model: "SM_PDoor_LockBoxLHR_01",
-    },
-    {
       name: COMPONENT_NAMES.PERSONNEL_DOOR_LHR,
       position: {
         x: DIMENSIONS.DOOR.PERSONNEL.POSITION.x,
         y: DIMENSIONS.DOOR.PERSONNEL.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.DOOR}/personnel-security-lhr.svg`,
+      imgName: `${COMPONENT_TYPES.DOOR}/P202-1-102-Personnel_Door_W_LHR_Lock_44in x 95in.svg`,
       desc: COMPONENT_NAMES.PERSONNEL_DOOR_LHR,
       objWidth: DIMENSIONS.DOOR.PERSONNEL.WIDTH,
       objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
@@ -197,26 +188,12 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
       model: "SM_PDoor_LockBoxLHR_01",
     },
     {
-      name: COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_RHR,
-      position: {
-        x: DIMENSIONS.DOOR.PERSONNEL.POSITION.x,
-        y: DIMENSIONS.DOOR.PERSONNEL.POSITION.y,
-      },
-      imgName: `${COMPONENT_TYPES.DOOR}/personnel-wo-security-rhr.svg`,
-      desc: COMPONENT_NAMES.PERSONNEL_DOOR_WO_SECURITY_RHR,
-      objWidth: DIMENSIONS.DOOR.PERSONNEL.WIDTH,
-      objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
-      objType: COMPONENT_TYPES.DOOR,
-      price: 2000,
-      model: "SM_PDoor_LockBoxRHR_01",
-    },
-    {
       name: COMPONENT_NAMES.PERSONNEL_DOOR_RHR,
       position: {
         x: DIMENSIONS.DOOR.PERSONNEL.POSITION.x,
         y: DIMENSIONS.DOOR.PERSONNEL.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.DOOR}/personnel-security-rhr.svg`,
+      imgName: `${COMPONENT_TYPES.DOOR}/P202-1-101-Personnel_Door_W_RHR_Lock_44in x 95in.svg`,
       desc: COMPONENT_NAMES.PERSONNEL_DOOR_RHR,
       objWidth: DIMENSIONS.DOOR.PERSONNEL.WIDTH,
       objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
@@ -230,7 +207,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         x: DIMENSIONS.DOOR.SLIDING_FIVE.POSITION.x,
         y: DIMENSIONS.DOOR.SLIDING_FIVE.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.DOOR}/sliding-5.svg`,
+      imgName: `${COMPONENT_TYPES.DOOR}/P202-1-301-Sliding_Glass_Door_5ft_66in x 95in.svg`,
       desc: COMPONENT_NAMES.SLIDING_GLASS_DOOR_5,
       objWidth: DIMENSIONS.DOOR.SLIDING_FIVE.WIDTH,
       objHeight: DIMENSIONS.DOOR.SLIDING_FIVE.HEIGHT,
@@ -244,7 +221,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         x: DIMENSIONS.DOOR.SLIDING_SIX.POSITION.x,
         y: DIMENSIONS.DOOR.SLIDING_SIX.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.DOOR}/sliding-6.svg`,
+      imgName: `${COMPONENT_TYPES.DOOR}/P202-1-304-Sliding_Glass_Door_6ft_72in x 80in.svg`,
       desc: COMPONENT_NAMES.SLIDING_GLASS_DOOR_6,
       objWidth: DIMENSIONS.DOOR.SLIDING_SIX.WIDTH,
       objHeight: DIMENSIONS.DOOR.SLIDING_SIX.HEIGHT,
@@ -258,7 +235,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         x: DIMENSIONS.DOOR.FRENCH.POSITION.x,
         y: DIMENSIONS.DOOR.FRENCH.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.DOOR}/french.svg`,
+      imgName: `${COMPONENT_TYPES.DOOR}/P202-1-503-French Door 72in x 80in.svg`,
       desc: COMPONENT_NAMES.FRENCH_DOOR,
       objWidth: DIMENSIONS.DOOR.FRENCH.WIDTH,
       objHeight: DIMENSIONS.DOOR.FRENCH.HEIGHT,
@@ -272,7 +249,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         x: DIMENSIONS.DOOR.ROLL_UP_6.POSITION.x,
         y: DIMENSIONS.DOOR.ROLL_UP_6.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.DOOR}/rollup.svg`,
+      imgName: `${COMPONENT_TYPES.DOOR}/P215-1-15_RollUp_Door_80in x 95in.svg`,
       desc: COMPONENT_NAMES.ROLL_UP_DOOR_6,
       objWidth: DIMENSIONS.DOOR.ROLL_UP_6.WIDTH,
       objHeight: DIMENSIONS.DOOR.ROLL_UP_6.HEIGHT,
@@ -286,13 +263,13 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         x: DIMENSIONS.DOOR.ROLL_UP_8.POSITION.x,
         y: DIMENSIONS.DOOR.ROLL_UP_8.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.DOOR}/rollup.svg`,
+      imgName: `${COMPONENT_TYPES.DOOR}/P215-1-18_RollUp_Door_104in x 95in.svg`,
       desc: COMPONENT_NAMES.ROLL_UP_DOOR_8,
       objWidth: DIMENSIONS.DOOR.ROLL_UP_8.WIDTH,
       objHeight: DIMENSIONS.DOOR.ROLL_UP_8.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "SM_RollUp_Door_6x74",
+      model: "SM_RollUp_Door_8x74",
     },
     {
       name: COMPONENT_NAMES.ROLL_UP_DOOR_10,
@@ -300,13 +277,13 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         x: DIMENSIONS.DOOR.ROLL_UP_10.POSITION.x,
         y: DIMENSIONS.DOOR.ROLL_UP_10.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.DOOR}/rollup.svg`,
+      imgName: `${COMPONENT_TYPES.DOOR}/P215-1-20_RollUp_Door_128in x 95in.svg`,
       desc: COMPONENT_NAMES.ROLL_UP_DOOR_10,
       objWidth: DIMENSIONS.DOOR.ROLL_UP_10.WIDTH,
       objHeight: DIMENSIONS.DOOR.ROLL_UP_10.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "SM_RollUp_Door_6x74",
+      model: "SM_RollUp_Door_10x74",
     },
     {
       name: COMPONENT_NAMES.ROLL_UP_DOOR_12,
@@ -314,13 +291,27 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         x: DIMENSIONS.DOOR.ROLL_UP_12.POSITION.x,
         y: DIMENSIONS.DOOR.ROLL_UP_12.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.DOOR}/rollup.svg`,
+      imgName: `${COMPONENT_TYPES.DOOR}/P215-1-22_RollUp_Door_152in_95in.svg`,
       desc: COMPONENT_NAMES.ROLL_UP_DOOR_12,
       objWidth: DIMENSIONS.DOOR.ROLL_UP_12.WIDTH,
       objHeight: DIMENSIONS.DOOR.ROLL_UP_12.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "SM_RollUp_Door_6x74",
+      model: "SM_RollUp_Door_12x74",
+    },
+    {
+      name: COMPONENT_NAMES.ROLL_UP_DOOR_15,
+      position: {
+        x: DIMENSIONS.DOOR.ROLL_UP_12.POSITION.x,
+        y: DIMENSIONS.DOOR.ROLL_UP_12.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/P215-1-22_RollUp_Door_152in_95in.svg`,
+      desc: COMPONENT_NAMES.ROLL_UP_DOOR_12,
+      objWidth: DIMENSIONS.DOOR.ROLL_UP_12.WIDTH,
+      objHeight: DIMENSIONS.DOOR.ROLL_UP_12.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 2625,
+      model: "SM_RollUp_Door_15x74",
     },
     {
       name: COMPONENT_NAMES.WINDOW_WHITE_SECURITY,
@@ -328,7 +319,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         x: DIMENSIONS.WINDOW.WINDOW_SECURITY.POSITION.x,
         y: DIMENSIONS.WINDOW.WINDOW_SECURITY.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.WINDOW}/window-security.svg`,
+      imgName: `${COMPONENT_TYPES.WINDOW}/P201-1-01-White Window wHD Steel Frame & Hinged Security 55in x 41in.svg`,
       desc: COMPONENT_NAMES.WINDOW_WHITE_SECURITY,
       objWidth: DIMENSIONS.WINDOW.WINDOW_SECURITY.WIDTH,
       objHeight: DIMENSIONS.WINDOW.WINDOW_SECURITY.HEIGHT,
@@ -342,7 +333,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         x: DIMENSIONS.WINDOW.WINDOW_WO_SECURITY.POSITION.x,
         y: DIMENSIONS.WINDOW.WINDOW_WO_SECURITY.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.WINDOW}/window-wo-security.svg`,
+      imgName: `${COMPONENT_TYPES.WINDOW}/P201-1-03-White Window wBasic 16ga Steel Frame-No Security 55in x 42in.svg`,
       desc: COMPONENT_NAMES.WINDOW_WHITE_WO_SECURITY,
       objWidth: DIMENSIONS.WINDOW.WINDOW_WO_SECURITY.WIDTH,
       objHeight: DIMENSIONS.WINDOW.WINDOW_WO_SECURITY.HEIGHT,

@@ -29,6 +29,7 @@ export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, v
     "/models/container/20/container.glb"
   );
   const { materials: exteriorMaterials } = useGLTF("/models/container/20/exterior.glb");
+  // const material = new MeshStandardMaterial({ color: color });
 
   const doorBoundingBoxGeometries = useMemo(() => {
     return Object.entries(doorBoundingBoxes).map(([id, bbox]) => (
