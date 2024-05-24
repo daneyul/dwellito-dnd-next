@@ -7,10 +7,9 @@ import { checkDistance, generateImgSrc, getUniqueElevationObjects } from "@/util
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const PriceTotal = () => {
-  const { orderTotal, selectedComponents } = useContext(PageDataContext);
+  const { orderTotal, selectedComponents, interior } = useContext(PageDataContext);
   const { ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [open, setOpen] = useState(false);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
 

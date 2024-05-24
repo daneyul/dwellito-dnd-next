@@ -50,7 +50,7 @@ const Rollup6 = React.memo(({ component, onBoundingBoxChange }) => {
       rotation={rotation}
     >
       <group
-        position={[3.84, 2.05, 0]}
+        position={[3.84, 2.02, -0.03]}
         rotation={[-Math.PI, 0, -Math.PI]}
       >
         <mesh

@@ -35,7 +35,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         },
       },
       SLIDING_SIX: {
-        WIDTH:  72,
+        WIDTH: 72,
         HEIGHT: 80,
         POSITION: {
           x: 0,
@@ -51,7 +51,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         },
       },
       ROLL_UP_6: {
-        WIDTH: 88,
+        WIDTH: 80,
         HEIGHT: 95,
         POSITION: {
           x: 0,
@@ -445,16 +445,16 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
   );
 
   const INTERIOR_OPTIONS = [
-    {name: "Plywood", hex: "#C19A6B", price: ""},
-    {name: "Pre-finished Drywall", hex: "#F2F2F2", price: ""}
-  ]
+    { name: "Plywood", hex: "#C19A6B", price: "", img: "" },
+    { name: "Pre-finished Drywall", hex: "#F2F2F2", price: "", img: "" },
+  ];
 
   const colors = [
-    { name: 'White', hex: '#F2F2F2' },
-    { name: 'Blue', hex: '#003366' },
-    { name: 'Green', hex: '#2E8B57' },
-    { name: 'Slate Grey', hex: '#6C7B8B' },
-    { name: 'Red', hex: '#800000' }
+    { name: "White", hex: "#F2F2F2" },
+    { name: "Blue", hex: "#003366" },
+    { name: "Green", hex: "#2E8B57" },
+    { name: "Slate Grey", hex: "#6C7B8B" },
+    { name: "Red", hex: "#800000" },
   ];
 
   return (
@@ -470,7 +470,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         elevationData,
         ELEVATION_NAMES,
         INTERIOR_OPTIONS,
-        colors
+        colors,
       }}
     >
       {children}
