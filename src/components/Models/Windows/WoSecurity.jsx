@@ -55,10 +55,10 @@ const WoSecurity = React.memo(({ component, onBoundingBoxChange }) => {
       ref={ref}
       dispose={null}
       scale={[10, 10, 10]}
-      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
+      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS)}
       rotation={rotation}
     >
-      <group position={[0.745, 2.225, -0.02]} rotation={[-Math.PI, 0, -Math.PI]}>
+      <group position={[0.745, 2.225, -0.13]} rotation={[-Math.PI, 0, -Math.PI]}>
         <group scale={0.01}>
           <mesh
             castShadow

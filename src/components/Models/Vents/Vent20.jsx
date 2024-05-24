@@ -46,7 +46,7 @@ const Vent20 = React.memo(({ component, onBoundingBoxChange }) => {
       ref={ref}
       dispose={null}
       scale={[10, 10, 10]}
-      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
+      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS)}
       rotation={rotation}
     >
       <group position={[0.25, 2.2, -0.04]} rotation={[-Math.PI / 2, 0, 0]}>

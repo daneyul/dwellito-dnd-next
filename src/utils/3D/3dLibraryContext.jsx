@@ -24,22 +24,10 @@ export const Library3dDataProvider = ({ children, materialsData }) => {
   
   const EXTERIOR = "exterior";
   const INTERIOR = "interior";
-  const INTERIOR_OPTIONS = [
-    {name: "Plywood", hex: "#C19A6B"},
-    {name: "Pre-finished Drywall", hex: "#F2F2F2"}
-  ]
 
   // const colors = materialsData.map((material) => {
   //   return { name: material["Title"], hex: `#${material["HEX"]}`, img: ""}
   // })
-
-  const colors = [
-    { name: 'White', hex: '#F2F2F2' },
-    { name: 'Blue', hex: '#003366' },
-    { name: 'Green', hex: '#2E8B57' },
-    { name: 'Slate Grey', hex: '#6C7B8B' },
-    { name: 'Red', hex: '#800000' }
-  ];
   
   return (
     <Library3dDataContext.Provider
@@ -47,8 +35,6 @@ export const Library3dDataProvider = ({ children, materialsData }) => {
         DIMENSIONS,
         CANVAS_SCALE_FACTOR,
         SCALE_FACTOR_FOR_CALCULATIONS,
-        colors,
-        INTERIOR_OPTIONS,
         EXTERIOR,
         INTERIOR
       }}

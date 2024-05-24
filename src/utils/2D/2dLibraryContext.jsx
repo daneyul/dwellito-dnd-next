@@ -23,15 +23,15 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 8,
+          y: 7,
         },
       },
       SLIDING_FIVE: {
         WIDTH: 66,
-        HEIGHT: 95,
+        HEIGHT: 83,
         POSITION: {
           x: 0,
-          y: 8,
+          y: 36,
         },
       },
       SLIDING_SIX: {
@@ -55,7 +55,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 8,
+          y: 7,
         },
       },
       ROLL_UP_8: {
@@ -63,7 +63,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 8,
+          y: 7,
         },
       },
       ROLL_UP_10: {
@@ -71,7 +71,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 8,
+          y: 7,
         },
       },
       ROLL_UP_12: {
@@ -79,7 +79,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 8,
+          y: 7,
         },
       },
       ROLL_UP_15: {
@@ -87,7 +87,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 95,
         POSITION: {
           x: 0,
-          y: 8,
+          y: 7,
         },
       },
     },
@@ -97,7 +97,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 42,
         POSITION: {
           x: 0,
-          y: 49,
+          y: 40,
         },
       },
       WINDOW_SECURITY: {
@@ -105,7 +105,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         HEIGHT: 41,
         POSITION: {
           x: 0,
-          y: 49,
+          y: 40,
         },
       },
     },
@@ -207,13 +207,13 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         x: DIMENSIONS.DOOR.SLIDING_FIVE.POSITION.x,
         y: DIMENSIONS.DOOR.SLIDING_FIVE.POSITION.y,
       },
-      imgName: `${COMPONENT_TYPES.DOOR}/P202-1-301-Sliding_Glass_Door_5ft_66in x 95in.svg`,
+      imgName: `${COMPONENT_TYPES.DOOR}/P202-1-301-Wide_Sliding_Glass_Door_5ft_66in x 83in.svg`,
       desc: COMPONENT_NAMES.SLIDING_GLASS_DOOR_5,
       objWidth: DIMENSIONS.DOOR.SLIDING_FIVE.WIDTH,
       objHeight: DIMENSIONS.DOOR.SLIDING_FIVE.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 3025,
-      model: "SM_Wide_Sliding_Glass_Door_5feet",
+      model: "P202-1-301_Wide_Sliding_Glass_Door_5feet",
     },
     {
       name: COMPONENT_NAMES.SLIDING_GLASS_DOOR_6,
@@ -299,20 +299,20 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
       price: 2625,
       model: "SM_RollUp_Door_12x74",
     },
-    {
-      name: COMPONENT_NAMES.ROLL_UP_DOOR_15,
-      position: {
-        x: DIMENSIONS.DOOR.ROLL_UP_12.POSITION.x,
-        y: DIMENSIONS.DOOR.ROLL_UP_12.POSITION.y,
-      },
-      imgName: `${COMPONENT_TYPES.DOOR}/P215-1-22_RollUp_Door_152in_95in.svg`,
-      desc: COMPONENT_NAMES.ROLL_UP_DOOR_12,
-      objWidth: DIMENSIONS.DOOR.ROLL_UP_12.WIDTH,
-      objHeight: DIMENSIONS.DOOR.ROLL_UP_12.HEIGHT,
-      objType: COMPONENT_TYPES.DOOR,
-      price: 2625,
-      model: "SM_RollUp_Door_15x74",
-    },
+    // {
+    //   name: COMPONENT_NAMES.ROLL_UP_DOOR_15,
+    //   position: {
+    //     x: DIMENSIONS.DOOR.ROLL_UP_12.POSITION.x,
+    //     y: DIMENSIONS.DOOR.ROLL_UP_12.POSITION.y,
+    //   },
+    //   imgName: `${COMPONENT_TYPES.DOOR}/P215-1-22_RollUp_Door_152in_95in.svg`,
+    //   desc: COMPONENT_NAMES.ROLL_UP_DOOR_12,
+    //   objWidth: DIMENSIONS.DOOR.ROLL_UP_12.WIDTH,
+    //   objHeight: DIMENSIONS.DOOR.ROLL_UP_12.HEIGHT,
+    //   objType: COMPONENT_TYPES.DOOR,
+    //   price: 2625,
+    //   model: "SM_RollUp_Door_15x74",
+    // },
     {
       name: COMPONENT_NAMES.WINDOW_WHITE_SECURITY,
       position: {
@@ -444,6 +444,19 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
     (item) => item.name === ELEVATION_NAMES.RIGHT
   );
 
+  const INTERIOR_OPTIONS = [
+    {name: "Plywood", hex: "#C19A6B", price: ""},
+    {name: "Pre-finished Drywall", hex: "#F2F2F2", price: ""}
+  ]
+
+  const colors = [
+    { name: 'White', hex: '#F2F2F2' },
+    { name: 'Blue', hex: '#003366' },
+    { name: 'Green', hex: '#2E8B57' },
+    { name: 'Slate Grey', hex: '#6C7B8B' },
+    { name: 'Red', hex: '#800000' }
+  ];
+
   return (
     <Library2dDataContext.Provider
       value={{
@@ -456,6 +469,8 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         DEFAULT_ELEVATION,
         elevationData,
         ELEVATION_NAMES,
+        INTERIOR_OPTIONS,
+        colors
       }}
     >
       {children}

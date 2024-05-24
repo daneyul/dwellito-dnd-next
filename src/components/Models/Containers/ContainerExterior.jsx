@@ -2,12 +2,12 @@ import { useGLTF } from "@react-three/drei";
 import { MeshStandardMaterial } from "three";
 import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { useContext, useRef } from "react";
-import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
+import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 export default function ContainerExterior({ color, interior }) {
   const { nodes, materials } = useGLTF("/models/container/20/container-exterior.glb");
   const { materials: exteriorMaterials } = useGLTF("/models/container/20/exterior.glb");
-  const { INTERIOR_OPTIONS } = useContext(Library3dDataContext);
+  const { INTERIOR_OPTIONS } = useContext(Library2dDataContext);
   const material = new MeshStandardMaterial({ color: color });
   const ref = useRef();
 
@@ -91,7 +91,7 @@ export default function ContainerExterior({ color, interior }) {
           castShadow
           receiveShadow
           geometry={nodes.Container_Exterior_Blank_Bottom_01.geometry}
-          material={exteriorMaterials["White"]}
+          material={material}
         />
         <mesh
           castShadow

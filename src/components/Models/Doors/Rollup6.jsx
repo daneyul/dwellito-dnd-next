@@ -8,7 +8,7 @@ import { useGLTF } from "@react-three/drei";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
-const Rollup = React.memo(({ component, onBoundingBoxChange }) => {
+const Rollup6 = React.memo(({ component, onBoundingBoxChange }) => {
   const { nodes, materials } = useGLTF(`/models/doors/${component.model}.glb`);
   const { elevationData, ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
@@ -46,7 +46,7 @@ const Rollup = React.memo(({ component, onBoundingBoxChange }) => {
       ref={ref}
       dispose={null}
       scale={[10, 10, 10]}
-      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
+      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS)}
       rotation={rotation}
     >
       <group
@@ -80,4 +80,4 @@ const Rollup = React.memo(({ component, onBoundingBoxChange }) => {
   );
 });
 
-export default Rollup;
+export default Rollup6;

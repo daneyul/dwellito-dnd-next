@@ -7,8 +7,9 @@ import { calcPosition, calcRotation } from "@/utils/3D/utils";
 import { useGLTF } from "@react-three/drei";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
-const Vent24 = React.memo(({ component, onBoundingBoxChange }) => {
-  const { nodes, materials } = useGLTF(`/models/vents/${component.model}.glb`);
+
+const Rollup15 = React.memo(({ component, onBoundingBoxChange }) => {
+  const { nodes, materials } = useGLTF(`/models/doors/${component.model}.glb`);
   const { elevationData, ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
   const selectedElevation = component.elevation[0];
@@ -26,7 +27,7 @@ const Vent24 = React.memo(({ component, onBoundingBoxChange }) => {
   );
 
   useEffect(() => {
-    preloadGLTFModel(`vents/${component.model}`);
+    preloadGLTFModel(`doors/${component.model}`);
   }, [component.model]);
 
   useEffect(() => {
@@ -48,14 +49,30 @@ const Vent24 = React.memo(({ component, onBoundingBoxChange }) => {
       position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS)}
       rotation={rotation}
     >
-      <group position={[0.3, 2.1, -0.04]} rotation={[-Math.PI / 2, 0, 0]}>
+      <group
+        position={[3.84, 2.02, -0.03]}
+        rotation={[-Math.PI, 0, -Math.PI]}
+      >
         <mesh
           castShadow
           receiveShadow
           geometry={
-            nodes['P203-1-306_24in_x_24in_Aluminum_Fixed_Louver_16ga_Bolt_on_Frame'].geometry
+            nodes[
+              `SM_RollUp_Door_15x74_1`
+            ].geometry
           }
-          material={materials.Aluminum_01}
+          material={materials.Metal_01}
+          scale={0.01}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={
+            nodes[
+              `SM_RollUp_Door_15x74_2`
+            ].geometry
+          }
+          material={materials.Metal_01}
           scale={0.01}
         />
       </group>
@@ -63,4 +80,4 @@ const Vent24 = React.memo(({ component, onBoundingBoxChange }) => {
   );
 });
 
-export default Vent24;
+export default Rollup15;

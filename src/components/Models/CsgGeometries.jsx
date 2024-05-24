@@ -3,10 +3,11 @@ import { useGLTF } from "@react-three/drei";
 import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { Base, Geometry, Subtraction } from "@react-three/csg";
 import * as THREE from "three";
-import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
+import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
+import { MeshStandardMaterial } from "three";
 
 export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, ventBoundingBoxes, interior }) {
-  const { INTERIOR_OPTIONS } = useContext(Library3dDataContext);
+  const { INTERIOR_OPTIONS } = useContext(Library2dDataContext);
   const { nodes: cRightNodes } = useGLTF(
     "/models/container/20/container-exterior-right.glb"
   );
@@ -29,7 +30,7 @@ export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, v
     "/models/container/20/container.glb"
   );
   const { materials: exteriorMaterials } = useGLTF("/models/container/20/exterior.glb");
-  // const material = new MeshStandardMaterial({ color: color });
+  const material = new MeshStandardMaterial({ color: color });
 
   const doorBoundingBoxGeometries = useMemo(() => {
     return Object.entries(doorBoundingBoxes).map(([id, bbox]) => (
@@ -139,19 +140,19 @@ export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, v
         }
         <Base
           geometry={cRightNodes.mesh_0.geometry}
-          material={exteriorMaterials["White"]}
+          material={material}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
         <Base
           geometry={cBackNodes.mesh_0.geometry}
-          material={exteriorMaterials["White"]}
+          material={material}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
         <Base
           geometry={cLeftNodes.mesh_0.geometry}
-          material={exteriorMaterials["White"]}
+          material={material}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />

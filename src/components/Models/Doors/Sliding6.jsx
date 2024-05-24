@@ -41,15 +41,24 @@ const Sliding6 = React.memo(({ component, onBoundingBoxChange }) => {
     }
   }, [ref.current]);
 
+  useEffect(() => {
+    if (materials.Glass) {
+      materials.Glass.transparent = true;
+      materials.Glass.opacity = 0.6; // Adjust opacity as needed
+      materials.Glass.roughness = 0.1; // Glass is generally smooth
+      materials.Glass.metalness = 0.0; // Glass isn't metallic
+    }
+  }, [materials]);
+
   return (
     <group
       ref={ref}
       dispose={null}
       scale={[10, 10, 10]}
-      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS)}
+      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS)}
       rotation={rotation}
     >
-      <group position={[0.81, 1.84, 0]}>
+      <group position={[0.81, 1.83, 0]}>
         <group scale={0.01}>
           <mesh
             castShadow

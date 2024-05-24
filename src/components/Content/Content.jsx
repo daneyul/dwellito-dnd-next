@@ -14,7 +14,7 @@ import Logo from "@/components/Logo";
 import Viewer from "@/components/Viewer/Viewer";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import PriceTotal from "@/components/PriceTotal/PriceTotal";
-import { Library3dDataContext, Library3dDataProvider } from "@/utils/3D/3dLibraryContext";
+import { Library3dDataProvider } from "@/utils/3D/3dLibraryContext";
 import { Library2dDataContext, Library2dDataProvider } from "@/utils/2D/2dLibraryContext";
 
 export const PageDataContext = createContext();
@@ -30,11 +30,10 @@ const PageDataProvider = ({ children, data }) => {
     DEFAULT_ELEVATION,
     snapToGridModifier,
     COMPONENT_TYPES,
-    DIMENSIONS
+    DIMENSIONS,
+    INTERIOR_OPTIONS,
+    colors
   } = useContext(Library2dDataContext);
-
-  // 3D Library 
-  const { INTERIOR_OPTIONS } = useContext(Library3dDataContext);
 
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);
@@ -52,8 +51,9 @@ const PageDataProvider = ({ children, data }) => {
     acc[component.id] = React.createRef();
     return acc;
   }, {});
-
   const [orderTotal, setOrderTotal] = useState(0);
+  const [color, setColor] = useState(colors[0].hex);
+  const [interior, setInterior] = useState(INTERIOR_OPTIONS[0]);
 
   const toggleOrder = () => {
     setShowYourOrder(!showYourOrder);
@@ -68,9 +68,9 @@ const PageDataProvider = ({ children, data }) => {
     const total = selectedComponents.reduce(
       (accumulator, currentComponent) => accumulator + currentComponent.price,
       0
-    );
+    ) + interior.price;
     setOrderTotal(total);
-  }, [selectedComponents]);
+  }, [selectedComponents, interior]);
 
   // For each elevation change, reset the isSelected state for all components
   useEffect(() => {
@@ -225,9 +225,6 @@ const PageDataProvider = ({ children, data }) => {
   const isAnyItemSelected = selectedComponents.some(
     (component) => component.isSelected
   );
-
-  const [color, setColor] = useState("#F2F2F2");
-  const [interior, setInterior] = useState(INTERIOR_OPTIONS[0]);
 
   return (
     <PageDataContext.Provider
