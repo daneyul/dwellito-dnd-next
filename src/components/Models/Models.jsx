@@ -33,14 +33,23 @@ const Models = () => {
       selectedComponents.filter(
         (comp) => comp.objType === COMPONENT_TYPES.DOOR
       ),
-    [selectedComponents]
+    [selectedComponents, COMPONENT_TYPES]
   );
-  const windows = selectedComponents.filter(
-    (component) => component.objType === COMPONENT_TYPES.WINDOW
+  const windows = useMemo(
+    () =>
+      selectedComponents.filter(
+        (component) => component.objType === COMPONENT_TYPES.WINDOW
+      ),
+    [selectedComponents, COMPONENT_TYPES]
   );
-  const vents = selectedComponents.filter(
-    (component) => component.objType === COMPONENT_TYPES.VENT
+  const vents = useMemo(
+    () =>
+      selectedComponents.filter(
+        (component) => component.objType === COMPONENT_TYPES.VENT
+      ),
+    [selectedComponents, COMPONENT_TYPES]
   );
+
   const exteriorCamPos = [100, 50, 100];
   const interiorCamPos = [28.68, 12, -0.88];
   const interiorCamRot = [2.15, 12, 5.65];

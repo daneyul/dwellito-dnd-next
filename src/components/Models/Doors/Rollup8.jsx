@@ -1,4 +1,5 @@
 /* eslint-disable react/display-name */
+import { PageDataContext } from "@/components/Content/Content";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { checkDistance } from "@/utils/2D/utils";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
@@ -10,6 +11,7 @@ import { Box3, Vector3 } from "three";
 
 const Rollup8 = React.memo(({ component, onBoundingBoxChange }) => {
   const { nodes, materials } = useGLTF(`/models/doors/${component.model}.glb`);
+  const { selectedComponents } = useContext(PageDataContext);
   const { elevationData, ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
   const selectedElevation = component.elevation[0];
@@ -39,7 +41,7 @@ const Rollup8 = React.memo(({ component, onBoundingBoxChange }) => {
       bbox.getCenter(center);
       onBoundingBoxChange({ size, center });
     }
-  }, [ref.current]);
+  }, [selectedComponents]);
 
   return (
     <group
