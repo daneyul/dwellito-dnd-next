@@ -74,9 +74,9 @@ const frontSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, D
   ]
 }
 const backSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS }) => {
-  let xPosition = DIMENSIONS.CONTAINER.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX - 0.55;
+  let xPosition = DIMENSIONS.CONTAINER.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX;
   let yPosition = -distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY;
-  let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
+  let zPosition = -(parseFloat(distanceObject.top) + 1) / SCALE_FACTOR_FOR_CALCULATIONS;
   return [
     xPosition,
     zPosition,
