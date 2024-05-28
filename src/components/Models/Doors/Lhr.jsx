@@ -28,7 +28,6 @@ const Lhr = React.memo(({ component, onBoundingBoxChange }) => {
     () => [0, calcRotation(selectedElevation, elevationData, selectedContainer, ELEVATION_NAMES), 0],
     [selectedElevation, elevationData]
   );
-  console.log(selectedContainer)
 
   useEffect(() => {
     preloadGLTFModel(`doors/${component.model}`);

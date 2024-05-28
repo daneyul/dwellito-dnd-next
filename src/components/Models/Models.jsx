@@ -3,7 +3,7 @@ import {
   OrbitControls,
   Environment,
   RandomizedLight,
-  useGLTF
+  useGLTF,
 } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
@@ -20,7 +20,7 @@ import { Vector3 } from "three";
 import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
 import { CsgGeometries } from "./Containers/20/CsgGeometries";
-import ContainerExterior from "./Containers/20/ContainerExterior";
+import ContainerExterior from "./Containers/20/ContainerShell";
 import { PageDataContext } from "../Content/Content";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
@@ -28,8 +28,12 @@ const Models = () => {
   const { selectedComponents, color, interior, showExterior } =
     useContext(PageDataContext);
   const { COMPONENT_TYPES } = useContext(Library2dDataContext);
-  const { materials: exteriorMaterials } = useGLTF(
-    color.material
+  const { materials: exteriorMaterials } = useGLTF(color.material);
+  const { materials: plywoodMaterial } = useGLTF(
+    "/models/materials/plywood.glb"
+  );
+  const { materials: drywallMaterial } = useGLTF(
+    "/models/materials/drywall.glb"
   );
   const exteriorPaint = exteriorMaterials[color.obj];
 
@@ -143,6 +147,8 @@ const Models = () => {
           windowBoundingBoxes={windowBoundingBoxes}
           ventBoundingBoxes={ventBoundingBoxes}
           interior={interior}
+          plywoodMaterial={plywoodMaterial}
+          drywallMaterial={drywallMaterial}
         />
         {doors.map((door, index) => (
           <Door

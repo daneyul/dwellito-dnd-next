@@ -1,5 +1,4 @@
 import { useGLTF } from "@react-three/drei";
-import { MeshStandardMaterial } from "three";
 import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { useContext, useRef } from "react";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
@@ -16,17 +15,17 @@ export default function ContainerExterior({ exteriorPaint, interior }) {
       return (
         <>
           <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['20FT_Blank_PlywoodWall_RearTop_01'].geometry}
-        material={materials['Plywood_Texture_01.001']}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['20FT_Blank_PlywoodWall_RearTop_01_1'].geometry}
-        material={materials['Black_Vinyl.002']}
-      />
+            castShadow
+            receiveShadow
+            geometry={nodes["20FT_Blank_PlywoodWall_RearTop_01"].geometry}
+            material={materials["Plywood_Texture_01.001"]}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes["20FT_Blank_PlywoodWall_RearTop_01_1"].geometry}
+            material={materials["Black_Vinyl.002"]}
+          />
         </>
       );
     }
@@ -75,17 +74,17 @@ export default function ContainerExterior({ exteriorPaint, interior }) {
     return (
       <>
         <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['20FT_Blank_LED_Light_Fixture_001'].geometry}
-        material={materials['White_Mtl.002']}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['20FT_Blank_LED_Light_Fixture_001_1'].geometry}
-        material={materials['Emissive_Light.002']}
-      />
+          castShadow
+          receiveShadow
+          geometry={nodes["20FT_Blank_LED_Light_Fixture_001"].geometry}
+          material={materials["White_Mtl.002"]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes["20FT_Blank_LED_Light_Fixture_001_1"].geometry}
+          material={materials["Emissive_Light.002"]}
+        />
       </>
     );
   };
@@ -94,11 +93,11 @@ export default function ContainerExterior({ exteriorPaint, interior }) {
     return (
       <>
         <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['20FT_Interior_Blank_Floor_01001'].geometry}
-        material={materials['Timber.001']}
-      />
+          castShadow
+          receiveShadow
+          geometry={nodes["20FT_Interior_Blank_Floor_01001"].geometry}
+          material={materials["Timber.001"]}
+        />
       </>
     );
   };
@@ -113,13 +112,13 @@ export default function ContainerExterior({ exteriorPaint, interior }) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes['20FT_Container_Exterior_Blank_Bottom_01'].geometry}
+        geometry={nodes["20FT_Container_Exterior_Blank_Bottom_01"].geometry}
         material={exteriorPaint}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes['20FT_Container_Exterior_Blank_RearTop_01'].geometry}
+        geometry={nodes["20FT_Container_Exterior_Blank_RearTop_01"].geometry}
         material={exteriorPaint}
       />
       <Lighting />

@@ -4,9 +4,16 @@ import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { Base, Geometry, Subtraction } from "@react-three/csg";
 import * as THREE from "three";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
-import { MeshStandardMaterial } from "three";
 
-export function CsgGeometries({ exteriorPaint, doorBoundingBoxes, windowBoundingBoxes, ventBoundingBoxes, interior }) {
+export function CsgGeometries({
+  exteriorPaint,
+  plywoodMaterial,
+  drywallMaterial,
+  doorBoundingBoxes,
+  windowBoundingBoxes,
+  ventBoundingBoxes,
+  interior,
+}) {
   const { INTERIOR_OPTIONS } = useContext(Library2dDataContext);
   const { nodes: cRightNodes } = useGLTF(
     "/models/container/20/exterior-right.glb"
@@ -17,11 +24,15 @@ export function CsgGeometries({ exteriorPaint, doorBoundingBoxes, windowBounding
   const { nodes: cLeftNodes } = useGLTF(
     "/models/container/20/exterior-left.glb"
   );
-  const { nodes: dRightNodes } = useGLTF("/models/drywall/20/drywall-right.glb");
+  const { nodes: dRightNodes } = useGLTF(
+    "/models/drywall/20/drywall-right.glb"
+  );
   const { nodes: dLeftNodes } = useGLTF("/models/drywall/20/drywall-left.glb");
   const { nodes: dBackNodes } = useGLTF("/models/drywall/20/drywall-back.glb");
 
-  const { nodes: pRightNodes } = useGLTF("/models/plywood/20/plywood-right.glb");
+  const { nodes: pRightNodes } = useGLTF(
+    "/models/plywood/20/plywood-right.glb"
+  );
   const { nodes: pLeftNodes } = useGLTF("/models/plywood/20/plywood-left.glb");
   const { nodes: pBackNodes } = useGLTF("/models/plywood/20/plywood-back.glb");
 
@@ -94,48 +105,46 @@ export function CsgGeometries({ exteriorPaint, doorBoundingBoxes, windowBounding
           <>
             <Base
               geometry={dBackNodes.mesh_0.geometry}
-              material={containerMaterials["White_Drywall_Wall.001"]}
+              material={drywallMaterial["White_Drywall_Wall.002"]}
               scale={10}
               position={[adjustForX, 0, adjustForY]}
             />
             <Base
               geometry={dRightNodes.mesh_0.geometry}
-              material={containerMaterials["White_Drywall_Wall.001"]}
+              material={drywallMaterial["White_Drywall_Wall.002"]}
               scale={10}
               position={[adjustForX, 0, adjustForY]}
             />
             <Base
               geometry={dLeftNodes.mesh_0.geometry}
-              material={containerMaterials["White_Drywall_Wall.001"]}
+              material={drywallMaterial["White_Drywall_Wall.002"]}
               scale={10}
               position={[adjustForX, 0, adjustForY]}
             />
           </>
         ) : null}
-        {
-          interior === INTERIOR_OPTIONS[0] ? (
-            <>
+        {interior === INTERIOR_OPTIONS[0] ? (
+          <>
             <Base
               geometry={pBackNodes.mesh_0.geometry}
-              material={containerMaterials["Plywood_Texture_01.001"]}
+              material={plywoodMaterial["Plywood"]}
               scale={10}
               position={[adjustForX, 0, adjustForY]}
             />
             <Base
               geometry={pRightNodes.mesh_0.geometry}
-              material={containerMaterials["Plywood_Texture_01.001"]}
+              material={plywoodMaterial["Plywood"]}
               scale={10}
               position={[adjustForX, 0, adjustForY]}
             />
             <Base
               geometry={pLeftNodes.mesh_0.geometry}
-              material={containerMaterials["Plywood_Texture_01.001"]}
+              material={plywoodMaterial["Plywood"]}
               scale={10}
               position={[adjustForX, 0, adjustForY]}
             />
           </>
-          ) : null
-        }
+        ) : null}
         <Base
           geometry={cRightNodes.mesh_0.geometry}
           material={exteriorPaint}
