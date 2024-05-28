@@ -8,13 +8,35 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
   // This is the actual container dimensions in inches
   const DIMENSIONS = {
     CONTAINER: {
-      SIDE: {
-        WIDTH: 238,
-        HEIGHT: 102,
+      TEN: {
+        SIDE: {
+          WIDTH: 238,
+          HEIGHT: 102,
+        },
+        FRONT: {
+          WIDTH: 96,
+          HEIGHT: 102,
+        },
       },
-      FRONT: {
-        WIDTH: 96,
-        HEIGHT: 102,
+      TWENTY: {
+        SIDE: {
+          WIDTH: 238,
+          HEIGHT: 102,
+        },
+        FRONT: {
+          WIDTH: 96,
+          HEIGHT: 102,
+        },
+      },
+      FORTY: {
+        SIDE: {
+          WIDTH: 238,
+          HEIGHT: 102,
+        },
+        FRONT: {
+          WIDTH: 96,
+          HEIGHT: 102,
+        },
       },
     },
     DOOR: {
@@ -171,6 +193,21 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
 
   // Grid size is in inches, so 1 would be 1 inch
   const snapToGridModifier = createSnapModifier(DIMENSIONS.GRID_SIZE);
+
+  const containerData = [
+    {
+      name: `10' Custom Cube`,
+      slug: '10-custom-cube'
+    },
+    {
+      name: `20' Custom Cube`,
+      slug: '20-custom-cube'
+    },
+    {
+      name: `40' Custom Cube`,
+      slug: '40-custom-cube'
+    },
+  ];
 
   const componentData = [
     {
@@ -409,28 +446,67 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
   const elevationData = [
     {
       name: ELEVATION_NAMES.RIGHT,
-      imgName: "elevation/side.svg",
-      objWidth: DIMENSIONS.CONTAINER.SIDE.WIDTH,
-      objHeight: DIMENSIONS.CONTAINER.SIDE.HEIGHT,
+      homePlan: containerData[0].name,
+      imgName: "elevation/10/right.svg",
+      objWidth: DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH,
+      objHeight: DIMENSIONS.CONTAINER.TEN.SIDE.HEIGHT,
+    },
+    {
+      name: ELEVATION_NAMES.RIGHT,
+      homePlan: containerData[1].name,
+      imgName: "elevation/20/right.svg",
+      objWidth: DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH,
+      objHeight: DIMENSIONS.CONTAINER.TWENTY.SIDE.HEIGHT,
+    },
+    {
+      name: ELEVATION_NAMES.RIGHT,
+      homePlan: containerData[2].name,
+      imgName: "elevation/40/right.svg",
+      objWidth: DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH,
+      objHeight: DIMENSIONS.CONTAINER.FORTY.SIDE.HEIGHT,
     },
     {
       name: ELEVATION_NAMES.BACK,
-      imgName: "elevation/back.svg",
-      objWidth: DIMENSIONS.CONTAINER.FRONT.WIDTH,
-      objHeight: DIMENSIONS.CONTAINER.FRONT.HEIGHT,
+      imgName: "elevation/10/back.svg",
+      homePlan: containerData[0].name,
+      objWidth: DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH,
+      objHeight: DIMENSIONS.CONTAINER.TEN.FRONT.HEIGHT,
+    },
+    {
+      name: ELEVATION_NAMES.BACK,
+      imgName: "elevation/20/back.svg",
+      homePlan: containerData[1].name,
+      objWidth: DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH,
+      objHeight: DIMENSIONS.CONTAINER.TWENTY.FRONT.HEIGHT,
+    },
+    {
+      name: ELEVATION_NAMES.BACK,
+      imgName: "elevation/40/back.svg",
+      homePlan: containerData[2].name,
+      objWidth: DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH,
+      objHeight: DIMENSIONS.CONTAINER.FORTY.FRONT.HEIGHT,
     },
     {
       name: ELEVATION_NAMES.LEFT,
-      imgName: "elevation/side.svg",
-      objWidth: DIMENSIONS.CONTAINER.SIDE.WIDTH,
-      objHeight: DIMENSIONS.CONTAINER.SIDE.HEIGHT,
+      imgName: "elevation/10/left.svg",
+      homePlan: containerData[0].name,
+      objWidth: DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH,
+      objHeight: DIMENSIONS.CONTAINER.TEN.SIDE.HEIGHT,
     },
     {
-      name: ELEVATION_NAMES.FRONT,
-      imgName: "elevation/front.svg",
-      objWidth: DIMENSIONS.CONTAINER.FRONT.WIDTH,
-      objHeight: DIMENSIONS.CONTAINER.FRONT.HEIGHT,
+      name: ELEVATION_NAMES.LEFT,
+      imgName: "elevation/20/left.svg",
+      homePlan: containerData[1].name,
+      objWidth: DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH,
+      objHeight: DIMENSIONS.CONTAINER.TWENTY.SIDE.HEIGHT,
     },
+    {
+      name: ELEVATION_NAMES.LEFT,
+      imgName: "elevation/40/left.svg",
+      homePlan: containerData[2].name,
+      objWidth: DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH,
+      objHeight: DIMENSIONS.CONTAINER.FORTY.SIDE.HEIGHT,
+    }
   ]
     .filter((item) => item.name !== ELEVATION_NAMES.FRONT)
     .map((item) => ({
@@ -445,21 +521,42 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
   );
 
   const INTERIOR_OPTIONS = [
-    { name: "Plywood", hex: "#C19A6B", price: "", img: "" },
-    { name: "Pre-finished Drywall", hex: "#F2F2F2", price: "", img: "" },
+    { name: "Plywood", hex: "#C19A6B", price: "", img: "", material: "" },
+    { name: "Pre-finished Drywall", hex: "#F2F2F2", price: "", img: "", material: "" },
   ];
 
   const colors = [
-    { name: "White", hex: "#F2F2F2" },
-    { name: "Blue", hex: "#003366" },
-    { name: "Green", hex: "#2E8B57" },
-    { name: "Slate Grey", hex: "#6C7B8B" },
-    { name: "Red", hex: "#800000" },
+    {
+      name: "White",
+      hex: "#F2F2F2",
+      material: "/models/materials/white-paint.glb",
+    },
+    {
+      name: "Blue",
+      hex: "#003366",
+      material: "/models/materials/blue-paint.glb",
+    },
+    {
+      name: "Green",
+      hex: "#2E8B57",
+      material: "/models/materials/green-paint.glb",
+    },
+    {
+      name: "Slate Grey",
+      hex: "#6C7B8B",
+      material: "/models/materials/slate-grey-paint.glb",
+    },
+    {
+      name: "Red",
+      hex: "#800000",
+      material: "/models/materials/red-paint.glb",
+    },
   ];
 
   return (
     <Library2dDataContext.Provider
       value={{
+        containerData,
         DIMENSIONS,
         COMPONENT_NAMES,
         COMPONENT_TYPES,

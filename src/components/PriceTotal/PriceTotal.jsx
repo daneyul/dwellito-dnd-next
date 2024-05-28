@@ -7,7 +7,7 @@ import { checkDistance, generateImgSrc, getUniqueElevationObjects } from "@/util
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const PriceTotal = () => {
-  const { orderTotal, selectedComponents, interior } = useContext(PageDataContext);
+  const { orderTotal, selectedComponents, interior, selectedContainer } = useContext(PageDataContext);
   const { ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const [dialogOpen, setDialogOpen] = useState(false);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
@@ -24,7 +24,7 @@ const PriceTotal = () => {
         <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
           {componentsForElevation.map((component) => {
 
-            const distance = checkDistance({component: component, selectedElevation: elevation, DIMENSIONS, ELEVATION_NAMES});
+            const distance = checkDistance({component: component, selectedElevation: elevation, DIMENSIONS, ELEVATION_NAMES, selectedContainer});
 
             return (
               <li key={component.id} className={style.lineItem}>

@@ -10,7 +10,7 @@ import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 const Vent24 = React.memo(({ component, onBoundingBoxChange }) => {
   const { nodes, materials } = useGLTF(`/models/vents/${component.model}.glb`);
-  const { selectedComponents } = useContext(PageDataContext);
+  const { selectedComponents, selectedContainer } = useContext(PageDataContext);
   const { elevationData, ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
   const selectedElevation = component.elevation[0];
@@ -18,7 +18,8 @@ const Vent24 = React.memo(({ component, onBoundingBoxChange }) => {
     component,
     selectedElevation,
     DIMENSIONS,
-    ELEVATION_NAMES
+    ELEVATION_NAMES,
+    selectedContainer
   });
   const ref = useRef();
 

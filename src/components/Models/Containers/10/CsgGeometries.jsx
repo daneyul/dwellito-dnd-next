@@ -9,28 +9,27 @@ import { MeshStandardMaterial } from "three";
 export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, ventBoundingBoxes, interior }) {
   const { INTERIOR_OPTIONS } = useContext(Library2dDataContext);
   const { nodes: cRightNodes } = useGLTF(
-    "/models/container/20/exterior-right.glb"
+    "/models/container/10/exterior-right.glb"
   );
   const { nodes: cBackNodes } = useGLTF(
-    "/models/container/20/exterior-back.glb"
+    "/models/container/10/exterior-back.glb"
   );
   const { nodes: cLeftNodes } = useGLTF(
-    "/models/container/20/exterior-left.glb"
+    "/models/container/10/exterior-left.glb"
   );
-  const { nodes: dRightNodes } = useGLTF("/models/drywall/20/drywall-right.glb");
-  const { nodes: dLeftNodes } = useGLTF("/models/drywall/20/drywall-left.glb");
-  const { nodes: dBackNodes } = useGLTF("/models/drywall/20/drywall-back.glb");
+  const { nodes: dRightNodes } = useGLTF("/models/drywall/10/drywall-right.glb");
+  const { nodes: dLeftNodes } = useGLTF("/models/drywall/10/drywall-left.glb");
+  const { nodes: dBackNodes } = useGLTF("/models/drywall/10/drywall-back.glb");
 
-  const { nodes: pRightNodes } = useGLTF("/models/plywood/20/plywood-right.glb");
-  const { nodes: pLeftNodes } = useGLTF("/models/plywood/20/plywood-left.glb");
-  const { nodes: pBackNodes } = useGLTF("/models/plywood/20/plywood-back.glb");
+  const { nodes: pRightNodes } = useGLTF("/models/plywood/10/plywood-right.glb");
+  const { nodes: pLeftNodes } = useGLTF("/models/plywood/10/plywood-left.glb");
+  const { nodes: pBackNodes } = useGLTF("/models/plywood/10/plywood-back.glb");
 
   const csg = useRef();
   const { materials: containerMaterials } = useGLTF(
-    "/models/container/20/container-whole.glb"
+    "/models/container/10/container-whole.glb"
   );
   const material = new MeshStandardMaterial({ color: color });
-  console.log(containerMaterials)
 
   const doorBoundingBoxGeometries = useMemo(() => {
     return Object.entries(doorBoundingBoxes).map(([id, bbox]) => (

@@ -30,8 +30,10 @@ const Viewer = () => {
     selectedElevationIndex,
     setSelectedElevationIndex,
     show3d,
+    mappedElevations,
+    selectedContainer,
   } = useContext(PageDataContext);
-  const { elevationData, DIMENSIONS, ELEVATION_NAMES } =
+  const { DIMENSIONS, ELEVATION_NAMES } =
     useContext(Library2dDataContext);
 
   const LeftArrow = () => {
@@ -52,19 +54,19 @@ const Viewer = () => {
 
   const handleNext = () => {
     setSelectedElevationIndex(
-      (prevIndex) => (prevIndex + 1) % elevationData.length
+      (prevIndex) => (prevIndex + 1) % mappedElevations.length
     );
   };
 
   const handlePrevious = () => {
     setSelectedElevationIndex(
       (prevIndex) =>
-        (prevIndex - 1 + elevationData.length) % elevationData.length
+        (prevIndex - 1 + mappedElevations.length) % mappedElevations.length
     );
   };
 
   useEffect(() => {
-    setSelectedElevation(elevationData[selectedElevationIndex]);
+    setSelectedElevation(mappedElevations[selectedElevationIndex]);
   }, [selectedElevationIndex, setSelectedElevation]);
 
   return (
@@ -95,7 +97,8 @@ const Viewer = () => {
                     droppableWidth(
                       selectedElevation,
                       DIMENSIONS,
-                      ELEVATION_NAMES
+                      ELEVATION_NAMES,
+                      selectedContainer
                     ),
                     DIMENSIONS
                   )}px`,
@@ -116,6 +119,7 @@ const Viewer = () => {
                         selectedElevation,
                         DIMENSIONS,
                         ELEVATION_NAMES,
+                        selectedContainer
                       })
                     );
                     return (
@@ -133,7 +137,7 @@ const Viewer = () => {
             </Droppable>
           </DndContext>
           {selectedElevationIndex > 0 && <LeftArrow />}
-          {selectedElevationIndex < elevationData.length - 1 && <RightArrow />}
+          {selectedElevationIndex < mappedElevations.length - 1 && <RightArrow />}
           {isAnyItemSelected && (
             <DeleteBtn onDeleteSelected={handleDeleteSelected} />
           )}
@@ -195,7 +199,7 @@ const Viewer = () => {
               </Droppable>
             </DndContext>
             {selectedElevationIndex > 0 && <LeftArrow />}
-            {selectedElevationIndex < elevationData.length - 1 && (
+            {selectedElevationIndex < mappedElevations.length - 1 && (
               <RightArrow />
             )}
             {isAnyItemSelected && (

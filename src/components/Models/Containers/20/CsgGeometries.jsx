@@ -30,7 +30,7 @@ export function CsgGeometries({ color, doorBoundingBoxes, windowBoundingBoxes, v
     "/models/container/20/container-whole.glb"
   );
   const material = new MeshStandardMaterial({ color: color });
-  console.log(containerMaterials)
+  console.log
 
   const doorBoundingBoxGeometries = useMemo(() => {
     return Object.entries(doorBoundingBoxes).map(([id, bbox]) => (

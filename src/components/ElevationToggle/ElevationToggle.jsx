@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import style from "./elevationToggle.module.css";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
+import { PageDataContext } from "../Content/Content";
 
 const ElevationToggle = ({ selectedElevation, setSelectedElevation }) => {
-  const { elevationData } = useContext(Library2dDataContext);
+  const { mappedElevations } = useContext(PageDataContext);
   return (
     <div className={style.container}>
       {
-        elevationData.map((elevation) => {
+        mappedElevations.map((elevation) => {
           return (
             <button
               key={elevation.id}

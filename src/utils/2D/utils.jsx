@@ -66,11 +66,13 @@ export const checkDistance = ({
   selectedElevation,
   DIMENSIONS,
   ELEVATION_NAMES,
+  selectedContainer
 }) => {
   const droppableWidthValue = droppableWidth(
     selectedElevation,
     DIMENSIONS,
-    ELEVATION_NAMES
+    ELEVATION_NAMES,
+    selectedContainer
   ); // Use the function to get dynamic width
 
   return {
@@ -156,17 +158,31 @@ export const getUniqueElevationObjects = (selectedComponents) => {
   return uniqueElevationObjects;
 };
 
-export const DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES = (DIMENSIONS) => {
-  return DIMENSIONS.CONTAINER.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+export const DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES = (DIMENSIONS, selectedContainer) => {
+  if (selectedContainer === `10' Custom Cube`) {
+    return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+  } else if (selectedContainer === `20' Custom Cube`) {
+    return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+  } else if (selectedContainer === `40' Custom Cube`) {
+    return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+  
+  }
 };
-export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (DIMENSIONS) => {
-  return DIMENSIONS.CONTAINER.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (DIMENSIONS, selectedContainer) => {
+  if (selectedContainer === `10' Custom Cube`) {
+    return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+  } else if (selectedContainer === `20' Custom Cube`) {
+    return DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+  } else if (selectedContainer === `40' Custom Cube`) {
+    return DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+  }
 };
 
 export const droppableWidth = (
   selectedElevation,
   DIMENSIONS,
-  ELEVATION_NAMES
+  ELEVATION_NAMES,
+  selectedContainer
 ) => {
   if (!DIMENSIONS || !ELEVATION_NAMES || !selectedElevation) {
     console.warn("Missing necessary parameters:", {
@@ -178,11 +194,11 @@ export const droppableWidth = (
   }
   switch (selectedElevation.name) {
     case ELEVATION_NAMES.LEFT:
-      return DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES(DIMENSIONS);
+      return DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES(DIMENSIONS, selectedContainer);
     case ELEVATION_NAMES.RIGHT:
-      return DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES(DIMENSIONS);
+      return DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES(DIMENSIONS, selectedContainer);
     case ELEVATION_NAMES.BACK:
-      return DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES(DIMENSIONS);
+      return DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES(DIMENSIONS, selectedContainer);
     default:
       console.warn("Unknown elevation name:", selectedElevation.name);
       return 0; // Or any default value you see fit
