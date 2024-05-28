@@ -3,6 +3,7 @@ import {
   OrbitControls,
   Environment,
   RandomizedLight,
+  useGLTF
 } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
@@ -27,6 +28,10 @@ const Models = () => {
   const { selectedComponents, color, interior, showExterior } =
     useContext(PageDataContext);
   const { COMPONENT_TYPES } = useContext(Library2dDataContext);
+  const { materials: exteriorMaterials } = useGLTF(
+    color.material
+  );
+  const exteriorPaint = exteriorMaterials[color.obj];
 
   const doors = useMemo(
     () =>
@@ -131,9 +136,9 @@ const Models = () => {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach="background" args={["#fdfdf7"]} />
-        <ContainerExterior color={color} interior={interior} />
+        <ContainerExterior exteriorPaint={exteriorPaint} interior={interior} />
         <CsgGeometries
-          color={color}
+          exteriorPaint={exteriorPaint}
           doorBoundingBoxes={doorBoundingBoxes}
           windowBoundingBoxes={windowBoundingBoxes}
           ventBoundingBoxes={ventBoundingBoxes}

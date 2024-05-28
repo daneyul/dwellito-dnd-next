@@ -14,14 +14,14 @@ const SingleSelect = ({ type }) => {
   const isExterior = type === EXTERIOR;
   const exteriorSelections = () => {
     return colors.map((selection) => {
-      const isSelected = color === selection.hex;
+      const isSelected = color.hex === selection.hex;
       const thumbnailColor = selection.hex;
 
       return (
         <div
           key={selection.hex}
           className={isSelected ? style.thumbnailSelected : style.thumbnail}
-          onClick={() => setColor(selection.hex)}
+          onClick={() => setColor(selection)}
         >
           <div
             className={style.img}
@@ -37,7 +37,7 @@ const SingleSelect = ({ type }) => {
 
   const exteriorDesc = () => {
     return colors.map((selection, index) => {
-      const isSelected = color === selection.hex;
+      const isSelected = color.hex === selection.hex;
 
       return (
         isSelected && (

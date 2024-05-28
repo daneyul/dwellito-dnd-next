@@ -4,23 +4,25 @@ const degrees = {
   270: Math.PI + Math.PI / 2,
 }
 
-const calcRotation = (elevation, elevationData) => {
-  switch (elevation) {
-    // Left
-    case elevationData[2]:
-      return degrees[180];
-    // Front
-    case elevationData[3]:
-      return degrees[270]
-    // Right
-    case elevationData[0]:
-      return 0
-    // Back
-    case elevationData[1]:
-      return degrees[90]
-    default:
-      break;
+const calcRotation = (elevation, elevationData, selectedContainer, ELEVATION_NAMES) => {
+  const matchingElevation = elevationData.find(item => item.homePlan === selectedContainer && item.name === elevation);
+
+  if (matchingElevation) {
+    switch (matchingElevation.name) {
+      case ELEVATION_NAMES.LEFT:
+        return degrees[180];
+      case ELEVATION_NAMES.FRONT:
+        return degrees[270];
+      case ELEVATION_NAMES.RIGHT:
+        return 0;
+      case ELEVATION_NAMES.BACK:
+        return degrees[90];
+      default:
+        break;
+    }
   }
+
+  return null;
 }
 
 const rightSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS }) => {
@@ -81,11 +83,11 @@ const frontSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, D
 const backSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer }) => {
   let xPosition = () => {
     if (selectedContainer === `10' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX
+      return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX
     } else if (selectedContainer === `20' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX
+      return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX
     } else if (selectedContainer === `40' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX
+      return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX
     }
   }
   let yPosition = -distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY;
@@ -100,23 +102,25 @@ const backSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DI
 const adjustForX = -30;
 const adjustForY = 20;
 
-const calcPosition = (elevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer) => {
-  switch (elevation) {
-    // Left
-    case elevationData[2]:
-      return leftSideCoordinates({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer });
-    // Front
-    case elevationData[3]:
-      return frontSideCoordinates({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer });
-    // Right
-    case elevationData[0]:
-      return rightSideCoordinates({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer });
-    // Back
-    case elevationData[1]:
-      return backSideCoordinates({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer });
-    default:
-      break;
+const calcPosition = (elevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer, ELEVATION_NAMES) => {
+  const matchingElevation = elevationData.find(item => item.homePlan === selectedContainer && item.name === elevation.name);
+
+  if (matchingElevation) {
+    switch (matchingElevation.name) {
+      case ELEVATION_NAMES.LEFT:
+        return leftSideCoordinates({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer });
+      case ELEVATION_NAMES.FRONT:
+        return frontSideCoordinates({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer });
+      case ELEVATION_NAMES.RIGHT:
+        return rightSideCoordinates({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer });
+      case ELEVATION_NAMES.BACK:
+        return backSideCoordinates({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer });
+      default:
+        break;
+    }
   }
+
+  return null;
 }
 
 export {

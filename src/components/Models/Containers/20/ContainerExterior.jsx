@@ -4,12 +4,11 @@ import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { useContext, useRef } from "react";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
-export default function ContainerExterior({ color, interior }) {
+export default function ContainerExterior({ exteriorPaint, interior }) {
   const { nodes, materials } = useGLTF(
     "/models/container/20/container-shell.glb"
   );
   const { INTERIOR_OPTIONS } = useContext(Library2dDataContext);
-  const material = new MeshStandardMaterial({ color: color });
   const ref = useRef();
 
   const Plywood = () => {
@@ -115,13 +114,13 @@ export default function ContainerExterior({ color, interior }) {
         castShadow
         receiveShadow
         geometry={nodes['20FT_Container_Exterior_Blank_Bottom_01'].geometry}
-        material={materials.Red}
+        material={exteriorPaint}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['20FT_Container_Exterior_Blank_RearTop_01'].geometry}
-        material={materials.Red}
+        material={exteriorPaint}
       />
       <Lighting />
       <Flooring />

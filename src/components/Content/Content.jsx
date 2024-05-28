@@ -54,7 +54,7 @@ const PageDataProvider = ({ children, data }) => {
     return acc;
   }, {});
   const [orderTotal, setOrderTotal] = useState(0);
-  const [color, setColor] = useState(colors[0].hex);
+  const [color, setColor] = useState(colors[0]);
   const [interior, setInterior] = useState(INTERIOR_OPTIONS[0]);
   const [mappedElevations, setMappedElevations] = useState(elevationData.filter((elevation) => {
     if (elevation.homePlan === selectedContainer) {

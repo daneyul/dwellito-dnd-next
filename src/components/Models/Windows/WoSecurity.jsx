@@ -25,7 +25,7 @@ const WoSecurity = React.memo(({ component, onBoundingBoxChange }) => {
   const ref = useRef();
 
   const rotation = useMemo(
-    () => [0, calcRotation(selectedElevation, elevationData), 0],
+    () => [0, calcRotation(selectedElevation, elevationData, selectedContainer, ELEVATION_NAMES), 0],
     [selectedElevation, elevationData]
   );
 
@@ -58,7 +58,7 @@ const WoSecurity = React.memo(({ component, onBoundingBoxChange }) => {
       ref={ref}
       dispose={null}
       scale={[10, 10, 10]}
-      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS)}
+      position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer, ELEVATION_NAMES)}
       rotation={rotation}
     >
       <group position={[0.745, 2.225, -0.13]} rotation={[-Math.PI, 0, -Math.PI]}>
