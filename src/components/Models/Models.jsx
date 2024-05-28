@@ -18,8 +18,8 @@ import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 import { Vector3 } from "three";
 import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
-import { CsgGeometries } from "./CsgGeometries";
-import ContainerExterior from "./Containers/ContainerExterior";
+import { CsgGeometries } from "./Containers/20/CsgGeometries";
+import ContainerExterior from "./Containers/20/ContainerExterior";
 import { PageDataContext } from "../Content/Content";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
