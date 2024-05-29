@@ -2,12 +2,22 @@ import { useGLTF } from "@react-three/drei";
 import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { useContext, useRef } from "react";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
+import { PageDataContext } from "@/components/Content/Content";
 
-export default function ContainerExterior({ exteriorPaint, interior }) {
+export default function ContainerShell() {
+  
   const { nodes, materials } = useGLTF(
     "/models/container/20/container-shell.glb"
   );
   const { INTERIOR_OPTIONS } = useContext(Library2dDataContext);
+  const { color, interior } = useContext(PageDataContext);
+
+  const { materials: exteriorMaterials } = useGLTF(
+    `/models/materials/${color.material}.glb`
+  );
+
+  const exteriorPaint = exteriorMaterials[color.obj];
+
   const ref = useRef();
 
   const Plywood = () => {

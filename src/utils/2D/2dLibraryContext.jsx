@@ -530,31 +530,31 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
       name: "White",
       obj: "White",
       hex: "#F2F2F2",
-      material: "/models/materials/white-paint.glb",
+      material: "white-paint",
     },
     {
       name: "Blue",
       obj: "Blue",
       hex: "#003366",
-      material: "/models/materials/blue-paint.glb",
+      material: "blue-paint",
     },
     {
       name: "Green",
       obj: "Green",
       hex: "#2E8B57",
-      material: "/models/materials/green-paint.glb",
+      material: "green-paint",
     },
     {
       name: "Slate Grey",
       obj: "SlateGrey",
       hex: "#6C7B8B",
-      material: "/models/materials/slate-grey-paint.glb",
+      material: "slate-grey-paint",
     },
     {
       name: "Red",
       obj: "Red",
       hex: "#800000",
-      material: "/models/materials/red-paint.glb",
+      material: "red-paint",
     },
   ];
 

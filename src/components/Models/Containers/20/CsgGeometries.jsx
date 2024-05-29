@@ -4,17 +4,28 @@ import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { Base, Geometry, Subtraction } from "@react-three/csg";
 import * as THREE from "three";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
+import { PageDataContext } from "@/components/Content/Content";
 
 export function CsgGeometries({
-  exteriorPaint,
-  plywoodMaterial,
-  drywallMaterial,
   doorBoundingBoxes,
   windowBoundingBoxes,
   ventBoundingBoxes,
-  interior,
 }) {
   const { INTERIOR_OPTIONS } = useContext(Library2dDataContext);
+  const { color, interior } = useContext(PageDataContext);
+
+  const { materials: exteriorMaterials } = useGLTF(
+    `/models/materials/${color.material}.glb`
+  );
+
+  const exteriorPaint = exteriorMaterials[color.obj];
+
+  const { materials: plywoodMaterial } = useGLTF(
+    "/models/materials/plywood.glb"
+  );
+  const { materials: drywallMaterial } = useGLTF(
+    "/models/materials/drywall.glb"
+  );
   const { nodes: cRightNodes } = useGLTF(
     "/models/container/20/exterior-right.glb"
   );

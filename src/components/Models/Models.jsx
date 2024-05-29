@@ -20,22 +20,14 @@ import { Vector3 } from "three";
 import Window from "./Windows/Window";
 import Vent from "./Vents/Vent";
 import { CsgGeometries } from "./Containers/20/CsgGeometries";
-import ContainerExterior from "./Containers/20/ContainerShell";
 import { PageDataContext } from "../Content/Content";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
+import ContainerShell from "./Containers/20/ContainerShell";
 
-const Models = () => {
-  const { selectedComponents, color, interior, showExterior } =
+export function Models() {
+  const { selectedComponents, showExterior } =
     useContext(PageDataContext);
   const { COMPONENT_TYPES } = useContext(Library2dDataContext);
-  const { materials: exteriorMaterials } = useGLTF(color.material);
-  const { materials: plywoodMaterial } = useGLTF(
-    "/models/materials/plywood.glb"
-  );
-  const { materials: drywallMaterial } = useGLTF(
-    "/models/materials/drywall.glb"
-  );
-  const exteriorPaint = exteriorMaterials[color.obj];
 
   const doors = useMemo(
     () =>
@@ -140,15 +132,11 @@ const Models = () => {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach="background" args={["#fdfdf7"]} />
-        <ContainerExterior exteriorPaint={exteriorPaint} interior={interior} />
+        <ContainerShell />
         <CsgGeometries
-          exteriorPaint={exteriorPaint}
           doorBoundingBoxes={doorBoundingBoxes}
           windowBoundingBoxes={windowBoundingBoxes}
           ventBoundingBoxes={ventBoundingBoxes}
-          interior={interior}
-          plywoodMaterial={plywoodMaterial}
-          drywallMaterial={drywallMaterial}
         />
         {doors.map((door, index) => (
           <Door
@@ -229,5 +217,3 @@ const Models = () => {
     </div>
   );
 };
-
-export default Models;

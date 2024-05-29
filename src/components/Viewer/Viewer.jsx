@@ -9,7 +9,7 @@ import ChevronLeftBlack from "../ChevronLeftBlack";
 import ChevronRightBlack from "../ChevronRightBlack";
 import style from "./viewer.module.scss";
 import ToggleView from "../ToggleView/ToggleView";
-import Models from "../Models/Models";
+import { Models } from "../Models/Models";
 import ToggleCamera from "../ToggleCamera/ToggleCamera";
 import { PageDataContext } from "../Content/Content";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
@@ -142,71 +142,6 @@ const Viewer = () => {
             <DeleteBtn onDeleteSelected={handleDeleteSelected} />
           )}
         </div>
-        {/* {show3d ? (
-          <div>
-            <Models />
-          </div>
-        ) : (
-          <div>
-            <Collision showCollision={showCollision} />
-            <DndContext
-              onDragStart={handleDragStart}
-              onDragEnd={handleDragEnd}
-              modifiers={modifiers}
-            >
-              <Droppable selectedElevation={selectedElevation}>
-                <div
-                  style={{
-                    width: `${toScale(
-                      droppableWidth(
-                        selectedElevation,
-                        DIMENSIONS,
-                        ELEVATION_NAMES
-                      ),
-                      DIMENSIONS
-                    )}px`,
-                    height: "100%",
-                    position: "absolute",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                  }}
-                >
-                  {selectedComponents
-                    .filter((piece) =>
-                      piece.elevation.includes(selectedElevation)
-                    )
-                    .map((piece) => {
-                      console.log(
-                        checkDistance({
-                          component: piece,
-                          selectedElevation,
-                          DIMENSIONS,
-                          ELEVATION_NAMES,
-                        })
-                      );
-                      return (
-                        <Draggable
-                          piece={piece}
-                          key={piece.id}
-                          id={piece.id}
-                          imgName={piece.imgName}
-                          onSelect={() => handleSelect(piece.id)}
-                          ref={draggableRefs[piece.id]}
-                        />
-                      );
-                    })}
-                </div>
-              </Droppable>
-            </DndContext>
-            {selectedElevationIndex > 0 && <LeftArrow />}
-            {selectedElevationIndex < mappedElevations.length - 1 && (
-              <RightArrow />
-            )}
-            {isAnyItemSelected && (
-              <DeleteBtn onDeleteSelected={handleDeleteSelected} />
-            )}
-          </div>
-        )} */}
         <ToggleCamera />
         <ToggleView />
       </div>
