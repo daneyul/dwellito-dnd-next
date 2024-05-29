@@ -25,7 +25,7 @@ const calcRotation = (elevation, elevationData, selectedContainer, ELEVATION_NAM
   return null;
 }
 
-const rightSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, selectedContainer }) => {
+const rightSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer }) => {
   const adjustForX = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2)
@@ -139,11 +139,11 @@ const frontSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, D
 const backSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer }) => {
   const adjustForX = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2)
+      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2) - 0.4
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2)
+      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2) - 0.4
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2)
+      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2) - 0.4
     }
   }
   const adjustForY = () => {
