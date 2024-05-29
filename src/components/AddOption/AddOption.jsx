@@ -7,7 +7,7 @@ import { PageDataContext } from "../Content/Content";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const AddOption = ({ options }) => {
-  const { setSelectedComponents, selectedElevation, setHasCollisions } =
+  const { setSelectedComponents, selectedElevation, setHasCollisions, selectedContainer } =
     useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
   return options.map((item) => {
@@ -23,7 +23,8 @@ const AddOption = ({ options }) => {
                 setSelectedComponents,
                 selectedElevation,
                 setHasCollisions,
-                DIMENSIONS
+                DIMENSIONS,
+                selectedContainer
               )
             }
             className={style.objImg}

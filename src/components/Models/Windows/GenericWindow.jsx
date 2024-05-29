@@ -9,10 +9,10 @@ import { useGLTF } from "@react-three/drei";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
-const Rollup6 = React.memo(({ component, onBoundingBoxChange }) => {
-  const { nodes, materials } = useGLTF(`/models/doors/${component.model}.glb`);
+const GenericWindow = React.memo(({ component, onBoundingBoxChange, modelPath, geometryNodes, materialNodes, customPosition, customRotation, customScale }) => {
+  const { nodes, materials } = useGLTF(modelPath);
   const { selectedComponents, selectedContainer } = useContext(PageDataContext);
-  const { elevationData, ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
+  const { elevationData, ELEVATION_NAMES, DIMENSIONS, SCALE_FACTORS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
   const selectedElevation = component.elevation[0];
   const distanceObject = checkDistance({
@@ -20,7 +20,8 @@ const Rollup6 = React.memo(({ component, onBoundingBoxChange }) => {
     selectedElevation,
     DIMENSIONS,
     ELEVATION_NAMES,
-    selectedContainer
+    selectedContainer,
+    SCALE_FACTORS
   });
   const ref = useRef();
 
@@ -30,7 +31,7 @@ const Rollup6 = React.memo(({ component, onBoundingBoxChange }) => {
   );
 
   useEffect(() => {
-    preloadGLTFModel(`doors/${component.model}`);
+    preloadGLTFModel(`windows/${component.model}`);
   }, [component.model]);
 
   useEffect(() => {
@@ -44,6 +45,15 @@ const Rollup6 = React.memo(({ component, onBoundingBoxChange }) => {
     }
   }, [selectedComponents]);
 
+  useEffect(() => {
+    if (materials.Material__104) {
+      materials.Material__104.transparent = true;
+      materials.Material__104.opacity = 0.6; // Adjust opacity as needed
+      materials.Material__104.roughness = 0.1; // Glass is generally smooth
+      materials.Material__104.metalness = 0.0; // Glass isn't metallic
+    }
+  }, [materials]);
+
   return (
     <group
       ref={ref}
@@ -52,35 +62,21 @@ const Rollup6 = React.memo(({ component, onBoundingBoxChange }) => {
       position={calcPosition(selectedElevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer, ELEVATION_NAMES)}
       rotation={rotation}
     >
-      <group
-        position={[3.84, 2.02, -0.03]}
-        rotation={[-Math.PI, 0, -Math.PI]}
-      >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={
-            nodes[
-              `SM_RollUp_Door_6'x7'4"_1`
-            ].geometry
-          }
-          material={materials.Metal_01}
-          scale={0.01}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={
-            nodes[
-              `SM_RollUp_Door_6'x7'4"_2`
-            ].geometry
-          }
-          material={materials.Metal_01}
-          scale={0.01}
-        />
+      <group position={customPosition} rotation={customRotation}>
+        <group scale={0.01}>
+          {geometryNodes.map((node, index) => (
+            <mesh
+              key={index}
+              castShadow
+              receiveShadow
+              geometry={nodes[node].geometry}
+              material={materials[materialNodes[index]]}
+            />
+          ))}
+        </group>
       </group>
     </group>
   );
 });
 
-export default Rollup6;
+export default GenericWindow;

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from "react";
 import style from "./layout.module.scss";
+import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { PageDataContext } from "../Content/Content";
 
 const Layout = ({ name, imgSrc, isSelected }) => {
@@ -11,30 +12,31 @@ const Layout = ({ name, imgSrc, isSelected }) => {
       }
     >
       {name}
-      <img src={imgSrc} alt="layout" className={style.layoutImg} />
+      {/* <img src={imgSrc} alt="layout" className={style.layoutImg} /> */}
     </div>
   );
 };
 
 const Layouts = () => {
-  // const { otherModelsData, modelId, supplierData } = useContext(PageDataContext);
+  const { containerData } = useContext(Library2dDataContext);
+  const { containerId } = useContext(PageDataContext);
+
   return (
     <div className={style.container}>
-      <div className={style.title}>Choose your design</div>
-      {otherModelsData.map((model, index) => {
-        const modelName = model["Name"];
-        const modelImage = model["Cover"]?.[0]?.url;
-        const isSelected = model["id"] === modelId;
+      {containerData.map((container, index) => {
+        const containerName = container.name;
+        const containerImage = "";
+        const isSelected = container.id === containerId;
 
-        return modelImage ? (
-          <a href={`/${supplierData["Slug"]}/${model["Slug"]}`} key={index}>
+        return (
+          <a href={`/${container.slug}`} key={index}>
             <Layout
-              name={modelName}
-              imgSrc={modelImage}
+              name={containerName}
+              imgSrc={containerImage}
               isSelected={isSelected}
             />
           </a>
-        ) : null;
+        );
       })}
     </div>
   );

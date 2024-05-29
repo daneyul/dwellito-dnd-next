@@ -1,3 +1,4 @@
+"use client";
 import { useContext } from "react";
 import Badges from "../Badges/Badges";
 import BasePriceDesc from "../BasePriceDesc/BasePriceDesc";
@@ -8,11 +9,11 @@ import SaveOrder from "../SaveOrder/SaveOrder";
 import YourOrder from "../YourOrder/YourOrder";
 import SingleSelect from "../SingleSelect/SingleSelect";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
+import Layouts from "../Layouts/Layouts";
 
 const Sidebar = () => {
   const { showYourOrder } = useContext(PageDataContext);
   const { EXTERIOR, INTERIOR } = useContext(Library3dDataContext);
-  // const supplierName = supplierData["Name"];
   const supplierName = "Custom Cubes";
 
   const NotYourOrder = () => {
@@ -26,6 +27,7 @@ const Sidebar = () => {
         </div>
         <Badges />
         <BasePriceDesc />
+        <Layouts />
         <Selector />
         <div className={style.selectionTagName}>
           Exterior Siding

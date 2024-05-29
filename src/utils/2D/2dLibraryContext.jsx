@@ -10,7 +10,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
     CONTAINER: {
       TEN: {
         SIDE: {
-          WIDTH: 238,
+          WIDTH: 118,
           HEIGHT: 102,
         },
         FRONT: {
@@ -20,7 +20,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
       },
       TWENTY: {
         SIDE: {
-          WIDTH: 238,
+          WIDTH: 238.5,
           HEIGHT: 102,
         },
         FRONT: {
@@ -30,7 +30,7 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
       },
       FORTY: {
         SIDE: {
-          WIDTH: 238,
+          WIDTH: 477,
           HEIGHT: 102,
         },
         FRONT: {
@@ -197,15 +197,24 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
   const containerData = [
     {
       name: `10' Custom Cube`,
-      slug: '10-custom-cube'
+      slug: '10-custom-cube',
+      id: 1,
+      width: `9' width`,
+      length: `10' length`,
     },
     {
       name: `20' Custom Cube`,
-      slug: '20-custom-cube'
+      slug: '20-custom-cube',
+      id: 2,
+      width: `9' width`,
+      length: `20' length`,
     },
     {
       name: `40' Custom Cube`,
-      slug: '40-custom-cube'
+      slug: '40-custom-cube',
+      id: 3,
+      width: `9' width`,
+      length: `40' length`,
     },
   ];
 
@@ -446,21 +455,21 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
   const elevationData = [
     {
       name: ELEVATION_NAMES.RIGHT,
-      homePlan: containerData[0].name,
+      homePlan: containerData[0].slug,
       imgName: "elevation/10/right.svg",
       objWidth: DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH,
       objHeight: DIMENSIONS.CONTAINER.TEN.SIDE.HEIGHT,
     },
     {
       name: ELEVATION_NAMES.RIGHT,
-      homePlan: containerData[1].name,
+      homePlan: containerData[1].slug,
       imgName: "elevation/20/right.svg",
       objWidth: DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH,
       objHeight: DIMENSIONS.CONTAINER.TWENTY.SIDE.HEIGHT,
     },
     {
       name: ELEVATION_NAMES.RIGHT,
-      homePlan: containerData[2].name,
+      homePlan: containerData[2].slug,
       imgName: "elevation/40/right.svg",
       objWidth: DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH,
       objHeight: DIMENSIONS.CONTAINER.FORTY.SIDE.HEIGHT,
@@ -468,42 +477,42 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
     {
       name: ELEVATION_NAMES.BACK,
       imgName: "elevation/10/back.svg",
-      homePlan: containerData[0].name,
+      homePlan: containerData[0].slug,
       objWidth: DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH,
       objHeight: DIMENSIONS.CONTAINER.TEN.FRONT.HEIGHT,
     },
     {
       name: ELEVATION_NAMES.BACK,
       imgName: "elevation/20/back.svg",
-      homePlan: containerData[1].name,
+      homePlan: containerData[1].slug,
       objWidth: DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH,
       objHeight: DIMENSIONS.CONTAINER.TWENTY.FRONT.HEIGHT,
     },
     {
       name: ELEVATION_NAMES.BACK,
       imgName: "elevation/40/back.svg",
-      homePlan: containerData[2].name,
+      homePlan: containerData[2].slug,
       objWidth: DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH,
       objHeight: DIMENSIONS.CONTAINER.FORTY.FRONT.HEIGHT,
     },
     {
       name: ELEVATION_NAMES.LEFT,
       imgName: "elevation/10/left.svg",
-      homePlan: containerData[0].name,
+      homePlan: containerData[0].slug,
       objWidth: DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH,
       objHeight: DIMENSIONS.CONTAINER.TEN.SIDE.HEIGHT,
     },
     {
       name: ELEVATION_NAMES.LEFT,
       imgName: "elevation/20/left.svg",
-      homePlan: containerData[1].name,
+      homePlan: containerData[1].slug,
       objWidth: DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH,
       objHeight: DIMENSIONS.CONTAINER.TWENTY.SIDE.HEIGHT,
     },
     {
       name: ELEVATION_NAMES.LEFT,
       imgName: "elevation/40/left.svg",
-      homePlan: containerData[2].name,
+      homePlan: containerData[2].slug,
       objWidth: DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH,
       objHeight: DIMENSIONS.CONTAINER.FORTY.SIDE.HEIGHT,
     }
@@ -515,10 +524,6 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
       height: "auto",
       ...item,
     }));
-
-  const DEFAULT_ELEVATION = elevationData.find(
-    (item) => item.name === ELEVATION_NAMES.RIGHT
-  );
 
   const INTERIOR_OPTIONS = [
     { name: "Plywood", hex: "#C19A6B", price: "", img: "", material: "" },
@@ -568,7 +573,6 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         snapToGridModifier,
         componentData,
         DEFAULT_COMPONENTS,
-        DEFAULT_ELEVATION,
         elevationData,
         ELEVATION_NAMES,
         INTERIOR_OPTIONS,

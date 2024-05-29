@@ -2,14 +2,19 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import style from "./saveBtn.module.css";
-import { getUniqueElevationObjects, checkDistance, generateImgSrc } from "../../utils/2D/utils";
+import {
+  getUniqueElevationObjects,
+  checkDistance,
+  generateImgSrc,
+} from "../../utils/2D/utils";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { PageDataContext } from "../Content/Content";
 
 const SaveBtn = ({ selectedComponents, orderTotal }) => {
   const [open, setOpen] = useState(false);
   const { selectedContainer } = useContext(PageDataContext);
-  const { ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
+  const { ELEVATION_NAMES, DIMENSIONS, SCALE_FACTORS } =
+    useContext(Library2dDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
 
@@ -23,8 +28,14 @@ const SaveBtn = ({ selectedComponents, orderTotal }) => {
         <div className={style.elevationName}>{elevation.name}</div>
         <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
           {componentsForElevation.map((component) => {
-
-            const distance = checkDistance({component: component, selectedElevation: elevation, DIMENSIONS, ELEVATION_NAMES, selectedContainer});
+            const distance = checkDistance({
+              component: component,
+              selectedElevation: elevation,
+              DIMENSIONS,
+              ELEVATION_NAMES,
+              selectedContainer,
+              SCALE_FACTORS,
+            });
 
             return (
               <li key={component.id} className={style.lineItem}>
@@ -39,13 +50,14 @@ const SaveBtn = ({ selectedComponents, orderTotal }) => {
                   <div className={style.partNumber}>{component.partNumber}</div>
                   <div className={style.desc}>{component.desc}</div>
                   <div className={style.distance}>
-                    {distance.left}&quot; from left, {distance.right}&quot; from right
+                    {distance.left}&quot; from left, {distance.right}&quot; from
+                    right
                   </div>
                 </div>
                 <div className={style.price}>${component.price}</div>
               </li>
-            )}
-          )}
+            );
+          })}
         </ul>
       </div>
     );

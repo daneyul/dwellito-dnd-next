@@ -159,21 +159,21 @@ export const getUniqueElevationObjects = (selectedComponents) => {
 };
 
 export const DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES = (DIMENSIONS, selectedContainer) => {
-  if (selectedContainer === `10' Custom Cube`) {
+  if (selectedContainer.name === `10' Custom Cube`) {
     return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
-  } else if (selectedContainer === `20' Custom Cube`) {
+  } else if (selectedContainer.name === `20' Custom Cube`) {
     return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
-  } else if (selectedContainer === `40' Custom Cube`) {
+  } else if (selectedContainer.name === `40' Custom Cube`) {
     return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
   
   }
 };
 export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (DIMENSIONS, selectedContainer) => {
-  if (selectedContainer === `10' Custom Cube`) {
+  if (selectedContainer.name === `10' Custom Cube`) {
     return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
-  } else if (selectedContainer === `20' Custom Cube`) {
+  } else if (selectedContainer.name === `20' Custom Cube`) {
     return DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
-  } else if (selectedContainer === `40' Custom Cube`) {
+  } else if (selectedContainer.name === `40' Custom Cube`) {
     return DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
   }
 };

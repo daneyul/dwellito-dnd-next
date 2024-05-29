@@ -1,8 +1,6 @@
 import { useContext } from "react";
-import Vent12 from "./Vent12";
-import Vent20 from "./Vent20";
-import Vent24 from "./Vent24";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
+import { Vent12, Vent20, Vent24 } from "./SpecificVents";
 
 export default function Vent({ onBoundingBoxChange, component }) {
   const { COMPONENT_NAMES } = useContext(Library2dDataContext);

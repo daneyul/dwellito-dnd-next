@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
-import WoSecurity from "./WoSecurity";
-import WSecurity from "./WSecurity";
+import { WSecurity, WoSecurity } from "./SpecificWindows";
 
 export default function Window({ onBoundingBoxChange, component }) {
   const { COMPONENT_NAMES } = useContext(Library2dDataContext);

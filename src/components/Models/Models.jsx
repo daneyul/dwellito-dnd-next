@@ -14,11 +14,11 @@ import {
   useRef,
   useState,
 } from "react";
-import Door from "./Doors/Door";
+import Door from "./Doors/DoorSwitcher";
 import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 import { Vector3 } from "three";
-import Window from "./Windows/Window";
-import Vent from "./Vents/Vent";
+import Window from "./Windows/WindowSwitcher";
+import Vent from "./Vents/VentSwitcher";
 import { CsgGeometries } from "./Containers/20/CsgGeometries";
 import { PageDataContext } from "../Content/Content";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";

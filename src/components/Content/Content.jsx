@@ -24,17 +24,24 @@ const PageDataProvider = ({ children, data }) => {
   // const supplierData = data?.supplierData[0];
   // const thumbnailsData = data?.thumbnailsData;
 
+  const slug = data.slug;
+
   // 2D Library
   const {
     DEFAULT_COMPONENTS,
-    DEFAULT_ELEVATION,
     snapToGridModifier,
     COMPONENT_TYPES,
     DIMENSIONS,
     INTERIOR_OPTIONS,
     colors,
-    elevationData
+    elevationData,
+    containerData,
+    ELEVATION_NAMES
   } = useContext(Library2dDataContext);
+
+  const DEFAULT_ELEVATION = elevationData.find(
+    (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug
+  );
 
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);
@@ -46,7 +53,6 @@ const PageDataProvider = ({ children, data }) => {
   const [selectedComponents, setSelectedComponents] =
     useState(DEFAULT_COMPONENTS);
   const [selectedElevation, setSelectedElevation] = useState(DEFAULT_ELEVATION);
-  const [selectedContainer, setSelectedContainer] = useState("20' Custom Cube");
   const [selectedElevationIndex, setSelectedElevationIndex] = useState(0);
   const [modifiers, setModifiers] = useState([]);
   const draggableRefs = selectedComponents.reduce((acc, component) => {
@@ -56,8 +62,10 @@ const PageDataProvider = ({ children, data }) => {
   const [orderTotal, setOrderTotal] = useState(0);
   const [color, setColor] = useState(colors[0]);
   const [interior, setInterior] = useState(INTERIOR_OPTIONS[0]);
+  const selectedContainer = containerData.find((container) => container.slug === slug);
+  const containerId = selectedContainer.id;
   const [mappedElevations, setMappedElevations] = useState(elevationData.filter((elevation) => {
-    if (elevation.homePlan === selectedContainer) {
+    if (elevation.homePlan === selectedContainer.slug) {
       return elevation;
     }
   }));
@@ -273,7 +281,8 @@ const PageDataProvider = ({ children, data }) => {
         mappedElevations,
         setMappedElevations,
         selectedContainer,
-        setSelectedContainer
+        containerId,
+        slug
       }}
     >
       {children}

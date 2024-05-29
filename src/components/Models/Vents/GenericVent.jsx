@@ -9,7 +9,7 @@ import { useGLTF } from "@react-three/drei";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Box3, Vector3 } from "three";
 
-const GenericDoor = React.memo(
+const GenericVent = React.memo(
   ({
     component,
     onBoundingBoxChange,
@@ -18,7 +18,6 @@ const GenericDoor = React.memo(
     materialNodes,
     customPosition,
     customRotation,
-    customScale,
   }) => {
     const { nodes, materials } = useGLTF(modelPath);
     const { selectedComponents, selectedContainer } =
@@ -52,8 +51,8 @@ const GenericDoor = React.memo(
     );
 
     useEffect(() => {
-      preloadGLTFModel(modelPath);
-    }, [modelPath]);
+      preloadGLTFModel(`vents/${component.model}`);
+    }, [component.model]);
 
     useEffect(() => {
       if (ref.current) {
@@ -65,15 +64,6 @@ const GenericDoor = React.memo(
         onBoundingBoxChange({ size, center });
       }
     }, [selectedComponents]);
-
-    useEffect(() => {
-      if (materials.Glass) {
-        materials.Glass.transparent = true;
-        materials.Glass.opacity = 0.6; // Adjust opacity as needed
-        materials.Glass.roughness = 0.1; // Glass is generally smooth
-        materials.Glass.metalness = 0.0; // Glass isn't metallic
-      }
-    }, [materials]);
 
     return (
       <group
@@ -91,26 +81,21 @@ const GenericDoor = React.memo(
         )}
         rotation={rotation}
       >
-        <group
-          position={customPosition}
-          rotation={customRotation}
-          scale={customScale}
-        >
-          <group scale={0.01}>
-            {geometryNodes.map((node, index) => (
-              <mesh
-                key={index}
-                castShadow
-                receiveShadow
-                geometry={nodes[node].geometry}
-                material={materials[materialNodes[index]]}
-              />
-            ))}
-          </group>
+        <group position={customPosition} rotation={customRotation}>
+          {geometryNodes.map((node, index) => (
+            <mesh
+              key={index}
+              castShadow
+              receiveShadow
+              geometry={nodes[node].geometry}
+              material={materials[materialNodes[index]]}
+              scale={0.01}
+            />
+          ))}
         </group>
       </group>
     );
   }
 );
 
-export default GenericDoor;
+export default GenericVent;

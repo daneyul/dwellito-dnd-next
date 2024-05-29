@@ -1,15 +1,6 @@
-import Rhr from "./Rhr";
-import Lhr from "./Lhr";
-import French from "./French";
 import { useContext } from "react";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
-import Sliding5 from "./Sliding5";
-import Sliding6 from "./Sliding6";
-import Rollup6 from "./Rollup6";
-import Rollup8 from "./Rollup8";
-import Rollup10 from "./Rollup10";
-import Rollup12 from "./Rollup12";
-import Rollup15 from "./Rollup15";
+import { French, Lhr, Rhr, Rollup10, Rollup12, Rollup15, Rollup6, Rollup8, Sliding5, Sliding6 } from "./SpecificDoors";
 
 export default function Door({ onBoundingBoxChange, component }) {
   const { COMPONENT_NAMES } = useContext(Library2dDataContext);
