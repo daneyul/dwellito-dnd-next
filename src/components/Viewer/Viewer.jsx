@@ -33,7 +33,7 @@ const Viewer = () => {
     mappedElevations,
     selectedContainer,
   } = useContext(PageDataContext);
-  const { DIMENSIONS, ELEVATION_NAMES } =
+  const { DIMENSIONS, ELEVATION_NAMES, containerData } =
     useContext(Library2dDataContext);
 
   const LeftArrow = () => {
@@ -69,6 +69,14 @@ const Viewer = () => {
     setSelectedElevation(mappedElevations[selectedElevationIndex]);
   }, [selectedElevationIndex, setSelectedElevation]);
 
+  const scaleContainer = () => {
+    if (selectedContainer.slug === containerData[2].slug) {
+      return 0.5;
+    } else {
+      return 1;
+    }
+  };
+
   return (
     <>
       <div
@@ -80,10 +88,23 @@ const Viewer = () => {
           justifyContent: "center",
         }}
       >
-        <div style={{ visibility: show3d ? "visible" : "hidden", position: "absolute", width: "100%" }}>
+        <div
+          style={{
+            visibility: show3d ? "visible" : "hidden",
+            position: "absolute",
+            width: "100%",
+          }}
+        >
           <Models />
         </div>
-        <div  style={{ visibility: show3d ? "hidden" : "visible", position: "absolute", width: "100%"}}>
+        <div
+          style={{
+            visibility: show3d ? "hidden" : "visible",
+            position: "absolute",
+            width: "100%",
+            transform: `scale(${scaleContainer()})`,
+          }}
+        >
           <Collision showCollision={showCollision} />
           <DndContext
             onDragStart={handleDragStart}
@@ -119,7 +140,7 @@ const Viewer = () => {
                         selectedElevation,
                         DIMENSIONS,
                         ELEVATION_NAMES,
-                        selectedContainer
+                        selectedContainer,
                       })
                     );
                     return (
@@ -136,12 +157,14 @@ const Viewer = () => {
               </div>
             </Droppable>
           </DndContext>
+        </div>
           {selectedElevationIndex > 0 && <LeftArrow />}
-          {selectedElevationIndex < mappedElevations.length - 1 && <RightArrow />}
+          {selectedElevationIndex < mappedElevations.length - 1 && (
+            <RightArrow />
+          )}
           {isAnyItemSelected && (
             <DeleteBtn onDeleteSelected={handleDeleteSelected} />
           )}
-        </div>
         <ToggleCamera />
         <ToggleView />
       </div>
