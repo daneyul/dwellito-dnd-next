@@ -4,11 +4,17 @@ import { createSnapModifier } from "@dnd-kit/modifiers";
 
 export const Library2dDataContext = createContext();
 
-export const Library2dDataProvider = ({ children, materialsData }) => {
+export const Library2dDataProvider = ({ children }) => {
   // This is the actual container dimensions in inches
+  // THREE_D is the 3D model dimensions
   const DIMENSIONS = {
     CONTAINER: {
       TEN: {
+        THREE_D: {
+          WIDTH: 30.30408388,
+          HEIGHT: 25.908830686145798,
+          DEPTH: 24.382746504059998
+        },
         SIDE: {
           WIDTH: 118,
           HEIGHT: 102,
@@ -19,6 +25,11 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         },
       },
       TWENTY: {
+        THREE_D: {
+          WIDTH: 60.908211699999995,
+          HEIGHT: 25.90803080209,
+          DEPTH: 24.38394248027
+        },
         SIDE: {
           WIDTH: 238.5,
           HEIGHT: 102,
@@ -29,6 +40,11 @@ export const Library2dDataProvider = ({ children, materialsData }) => {
         },
       },
       FORTY: {
+        THREE_D: {
+          WIDTH: 121.44539088999998,
+          HEIGHT: 25.908075335128004,
+          DEPTH: 24.40468565288
+        },
         SIDE: {
           WIDTH: 477,
           HEIGHT: 102,

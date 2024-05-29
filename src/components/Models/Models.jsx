@@ -3,7 +3,6 @@ import {
   OrbitControls,
   Environment,
   RandomizedLight,
-  useGLTF,
 } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
@@ -19,15 +18,19 @@ import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
 import { Vector3 } from "three";
 import Window from "./Windows/WindowSwitcher";
 import Vent from "./Vents/VentSwitcher";
-import { CsgGeometries } from "./Containers/20/CsgGeometries";
+import { CsgGeometries } from "./Containers/CsgGeometries";
 import { PageDataContext } from "../Content/Content";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
-import ContainerShell from "./Containers/20/ContainerShell";
+import ContainerShell10 from "./Containers/10/ContainerShell10";
+import ContainerShell20 from "./Containers/20/ContainerShell20";
+import ContainerShell40 from "./Containers/40/ContainerShell40";
+import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 export function Models() {
-  const { selectedComponents, showExterior } =
+  const { selectedComponents, showExterior, selectedContainer } =
     useContext(PageDataContext);
-  const { COMPONENT_TYPES } = useContext(Library2dDataContext);
+  const { COMPONENT_TYPES, containerData } = useContext(Library2dDataContext);
+  const { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } = useContext(Library3dDataContext);
 
   const doors = useMemo(
     () =>
@@ -51,12 +54,39 @@ export function Models() {
     [selectedComponents, COMPONENT_TYPES]
   );
 
-  const exteriorCamPos = [100, 50, 100];
-  const interiorCamPos = [28.68, 12, -0.88];
-  const interiorCamRot = [2.15, 12, 5.65];
+  const exteriorCamPos = () => {
+    if (selectedContainer === containerData[0]) {
+      return EXTERIOR_CAM_POS.TEN;
+    } else if (selectedContainer === containerData[1]) {
+      return EXTERIOR_CAM_POS.TWENTY;
+    } else if (selectedContainer === containerData[2]) {
+      return EXTERIOR_CAM_POS.FORTY;
+    }
+  }
+
+  const interiorCamPos = () => {
+    if (selectedContainer === containerData[0]) {
+      return INTERIOR_CAM_POS.TEN;
+    } else if (selectedContainer === containerData[1]) {
+      return INTERIOR_CAM_POS.TWENTY;
+    } else if (selectedContainer === containerData[2]) {
+      return INTERIOR_CAM_POS.FORTY;
+    }
+  };
+
+  const interiorCamRot = () => {
+    if (selectedContainer === containerData[0]) {
+      return INTERIOR_CAM_ROT.TEN;
+    } else if (selectedContainer === containerData[1]) {
+      return INTERIOR_CAM_ROT.TWENTY;
+    } else if (selectedContainer === containerData[2]) {
+      return INTERIOR_CAM_ROT.FORTY;
+    }
+  };
+
   const camFov = showExterior ? 35 : 54;
-  const cameraPos = showExterior ? exteriorCamPos : interiorCamPos;
-  const cameraRot = showExterior ? [0, 0, 0] : interiorCamRot;
+  const cameraPos = showExterior ? exteriorCamPos() : interiorCamPos();
+  const cameraRot = showExterior ? [0, 0, 0] : interiorCamRot();
 
   const [isOrbiting, setIsOrbiting] = useState(false);
   const [cameraReady, setCameraReady] = useState(true);
@@ -124,6 +154,16 @@ export function Models() {
   const handleVentBoundingBox = useCallback((index, data) => {
     setVentBoundingBoxes((prev) => ({ ...prev, [index]: data }));
   }, []);
+
+  const ContainerShell = () => {
+    if (selectedContainer === containerData[0]) {
+      return <ContainerShell10 />;
+    } else if (selectedContainer === containerData[1]) {
+      return <ContainerShell20 />;
+    } else if (selectedContainer === containerData[2]) {
+      return <ContainerShell40 />;
+    }
+  }
 
   return (
     <div

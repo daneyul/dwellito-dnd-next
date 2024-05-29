@@ -2,41 +2,35 @@ import React, { createContext } from "react";
 
 export const Library3dDataContext = createContext();
 
-export const Library3dDataProvider = ({ children, materialsData }) => {
-
-  const DIMENSIONS = {
-    CONTAINER: {
-      SIDE: {
-        WIDTH: 61.098,
-        HEIGHT: 25.96,
-      },
-      FRONT: {
-        WIDTH: 24.405,
-        HEIGHT: 25.96,
-      },
-    },
-  };
-  // This is for scaling the overall 3D model
-  const CANVAS_SCALE_FACTOR = 0.1;
-  // This is the actual dimensions in inches
-  // divided by the 3D canvas dimensions
+export const Library3dDataProvider = ({ children }) => {
   const SCALE_FACTOR_FOR_CALCULATIONS = 3.93;
-  
   const EXTERIOR = "exterior";
   const INTERIOR = "interior";
-
-  // const colors = materialsData.map((material) => {
-  //   return { name: material["Title"], hex: `#${material["HEX"]}`, img: ""}
-  // })
+  const EXTERIOR_CAM_POS = {
+    TEN: [100, 50, 100],
+    TWENTY: [100, 50, 100],
+    FORTY: [150, 50, 150]
+  }
+  const INTERIOR_CAM_POS = {
+    TEN: [28.68, 12, -0.88],
+    TWENTY: [28.68, 12, -0.88],
+    FORTY: [28.68, 12, -0.88]
+  }
+  const INTERIOR_CAM_ROT = {
+    TEN: [2.15, 12, 5.65],
+    TWENTY: [2.15, 12, 5.65],
+    FORTY: [2.15, 12, 5.65]
+  }
   
   return (
     <Library3dDataContext.Provider
       value={{
-        DIMENSIONS,
-        CANVAS_SCALE_FACTOR,
         SCALE_FACTOR_FOR_CALCULATIONS,
         EXTERIOR,
-        INTERIOR
+        INTERIOR,
+        EXTERIOR_CAM_POS,
+        INTERIOR_CAM_POS,
+        INTERIOR_CAM_ROT
       }}
     >
       {children}

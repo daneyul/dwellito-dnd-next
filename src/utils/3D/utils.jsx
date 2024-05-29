@@ -25,9 +25,28 @@ const calcRotation = (elevation, elevationData, selectedContainer, ELEVATION_NAM
   return null;
 }
 
-const rightSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS }) => {
-  let xPosition = distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX;
-  let yPosition = 0 + adjustForY - 0.2;
+const rightSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, selectedContainer }) => {
+  const adjustForX = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2)
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2)
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2)
+    }
+  }
+  const adjustForY = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2
+    }
+  }
+
+  let xPosition = distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX();
+  let yPosition = 0 + adjustForY() - 0.2;
   let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
   
   return [
@@ -37,22 +56,41 @@ const rightSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS })
   ]
 }
 const leftSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer }) => {
+  const adjustForX = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2)
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2)
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2)
+    }
+  }
+  const adjustForY = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2
+    }
+  }
+
   let xPosition = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return (DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX
+      return (DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX()
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return (DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX
+      return (DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX()
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return (DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX
+      return (DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX()
     }
   }
   let yPosition = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return -DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY + 0.4
+      return -DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY() + 0.4
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return -DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY + 0.4
+      return -DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY() + 0.4
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return -DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY + 0.4
+      return -DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY() + 0.4
     }
   }
   let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
@@ -63,14 +101,32 @@ const leftSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DI
   ]
 }
 const frontSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer }) => {
-  let xPosition = 0 + adjustForX;
+  const adjustForX = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2)
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2)
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2)
+    }
+  }
+  const adjustForY = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2
+    }
+  }
+  let xPosition = 0 + adjustForX();
   let yPosition = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return (DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY
+      return (DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY()
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return (DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY
+      return (DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY()
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return (DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY
+      return (DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - distanceObject.left) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY()
     }
   }
   let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
@@ -81,16 +137,35 @@ const frontSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, D
   ]
 }
 const backSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer }) => {
-  let xPosition = () => {
+  const adjustForX = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX
+      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2)
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX
+      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2)
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX
+      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2)
     }
   }
-  let yPosition = -distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY;
+  const adjustForY = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2
+    }
+  }
+
+  let xPosition = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX()
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX()
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX()
+    }
+  }
+  let yPosition = -distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY();
   let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
   return [
     xPosition(),
@@ -98,9 +173,6 @@ const backSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DI
     yPosition
   ]
 }
-
-const adjustForX = -30;
-const adjustForY = 20;
 
 const calcPosition = (elevation, distanceObject, elevationData, SCALE_FACTOR_FOR_CALCULATIONS, DIMENSIONS, selectedContainer, ELEVATION_NAMES) => {
   const matchingElevation = elevationData.find(item => item.homePlan === selectedContainer.slug && item === elevation);
@@ -126,6 +198,4 @@ const calcPosition = (elevation, distanceObject, elevationData, SCALE_FACTOR_FOR
 export {
   calcRotation,
   calcPosition,
-  adjustForX,
-  adjustForY
 }
