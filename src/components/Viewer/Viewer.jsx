@@ -32,8 +32,9 @@ const Viewer = () => {
     show3d,
     mappedElevations,
     selectedContainer,
+    scaleFactor
   } = useContext(PageDataContext);
-  const { DIMENSIONS, ELEVATION_NAMES, containerData } =
+  const { DIMENSIONS, ELEVATION_NAMES } =
     useContext(Library2dDataContext);
 
   const LeftArrow = () => {
@@ -112,7 +113,7 @@ const Viewer = () => {
                       ELEVATION_NAMES,
                       selectedContainer
                     ),
-                    DIMENSIONS
+                    scaleFactor
                   )}px`,
                   height: "100%",
                   position: "absolute",
@@ -132,6 +133,7 @@ const Viewer = () => {
                         DIMENSIONS,
                         ELEVATION_NAMES,
                         selectedContainer,
+                        scaleFactor
                       })
                     );
                     return (

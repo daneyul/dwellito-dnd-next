@@ -20,7 +20,8 @@ const GenericWindow = React.memo(({ component, onBoundingBoxChange, modelPath, g
     selectedElevation,
     DIMENSIONS,
     ELEVATION_NAMES,
-    selectedContainer
+    selectedContainer,
+    scaleFactor
   });
   const ref = useRef();
 

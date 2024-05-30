@@ -7,9 +7,8 @@ import { PageDataContext } from "../Content/Content";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const AddOption = ({ options }) => {
-  const { setSelectedComponents, selectedElevation, setHasCollisions, selectedContainer } =
+  const { setSelectedComponents, selectedElevation, setHasCollisions, scaleFactor } =
     useContext(PageDataContext);
-  const { DIMENSIONS } = useContext(Library2dDataContext);
   return options.map((item) => {
     return (
       <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
@@ -23,8 +22,7 @@ const AddOption = ({ options }) => {
                 setSelectedComponents,
                 selectedElevation,
                 setHasCollisions,
-                DIMENSIONS,
-                selectedContainer
+                scaleFactor
               )
             }
             className={style.objImg}

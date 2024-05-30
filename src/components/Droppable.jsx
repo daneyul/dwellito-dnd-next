@@ -6,8 +6,7 @@ import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { PageDataContext } from "./Content/Content";
 
 export function Droppable({ children, selectedElevation }) {
-  const { DIMENSIONS } = useContext(Library2dDataContext);
-  const { selectedContainer } = useContext(PageDataContext);
+  const { scaleFactor } = useContext(PageDataContext);
   const { isOver, setNodeRef } = useDroppable({
     id: "droppable"
   });
@@ -18,8 +17,8 @@ export function Droppable({ children, selectedElevation }) {
 
   const CustomStyle = {
     display: "flex",
-    width: `${toScale(selectedElevation.objWidth, DIMENSIONS, selectedContainer)}px`,
-    height: `${toScale(selectedElevation.objHeight, DIMENSIONS, selectedContainer)}px`,
+    width: `${toScale(selectedElevation.objWidth, scaleFactor)}px`,
+    height: `${toScale(selectedElevation.objHeight, scaleFactor)}px`,
     boxSizing: "border-box",
     margin: "0 auto",
     position: "relative"
@@ -30,8 +29,8 @@ export function Droppable({ children, selectedElevation }) {
       <Image
         src={generateImgSrc(selectedElevation.imgName)}
         alt="Elevation"
-        width={toScale(selectedElevation.objWidth, DIMENSIONS, selectedContainer)}
-        height={toScale(selectedElevation.objHeight, DIMENSIONS, selectedContainer)}
+        width={toScale(selectedElevation.objWidth, scaleFactor)}
+        height={toScale(selectedElevation.objHeight, scaleFactor)}
       />
       {children}
     </div>

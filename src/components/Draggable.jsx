@@ -9,8 +9,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
-  const { DIMENSIONS } = useContext(Library2dDataContext);
-  const { selectedContainer } = useContext(PageDataContext);
+  const { scaleFactor } = useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -18,8 +17,8 @@ export function Draggable({ id, styles, piece, onSelect }) {
     position: "absolute",
     display: "flex",
     cursor: "pointer",
-    width: `${toScale(piece.objWidth, DIMENSIONS, selectedContainer)}px`,
-    height: `${toScale(piece.objHeight, DIMENSIONS, selectedContainer)}px`,
+    width: `${toScale(piece.objWidth, scaleFactor)}px`,
+    height: `${toScale(piece.objHeight, scaleFactor)}px`,
     left: `${piece.position.x}px`,
     top: `${piece.position.y}px`,
     boxShadow: isHovered || piece.isSelected ? "0px 4px 30px 0px rgba(128, 129, 238, 0.19)" : "none",

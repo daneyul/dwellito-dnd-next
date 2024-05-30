@@ -65,6 +65,15 @@ const PageDataProvider = ({ children, data }) => {
       return elevation;
     }
   }));
+  const [scaleFactor, setScaleFactor] = useState();
+
+  useEffect(() => {
+    if (selectedContainer.slug === containerData[2].slug) {
+      setScaleFactor(1.75);
+    } else {
+      setScaleFactor(2.5);
+    }
+  }, [selectedContainer, containerData]);
 
   const toggleOrder = () => {
     setShowYourOrder(!showYourOrder);
@@ -140,9 +149,9 @@ const PageDataProvider = ({ children, data }) => {
 
     // Handles component snapping
     if (draggedItem && draggedItem.objType === COMPONENT_TYPES.DOOR) {
-      setModifiers([...doorWindowModifiers, snapToIncrement(11 * DIMENSIONS.SCALE_FACTOR)]);
+      setModifiers([...doorWindowModifiers, snapToIncrement(11 * scaleFactor)]);
     } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.WINDOW) {
-      setModifiers([...doorWindowModifiers, snapToIncrement(6 * DIMENSIONS.SCALE_FACTOR)]);
+      setModifiers([...doorWindowModifiers, snapToIncrement(6 * scaleFactor)]);
     } else {
       setModifiers([...defaultModifiers]);
     }
@@ -179,7 +188,7 @@ const PageDataProvider = ({ children, data }) => {
         // Check for collisions and update the state accordingly
         if (
           draggedPiece &&
-          checkCollision(draggedPiece, piece, selectedElevation, DIMENSIONS)
+          checkCollision(draggedPiece, piece, selectedElevation, scaleFactor)
         ) {
           updatedPieces[index].isColliding = true;
           const draggedPieceIndex = updatedPieces.findIndex(
@@ -191,7 +200,7 @@ const PageDataProvider = ({ children, data }) => {
         // Check for closeness and update the state accordingly
         if (
           draggedPiece &&
-          checkCloseness(draggedPiece, piece, selectedElevation, DIMENSIONS)
+          checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
         ) {
           updatedPieces[index].isTooClose = true;
           const draggedPieceIndex = updatedPieces.findIndex(
@@ -287,8 +296,8 @@ const PageDataProvider = ({ children, data }) => {
         selectedContainer,
         containerId,
         slug,
-        scale,
-        setScale
+        scaleFactor,
+        setScaleFactor
       }}
     >
       {children}

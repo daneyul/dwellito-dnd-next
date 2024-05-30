@@ -20,7 +20,7 @@ const GenericVent = React.memo(
     customRotation,
   }) => {
     const { nodes, materials } = useGLTF(modelPath);
-    const { selectedComponents, selectedContainer } =
+    const { selectedComponents, selectedContainer, scaleFactor } =
       useContext(PageDataContext);
     const { elevationData, ELEVATION_NAMES, DIMENSIONS } =
       useContext(Library2dDataContext);
@@ -32,6 +32,7 @@ const GenericVent = React.memo(
       DIMENSIONS,
       ELEVATION_NAMES,
       selectedContainer,
+      scaleFactor
     });
     const ref = useRef();
 

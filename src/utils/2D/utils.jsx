@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 export const generateImgSrc = (imgName) =>
   `../../../images/CustomContainer/${imgName}`;
 
-export const checkCollision = (item1, item2, selectedElevation, DIMENSIONS) => {
+export const checkCollision = (item1, item2, selectedElevation, scaleFactor) => {
   // First, check if both items are on the selected elevation.
   // This assumes every item has an `elevation` array and that `selectedElevation` is a singular value or an identifier.
   const isOnSelectedElevation =
@@ -18,20 +18,20 @@ export const checkCollision = (item1, item2, selectedElevation, DIMENSIONS) => {
   const a = {
     left: item1.position.x,
     right:
-      item1.position.x + parseInt(item1.objWidth * DIMENSIONS.SCALE_FACTOR, 10),
+      item1.position.x + parseInt(item1.objWidth * scaleFactor, 10),
     top: item1.position.y,
     bottom:
       item1.position.y +
-      parseInt(item1.objHeight * DIMENSIONS.SCALE_FACTOR, 10),
+      parseInt(item1.objHeight * scaleFactor, 10),
   };
   const b = {
     left: item2.position.x,
     right:
-      item2.position.x + parseInt(item2.objWidth * DIMENSIONS.SCALE_FACTOR, 10),
+      item2.position.x + parseInt(item2.objWidth * scaleFactor, 10),
     top: item2.position.y,
     bottom:
       item2.position.y +
-      parseInt(item2.objHeight * DIMENSIONS.SCALE_FACTOR, 10),
+      parseInt(item2.objHeight * scaleFactor, 10),
   };
 
   // Check if any side from A is outside of B
@@ -44,20 +44,20 @@ export const checkCollision = (item1, item2, selectedElevation, DIMENSIONS) => {
 };
 
 // Inches are directly input as pixels, then scaled up
-export const toScale = (value, DIMENSIONS) => {
-  if (!DIMENSIONS || !DIMENSIONS.SCALE_FACTOR) {
-    console.warn("DIMENSIONS or SCALE_FACTOR is undefined:", DIMENSIONS);
+export const toScale = (value, scaleFactor) => {
+  if (!scaleFactor) {
+    console.warn("scaleFactor is undefined:");
     return value; // Return the original value as a fallback
   }
-  return value * DIMENSIONS.SCALE_FACTOR;
+  return value * scaleFactor;
 };
 
-export const deScale = (value, DIMENSIONS) => {
-  if (!DIMENSIONS || !DIMENSIONS.SCALE_FACTOR) {
-    console.warn("DIMENSIONS or SCALE_FACTOR is undefined:", DIMENSIONS);
+export const deScale = (value, scaleFactor) => {
+  if (!scaleFactor) {
+    console.warn("scaleFactor is undefined:");
     return value; // Return the original value as a fallback
   }
-  return value / DIMENSIONS.SCALE_FACTOR;
+  return value / scaleFactor;
 };
 
 
@@ -66,7 +66,8 @@ export const checkDistance = ({
   selectedElevation,
   DIMENSIONS,
   ELEVATION_NAMES,
-  selectedContainer
+  selectedContainer,
+  scaleFactor
 }) => {
   const droppableWidthValue = droppableWidth(
     selectedElevation,
@@ -77,14 +78,14 @@ export const checkDistance = ({
 
   return {
     left: Math.round(
-      deScale(component.position.x, DIMENSIONS) + DIMENSIONS.BOUNDARIES.x
+      deScale(component.position.x, scaleFactor) + DIMENSIONS.BOUNDARIES.x
     ).toFixed(),
     right: Math.round(
       droppableWidthValue -
-        (deScale(component.position.x, DIMENSIONS) + component.objWidth) +
+        (deScale(component.position.x, scaleFactor) + component.objWidth) +
         DIMENSIONS.BOUNDARIES.x
     ).toFixed(),
-    top: Math.round(deScale(component.position.y, DIMENSIONS)).toFixed(),
+    top: Math.round(deScale(component.position.y, scaleFactor)).toFixed(),
   };
 };
 
@@ -93,7 +94,7 @@ export const handleAddComponent = (
   setSelectedComponents,
   selectedElevation,
   setHasCollisions,
-  DIMENSIONS
+  scaleFactor
 ) => {
   setSelectedComponents((prevSelectedComponents) => {
     const newItem = {
@@ -105,7 +106,7 @@ export const handleAddComponent = (
 
     // Check for collision with each previously selected component
     const collisionDetected = prevSelectedComponents.some((component) =>
-      checkCollision(newItem, component, selectedElevation, DIMENSIONS)
+      checkCollision(newItem, component, selectedElevation, scaleFactor)
     );
 
     if (collisionDetected) {
@@ -205,8 +206,8 @@ export const droppableWidth = (
   }
 };
 
-export const checkCloseness = (item1, item2, selectedElevation, DIMENSIONS) => {
-  const closenessThreshold = 6 * DIMENSIONS.SCALE_FACTOR;
+export const checkCloseness = (item1, item2, selectedElevation, scaleFactor) => {
+  const closenessThreshold = 6 * scaleFactor;
 
   const isOnSelectedElevation =
     item1.elevation.includes(selectedElevation) &&
@@ -218,15 +219,15 @@ export const checkCloseness = (item1, item2, selectedElevation, DIMENSIONS) => {
 
   const a = {
     left: item1.position.x,
-    right: item1.position.x + item1.objWidth * DIMENSIONS.SCALE_FACTOR,
+    right: item1.position.x + item1.objWidth * scaleFactor,
     top: item1.position.y,
-    bottom: item1.position.y + item1.objHeight * DIMENSIONS.SCALE_FACTOR,
+    bottom: item1.position.y + item1.objHeight * scaleFactor,
   };
   const b = {
     left: item2.position.x,
-    right: item2.position.x + item2.objWidth * DIMENSIONS.SCALE_FACTOR,
+    right: item2.position.x + item2.objWidth * scaleFactor,
     top: item2.position.y,
-    bottom: item2.position.y + item2.objHeight * DIMENSIONS.SCALE_FACTOR,
+    bottom: item2.position.y + item2.objHeight * scaleFactor,
   };
 
   const tooCloseHorizontally =
