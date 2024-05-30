@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { use, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { toScale, generateImgSrc } from "../utils/2D/utils";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";

@@ -69,14 +69,6 @@ const Viewer = () => {
     setSelectedElevation(mappedElevations[selectedElevationIndex]);
   }, [selectedElevationIndex, setSelectedElevation]);
 
-  const scaleContainer = () => {
-    if (selectedContainer.slug === containerData[2].slug) {
-      return 0.5;
-    } else {
-      return 1;
-    }
-  };
-
   return (
     <>
       <div
@@ -102,7 +94,6 @@ const Viewer = () => {
             visibility: show3d ? "hidden" : "visible",
             position: "absolute",
             width: "100%",
-            transform: `scale(${scaleContainer()})`,
           }}
         >
           <Collision showCollision={showCollision} />

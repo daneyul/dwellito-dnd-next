@@ -20,13 +20,8 @@ import { Library2dDataContext, Library2dDataProvider } from "@/utils/2D/2dLibrar
 export const PageDataContext = createContext();
 
 const PageDataProvider = ({ children, data }) => {
-  // API Data
-  // const supplierData = data?.supplierData[0];
-  // const thumbnailsData = data?.thumbnailsData;
-
   const slug = data.slug;
-
-  // 2D Library
+  
   const {
     DEFAULT_COMPONENTS,
     snapToGridModifier,
@@ -61,6 +56,7 @@ const PageDataProvider = ({ children, data }) => {
   }, {});
   const [orderTotal, setOrderTotal] = useState(0);
   const [color, setColor] = useState(colors[0]);
+  const [scale, setScale] = useState(1);
   const [interior, setInterior] = useState(INTERIOR_OPTIONS[0]);
   const selectedContainer = containerData.find((container) => container.slug === slug);
   const containerId = selectedContainer.id;
@@ -241,6 +237,14 @@ const PageDataProvider = ({ children, data }) => {
     (component) => component.isSelected
   );
 
+  useEffect(() => {
+    if (selectedContainer.slug === containerData[2].slug) {
+      setScale(0.5);
+    } else {
+      setScale(1);
+    }
+  }, [selectedContainer, containerData]);
+
   return (
     <PageDataContext.Provider
       value={{
@@ -282,7 +286,9 @@ const PageDataProvider = ({ children, data }) => {
         setMappedElevations,
         selectedContainer,
         containerId,
-        slug
+        slug,
+        scale,
+        setScale
       }}
     >
       {children}

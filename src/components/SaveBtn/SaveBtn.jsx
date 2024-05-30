@@ -13,7 +13,7 @@ import { PageDataContext } from "../Content/Content";
 const SaveBtn = ({ selectedComponents, orderTotal }) => {
   const [open, setOpen] = useState(false);
   const { selectedContainer } = useContext(PageDataContext);
-  const { ELEVATION_NAMES, DIMENSIONS, SCALE_FACTORS } =
+  const { ELEVATION_NAMES, DIMENSIONS } =
     useContext(Library2dDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
@@ -33,8 +33,7 @@ const SaveBtn = ({ selectedComponents, orderTotal }) => {
               selectedElevation: elevation,
               DIMENSIONS,
               ELEVATION_NAMES,
-              selectedContainer,
-              SCALE_FACTORS,
+              selectedContainer
             });
 
             return (

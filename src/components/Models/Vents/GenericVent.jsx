@@ -22,7 +22,7 @@ const GenericVent = React.memo(
     const { nodes, materials } = useGLTF(modelPath);
     const { selectedComponents, selectedContainer } =
       useContext(PageDataContext);
-    const { elevationData, ELEVATION_NAMES, DIMENSIONS, SCALE_FACTORS } =
+    const { elevationData, ELEVATION_NAMES, DIMENSIONS } =
       useContext(Library2dDataContext);
     const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
     const selectedElevation = component.elevation[0];
@@ -32,7 +32,6 @@ const GenericVent = React.memo(
       DIMENSIONS,
       ELEVATION_NAMES,
       selectedContainer,
-      SCALE_FACTORS,
     });
     const ref = useRef();
 
