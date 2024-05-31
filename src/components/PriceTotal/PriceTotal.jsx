@@ -11,12 +11,40 @@ import {
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const PriceTotal = () => {
-  const { orderTotal, selectedComponents, selectedContainer, scaleFactor } =
+  const { orderTotal, selectedComponents, selectedContainer, scaleFactor, interior } =
     useContext(PageDataContext);
   const { ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const [dialogOpen, setDialogOpen] = useState(false);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
+
+  const InteriorSection = () => {
+    return (
+      <div className={style.section}>
+        <div className={style.elevationName}>{interior.name}</div>
+        <div style={{ listStyleType: "none", margin: "0", padding: "0" }}>
+              <div key={component.id} className={style.lineItem}>
+                <div className={style.thumbnailContainer}>
+                  <img
+                    src={generateImgSrc(component.imgName)}
+                    alt={component.desc}
+                    className={style.thumbnailImg}
+                  />
+                </div>
+                <div className={style.description}>
+                  <div className={style.partNumber}>{component.partNumber}</div>
+                  <div className={style.desc}>{component.desc}</div>
+                  <div className={style.distance}>
+                    {distance.left}&quot; from left, {distance.right}&quot; from
+                    right
+                  </div>
+                </div>
+                <div className={style.price}>${component.price}</div>
+              </div>
+        </div>
+      </div>
+    )
+  }
 
   const Section = ({ elevation }) => {
     const componentsForElevation = selectedComponents.filter((component) =>
@@ -77,7 +105,7 @@ const PriceTotal = () => {
       <Dialog.Trigger asChild>
         <div className={style.container}>
           <div className={style.price}>${orderTotal.toLocaleString()}</div>
-          <div className={style.text}>&nbsp;as low as $1,200 / mo</div>
+          <div className={style.text}>&nbsp;USD</div>
         </div>
       </Dialog.Trigger>
       <Dialog.Portal>
@@ -87,11 +115,12 @@ const PriceTotal = () => {
             {uniqueElevationNames.map((elevation, index) => (
               <Section key={index} elevation={elevation} />
             ))}
+            
             <Total text="Sub Total" value={`$${orderTotal.toLocaleString()}`} />
             <Total text="Tax" value={`$${tax.toLocaleString()}`} />
             <Total
               text="Total"
-              value={`$${(orderTotal + tax).toLocaleString()}`}
+              value={`$${(parseInt(orderTotal) + parseInt(tax)).toLocaleString()}`}
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Dialog.Close className={style.confirm}>

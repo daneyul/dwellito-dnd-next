@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { generateImgSrc, toScale } from "../utils/2D/utils";
 import Image from "next/image";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { PageDataContext } from "./Content/Content";
 
 export function Droppable({ children, selectedElevation }) {

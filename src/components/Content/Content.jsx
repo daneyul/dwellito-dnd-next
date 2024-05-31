@@ -26,7 +26,6 @@ const PageDataProvider = ({ children, data }) => {
     DEFAULT_COMPONENTS,
     snapToGridModifier,
     COMPONENT_TYPES,
-    DIMENSIONS,
     INTERIOR_OPTIONS,
     colors,
     elevationData,
@@ -56,7 +55,6 @@ const PageDataProvider = ({ children, data }) => {
   }, {});
   const [orderTotal, setOrderTotal] = useState(0);
   const [color, setColor] = useState(colors[0]);
-  const [scale, setScale] = useState(1);
   const [interior, setInterior] = useState(INTERIOR_OPTIONS[0]);
   const selectedContainer = containerData.find((container) => container.slug === slug);
   const containerId = selectedContainer.id;
@@ -77,10 +75,6 @@ const PageDataProvider = ({ children, data }) => {
 
   const toggleOrder = () => {
     setShowYourOrder(!showYourOrder);
-  };
-
-  const toggleView = () => {
-    setShow3d(!show3d);
   };
 
   // Calculate the total price of all selected components
@@ -246,14 +240,6 @@ const PageDataProvider = ({ children, data }) => {
     (component) => component.isSelected
   );
 
-  useEffect(() => {
-    if (selectedContainer.slug === containerData[2].slug) {
-      setScale(0.5);
-    } else {
-      setScale(1);
-    }
-  }, [selectedContainer, containerData]);
-
   return (
     <PageDataContext.Provider
       value={{
@@ -284,7 +270,7 @@ const PageDataProvider = ({ children, data }) => {
         zipCode,
         setZipCode,
         show3d,
-        toggleView,
+        setShow3d,
         color,
         setColor,
         interior,

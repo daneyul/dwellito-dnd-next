@@ -2,8 +2,8 @@
   border-radius: 12px;
   border: 1px solid color(indigo);
   position: absolute;
-  bottom: 1.5rem;
-  right: 10rem;
+  bottom: 2.5rem;
+  left: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,12 +13,19 @@
   justify-content: space-between;
 }
 
+.button {
+  background: none;
+}
+
 .button, .buttonSelected {
   padding: space(2);
   text-align: center;
   display: flex;
   justify-content: center;
   cursor: pointer;
+  border: none;
+  color: white;
+  font-family: "Chromatica";
 }
 
 .buttonSelected {

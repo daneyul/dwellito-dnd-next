@@ -39,17 +39,17 @@ const Viewer = () => {
 
   const LeftArrow = () => {
     return (
-      <div className={style.left} onClick={handlePrevious}>
+      <button className={style.left} onClick={handlePrevious}>
         <ChevronLeftBlack />
-      </div>
+      </button>
     );
   };
 
   const RightArrow = () => {
     return (
-      <div className={style.right} onClick={handleNext}>
+      <button className={style.right} onClick={handleNext}>
         <ChevronRightBlack />
-      </div>
+      </button>
     );
   };
 

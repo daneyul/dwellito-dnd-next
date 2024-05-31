@@ -542,8 +542,8 @@ export const Library2dDataProvider = ({ children }) => {
     }));
 
   const INTERIOR_OPTIONS = [
-    { name: "Plywood", hex: "#C19A6B", price: "", img: "", material: "" },
-    { name: "Pre-finished Drywall", hex: "#F2F2F2", price: "", img: "", material: "" },
+    { name: "Plywood", hex: "#C19A6B", price: 1000, img: "", material: "" },
+    { name: "Pre-finished Drywall", hex: "#F2F2F2", price: 1000, img: "", material: "" },
   ];
 
   const colors = [
