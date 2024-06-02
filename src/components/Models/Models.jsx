@@ -165,6 +165,23 @@ export function Models() {
     }
   }
 
+  // Update bounding box states when components are removed
+  useEffect(() => {
+    const doorIds = doors.map((door) => door.id);
+    const windowIds = windows.map((window) => window.id);
+    const ventIds = vents.map((vent) => vent.id);
+
+    setDoorBoundingBoxes((prev) =>
+      Object.fromEntries(Object.entries(prev).filter(([key]) => doorIds.includes(key)))
+    );
+    setWindowBoundingBoxes((prev) =>
+      Object.fromEntries(Object.entries(prev).filter(([key]) => windowIds.includes(key)))
+    );
+    setVentBoundingBoxes((prev) =>
+      Object.fromEntries(Object.entries(prev).filter(([key]) => ventIds.includes(key)))
+    );
+  }, [doors, windows, vents]);
+
   return (
     <div
       id="canvas-container"
@@ -172,7 +189,7 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach="background" args={["#fdfdf7"]} />
-        <ContainerShell />
+        {/* <ContainerShell /> */}
         <CsgGeometries
           doorBoundingBoxes={doorBoundingBoxes}
           windowBoundingBoxes={windowBoundingBoxes}

@@ -12,12 +12,12 @@ export const Library3dDataProvider = ({ children }) => {
     FORTY: [150, 50, 150]
   }
   const INTERIOR_CAM_POS = {
-    TEN: [28.68, 12, -0.88],
-    TWENTY: [28.68, 12, -0.88],
-    FORTY: [28.68, 12, -0.88]
+    TEN: [13, 12, -3],
+    TWENTY: [28.68, 12, -3],
+    FORTY: [28.68, 12, -3]
   }
   const INTERIOR_CAM_ROT = {
-    TEN: [2.15, 12, 5.65],
+    TEN: [2.15, 12, 6],
     TWENTY: [2.15, 12, 5.65],
     FORTY: [2.15, 12, 5.65]
   }

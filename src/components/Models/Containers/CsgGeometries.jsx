@@ -163,24 +163,33 @@ export function CsgGeometries({
         ) : null}
         {interior === INTERIOR_OPTIONS[0] ? (
           <>
-            <Base
-              geometry={pBackNodes.mesh_0.geometry}
-              material={plywoodMaterial["Plywood"]}
-              scale={10}
-              position={[adjustForX(), 0, adjustForY()]}
-            />
-            <Base
-              geometry={pRightNodes.mesh_0.geometry}
-              material={plywoodMaterial["Plywood"]}
-              scale={10}
-              position={[adjustForX(), 0, adjustForY()]}
-            />
-            <Base
-              geometry={pLeftNodes.mesh_0.geometry}
-              material={plywoodMaterial["Plywood"]}
-              scale={10}
-              position={[adjustForX(), 0, adjustForY()]}
-            />
+            {Object.keys(pBackNodes).map((key) => (
+              <Base
+                key={key}
+                geometry={pBackNodes[key].geometry}
+                material={plywoodMaterial["Plywood"]}
+                scale={10}
+                position={[adjustForX(), 0, adjustForY()]}
+              />
+            ))}
+            {Object.keys(pRightNodes).map((key) => (
+              <Base
+                key={key}
+                geometry={pRightNodes[key].geometry}
+                material={plywoodMaterial["Plywood"]}
+                scale={10}
+                position={[adjustForX(), 0, adjustForY()]}
+              />
+            ))}
+            {Object.keys(pLeftNodes).map((key) => (
+              <Base
+                key={key}
+                geometry={pLeftNodes[key].geometry}
+                material={plywoodMaterial["Plywood"]}
+                scale={10}
+                position={[adjustForX(), 0, adjustForY()]}
+              />
+            ))}
           </>
         ) : null}
         <Base
