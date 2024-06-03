@@ -105,7 +105,7 @@ const Viewer = () => {
             onDragEnd={handleDragEnd}
             modifiers={modifiers}
           >
-            <Droppable selectedElevation={selectedElevation}>
+            <Droppable>
               <div
                 style={{
                   width: `${toScale(
