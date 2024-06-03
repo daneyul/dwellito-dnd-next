@@ -76,7 +76,7 @@ const Viewer = () => {
     <>
       <div
         style={{
-          width: "70%",
+          width: "calc(100vw - 430px)",
           position: "sticky",
           display: "flex",
           flexDirection: "column",
