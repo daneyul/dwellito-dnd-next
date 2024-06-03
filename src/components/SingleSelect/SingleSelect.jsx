@@ -13,6 +13,8 @@ const SingleSelect = ({ type }) => {
     setInteriorFinish,
     flooring,
     setFlooring,
+    setShow3d,
+    setShowExterior
   } = useContext(PageDataContext);
   const {
     EXTERIOR,
@@ -35,7 +37,11 @@ const SingleSelect = ({ type }) => {
         <div
           key={selection.hex}
           className={isSelected ? style.thumbnailSelected : style.thumbnail}
-          onClick={() => setExteriorFinish(selection)}
+          onClick={() => {
+            setExteriorFinish(selection)
+            setShow3d(true)
+            setShowExterior(true)
+          }}
         >
           <img className={style.img} src={`/images/CustomContainer/exterior-finishes/${selection.img}`} alt="thumbnail" />
         </div>
@@ -66,7 +72,11 @@ const SingleSelect = ({ type }) => {
         <div
           key={selection.hex}
           className={isSelected ? style.thumbnailSelected : style.thumbnail}
-          onClick={() => setInteriorFinish(selection)}
+          onClick={() => {
+            setInteriorFinish(selection)
+            setShow3d(true)
+            setShowExterior(false)
+          }}
         >
           <div
             className={style.img}
@@ -103,7 +113,11 @@ const SingleSelect = ({ type }) => {
         <div
           key={index}
           className={isSelected ? style.thumbnailSelected : style.thumbnail}
-          onClick={() => setFlooring(selection)}
+          onClick={() => {
+            setFlooring(selection)
+            setShow3d(true)
+            setShowExterior(false)
+          }}
         >
           <div
             className={style.img}
