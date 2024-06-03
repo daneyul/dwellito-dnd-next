@@ -1,0 +1,17 @@
+.pageWrapper {
+  display: none;
+  @include respond-to(md) {
+    display: block;
+  }
+}
+
+.mobileContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  @include respond-to(md) {
+    display: none;
+  }
+}

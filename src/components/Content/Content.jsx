@@ -22,6 +22,7 @@ import {
   Library2dDataContext,
   Library2dDataProvider,
 } from "@/utils/2D/2dLibraryContext";
+import style from "./content.module.scss";
 
 export const PageDataContext = createContext();
 
@@ -36,7 +37,7 @@ const PageDataProvider = ({ children, data }) => {
     containerData,
     ELEVATION_NAMES,
   } = useContext(Library2dDataContext);
-  
+
   const { INTERIOR_FINISH_OPTIONS, EXTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS } =
     useContext(Library3dDataContext);
 
@@ -67,9 +68,7 @@ const PageDataProvider = ({ children, data }) => {
   const [interiorFinish, setInteriorFinish] = useState(
     INTERIOR_FINISH_OPTIONS[0]
   );
-  const [flooring, setFlooring] = useState(
-    FLOORING_OPTIONS[0]
-  );
+  const [flooring, setFlooring] = useState(FLOORING_OPTIONS[0]);
   const selectedContainer = containerData.find(
     (container) => container.slug === slug
   );
@@ -304,7 +303,7 @@ const PageDataProvider = ({ children, data }) => {
         scaleFactor,
         setScaleFactor,
         flooring,
-        setFlooring
+        setFlooring,
       }}
     >
       {children}
@@ -317,18 +316,24 @@ const Content = ({ data }) => {
     <Library2dDataProvider>
       <Library3dDataProvider>
         <PageDataProvider data={data}>
-          <div style={{ position: "absolute", top: "2rem", left: "2rem" }}>
-            <Logo />
+          <div className={style.mobileContent}>
+            <p>Configure on your desktop for the best experience</p>
+            <p>For full functionality and a better experience, please visit this page on a desktop computer.</p>
           </div>
-          <div
-            style={{
-              display: "flex",
-              position: "relative",
-            }}
-          >
-            <Viewer />
-            <Sidebar />
-            <PriceTotal />
+          <div className={style.pageWrapper}>
+            <div style={{ position: "absolute", top: "2rem", left: "2rem" }}>
+              <Logo />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                position: "relative",
+              }}
+            >
+              <Viewer />
+              <Sidebar />
+              <PriceTotal />
+            </div>
           </div>
         </PageDataProvider>
       </Library3dDataProvider>
