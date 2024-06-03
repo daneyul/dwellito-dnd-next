@@ -135,7 +135,7 @@ export function CsgGeometries({
       </group>
     ));
   }, [ventBoundingBoxes]);
-
+console.log(pRightNodes)
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
