@@ -10,6 +10,7 @@ import YourOrder from "../YourOrder/YourOrder";
 import SingleSelect from "../SingleSelect/SingleSelect";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 import Layouts from "../Layouts/Layouts";
+import Subtitle from "../Subtitle/Subtitle";
 
 const Sidebar = () => {
   const { showYourOrder } = useContext(PageDataContext);
@@ -28,11 +29,12 @@ const Sidebar = () => {
         <Badges />
         <BasePriceDesc />
         <Layouts />
-        <Selector />
-        <div className={style.selectionTagName}>
+        <div className={style.selectionTagName} style={{ marginTop: "2rem" }}>
           Choose an exterior finish
         </div>
+        <Subtitle text="Select your desired material color" css={{ fontWeight: 400, marginBottom: "1rem" }} />
         <SingleSelect type={EXTERIOR} />
+        <Selector />
         <div className={style.selectionTagName}>
           Select your wall finishes
         </div>

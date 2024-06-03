@@ -8,10 +8,16 @@ const ToggleCamera = () => {
   if (show3d) {
     return (
       <div className={style.container}>
-        <button className={showExterior ? style.buttonSelected : style.button} onClick={() => setShowExterior(true)}>
+        <button
+          className={showExterior ? style.buttonSelected : style.button}
+          onClick={() => setShowExterior(true)}
+        >
           Exterior
         </button>
-        <button className={showExterior ? style.button : style.buttonSelected} onClick={() => setShowExterior(false)}>
+        <button
+          className={showExterior ? style.button : style.buttonSelected}
+          onClick={() => setShowExterior(false)}
+        >
           Interior
         </button>
       </div>

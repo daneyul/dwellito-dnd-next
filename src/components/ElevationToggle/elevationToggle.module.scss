@@ -1,17 +1,26 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
   justify-content: center;
+  position: absolute;
+  bottom: calc(3rem + 58px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.50);
+  color: color(white);
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: 0px 1px 4px 0px rgba(100, 106, 150, 0.08), 0px 6px 32px 0px rgba(100, 106, 150, 0.12);
 }
 
 .toggle {
   font-family: "Chromatica", sans-serif;
-  font-weight: 400;
+  color: color(white);
   border: 1px solid transparent;
   background: none;
   box-sizing: border-box;
-  padding: 0.25rem 0.5rem;
+  padding: 6px 8px;
   max-width: 100px;
   border-radius: 8px;
   transition: border 0.1s, background-color 0.1s, border-radius 0.1s, color 0.1s;
@@ -19,9 +28,7 @@
 
 .toggle:hover, .toggleSelected {
   font-family: "Chromatica", sans-serif;
-  font-weight: 700;
-  border: 1px solid #2A2CB1;
   background-color: #DFE3FF;
-  color: #2A2CB1;
   cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.20);
 }

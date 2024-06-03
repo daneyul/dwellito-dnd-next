@@ -462,10 +462,10 @@ export const Library2dDataProvider = ({ children }) => {
 
   // ELEVATIONS
   const ELEVATION_NAMES = {
-    FRONT: "Front Side",
-    BACK: "Back Side",
-    LEFT: "Left Side",
-    RIGHT: "Right Side",
+    FRONT: "Front",
+    BACK: "Back",
+    LEFT: "Left",
+    RIGHT: "Right",
   };
 
   const elevationData = [

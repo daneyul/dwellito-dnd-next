@@ -12,8 +12,8 @@
 .optionContainer > div,
 .optionContainerSelected > div {
   border-radius: 40px;
-  width: 72px;
-  height: 72px;
+  width: 54px;
+  height: 54px;
 }
 
 .optionContainer,
@@ -40,7 +40,7 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: space(4);
+  gap: space(2);
   position: relative;
 }
 
@@ -70,15 +70,15 @@
 .thumbnailSelected > div {
   border-radius: 40px;
   border: 4px solid color(white);
-  width: 72px;
-  height: 72px;
+  width: 54px;
+  height: 54px;
 }
 
 .thumbnail > img,
 .thumbnailSelected > img {
   border-radius: 40px;
-  width: 72px;
-  height: 72px;
+  width: 54px;
+  height: 54px;
 }
 
 .thumbnail > div:hover,
@@ -95,6 +95,6 @@
 .thumbnail,
 .thumbnailSelected {
   cursor: pointer;
-  width: 72px;
-  height: 72px;
+  width: 54px;
+  height: 54px;
 }

@@ -13,6 +13,7 @@ import { Models } from "../Models/Models";
 import ToggleCamera from "../ToggleCamera/ToggleCamera";
 import { PageDataContext } from "../Content/Content";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
+import ElevationToggle from "../ElevationToggle/ElevationToggle";
 
 const Viewer = () => {
   const {
@@ -161,6 +162,7 @@ const Viewer = () => {
         )}
         <ToggleCamera />
         <ToggleView />
+        <ElevationToggle />
       </div>
     </>
   );

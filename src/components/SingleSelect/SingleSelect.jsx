@@ -57,7 +57,7 @@ const SingleSelect = ({ type }) => {
         isSelected && (
           <div className={style.singleSelDescriptionContainer} key={index}>
             <Subtitle text={selection.name} />
-            <Subtitle text="$100" />
+            <Subtitle text="+ $100" />
           </div>
         )
       );
@@ -99,7 +99,7 @@ const SingleSelect = ({ type }) => {
         isSelected && (
           <div className={style.singleSelDescriptionContainer} key={index}>
             <Subtitle text={selection.name} />
-            <Subtitle text="$100" />
+            <Subtitle text="+ $100" />
           </div>
         )
       );
@@ -141,7 +141,7 @@ const SingleSelect = ({ type }) => {
         isSelected && (
           <div className={style.singleSelDescriptionContainer} key={index}>
             <Subtitle text={selection.name} />
-            <Subtitle text="$100" />
+            <Subtitle text="+ $100" />
           </div>
         )
       );
@@ -166,7 +166,6 @@ const SingleSelect = ({ type }) => {
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
-        marginBottom: "4rem",
       }}
     >
       <div className={style.thumbnailContainer}>
