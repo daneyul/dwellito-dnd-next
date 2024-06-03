@@ -239,13 +239,13 @@ export const checkCloseness = (item1, item2, selectedElevation, scaleFactor) => 
 };
 
 export const snapToIncrement =
-  (increment) =>
+  (increment, scaleFactor) =>
   ({ transform }) => {
     if (transform && typeof transform.x === "number") {
       return {
         ...transform,
         // Only modify x if it's defined and is a number
-        x: Math.round(transform.x / toScale(increment)) * toScale(increment),
+        x: Math.round(transform.x / toScale(increment, scaleFactor)) * toScale(increment, scaleFactor),
       };
     }
 

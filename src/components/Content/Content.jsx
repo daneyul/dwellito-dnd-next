@@ -14,24 +14,31 @@ import Logo from "@/components/Logo";
 import Viewer from "@/components/Viewer/Viewer";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import PriceTotal from "@/components/PriceTotal/PriceTotal";
-import { Library3dDataProvider } from "@/utils/3D/3dLibraryContext";
-import { Library2dDataContext, Library2dDataProvider } from "@/utils/2D/2dLibraryContext";
+import {
+  Library3dDataContext,
+  Library3dDataProvider,
+} from "@/utils/3D/3dLibraryContext";
+import {
+  Library2dDataContext,
+  Library2dDataProvider,
+} from "@/utils/2D/2dLibraryContext";
 
 export const PageDataContext = createContext();
 
 const PageDataProvider = ({ children, data }) => {
   const slug = data.slug;
-  
+
   const {
     DEFAULT_COMPONENTS,
     snapToGridModifier,
     COMPONENT_TYPES,
-    INTERIOR_OPTIONS,
-    colors,
     elevationData,
     containerData,
-    ELEVATION_NAMES
+    ELEVATION_NAMES,
   } = useContext(Library2dDataContext);
+  
+  const { INTERIOR_FINISH_OPTIONS, EXTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS } =
+    useContext(Library3dDataContext);
 
   const DEFAULT_ELEVATION = elevationData.find(
     (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug
@@ -54,15 +61,26 @@ const PageDataProvider = ({ children, data }) => {
     return acc;
   }, {});
   const [orderTotal, setOrderTotal] = useState(0);
-  const [color, setColor] = useState(colors[0]);
-  const [interior, setInterior] = useState(INTERIOR_OPTIONS[0]);
-  const selectedContainer = containerData.find((container) => container.slug === slug);
+  const [exteriorFinish, setExteriorFinish] = useState(
+    EXTERIOR_FINISH_OPTIONS[0]
+  );
+  const [interiorFinish, setInteriorFinish] = useState(
+    INTERIOR_FINISH_OPTIONS[0]
+  );
+  const [flooring, setFlooring] = useState(
+    FLOORING_OPTIONS[0]
+  );
+  const selectedContainer = containerData.find(
+    (container) => container.slug === slug
+  );
   const containerId = selectedContainer.id;
-  const [mappedElevations, setMappedElevations] = useState(elevationData.filter((elevation) => {
-    if (elevation.homePlan === selectedContainer.slug) {
-      return elevation;
-    }
-  }));
+  const [mappedElevations, setMappedElevations] = useState(
+    elevationData.filter((elevation) => {
+      if (elevation.homePlan === selectedContainer.slug) {
+        return elevation;
+      }
+    })
+  );
   const [scaleFactor, setScaleFactor] = useState();
 
   useEffect(() => {
@@ -79,12 +97,13 @@ const PageDataProvider = ({ children, data }) => {
 
   // Calculate the total price of all selected components
   useEffect(() => {
-    const total = selectedComponents.reduce(
-      (accumulator, currentComponent) => accumulator + currentComponent.price,
-      0
-    ) + interior.price;
+    const total =
+      selectedComponents.reduce(
+        (accumulator, currentComponent) => accumulator + currentComponent.price,
+        0
+      ) + interiorFinish.price;
     setOrderTotal(total);
-  }, [selectedComponents, interior]);
+  }, [selectedComponents, interiorFinish]);
 
   // For each elevation change, reset the isSelected state for all components
   useEffect(() => {
@@ -271,10 +290,10 @@ const PageDataProvider = ({ children, data }) => {
         setZipCode,
         show3d,
         setShow3d,
-        color,
-        setColor,
-        interior,
-        setInterior,
+        exteriorFinish,
+        setExteriorFinish,
+        interiorFinish,
+        setInteriorFinish,
         showExterior,
         setShowExterior,
         mappedElevations,
@@ -283,7 +302,9 @@ const PageDataProvider = ({ children, data }) => {
         containerId,
         slug,
         scaleFactor,
-        setScaleFactor
+        setScaleFactor,
+        flooring,
+        setFlooring
       }}
     >
       {children}

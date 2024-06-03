@@ -1,46 +1,51 @@
 import { useGLTF } from "@react-three/drei";
-import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { useContext, useRef } from "react";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { PageDataContext } from "@/components/Content/Content";
+import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 export default function ContainerShell20() {
-  
   const { nodes, materials } = useGLTF(
     "/models/container/20/container-shell.glb"
   );
-  const { INTERIOR_OPTIONS, DIMENSIONS } = useContext(Library2dDataContext);
-  const { color, interior, selectedContainer } = useContext(PageDataContext);
+  const { DIMENSIONS } = useContext(Library2dDataContext);
+  const { INTERIOR_FINISH_OPTIONS } = useContext(Library3dDataContext);
+  const { exteriorFinish, interiorFinish, selectedContainer, flooring } =
+    useContext(PageDataContext);
 
   const { materials: exteriorMaterials } = useGLTF(
-    `/models/materials/${color.material}.glb`
+    `/models/materials/${exteriorFinish.fileName}.glb`
   );
 
-  const exteriorPaint = exteriorMaterials[color.obj];
+  const exteriorPaint = exteriorMaterials[exteriorFinish.glbObject];
+
+  const { materials: flooringMaterial } = useGLTF(
+    `/models/materials/flooring/${flooring.fileName}.glb`
+  );
 
   const ref = useRef();
 
   const adjustForX = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2)
+      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2)
+      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2)
+      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
-  }
+  };
   const adjustForY = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2
+      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2
+      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2
+      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
-  }
+  };
 
   const Plywood = () => {
-    if (interior === INTERIOR_OPTIONS[0]) {
+    if (interiorFinish === INTERIOR_FINISH_OPTIONS[0]) {
       return (
         <>
           <mesh
@@ -61,7 +66,7 @@ export default function ContainerShell20() {
   };
 
   const Drywall = () => {
-    if (interior === INTERIOR_OPTIONS[1]) {
+    if (interiorFinish === INTERIOR_FINISH_OPTIONS[1]) {
       return (
         <>
           <mesh
@@ -125,7 +130,7 @@ export default function ContainerShell20() {
           castShadow
           receiveShadow
           geometry={nodes["20FT_Interior_Blank_Floor_01001"].geometry}
-          material={materials["Timber.001"]}
+          material={flooringMaterial[flooring.glbObject]}
         />
       </>
     );

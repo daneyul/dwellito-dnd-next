@@ -541,44 +541,6 @@ export const Library2dDataProvider = ({ children }) => {
       ...item,
     }));
 
-  const INTERIOR_OPTIONS = [
-    { name: "Plywood", hex: "#C19A6B", price: 1000, img: "", material: "" },
-    { name: "Pre-finished Drywall", hex: "#F2F2F2", price: 1000, img: "", material: "" },
-  ];
-
-  const colors = [
-    {
-      name: "White",
-      obj: "White",
-      hex: "#F2F2F2",
-      material: "white-paint",
-    },
-    {
-      name: "Blue",
-      obj: "Blue",
-      hex: "#003366",
-      material: "blue-paint",
-    },
-    {
-      name: "Green",
-      obj: "Green",
-      hex: "#2E8B57",
-      material: "green-paint",
-    },
-    {
-      name: "Slate Grey",
-      obj: "SlateGrey",
-      hex: "#6C7B8B",
-      material: "slate-grey-paint",
-    },
-    {
-      name: "Red",
-      obj: "Red",
-      hex: "#800000",
-      material: "red-paint",
-    },
-  ];
-
   return (
     <Library2dDataContext.Provider
       value={{
@@ -590,9 +552,7 @@ export const Library2dDataProvider = ({ children }) => {
         componentData,
         DEFAULT_COMPONENTS,
         elevationData,
-        ELEVATION_NAMES,
-        INTERIOR_OPTIONS,
-        colors,
+        ELEVATION_NAMES
       }}
     >
       {children}

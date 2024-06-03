@@ -13,7 +13,7 @@ import Layouts from "../Layouts/Layouts";
 
 const Sidebar = () => {
   const { showYourOrder } = useContext(PageDataContext);
-  const { EXTERIOR, INTERIOR } = useContext(Library3dDataContext);
+  const { EXTERIOR, INTERIOR, FLOORING } = useContext(Library3dDataContext);
   const supplierName = "Custom Cubes";
 
   const NotYourOrder = () => {
@@ -30,13 +30,17 @@ const Sidebar = () => {
         <Layouts />
         <Selector />
         <div className={style.selectionTagName}>
-          Exterior Siding
+          Choose an exterior finish
         </div>
         <SingleSelect type={EXTERIOR} />
         <div className={style.selectionTagName}>
-          Interior
+          Select your wall finishes
         </div>
         <SingleSelect type={INTERIOR} />
+        <div className={style.selectionTagName}>
+          Select your flooring
+        </div>
+        <SingleSelect type={FLOORING} />
         <SaveOrder />
       </>
     );

@@ -4,14 +4,16 @@ import { Base, Geometry, Subtraction } from "@react-three/csg";
 import * as THREE from "three";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { PageDataContext } from "@/components/Content/Content";
+import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 export function CsgGeometries({
   doorBoundingBoxes,
   windowBoundingBoxes,
   ventBoundingBoxes,
 }) {
-  const { INTERIOR_OPTIONS, containerData, DIMENSIONS } = useContext(Library2dDataContext);
-  const { color, interior, selectedContainer } = useContext(PageDataContext);
+  const { containerData, DIMENSIONS } = useContext(Library2dDataContext);
+  const { INTERIOR_FINISH_OPTIONS } = useContext(Library3dDataContext);
+  const { exteriorFinish, interiorFinish, selectedContainer } = useContext(PageDataContext);
 
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -45,10 +47,10 @@ export function CsgGeometries({
   }
 
   const { materials: exteriorMaterials } = useGLTF(
-    `/models/materials/${color.material}.glb`
+    `/models/materials/${exteriorFinish.fileName}.glb`
   );
 
-  const exteriorPaint = exteriorMaterials[color.obj];
+  const exteriorPaint = exteriorMaterials[exteriorFinish.glbObject];
 
   const { materials: plywoodMaterial } = useGLTF(
     "/models/materials/plywood.glb"
@@ -138,7 +140,7 @@ export function CsgGeometries({
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
-        {interior === INTERIOR_OPTIONS[1] ? (
+        {interiorFinish === INTERIOR_FINISH_OPTIONS[1] ? (
           <>
             {Object.keys(dBackNodes).map((key) => (
               <Base
@@ -169,7 +171,7 @@ export function CsgGeometries({
             ))}
           </>
         ) : null}
-        {interior === INTERIOR_OPTIONS[0] ? (
+        {interiorFinish === INTERIOR_FINISH_OPTIONS[0] ? (
           <>
             {Object.keys(pBackNodes).map((key) => (
               <Base

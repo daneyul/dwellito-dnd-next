@@ -2,26 +2,41 @@ import { useContext } from "react";
 import Subtitle from "../Subtitle/Subtitle";
 import style from "./singleSelect.module.scss";
 import { PageDataContext } from "@/components/Content/Content";
-import { Library3dDataContext, Utility3dDataContext } from "@/utils/3D/3dLibraryContext";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
+import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 /* eslint-disable @next/next/no-img-element */
 const SingleSelect = ({ type }) => {
-  const { color, setColor, interior, setInterior } = useContext(PageDataContext);
-  const { EXTERIOR } = useContext(Library3dDataContext);
-  const { INTERIOR_OPTIONS, colors } = useContext(Library2dDataContext);
+  const {
+    exteriorFinish,
+    setExteriorFinish,
+    interiorFinish,
+    setInteriorFinish,
+    flooring,
+    setFlooring,
+  } = useContext(PageDataContext);
+  const {
+    EXTERIOR,
+    INTERIOR,
+    FLOORING,
+    INTERIOR_FINISH_OPTIONS,
+    EXTERIOR_FINISH_OPTIONS,
+    FLOORING_OPTIONS,
+  } = useContext(Library3dDataContext);
 
   const isExterior = type === EXTERIOR;
+  const isInterior = type === INTERIOR;
+  const isFlooring = type === FLOORING;
+
   const exteriorSelections = () => {
-    return colors.map((selection) => {
-      const isSelected = color.hex === selection.hex;
+    return EXTERIOR_FINISH_OPTIONS.map((selection) => {
+      const isSelected = exteriorFinish.hex === selection.hex;
       const thumbnailColor = selection.hex;
 
       return (
         <div
           key={selection.hex}
           className={isSelected ? style.thumbnailSelected : style.thumbnail}
-          onClick={() => setColor(selection)}
+          onClick={() => setExteriorFinish(selection)}
         >
           <div
             className={style.img}
@@ -36,8 +51,8 @@ const SingleSelect = ({ type }) => {
   };
 
   const exteriorDesc = () => {
-    return colors.map((selection, index) => {
-      const isSelected = color.hex === selection.hex;
+    return EXTERIOR_FINISH_OPTIONS.map((selection, index) => {
+      const isSelected = exteriorFinish.hex === selection.hex;
 
       return (
         isSelected && (
@@ -50,15 +65,15 @@ const SingleSelect = ({ type }) => {
   };
 
   const interiorSelections = () => {
-    return INTERIOR_OPTIONS.map((selection) => {
-      const isSelected = interior === selection ;
+    return INTERIOR_FINISH_OPTIONS.map((selection) => {
+      const isSelected = interiorFinish === selection;
       const thumbnailColor = selection.hex;
 
       return (
         <div
           key={selection.hex}
           className={isSelected ? style.thumbnailSelected : style.thumbnail}
-          onClick={() => setInterior(selection)}
+          onClick={() => setInteriorFinish(selection)}
         >
           <div
             className={style.img}
@@ -73,8 +88,8 @@ const SingleSelect = ({ type }) => {
   };
 
   const interiorDesc = () => {
-    return INTERIOR_OPTIONS.map((selection, index) => {
-      const isSelected = interior === selection;
+    return INTERIOR_FINISH_OPTIONS.map((selection, index) => {
+      const isSelected = interiorFinish === selection;
 
       return (
         isSelected && (
@@ -86,6 +101,55 @@ const SingleSelect = ({ type }) => {
     });
   };
 
+  const flooringSelections = () => {
+    return FLOORING_OPTIONS.map((selection, index) => {
+      const isSelected = flooring === selection;
+      const thumbnailColor = selection.hex;
+
+      return (
+        <div
+          key={index}
+          className={isSelected ? style.thumbnailSelected : style.thumbnail}
+          onClick={() => setFlooring(selection)}
+        >
+          <div
+            className={style.img}
+            style={{
+              backgroundColor: thumbnailColor,
+            }}
+            alt="thumbnail"
+          ></div>
+        </div>
+      );
+    });
+  };
+
+  const flooringDesc = () => {
+    return FLOORING_OPTIONS.map((selection, index) => {
+      const isSelected = flooring.hex === selection.hex;
+
+      return (
+        isSelected && (
+          <div className={style.singleSelDescriptionContainer} key={index}>
+            <Subtitle text={selection.name} />
+          </div>
+        )
+      );
+    });
+  };
+
+  const Selections = () => {
+    if (isExterior) return exteriorSelections();
+    if (isInterior) return interiorSelections();
+    if (isFlooring) return flooringSelections();
+  }
+
+  const Descriptions = () => {
+    if (isExterior) return exteriorDesc();
+    if (isInterior) return interiorDesc();
+    if (isFlooring) return flooringDesc();
+  }
+
   return (
     <div
       style={{
@@ -96,14 +160,8 @@ const SingleSelect = ({ type }) => {
       }}
     >
       <div className={style.thumbnailContainer}>
-        {isExterior
-          ? exteriorSelections()
-          : interiorSelections()
-          }
-        {isExterior
-          ? exteriorDesc()
-          : interiorDesc()
-          }
+        <Selections />
+        <Descriptions />
       </div>
     </div>
   );

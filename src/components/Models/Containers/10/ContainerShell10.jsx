@@ -1,20 +1,21 @@
 import { useGLTF } from "@react-three/drei";
-import { adjustForX, adjustForY } from "@/utils/3D/utils";
 import { useContext, useRef } from "react";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { PageDataContext } from "@/components/Content/Content";
+import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 export default function ContainerShell10() {
   const { nodes, materials } = useGLTF(
     "/models/container/10/container-shell.glb"
   );
-  const { INTERIOR_OPTIONS, DIMENSIONS } = useContext(Library2dDataContext);
-  const { color, interior, selectedContainer } = useContext(PageDataContext);
+  const { DIMENSIONS } = useContext(Library2dDataContext);
+  const { INTERIOR_FINISH_OPTIONS } = useContext(Library3dDataContext);
+  const { exteriorFinish, interiorFinish, selectedContainer } = useContext(PageDataContext);
   const { materials: exteriorMaterials } = useGLTF(
-    `/models/materials/${color.material}.glb`
+    `/models/materials/${exteriorFinish.fileName}.glb`
   );
 
-  const exteriorPaint = exteriorMaterials[color.obj];
+  const exteriorPaint = exteriorMaterials[exteriorFinish.glbObject];
   const ref = useRef();
 
   const adjustForX = () => {
@@ -37,7 +38,7 @@ export default function ContainerShell10() {
   }
 
   const Plywood = () => {
-    if (interior === INTERIOR_OPTIONS[0]) {
+    if (interiorFinish === INTERIOR_FINISH_OPTIONS[0]) {
       return (
         <>
           <mesh
@@ -58,7 +59,7 @@ export default function ContainerShell10() {
   };
 
   const Drywall = () => {
-    if (interior === INTERIOR_OPTIONS[1]) {
+    if (interiorFinish === INTERIOR_FINISH_OPTIONS[1]) {
       return (
         <>
           <mesh
