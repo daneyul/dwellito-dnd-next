@@ -32,10 +32,9 @@ const Viewer = () => {
     show3d,
     mappedElevations,
     selectedContainer,
-    scaleFactor
+    scaleFactor,
   } = useContext(PageDataContext);
-  const { DIMENSIONS, ELEVATION_NAMES } =
-    useContext(Library2dDataContext);
+  const { DIMENSIONS, ELEVATION_NAMES } = useContext(Library2dDataContext);
 
   const LeftArrow = () => {
     return (
@@ -69,6 +68,10 @@ const Viewer = () => {
   useEffect(() => {
     setSelectedElevation(mappedElevations[selectedElevationIndex]);
   }, [selectedElevationIndex, setSelectedElevation]);
+
+  const showLeftArrow = selectedElevationIndex > 0 && !show3d;
+  const showRightArrow =
+    selectedElevationIndex < mappedElevations.length - 1 && !show3d;
 
   return (
     <>
@@ -133,7 +136,7 @@ const Viewer = () => {
                         DIMENSIONS,
                         ELEVATION_NAMES,
                         selectedContainer,
-                        scaleFactor
+                        scaleFactor,
                       })
                     );
                     return (
@@ -151,13 +154,11 @@ const Viewer = () => {
             </Droppable>
           </DndContext>
         </div>
-          {selectedElevationIndex > 0 && <LeftArrow />}
-          {selectedElevationIndex < mappedElevations.length - 1 && (
-            <RightArrow />
-          )}
-          {isAnyItemSelected && (
-            <DeleteBtn onDeleteSelected={handleDeleteSelected} />
-          )}
+        {showLeftArrow && <LeftArrow />}
+        {showRightArrow && <RightArrow />}
+        {(isAnyItemSelected && !show3d) && (
+          <DeleteBtn onDeleteSelected={handleDeleteSelected} />
+        )}
         <ToggleCamera />
         <ToggleView />
       </div>

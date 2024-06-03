@@ -30,7 +30,6 @@ const SingleSelect = ({ type }) => {
   const exteriorSelections = () => {
     return EXTERIOR_FINISH_OPTIONS.map((selection) => {
       const isSelected = exteriorFinish.hex === selection.hex;
-      const thumbnailColor = selection.hex;
 
       return (
         <div
@@ -38,13 +37,7 @@ const SingleSelect = ({ type }) => {
           className={isSelected ? style.thumbnailSelected : style.thumbnail}
           onClick={() => setExteriorFinish(selection)}
         >
-          <div
-            className={style.img}
-            style={{
-              backgroundColor: thumbnailColor,
-            }}
-            alt="thumbnail"
-          ></div>
+          <img className={style.img} src={`/images/CustomContainer/exterior-finishes/${selection.img}`} alt="thumbnail" />
         </div>
       );
     });

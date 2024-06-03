@@ -49,35 +49,35 @@ export const Library3dDataProvider = ({ children }) => {
       glbObject: "White",
       hex: "#F2F2F2",
       fileName: "white-paint",
-      img: ""
+      img: "white.png"
     },
     {
       name: "Blue",
       glbObject: "Blue",
       hex: "#003366",
       fileName: "blue-paint",
-      img: ""
+      img: "blue.png"
     },
     {
       name: "Green",
       glbObject: "Green",
       hex: "#2E8B57",
       fileName: "green-paint",
-      img: ""
+      img: "green.png"
     },
     {
       name: "Slate Grey",
       glbObject: "SlateGrey",
       hex: "#6C7B8B",
       fileName: "slate-grey-paint",
-      img: ""
+      img: "slate-grey.png"
     },
     {
       name: "Red",
       glbObject: "Red",
       hex: "#800000",
       fileName: "red-paint",
-      img: ""
+      img: "red.png"
     },
   ];
 
