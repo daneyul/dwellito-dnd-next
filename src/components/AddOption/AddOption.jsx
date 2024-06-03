@@ -6,7 +6,7 @@ import * as HoverCard from "@radix-ui/react-hover-card";
 import { PageDataContext } from "../Content/Content";
 
 const AddOption = ({ options }) => {
-  const { setSelectedComponents, selectedElevation, setHasCollisions, scaleFactor } =
+  const { setSelectedComponents, selectedElevation, setHasCollisions, scaleFactor, setShow3d } =
     useContext(PageDataContext);
   return options.map((item) => {
     return (
@@ -15,7 +15,8 @@ const AddOption = ({ options }) => {
           <img
             src={generateImgSrc(item.imgName)}
             alt={item.name}
-            onClick={() =>
+            onClick={() => {
+              setShow3d(false)
               handleAddComponent(
                 item,
                 setSelectedComponents,
@@ -23,7 +24,7 @@ const AddOption = ({ options }) => {
                 setHasCollisions,
                 scaleFactor
               )
-            }
+            }}
             className={style.objImg}
           />
         </HoverCard.Trigger>

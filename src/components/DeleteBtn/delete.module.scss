@@ -3,13 +3,14 @@
   position: absolute;
   transform: translate(-50%, 50%);
   left: 50%;
-  bottom: calc(5.375rem + 36px);
+  bottom: -2.25rem;
   z-index: 1;
   justify-content: center;
   align-items: center;
 }
 
 .icon {
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;

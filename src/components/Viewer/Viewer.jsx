@@ -24,10 +24,8 @@ const Viewer = () => {
     handleDragStart,
     handleDragEnd,
     handleSelect,
-    handleDeleteSelected,
     showCollision,
     draggableRefs,
-    isAnyItemSelected,
     selectedElevationIndex,
     setSelectedElevationIndex,
     show3d,
@@ -157,9 +155,6 @@ const Viewer = () => {
         </div>
         {showLeftArrow && <LeftArrow />}
         {showRightArrow && <RightArrow />}
-        {(isAnyItemSelected && !show3d) && (
-          <DeleteBtn onDeleteSelected={handleDeleteSelected} />
-        )}
         <ToggleCamera />
         <ToggleView />
         <ElevationToggle />

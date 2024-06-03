@@ -1,17 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { toScale, generateImgSrc } from "../utils/2D/utils";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { PageDataContext } from "./Content/Content";
+import DeleteBtn from "./DeleteBtn/DeleteBtn";
 
 export function Draggable({ id, styles, piece, onSelect }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
-  const { scaleFactor } = useContext(PageDataContext);
+  const { scaleFactor, isAnyItemSelected, show3d, handleDeleteSelected } =
+    useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseDown = (e) => {
+    e.stopPropagation();
+    onSelect();
+  };
 
   const CustomStyle = {
     position: "absolute",
@@ -21,9 +27,16 @@ export function Draggable({ id, styles, piece, onSelect }) {
     height: `${toScale(piece.objHeight, scaleFactor)}px`,
     left: `${piece.position.x}px`,
     top: `${piece.position.y}px`,
-    boxShadow: isHovered || piece.isSelected ? "0px 4px 30px 0px rgba(128, 129, 238, 0.19)" : "none",
-    border: isHovered || piece.isSelected ? "1px solid #2A2CB1" : "1px solid transparent",
+    boxShadow:
+      isHovered || piece.isSelected
+        ? "0px 4px 30px 0px rgba(128, 129, 238, 0.19)"
+        : "none",
+    border:
+      isHovered || piece.isSelected
+        ? "1px solid #2A2CB1"
+        : "1px solid transparent",
     boxSizing: "border-box",
+    position: "relative",
   };
 
   const dragStyle = transform
@@ -41,7 +54,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
         {...attributes}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onMouseDown={() => onSelect()}
+        onMouseDown={handleMouseDown}
       >
         <img
           src={generateImgSrc(piece.imgName)}
@@ -49,10 +62,13 @@ export function Draggable({ id, styles, piece, onSelect }) {
           style={{
             width: "100%",
             height: "100%",
-            objectFit: "fill"
+            objectFit: "fill",
           }}
         />
       </div>
+      {isAnyItemSelected && !show3d && (
+        <DeleteBtn onDeleteSelected={handleDeleteSelected} />
+      )}
     </>
   );
 }
