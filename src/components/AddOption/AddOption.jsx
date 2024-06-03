@@ -4,7 +4,6 @@ import { generateImgSrc, handleAddComponent } from "../../utils/2D/utils";
 import style from "./addOption.module.css";
 import * as HoverCard from "@radix-ui/react-hover-card";
 import { PageDataContext } from "../Content/Content";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const AddOption = ({ options }) => {
   const { setSelectedComponents, selectedElevation, setHasCollisions, scaleFactor } =

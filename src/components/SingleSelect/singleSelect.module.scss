@@ -1,5 +1,4 @@
 .selectionTagName {
-  text-align: center;
   font-size: 18px;
   font-weight: 700;
   line-height: 30px;
@@ -39,14 +38,13 @@
 
 .thumbnailContainer {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: space(4);
   position: relative;
 }
 
 .selectionTagName {
-  text-align: center;
   font-size: 18px;
   font-weight: 700;
   line-height: 30px;
@@ -56,7 +54,6 @@
 .singleSelDescriptionContainer {
   display: flex;
   flex-direction: column;
-  text-align: center;
   margin: space(2) 0 space(12) 0;
   width: 100%;
 }

@@ -1,6 +1,6 @@
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import AddOption from "../AddOption/AddOption";
-import style from "./selector.module.css";
+import style from "./selector.module.scss";
 import { useContext } from "react";
 
 const Selector = () => {
@@ -19,6 +19,7 @@ const Selector = () => {
   return (
     <div className={style.container}>
       <div className={style.titleTop}>Add component</div>
+      <p style={{ marginBottom: "1rem" }}>Place Doors, Windows, and other add-ons to your unit</p>
       <div className={style.expandedContent}>
         <div className={style.subTitle}>Doors</div>
         <div className={style.objectContainer}>
@@ -38,6 +39,15 @@ const Selector = () => {
             options={vents}
           />
         </div>
+        <div className={style.subTitle}>Add-ons</div>
+        <ol className={style.addOnList}>
+          <li>12&quot; Exhaust Fan with Gravity Damper</li>
+          <li>Vent Roof Whirly Bird</li>
+          <li>AC</li>
+          <li>Electrical box Panel</li>
+          <li>Vent Roof Whirly Bird</li>
+          <li>2000W Baseboard Heater</li>
+        </ol>
       </div>
     </div>
   );

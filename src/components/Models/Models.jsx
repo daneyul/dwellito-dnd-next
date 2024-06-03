@@ -84,7 +84,7 @@ export function Models() {
     }
   };
 
-  const camFov = showExterior ? 35 : 54;
+  const camFov = showExterior ? 35 : 80;
   const cameraPos = showExterior ? exteriorCamPos() : interiorCamPos();
   const cameraRot = showExterior ? [0, 0, 0] : interiorCamRot();
 
