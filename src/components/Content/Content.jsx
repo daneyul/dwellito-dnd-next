@@ -83,12 +83,12 @@ const PageDataProvider = ({ children, data }) => {
   const [scaleFactor, setScaleFactor] = useState();
 
   useEffect(() => {
-    if (selectedContainer.slug === containerData[2].slug) {
+    if (slug === containerData[2].slug) {
       setScaleFactor(1.75);
     } else {
       setScaleFactor(2.5);
     }
-  }, [selectedContainer, containerData]);
+  }, [slug, containerData]);
 
   const toggleOrder = () => {
     setShowYourOrder(!showYourOrder);
