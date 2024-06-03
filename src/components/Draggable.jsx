@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { toScale, generateImgSrc } from "../utils/2D/utils";
 import { PageDataContext } from "./Content/Content";
@@ -36,7 +36,6 @@ export function Draggable({ id, styles, piece, onSelect }) {
         ? "1px solid #2A2CB1"
         : "1px solid transparent",
     boxSizing: "border-box",
-    position: "relative",
   };
 
   const dragStyle = transform
