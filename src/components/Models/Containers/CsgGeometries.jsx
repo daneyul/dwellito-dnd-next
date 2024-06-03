@@ -135,30 +135,38 @@ export function CsgGeometries({
       </group>
     ));
   }, [ventBoundingBoxes]);
-console.log(pRightNodes)
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
         {interior === INTERIOR_OPTIONS[1] ? (
           <>
-            <Base
-              geometry={dBackNodes.mesh_0.geometry}
-              material={drywallMaterial["White_Drywall_Wall.002"]}
-              scale={10}
-              position={[adjustForX(), 0, adjustForY()]}
-            />
-            <Base
-              geometry={dRightNodes.mesh_0.geometry}
-              material={drywallMaterial["White_Drywall_Wall.002"]}
-              scale={10}
-              position={[adjustForX(), 0, adjustForY()]}
-            />
-            <Base
-              geometry={dLeftNodes.mesh_0.geometry}
-              material={drywallMaterial["White_Drywall_Wall.002"]}
-              scale={10}
-              position={[adjustForX(), 0, adjustForY()]}
-            />
+            {Object.keys(dBackNodes).map((key) => (
+              <Base
+                key={key}
+                geometry={dBackNodes[key].geometry}
+                material={drywallMaterial["White_Drywall_Wall.002"]}
+                scale={10}
+                position={[adjustForX(), 0, adjustForY()]}
+              />
+            ))}
+            {Object.keys(dRightNodes).map((key) => (
+              <Base
+                key={key}
+                geometry={dRightNodes[key].geometry}
+                material={drywallMaterial["White_Drywall_Wall.002"]}
+                scale={10}
+                position={[adjustForX(), 0, adjustForY()]}
+              />
+            ))}
+            {Object.keys(dLeftNodes).map((key) => (
+              <Base
+                key={key}
+                geometry={dLeftNodes[key].geometry}
+                material={drywallMaterial["White_Drywall_Wall.002"]}
+                scale={10}
+                position={[adjustForX(), 0, adjustForY()]}
+              />
+            ))}
           </>
         ) : null}
         {interior === INTERIOR_OPTIONS[0] ? (
