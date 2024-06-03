@@ -80,7 +80,7 @@ const PageDataProvider = ({ children, data }) => {
       }
     })
   );
-  const [scaleFactor, setScaleFactor] = useState();
+  const [scaleFactor, setScaleFactor] = useState(2.5);
 
   useEffect(() => {
     if (slug === containerData[2].slug) {
