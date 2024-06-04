@@ -1,9 +1,11 @@
 .container {
   border-radius: 12px;
   position: absolute;
-  bottom: 2.5rem;
-  left: 1rem;
+  bottom: calc(3rem + 58px);
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
+  gap: 0.25rem;
   align-items: center;
   justify-content: center;
   background-color: rgba(0,0,0,0.5);
@@ -14,9 +16,12 @@
 
 .button {
   background: none;
+  transition: border 0.1s, background-color 0.1s, border-radius 0.1s, color 0.1s;
 }
 
 .button, .buttonSelected {
+  box-sizing: border-box;
+  font-size: 14px;
   padding: space(2);
   text-align: center;
   display: flex;
@@ -24,10 +29,10 @@
   cursor: pointer;
   border: none;
   color: white;
-  font-family: "Chromatica";
+  font-family: "Chromatica", sans-serif;
 }
 
-.buttonSelected {
+.buttonSelected, .button:hover {
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.2)
 }

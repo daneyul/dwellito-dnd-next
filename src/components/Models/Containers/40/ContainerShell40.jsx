@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useMemo, useRef } from "react";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { PageDataContext } from "@/components/Content/Content";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
@@ -26,7 +26,7 @@ export default function ContainerShell40() {
     useGLTF.preload(`/models/materials/${exteriorFinish.fileName}.glb`);
   }, [exteriorFinish.fileName])
 
-  const adjustForX = () => {
+  const adjustForX = useMemo(() => {
     if (selectedContainer.name === `10' Custom Cube`) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2)
     } else if (selectedContainer.name === `20' Custom Cube`) {
@@ -34,8 +34,9 @@ export default function ContainerShell40() {
     } else if (selectedContainer.name === `40' Custom Cube`) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2)
     }
-  }
-  const adjustForY = () => {
+  }, [selectedContainer.name, DIMENSIONS]);
+
+  const adjustForY = useMemo(() => {
     if (selectedContainer.name === `10' Custom Cube`) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2
     } else if (selectedContainer.name === `20' Custom Cube`) {
@@ -43,7 +44,7 @@ export default function ContainerShell40() {
     } else if (selectedContainer.name === `40' Custom Cube`) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2
     }
-  }
+  }, [selectedContainer.name, DIMENSIONS]);
 
   const Plywood = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[0]) {
@@ -141,7 +142,7 @@ export default function ContainerShell40() {
     <group
       dispose={null}
       scale={[10, 10, 10]}
-      position={[adjustForX(), 0, adjustForY()]}
+      position={[adjustForX, 0, adjustForY]}
       ref={ref}
     >
       <mesh

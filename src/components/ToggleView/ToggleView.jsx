@@ -7,7 +7,6 @@ import { Spinner } from "@radix-ui/themes";
 
 const ToggleView = () => {
   const { show3d, setShow3d, threeDModelLoaded } = useContext(PageDataContext);
-  console.log(threeDModelLoaded);
 
   return (
     <div className={style.container}>

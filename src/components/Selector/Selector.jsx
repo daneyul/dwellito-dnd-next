@@ -39,15 +39,6 @@ const Selector = () => {
             options={vents}
           />
         </div>
-        <div className={style.subTitle}>Add-ons</div>
-        <ol className={style.addOnList}>
-          <li>12&quot; Exhaust Fan with Gravity Damper</li>
-          <li>Vent Roof Whirly Bird</li>
-          <li>AC</li>
-          <li>Electrical box Panel</li>
-          <li>Vent Roof Whirly Bird</li>
-          <li>2000W Baseboard Heater</li>
-        </ol>
       </div>
     </div>
   );

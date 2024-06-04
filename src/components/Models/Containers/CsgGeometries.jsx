@@ -43,7 +43,7 @@ export function CsgGeometries({
     useGLTF.preload(`/models/container/${size}/exterior-left.glb`);
   }, [size, exteriorFinish.fileName]);
 
-  const adjustForX = () => {
+  const adjustForX = useMemo(() => {
     if (selectedContainer.name === `10' Custom Cube`) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2)
     } else if (selectedContainer.name === `20' Custom Cube`) {
@@ -51,8 +51,9 @@ export function CsgGeometries({
     } else if (selectedContainer.name === `40' Custom Cube`) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2)
     }
-  }
-  const adjustForY = () => {
+  }, [selectedContainer.name, DIMENSIONS]);
+
+  const adjustForY = useMemo(() => {
     if (selectedContainer.name === `10' Custom Cube`) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2
     } else if (selectedContainer.name === `20' Custom Cube`) {
@@ -60,7 +61,7 @@ export function CsgGeometries({
     } else if (selectedContainer.name === `40' Custom Cube`) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2
     }
-  }
+  }, [selectedContainer.name, DIMENSIONS]);
 
   const { materials: exteriorMaterials } = useGLTF(
     `/models/materials/${exteriorFinish.fileName}.glb`
@@ -164,7 +165,7 @@ export function CsgGeometries({
                 geometry={dBackNodes[key].geometry}
                 material={drywallMaterial["White_Drywall_Wall.002"]}
                 scale={10}
-                position={[adjustForX(), 0, adjustForY()]}
+                position={[adjustForX, 0, adjustForY]}
               />
             ))}
             {Object.keys(dRightNodes).map((key) => (
@@ -173,7 +174,7 @@ export function CsgGeometries({
                 geometry={dRightNodes[key].geometry}
                 material={drywallMaterial["White_Drywall_Wall.002"]}
                 scale={10}
-                position={[adjustForX(), 0, adjustForY()]}
+                position={[adjustForX, 0, adjustForY]}
               />
             ))}
             {Object.keys(dLeftNodes).map((key) => (
@@ -182,7 +183,7 @@ export function CsgGeometries({
                 geometry={dLeftNodes[key].geometry}
                 material={drywallMaterial["White_Drywall_Wall.002"]}
                 scale={10}
-                position={[adjustForX(), 0, adjustForY()]}
+                position={[adjustForX, 0, adjustForY]}
               />
             ))}
           </>
@@ -195,7 +196,7 @@ export function CsgGeometries({
                 geometry={pBackNodes[key].geometry}
                 material={plywoodMaterial["Plywood"]}
                 scale={10}
-                position={[adjustForX(), 0, adjustForY()]}
+                position={[adjustForX, 0, adjustForY]}
               />
             ))}
             {Object.keys(pRightNodes).map((key) => (
@@ -204,7 +205,7 @@ export function CsgGeometries({
                 geometry={pRightNodes[key].geometry}
                 material={plywoodMaterial["Plywood"]}
                 scale={10}
-                position={[adjustForX(), 0, adjustForY()]}
+                position={[adjustForX, 0, adjustForY]}
               />
             ))}
             {Object.keys(pLeftNodes).map((key) => (
@@ -213,7 +214,7 @@ export function CsgGeometries({
                 geometry={pLeftNodes[key].geometry}
                 material={plywoodMaterial["Plywood"]}
                 scale={10}
-                position={[adjustForX(), 0, adjustForY()]}
+                position={[adjustForX, 0, adjustForY]}
               />
             ))}
           </>
@@ -222,19 +223,19 @@ export function CsgGeometries({
           geometry={cRightNodes.mesh_0.geometry}
           material={exteriorPaint}
           scale={10}
-          position={[adjustForX(), 0, adjustForY()]}
+          position={[adjustForX, 0, adjustForY]}
         />
         <Base
           geometry={cBackNodes.mesh_0.geometry}
           material={exteriorPaint}
           scale={10}
-          position={[adjustForX(), 0, adjustForY()]}
+          position={[adjustForX, 0, adjustForY]}
         />
         <Base
           geometry={cLeftNodes.mesh_0.geometry}
           material={exteriorPaint}
           scale={10}
-          position={[adjustForX(), 0, adjustForY()]}
+          position={[adjustForX, 0, adjustForY]}
         />
         {doorBoundingBoxGeometries}
         {windowBoundingBoxGeometries}
