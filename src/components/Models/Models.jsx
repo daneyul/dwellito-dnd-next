@@ -30,7 +30,7 @@ import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 export function Models() {
   const { selectedComponents, showExterior, selectedContainer, setThreeDModelLoaded } =
     useContext(PageDataContext);
-  const { COMPONENT_TYPES, containerData } = useContext(Library2dDataContext);
+  const { COMPONENT_TYPES, COMPONENT_NAMES, containerData } = useContext(Library2dDataContext);
   const { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } = useContext(Library3dDataContext);
   const { progress } = useProgress();
 
@@ -154,8 +154,22 @@ export function Models() {
   const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
   const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
   const handleDoorBoundingBox = useCallback((index, data) => {
-    setDoorBoundingBoxes((prev) => ({ ...prev, [index]: data }));
-  }, []);
+    let updatedData = { ...data };
+
+    if (typeof data.size.y === 'number') {
+      const doorName = doors[index]?.name;
+      if (doorName === COMPONENT_NAMES.PERSONNEL_DOOR_LHR || doorName === COMPONENT_NAMES.PERSONNEL_DOOR_RHR) {
+        updatedData = {
+          ...updatedData,
+          size: new Vector3(data.size.x, data.size.y - 3, data.size.z),
+          center: new Vector3(data.center.x, data.center.y - 2, data.center.z),
+        };
+      }
+    }
+
+    setDoorBoundingBoxes((prev) => ({ ...prev, [index]: updatedData }));
+  }, [doors, COMPONENT_NAMES]);
+
   const handleWindowBoundingBox = useCallback((index, data) => {
     setWindowBoundingBoxes((prev) => ({ ...prev, [index]: data }));
   }, []);

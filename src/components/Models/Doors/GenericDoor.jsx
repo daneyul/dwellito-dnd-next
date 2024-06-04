@@ -36,7 +36,6 @@ const GenericDoor = React.memo(
       scaleFactor,
     });
     const ref = useRef();
-    console.log(materials)
 
     const rotation = useMemo(
       () => [
