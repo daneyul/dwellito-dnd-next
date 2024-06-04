@@ -14,9 +14,24 @@ export default function ContainerShell20() {
     "/models/container/20/container-shell.glb"
   );
 
-  const { materials: flooringMaterial } = useGLTF(
-    `/models/materials/flooring/${flooring.fileName}.glb`
+  // Load all flooring materials
+  const { materials: echoFloor } = useGLTF(
+    `/models/materials/flooring/echo.glb`
   );
+  const { materials: timberFloor } = useGLTF(
+    `/models/materials/flooring/timber.glb`
+  );
+
+  const flooringMaterial = useMemo(() => {
+    switch (flooring.type) {
+      case "Echo":
+        return echoFloor[flooring.glbObject];
+      case "Timber":
+        return timberFloor[flooring.glbObject];
+      default:
+        return null;
+    }
+  }, [echoFloor, timberFloor, flooring]);
 
   // Load all paint materials
   const { materials: redPaint } = useGLTF(
@@ -167,7 +182,7 @@ export default function ContainerShell20() {
           castShadow
           receiveShadow
           geometry={nodes["20FT_Interior_Blank_Floor_01001"].geometry}
-          material={flooringMaterial[flooring.glbObject]}
+          material={flooringMaterial}
         />
       </>
     );
