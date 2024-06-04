@@ -217,6 +217,7 @@ export const Library2dDataProvider = ({ children }) => {
       id: 1,
       width: `9' width`,
       length: `10' length`,
+      thumbnail: "10/right.svg"
     },
     {
       name: `20' Custom Cube`,
@@ -224,6 +225,7 @@ export const Library2dDataProvider = ({ children }) => {
       id: 2,
       width: `9' width`,
       length: `20' length`,
+      thumbnail: "20/right.svg"
     },
     {
       name: `40' Custom Cube`,
@@ -231,6 +233,7 @@ export const Library2dDataProvider = ({ children }) => {
       id: 3,
       width: `9' width`,
       length: `40' length`,
+      thumbnail: "40/right.svg"
     },
   ];
 

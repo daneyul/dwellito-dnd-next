@@ -50,8 +50,8 @@ const Rollup6 = ({ component, onBoundingBoxChange }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
     geometryNodes={[`SM_RollUp_Door_6'x7'4"_1`, `SM_RollUp_Door_6'x7'4"_2`]}
-    materialNodes={["Metal_01"]}
-    customPosition={[3.84, 2.02, -0.03]}
+    materialNodes={["Metal_01", "Metal_02_"]}
+    customPosition={[3.84, 1.99, -0.03]}
     customRotation={[-Math.PI, 0, -Math.PI]}
   />
 );
@@ -62,8 +62,8 @@ const Rollup8 = ({ component, onBoundingBoxChange }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
     geometryNodes={[`SM_RollUp_Door_8'x7'4"_1`, `SM_RollUp_Door_8'x7'4"_2`]}
-    materialNodes={["Metal_01"]}
-    customPosition={[3.84, 2.02, -0.03]}
+    materialNodes={["Metal_01", "Metal_02_"]}
+    customPosition={[3.84, 1.99, -0.03]}
     customRotation={[-Math.PI, 0, -Math.PI]}
   />
 );
@@ -74,8 +74,8 @@ const Rollup10 = ({ component, onBoundingBoxChange }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
     geometryNodes={[`SM_RollUp_Door_10'x7'4"_1`, `SM_RollUp_Door_10'x7'4"_2`]}
-    materialNodes={["Metal_01"]}
-    customPosition={[3.84, 2.02, -0.03]}
+    materialNodes={["Metal_01", "Metal_02_"]}
+    customPosition={[3.84, 1.99, -0.03]}
     customRotation={[-Math.PI, 0, -Math.PI]}
   />
 );
@@ -86,8 +86,8 @@ const Rollup12 = ({ component, onBoundingBoxChange }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
     geometryNodes={[`SM_RollUp_Door_12'x7'4"_1`, `SM_RollUp_Door_12'x7'4"_2`]}
-    materialNodes={["Metal_01"]}
-    customPosition={[3.84, 2.02, -0.03]}
+    materialNodes={["Metal_01", "Metal_02_"]}
+    customPosition={[3.84, 1.99, -0.03]}
     customRotation={[-Math.PI, 0, -Math.PI]}
   />
 );
@@ -98,8 +98,8 @@ const Rollup15 = ({ component, onBoundingBoxChange }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
     geometryNodes={[`SM_RollUp_Door_15x74_1`, `SM_RollUp_Door_15x74_2`]}
-    materialNodes={["Metal_01"]}
-    customPosition={[3.84, 2.02, -0.03]}
+    materialNodes={["Metal_01", "Metal_02_"]}
+    customPosition={[3.84, 1.99, -0.03]}
     customRotation={[-Math.PI, 0, -Math.PI]}
   />
 );

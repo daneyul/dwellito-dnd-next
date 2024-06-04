@@ -11,8 +11,11 @@ const Layout = ({ name, imgSrc, isSelected }) => {
         isSelected ? style.layoutContainerSelected : style.layoutContainer
       }
     >
-      {name}
-      {/* <img src={imgSrc} alt="layout" className={style.layoutImg} /> */}
+      <div>
+        <div style={{ fontWeight: "700" }}>{name}</div>
+        <div className={style.price}>$74,000</div>
+      </div>
+      <img src={imgSrc} alt="layout" className={style.layoutImg} />
     </div>
   );
 };
@@ -25,7 +28,7 @@ const Layouts = () => {
     <div className={style.container}>
       {containerData.map((container, index) => {
         const containerName = container.name;
-        const containerImage = "";
+        const containerImage = `/images/CustomContainer/elevation/${container.thumbnail}`;
         const isSelected = container.id === containerId;
 
         return (
