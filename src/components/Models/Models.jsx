@@ -153,9 +153,11 @@ export function Models() {
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
   const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
   const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
+
   const handleDoorBoundingBox = useCallback((index, data) => {
     let updatedData = { ...data };
 
+    // Adjust the bounding box height for personnel doors
     if (typeof data.size.y === 'number') {
       const doorName = doors[index]?.name;
       if (doorName === COMPONENT_NAMES.PERSONNEL_DOOR_LHR || doorName === COMPONENT_NAMES.PERSONNEL_DOOR_RHR) {

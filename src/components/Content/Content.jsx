@@ -23,7 +23,7 @@ import {
 } from "@/utils/2D/2dLibraryContext";
 import style from "./content.module.scss";
 import "@radix-ui/themes/styles.css";
-import { Theme } from '@radix-ui/themes';
+import { Theme } from "@radix-ui/themes";
 
 export const PageDataContext = createContext();
 
@@ -101,7 +101,9 @@ const PageDataProvider = ({ children, data }) => {
       selectedComponents.reduce(
         (accumulator, currentComponent) => accumulator + currentComponent.price,
         0
-      ) + interiorFinish.price;
+      ) +
+      interiorFinish.price +
+      flooring.price;
     setOrderTotal(total);
   }, [selectedComponents, interiorFinish]);
 

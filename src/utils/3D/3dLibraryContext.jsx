@@ -28,7 +28,7 @@ export const Library3dDataProvider = ({ children }) => {
     {
       name: "Plywood",
       hex: "#C19A6B",
-      price: 1000,
+      price: 3685,
       img: "",
       fileName: "",
       glbObject: "",
@@ -36,7 +36,7 @@ export const Library3dDataProvider = ({ children }) => {
     {
       name: "Pre-finished Drywall",
       hex: "#F2F2F2",
-      price: 1000,
+      price: 4400,
       img: "",
       fileName: "",
       glbObject: "",
@@ -88,6 +88,7 @@ export const Library3dDataProvider = ({ children }) => {
       glbObject: "Echo.004",
       img: "/flooring/echo.png",
       hex: "#C19A6B",
+      price: 950,
     },
     {
       name: "Vinyl Plank Flooring - 12mil Timber - 20ft",
@@ -95,6 +96,7 @@ export const Library3dDataProvider = ({ children }) => {
       glbObject: "Timber.001",
       img: "/flooring/timber.png",
       hex: "#000000",
+      price: 950,
     },
   ];
 

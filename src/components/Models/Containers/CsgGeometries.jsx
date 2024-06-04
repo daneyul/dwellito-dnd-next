@@ -35,9 +35,9 @@ export function CsgGeometries({
     useGLTF.preload(`/models/plywood/${size}/plywood-left.glb`);
     useGLTF.preload(`/models/plywood/${size}/plywood-right.glb`);
     useGLTF.preload(`/models/plywood/${size}/plywood-back.glb`);
-    useGLTF.preload(`/models/materials/${exteriorFinish.fileName}.glb`);
-    useGLTF.preload("/models/materials/plywood.glb");
-    useGLTF.preload("/models/materials/drywall.glb");
+    useGLTF.preload(`/models/materials/exterior/${exteriorFinish.fileName}.glb`);
+    useGLTF.preload("/models/materials/interior/plywood.glb");
+    useGLTF.preload("/models/materials/interior/drywall.glb");
     useGLTF.preload(`/models/container/${size}/exterior-right.glb`);
     useGLTF.preload(`/models/container/${size}/exterior-back.glb`);
     useGLTF.preload(`/models/container/${size}/exterior-left.glb`);
@@ -63,17 +63,11 @@ export function CsgGeometries({
     }
   }, [selectedContainer.name, DIMENSIONS]);
 
-  const { materials: exteriorMaterials } = useGLTF(
-    `/models/materials/${exteriorFinish.fileName}.glb`
-  );
-
-  const exteriorPaint = exteriorMaterials[exteriorFinish.glbObject];
-
   const { materials: plywoodMaterial } = useGLTF(
-    "/models/materials/plywood.glb"
+    "/models/materials/interior/plywood.glb"
   );
   const { materials: drywallMaterial } = useGLTF(
-    "/models/materials/drywall.glb"
+    "/models/materials/interior/drywall.glb"
   );
   const { nodes: cRightNodes } = useGLTF(
     `/models/container/${size}/exterior-right.glb`
@@ -97,6 +91,47 @@ export function CsgGeometries({
   const { nodes: pBackNodes } = useGLTF(`/models/plywood/${size}/plywood-back.glb`);
 
   const csg = useRef();
+
+  // Load all paint materials
+  const { materials: redPaint } = useGLTF(
+    `/models/materials/exterior/red-paint.glb`
+  );
+  const { materials: whitePaint } = useGLTF(
+    `/models/materials/exterior/white-paint.glb`
+  );
+  const { materials: greenPaint } = useGLTF(
+    `/models/materials/exterior/green-paint.glb`
+  );
+  const { materials: bluePaint } = useGLTF(
+    `/models/materials/exterior/blue-paint.glb`
+  );
+  const { materials: slateGreyPaint } = useGLTF(
+    `/models/materials/exterior/slate-grey-paint.glb`
+  );
+
+  const exteriorPaint = useMemo(() => {
+    switch (exteriorFinish.name) {
+      case "Red":
+        return redPaint[exteriorFinish.glbObject];
+      case "White":
+        return whitePaint[exteriorFinish.glbObject];
+      case "Green":
+        return greenPaint[exteriorFinish.glbObject];
+      case "Blue":
+        return bluePaint[exteriorFinish.glbObject];
+      case "Slate Grey":
+        return slateGreyPaint[exteriorFinish.glbObject];
+      default:
+        return null;
+    }
+  }, [
+    exteriorFinish,
+    redPaint,
+    whitePaint,
+    greenPaint,
+    bluePaint,
+    slateGreyPaint,
+  ]);
 
   const doorBoundingBoxGeometries = useMemo(() => {
     return Object.entries(doorBoundingBoxes).map(([id, bbox]) => (
