@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { PageDataContext } from "@/components/Content/Content";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
@@ -10,13 +10,21 @@ export default function ContainerShell10() {
   );
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const { INTERIOR_FINISH_OPTIONS } = useContext(Library3dDataContext);
-  const { exteriorFinish, interiorFinish, selectedContainer } = useContext(PageDataContext);
+  const { exteriorFinish, interiorFinish, selectedContainer, flooring } = useContext(PageDataContext);
   const { materials: exteriorMaterials } = useGLTF(
     `/models/materials/${exteriorFinish.fileName}.glb`
+  );
+  const { materials: flooringMaterial } = useGLTF(
+    `/models/materials/flooring/${flooring.fileName}.glb`
   );
 
   const exteriorPaint = exteriorMaterials[exteriorFinish.glbObject];
   const ref = useRef();
+
+  useEffect(() => {
+    useGLTF.preload("/models/container/10/container-shell.glb");
+    useGLTF.preload(`/models/materials/${exteriorFinish.fileName}.glb`);
+  }, [exteriorFinish.fileName])
 
   const adjustForX = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
@@ -123,7 +131,7 @@ export default function ContainerShell10() {
           castShadow
           receiveShadow
           geometry={nodes["10FT_Interior_Blank_Floor_001"].geometry}
-          material={materials["Echo.001"]}
+          material={flooringMaterial[flooring.glbObject]}
         />
       </>
     );
@@ -157,5 +165,3 @@ export default function ContainerShell10() {
 
   return containerMesh;
 }
-
-useGLTF.preload("/models/container/10/container-shell.glb");

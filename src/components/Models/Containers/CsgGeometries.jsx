@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useRef } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Base, Geometry, Subtraction } from "@react-three/csg";
 import * as THREE from "three";
@@ -26,6 +26,22 @@ export function CsgGeometries({
   }
 
   const size = containerSize();
+
+  useEffect(() => {
+    // Preload GLTF models based on the selected container size
+    useGLTF.preload(`/models/drywall/${size}/drywall-left.glb`);
+    useGLTF.preload(`/models/drywall/${size}/drywall-right.glb`);
+    useGLTF.preload(`/models/drywall/${size}/drywall-back.glb`);
+    useGLTF.preload(`/models/plywood/${size}/plywood-left.glb`);
+    useGLTF.preload(`/models/plywood/${size}/plywood-right.glb`);
+    useGLTF.preload(`/models/plywood/${size}/plywood-back.glb`);
+    useGLTF.preload(`/models/materials/${exteriorFinish.fileName}.glb`);
+    useGLTF.preload("/models/materials/plywood.glb");
+    useGLTF.preload("/models/materials/drywall.glb");
+    useGLTF.preload(`/models/container/${size}/exterior-right.glb`);
+    useGLTF.preload(`/models/container/${size}/exterior-back.glb`);
+    useGLTF.preload(`/models/container/${size}/exterior-left.glb`);
+  }, [size, exteriorFinish.fileName]);
 
   const adjustForX = () => {
     if (selectedContainer.name === `10' Custom Cube`) {

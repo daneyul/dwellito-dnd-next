@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, createContext, useContext } from "react";
-
 import {
   checkCloseness,
   checkCollision,
@@ -23,6 +22,8 @@ import {
   Library2dDataProvider,
 } from "@/utils/2D/2dLibraryContext";
 import style from "./content.module.scss";
+import "@radix-ui/themes/styles.css";
+import { Theme } from '@radix-ui/themes';
 
 export const PageDataContext = createContext();
 
@@ -44,7 +45,7 @@ const PageDataProvider = ({ children, data }) => {
   const DEFAULT_ELEVATION = elevationData.find(
     (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug
   );
-
+  const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);
   const [hasCollisions, setHasCollisions] = useState(false);
@@ -304,6 +305,8 @@ const PageDataProvider = ({ children, data }) => {
         setScaleFactor,
         flooring,
         setFlooring,
+        threeDModelLoaded,
+        setThreeDModelLoaded,
       }}
     >
       {children}
@@ -313,31 +316,36 @@ const PageDataProvider = ({ children, data }) => {
 
 const Content = ({ data }) => {
   return (
-    <Library2dDataProvider>
-      <Library3dDataProvider>
-        <PageDataProvider data={data}>
-          <div className={style.mobileContent}>
-            <p>Configure on your desktop for the best experience</p>
-            <p>For full functionality and a better experience, please visit this page on a desktop computer.</p>
-          </div>
-          <div className={style.pageWrapper}>
-            <div style={{ position: "absolute", top: "2rem", left: "2rem" }}>
-              <Logo />
+    <Theme>
+      <Library2dDataProvider>
+        <Library3dDataProvider>
+          <PageDataProvider data={data}>
+            <div className={style.mobileContent}>
+              <p>Configure on your desktop for the best experience</p>
+              <p>
+                For full functionality and a better experience, please visit
+                this page on a desktop computer.
+              </p>
             </div>
-            <div
-              style={{
-                display: "flex",
-                position: "relative",
-              }}
-            >
-              <Viewer />
-              <Sidebar />
-              <PriceTotal />
+            <div className={style.pageWrapper}>
+              <div style={{ position: "absolute", top: "2rem", left: "2rem" }}>
+                <Logo />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  position: "relative",
+                }}
+              >
+                <Viewer />
+                <Sidebar />
+                <PriceTotal />
+              </div>
             </div>
-          </div>
-        </PageDataProvider>
-      </Library3dDataProvider>
-    </Library2dDataProvider>
+          </PageDataProvider>
+        </Library3dDataProvider>
+      </Library2dDataProvider>
+    </Theme>
   );
 };
 

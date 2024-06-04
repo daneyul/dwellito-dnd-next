@@ -4,7 +4,6 @@ import { Draggable } from "@/components/Draggable";
 import { DndContext } from "@dnd-kit/core";
 import { useContext, useEffect } from "react";
 import { checkDistance, droppableWidth, toScale } from "@/utils/2D/utils";
-import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
 import ChevronLeftBlack from "../ChevronLeftBlack";
 import ChevronRightBlack from "../ChevronRightBlack";
 import style from "./viewer.module.scss";

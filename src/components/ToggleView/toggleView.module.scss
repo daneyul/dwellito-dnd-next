@@ -4,7 +4,6 @@
   bottom: 2rem;
   right: 50%;
   transform: translateX(50%);
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +21,7 @@
   font-family: "Chromatica";
 }
 
-.editor:hover, .viewer:hover, .editorSelected:hover, .viewerSelected:hover {
+.editor:hover, .editorSelected:hover {
   cursor: pointer;
 }
 

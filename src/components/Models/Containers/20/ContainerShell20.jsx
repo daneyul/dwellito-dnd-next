@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { PageDataContext } from "@/components/Content/Content";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
@@ -24,6 +24,11 @@ export default function ContainerShell20() {
   );
 
   const ref = useRef();
+
+  useEffect(() => {
+    useGLTF.preload("/models/container/20/container-shell.glb");
+    useGLTF.preload(`/models/materials/${exteriorFinish.fileName}.glb`);
+  }, [exteriorFinish.fileName])
 
   const adjustForX = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
@@ -164,5 +169,3 @@ export default function ContainerShell20() {
 
   return containerMesh;
 }
-
-useGLTF.preload("/models/container/20/container-shell.glb");

@@ -32,7 +32,7 @@ const GenericWindow = React.memo(({ component, onBoundingBoxChange, modelPath, g
 
   useEffect(() => {
     preloadGLTFModel(`windows/${component.model}`);
-  }, [component.model]);
+  }, [component.model, modelPath]);
 
   useEffect(() => {
     if (ref.current) {

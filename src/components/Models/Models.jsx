@@ -3,6 +3,7 @@ import {
   OrbitControls,
   Environment,
   RandomizedLight,
+  useProgress,
 } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
@@ -27,10 +28,17 @@ import ContainerShell40 from "./Containers/40/ContainerShell40";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 export function Models() {
-  const { selectedComponents, showExterior, selectedContainer } =
+  const { selectedComponents, showExterior, selectedContainer, setThreeDModelLoaded } =
     useContext(PageDataContext);
   const { COMPONENT_TYPES, containerData } = useContext(Library2dDataContext);
   const { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } = useContext(Library3dDataContext);
+  const { progress } = useProgress();
+
+  useEffect(() => {
+    if (progress === 100) {
+      setThreeDModelLoaded(true);
+    }
+  }, [progress, setThreeDModelLoaded]);
 
   const doors = useMemo(
     () =>
