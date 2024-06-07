@@ -1,7 +1,7 @@
 import React from "react";
 import GenericDoor from "./GenericDoor";
 
-const Lhr = ({ component, onBoundingBoxChange }) => (
+const LhrSecurity = ({ component, onBoundingBoxChange }) => (
   <GenericDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
@@ -14,7 +14,24 @@ const Lhr = ({ component, onBoundingBoxChange }) => (
   />
 );
 
-const Rhr = ({ component, onBoundingBoxChange }) => (
+const LhrSecurityGlass = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    geometryNodes={[
+      "SM_PDoor_LockBoxLHR_GlassDoor_02_1",
+      "SM_PDoor_LockBoxLHR_GlassDoor_02_2",
+      "SM_PDoor_LockBoxLHR_GlassDoor_02_3",
+    ]}
+    materialNodes={["Door", "Glass", "Metall"]}
+    customPosition={[0.559, 1.138, -0.023]}
+    customRotation={[-Math.PI / 2, 0, 0]}
+    customScale={[-1, 1, 1]}
+  />
+);
+
+const RhrSecurity = ({ component, onBoundingBoxChange }) => (
   <GenericDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
@@ -25,6 +42,22 @@ const Rhr = ({ component, onBoundingBoxChange }) => (
       "SM_PDoor_LockBoxRHR_01_3",
     ]}
     materialNodes={["Door", "Metall", "Metall"]}
+    customPosition={[0.559, 1.43, -0.01]}
+    customRotation={[-Math.PI / 2, 0, 0]}
+  />
+);
+
+const RhrSecurityGlass = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    geometryNodes={[
+      "SM_PDoor_LockBoxRHR_GlassDoor_02_1",
+      "SM_PDoor_LockBoxRHR_GlassDoor_02_2",
+      "SM_PDoor_LockBoxRHR_GlassDoor_02_3",
+    ]}
+    materialNodes={["Door", "Glass", "Metall"]}
     customPosition={[0.559, 1.43, -0.01]}
     customRotation={[-Math.PI / 2, 0, 0]}
   />
@@ -134,4 +167,17 @@ const Sliding6 = ({ component, onBoundingBoxChange }) => (
   />
 );
 
-export { Lhr, Rhr, French, Rollup6, Rollup8, Rollup10, Rollup12, Rollup15, Sliding5, Sliding6 };
+export {
+  LhrSecurity,
+  LhrSecurityGlass,
+  RhrSecurity,
+  RhrSecurityGlass,
+  French,
+  Rollup6,
+  Rollup8,
+  Rollup10,
+  Rollup12,
+  Rollup15,
+  Sliding5,
+  Sliding6,
+};

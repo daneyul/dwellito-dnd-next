@@ -28,10 +28,16 @@ import ContainerShell40 from "./Containers/40/ContainerShell40";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 export function Models() {
-  const { selectedComponents, showExterior, selectedContainer, setThreeDModelLoaded } =
-    useContext(PageDataContext);
-  const { COMPONENT_TYPES, COMPONENT_NAMES, containerData } = useContext(Library2dDataContext);
-  const { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } = useContext(Library3dDataContext);
+  const {
+    selectedComponents,
+    showExterior,
+    selectedContainer,
+    setThreeDModelLoaded,
+  } = useContext(PageDataContext);
+  const { COMPONENT_TYPES, COMPONENT_NAMES, containerData } =
+    useContext(Library2dDataContext);
+  const { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } =
+    useContext(Library3dDataContext);
   const { progress } = useProgress();
 
   useEffect(() => {
@@ -70,7 +76,7 @@ export function Models() {
     } else if (selectedContainer === containerData[2]) {
       return EXTERIOR_CAM_POS.FORTY;
     }
-  }
+  };
 
   const interiorCamPos = () => {
     if (selectedContainer === containerData[0]) {
@@ -154,23 +160,35 @@ export function Models() {
   const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
   const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
 
-  const handleDoorBoundingBox = useCallback((index, data) => {
-    let updatedData = { ...data };
+  const handleDoorBoundingBox = useCallback(
+    (index, data) => {
+      let updatedData = { ...data };
 
-    // Adjust the bounding box height for personnel doors
-    if (typeof data.size.y === 'number') {
-      const doorName = doors[index]?.name;
-      if (doorName === COMPONENT_NAMES.PERSONNEL_DOOR_LHR || doorName === COMPONENT_NAMES.PERSONNEL_DOOR_RHR) {
-        updatedData = {
-          ...updatedData,
-          size: new Vector3(data.size.x, data.size.y - 3, data.size.z),
-          center: new Vector3(data.center.x, data.center.y - 2, data.center.z),
-        };
+      // Adjust the bounding box height for personnel doors
+      if (typeof data.size.y === "number") {
+        const doorName = doors[index]?.name;
+        if (
+          doorName === COMPONENT_NAMES.PERSONNEL_DOOR_LHR_SECURITY ||
+          doorName === COMPONENT_NAMES.PERSONNEL_DOOR_RHR_SECURITY ||
+          doorName === COMPONENT_NAMES.PERSONNEL_DOOR_LHR_SECURITY_GLASS ||
+          doorName === COMPONENT_NAMES.PERSONNEL_DOOR_RHR_SECURITY_GLASS
+        ) {
+          updatedData = {
+            ...updatedData,
+            size: new Vector3(data.size.x, data.size.y - 3, data.size.z),
+            center: new Vector3(
+              data.center.x,
+              data.center.y - 2,
+              data.center.z
+            ),
+          };
+        }
       }
-    }
 
-    setDoorBoundingBoxes((prev) => ({ ...prev, [index]: updatedData }));
-  }, [doors, COMPONENT_NAMES]);
+      setDoorBoundingBoxes((prev) => ({ ...prev, [index]: updatedData }));
+    },
+    [doors, COMPONENT_NAMES]
+  );
 
   const handleWindowBoundingBox = useCallback((index, data) => {
     let updatedData = { ...data };
@@ -178,7 +196,11 @@ export function Models() {
     updatedData = {
       ...updatedData,
       size: new Vector3(data.size.x - 2, data.size.y - 1.7, data.size.z),
-      center: new Vector3(data.center.x - 0.1, data.center.y - 0.1, data.center.z),
+      center: new Vector3(
+        data.center.x - 0.1,
+        data.center.y - 0.1,
+        data.center.z
+      ),
     };
 
     setWindowBoundingBoxes((prev) => ({ ...prev, [index]: updatedData }));
@@ -196,7 +218,7 @@ export function Models() {
     } else if (selectedContainer === containerData[2]) {
       return <ContainerShell40 />;
     }
-  }
+  };
 
   // Update bounding box states when components are removed
   useEffect(() => {
@@ -205,13 +227,19 @@ export function Models() {
     const ventIds = vents.map((vent) => vent.id);
 
     setDoorBoundingBoxes((prev) =>
-      Object.fromEntries(Object.entries(prev).filter(([key]) => doorIds.includes(key)))
+      Object.fromEntries(
+        Object.entries(prev).filter(([key]) => doorIds.includes(key))
+      )
     );
     setWindowBoundingBoxes((prev) =>
-      Object.fromEntries(Object.entries(prev).filter(([key]) => windowIds.includes(key)))
+      Object.fromEntries(
+        Object.entries(prev).filter(([key]) => windowIds.includes(key))
+      )
     );
     setVentBoundingBoxes((prev) =>
-      Object.fromEntries(Object.entries(prev).filter(([key]) => ventIds.includes(key)))
+      Object.fromEntries(
+        Object.entries(prev).filter(([key]) => ventIds.includes(key))
+      )
     );
   }, [doors, windows, vents]);
 
@@ -306,4 +334,4 @@ export function Models() {
       </Canvas>
     </div>
   );
-};
+}
