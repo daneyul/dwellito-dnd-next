@@ -11,7 +11,7 @@ import {
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const PriceTotal = () => {
-  const { orderTotal, selectedComponents, selectedContainer, scaleFactor, interior } =
+  const { orderTotal, selectedComponents, selectedContainer, scaleFactor, interiorFinish, flooring } =
     useContext(PageDataContext);
   const { ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -21,25 +21,43 @@ const PriceTotal = () => {
   const InteriorSection = () => {
     return (
       <div className={style.section}>
-        <div className={style.elevationName}>{interior.name}</div>
+        <div className={style.elevationName}>Interior Finish</div>
         <div style={{ listStyleType: "none", margin: "0", padding: "0" }}>
-              <div key={component.id} className={style.lineItem}>
+              <div className={style.lineItem}>
                 <div className={style.thumbnailContainer}>
-                  <img
+                  {/* <img
                     src={generateImgSrc(component.imgName)}
                     alt={component.desc}
                     className={style.thumbnailImg}
-                  />
+                  /> */}
                 </div>
                 <div className={style.description}>
-                  <div className={style.partNumber}>{component.partNumber}</div>
-                  <div className={style.desc}>{component.desc}</div>
-                  <div className={style.distance}>
-                    {distance.left}&quot; from left, {distance.right}&quot; from
-                    right
-                  </div>
+                {interiorFinish.name}
                 </div>
-                <div className={style.price}>${component.price}</div>
+                <div className={style.price}>${interiorFinish.price.toLocaleString()}</div>
+              </div>
+        </div>
+      </div>
+    )
+  }
+
+  const FlooringSection = () => {
+    return (
+      <div className={style.section}>
+        <div className={style.elevationName}>Flooring</div>
+        <div style={{ listStyleType: "none", margin: "0", padding: "0" }}>
+              <div className={style.lineItem}>
+                <div className={style.thumbnailContainer}>
+                  {/* <img
+                    src={generateImgSrc(component.imgName)}
+                    alt={component.desc}
+                    className={style.thumbnailImg}
+                  /> */}
+                </div>
+                <div className={style.description}>
+                {flooring.name}
+                </div>
+                <div className={style.price}>${flooring.price.toLocaleString()}</div>
               </div>
         </div>
       </div>
@@ -53,7 +71,7 @@ const PriceTotal = () => {
 
     return (
       <div className={style.section}>
-        <div className={style.elevationName}>{elevation.name}</div>
+        <div className={style.elevationName}>{elevation.name} Wall</div>
         <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
           {componentsForElevation.map((component) => {
             const distance = checkDistance({
@@ -115,7 +133,8 @@ const PriceTotal = () => {
             {uniqueElevationNames.map((elevation, index) => (
               <Section key={index} elevation={elevation} />
             ))}
-            
+            <InteriorSection />
+            <FlooringSection />
             <Total text="Sub Total" value={`$${orderTotal.toLocaleString()}`} />
             <Total text="Tax" value={`$${tax.toLocaleString()}`} />
             <Total
