@@ -93,8 +93,8 @@ const PriceTotal = () => {
                   />
                 </div>
                 <div className={style.description}>
-                  <div className={style.partNumber}>{component.partNumber}</div>
-                  <div className={style.desc}>{component.desc}</div>
+                  <div className={style.partNumber}>{component.desc}</div>
+                  <div className={style.desc}>{component.name}</div>
                   <div className={style.distance}>
                     {distance.left}&quot; from left, {distance.right}&quot; from
                     right
