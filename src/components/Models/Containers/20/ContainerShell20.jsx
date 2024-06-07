@@ -195,8 +195,6 @@ export default function ContainerShell20() {
     }
   };
 
-  console.log(materials)
-
   const containerMesh = (
     <group
       dispose={null}

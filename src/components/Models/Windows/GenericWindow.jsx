@@ -46,11 +46,11 @@ const GenericWindow = React.memo(({ component, onBoundingBoxChange, modelPath, g
   }, [selectedComponents]);
 
   useEffect(() => {
-    if (materials.Material__104) {
-      materials.Material__104.transparent = true;
-      materials.Material__104.opacity = 0.6; // Adjust opacity as needed
-      materials.Material__104.roughness = 0.1; // Glass is generally smooth
-      materials.Material__104.metalness = 0.0; // Glass isn't metallic
+    if (materials.Glass) {
+      materials.Glass.transparent = true;
+      materials.Glass.opacity = 0.6; // Adjust opacity as needed
+      materials.Glass.roughness = 0.1; // Glass is generally smooth
+      materials.Glass.metalness = 0.0; // Glass isn't metallic
     }
   }, [materials]);
 

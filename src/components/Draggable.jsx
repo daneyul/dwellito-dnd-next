@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useContext, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
-import { toScale, generateImgSrc, handleDeleteSelected } from "../utils/2D/utils";
+import { toScale, generateImgSrc } from "../utils/2D/utils";
 import { PageDataContext } from "./Content/Content";
 import DeleteBtn from "./DeleteBtn/DeleteBtn";
 
@@ -9,7 +9,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
-  const { scaleFactor, isAnyItemSelected, show3d, selectedContainerHeight } =
+  const { scaleFactor, isAnyItemSelected, show3d, selectedContainerHeight, handleDeleteSelected } =
     useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);

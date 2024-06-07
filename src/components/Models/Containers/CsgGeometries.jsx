@@ -189,6 +189,7 @@ export function CsgGeometries({
       </group>
     ));
   }, [ventBoundingBoxes]);
+
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>

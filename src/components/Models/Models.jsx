@@ -173,8 +173,17 @@ export function Models() {
   }, [doors, COMPONENT_NAMES]);
 
   const handleWindowBoundingBox = useCallback((index, data) => {
-    setWindowBoundingBoxes((prev) => ({ ...prev, [index]: data }));
+    let updatedData = { ...data };
+
+    updatedData = {
+      ...updatedData,
+      size: new Vector3(data.size.x - 2, data.size.y - 1.7, data.size.z),
+      center: new Vector3(data.center.x - 0.1, data.center.y - 0.1, data.center.z),
+    };
+
+    setWindowBoundingBoxes((prev) => ({ ...prev, [index]: updatedData }));
   }, []);
+
   const handleVentBoundingBox = useCallback((index, data) => {
     setVentBoundingBoxes((prev) => ({ ...prev, [index]: data }));
   }, []);
