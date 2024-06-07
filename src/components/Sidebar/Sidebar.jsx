@@ -16,6 +16,7 @@ const Sidebar = () => {
   const { showYourOrder } = useContext(PageDataContext);
   const { EXTERIOR, INTERIOR, FLOORING } = useContext(Library3dDataContext);
   const supplierName = "Custom Cubes";
+  const containerIsSelected = false;
 
   const NotYourOrder = () => {
     return (
@@ -29,6 +30,20 @@ const Sidebar = () => {
         <Badges />
         <BasePriceDesc />
         <Layouts />
+        {/* <div className={style.containerHeights}>
+          <Subtitle text="Select the height" />
+          <Subtitle text="Start with your ideal number of bedrooms." css={{ fontWeight: 400, marginBottom: "1rem" }} />
+          <div className={style.containerHeightSelectWrapper}>
+            <button className={containerIsSelected ? style.containerButtonSelected : style.containerButton}>
+              <span style={{ fontWeight: 700, marginRight: "0.25rem" }}>Standard</span>
+              <span>8' 5"</span>
+            </button>
+            <button className={containerIsSelected ? style.containerButtonSelected : style.containerButton}>
+              <span style={{ fontWeight: 700, marginRight: "0.25rem" }}>High Container</span>
+              <span>9' 6"</span>
+            </button>
+          </div>
+        </div> */}
         <div className={style.selectionTagName} style={{ marginTop: "2rem" }}>
           Choose an exterior finish
         </div>

@@ -251,3 +251,24 @@ export const snapToIncrement =
 
     return transform;
   };
+
+  export const handleSelect = (selectedId) => {
+    setSelectedComponents((prevComponents) =>
+      prevComponents.map((component) => {
+        // Check if the current component is the one being selected
+        if (component.id === selectedId) {
+          // Toggle the isSelected state for the component
+          return { ...component, isSelected: !component.isSelected };
+        } else {
+          // Set isSelected to false for all other components
+          return { ...component, isSelected: false };
+        }
+      })
+    );
+  };
+
+  export const handleDeleteSelected = () => {
+    setSelectedComponents((prevComponents) =>
+      prevComponents.filter((component) => !component.isSelected)
+    );
+  };

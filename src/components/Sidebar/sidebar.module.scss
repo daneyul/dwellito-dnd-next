@@ -42,3 +42,34 @@
   margin-bottom: space(5);
   color: color(darkBlue);
 }
+
+.containerHeights {
+  margin-bottom: space(10);
+}
+
+.containerHeightSelectWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: space(5);
+  gap: space(2);
+}
+
+.containerButton, .containerButtonSelected {
+  font-family: "Chromatica", sans-serif;
+  padding: space(4) space(6);
+  border-radius: 8px;
+  cursor: pointer;
+  line-height: 20px;
+}
+
+.containerButton {
+  background-color: color(white);
+  border: 1px solid (color(lightBlue));
+}
+
+.containerButton:hover, .containerButtonSelected {
+  background-color: color(lightBlue);
+  color: color(blue);
+  border: 1px solid (color(blue))
+}

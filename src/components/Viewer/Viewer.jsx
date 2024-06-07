@@ -3,7 +3,7 @@ import { Droppable } from "@/components/Droppable";
 import { Draggable } from "@/components/Draggable";
 import { DndContext } from "@dnd-kit/core";
 import { useContext, useEffect } from "react";
-import { checkDistance, droppableWidth, toScale } from "@/utils/2D/utils";
+import { checkDistance, droppableWidth, handleSelect, toScale } from "@/utils/2D/utils";
 import ChevronLeftBlack from "../ChevronLeftBlack";
 import ChevronRightBlack from "../ChevronRightBlack";
 import style from "./viewer.module.scss";
@@ -22,7 +22,6 @@ const Viewer = () => {
     modifiers,
     handleDragStart,
     handleDragEnd,
-    handleSelect,
     showCollision,
     draggableRefs,
     selectedElevationIndex,

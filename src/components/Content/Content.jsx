@@ -42,9 +42,11 @@ const PageDataProvider = ({ children, data }) => {
   const { INTERIOR_FINISH_OPTIONS, EXTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS } =
     useContext(Library3dDataContext);
 
+  // State
   const DEFAULT_ELEVATION = elevationData.find(
     (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug
   );
+  const [selectedContainerHeight, setSelectedContainerHeight] = useState("standard")
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);
@@ -81,6 +83,7 @@ const PageDataProvider = ({ children, data }) => {
       }
     })
   );
+
   const [scaleFactor, setScaleFactor] = useState(2.5);
 
   useEffect(() => {
@@ -236,27 +239,6 @@ const PageDataProvider = ({ children, data }) => {
     setIsTooClose(closenessDetected);
   };
 
-  const handleSelect = (selectedId) => {
-    setSelectedComponents((prevComponents) =>
-      prevComponents.map((component) => {
-        // Check if the current component is the one being selected
-        if (component.id === selectedId) {
-          // Toggle the isSelected state for the component
-          return { ...component, isSelected: !component.isSelected };
-        } else {
-          // Set isSelected to false for all other components
-          return { ...component, isSelected: false };
-        }
-      })
-    );
-  };
-
-  const handleDeleteSelected = () => {
-    setSelectedComponents((prevComponents) =>
-      prevComponents.filter((component) => !component.isSelected)
-    );
-  };
-
   const isAnyItemSelected = selectedComponents.some(
     (component) => component.isSelected
   );
@@ -272,8 +254,6 @@ const PageDataProvider = ({ children, data }) => {
         setOrderTotal,
         handleDragStart,
         handleDragEnd,
-        handleSelect,
-        handleDeleteSelected,
         isAnyItemSelected,
         showCollision,
         selectedElevation,
@@ -309,6 +289,8 @@ const PageDataProvider = ({ children, data }) => {
         setFlooring,
         threeDModelLoaded,
         setThreeDModelLoaded,
+        selectedContainerHeight,
+        setSelectedContainerHeight
       }}
     >
       {children}

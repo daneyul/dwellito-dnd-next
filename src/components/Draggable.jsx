@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useContext, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
-import { toScale, generateImgSrc } from "../utils/2D/utils";
+import { toScale, generateImgSrc, handleDeleteSelected } from "../utils/2D/utils";
 import { PageDataContext } from "./Content/Content";
 import DeleteBtn from "./DeleteBtn/DeleteBtn";
 
@@ -9,10 +9,12 @@ export function Draggable({ id, styles, piece, onSelect }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
-  const { scaleFactor, isAnyItemSelected, show3d, handleDeleteSelected } =
+  const { scaleFactor, isAnyItemSelected, show3d, selectedContainerHeight } =
     useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
+
+  const objectHeight = selectedContainerHeight === "standard" ? piece.objScHeight : piece.objHcHeight;
 
   const handleMouseDown = (e) => {
     e.stopPropagation();
@@ -24,7 +26,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
     display: "flex",
     cursor: "pointer",
     width: `${toScale(piece.objWidth, scaleFactor)}px`,
-    height: `${toScale(piece.objHeight, scaleFactor)}px`,
+    height: `${toScale(objectHeight, scaleFactor)}px`,
     left: `${piece.position.x}px`,
     top: `${piece.position.y}px`,
     boxShadow:

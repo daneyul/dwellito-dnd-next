@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import { useContext, useEffect, useMemo, useRef } from "react";
+import { useContext, useMemo, useRef } from "react";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { PageDataContext } from "@/components/Content/Content";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
@@ -10,9 +10,15 @@ export default function ContainerShell40() {
   const { exteriorFinish, interiorFinish, selectedContainer, flooring } =
     useContext(PageDataContext);
 
+  // Load all 3d objects
   const { nodes, materials } = useGLTF(
     "/models/container/40/container-shell.glb"
   );
+  const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
+    useGLTF("/models/container/40/rear-top-drywall.glb");
+  const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
+    useGLTF("/models/container/40/rear-top-plywood.glb");
+  const { nodes: flooringNodes } = useGLTF("/models/container/40/flooring.glb");
 
   // Load all flooring materials
   const { materials: echoFloor } = useGLTF(
@@ -99,20 +105,30 @@ export default function ContainerShell40() {
   const Plywood = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[0]) {
       return (
-        <>
+        <group
+          position={[3.089, 0.173, -1.2]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={0.01}
+        >
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes["40FT_Blank_PlywoodWall_RearTop_002"].geometry}
-            material={materials["Plywood_Texture_01.002"]}
+            geometry={
+              rearTopPlywoodNodes["40FT_Blank_PlywoodWall_RearTop_001_1"]
+                .geometry
+            }
+            material={rearTopPlywoodMaterials["Black_Vinyl.003"]}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes["40FT_Blank_PlywoodWall_RearTop_002_1"].geometry}
-            material={materials["Black_Vinyl.003"]}
+            geometry={
+              rearTopPlywoodNodes["40FT_Blank_PlywoodWall_RearTop_001_2"]
+                .geometry
+            }
+            material={rearTopPlywoodMaterials["Plywood_Texture_01.002"]}
           />
-        </>
+        </group>
       );
     }
   };
@@ -120,38 +136,28 @@ export default function ContainerShell40() {
   const Drywall = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[1]) {
       return (
-        <>
+        <group
+          position={[3.089, 0.173, -1.22]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={0.01}
+        >
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes["40FT_Blank_DryWall_Right_002"].geometry}
-            material={materials["Black_Paint_01.003"]}
+            geometry={
+              rearTopDrywallNodes["40FT_Blank_DryWall_RearTop_001_1"].geometry
+            }
+            material={rearTopDrywallMaterials["Black_Rubber_01.003"]}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes["40FT_Blank_DryWall_RearTop_002"].geometry}
-            material={materials["White_Drywall_Wall.002"]}
+            geometry={
+              rearTopDrywallNodes["40FT_Blank_DryWall_RearTop_001_2"].geometry
+            }
+            material={rearTopDrywallMaterials["White_Drywall_Wall.002"]}
           />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes["40FT_Blank_DryWall_RearTop_002_1"].geometry}
-            material={materials["Black_Rubber_01.003"]}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes["40FT_Blank_DryWall_Left_002"].geometry}
-            material={materials["Black_Paint_01.003"]}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes["40FT_Blank_DryWall_Front_002"].geometry}
-            material={materials["Black_Paint_01.003"]}
-          />
-        </>
+        </group>
       );
     }
   };
@@ -162,13 +168,13 @@ export default function ContainerShell40() {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["40FT_Blank_LED_Light_Fixture_001"].geometry}
+          geometry={nodes.mesh_7.geometry}
           material={materials["White_Mtl.003"]}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["40FT_Blank_LED_Light_Fixture_001_1"].geometry}
+          geometry={nodes.mesh_6.geometry}
           material={materials["Emissive_Light.003"]}
         />
       </>
@@ -181,8 +187,11 @@ export default function ContainerShell40() {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["40FT_Interior_Blank_Floor_001001"].geometry}
+          geometry={flooringNodes["40FT_Interior_Blank_Floor_001"].geometry}
           material={flooringMaterial}
+          position={[3.089, 0.173, -1.22]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={0.01}
         />
       </>
     );
@@ -198,15 +207,37 @@ export default function ContainerShell40() {
       <mesh
         castShadow
         receiveShadow
-        geometry={
-          nodes["40FT_Container_Exterior_Blank_RearTop_001001"].geometry
-        }
+        geometry={nodes.mesh_0.geometry}
+        material={materials["Black_Paint_01.003"]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.mesh_3.geometry}
+        material={materials["Black_Paint_01.003"]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.mesh_4.geometry}
+        material={materials["Black_Rubber_01.003"]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.mesh_5.geometry}
+        material={materials["Black_Paint_01.003"]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.mesh_1.geometry}
         material={exteriorPaint}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes["40FT_Container_Exterior_Blank_Bottom_001"].geometry}
+        geometry={nodes.mesh_2.geometry}
         material={exteriorPaint}
       />
       <Lighting />
