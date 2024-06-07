@@ -37,7 +37,7 @@ export function CsgGeometries({
     useGLTF.preload(`/models/plywood/${size}/plywood-back.glb`);
     useGLTF.preload(`/models/materials/exterior/${exteriorFinish.fileName}.glb`);
     useGLTF.preload("/models/materials/interior/plywood.glb");
-    useGLTF.preload("/models/materials/interior/drywall.glb");
+    useGLTF.preload("/models/materials/interior/drywall-test.glb");
     useGLTF.preload(`/models/container/${size}/exterior-right.glb`);
     useGLTF.preload(`/models/container/${size}/exterior-back.glb`);
     useGLTF.preload(`/models/container/${size}/exterior-left.glb`);
@@ -67,7 +67,7 @@ export function CsgGeometries({
     "/models/materials/interior/plywood.glb"
   );
   const { materials: drywallMaterial } = useGLTF(
-    "/models/materials/interior/drywall.glb"
+    "/models/materials/interior/drywall-test.glb"
   );
   const { nodes: cRightNodes } = useGLTF(
     `/models/container/${size}/exterior-right.glb`
@@ -190,6 +190,8 @@ export function CsgGeometries({
     ));
   }, [ventBoundingBoxes]);
 
+  console.log(drywallMaterial)
+
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
@@ -199,7 +201,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={dBackNodes[key].geometry}
-                material={drywallMaterial["White_Drywall_Wall.002"]}
+                material={drywallMaterial["Drywall"]}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
@@ -208,7 +210,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={dRightNodes[key].geometry}
-                material={drywallMaterial["White_Drywall_Wall.002"]}
+                material={drywallMaterial["Drywall"]}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
@@ -217,7 +219,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={dLeftNodes[key].geometry}
-                material={drywallMaterial["White_Drywall_Wall.002"]}
+                material={drywallMaterial["Drywall"]}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
