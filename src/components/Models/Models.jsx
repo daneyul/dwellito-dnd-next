@@ -34,7 +34,7 @@ export function Models() {
     selectedContainer,
     setThreeDModelLoaded,
   } = useContext(PageDataContext);
-  const { COMPONENT_TYPES, COMPONENT_NAMES, containerData } =
+  const { COMPONENT_TYPES, COMPONENT_NAMES, containerData, ELEVATION_NAMES } =
     useContext(Library2dDataContext);
   const { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } =
     useContext(Library3dDataContext);
@@ -194,15 +194,30 @@ export function Models() {
   const handleWindowBoundingBox = useCallback((index, data) => {
     let updatedData = { ...data };
 
-    updatedData = {
-      ...updatedData,
-      size: new Vector3(data.size.x - 2, data.size.y - 1.7, data.size.z),
-      center: new Vector3(
-        data.center.x - 0.1,
-        data.center.y - 0.1,
-        data.center.z
-      ),
-    };
+    if (
+      data.selectedElevation.name === ELEVATION_NAMES.RIGHT ||
+      data.selectedElevation.name === ELEVATION_NAMES.LEFT
+    ) {
+      updatedData = {
+        ...updatedData,
+        size: new Vector3(data.size.x - 2, data.size.y - 1.7, data.size.z),
+        center: new Vector3(
+          data.center.x - 0.1,
+          data.center.y - 0.1,
+          data.center.z
+        ),
+      };
+    } else {
+      updatedData = {
+        ...updatedData,
+        size: new Vector3(data.size.x, data.size.y - 1.7, data.size.z - 1.7),
+        center: new Vector3(
+          data.center.x,
+          data.center.y - 0.1,
+          data.center.z
+        ),
+      };
+    }
 
     setWindowBoundingBoxes((prev) => ({ ...prev, [index]: updatedData }));
   }, []);
@@ -251,7 +266,7 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach="background" args={["#fdfdf7"]} />
-        <ContainerShell />
+        {/* <ContainerShell /> */}
         <CsgGeometries
           doorBoundingBoxes={doorBoundingBoxes}
           windowBoundingBoxes={windowBoundingBoxes}

@@ -5,7 +5,7 @@ const BasePriceDesc = () => {
   return (
     <div className={style.container}>
       <Subtitle text="Base Price" />
-      <div className={style.value}>$267,249</div>
+      <div className={style.value}>$74,000</div>
     </div>
   );
 };

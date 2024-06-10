@@ -61,7 +61,7 @@ const GenericVent = React.memo(
         const center = new Vector3();
         bbox.getSize(size);
         bbox.getCenter(center);
-        onBoundingBoxChange({ size, center });
+        onBoundingBoxChange({ size, center, selectedElevation });
       }
     }, [selectedComponents]);
 

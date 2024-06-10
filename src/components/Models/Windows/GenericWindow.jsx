@@ -41,7 +41,7 @@ const GenericWindow = React.memo(({ component, onBoundingBoxChange, modelPath, g
       const center = new Vector3();
       bbox.getSize(size);
       bbox.getCenter(center);
-      onBoundingBoxChange({ size, center });
+      onBoundingBoxChange({ size, center, selectedElevation });
     }
   }, [selectedComponents]);
 

@@ -18,7 +18,7 @@ const Selector = () => {
 
   return (
     <div className={style.container}>
-      <div className={style.titleTop}>Add component</div>
+      <div className={style.titleTop}>Doors, Windows & Vents</div>
       <p style={{ marginBottom: "1rem" }}>Place Doors, Windows, and other add-ons to your unit</p>
       <div className={style.expandedContent}>
         <div className={style.subTitle}>Doors</div>
