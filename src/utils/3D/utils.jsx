@@ -46,7 +46,7 @@ const rightSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, D
   }
 
   let xPosition = distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX();
-  let yPosition = 0 + adjustForY() - 0.2;
+  let yPosition = 0 + adjustForY() - 0.1;
   let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
   
   return [
@@ -86,11 +86,11 @@ const leftSideCoordinates = ({ distanceObject, SCALE_FACTOR_FOR_CALCULATIONS, DI
   }
   let yPosition = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return -DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY() + 0.4
+      return -DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY() + 0.2
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return -DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY() + 0.4
+      return -DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY() + 0.2
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return -DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY() + 0.4
+      return -DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY() + 0.2
     }
   }
   let zPosition = -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
