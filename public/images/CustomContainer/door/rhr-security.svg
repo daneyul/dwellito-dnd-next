@@ -1,6 +1,7 @@
 <svg width="46" height="95" viewBox="0 0 46 95" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_702_3470)">
-<rect width="46" height="95" fill="white"/>
+<rect width="3" height="7" transform="matrix(-1 0 0 1 3 43)" fill="white"/>
+<rect width="44" height="95" transform="matrix(-1 0 0 1 46 0)" fill="white"/>
 <path d="M5.43573 14.0427H42.3049" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M42.305 14.0427V93.3855" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M42.3049 93.3855H5.43573" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>

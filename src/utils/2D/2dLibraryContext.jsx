@@ -86,7 +86,7 @@ export const Library2dDataProvider = ({ children }) => {
           y: 30,
         },
       },
-      ROLL_UP_6: {
+      HD_ROLL_UP_6: {
         WIDTH: 80,
         HEIGHT: 104,
         POSITION: {
@@ -94,7 +94,7 @@ export const Library2dDataProvider = ({ children }) => {
           y: 7,
         },
       },
-      ROLL_UP_8: {
+      HD_ROLL_UP_8: {
         WIDTH: 104,
         HEIGHT: 104,
         POSITION: {
@@ -102,7 +102,7 @@ export const Library2dDataProvider = ({ children }) => {
           y: 7,
         },
       },
-      ROLL_UP_10: {
+      HD_ROLL_UP_10: {
         WIDTH: 128,
         HEIGHT: 104,
         POSITION: {
@@ -110,7 +110,7 @@ export const Library2dDataProvider = ({ children }) => {
           y: 7,
         },
       },
-      ROLL_UP_12: {
+      HD_ROLL_UP_12: {
         WIDTH: 152,
         HEIGHT: 104,
         POSITION: {
@@ -194,11 +194,11 @@ export const Library2dDataProvider = ({ children }) => {
     VENT_12: `12"x12" Aluminum Fixed Louver w/HSS Weld Frame 300mmx300mm`,
     VENT_20: `20"x20" Aluminum Fixed Louver w/HSS Weld Frame 500mmx500mm`,
     VENT_24: `24"x24" Aluminum Fixed Louver w/HSS Weld Frame 600mmx600mm`,
-    ROLL_UP_DOOR_6: `Heavy Duty Roll Up Door 6' Wide x 7'4" High`,
-    ROLL_UP_DOOR_8: `Heavy Duty  Roll Up Door 8' Wide x 7'4" High`,
-    ROLL_UP_DOOR_10: `Heavy Duty Roll Up Door 10' Wide x 7'4" High`,
-    ROLL_UP_DOOR_12: `Heavy Duty Roll Up Door 12' Wide x 7'4" High`,
-    ROLL_UP_DOOR_15: `Heavy Duty Roll Up Door 15' Wide x 7'4" High`,
+    HD_ROLL_UP_DOOR_6: `Heavy Duty Roll Up Door 6' Wide x 7'4" High`,
+    HD_ROLL_UP_DOOR_8: `Heavy Duty  Roll Up Door 8' Wide x 7'4" High`,
+    HD_ROLL_UP_DOOR_10: `Heavy Duty Roll Up Door 10' Wide x 7'4" High`,
+    HD_ROLL_UP_DOOR_12: `Heavy Duty Roll Up Door 12' Wide x 7'4" High`,
+    HD_ROLL_UP_DOOR_15: `Heavy Duty Roll Up Door 15' Wide x 7'4" High`,
     ELECTRICAL_PANEL_60_AMP: `60amp Panel with Exterior JB Connection`,
     ELECTRICAL_PANEL_100_AMP: `100amp Panel with Exterior JB Connection`,
     LED_LIGHTS: `4’ Led wrap lights w/ switch`,
@@ -336,20 +336,20 @@ export const Library2dDataProvider = ({ children }) => {
       price: 4550,
       model: "P202-1-503_6ft_6ft8in_Height_French Door White_and_Black Frame",
     },
-    // {
-    //   name: COMPONENT_NAMES.ROLL_UP_DOOR_6,
-    //   position: {
-    //     x: DIMENSIONS.DOOR.ROLL_UP_6.POSITION.x,
-    //     y: DIMENSIONS.DOOR.ROLL_UP_6.POSITION.y,
-    //   },
-    //   imgName: `${COMPONENT_TYPES.DOOR}/hd-rollup-6.svg`,
-    //   desc: COMPONENT_NAMES.ROLL_UP_DOOR_6,
-    //   objWidth: DIMENSIONS.DOOR.ROLL_UP_6.WIDTH,
-    //   objHeight: DIMENSIONS.DOOR.ROLL_UP_6.HEIGHT,
-    //   objType: COMPONENT_TYPES.DOOR,
-    //   price: 2625,
-    //   model: "SM_RollUp_Door_6x74",
-    // },
+    {
+      name: COMPONENT_NAMES.HD_ROLL_UP_DOOR_6,
+      position: {
+        x: DIMENSIONS.DOOR.HD_ROLL_UP_6.POSITION.x,
+        y: DIMENSIONS.DOOR.HD_ROLL_UP_6.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/hd-rollup-6.svg`,
+      desc: COMPONENT_NAMES.HD_ROLL_UP_DOOR_6,
+      objWidth: DIMENSIONS.DOOR.HD_ROLL_UP_6.WIDTH,
+      objHeight: DIMENSIONS.DOOR.HD_ROLL_UP_6.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 2625,
+      model: "SM_RollUp_Door_6x74",
+    },
     // {
     //   name: COMPONENT_NAMES.ROLL_UP_DOOR_8,
     //   position: {

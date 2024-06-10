@@ -1,6 +1,8 @@
 <svg width="152" height="104" viewBox="0 0 152 104" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_702_2049)">
-<rect width="152" height="104" fill="white"/>
+<rect y="1" width="4" height="103" fill="white"/>
+<rect x="4" y="12" width="144" height="92" fill="white"/>
+<rect x="148" width="4" height="104" fill="white"/>
 <path d="M0.130005 0.937134H4.12344" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M4.12323 0.937134V103.87" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M4.12344 103.87H0.130005" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
