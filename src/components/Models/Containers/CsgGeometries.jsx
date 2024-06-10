@@ -41,6 +41,7 @@ export function CsgGeometries({
     useGLTF.preload(`/models/container/${size}/exterior-right.glb`);
     useGLTF.preload(`/models/container/${size}/exterior-back.glb`);
     useGLTF.preload(`/models/container/${size}/exterior-left.glb`);
+    useGLTF.preload(`/models/container/${size}/rubber.glb`)
   }, [size, exteriorFinish.fileName]);
 
   const adjustForX = useMemo(() => {
@@ -89,6 +90,8 @@ export function CsgGeometries({
   );
   const { nodes: pLeftNodes } = useGLTF(`/models/plywood/${size}/plywood-left.glb`);
   const { nodes: pBackNodes } = useGLTF(`/models/plywood/${size}/plywood-back.glb`);
+
+  const { nodes: rubber } = useGLTF(`/models/container/${size}/rubber.glb`)
 
   const csg = useRef();
 
@@ -198,6 +201,15 @@ export function CsgGeometries({
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
+        <Base
+          geometry={rubber.mesh_0.geometry}
+          scale={10}
+          position={[adjustForX, 0, adjustForY]}
+        >
+            <meshStandardMaterial
+              color="black"
+            />
+        </Base>
         {interiorFinish === INTERIOR_FINISH_OPTIONS[1] ? (
           <>
             {Object.keys(dBackNodes).map((key) => (

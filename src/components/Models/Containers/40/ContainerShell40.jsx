@@ -173,13 +173,13 @@ export default function ContainerShell40() {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.mesh_7.geometry}
+          geometry={nodes.mesh_3.geometry}
           material={materials["White_Mtl.003"]}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.mesh_6.geometry}
+          geometry={nodes.mesh_2.geometry}
           material={materials["Emissive_Light.003"]}
         />
       </>
@@ -213,36 +213,12 @@ export default function ContainerShell40() {
         castShadow
         receiveShadow
         geometry={nodes.mesh_0.geometry}
-        material={materials["Black_Paint_01.003"]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh_3.geometry}
-        material={materials["Black_Paint_01.003"]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh_4.geometry}
-        material={materials["Black_Rubber_01.003"]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh_5.geometry}
-        material={materials["Black_Paint_01.003"]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh_1.geometry}
         material={exteriorPaint}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.mesh_2.geometry}
+        geometry={nodes.mesh_1.geometry}
         material={exteriorPaint}
       />
       <Lighting />
