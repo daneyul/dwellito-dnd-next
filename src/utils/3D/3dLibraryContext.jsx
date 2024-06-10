@@ -96,6 +96,15 @@ export const Library3dDataProvider = ({ children }) => {
 
   const FLOORING_OPTIONS = [
     {
+      name: "None",
+      type: "",
+      fileName: "",
+      glbObject: "",
+      img: "",
+      hex: "#FFFFFF",
+      price: 0,
+    },
+    {
       name: "Vinyl Plank Flooring - 12mil Echo - 20ft",
       type: "Echo",
       fileName: "echo",

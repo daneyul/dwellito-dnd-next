@@ -266,7 +266,7 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach="background" args={["#fdfdf7"]} />
-        {/* <ContainerShell /> */}
+        <ContainerShell />
         <CsgGeometries
           doorBoundingBoxes={doorBoundingBoxes}
           windowBoundingBoxes={windowBoundingBoxes}

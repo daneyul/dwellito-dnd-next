@@ -6,7 +6,7 @@ import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 
 export default function ContainerShell40() {
   const { DIMENSIONS } = useContext(Library2dDataContext);
-  const { INTERIOR_FINISH_OPTIONS } = useContext(Library3dDataContext);
+  const { INTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS } = useContext(Library3dDataContext);
   const { exteriorFinish, interiorFinish, selectedContainer, flooring } =
     useContext(PageDataContext);
 
@@ -222,7 +222,9 @@ export default function ContainerShell40() {
         material={exteriorPaint}
       />
       <Lighting />
-      <Flooring />
+      {flooring !== FLOORING_OPTIONS[0] && (
+        <Flooring />
+      )}
       <Plywood />
       <Drywall />
     </group>
