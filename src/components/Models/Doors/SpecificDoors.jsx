@@ -63,7 +63,7 @@ const RhrSecurityGlass = ({ component, onBoundingBoxChange }) => (
   />
 );
 
-const French = ({ component, onBoundingBoxChange }) => (
+const Double = ({ component, onBoundingBoxChange }) => (
   <GenericDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
@@ -73,7 +73,7 @@ const French = ({ component, onBoundingBoxChange }) => (
       "P202-1-503_6ft_6ft8in_Height_French_Door_White_and_Black_Frame_2",
     ]}
     materialNodes={["Blk_Handle_FD", "Wht_FD"]}
-    customPosition={[0.81, 1.83, -0.007]}
+    customPosition={[0.81, 1.73, -0.007]}
   />
 );
 
@@ -137,21 +137,6 @@ const Rollup15 = ({ component, onBoundingBoxChange }) => (
   />
 );
 
-const Sliding5 = ({ component, onBoundingBoxChange }) => (
-  <GenericDoor
-    component={component}
-    onBoundingBoxChange={onBoundingBoxChange}
-    modelPath={`/models/doors/${component.model}.glb`}
-    geometryNodes={[
-      "P202-1-304_Wide_Sliding_Glass_Door_6feet001_1",
-      "P202-1-304_Wide_Sliding_Glass_Door_6feet001_2",
-      "P202-1-304_Wide_Sliding_Glass_Door_6feet001_3",
-    ]}
-    materialNodes={["Glass", "Metal_01", "Metal_02"]}
-    customPosition={[0.81, 1.74, 0]}
-  />
-);
-
 const Sliding6 = ({ component, onBoundingBoxChange }) => (
   <GenericDoor
     component={component}
@@ -172,12 +157,11 @@ export {
   LhrSecurityGlass,
   RhrSecurity,
   RhrSecurityGlass,
-  French,
+  Double,
   Rollup6,
   Rollup8,
   Rollup10,
   Rollup12,
   Rollup15,
-  Sliding5,
   Sliding6,
 };

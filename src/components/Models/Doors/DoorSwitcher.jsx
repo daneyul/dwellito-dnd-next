@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import {
-  French,
+  Double,
   LhrSecurity,
   LhrSecurityGlass,
   RhrSecurity,
@@ -11,7 +11,6 @@ import {
   Rollup15,
   Rollup6,
   Rollup8,
-  Sliding5,
   Sliding6,
 } from "./SpecificDoors";
 
@@ -56,7 +55,7 @@ export default function Door({ onBoundingBoxChange, component }) {
       );
     case COMPONENT_NAMES.DOUBLE_DOOR:
       return (
-        <French
+        <Double
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />

@@ -75,7 +75,7 @@ export const Library2dDataProvider = ({ children }) => {
         HEIGHT: 80,
         POSITION: {
           x: 0,
-          y: 44,
+          y: 40,
         },
       },
       DOUBLE: {
@@ -83,7 +83,7 @@ export const Library2dDataProvider = ({ children }) => {
         HEIGHT: 84,
         POSITION: {
           x: 0,
-          y: 34,
+          y: 30,
         },
       },
       ROLL_UP_6: {

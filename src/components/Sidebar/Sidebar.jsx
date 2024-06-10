@@ -51,7 +51,7 @@ const Sidebar = () => {
         <SingleSelect type={EXTERIOR} />
         <Selector />
         <div className={style.selectionTagName}>
-          Select your wall finishes
+          Select your wall finish
         </div>
         <SingleSelect type={INTERIOR} />
         <div className={style.selectionTagName}>

@@ -26,7 +26,7 @@ export const Library3dDataProvider = ({ children }) => {
 
   const INTERIOR_FINISH_OPTIONS = [
     {
-      name: "Plywood",
+      name: "½” Cabinet Grade Plywood, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation",
       hex: "#C19A6B",
       price: 3685,
       img: "",
@@ -34,7 +34,7 @@ export const Library3dDataProvider = ({ children }) => {
       glbObject: "",
     },
     {
-      name: "Pre-finished Drywall",
+      name: "½” Pre- Finished Drywall, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation",
       hex: "#F2F2F2",
       price: 4400,
       img: "",
