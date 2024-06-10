@@ -25,7 +25,7 @@ const LhrSecurityGlass = ({ component, onBoundingBoxChange }) => (
       "SM_PDoor_LockBoxLHR_GlassDoor_02_3",
     ]}
     materialNodes={["Door", "Glass", "Metall"]}
-    customPosition={[0.559, 1.138, -0.023]}
+    customPosition={[0.559, 1.43, -0.023]}
     customRotation={[-Math.PI / 2, 0, 0]}
     customScale={[-1, 1, 1]}
   />
