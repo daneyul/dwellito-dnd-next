@@ -108,6 +108,9 @@ export function CsgGeometries({
   const { materials: slateGreyPaint } = useGLTF(
     `/models/materials/exterior/slate-grey-paint.glb`
   );
+  const { materials: beigePaint } = useGLTF(
+    `/models/materials/exterior/beige-paint.glb`
+  );
 
   const exteriorPaint = useMemo(() => {
     switch (exteriorFinish.name) {
@@ -121,6 +124,8 @@ export function CsgGeometries({
         return bluePaint[exteriorFinish.glbObject];
       case "Slate Grey":
         return slateGreyPaint[exteriorFinish.glbObject];
+      case "Beige":
+        return beigePaint[exteriorFinish.glbObject];
       default:
         return null;
     }

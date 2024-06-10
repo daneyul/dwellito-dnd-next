@@ -199,6 +199,14 @@ export const Library2dDataProvider = ({ children }) => {
     ROLL_UP_DOOR_10: `Heavy Duty Roll Up Door 10' Wide x 7'4" High`,
     ROLL_UP_DOOR_12: `Heavy Duty Roll Up Door 12' Wide x 7'4" High`,
     ROLL_UP_DOOR_15: `Heavy Duty Roll Up Door 15' Wide x 7'4" High`,
+    ELECTRICAL_PANEL_60_AMP: `60amp Panel with Exterior JB Connection`,
+    ELECTRICAL_PANEL_100_AMP: `100amp Panel with Exterior JB Connection`,
+    LED_LIGHTS: `4’ Led wrap lights w/ switch`,
+    POWER_OUTLET: `15amp 120V Duplex Receptacle`,
+    ELECTRICAL_INSPECTION: `Electrical Inspection - CSA SPE-1000-13`,
+    BASEBOARD_HEATER: `2000W Baseboard Heater w/ Thermostat`,
+    AIR_CONDITIONER: `6,000BTU Air Conditioner`,
+    WORKSHOP_HEATER: `5Kw 240v Fan Forced Workshop Heater Install`
   };
 
   const COMPONENT_TYPES = {
@@ -215,8 +223,9 @@ export const Library2dDataProvider = ({ children }) => {
       name: `10' Custom Cube`,
       slug: "10-custom-cube",
       id: 1,
-      width: `9' width`,
+      width: `8' width`,
       length: `10' length`,
+      sqFootage: '80 sq ft',
       scThumbnail: "10/right.svg",
       hcThumbnail: "10/right.svg",
     },
@@ -224,8 +233,9 @@ export const Library2dDataProvider = ({ children }) => {
       name: `20' Custom Cube`,
       slug: "20-custom-cube",
       id: 2,
-      width: `9' width`,
+      width: `8' width`,
       length: `20' length`,
+      sqFootage: '160 sq ft',
       scThumbnail: "20/right.svg",
       hcThumbnail: "20/right.svg",
     },
@@ -233,8 +243,9 @@ export const Library2dDataProvider = ({ children }) => {
       name: `40' Custom Cube`,
       slug: "40-custom-cube",
       id: 3,
-      width: `9' width`,
+      width: `8' width`,
       length: `40' length`,
+      sqFootage: '320 sq ft',
       scThumbnail: "40/right.svg",
       hcThumbnail: "40/right.svg",
     },
@@ -464,6 +475,9 @@ export const Library2dDataProvider = ({ children }) => {
       objType: COMPONENT_TYPES.VENT,
       price: 540,
       model: "P203-1-306_24in_x_24in Aluminum Fixed Louver 16ga Bolt on Frame",
+    },
+    {
+
     },
   ].map((item) => ({
     id: uuid(),

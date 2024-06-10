@@ -106,6 +106,7 @@ const PageDataProvider = ({ children, data }) => {
         0
       ) +
       interiorFinish.price +
+      exteriorFinish.price +
       flooring.price;
     setOrderTotal(total);
   }, [selectedComponents, interiorFinish]);
@@ -239,10 +240,6 @@ const PageDataProvider = ({ children, data }) => {
     setIsTooClose(closenessDetected);
   };
 
-  const isAnyItemSelected = selectedComponents.some(
-    (component) => component.isSelected
-  );
-
   const handleSelect = (selectedId) => {
     setSelectedComponents((prevComponents) =>
       prevComponents.map((component) => {
@@ -275,7 +272,6 @@ const PageDataProvider = ({ children, data }) => {
         setOrderTotal,
         handleDragStart,
         handleDragEnd,
-        isAnyItemSelected,
         showCollision,
         selectedElevation,
         setSelectedElevation,
@@ -284,7 +280,6 @@ const PageDataProvider = ({ children, data }) => {
         hasCollisions,
         setHasCollisions,
         modifiers,
-        isAnyItemSelected,
         showYourOrder,
         toggleOrder,
         selectedElevationIndex,

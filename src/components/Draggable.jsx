@@ -10,7 +10,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
-  const { scaleFactor, isAnyItemSelected, show3d, handleDeleteSelected } =
+  const { scaleFactor, selectedComponents, show3d, handleDeleteSelected } =
     useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
@@ -19,6 +19,10 @@ export function Draggable({ id, styles, piece, onSelect }) {
     e.stopPropagation();
     onSelect();
   };
+
+  const isAnyItemSelected = selectedComponents.some(
+    (component) => component.isSelected
+  );
 
   const CustomStyle = {
     position: "absolute",
@@ -45,6 +49,10 @@ export function Draggable({ id, styles, piece, onSelect }) {
       }
     : {};
 
+  const dynamicLineWidth = transform
+    ? piece.position.x + transform.x
+    : piece.position.x;
+
   return (
     <>
       <div
@@ -69,9 +77,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
       {isAnyItemSelected && !show3d && (
         <DeleteBtn onDeleteSelected={handleDeleteSelected} />
       )}
-      {isHovered && !show3d && !isAnyItemSelected && (
-        <DragToMove />
-      )}
+      {isHovered && !show3d && !isAnyItemSelected && <DragToMove />}
     </>
   );
 }

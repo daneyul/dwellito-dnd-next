@@ -11,12 +11,35 @@ import {
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 
 const PriceTotal = () => {
-  const { orderTotal, selectedComponents, selectedContainer, scaleFactor, interiorFinish, flooring } =
+  const { orderTotal, selectedComponents, selectedContainer, scaleFactor, interiorFinish, exteriorFinish, flooring } =
     useContext(PageDataContext);
   const { ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const [dialogOpen, setDialogOpen] = useState(false);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
+
+  const ExteriorSection = () => {
+    return (
+      <div className={style.section}>
+        <div className={style.elevationName}>Exterior Finish</div>
+        <div style={{ listStyleType: "none", margin: "0", padding: "0" }}>
+          <div className={style.lineItem}>
+            <div className={style.thumbnailContainer}>
+              {/* <img
+                src={generateImgSrc(component.imgName)}
+                alt={component.desc}
+                className={style.thumbnailImg}
+              /> */}
+            </div>
+            <div className={style.description}>
+              {exteriorFinish.name}
+            </div>
+            <div className={style.price}>${exteriorFinish.price.toLocaleString()}</div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   const InteriorSection = () => {
     return (
@@ -133,6 +156,7 @@ const PriceTotal = () => {
             {uniqueElevationNames.map((elevation, index) => (
               <Section key={index} elevation={elevation} />
             ))}
+            <ExteriorSection />
             <InteriorSection />
             <FlooringSection />
             <Total text="Sub Total" value={`$${orderTotal.toLocaleString()}`} />

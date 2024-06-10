@@ -57,7 +57,7 @@ const SingleSelect = ({ type }) => {
         isSelected && (
           <div className={style.singleSelDescriptionContainer} key={index}>
             <Subtitle text={selection.name} />
-            <Subtitle text="+ $100" />
+            <Subtitle text={`+ $${selection.price.toLocaleString()}`} />
           </div>
         )
       );

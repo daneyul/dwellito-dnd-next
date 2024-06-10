@@ -45,7 +45,7 @@ const Sidebar = () => {
           </div>
         </div> */}
         <div className={style.selectionTagName} style={{ marginTop: "2rem" }}>
-          Choose an exterior finish
+          Choose Exterior Paint
         </div>
         <Subtitle text="Select your desired material color" css={{ fontWeight: 400, marginBottom: "1rem" }} />
         <SingleSelect type={EXTERIOR} />
