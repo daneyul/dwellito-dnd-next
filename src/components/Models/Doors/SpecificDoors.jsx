@@ -8,7 +8,7 @@ const LhrSecurity = ({ component, onBoundingBoxChange }) => (
     modelPath={`/models/doors/${component.model}.glb`}
     geometryNodes={["SM_PDoor_LockBoxLHR_01_1", "SM_PDoor_LockBoxLHR_01_2"]}
     materialNodes={["Door", "Metall"]}
-    customPosition={[0.559, 1.43, -0.014]}
+    customPosition={[0.559, 1.43, -0.03]}
     customRotation={[-Math.PI / 2, 0, 0]}
     customScale={[-1, 1, 1]}
   />
@@ -25,7 +25,7 @@ const LhrSecurityGlass = ({ component, onBoundingBoxChange }) => (
       "SM_PDoor_LockBoxLHR_GlassDoor_02_3",
     ]}
     materialNodes={["Door", "Glass", "Metall"]}
-    customPosition={[0.559, 1.43, -0.023]}
+    customPosition={[0.559, 1.43, -0.03]}
     customRotation={[-Math.PI / 2, 0, 0]}
     customScale={[-1, 1, 1]}
   />
@@ -42,7 +42,7 @@ const RhrSecurity = ({ component, onBoundingBoxChange }) => (
       "SM_PDoor_LockBoxRHR_01_3",
     ]}
     materialNodes={["Door", "Metall", "Metall"]}
-    customPosition={[0.559, 1.43, -0.01]}
+    customPosition={[0.559, 1.43, -0.03]}
     customRotation={[-Math.PI / 2, 0, 0]}
   />
 );
@@ -58,7 +58,7 @@ const RhrSecurityGlass = ({ component, onBoundingBoxChange }) => (
       "SM_PDoor_LockBoxRHR_GlassDoor_02_3",
     ]}
     materialNodes={["Door", "Glass", "Metall"]}
-    customPosition={[0.559, 1.43, -0.01]}
+    customPosition={[0.559, 1.43, -0.03]}
     customRotation={[-Math.PI / 2, 0, 0]}
   />
 );

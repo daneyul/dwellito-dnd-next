@@ -167,6 +167,7 @@ export function Models() {
       // Adjust the bounding box height for personnel doors
       if (typeof data.size.y === "number") {
         const doorName = doors[index]?.name;
+
         if (
           doorName === COMPONENT_NAMES.PERSONNEL_DOOR_LHR_SECURITY ||
           doorName === COMPONENT_NAMES.PERSONNEL_DOOR_RHR_SECURITY ||

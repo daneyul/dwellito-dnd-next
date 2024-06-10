@@ -4,6 +4,7 @@ import { useDraggable } from "@dnd-kit/core";
 import { toScale, generateImgSrc } from "../utils/2D/utils";
 import { PageDataContext } from "./Content/Content";
 import DeleteBtn from "./DeleteBtn/DeleteBtn";
+import DragToMove from "./DragToMove/DragToMove";
 
 export function Draggable({ id, styles, piece, onSelect }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -67,6 +68,9 @@ export function Draggable({ id, styles, piece, onSelect }) {
       </div>
       {isAnyItemSelected && !show3d && (
         <DeleteBtn onDeleteSelected={handleDeleteSelected} />
+      )}
+      {isHovered && !show3d && !isAnyItemSelected && (
+        <DragToMove />
       )}
     </>
   );

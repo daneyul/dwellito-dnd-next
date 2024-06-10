@@ -47,13 +47,6 @@ export default function Door({ onBoundingBoxChange, component }) {
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.SLIDING_GLASS_DOOR_5:
-      return (
-        <Sliding5
-          component={component}
-          onBoundingBoxChange={onBoundingBoxChange}
-        />
-      );
     case COMPONENT_NAMES.SLIDING_GLASS_DOOR_6:
       return (
         <Sliding6
@@ -61,7 +54,7 @@ export default function Door({ onBoundingBoxChange, component }) {
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.FRENCH_DOOR:
+    case COMPONENT_NAMES.DOUBLE_DOOR:
       return (
         <French
           component={component}

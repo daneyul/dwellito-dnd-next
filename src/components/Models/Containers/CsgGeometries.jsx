@@ -190,8 +190,6 @@ export function CsgGeometries({
     ));
   }, [ventBoundingBoxes]);
 
-  console.log(drywallMaterial)
-
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>

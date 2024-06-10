@@ -77,15 +77,12 @@ export const checkDistance = ({
   ); // Use the function to get dynamic width
 
   return {
-    left: Math.round(
-      deScale(component.position.x, scaleFactor) + DIMENSIONS.BOUNDARIES.x
-    ).toFixed(),
-    right: Math.round(
-      droppableWidthValue -
-        (deScale(component.position.x, scaleFactor) + component.objWidth) +
-        DIMENSIONS.BOUNDARIES.x
-    ).toFixed(),
-    top: Math.round(deScale(component.position.y, scaleFactor)).toFixed(),
+    left: deScale(component.position.x, scaleFactor) + DIMENSIONS.BOUNDARIES.x,
+    right: droppableWidthValue -
+    (deScale(component.position.x, scaleFactor) + component.objWidth) +
+    DIMENSIONS.BOUNDARIES.x
+,
+    top: deScale(component.position.y, scaleFactor),
   };
 };
 

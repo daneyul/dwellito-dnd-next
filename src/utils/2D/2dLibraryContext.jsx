@@ -70,14 +70,6 @@ export const Library2dDataProvider = ({ children }) => {
           y: 7,
         },
       },
-      // SLIDING_FIVE: {
-      //   WIDTH: 66,
-      //   HEIGHT: 83,
-      //   POSITION: {
-      //     x: 0,
-      //     y: 36,
-      //   },
-      // },
       SLIDING_SIX: {
         WIDTH: 78,
         HEIGHT: 80,
@@ -182,7 +174,7 @@ export const Library2dDataProvider = ({ children }) => {
     SCALE_FACTOR: 2.5,
     GRID_SIZE: 1,
     BOUNDARIES: {
-      x: 17,
+      x: 24,
     },
   };
 
@@ -305,20 +297,6 @@ export const Library2dDataProvider = ({ children }) => {
       price: 2000,
       model: "SM_PDoor_LockBoxRHR_GlassDoor_02",
     },
-    // {
-    //   name: COMPONENT_NAMES.SLIDING_GLASS_DOOR_5,
-    //   position: {
-    //     x: DIMENSIONS.DOOR.SLIDING_FIVE.POSITION.x,
-    //     y: DIMENSIONS.DOOR.SLIDING_FIVE.POSITION.y,
-    //   },
-    //   imgName: `${COMPONENT_TYPES.DOOR}/P202-1-301-Wide_Sliding_Glass_Door_5ft_66in x 83in.svg`,
-    //   desc: COMPONENT_NAMES.SLIDING_GLASS_DOOR_5,
-    //   objWidth: DIMENSIONS.DOOR.SLIDING_FIVE.WIDTH,
-    //   objHeight: DIMENSIONS.DOOR.SLIDING_FIVE.HEIGHT,
-    //   objType: COMPONENT_TYPES.DOOR,
-    //   price: 3025,
-    //   model: "P202-1-301_Wide_Sliding_Glass_Door_5feet",
-    // },
     {
       name: COMPONENT_NAMES.SLIDING_GLASS_DOOR_6,
       position: {
