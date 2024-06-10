@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.18 17.48">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .25px;
+      }
+    </style>
+  </defs>
+  <g id="Default">
+    <g id="LINE">
+      <line class="cls-1" x1="3.95" y1="1.62" x2="3.95" y2="15.87"/>
+    </g>
+    <g id="LINE-2" data-name="LINE">
+      <line class="cls-1" x1="3.95" y1="15.87" x2=".2" y2="15.87"/>
+    </g>
+    <g id="LINE-3" data-name="LINE">
+      <line class="cls-1" x1=".2" y1="15.87" x2=".2" y2="1.62"/>
+    </g>
+    <g id="LINE-4" data-name="LINE">
+      <line class="cls-1" x1=".2" y1="1.62" x2="3.95" y2="1.62"/>
+    </g>
+    <g id="LINE-5" data-name="LINE">
+      <line class="cls-1" x1="10.05" y1="4.74" x2="10.05" y2="12.74"/>
+    </g>
+    <g id="LINE-6" data-name="LINE">
+      <line class="cls-1" x1="10.05" y1="12.74" x2="6.05" y2="12.74"/>
+    </g>
+    <g id="LINE-7" data-name="LINE">
+      <line class="cls-1" x1="6.05" y1="12.74" x2="6.05" y2="4.74"/>
+    </g>
+    <g id="LINE-8" data-name="LINE">
+      <line class="cls-1" x1="6.05" y1="4.74" x2="10.05" y2="4.74"/>
+    </g>
+    <g id="LINE-9" data-name="LINE">
+      <line class="cls-1" x1="3.95" y1="7.99" x2="6.05" y2="7.99"/>
+    </g>
+    <g id="LINE-10" data-name="LINE">
+      <line class="cls-1" x1="6.05" y1="7.99" x2="6.05" y2="9.49"/>
+    </g>
+    <g id="LINE-11" data-name="LINE">
+      <line class="cls-1" x1="6.05" y1="9.49" x2="3.95" y2="9.49"/>
+    </g>
+    <g id="LINE-12" data-name="LINE">
+      <line class="cls-1" x1="3.95" y1="9.49" x2="3.95" y2="7.99"/>
+    </g>
+    <g id="LINE-13" data-name="LINE">
+      <line class="cls-1" x1=".28" y1=".12" x2=".12" y2="1.62"/>
+    </g>
+    <g id="LINE-14" data-name="LINE">
+      <line class="cls-1" x1=".12" y1="1.62" x2=".12" y2="15.87"/>
+    </g>
+    <g id="LINE-15" data-name="LINE">
+      <line class="cls-1" x1=".12" y1="15.87" x2=".28" y2="17.36"/>
+    </g>
+  </g>
+  <g id="_0" data-name="0">
+    <g id="LINE-16" data-name="LINE">
+      <line class="cls-1" x1=".28" y1="17.36" x2=".28" y2=".12"/>
+    </g>
+  </g>
+</svg>
