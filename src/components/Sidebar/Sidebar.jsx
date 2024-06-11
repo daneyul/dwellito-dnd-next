@@ -11,12 +11,14 @@ import SingleSelect from "../SingleSelect/SingleSelect";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
 import Layouts from "../Layouts/Layouts";
 import Subtitle from "../Subtitle/Subtitle";
+import { CONTAINER_HIGH, CONTAINER_STANDARD } from "@/utils/constants";
 
 const Sidebar = () => {
-  const { showYourOrder } = useContext(PageDataContext);
+  const { showYourOrder, selectedContainerHeight, setSelectedContainerHeight } = useContext(PageDataContext);
   const { EXTERIOR, INTERIOR, FLOORING } = useContext(Library3dDataContext);
   const supplierName = "Custom Cubes";
-  const containerIsSelected = false;
+  const containerIsStandard = selectedContainerHeight === CONTAINER_STANDARD;
+  const containerIsHigh = selectedContainerHeight === CONTAINER_HIGH;
 
   const NotYourOrder = () => {
     return (
@@ -30,33 +32,53 @@ const Sidebar = () => {
         <Badges />
         <BasePriceDesc />
         <Layouts />
-        {/* <div className={style.containerHeights}>
+        <div className={style.containerHeights}>
           <Subtitle text="Select the height" />
-          <Subtitle text="Start with your ideal number of bedrooms." css={{ fontWeight: 400, marginBottom: "1rem" }} />
+          <Subtitle
+            text="Start with your ideal number of bedrooms."
+            css={{ fontWeight: 400, marginBottom: "1rem" }}
+          />
           <div className={style.containerHeightSelectWrapper}>
-            <button className={containerIsSelected ? style.containerButtonSelected : style.containerButton}>
-              <span style={{ fontWeight: 700, marginRight: "0.25rem" }}>Standard</span>
+            <button
+              onClick={setSelectedContainerHeight(CONTAINER_STANDARD)}
+              className={
+                containerIsStandard
+                  ? style.containerButtonSelected
+                  : style.containerButton
+              }
+            >
+              <span style={{ fontWeight: 700, marginRight: "0.25rem" }}>
+                Standard
+              </span>
               <span>8' 5"</span>
             </button>
-            <button className={containerIsSelected ? style.containerButtonSelected : style.containerButton}>
-              <span style={{ fontWeight: 700, marginRight: "0.25rem" }}>High Container</span>
+            <button
+            onClick={setSelectedContainerHeight(CONTAINER_HIGH)}
+              className={
+                containerIsHigh
+                  ? style.containerButtonSelected
+                  : style.containerButton
+              }
+            >
+              <span style={{ fontWeight: 700, marginRight: "0.25rem" }}>
+                High Container
+              </span>
               <span>9' 6"</span>
             </button>
           </div>
-        </div> */}
+        </div>
         <div className={style.selectionTagName} style={{ marginTop: "2rem" }}>
           Choose Exterior Paint
         </div>
-        <Subtitle text="Select your desired material color" css={{ fontWeight: 400, marginBottom: "1rem" }} />
+        <Subtitle
+          text="Select your desired material color"
+          css={{ fontWeight: 400, marginBottom: "1rem" }}
+        />
         <SingleSelect type={EXTERIOR} />
         <Selector />
-        <div className={style.selectionTagName}>
-          Select your wall finish
-        </div>
+        <div className={style.selectionTagName}>Select your wall finish</div>
         <SingleSelect type={INTERIOR} />
-        <div className={style.selectionTagName}>
-          Select your flooring
-        </div>
+        <div className={style.selectionTagName}>Select your flooring</div>
         <SingleSelect type={FLOORING} />
         <SaveOrder />
       </>

@@ -2,9 +2,10 @@ import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import AddOption from "../AddOption/AddOption";
 import style from "./selector.module.scss";
 import { useContext } from "react";
+import { COMPONENT_TYPES } from "@/utils/constants";
 
 const Selector = () => {
-  const { COMPONENT_TYPES, componentData } = useContext(Library2dDataContext);
+  const { componentData } = useContext(Library2dDataContext);
 
   const doors = componentData.filter(
     (item) => item.objType === COMPONENT_TYPES.DOOR

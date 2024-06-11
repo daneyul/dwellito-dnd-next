@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import {
   Double,
   LhrSecurity,
@@ -13,10 +11,9 @@ import {
   Rollup8,
   Sliding6,
 } from "./SpecificDoors";
+import { COMPONENT_NAMES } from "@/utils/constants";
 
 export default function Door({ onBoundingBoxChange, component }) {
-  const { COMPONENT_NAMES } = useContext(Library2dDataContext);
-
   switch (component.name) {
     case COMPONENT_NAMES.PERSONNEL_DOOR_LHR_SECURITY:
       return (

@@ -43,7 +43,7 @@ const SingleSelect = ({ type }) => {
             setShowExterior(true)
           }}
         >
-          <img className={style.img} src={`/images/CustomContainer/exterior-finishes/${selection.img}`} alt="thumbnail" />
+          <img className={style.img} src={`/images/exterior-finishes/${selection.img}`} alt="thumbnail" />
         </div>
       );
     });

@@ -24,21 +24,26 @@ import {
 import style from "./content.module.scss";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
+import {
+  COMPONENT_TYPES,
+  CONTAINER_STANDARD,
+  ELEVATION_NAMES,
+} from "@/utils/constants";
 
 export const PageDataContext = createContext();
 
 const PageDataProvider = ({ children, data }) => {
   const slug = data.slug;
 
+  // 2D Library Data
   const {
     DEFAULT_COMPONENTS,
     snapToGridModifier,
-    COMPONENT_TYPES,
     elevationData,
     containerData,
-    ELEVATION_NAMES,
   } = useContext(Library2dDataContext);
 
+  // 3D Library Data
   const { INTERIOR_FINISH_OPTIONS, EXTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS } =
     useContext(Library3dDataContext);
 
@@ -46,7 +51,8 @@ const PageDataProvider = ({ children, data }) => {
   const DEFAULT_ELEVATION = elevationData.find(
     (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug
   );
-  const [selectedContainerHeight, setSelectedContainerHeight] = useState("standard")
+  const [selectedContainerHeight, setSelectedContainerHeight] =
+    useState(CONTAINER_STANDARD);
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);

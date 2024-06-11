@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
 
 export const generateImgSrc = (imgName) =>
-  `../../../images/CustomContainer/${imgName}`;
+  `../../../images/${imgName}`;
 
 export const checkCollision = (item1, item2, selectedElevation, scaleFactor) => {
   // First, check if both items are on the selected elevation.

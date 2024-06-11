@@ -29,7 +29,7 @@ const Layouts = () => {
       {containerData.map((container, index) => {
         const thumbnail = selectedContainer === "standard" ? container.scThumbnail : container.hcThumbnail;
         const containerName = container.name;
-        const containerImage = `/images/CustomContainer/elevation/${thumbnail}`;
+        const containerImage = `/images/elevation/${thumbnail}`;
         const isSelected = container.id === containerId;
 
         return (

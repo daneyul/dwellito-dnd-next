@@ -49,7 +49,7 @@ export const Library3dDataProvider = ({ children }) => {
       glbObject: "Beige",
       hex: "#E6D3B5",
       fileName: "beige-paint",
-      img: "white.png",
+      img: "beige.png",
       price: 0
     },
     {

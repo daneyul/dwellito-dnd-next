@@ -26,6 +26,7 @@ import ContainerShell10 from "./Containers/10/ContainerShell10";
 import ContainerShell20 from "./Containers/20/ContainerShell20";
 import ContainerShell40 from "./Containers/40/ContainerShell40";
 import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
+import { COMPONENT_NAMES, COMPONENT_TYPES } from "@/utils/constants";
 
 export function Models() {
   const {
@@ -34,7 +35,7 @@ export function Models() {
     selectedContainer,
     setThreeDModelLoaded,
   } = useContext(PageDataContext);
-  const { COMPONENT_TYPES, COMPONENT_NAMES, containerData, ELEVATION_NAMES } =
+  const { containerData, ELEVATION_NAMES } =
     useContext(Library2dDataContext);
   const { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } =
     useContext(Library3dDataContext);
