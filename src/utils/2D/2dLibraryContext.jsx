@@ -58,7 +58,7 @@ export const Library2dDataProvider = ({ children }) => {
           DEPTH: 24.40468565288,
         },
         SIDE: {
-          WIDTH: 477,
+          WIDTH: 480,
           SC_HEIGHT: 102,
           HC_HEIGHT: 114,
         },

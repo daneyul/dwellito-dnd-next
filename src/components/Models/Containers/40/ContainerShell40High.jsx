@@ -22,10 +22,16 @@ export default function ContainerShell40High() {
     `/models/container/40/${selectedContainerHeight}/container-shell.glb`
   );
   const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
-    useGLTF(`/models/container/40/${selectedContainerHeight}/rear-top-drywall.glb`);
+    useGLTF(
+      `/models/container/40/${selectedContainerHeight}/rear-top-drywall.glb`
+    );
   const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
-    useGLTF(`/models/container/40/${selectedContainerHeight}/rear-top-plywood.glb`);
-  const { nodes: flooringNodes } = useGLTF(`/models/container/40/${selectedContainerHeight}/flooring.glb`);
+    useGLTF(
+      `/models/container/40/${selectedContainerHeight}/rear-top-plywood.glb`
+    );
+  const { nodes: flooringNodes } = useGLTF(
+    `/models/container/40/${selectedContainerHeight}/flooring.glb`
+  );
 
   // Load all flooring materials
   const { materials: echoFloor } = useGLTF(
@@ -117,30 +123,14 @@ export default function ContainerShell40High() {
   const Plywood = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[0]) {
       return (
-        <group
-          position={[3.089, 0.173, -1.2]}
-          rotation={[-Math.PI / 2, 0, 0]}
-          scale={0.01}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              rearTopPlywoodNodes['40FT_Blank_PlywoodWall_RearTop_001_1']
-                .geometry
-            }
-            material={rearTopPlywoodMaterials['Black_Vinyl.003']}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              rearTopPlywoodNodes['40FT_Blank_PlywoodWall_RearTop_001_2']
-                .geometry
-            }
-            material={rearTopPlywoodMaterials['Plywood_Texture_01.002']}
-          />
-        </group>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={
+            rearTopPlywoodNodes['40FT_Blank_PlywoodWall_RearTop_001'].geometry
+          }
+          material={rearTopPlywoodMaterials.Plywood_v2}
+        />
       );
     }
   };
@@ -148,28 +138,14 @@ export default function ContainerShell40High() {
   const Drywall = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[1]) {
       return (
-        <group
-          position={[3.089, 0.173, -1.22]}
-          rotation={[-Math.PI / 2, 0, 0]}
-          scale={0.01}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              rearTopDrywallNodes['40FT_Blank_DryWall_RearTop_001_1'].geometry
-            }
-            material={rearTopDrywallMaterials['Black_Rubber_01.003']}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              rearTopDrywallNodes['40FT_Blank_DryWall_RearTop_001_2'].geometry
-            }
-            material={rearTopDrywallMaterials['White_Drywall_Wall.002']}
-          />
-        </group>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={
+            rearTopDrywallNodes['40FT_Blank_DryWall_RearTop_001'].geometry
+          }
+          material={rearTopDrywallMaterials.Drywall_v2}
+        />
       );
     }
   };
@@ -180,14 +156,14 @@ export default function ContainerShell40High() {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.mesh_3.geometry}
-          material={materials['White_Mtl.003']}
+          geometry={nodes['40FT_HC_Interior_Blank_LED_Light_Fixture_001'].geometry}
+          material={materials['White_Mtl.005']}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.mesh_2.geometry}
-          material={materials['Emissive_Light.003']}
+          geometry={nodes['40FT_HC_Interior_Blank_LED_Light_Fixture_001_1'].geometry}
+          material={materials['Emissive_Light.005']}
         />
       </>
     );
@@ -195,17 +171,17 @@ export default function ContainerShell40High() {
 
   const Flooring = () => {
     return (
-      <>
+      <group position={[3.089, 0.173, -1.22]} rotation={[-Math.PI / 2, 0, 0]}>
         <mesh
           castShadow
           receiveShadow
-          geometry={flooringNodes['40FT_Interior_Blank_Floor_001'].geometry}
+          geometry={
+            flooringNodes['40FT_HC_Interior_Timber_Blank_Floor_001'].geometry
+          }
           material={flooringMaterial}
-          position={[3.089, 0.173, -1.22]}
-          rotation={[-Math.PI / 2, 0, 0]}
           scale={0.01}
         />
-      </>
+      </group>
     );
   };
 
@@ -219,13 +195,19 @@ export default function ContainerShell40High() {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.mesh_0.geometry}
+        geometry={nodes.mesh_2.geometry}
+        material={materials['Black_Rubber_01.006']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.mesh_3.geometry}
         material={exteriorPaint}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.mesh_1.geometry}
+        geometry={nodes.mesh_4.geometry}
         material={exteriorPaint}
       />
       <Lighting />

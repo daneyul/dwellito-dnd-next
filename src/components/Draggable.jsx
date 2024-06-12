@@ -5,12 +5,13 @@ import { toScale, generateImgSrc } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import DeleteBtn from './DeleteBtn/DeleteBtn';
 import DragToMove from './DragToMove/DragToMove';
+import { CONTAINER_40_SLUG } from '@/utils/constants';
 
 export function Draggable({ id, styles, piece, onSelect }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
-  const { scaleFactor, selectedComponents, show3d, handleDeleteSelected, containerHeightIsStandard } =
+  const { scaleFactor, selectedComponents, show3d, handleDeleteSelected, containerHeightIsStandard, slug } =
     useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
@@ -24,7 +25,21 @@ export function Draggable({ id, styles, piece, onSelect }) {
     (component) => component.isSelected
   );
 
-  const objTop = containerHeightIsStandard ? piece.position.y : piece.position.y + 30;
+  const objTop = () => {
+    if (containerHeightIsStandard) {
+      if (slug !== CONTAINER_40_SLUG) {
+        return piece.position.y;
+      } else {
+        return piece.position.y - 2;
+      }
+    } else {
+      if (slug !== CONTAINER_40_SLUG) {
+        return piece.position.y + 30;
+      } else {
+        return piece.position.y + 18;
+      }
+    }
+  }
 
   const CustomStyle = {
     position: 'absolute',
@@ -33,7 +48,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
     width: `${toScale(piece.objWidth, scaleFactor)}px`,
     height: `${Math.floor(toScale(piece.objHeight, scaleFactor))}px`,
     left: `${piece.position.x}px`,
-    top: `${objTop}px`,
+    top: `${objTop()}px`,
     boxShadow:
       isHovered || piece.isSelected
         ? '0px 4px 30px 0px rgba(128, 129, 238, 0.19)'

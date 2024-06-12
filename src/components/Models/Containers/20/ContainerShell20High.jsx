@@ -6,7 +6,7 @@ import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 
 export default function ContainerShell20High() {
   const { DIMENSIONS } = useContext(Library2dDataContext);
-  const { INTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS } =
+  const { FLOORING_OPTIONS, INTERIOR_FINISH_OPTIONS } =
     useContext(Library3dDataContext);
 
   const {
@@ -139,28 +139,14 @@ export default function ContainerShell20High() {
     );
   };
 
-  const Flooring = () => {
-    return (
-      <mesh
-          castShadow
-          receiveShadow
-          geometry={
-            flooringNodes['20FT_HC_Interior_Timber_Blank_Floor_001'].geometry
-          }
-          material={flooringMaterial}
-          scale={0.01}
-        />
-    );
-  };
-
   const Plywood = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[0]) {
       return (
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes['20FT_HC_Blank_PlywoodWall_RearTop_001'].geometry}
-          material={materials.Plywood_Texture_01}
+          geometry={rearTopPlywoodNodes['20FT_HC_Blank_PlywoodWall_RearTop_001001'].geometry}
+          material={rearTopPlywoodMaterials.Plywood_v2}
         />
       );
     }
@@ -173,12 +159,28 @@ export default function ContainerShell20High() {
           castShadow
           receiveShadow
           geometry={
-            rearTopDrywallNodes['20FT_HC_Blank_DryWall_RearTop_001'].geometry
+            rearTopDrywallNodes['20FT_HC_Blank_DryWall_RearTop_001002'].geometry
           }
-          material={rearTopDrywallMaterials['White_Drywall_Wall.001']}
+          material={rearTopDrywallMaterials.Drywall_v2}
         />
       );
     }
+  };
+
+  const Flooring = () => {
+    return (
+      <group position={[3.059, 0.173, -1.219]} rotation={[-Math.PI / 2, 0, 0]}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={
+            flooringNodes['20FT_HC_Interior_Echo_Blank_Floor_001'].geometry
+          }
+          material={flooringMaterial}
+          scale={0.01}
+        />
+      </group>
+    );
   };
 
   const containerMesh = (
@@ -192,13 +194,13 @@ export default function ContainerShell20High() {
         castShadow
         receiveShadow
         geometry={nodes['20FT_HC_Blank_PlywoodWall_RearTop_001'].geometry}
-        material={materials["Black_Vinyl"]}
+        material={materials['Black_Vinyl']}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['20FT_HC_Blank_DryWall_RearTop_001'].geometry}
-        material={materials["Black_Rubber_01"]}
+        material={materials['Black_Rubber_01']}
       />
       <mesh
         castShadow
@@ -212,9 +214,9 @@ export default function ContainerShell20High() {
         geometry={nodes['20FT_Container_Exterior_Blank_Bottom_004'].geometry}
         material={exteriorPaint}
       />
-      <Lighting />
-      <Drywall />
       <Plywood />
+      <Drywall />
+      <Lighting />
       {flooring !== FLOORING_OPTIONS[0] && <Flooring />}
     </group>
   );
