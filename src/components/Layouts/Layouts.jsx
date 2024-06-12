@@ -23,18 +23,14 @@ const Layout = ({ name, imgSrc, isSelected }) => {
 
 const Layouts = () => {
   const { containerData } = useContext(Library2dDataContext);
-  const { containerId, selectedContainer, selectedContainerHeight } =
-    useContext(PageDataContext);
-
-  const containerIsStandard = selectedContainerHeight === CONTAINER_STANDARD;
+  const { containerId, containerHeightIsStandard } = useContext(PageDataContext);
 
   return (
     <div className={style.container}>
       {containerData.map((container, index) => {
-        const thumbnail =
-        containerIsStandard
-            ? container.scThumbnail
-            : container.hcThumbnail;
+        const thumbnail = containerHeightIsStandard
+          ? container.scThumbnail
+          : container.hcThumbnail;
         const containerName = container.name;
         const containerImage = `/images/elevation/${thumbnail}`;
         const isSelected = container.id === containerId;

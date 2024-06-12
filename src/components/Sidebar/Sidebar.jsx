@@ -20,14 +20,12 @@ import {
 const Sidebar = () => {
   const {
     showYourOrder,
-    selectedContainerHeight,
+    containerHeightIsStandard,
     setSelectedContainerHeight,
     slug,
   } = useContext(PageDataContext);
   const { EXTERIOR, INTERIOR, FLOORING } = useContext(Library3dDataContext);
   const supplierName = 'Custom Cubes';
-  const containerIsStandard = selectedContainerHeight === CONTAINER_STANDARD;
-  const containerIsHigh = selectedContainerHeight === CONTAINER_HIGH;
 
   const canSelectContainerHeight = slug !== CONTAINER_10_SLUG;
 
@@ -56,7 +54,7 @@ const Sidebar = () => {
             <button
               onClick={() => setSelectedContainerHeight(CONTAINER_STANDARD)}
               className={
-                containerIsStandard
+                containerHeightIsStandard
                   ? style.containerButtonSelected
                   : style.containerButton
               }
@@ -69,7 +67,7 @@ const Sidebar = () => {
             <button
               onClick={() => setSelectedContainerHeight(CONTAINER_HIGH)}
               className={
-                containerIsHigh
+                !containerHeightIsStandard
                   ? style.containerButtonSelected
                   : style.containerButton
               }

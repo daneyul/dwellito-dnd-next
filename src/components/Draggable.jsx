@@ -10,7 +10,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
-  const { scaleFactor, selectedComponents, show3d, handleDeleteSelected } =
+  const { scaleFactor, selectedComponents, show3d, handleDeleteSelected, containerHeightIsStandard } =
     useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
@@ -24,6 +24,8 @@ export function Draggable({ id, styles, piece, onSelect }) {
     (component) => component.isSelected
   );
 
+  const objTop = containerHeightIsStandard ? piece.position.y : piece.position.y + 30;
+
   const CustomStyle = {
     position: 'absolute',
     display: 'flex',
@@ -31,7 +33,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
     width: `${toScale(piece.objWidth, scaleFactor)}px`,
     height: `${Math.floor(toScale(piece.objHeight, scaleFactor))}px`,
     left: `${piece.position.x}px`,
-    top: `${piece.position.y}px`,
+    top: `${objTop}px`,
     boxShadow:
       isHovered || piece.isSelected
         ? '0px 4px 30px 0px rgba(128, 129, 238, 0.19)'
@@ -49,9 +51,9 @@ export function Draggable({ id, styles, piece, onSelect }) {
       }
     : {};
 
-  const dynamicLineWidth = transform
-    ? piece.position.x + transform.x
-    : piece.position.x;
+  // const dynamicLineWidth = transform
+  //   ? piece.position.x + transform.x
+  //   : piece.position.x;
 
   return (
     <>

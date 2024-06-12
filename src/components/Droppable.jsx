@@ -4,10 +4,9 @@ import { generateImgSrc, toScale } from '../utils/2D/utils';
 import Image from 'next/image';
 import { PageDataContext } from './Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
-import { CONTAINER_STANDARD } from '@/utils/constants';
 
 export function Droppable({ children }) {
-  const { scaleFactor, selectedElevation, selectedContainerHeight } =
+  const { scaleFactor, selectedElevation, containerHeightIsStandard } =
     useContext(PageDataContext);
   const { elevationData } = useContext(Library2dDataContext);
   const { isOver, setNodeRef } = useDroppable({
@@ -18,14 +17,12 @@ export function Droppable({ children }) {
     color: isOver ? 'green' : undefined,
   };
 
-  const containerIsStandard = selectedContainerHeight === CONTAINER_STANDARD;
-
   const objectHeight =
-  containerIsStandard
+  containerHeightIsStandard
       ? selectedElevation.objScHeight
       : selectedElevation.objHcHeight;
 
-  const elevationImg = containerIsStandard ? selectedElevation.imgScName : selectedElevation.imgHcName;
+  const elevationImg = containerHeightIsStandard ? selectedElevation.imgScName : selectedElevation.imgHcName;
 
   const CustomStyle = {
     display: 'flex',

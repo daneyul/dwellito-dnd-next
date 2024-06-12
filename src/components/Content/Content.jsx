@@ -54,6 +54,7 @@ const PageDataProvider = ({ children, data }) => {
   );
   const [selectedContainerHeight, setSelectedContainerHeight] =
     useState(CONTAINER_STANDARD);
+  const containerHeightIsStandard = selectedContainerHeight === CONTAINER_STANDARD;
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);
@@ -271,6 +272,7 @@ const PageDataProvider = ({ children, data }) => {
   return (
     <PageDataContext.Provider
       value={{
+        containerHeightIsStandard,
         selectedComponents,
         setSelectedComponents,
         selectedElevation,

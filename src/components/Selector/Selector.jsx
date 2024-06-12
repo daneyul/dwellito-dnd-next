@@ -7,13 +7,11 @@ import { PageDataContext } from '../Content/Content';
 
 const Selector = () => {
   const { componentData } = useContext(Library2dDataContext);
-  const { selectedContainerHeight } = useContext(PageDataContext);
-
-  const heightIsStandard = selectedContainerHeight === CONTAINER_STANDARD;
+  const { containerHeightIsStandard } = useContext(PageDataContext);
 
   const doors = componentData.filter(
     (item) => item.objType === COMPONENT_TYPES.DOOR &&
-    !(heightIsStandard && item.highContainerOnly)
+    !(containerHeightIsStandard && item.highContainerOnly)
   );
   const windows = componentData.filter(
     (item) => item.objType === COMPONENT_TYPES.WINDOW
