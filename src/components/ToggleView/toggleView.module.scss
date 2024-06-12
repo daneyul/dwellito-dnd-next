@@ -12,23 +12,29 @@
   padding: space(2);
 }
 
-.editor, .viewer, .editorSelected, .viewerSelected {
+.editor,
+.viewer,
+.editorSelected,
+.viewerSelected {
   display: flex;
   align-items: center;
   border-radius: 32px;
   padding: space(2) space(4);
   border: none;
-  font-family: "Chromatica";
+  font-family: 'Chromatica';
 }
 
-.editor:hover, .editorSelected:hover {
+.editor:hover,
+.editorSelected:hover {
   cursor: pointer;
 }
 
-.editor, .viewer {
+.editor,
+.viewer {
   background: none;
 }
 
-.editorSelected, .viewerSelected {
+.editorSelected,
+.viewerSelected {
   background-color: color(lightIndigo);
 }

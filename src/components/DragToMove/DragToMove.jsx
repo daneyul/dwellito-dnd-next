@@ -1,5 +1,5 @@
-import DragIcon from "../svgs/DragIcon";
-import style from "./dragToMove.module.scss";
+import DragIcon from '../svgs/DragIcon';
+import style from './dragToMove.module.scss';
 
 const DragToMove = () => {
   return (

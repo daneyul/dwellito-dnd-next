@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import Subtitle from "../Subtitle/Subtitle";
-import style from "./singleSelect.module.scss";
-import { PageDataContext } from "@/components/Content/Content";
-import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
+import { useContext } from 'react';
+import Subtitle from '../Subtitle/Subtitle';
+import style from './singleSelect.module.scss';
+import { PageDataContext } from '@/components/Content/Content';
+import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 
 /* eslint-disable @next/next/no-img-element */
 const SingleSelect = ({ type }) => {
@@ -14,7 +14,7 @@ const SingleSelect = ({ type }) => {
     flooring,
     setFlooring,
     setShow3d,
-    setShowExterior
+    setShowExterior,
   } = useContext(PageDataContext);
   const {
     EXTERIOR,
@@ -38,12 +38,16 @@ const SingleSelect = ({ type }) => {
           key={selection.hex}
           className={isSelected ? style.thumbnailSelected : style.thumbnail}
           onClick={() => {
-            setExteriorFinish(selection)
-            setShow3d(true)
-            setShowExterior(true)
+            setExteriorFinish(selection);
+            setShow3d(true);
+            setShowExterior(true);
           }}
         >
-          <img className={style.img} src={`/images/exterior-finishes/${selection.img}`} alt="thumbnail" />
+          <img
+            className={style.img}
+            src={`/images/exterior-finishes/${selection.img}`}
+            alt='thumbnail'
+          />
         </div>
       );
     });
@@ -74,9 +78,9 @@ const SingleSelect = ({ type }) => {
           key={selection.hex}
           className={isSelected ? style.thumbnailSelected : style.thumbnail}
           onClick={() => {
-            setInteriorFinish(selection)
-            setShow3d(true)
-            setShowExterior(false)
+            setInteriorFinish(selection);
+            setShow3d(true);
+            setShowExterior(false);
           }}
         >
           <div
@@ -84,7 +88,7 @@ const SingleSelect = ({ type }) => {
             style={{
               backgroundColor: thumbnailColor,
             }}
-            alt="thumbnail"
+            alt='thumbnail'
           ></div>
         </div>
       );
@@ -116,9 +120,9 @@ const SingleSelect = ({ type }) => {
           key={index}
           className={isSelected ? style.thumbnailSelected : style.thumbnail}
           onClick={() => {
-            setFlooring(selection)
-            setShow3d(true)
-            setShowExterior(false)
+            setFlooring(selection);
+            setShow3d(true);
+            setShowExterior(false);
           }}
         >
           <div
@@ -126,7 +130,7 @@ const SingleSelect = ({ type }) => {
             style={{
               backgroundColor: thumbnailColor,
             }}
-            alt="thumbnail"
+            alt='thumbnail'
           ></div>
         </div>
       );
@@ -152,20 +156,20 @@ const SingleSelect = ({ type }) => {
     if (isExterior) return exteriorSelections();
     if (isInterior) return interiorSelections();
     if (isFlooring) return flooringSelections();
-  }
+  };
 
   const Descriptions = () => {
     if (isExterior) return exteriorDesc();
     if (isInterior) return interiorDesc();
     if (isFlooring) return flooringDesc();
-  }
+  };
 
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
       }}
     >
       <div className={style.thumbnailContainer}>

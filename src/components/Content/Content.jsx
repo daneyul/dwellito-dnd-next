@@ -1,34 +1,35 @@
-"use client";
-import React, { useState, useEffect, createContext, useContext } from "react";
+'use client';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import {
   checkCloseness,
   checkCollision,
   snapToIncrement,
-} from "@/utils/2D/utils";
+} from '@/utils/2D/utils';
 import {
   restrictToHorizontalAxis,
   restrictToParentElement,
-} from "@dnd-kit/modifiers";
-import Logo from "@/components/Logo";
-import Viewer from "@/components/Viewer/Viewer";
-import Sidebar from "@/components/Sidebar/Sidebar";
-import PriceTotal from "@/components/PriceTotal/PriceTotal";
+} from '@dnd-kit/modifiers';
+import Logo from '@/components/Logo';
+import Viewer from '@/components/Viewer/Viewer';
+import Sidebar from '@/components/Sidebar/Sidebar';
+import PriceTotal from '@/components/PriceTotal/PriceTotal';
 import {
   Library3dDataContext,
   Library3dDataProvider,
-} from "@/utils/3D/3dLibraryContext";
+} from '@/utils/3D/3dLibraryContext';
 import {
   Library2dDataContext,
   Library2dDataProvider,
-} from "@/utils/2D/2dLibraryContext";
-import style from "./content.module.scss";
-import "@radix-ui/themes/styles.css";
-import { Theme } from "@radix-ui/themes";
+} from '@/utils/2D/2dLibraryContext';
+import style from './content.module.scss';
+import '@radix-ui/themes/styles.css';
+import { Theme } from '@radix-ui/themes';
 import {
   COMPONENT_TYPES,
+  CONTAINER_40_SLUG,
   CONTAINER_STANDARD,
   ELEVATION_NAMES,
-} from "@/utils/constants";
+} from '@/utils/constants';
 
 export const PageDataContext = createContext();
 
@@ -58,7 +59,7 @@ const PageDataProvider = ({ children, data }) => {
   const [showExterior, setShowExterior] = useState(true);
   const [hasCollisions, setHasCollisions] = useState(false);
   const [showYourOrder, setShowYourOrder] = useState(false);
-  const [zipCode, setZipCode] = useState("");
+  const [zipCode, setZipCode] = useState('');
   const [, setIsTooClose] = useState(false);
   const [showCollision, setShowCollision] = useState(false);
   const [selectedComponents, setSelectedComponents] =
@@ -93,7 +94,7 @@ const PageDataProvider = ({ children, data }) => {
   const [scaleFactor, setScaleFactor] = useState(2.5);
 
   useEffect(() => {
-    if (slug === containerData[2].slug) {
+    if (slug === CONTAINER_40_SLUG) {
       setScaleFactor(1.75);
     } else {
       setScaleFactor(2.5);
@@ -155,10 +156,10 @@ const PageDataProvider = ({ children, data }) => {
         );
       }
     }
-    document.addEventListener("click", handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
 
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, [draggableRefs]);
 
@@ -279,7 +280,6 @@ const PageDataProvider = ({ children, data }) => {
         handleDragStart,
         handleDragEnd,
         showCollision,
-        selectedElevation,
         setSelectedElevation,
         selectedComponents,
         draggableRefs,
@@ -336,13 +336,13 @@ const Content = ({ data }) => {
               </p>
             </div>
             <div className={style.pageWrapper}>
-              <div style={{ position: "absolute", top: "2rem", left: "2rem" }}>
+              <div style={{ position: 'absolute', top: '2rem', left: '2rem' }}>
                 <Logo />
               </div>
               <div
                 style={{
-                  display: "flex",
-                  position: "relative",
+                  display: 'flex',
+                  position: 'relative',
                 }}
               >
                 <Viewer />

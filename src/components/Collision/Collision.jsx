@@ -1,5 +1,5 @@
-import style from "./collision.module.css";
-import * as HoverCard from "@radix-ui/react-hover-card";
+import style from './collision.module.css';
+import * as HoverCard from '@radix-ui/react-hover-card';
 
 const Collision = ({ showCollision }) => {
   return (
@@ -9,11 +9,11 @@ const Collision = ({ showCollision }) => {
           {showCollision ? (
             <div className={style.textShow}>Object Collision</div>
           ) : (
-            <div style={{ height: "17px" }}></div>
+            <div style={{ height: '17px' }}></div>
           )}
         </HoverCard.Trigger>
         <HoverCard.Portal>
-          <HoverCard.Content className={style.content} side="top">
+          <HoverCard.Content className={style.content} side='top'>
             This is colliding with another object. Please adjust its position
             for a perfect fit.
           </HoverCard.Content>

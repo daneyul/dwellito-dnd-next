@@ -1,9 +1,14 @@
-import { v4 as uuid } from "uuid";
+import { v4 as uuid } from 'uuid';
+import { ELEVATION_NAMES } from '../constants';
 
-export const generateImgSrc = (imgName) =>
-  `../../../images/${imgName}`;
+export const generateImgSrc = (imgName) => `../../../images/${imgName}`;
 
-export const checkCollision = (item1, item2, selectedElevation, scaleFactor) => {
+export const checkCollision = (
+  item1,
+  item2,
+  selectedElevation,
+  scaleFactor
+) => {
   // First, check if both items are on the selected elevation.
   // This assumes every item has an `elevation` array and that `selectedElevation` is a singular value or an identifier.
   const isOnSelectedElevation =
@@ -17,21 +22,15 @@ export const checkCollision = (item1, item2, selectedElevation, scaleFactor) => 
 
   const a = {
     left: item1.position.x,
-    right:
-      item1.position.x + parseInt(item1.objWidth * scaleFactor, 10),
+    right: item1.position.x + parseInt(item1.objWidth * scaleFactor, 10),
     top: item1.position.y,
-    bottom:
-      item1.position.y +
-      parseInt(item1.objHeight * scaleFactor, 10),
+    bottom: item1.position.y + parseInt(item1.objHeight * scaleFactor, 10),
   };
   const b = {
     left: item2.position.x,
-    right:
-      item2.position.x + parseInt(item2.objWidth * scaleFactor, 10),
+    right: item2.position.x + parseInt(item2.objWidth * scaleFactor, 10),
     top: item2.position.y,
-    bottom:
-      item2.position.y +
-      parseInt(item2.objHeight * scaleFactor, 10),
+    bottom: item2.position.y + parseInt(item2.objHeight * scaleFactor, 10),
   };
 
   // Check if any side from A is outside of B
@@ -46,7 +45,7 @@ export const checkCollision = (item1, item2, selectedElevation, scaleFactor) => 
 // Inches are directly input as pixels, then scaled up
 export const toScale = (value, scaleFactor) => {
   if (!scaleFactor) {
-    console.warn("scaleFactor is undefined:");
+    console.warn('scaleFactor is undefined:');
     return value; // Return the original value as a fallback
   }
   return value * scaleFactor;
@@ -54,34 +53,31 @@ export const toScale = (value, scaleFactor) => {
 
 export const deScale = (value, scaleFactor) => {
   if (!scaleFactor) {
-    console.warn("scaleFactor is undefined:");
+    console.warn('scaleFactor is undefined:');
     return value; // Return the original value as a fallback
   }
   return value / scaleFactor;
 };
 
-
 export const checkDistance = ({
   component,
   selectedElevation,
   DIMENSIONS,
-  ELEVATION_NAMES,
   selectedContainer,
-  scaleFactor
+  scaleFactor,
 }) => {
   const droppableWidthValue = droppableWidth(
     selectedElevation,
     DIMENSIONS,
-    ELEVATION_NAMES,
     selectedContainer
   ); // Use the function to get dynamic width
 
   return {
     left: deScale(component.position.x, scaleFactor) + DIMENSIONS.BOUNDARIES.x,
-    right: droppableWidthValue -
-    (deScale(component.position.x, scaleFactor) + component.objWidth) +
-    DIMENSIONS.BOUNDARIES.x
-,
+    right:
+      droppableWidthValue -
+      (deScale(component.position.x, scaleFactor) + component.objWidth) +
+      DIMENSIONS.BOUNDARIES.x,
     top: deScale(component.position.y, scaleFactor),
   };
 };
@@ -108,7 +104,7 @@ export const handleAddComponent = (
 
     if (collisionDetected) {
       setHasCollisions(true);
-      console.warn("Collision detected");
+      console.warn('Collision detected');
       return [...prevSelectedComponents, newItem];
     } else {
       setHasCollisions(false);
@@ -156,21 +152,28 @@ export const getUniqueElevationObjects = (selectedComponents) => {
   return uniqueElevationObjects;
 };
 
-export const DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES = (DIMENSIONS, selectedContainer) => {
+export const DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES = (
+  DIMENSIONS,
+  selectedContainer
+) => {
   if (selectedContainer.name === `10' Custom Cube`) {
     return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
   } else if (selectedContainer.name === `20' Custom Cube`) {
     return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
   } else if (selectedContainer.name === `40' Custom Cube`) {
     return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
-  
   }
 };
-export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (DIMENSIONS, selectedContainer) => {
+export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (
+  DIMENSIONS,
+  selectedContainer
+) => {
   if (selectedContainer.name === `10' Custom Cube`) {
     return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
   } else if (selectedContainer.name === `20' Custom Cube`) {
-    return DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+    return (
+      DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2
+    );
   } else if (selectedContainer.name === `40' Custom Cube`) {
     return DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
   }
@@ -179,11 +182,10 @@ export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (DIMENSIONS, selectedContain
 export const droppableWidth = (
   selectedElevation,
   DIMENSIONS,
-  ELEVATION_NAMES,
   selectedContainer
 ) => {
-  if (!DIMENSIONS || !ELEVATION_NAMES || !selectedElevation) {
-    console.warn("Missing necessary parameters:", {
+  if (!DIMENSIONS || !selectedElevation) {
+    console.warn('Missing necessary parameters:', {
       DIMENSIONS,
       ELEVATION_NAMES,
       selectedElevation,
@@ -192,18 +194,32 @@ export const droppableWidth = (
   }
   switch (selectedElevation.name) {
     case ELEVATION_NAMES.LEFT:
-      return DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES(DIMENSIONS, selectedContainer);
+      return DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES(
+        DIMENSIONS,
+        selectedContainer
+      );
     case ELEVATION_NAMES.RIGHT:
-      return DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES(DIMENSIONS, selectedContainer);
+      return DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES(
+        DIMENSIONS,
+        selectedContainer
+      );
     case ELEVATION_NAMES.BACK:
-      return DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES(DIMENSIONS, selectedContainer);
+      return DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES(
+        DIMENSIONS,
+        selectedContainer
+      );
     default:
-      console.warn("Unknown elevation name:", selectedElevation.name);
+      console.warn('Unknown elevation name:', selectedElevation.name);
       return 0; // Or any default value you see fit
   }
 };
 
-export const checkCloseness = (item1, item2, selectedElevation, scaleFactor) => {
+export const checkCloseness = (
+  item1,
+  item2,
+  selectedElevation,
+  scaleFactor
+) => {
   const closenessThreshold = 6 * scaleFactor;
 
   const isOnSelectedElevation =
@@ -238,11 +254,13 @@ export const checkCloseness = (item1, item2, selectedElevation, scaleFactor) => 
 export const snapToIncrement =
   (increment, scaleFactor) =>
   ({ transform }) => {
-    if (transform && typeof transform.x === "number") {
+    if (transform && typeof transform.x === 'number') {
       return {
         ...transform,
         // Only modify x if it's defined and is a number
-        x: Math.round(transform.x / toScale(increment, scaleFactor)) * toScale(increment, scaleFactor),
+        x:
+          Math.round(transform.x / toScale(increment, scaleFactor)) *
+          toScale(increment, scaleFactor),
       };
     }
 

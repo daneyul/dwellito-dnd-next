@@ -20,8 +20,9 @@
   height: 36px;
   width: 32px;
   border-radius: 8px;
-  background: #646A96;
-  box-shadow: 0px 1.188px 2.375px -0.891px rgba(24, 39, 75, 0.08), 0px 0.891px 1.188px -0.891px rgba(24, 39, 75, 0.12);
+  background: #646a96;
+  box-shadow: 0px 1.188px 2.375px -0.891px rgba(24, 39, 75, 0.08),
+    0px 0.891px 1.188px -0.891px rgba(24, 39, 75, 0.12);
 }
 
 .content {
@@ -29,7 +30,8 @@
   padding: 0.25rem 0.5rem;
   font-size: 12px;
   border-radius: 6px;
-  background: rgba(0, 0, 0, 0.60);
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08), 0px 6px 32px 0px rgba(0, 0, 0, 0.12);
-  margin-bottom: .5rem;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08),
+    0px 6px 32px 0px rgba(0, 0, 0, 0.12);
+  margin-bottom: 0.5rem;
 }

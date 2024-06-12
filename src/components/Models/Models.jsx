@@ -4,8 +4,8 @@ import {
   Environment,
   RandomizedLight,
   useProgress,
-} from "@react-three/drei";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+} from '@react-three/drei';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import {
   useCallback,
   useContext,
@@ -13,20 +13,20 @@ import {
   useMemo,
   useRef,
   useState,
-} from "react";
-import Door from "./Doors/DoorSwitcher";
-import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing";
-import { Vector3 } from "three";
-import Window from "./Windows/WindowSwitcher";
-import Vent from "./Vents/VentSwitcher";
-import { CsgGeometries } from "./Containers/CsgGeometries";
-import { PageDataContext } from "../Content/Content";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
-import ContainerShell10 from "./Containers/10/ContainerShell10";
-import ContainerShell20 from "./Containers/20/ContainerShell20";
-import ContainerShell40 from "./Containers/40/ContainerShell40";
-import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
-import { COMPONENT_NAMES, COMPONENT_TYPES } from "@/utils/constants";
+} from 'react';
+import Door from './Doors/DoorSwitcher';
+import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
+import { Vector3 } from 'three';
+import Window from './Windows/WindowSwitcher';
+import Vent from './Vents/VentSwitcher';
+import { CsgGeometries } from './Containers/CsgGeometries';
+import { PageDataContext } from '../Content/Content';
+import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import ContainerShell10 from './Containers/10/ContainerShell10';
+import ContainerShell20 from './Containers/20/ContainerShell20';
+import ContainerShell40 from './Containers/40/ContainerShell40';
+import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
+import { COMPONENT_NAMES, COMPONENT_TYPES } from '@/utils/constants';
 
 export function Models() {
   const {
@@ -35,10 +35,11 @@ export function Models() {
     selectedContainer,
     setThreeDModelLoaded,
   } = useContext(PageDataContext);
-  const { containerData, ELEVATION_NAMES } =
-    useContext(Library2dDataContext);
+  const { containerData, ELEVATION_NAMES } = useContext(Library2dDataContext);
+
   const { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } =
     useContext(Library3dDataContext);
+
   const { progress } = useProgress();
 
   useEffect(() => {
@@ -147,12 +148,12 @@ export function Models() {
       const startOrbiting = () => setIsOrbiting(true);
       const stopOrbiting = () => setIsOrbiting(false);
 
-      controls.addEventListener("start", startOrbiting);
-      controls.addEventListener("end", stopOrbiting);
+      controls.addEventListener('start', startOrbiting);
+      controls.addEventListener('end', stopOrbiting);
 
       return () => {
-        controls.removeEventListener("start", startOrbiting);
-        controls.removeEventListener("end", stopOrbiting);
+        controls.removeEventListener('start', startOrbiting);
+        controls.removeEventListener('end', stopOrbiting);
       };
     }
   }, [orbitRef, showExterior]);
@@ -166,7 +167,7 @@ export function Models() {
       let updatedData = { ...data };
 
       // Adjust the bounding box height for personnel doors
-      if (typeof data.size.y === "number") {
+      if (typeof data.size.y === 'number') {
         const doorName = doors[index]?.name;
 
         if (
@@ -212,11 +213,7 @@ export function Models() {
       updatedData = {
         ...updatedData,
         size: new Vector3(data.size.x, data.size.y - 1.7, data.size.z - 1.7),
-        center: new Vector3(
-          data.center.x,
-          data.center.y - 0.1,
-          data.center.z
-        ),
+        center: new Vector3(data.center.x, data.center.y - 0.1, data.center.z),
       };
     }
 
@@ -262,11 +259,11 @@ export function Models() {
 
   return (
     <div
-      id="canvas-container"
-      style={{ width: "auto", height: "100vh", position: "relative" }}
+      id='canvas-container'
+      style={{ width: 'auto', height: '100vh', position: 'relative' }}
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
-        <color attach="background" args={["#fdfdf7"]} />
+        <color attach='background' args={['#fdfdf7']} />
         <ContainerShell />
         <CsgGeometries
           doorBoundingBoxes={doorBoundingBoxes}
@@ -312,7 +309,7 @@ export function Models() {
           shadow-mapSize={[720, 720]}
         />
         <AccumulativeShadows
-          color="#fdfdf7"
+          color='#fdfdf7'
           colorBlend={1}
           opacity={1}
           scale={300}
@@ -327,11 +324,11 @@ export function Models() {
             size={20}
           />
         </AccumulativeShadows>
-        <Environment files="/adamsbridge.hdr" />
+        <Environment files='/adamsbridge.hdr' />
         <EffectComposer disableNormalPass multisampling={0}>
           <N8AO
             halfRes
-            color="black"
+            color='black'
             aoRadius={2}
             intensity={1}
             aoSamples={6}

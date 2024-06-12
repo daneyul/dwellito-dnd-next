@@ -1,10 +1,15 @@
-import { useContext, useEffect } from "react";
-import style from "./elevationToggle.module.scss";
-import { PageDataContext } from "../Content/Content";
+import { useContext, useEffect } from 'react';
+import style from './elevationToggle.module.scss';
+import { PageDataContext } from '../Content/Content';
 
 const ElevationToggle = () => {
-  const { mappedElevations, selectedElevation, setSelectedElevation, show3d, setSelectedElevationIndex } =
-    useContext(PageDataContext);
+  const {
+    mappedElevations,
+    selectedElevation,
+    setSelectedElevation,
+    show3d,
+    setSelectedElevationIndex,
+  } = useContext(PageDataContext);
 
   if (!show3d) {
     return (
@@ -14,11 +19,11 @@ const ElevationToggle = () => {
             <button
               key={elevation.id}
               className={`${style.toggle} ${
-                selectedElevation === elevation ? style.toggleSelected : ""
+                selectedElevation === elevation ? style.toggleSelected : ''
               }`}
               onClick={() => {
-                setSelectedElevation(elevation)
-                setSelectedElevationIndex(index)
+                setSelectedElevation(elevation);
+                setSelectedElevationIndex(index);
               }}
             >
               {elevation.name}

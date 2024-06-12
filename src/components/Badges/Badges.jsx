@@ -1,6 +1,6 @@
-import style from "./badge.module.scss";
-import { PageDataContext } from "../Content/Content";
-import { useContext } from "react";
+import style from './badge.module.scss';
+import { PageDataContext } from '../Content/Content';
+import { useContext } from 'react';
 
 const Badges = () => {
   const { selectedContainer } = useContext(PageDataContext);

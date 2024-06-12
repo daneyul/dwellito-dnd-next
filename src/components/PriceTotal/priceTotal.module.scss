@@ -1,5 +1,5 @@
 .container {
-  font-family: "Chromatica", sans-serif;
+  font-family: 'Chromatica', sans-serif;
   display: flex;
   cursor: pointer;
   align-items: baseline;
@@ -9,10 +9,11 @@
   bottom: space(8);
   background-color: color(white);
   border-radius: 60px;
-  background: #FFF;
+  background: #fff;
   text-wrap: nowrap;
   padding: space(6) space(8);
-  box-shadow: 0px 1.406px 2.813px -1.406px rgba(24, 39, 75, 0.12), 0px 1.875px 5.625px -0.937px rgba(24, 39, 75, 0.08);
+  box-shadow: 0px 1.406px 2.813px -1.406px rgba(24, 39, 75, 0.12),
+    0px 1.875px 5.625px -0.937px rgba(24, 39, 75, 0.08);
   @include respond-to(md) {
     bottom: space(8);
     padding: space(4) space(8);
@@ -36,7 +37,8 @@
 .dialogContent {
   background-color: white;
   border-radius: 27px;
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -55,7 +57,7 @@
 
 .dialogTitle {
   margin-bottom: 0;
-  font-family: "Linotype";
+  font-family: 'Linotype';
   font-weight: 400;
   color: color(black);
   font-size: 32px;
@@ -90,7 +92,7 @@
   font-size: 16px;
   line-height: 1;
   height: 60px;
-  font-family: "Chromatica";
+  font-family: 'Chromatica';
 }
 
 .button {
@@ -100,13 +102,14 @@
   border: none;
   border-radius: 4px;
   color: color(white);
-  font-family: "Chromatica";
+  font-family: 'Chromatica';
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
 }
 
-.lineItem, .total {
+.lineItem,
+.total {
   display: flex;
   justify-content: space-between;
   padding-bottom: space(4);
@@ -128,7 +131,7 @@
 }
 
 .saveText {
-  font-family: "Linotype";
+  font-family: 'Linotype';
   font-size: 24px;
   margin-bottom: space(4);
 }
@@ -187,7 +190,7 @@
   font-size: 16px;
   width: 100%;
   text-align: center;
-  margin-bottom :1rem;
+  margin-bottom: 1rem;
 }
 
 .elevationName {
@@ -231,7 +234,7 @@
   font-size: 12px;
   font-weight: 700;
   line-height: 24px;
-  font-family: "Chromatica", sans-serif;
+  font-family: 'Chromatica', sans-serif;
   font-weight: 700;
 }
 
@@ -246,7 +249,7 @@
 }
 
 .total {
-  font-family: "Chromatica", sans-serif;
+  font-family: 'Chromatica', sans-serif;
   font-weight: 700;
   border-radius: 8px;
   background: #f8f8ff;
@@ -262,7 +265,7 @@
 .confirm {
   cursor: pointer;
   color: white;
-  font-family: "Chromatica", sans-serif;
+  font-family: 'Chromatica', sans-serif;
   font-weight: 700;
   border-radius: 8px;
   border: 1px solid #2a2cb1;

@@ -1,18 +1,18 @@
-import Collision from "@/components/Collision/Collision";
-import { Droppable } from "@/components/Droppable";
-import { Draggable } from "@/components/Draggable";
-import { DndContext } from "@dnd-kit/core";
-import { useContext, useEffect } from "react";
-import { checkDistance, droppableWidth, toScale } from "@/utils/2D/utils";
-import ChevronLeftBlack from "../ChevronLeftBlack";
-import ChevronRightBlack from "../ChevronRightBlack";
-import style from "./viewer.module.scss";
-import ToggleView from "../ToggleView/ToggleView";
-import { Models } from "../Models/Models";
-import ToggleCamera from "../ToggleCamera/ToggleCamera";
-import { PageDataContext } from "../Content/Content";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
-import ElevationToggle from "../ElevationToggle/ElevationToggle";
+import Collision from '@/components/Collision/Collision';
+import { Droppable } from '@/components/Droppable';
+import { Draggable } from '@/components/Draggable';
+import { DndContext } from '@dnd-kit/core';
+import { useContext, useEffect } from 'react';
+import { checkDistance, droppableWidth, toScale } from '@/utils/2D/utils';
+import ChevronLeftBlack from '../ChevronLeftBlack';
+import ChevronRightBlack from '../ChevronRightBlack';
+import style from './viewer.module.scss';
+import ToggleView from '../ToggleView/ToggleView';
+import { Models } from '../Models/Models';
+import ToggleCamera from '../ToggleCamera/ToggleCamera';
+import { PageDataContext } from '../Content/Content';
+import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import ElevationToggle from '../ElevationToggle/ElevationToggle';
 
 const Viewer = () => {
   const {
@@ -75,27 +75,27 @@ const Viewer = () => {
     <>
       <div
         style={{
-          width: "calc(100vw - 430px)",
-          position: "sticky",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          width: 'calc(100vw - 430px)',
+          position: 'sticky',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
         }}
       >
         <div
           style={{
-            visibility: show3d ? "visible" : "hidden",
-            position: "absolute",
-            width: "100%",
+            visibility: show3d ? 'visible' : 'hidden',
+            position: 'absolute',
+            width: '100%',
           }}
         >
           <Models />
         </div>
         <div
           style={{
-            visibility: show3d ? "hidden" : "visible",
-            position: "absolute",
-            width: "100%",
+            visibility: show3d ? 'hidden' : 'visible',
+            position: 'absolute',
+            width: '100%',
           }}
         >
           <Collision showCollision={showCollision} />
@@ -111,15 +111,14 @@ const Viewer = () => {
                     droppableWidth(
                       selectedElevation,
                       DIMENSIONS,
-                      ELEVATION_NAMES,
                       selectedContainer
                     ),
                     scaleFactor
                   )}px`,
-                  height: "100%",
-                  position: "absolute",
-                  left: "50%",
-                  transform: "translateX(-50%)",
+                  height: '100%',
+                  position: 'absolute',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
                 }}
               >
                 {selectedComponents
@@ -132,7 +131,6 @@ const Viewer = () => {
                         component: piece,
                         selectedElevation,
                         DIMENSIONS,
-                        ELEVATION_NAMES,
                         selectedContainer,
                         scaleFactor,
                       })

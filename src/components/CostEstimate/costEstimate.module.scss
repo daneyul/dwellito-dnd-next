@@ -16,7 +16,8 @@
   width: 100%;
 }
 
-.lineItem, .total {
+.lineItem,
+.total {
   display: flex;
   justify-content: space-between;
   padding-bottom: space(4);

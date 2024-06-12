@@ -1,7 +1,7 @@
 export const COMPONENT_TYPES = {
-  DOOR: "door",
-  WINDOW: "window",
-  VENT: "vent",
+  DOOR: 'door',
+  WINDOW: 'window',
+  VENT: 'vent',
 };
 
 export const COMPONENT_NAMES = {
@@ -11,11 +11,11 @@ export const COMPONENT_NAMES = {
   PERSONNEL_DOOR_RHR: `Personnel Door RHR`,
   PERSONNEL_DOOR_RHR_SECURITY: `Personnel Door w/Hardware and Lock Box RHR`,
   PERSONNEL_DOOR_RHR_SECURITY_GLASS: `Personnel Door w/Hardware and Lock Box and Glass RHR`,
-  DOUBLE_DOOR: "Double Door",
+  DOUBLE_DOOR: 'Double Door',
   SLIDING_GLASS_DOOR_5: "5' Wide Sliding Glass Door",
   SLIDING_GLASS_DOOR_6: "6' Wide Sliding Glass Door",
-  WINDOW_SECURITY: "Window w/HD Steel Frame & Hinged Security",
-  WINDOW: "Window w/Basic 16ga Steel Frame-No Security",
+  WINDOW_SECURITY: 'Window w/HD Steel Frame & Hinged Security',
+  WINDOW: 'Window w/Basic 16ga Steel Frame-No Security',
   VENT_12: `12"x12" Aluminum Fixed Louver w/HSS Weld Frame 300mmx300mm`,
   VENT_20: `20"x20" Aluminum Fixed Louver w/HSS Weld Frame 500mmx500mm`,
   VENT_24: `24"x24" Aluminum Fixed Louver w/HSS Weld Frame 600mmx600mm`,
@@ -35,11 +35,15 @@ export const COMPONENT_NAMES = {
 };
 
 export const ELEVATION_NAMES = {
-  FRONT: "Front",
-  BACK: "Back",
-  LEFT: "Left",
-  RIGHT: "Right",
+  FRONT: 'Front',
+  BACK: 'Back',
+  LEFT: 'Left',
+  RIGHT: 'Right',
 };
 
-export const CONTAINER_STANDARD = "standard";
-export const CONTAINER_HIGH = "high";
+export const CONTAINER_STANDARD = 'standard';
+export const CONTAINER_HIGH = 'high';
+
+export const CONTAINER_10_SLUG = '10-custom-cube';
+export const CONTAINER_20_SLUG = '20-custom-cube';
+export const CONTAINER_40_SLUG = '40-custom-cube';

@@ -1,5 +1,5 @@
-import DeleteIcon from "./DeleteIcon";
-import style from "./delete.module.scss";
+import DeleteIcon from './DeleteIcon';
+import style from './delete.module.scss';
 import * as HoverCard from '@radix-ui/react-hover-card';
 
 const DeleteBtn = ({ onDeleteSelected }) => {
@@ -17,7 +17,7 @@ const DeleteBtn = ({ onDeleteSelected }) => {
           </button>
         </HoverCard.Trigger>
         <HoverCard.Portal>
-          <HoverCard.Content className={style.content} side="top">
+          <HoverCard.Content className={style.content} side='top'>
             Delete
           </HoverCard.Content>
         </HoverCard.Portal>

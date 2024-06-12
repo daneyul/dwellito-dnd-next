@@ -91,7 +91,8 @@
   cursor: pointer;
 }
 
-.thumbnailSelected > img, .thumbnail > img:hover {
+.thumbnailSelected > img,
+.thumbnail > img:hover {
   box-shadow: 0 0 0 1px color(blue);
   cursor: pointer;
 }

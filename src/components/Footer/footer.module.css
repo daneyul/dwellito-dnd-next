@@ -2,8 +2,8 @@
   width: auto;
   min-height: 150px;
   height: auto;
-  border-top: 1px solid #DFE3FF;
-  background: linear-gradient(180deg, #F8F8FF 0%, #FFF 100%);
+  border-top: 1px solid #dfe3ff;
+  background: linear-gradient(180deg, #f8f8ff 0%, #fff 100%);
   position: relative;
 }
 

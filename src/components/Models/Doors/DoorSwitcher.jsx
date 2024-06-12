@@ -10,8 +10,8 @@ import {
   Rollup6,
   Rollup8,
   Sliding6,
-} from "./SpecificDoors";
-import { COMPONENT_NAMES } from "@/utils/constants";
+} from './SpecificDoors';
+import { COMPONENT_NAMES } from '@/utils/constants';
 
 export default function Door({ onBoundingBoxChange, component }) {
   switch (component.name) {

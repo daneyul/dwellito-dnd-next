@@ -1,9 +1,9 @@
-import { useContext } from "react";
-import EditDesignBtn from "../EditDesignBtn/EditDesignBtn";
-import style from "./yourOrder.module.scss";
-import { PageDataContext } from "@/components/Content/Content";
-import ProjectDetails from "../ProjectDetails/ProjectDetails";
-import CostEstimate from "../CostEstimate/CostEstimate";
+import { useContext } from 'react';
+import EditDesignBtn from '../EditDesignBtn/EditDesignBtn';
+import style from './yourOrder.module.scss';
+import { PageDataContext } from '@/components/Content/Content';
+import ProjectDetails from '../ProjectDetails/ProjectDetails';
+import CostEstimate from '../CostEstimate/CostEstimate';
 
 const YourOrder = () => {
   return (

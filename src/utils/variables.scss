@@ -39,17 +39,17 @@ $spaces: (
 }
 
 $colors: (
-  grey: #E3E4E7,
-  lightGrey: #F8F8F7,
+  grey: #e3e4e7,
+  lightGrey: #f8f8f7,
   darkGrey: #888888,
-  white: #FFF,
+  white: #fff,
   black: #000,
-  blue: #2A2CB1,
-  indigo: #646A95,
-  lightIndigo: #DFE3FF,
-  lightBlue: #DDE5FF,
-  lighterBlue: #F4F5FD,
-  darkBlue: #03163B,
+  blue: #2a2cb1,
+  indigo: #646a95,
+  lightIndigo: #dfe3ff,
+  lightBlue: #dde5ff,
+  lighterBlue: #f4f5fd,
+  darkBlue: #03163b,
 );
 
 @function color($key) {

@@ -1,24 +1,25 @@
-import { useGLTF } from "@react-three/drei";
-import { useContext, useMemo, useRef } from "react";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
-import { PageDataContext } from "@/components/Content/Content";
-import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
+import { useGLTF } from '@react-three/drei';
+import { useContext, useMemo, useRef } from 'react';
+import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import { PageDataContext } from '@/components/Content/Content';
+import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 
 export default function ContainerShell40() {
   const { DIMENSIONS } = useContext(Library2dDataContext);
-  const { INTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS } = useContext(Library3dDataContext);
+  const { INTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS } =
+    useContext(Library3dDataContext);
   const { exteriorFinish, interiorFinish, selectedContainer, flooring } =
     useContext(PageDataContext);
 
   // Load all 3d objects
   const { nodes, materials } = useGLTF(
-    "/models/container/40/container-shell.glb"
+    '/models/container/40/container-shell.glb'
   );
   const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
-    useGLTF("/models/container/40/rear-top-drywall.glb");
+    useGLTF('/models/container/40/rear-top-drywall.glb');
   const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
-    useGLTF("/models/container/40/rear-top-plywood.glb");
-  const { nodes: flooringNodes } = useGLTF("/models/container/40/flooring.glb");
+    useGLTF('/models/container/40/rear-top-plywood.glb');
+  const { nodes: flooringNodes } = useGLTF('/models/container/40/flooring.glb');
 
   // Load all flooring materials
   const { materials: echoFloor } = useGLTF(
@@ -30,9 +31,9 @@ export default function ContainerShell40() {
 
   const flooringMaterial = useMemo(() => {
     switch (flooring.type) {
-      case "Echo":
+      case 'Echo':
         return echoFloor[flooring.glbObject];
-      case "Timber":
+      case 'Timber':
         return timberFloor[flooring.glbObject];
       default:
         return null;
@@ -61,17 +62,17 @@ export default function ContainerShell40() {
 
   const exteriorPaint = useMemo(() => {
     switch (exteriorFinish.name) {
-      case "Red":
+      case 'Red':
         return redPaint[exteriorFinish.glbObject];
-      case "White":
+      case 'White':
         return whitePaint[exteriorFinish.glbObject];
-      case "Green":
+      case 'Green':
         return greenPaint[exteriorFinish.glbObject];
-      case "Blue":
+      case 'Blue':
         return bluePaint[exteriorFinish.glbObject];
-      case "Slate Grey":
+      case 'Slate Grey':
         return slateGreyPaint[exteriorFinish.glbObject];
-      case "Beige":
+      case 'Beige':
         return beigePaint[exteriorFinish.glbObject];
       default:
         return null;
@@ -119,19 +120,19 @@ export default function ContainerShell40() {
             castShadow
             receiveShadow
             geometry={
-              rearTopPlywoodNodes["40FT_Blank_PlywoodWall_RearTop_001_1"]
+              rearTopPlywoodNodes['40FT_Blank_PlywoodWall_RearTop_001_1']
                 .geometry
             }
-            material={rearTopPlywoodMaterials["Black_Vinyl.003"]}
+            material={rearTopPlywoodMaterials['Black_Vinyl.003']}
           />
           <mesh
             castShadow
             receiveShadow
             geometry={
-              rearTopPlywoodNodes["40FT_Blank_PlywoodWall_RearTop_001_2"]
+              rearTopPlywoodNodes['40FT_Blank_PlywoodWall_RearTop_001_2']
                 .geometry
             }
-            material={rearTopPlywoodMaterials["Plywood_Texture_01.002"]}
+            material={rearTopPlywoodMaterials['Plywood_Texture_01.002']}
           />
         </group>
       );
@@ -150,17 +151,17 @@ export default function ContainerShell40() {
             castShadow
             receiveShadow
             geometry={
-              rearTopDrywallNodes["40FT_Blank_DryWall_RearTop_001_1"].geometry
+              rearTopDrywallNodes['40FT_Blank_DryWall_RearTop_001_1'].geometry
             }
-            material={rearTopDrywallMaterials["Black_Rubber_01.003"]}
+            material={rearTopDrywallMaterials['Black_Rubber_01.003']}
           />
           <mesh
             castShadow
             receiveShadow
             geometry={
-              rearTopDrywallNodes["40FT_Blank_DryWall_RearTop_001_2"].geometry
+              rearTopDrywallNodes['40FT_Blank_DryWall_RearTop_001_2'].geometry
             }
-            material={rearTopDrywallMaterials["White_Drywall_Wall.002"]}
+            material={rearTopDrywallMaterials['White_Drywall_Wall.002']}
           />
         </group>
       );
@@ -174,13 +175,13 @@ export default function ContainerShell40() {
           castShadow
           receiveShadow
           geometry={nodes.mesh_3.geometry}
-          material={materials["White_Mtl.003"]}
+          material={materials['White_Mtl.003']}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.mesh_2.geometry}
-          material={materials["Emissive_Light.003"]}
+          material={materials['Emissive_Light.003']}
         />
       </>
     );
@@ -192,7 +193,7 @@ export default function ContainerShell40() {
         <mesh
           castShadow
           receiveShadow
-          geometry={flooringNodes["40FT_Interior_Blank_Floor_001"].geometry}
+          geometry={flooringNodes['40FT_Interior_Blank_Floor_001'].geometry}
           material={flooringMaterial}
           position={[3.089, 0.173, -1.22]}
           rotation={[-Math.PI / 2, 0, 0]}
@@ -222,9 +223,7 @@ export default function ContainerShell40() {
         material={exteriorPaint}
       />
       <Lighting />
-      {flooring !== FLOORING_OPTIONS[0] && (
-        <Flooring />
-      )}
+      {flooring !== FLOORING_OPTIONS[0] && <Flooring />}
       <Plywood />
       <Drywall />
     </group>

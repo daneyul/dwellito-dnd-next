@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useContext, useState } from "react";
-import { useDraggable } from "@dnd-kit/core";
-import { toScale, generateImgSrc } from "../utils/2D/utils";
-import { PageDataContext } from "./Content/Content";
-import DeleteBtn from "./DeleteBtn/DeleteBtn";
-import DragToMove from "./DragToMove/DragToMove";
+import React, { useContext, useState } from 'react';
+import { useDraggable } from '@dnd-kit/core';
+import { toScale, generateImgSrc } from '../utils/2D/utils';
+import { PageDataContext } from './Content/Content';
+import DeleteBtn from './DeleteBtn/DeleteBtn';
+import DragToMove from './DragToMove/DragToMove';
 
 export function Draggable({ id, styles, piece, onSelect }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -25,22 +25,22 @@ export function Draggable({ id, styles, piece, onSelect }) {
   );
 
   const CustomStyle = {
-    position: "absolute",
-    display: "flex",
-    cursor: "pointer",
+    position: 'absolute',
+    display: 'flex',
+    cursor: 'pointer',
     width: `${toScale(piece.objWidth, scaleFactor)}px`,
     height: `${Math.floor(toScale(piece.objHeight, scaleFactor))}px`,
     left: `${piece.position.x}px`,
     top: `${piece.position.y}px`,
     boxShadow:
       isHovered || piece.isSelected
-        ? "0px 4px 30px 0px rgba(128, 129, 238, 0.19)"
-        : "none",
+        ? '0px 4px 30px 0px rgba(128, 129, 238, 0.19)'
+        : 'none',
     border:
       isHovered || piece.isSelected
-        ? "1px solid #2A2CB1"
-        : "1px solid transparent",
-    boxSizing: "border-box",
+        ? '1px solid #2A2CB1'
+        : '1px solid transparent',
+    boxSizing: 'border-box',
   };
 
   const dragStyle = transform
@@ -68,9 +68,9 @@ export function Draggable({ id, styles, piece, onSelect }) {
           src={generateImgSrc(piece.imgName)}
           alt={piece.name}
           style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "fill",
+            width: '100%',
+            height: '100%',
+            objectFit: 'fill',
           }}
         />
       </div>

@@ -1,26 +1,26 @@
 .container {
   // min-width: 430px;
   width: 430px;
-  background-color: #F8F8F7;
-  border-left: 1px solid #E3E4E7;
+  background-color: #f8f8f7;
+  border-left: 1px solid #e3e4e7;
   font-weight: 300;
-  padding: 8rem 2rem; 
+  padding: 8rem 2rem;
   right: 0;
   overflow-y: auto;
   height: 100vh;
-  font-family: "Chromatica", serif;
+  font-family: 'Chromatica', serif;
 }
 
 .header {
-  font-family: "Linotype", serif;
+  font-family: 'Linotype', serif;
   font-weight: 300;
   font-size: 40px;
   text-align: center;
-  color: #03163B;
+  color: #03163b;
 }
 
 .supplier {
-  font-family: "Chromatica", serif;
+  font-family: 'Chromatica', serif;
   font-weight: 700;
   text-align: center;
   margin: 0.5rem 0;
@@ -55,8 +55,9 @@
   gap: space(2);
 }
 
-.containerButton, .containerButtonSelected {
-  font-family: "Chromatica", sans-serif;
+.containerButton,
+.containerButtonSelected {
+  font-family: 'Chromatica', sans-serif;
   padding: space(4) space(6);
   border-radius: 8px;
   cursor: pointer;
@@ -68,8 +69,9 @@
   border: 1px solid (color(lightBlue));
 }
 
-.containerButton:hover, .containerButtonSelected {
+.containerButton:hover,
+.containerButtonSelected {
   background-color: color(lightBlue);
   color: color(blue);
-  border: 1px solid (color(blue))
+  border: 1px solid (color(blue));
 }

@@ -7,16 +7,17 @@
   bottom: calc(3rem + 58px);
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.50);
+  background: rgba(0, 0, 0, 0.5);
   color: color(white);
   border-radius: 12px;
   padding: space(1);
-  box-shadow: 0px 1px 4px 0px rgba(100, 106, 150, 0.08), 0px 6px 32px 0px rgba(100, 106, 150, 0.12);
+  box-shadow: 0px 1px 4px 0px rgba(100, 106, 150, 0.08),
+    0px 6px 32px 0px rgba(100, 106, 150, 0.12);
 }
 
 .toggle {
   font-size: 14px;
-  font-family: "Chromatica", sans-serif;
+  font-family: 'Chromatica', sans-serif;
   color: color(white);
   border: none;
   background: none;
@@ -26,9 +27,10 @@
   transition: border 0.1s, background-color 0.1s, border-radius 0.1s, color 0.1s;
 }
 
-.toggle:hover, .toggleSelected {
-  font-family: "Chromatica", sans-serif;
+.toggle:hover,
+.toggleSelected {
+  font-family: 'Chromatica', sans-serif;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.20);
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 8px;
 }

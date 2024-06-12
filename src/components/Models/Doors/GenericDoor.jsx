@@ -1,13 +1,13 @@
 /* eslint-disable react/display-name */
-import { PageDataContext } from "@/components/Content/Content";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
-import { checkDistance } from "@/utils/2D/utils";
-import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
-import { preloadGLTFModel } from "@/utils/3D/preloadGLTFModel";
-import { calcPosition, calcRotation } from "@/utils/3D/utils";
-import { useGLTF } from "@react-three/drei";
-import React, { useContext, useEffect, useMemo, useRef } from "react";
-import { Box3, Vector3 } from "three";
+import { PageDataContext } from '@/components/Content/Content';
+import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import { checkDistance } from '@/utils/2D/utils';
+import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
+import { preloadGLTFModel } from '@/utils/3D/preloadGLTFModel';
+import { calcPosition, calcRotation } from '@/utils/3D/utils';
+import { useGLTF } from '@react-three/drei';
+import React, { useContext, useEffect, useMemo, useRef } from 'react';
+import { Box3, Vector3 } from 'three';
 
 const GenericDoor = React.memo(
   ({
@@ -31,7 +31,6 @@ const GenericDoor = React.memo(
       component,
       selectedElevation,
       DIMENSIONS,
-      ELEVATION_NAMES,
       selectedContainer,
       scaleFactor,
     });
@@ -40,12 +39,7 @@ const GenericDoor = React.memo(
     const rotation = useMemo(
       () => [
         0,
-        calcRotation(
-          selectedElevation,
-          elevationData,
-          selectedContainer,
-          ELEVATION_NAMES
-        ),
+        calcRotation(selectedElevation, elevationData, selectedContainer),
         0,
       ],
       [selectedElevation, elevationData]
@@ -86,8 +80,7 @@ const GenericDoor = React.memo(
           elevationData,
           SCALE_FACTOR_FOR_CALCULATIONS,
           DIMENSIONS,
-          selectedContainer,
-          ELEVATION_NAMES
+          selectedContainer
         )}
         rotation={rotation}
       >

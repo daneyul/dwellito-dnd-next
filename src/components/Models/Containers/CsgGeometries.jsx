@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useMemo, useRef } from "react";
-import { useGLTF } from "@react-three/drei";
-import { Base, Geometry, Subtraction } from "@react-three/csg";
-import * as THREE from "three";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
-import { PageDataContext } from "@/components/Content/Content";
-import { Library3dDataContext } from "@/utils/3D/3dLibraryContext";
+import React, { useContext, useEffect, useMemo, useRef } from 'react';
+import { useGLTF } from '@react-three/drei';
+import { Base, Geometry, Subtraction } from '@react-three/csg';
+import * as THREE from 'three';
+import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import { PageDataContext } from '@/components/Content/Content';
+import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 
 export function CsgGeometries({
   doorBoundingBoxes,
@@ -13,17 +13,18 @@ export function CsgGeometries({
 }) {
   const { containerData, DIMENSIONS } = useContext(Library2dDataContext);
   const { INTERIOR_FINISH_OPTIONS } = useContext(Library3dDataContext);
-  const { exteriorFinish, interiorFinish, selectedContainer } = useContext(PageDataContext);
+  const { exteriorFinish, interiorFinish, selectedContainer } =
+    useContext(PageDataContext);
 
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
-      return "10"
+      return '10';
     } else if (selectedContainer === containerData[1]) {
-      return "20"
+      return '20';
     } else if (selectedContainer === containerData[2]) {
-      return "40"
+      return '40';
     }
-  }
+  };
 
   const size = containerSize();
 
@@ -35,40 +36,42 @@ export function CsgGeometries({
     useGLTF.preload(`/models/plywood/${size}/plywood-left.glb`);
     useGLTF.preload(`/models/plywood/${size}/plywood-right.glb`);
     useGLTF.preload(`/models/plywood/${size}/plywood-back.glb`);
-    useGLTF.preload(`/models/materials/exterior/${exteriorFinish.fileName}.glb`);
-    useGLTF.preload("/models/materials/interior/plywood.glb");
-    useGLTF.preload("/models/materials/interior/drywall-test.glb");
+    useGLTF.preload(
+      `/models/materials/exterior/${exteriorFinish.fileName}.glb`
+    );
+    useGLTF.preload('/models/materials/interior/plywood.glb');
+    useGLTF.preload('/models/materials/interior/drywall-test.glb');
     useGLTF.preload(`/models/container/${size}/exterior-right.glb`);
     useGLTF.preload(`/models/container/${size}/exterior-back.glb`);
     useGLTF.preload(`/models/container/${size}/exterior-left.glb`);
-    useGLTF.preload(`/models/container/${size}/rubber.glb`)
+    useGLTF.preload(`/models/container/${size}/rubber.glb`);
   }, [size, exteriorFinish.fileName]);
 
   const adjustForX = useMemo(() => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2)
+      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2)
+      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2)
+      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   }, [selectedContainer.name, DIMENSIONS]);
 
   const adjustForY = useMemo(() => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2
+      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2
+      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2
+      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   }, [selectedContainer.name, DIMENSIONS]);
 
   const { materials: plywoodMaterial } = useGLTF(
-    "/models/materials/interior/plywood.glb"
+    '/models/materials/interior/plywood.glb'
   );
   const { materials: drywallMaterial } = useGLTF(
-    "/models/materials/interior/drywall-test.glb"
+    '/models/materials/interior/drywall-test.glb'
   );
   const { nodes: cRightNodes } = useGLTF(
     `/models/container/${size}/exterior-right.glb`
@@ -82,16 +85,24 @@ export function CsgGeometries({
   const { nodes: dRightNodes } = useGLTF(
     `/models/drywall/${size}/drywall-right.glb`
   );
-  const { nodes: dLeftNodes } = useGLTF(`/models/drywall/${size}/drywall-left.glb`);
-  const { nodes: dBackNodes } = useGLTF(`/models/drywall/${size}/drywall-back.glb`);
+  const { nodes: dLeftNodes } = useGLTF(
+    `/models/drywall/${size}/drywall-left.glb`
+  );
+  const { nodes: dBackNodes } = useGLTF(
+    `/models/drywall/${size}/drywall-back.glb`
+  );
 
   const { nodes: pRightNodes } = useGLTF(
     `/models/plywood/${size}/plywood-right.glb`
   );
-  const { nodes: pLeftNodes } = useGLTF(`/models/plywood/${size}/plywood-left.glb`);
-  const { nodes: pBackNodes } = useGLTF(`/models/plywood/${size}/plywood-back.glb`);
+  const { nodes: pLeftNodes } = useGLTF(
+    `/models/plywood/${size}/plywood-left.glb`
+  );
+  const { nodes: pBackNodes } = useGLTF(
+    `/models/plywood/${size}/plywood-back.glb`
+  );
 
-  const { nodes: rubber } = useGLTF(`/models/container/${size}/rubber.glb`)
+  const { nodes: rubber } = useGLTF(`/models/container/${size}/rubber.glb`);
 
   const csg = useRef();
 
@@ -117,17 +128,17 @@ export function CsgGeometries({
 
   const exteriorPaint = useMemo(() => {
     switch (exteriorFinish.name) {
-      case "Red":
+      case 'Red':
         return redPaint[exteriorFinish.glbObject];
-      case "White":
+      case 'White':
         return whitePaint[exteriorFinish.glbObject];
-      case "Green":
+      case 'Green':
         return greenPaint[exteriorFinish.glbObject];
-      case "Blue":
+      case 'Blue':
         return bluePaint[exteriorFinish.glbObject];
-      case "Slate Grey":
+      case 'Slate Grey':
         return slateGreyPaint[exteriorFinish.glbObject];
-      case "Beige":
+      case 'Beige':
         return beigePaint[exteriorFinish.glbObject];
       default:
         return null;
@@ -150,8 +161,8 @@ export function CsgGeometries({
           <mesh>
             {/* Material applied to a mesh, not directly in Subtraction */}
             <meshStandardMaterial
-              attach="material"
-              color="white"
+              attach='material'
+              color='white'
               side={THREE.DoubleSide}
             />
           </mesh>
@@ -169,8 +180,8 @@ export function CsgGeometries({
           <mesh>
             {/* Material applied to a mesh, not directly in Subtraction */}
             <meshStandardMaterial
-              attach="material"
-              color="white"
+              attach='material'
+              color='white'
               side={THREE.DoubleSide}
             />
           </mesh>
@@ -188,8 +199,8 @@ export function CsgGeometries({
           <mesh>
             {/* Material applied to a mesh, not directly in Subtraction */}
             <meshStandardMaterial
-              attach="material"
-              color="white"
+              attach='material'
+              color='white'
               side={THREE.DoubleSide}
             />
           </mesh>
@@ -206,9 +217,7 @@ export function CsgGeometries({
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         >
-            <meshStandardMaterial
-              color="black"
-            />
+          <meshStandardMaterial color='black' />
         </Base>
         {interiorFinish === INTERIOR_FINISH_OPTIONS[1] ? (
           <>
@@ -216,7 +225,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={dBackNodes[key].geometry}
-                material={drywallMaterial["Drywall"]}
+                material={drywallMaterial['Drywall']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
@@ -225,7 +234,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={dRightNodes[key].geometry}
-                material={drywallMaterial["Drywall"]}
+                material={drywallMaterial['Drywall']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
@@ -234,7 +243,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={dLeftNodes[key].geometry}
-                material={drywallMaterial["Drywall"]}
+                material={drywallMaterial['Drywall']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
@@ -247,7 +256,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={pBackNodes[key].geometry}
-                material={plywoodMaterial["Plywood"]}
+                material={plywoodMaterial['Plywood']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
@@ -256,7 +265,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={pRightNodes[key].geometry}
-                material={plywoodMaterial["Plywood"]}
+                material={plywoodMaterial['Plywood']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
@@ -265,7 +274,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={pLeftNodes[key].geometry}
-                material={plywoodMaterial["Plywood"]}
+                material={plywoodMaterial['Plywood']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />

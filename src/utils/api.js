@@ -1,5 +1,5 @@
-import Airtable from "airtable";
-import { cache } from "react";
+import Airtable from 'airtable';
+import { cache } from 'react';
 
 Airtable.configure({
   apiKey: process.env.NEXT_PUBLIC_AIRTABLE_TOKEN,
@@ -16,24 +16,28 @@ export function transformRecord(record) {
 
 export const getSupplierData = cache(async () => {
   const records = await base(process.env.NEXT_PUBLIC_AIRTABLE_SUPPLIER_TABLE_ID)
-  .select()
-  .all();
+    .select()
+    .all();
 
   return records.map(transformRecord);
 });
 
 export const getMaterialsData = cache(async () => {
-  const records = await base(process.env.NEXT_PUBLIC_AIRTABLE_MATERIALS_TABLE_ID)
-  .select()
-  .all();
+  const records = await base(
+    process.env.NEXT_PUBLIC_AIRTABLE_MATERIALS_TABLE_ID
+  )
+    .select()
+    .all();
 
   return records.map(transformRecord);
 });
 
 export const getThumbnailsData = cache(async () => {
-  const records = await base(process.env.NEXT_PUBLIC_AIRTABLE_THUMBNAILS_TABLE_ID)
-  .select()
-  .all();
+  const records = await base(
+    process.env.NEXT_PUBLIC_AIRTABLE_THUMBNAILS_TABLE_ID
+  )
+    .select()
+    .all();
 
   return records.map(transformRecord);
 });

@@ -1,20 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-import * as Dialog from "@radix-ui/react-dialog";
-import { useState } from "react";
-import style from "./saveBtn.module.css";
+import * as Dialog from '@radix-ui/react-dialog';
+import { useState } from 'react';
+import style from './saveBtn.module.css';
 import {
   getUniqueElevationObjects,
   checkDistance,
   generateImgSrc,
-} from "../../utils/2D/utils";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
-import { PageDataContext } from "../Content/Content";
+} from '../../utils/2D/utils';
+import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import { PageDataContext } from '../Content/Content';
 
 const SaveBtn = ({ selectedComponents, orderTotal }) => {
   const [open, setOpen] = useState(false);
   const { selectedContainer, scaleFactor } = useContext(PageDataContext);
-  const { ELEVATION_NAMES, DIMENSIONS } =
-    useContext(Library2dDataContext);
+  const { ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
 
@@ -26,15 +25,14 @@ const SaveBtn = ({ selectedComponents, orderTotal }) => {
     return (
       <div className={style.section}>
         <div className={style.elevationName}>{elevation.name}</div>
-        <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
+        <ul style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
           {componentsForElevation.map((component) => {
             const distance = checkDistance({
               component: component,
               selectedElevation: elevation,
               DIMENSIONS,
-              ELEVATION_NAMES,
               selectedContainer,
-              scaleFactor
+              scaleFactor,
             });
 
             return (
@@ -82,13 +80,13 @@ const SaveBtn = ({ selectedComponents, orderTotal }) => {
             {uniqueElevationNames.map((elevation, index) => (
               <Section key={index} elevation={elevation} />
             ))}
-            <Total text="Sub Total" value={`$${orderTotal.toLocaleString()}`} />
-            <Total text="Tax" value={`$${tax.toLocaleString()}`} />
+            <Total text='Sub Total' value={`$${orderTotal.toLocaleString()}`} />
+            <Total text='Tax' value={`$${tax.toLocaleString()}`} />
             <Total
-              text="Total"
+              text='Total'
               value={`$${(orderTotal + tax).toLocaleString()}`}
             />
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Dialog.Close className={style.confirm}>
                 Confirm Order
               </Dialog.Close>

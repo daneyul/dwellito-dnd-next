@@ -1,19 +1,26 @@
 /* eslint-disable @next/next/no-img-element */
-import { useContext, useState } from "react";
-import style from "./priceTotal.module.scss";
-import * as Dialog from "@radix-ui/react-dialog";
-import { PageDataContext } from "@/components/Content/Content";
+import { useContext, useState } from 'react';
+import style from './priceTotal.module.scss';
+import * as Dialog from '@radix-ui/react-dialog';
+import { PageDataContext } from '@/components/Content/Content';
 import {
   checkDistance,
   generateImgSrc,
   getUniqueElevationObjects,
-} from "@/utils/2D/utils";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
+} from '@/utils/2D/utils';
+import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 
 const PriceTotal = () => {
-  const { orderTotal, selectedComponents, selectedContainer, scaleFactor, interiorFinish, exteriorFinish, flooring } =
-    useContext(PageDataContext);
-  const { ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
+  const {
+    orderTotal,
+    selectedComponents,
+    selectedContainer,
+    scaleFactor,
+    interiorFinish,
+    exteriorFinish,
+    flooring,
+  } = useContext(PageDataContext);
+  const { DIMENSIONS } = useContext(Library2dDataContext);
   const [dialogOpen, setDialogOpen] = useState(false);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
@@ -22,7 +29,7 @@ const PriceTotal = () => {
     return (
       <div className={style.section}>
         <div className={style.elevationName}>Exterior Finish</div>
-        <div style={{ listStyleType: "none", margin: "0", padding: "0" }}>
+        <div style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
           <div className={style.lineItem}>
             <div className={style.thumbnailContainer}>
               {/* <img
@@ -31,61 +38,61 @@ const PriceTotal = () => {
                 className={style.thumbnailImg}
               /> */}
             </div>
-            <div className={style.description}>
-              {exteriorFinish.name}
+            <div className={style.description}>{exteriorFinish.name}</div>
+            <div className={style.price}>
+              ${exteriorFinish.price.toLocaleString()}
             </div>
-            <div className={style.price}>${exteriorFinish.price.toLocaleString()}</div>
           </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const InteriorSection = () => {
     return (
       <div className={style.section}>
         <div className={style.elevationName}>Interior Finish</div>
-        <div style={{ listStyleType: "none", margin: "0", padding: "0" }}>
-              <div className={style.lineItem}>
-                <div className={style.thumbnailContainer}>
-                  {/* <img
+        <div style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
+          <div className={style.lineItem}>
+            <div className={style.thumbnailContainer}>
+              {/* <img
                     src={generateImgSrc(component.imgName)}
                     alt={component.desc}
                     className={style.thumbnailImg}
                   /> */}
-                </div>
-                <div className={style.description}>
-                {interiorFinish.name}
-                </div>
-                <div className={style.price}>${interiorFinish.price.toLocaleString()}</div>
-              </div>
+            </div>
+            <div className={style.description}>{interiorFinish.name}</div>
+            <div className={style.price}>
+              ${interiorFinish.price.toLocaleString()}
+            </div>
+          </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const FlooringSection = () => {
     return (
       <div className={style.section}>
         <div className={style.elevationName}>Flooring</div>
-        <div style={{ listStyleType: "none", margin: "0", padding: "0" }}>
-              <div className={style.lineItem}>
-                <div className={style.thumbnailContainer}>
-                  {/* <img
+        <div style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
+          <div className={style.lineItem}>
+            <div className={style.thumbnailContainer}>
+              {/* <img
                     src={generateImgSrc(component.imgName)}
                     alt={component.desc}
                     className={style.thumbnailImg}
                   /> */}
-                </div>
-                <div className={style.description}>
-                {flooring.name}
-                </div>
-                <div className={style.price}>${flooring.price.toLocaleString()}</div>
-              </div>
+            </div>
+            <div className={style.description}>{flooring.name}</div>
+            <div className={style.price}>
+              ${flooring.price.toLocaleString()}
+            </div>
+          </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const Section = ({ elevation }) => {
     const componentsForElevation = selectedComponents.filter((component) =>
@@ -95,13 +102,12 @@ const PriceTotal = () => {
     return (
       <div className={style.section}>
         <div className={style.elevationName}>{elevation.name} Wall</div>
-        <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
+        <ul style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
           {componentsForElevation.map((component) => {
             const distance = checkDistance({
               component: component,
               selectedElevation: elevation,
               DIMENSIONS,
-              ELEVATION_NAMES,
               selectedContainer,
               scaleFactor,
             });
@@ -159,13 +165,15 @@ const PriceTotal = () => {
             <ExteriorSection />
             <InteriorSection />
             <FlooringSection />
-            <Total text="Sub Total" value={`$${orderTotal.toLocaleString()}`} />
-            <Total text="Tax" value={`$${tax.toLocaleString()}`} />
+            <Total text='Sub Total' value={`$${orderTotal.toLocaleString()}`} />
+            <Total text='Tax' value={`$${tax.toLocaleString()}`} />
             <Total
-              text="Total"
-              value={`$${(parseInt(orderTotal) + parseInt(tax)).toLocaleString()}`}
+              text='Total'
+              value={`$${(
+                parseInt(orderTotal) + parseInt(tax)
+              ).toLocaleString()}`}
             />
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Dialog.Close className={style.confirm}>
                 Confirm Order
               </Dialog.Close>
