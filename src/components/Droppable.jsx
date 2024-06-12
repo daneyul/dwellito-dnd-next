@@ -4,6 +4,7 @@ import { generateImgSrc, toScale } from '../utils/2D/utils';
 import Image from 'next/image';
 import { PageDataContext } from './Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import { CONTAINER_STANDARD } from '@/utils/constants';
 
 export function Droppable({ children }) {
   const { scaleFactor, selectedElevation, selectedContainerHeight } =
@@ -17,10 +18,14 @@ export function Droppable({ children }) {
     color: isOver ? 'green' : undefined,
   };
 
+  const containerIsStandard = selectedContainerHeight === CONTAINER_STANDARD;
+
   const objectHeight =
-    selectedContainerHeight === 'standard'
+  containerIsStandard
       ? selectedElevation.objScHeight
       : selectedElevation.objHcHeight;
+
+  const elevationImg = containerIsStandard ? selectedElevation.imgScName : selectedElevation.imgHcName;
 
   const CustomStyle = {
     display: 'flex',
@@ -36,7 +41,7 @@ export function Droppable({ children }) {
       {elevationData.map((elevation, index) => (
         <Image
           key={index}
-          src={generateImgSrc(selectedElevation.imgName)}
+          src={generateImgSrc(elevationImg)}
           alt='Elevation'
           width={toScale(selectedElevation.objWidth, scaleFactor)}
           height={toScale(objectHeight, scaleFactor)}

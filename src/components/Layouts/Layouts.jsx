@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import style from './layout.module.scss';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { PageDataContext } from '../Content/Content';
+import { CONTAINER_STANDARD } from '@/utils/constants';
 
 const Layout = ({ name, imgSrc, isSelected }) => {
   return (
@@ -22,14 +23,16 @@ const Layout = ({ name, imgSrc, isSelected }) => {
 
 const Layouts = () => {
   const { containerData } = useContext(Library2dDataContext);
-  const { containerId, selectedContainer } =
+  const { containerId, selectedContainer, selectedContainerHeight } =
     useContext(PageDataContext);
+
+  const containerIsStandard = selectedContainerHeight === CONTAINER_STANDARD;
 
   return (
     <div className={style.container}>
       {containerData.map((container, index) => {
         const thumbnail =
-          selectedContainer === 'standard'
+        containerIsStandard
             ? container.scThumbnail
             : container.hcThumbnail;
         const containerName = container.name;

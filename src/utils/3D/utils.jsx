@@ -241,8 +241,7 @@ const calcPosition = (
   elevationData,
   SCALE_FACTOR_FOR_CALCULATIONS,
   DIMENSIONS,
-  selectedContainer,
-  ELEVATION_NAMES
+  selectedContainer
 ) => {
   const matchingElevation = elevationData.find(
     (item) => item.homePlan === selectedContainer.slug && item === elevation

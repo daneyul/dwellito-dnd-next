@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import style from './elevationToggle.module.scss';
 import { PageDataContext } from '../Content/Content';
 
