@@ -29,17 +29,13 @@ export const Library3dDataProvider = ({ children }) => {
       name: '½” Cabinet Grade Plywood, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
       hex: '#C19A6B',
       price: 3685,
-      img: '',
-      fileName: '',
-      glbObject: '',
+      img: 'plywood.png'
     },
     {
       name: '½” Pre- Finished Drywall, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
       hex: '#F2F2F2',
       price: 4400,
-      img: '',
-      fileName: '',
-      glbObject: '',
+      img: 'drywall.png'
     },
   ];
 
@@ -100,7 +96,7 @@ export const Library3dDataProvider = ({ children }) => {
       type: '',
       fileName: '',
       glbObject: '',
-      img: '',
+      img: 'none.png',
       hex: '#FFFFFF',
       price: 0,
     },
@@ -109,7 +105,7 @@ export const Library3dDataProvider = ({ children }) => {
       type: 'Echo',
       fileName: 'echo',
       glbObject: 'Echo.004',
-      img: '/flooring/echo.png',
+      img: 'Vinyl Plank Flooring - 12mil Echo.png',
       hex: '#C19A6B',
       price: 950,
     },
@@ -118,7 +114,7 @@ export const Library3dDataProvider = ({ children }) => {
       type: 'Timber',
       fileName: 'timber',
       glbObject: 'Timber.001',
-      img: '/flooring/timber.png',
+      img: 'Vinyl Plank Flooring - 12mil Timber.png',
       hex: '#000000',
       price: 950,
     },

@@ -71,7 +71,6 @@ const SingleSelect = ({ type }) => {
   const interiorSelections = () => {
     return INTERIOR_FINISH_OPTIONS.map((selection) => {
       const isSelected = interiorFinish === selection;
-      const thumbnailColor = selection.hex;
 
       return (
         <div
@@ -83,13 +82,7 @@ const SingleSelect = ({ type }) => {
             setShowExterior(false);
           }}
         >
-          <div
-            className={style.img}
-            style={{
-              backgroundColor: thumbnailColor,
-            }}
-            alt='thumbnail'
-          ></div>
+          <img className={style.img} src={`/images/interior-finishes/${selection.img}`} alt='thumbnail' />
         </div>
       );
     });
@@ -113,7 +106,6 @@ const SingleSelect = ({ type }) => {
   const flooringSelections = () => {
     return FLOORING_OPTIONS.map((selection, index) => {
       const isSelected = flooring === selection;
-      const thumbnailColor = selection.hex;
 
       return (
         <div
@@ -125,13 +117,7 @@ const SingleSelect = ({ type }) => {
             setShowExterior(false);
           }}
         >
-          <div
-            className={style.img}
-            style={{
-              backgroundColor: thumbnailColor,
-            }}
-            alt='thumbnail'
-          ></div>
+          <img className={style.img} src={`/images/flooring/${selection.img}`} alt='thumbnail' />
         </div>
       );
     });
