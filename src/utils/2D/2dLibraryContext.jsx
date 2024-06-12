@@ -197,7 +197,8 @@ export const Library2dDataProvider = ({ children }) => {
       width: `8' width`,
       length: `10' length`,
       sqFootage: '80 sq ft',
-      scThumbnail: '10/sc/right.svg'
+      scThumbnail: '10/standard/right.svg',
+      hcThumbnail: '10/standard/right.svg',
     },
     {
       name: `20' Custom Cube`,
@@ -206,8 +207,8 @@ export const Library2dDataProvider = ({ children }) => {
       width: `8' width`,
       length: `20' length`,
       sqFootage: '160 sq ft',
-      scThumbnail: '20/sc/right.svg',
-      hcThumbnail: '20/hc/right.svg',
+      scThumbnail: '20/standard/right.svg',
+      hcThumbnail: '20/high/right.svg',
     },
     {
       name: `40' Custom Cube`,
@@ -216,8 +217,8 @@ export const Library2dDataProvider = ({ children }) => {
       width: `8' width`,
       length: `40' length`,
       sqFootage: '320 sq ft',
-      scThumbnail: '40/sc/right.svg',
-      hcThumbnail: '40/hc/right.svg',
+      scThumbnail: '40/standard/right.svg',
+      hcThumbnail: '40/high/right.svg',
     },
   ];
 
@@ -467,7 +468,7 @@ export const Library2dDataProvider = ({ children }) => {
     {
       name: ELEVATION_NAMES.RIGHT,
       homePlan: CONTAINER_10_SLUG,
-      imgScName: 'elevation/10/sc/right.svg',
+      imgScName: 'elevation/10/standard/right.svg',
       objWidth: DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH,
       objScHeight: DIMENSIONS.CONTAINER.TEN.SIDE.SC_HEIGHT,
       objHcHeight: DIMENSIONS.CONTAINER.TEN.SIDE.HC_HEIGHT,
@@ -475,8 +476,8 @@ export const Library2dDataProvider = ({ children }) => {
     {
       name: ELEVATION_NAMES.RIGHT,
       homePlan: CONTAINER_20_SLUG,
-      imgScName: 'elevation/20/sc/right.svg',
-      imgHcName: 'elevation/20/hc/right.svg',
+      imgScName: 'elevation/20/standard/right.svg',
+      imgHcName: 'elevation/20/high/right.svg',
       objWidth: DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH,
       objScHeight: DIMENSIONS.CONTAINER.TWENTY.SIDE.SC_HEIGHT,
       objHcHeight: DIMENSIONS.CONTAINER.TWENTY.SIDE.HC_HEIGHT,
@@ -484,15 +485,15 @@ export const Library2dDataProvider = ({ children }) => {
     {
       name: ELEVATION_NAMES.RIGHT,
       homePlan: CONTAINER_40_SLUG,
-      imgScName: 'elevation/40/sc/right.svg',
-      imgHcName: 'elevation/40/hc/right.svg',
+      imgScName: 'elevation/40/standard/right.svg',
+      imgHcName: 'elevation/40/high/right.svg',
       objWidth: DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH,
       objScHeight: DIMENSIONS.CONTAINER.FORTY.SIDE.SC_HEIGHT,
       objHcHeight: DIMENSIONS.CONTAINER.FORTY.SIDE.HC_HEIGHT,
     },
     {
       name: ELEVATION_NAMES.BACK,
-      imgScName: 'elevation/10/sc/back.svg',
+      imgScName: 'elevation/10/standard/back.svg',
       homePlan:CONTAINER_10_SLUG,
       objWidth: DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH,
       objScHeight: DIMENSIONS.CONTAINER.TEN.FRONT.SC_HEIGHT,
@@ -500,8 +501,8 @@ export const Library2dDataProvider = ({ children }) => {
     },
     {
       name: ELEVATION_NAMES.BACK,
-      imgScName: 'elevation/20/sc/back.svg',
-      imgHcName: 'elevation/20/hc/back.svg',
+      imgScName: 'elevation/20/standard/back.svg',
+      imgHcName: 'elevation/20/high/back.svg',
       homePlan: CONTAINER_20_SLUG,
       objWidth: DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH,
       objScHeight: DIMENSIONS.CONTAINER.TWENTY.FRONT.SC_HEIGHT,
@@ -509,8 +510,8 @@ export const Library2dDataProvider = ({ children }) => {
     },
     {
       name: ELEVATION_NAMES.BACK,
-      imgScName: 'elevation/40/sc/back.svg',
-      imgHcName: 'elevation/40/hc/back.svg',
+      imgScName: 'elevation/40/standard/back.svg',
+      imgHcName: 'elevation/40/high/back.svg',
       homePlan: CONTAINER_40_SLUG,
       objWidth: DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH,
       objScHeight: DIMENSIONS.CONTAINER.FORTY.FRONT.SC_HEIGHT,
@@ -518,7 +519,7 @@ export const Library2dDataProvider = ({ children }) => {
     },
     {
       name: ELEVATION_NAMES.LEFT,
-      imgScName: 'elevation/10/sc/left.svg',
+      imgScName: 'elevation/10/standard/left.svg',
       homePlan: CONTAINER_10_SLUG,
       objWidth: DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH,
       objScHeight: DIMENSIONS.CONTAINER.TEN.SIDE.SC_HEIGHT,
@@ -526,8 +527,8 @@ export const Library2dDataProvider = ({ children }) => {
     },
     {
       name: ELEVATION_NAMES.LEFT,
-      imgScName: 'elevation/20/sc/left.svg',
-      imgHcName: 'elevation/20/hc/left.svg',
+      imgScName: 'elevation/20/standard/left.svg',
+      imgHcName: 'elevation/20/high/left.svg',
       homePlan: CONTAINER_20_SLUG,
       objWidth: DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH,
       objScHeight: DIMENSIONS.CONTAINER.TWENTY.SIDE.SC_HEIGHT,
@@ -535,8 +536,8 @@ export const Library2dDataProvider = ({ children }) => {
     },
     {
       name: ELEVATION_NAMES.LEFT,
-      imgScName: 'elevation/40/sc/left.svg',
-      imgHcName: 'elevation/40/hc/left.svg',
+      imgScName: 'elevation/40/standard/left.svg',
+      imgHcName: 'elevation/40/high/left.svg',
       homePlan: CONTAINER_40_SLUG,
       objWidth: DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH,
       objScHeight: DIMENSIONS.CONTAINER.FORTY.SIDE.SC_HEIGHT,

@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import style from './layout.module.scss';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { PageDataContext } from '../Content/Content';
-import { CONTAINER_STANDARD } from '@/utils/constants';
 
 const Layout = ({ name, imgSrc, isSelected }) => {
   return (

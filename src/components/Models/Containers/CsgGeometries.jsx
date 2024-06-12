@@ -13,7 +13,7 @@ export function CsgGeometries({
 }) {
   const { containerData, DIMENSIONS } = useContext(Library2dDataContext);
   const { INTERIOR_FINISH_OPTIONS } = useContext(Library3dDataContext);
-  const { exteriorFinish, interiorFinish, selectedContainer } =
+  const { exteriorFinish, interiorFinish, selectedContainer, selectedContainerHeight } =
     useContext(PageDataContext);
 
   const containerSize = () => {
@@ -30,21 +30,21 @@ export function CsgGeometries({
 
   useEffect(() => {
     // Preload GLTF models based on the selected container size
-    useGLTF.preload(`/models/drywall/${size}/drywall-left.glb`);
-    useGLTF.preload(`/models/drywall/${size}/drywall-right.glb`);
-    useGLTF.preload(`/models/drywall/${size}/drywall-back.glb`);
-    useGLTF.preload(`/models/plywood/${size}/plywood-left.glb`);
-    useGLTF.preload(`/models/plywood/${size}/plywood-right.glb`);
-    useGLTF.preload(`/models/plywood/${size}/plywood-back.glb`);
+    useGLTF.preload(`/models/drywall/${size}/${selectedContainerHeight}/drywall-left.glb`);
+    useGLTF.preload(`/models/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`);
+    useGLTF.preload(`/models/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`);
+    useGLTF.preload(`/models/plywood/${size}/${selectedContainerHeight}/plywood-left.glb`);
+    useGLTF.preload(`/models/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`);
+    useGLTF.preload(`/models/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`);
     useGLTF.preload(
       `/models/materials/exterior/${exteriorFinish.fileName}.glb`
     );
     useGLTF.preload('/models/materials/interior/plywood.glb');
     useGLTF.preload('/models/materials/interior/drywall-test.glb');
-    useGLTF.preload(`/models/container/${size}/exterior-right.glb`);
-    useGLTF.preload(`/models/container/${size}/exterior-back.glb`);
-    useGLTF.preload(`/models/container/${size}/exterior-left.glb`);
-    useGLTF.preload(`/models/container/${size}/rubber.glb`);
+    useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`);
+    useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`);
+    useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`);
+    useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/baseboard.glb`);
   }, [size, exteriorFinish.fileName]);
 
   const adjustForX = useMemo(() => {
@@ -74,35 +74,35 @@ export function CsgGeometries({
     '/models/materials/interior/drywall-test.glb'
   );
   const { nodes: cRightNodes } = useGLTF(
-    `/models/container/${size}/exterior-right.glb`
+    `/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`
   );
   const { nodes: cBackNodes } = useGLTF(
-    `/models/container/${size}/exterior-back.glb`
+    `/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`
   );
   const { nodes: cLeftNodes } = useGLTF(
-    `/models/container/${size}/exterior-left.glb`
+    `/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`
   );
   const { nodes: dRightNodes } = useGLTF(
-    `/models/drywall/${size}/drywall-right.glb`
+    `/models/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`
   );
   const { nodes: dLeftNodes } = useGLTF(
-    `/models/drywall/${size}/drywall-left.glb`
+    `/models/drywall/${size}/${selectedContainerHeight}/drywall-left.glb`
   );
   const { nodes: dBackNodes } = useGLTF(
-    `/models/drywall/${size}/drywall-back.glb`
+    `/models/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`
   );
 
   const { nodes: pRightNodes } = useGLTF(
-    `/models/plywood/${size}/plywood-right.glb`
+    `/models/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`
   );
   const { nodes: pLeftNodes } = useGLTF(
-    `/models/plywood/${size}/plywood-left.glb`
+    `/models/plywood/${size}/${selectedContainerHeight}/plywood-left.glb`
   );
   const { nodes: pBackNodes } = useGLTF(
-    `/models/plywood/${size}/plywood-back.glb`
+    `/models/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`
   );
 
-  const { nodes: rubber } = useGLTF(`/models/container/${size}/rubber.glb`);
+  const { nodes: baseboard } = useGLTF(`/models/container/${size}/${selectedContainerHeight}/baseboard.glb`);
 
   const csg = useRef();
 
@@ -213,7 +213,7 @@ export function CsgGeometries({
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
         <Base
-          geometry={rubber.mesh_0.geometry}
+          geometry={baseboard.mesh_0.geometry}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         >

@@ -22,11 +22,14 @@ import Vent from './Vents/VentSwitcher';
 import { CsgGeometries } from './Containers/CsgGeometries';
 import { PageDataContext } from '../Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
-import ContainerShell10 from './Containers/10/ContainerShell10';
-import ContainerShell20 from './Containers/20/ContainerShell20';
-import ContainerShell40 from './Containers/40/ContainerShell40';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 import { COMPONENT_NAMES, COMPONENT_TYPES } from '@/utils/constants';
+import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
+import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
+import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
+import ContainerShell20High from './Containers/20/ContainerShell20High';
+import ContainerShell10High from './Containers/10/ContainerShell10High';
+import ContainerShell40High from './Containers/40/ContainerShell40High';
 
 export function Models() {
   const {
@@ -34,6 +37,7 @@ export function Models() {
     showExterior,
     selectedContainer,
     setThreeDModelLoaded,
+    containerHeightIsStandard
   } = useContext(PageDataContext);
   const { containerData, ELEVATION_NAMES } = useContext(Library2dDataContext);
 
@@ -226,11 +230,23 @@ export function Models() {
 
   const ContainerShell = () => {
     if (selectedContainer === containerData[0]) {
-      return <ContainerShell10 />;
+      if (containerHeightIsStandard) {
+        return <ContainerShell10Standard />;
+      } else {
+        return <ContainerShell10High />;
+      }
     } else if (selectedContainer === containerData[1]) {
-      return <ContainerShell20 />;
+      if (containerHeightIsStandard) {
+        return <ContainerShell20Standard />;
+      } else {
+        return <ContainerShell20High />;
+      }
     } else if (selectedContainer === containerData[2]) {
-      return <ContainerShell40 />;
+      if (containerHeightIsStandard) {
+        return <ContainerShell40Standard />;
+      } else {
+        return <ContainerShell40High />;
+      }
     }
   };
 
