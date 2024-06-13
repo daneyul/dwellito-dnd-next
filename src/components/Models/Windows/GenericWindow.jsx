@@ -14,8 +14,6 @@ const GenericWindow = React.memo(
     component,
     onBoundingBoxChange,
     modelPath,
-    geometryNodes,
-    materialNodes,
     customPosition,
     customRotation,
     customScale,
@@ -46,7 +44,7 @@ const GenericWindow = React.memo(
 
     useEffect(() => {
       preloadGLTFModel(`windows/${component.model}`);
-    }, [component.model, modelPath]);
+    }, [component.model]);
 
     useEffect(() => {
       if (ref.current) {
@@ -85,15 +83,22 @@ const GenericWindow = React.memo(
       >
         <group position={customPosition} rotation={customRotation}>
           <group scale={0.01}>
-            {geometryNodes.map((node, index) => (
-              <mesh
-                key={index}
-                castShadow
-                receiveShadow
-                geometry={nodes[node].geometry}
-                material={materials[materialNodes[index]]}
-              />
-            ))}
+            {Object.keys(nodes).map((nodeKey) => {
+              const node = nodes[nodeKey];
+              if (node.isMesh) {
+                const material = materials[node.material.name];
+                return (
+                  <mesh
+                    key={nodeKey}
+                    castShadow
+                    receiveShadow
+                    geometry={node.geometry}
+                    material={material || materials.default}
+                  />
+                );
+              }
+              return null;
+            })}
           </group>
         </group>
       </group>

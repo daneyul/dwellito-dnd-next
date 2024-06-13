@@ -189,6 +189,18 @@ export function Models() {
               data.center.z
             ),
           };
+        } else if (
+          doors[index].isRollUp
+        ) {
+          updatedData = {
+            ...updatedData,
+            size: new Vector3(data.size.x - 2.3, data.size.y - 1.5, data.size.z),
+            center: new Vector3(
+              data.center.x,
+              data.center.y - 0.8,
+              data.center.z
+            ),
+          };
         }
       }
 
