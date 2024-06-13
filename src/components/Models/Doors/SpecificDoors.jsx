@@ -165,7 +165,10 @@ const HdRollup15 = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    geometryNodes={['Heavy_Duty_Roll_Up_Door_180in_x_88in_-_188in_x_104in_1', 'Heavy_Duty_Roll_Up_Door_180in_x_88in_-_188in_x_104in_2']}
+    geometryNodes={[
+      'Heavy_Duty_Roll_Up_Door_180in_x_88in_-_188in_x_104in_1',
+      'Heavy_Duty_Roll_Up_Door_180in_x_88in_-_188in_x_104in_2',
+    ]}
     materialNodes={['Metal_01', 'Metal_02_']}
     customPosition={[6.152, 1.66, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
@@ -184,8 +187,9 @@ const EcHcRollup6 = ({ component, onBoundingBoxChange }) => (
       'Economy_Rollup_Door_-_6ft_-_72in_x_88in_-_76in_x_90in_2',
     ]}
     materialNodes={['Metal_01', 'Metal_02_']}
-    customPosition={[3.83, 1.577, -0.073]}
+    customPosition={[4.578, 2.03, -0.073]}
     customRotation={[Math.PI, 0, -Math.PI]}
+    customScale={1.2}
     isRollup
   />
 );
@@ -195,10 +199,14 @@ const EcHcRollup8 = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    geometryNodes={[`SM_EconRollUp_8x74_1`, `SM_EconRollUp_8x74_2`]}
+    geometryNodes={[
+      'Economy_Rollup_Door_-_8ft_-_96in_x_88in_-_100in_x_90in_1',
+      'Economy_Rollup_Door_-_8ft_-_96in_x_88in_-_100in_x_90in_2',
+    ]}
     materialNodes={['Metal_01', 'Metal_02_']}
-    customPosition={[3.84, 1.99, -0.03]}
+    customPosition={[4.578, 2.03, -0.073]}
     customRotation={[-Math.PI, 0, -Math.PI]}
+    customScale={1.2}
   />
 );
 
@@ -207,10 +215,14 @@ const EcHcRollup10 = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    geometryNodes={[`SM_EconRollUp_10x74_1`, `SM_EconRollUp_10x74_2`]}
+    geometryNodes={[
+      'Economy_Rollup_Door_-_10ft_-_120in_x_88in_-_124in_x_90in_1',
+      'Economy_Rollup_Door_-_10ft_-_120in_x_88in_-_124in_x_90in_2',
+    ]}
     materialNodes={['Metal_01', 'Metal_02_']}
-    customPosition={[3.84, 1.99, -0.03]}
+    customPosition={[4.578, 2.03, -0.073]}
     customRotation={[-Math.PI, 0, -Math.PI]}
+    customScale={1.2}
   />
 );
 
