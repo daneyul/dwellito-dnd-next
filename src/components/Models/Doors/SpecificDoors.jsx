@@ -167,7 +167,7 @@ const HdRollup15 = ({ component, onBoundingBoxChange }) => (
     modelPath={`/models/doors/${component.model}.glb`}
     geometryNodes={['Heavy_Duty_Roll_Up_Door_180in_x_88in_-_188in_x_104in_1', 'Heavy_Duty_Roll_Up_Door_180in_x_88in_-_188in_x_104in_2']}
     materialNodes={['Metal_01', 'Metal_02_']}
-    customPosition={[6.152, 1.62, 3.235]}
+    customPosition={[6.152, 1.66, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
     isRollup
@@ -180,11 +180,11 @@ const EcHcRollup6 = ({ component, onBoundingBoxChange }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
     geometryNodes={[
-      'Economy_Rollup_Door_-_6ft_-_72in_x_76in_-_76in__x_78in_1',
-      'Economy_Rollup_Door_-_6ft_-_72in_x_76in_-_76in__x_78in_2',
+      'Economy_Rollup_Door_-_6ft_-_72in_x_88in_-_76in_x_90in_1',
+      'Economy_Rollup_Door_-_6ft_-_72in_x_88in_-_76in_x_90in_2',
     ]}
     materialNodes={['Metal_01', 'Metal_02_']}
-    customPosition={[4.64, 1.272, -0.073]}
+    customPosition={[3.83, 1.577, -0.073]}
     customRotation={[Math.PI, 0, -Math.PI]}
     isRollup
   />

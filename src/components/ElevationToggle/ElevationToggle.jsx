@@ -9,7 +9,10 @@ const ElevationToggle = () => {
     setSelectedElevation,
     show3d,
     setSelectedElevationIndex,
+    selectedContainer
   } = useContext(PageDataContext);
+
+  const floorPlan = selectedContainer.floorPlan;
 
   if (!show3d) {
     return (
