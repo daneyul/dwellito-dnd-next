@@ -22,12 +22,14 @@ const Sidebar = () => {
     showYourOrder,
     containerHeightIsStandard,
     setSelectedContainerHeight,
+    selectedContainer,
     slug,
   } = useContext(PageDataContext);
   const { EXTERIOR, INTERIOR, FLOORING } = useContext(Library3dDataContext);
   const supplierName = 'Custom Cubes';
 
   const canSelectContainerHeight = slug !== CONTAINER_10_SLUG;
+  const containerPrice = containerHeightIsStandard ? selectedContainer.priceSc : selectedContainer.priceHc;
 
   const NotYourOrder = () => {
     return (
@@ -39,7 +41,7 @@ const Sidebar = () => {
           Whether its for storage purposes or mobile office space we got it!
         </div>
         <Badges />
-        <BasePriceDesc />
+        <BasePriceDesc price={containerPrice} />
         <Layouts />
         <div
           className={style.containerHeights}

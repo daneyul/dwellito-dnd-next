@@ -4,7 +4,7 @@ import style from './layout.module.scss';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { PageDataContext } from '../Content/Content';
 
-const Layout = ({ name, imgSrc, isSelected }) => {
+const Layout = ({ name, imgSrc, isSelected, price }) => {
   return (
     <div
       className={
@@ -13,7 +13,7 @@ const Layout = ({ name, imgSrc, isSelected }) => {
     >
       <div>
         <div style={{ fontWeight: '700' }}>{name}</div>
-        <div className={style.price}>$74,000</div>
+        <div className={style.price}>${price.toLocaleString()}</div>
       </div>
       <img src={imgSrc} alt='layout' className={style.layoutImg} />
     </div>
@@ -33,6 +33,7 @@ const Layouts = () => {
         const containerName = container.name;
         const containerImage = `/images/elevation/${thumbnail}`;
         const isSelected = container.id === containerId;
+        const containerPrice = containerHeightIsStandard ? container.priceSc : container.priceHc;
 
         return (
           <a href={`/${container.slug}`} key={index}>
@@ -40,6 +41,7 @@ const Layouts = () => {
               name={containerName}
               imgSrc={containerImage}
               isSelected={isSelected}
+              price={containerPrice}
             />
           </a>
         );
