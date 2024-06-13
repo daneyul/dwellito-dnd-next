@@ -16,13 +16,25 @@ const GenericDoor = React.memo(
     customPosition,
     customRotation,
     customScale,
+    isRollUp,
   }) => {
     const { nodes, materials } = useGLTF(modelPath);
-    const { selectedComponents, selectedContainer, scaleFactor } =
-      useContext(PageDataContext);
-    const { elevationData, DIMENSIONS } =
-      useContext(Library2dDataContext);
-    const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
+    const {
+      selectedComponents,
+      selectedContainer,
+      scaleFactor,
+      exteriorFinish,
+    } = useContext(PageDataContext);
+    const { elevationData, DIMENSIONS } = useContext(Library2dDataContext);
+    const {
+      SCALE_FACTOR_FOR_CALCULATIONS,
+      redPaint,
+      whitePaint,
+      greenPaint,
+      bluePaint,
+      slateGreyPaint,
+      beigePaint,
+    } = useContext(Library3dDataContext);
     const selectedElevation = component.elevation[0];
     const distanceObject = checkDistance({
       component,
@@ -32,7 +44,32 @@ const GenericDoor = React.memo(
       scaleFactor,
     });
     const ref = useRef();
-    console.log(nodes)
+
+    const exteriorPaint = useMemo(() => {
+      switch (exteriorFinish.name) {
+        case 'Red':
+          return redPaint[exteriorFinish.glbObject];
+        case 'White':
+          return whitePaint[exteriorFinish.glbObject];
+        case 'Green':
+          return greenPaint[exteriorFinish.glbObject];
+        case 'Blue':
+          return bluePaint[exteriorFinish.glbObject];
+        case 'Slate Grey':
+          return slateGreyPaint[exteriorFinish.glbObject];
+        case 'Beige':
+          return beigePaint[exteriorFinish.glbObject];
+        default:
+          return null;
+      }
+    }, [
+      exteriorFinish,
+      redPaint,
+      whitePaint,
+      greenPaint,
+      bluePaint,
+      slateGreyPaint,
+    ]);
 
     const rotation = useMemo(
       () => [
@@ -67,6 +104,11 @@ const GenericDoor = React.memo(
       }
     }, [materials]);
 
+    const meshKeys = Object.keys(nodes).filter(
+      (nodeKey) => nodes[nodeKey].isMesh
+    );
+    console.log(exteriorPaint);
+
     return (
       <group
         ref={ref}
@@ -88,20 +130,21 @@ const GenericDoor = React.memo(
           scale={customScale}
         >
           <group scale={0.01}>
-            {Object.keys(nodes).map((nodeKey) => {
+            {meshKeys.map((nodeKey) => {
               const node = nodes[nodeKey];
-              if (node.isMesh) {
-                return (
-                  <mesh
-                    key={nodeKey}
-                    castShadow
-                    receiveShadow
-                    geometry={node.geometry}
-                    material={materials[node.material.name]}
-                  />
-                );
-              }
-              return null;
+              const material =
+                isRollUp
+                  ? exteriorPaint
+                  : materials[node.material.name];
+              return (
+                <mesh
+                  key={nodeKey}
+                  castShadow
+                  receiveShadow
+                  geometry={node.geometry}
+                  material={materials[node.material.name]}
+                />
+              );
             })}
           </group>
         </group>

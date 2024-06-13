@@ -99,7 +99,7 @@ const HdRollup6 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.628, 1.67, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -111,7 +111,7 @@ const HdRollup8 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.628, 1.6, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -123,7 +123,7 @@ const HdRollup10 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.628, 1.67, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -135,7 +135,7 @@ const HdRollup12 = ({ component, onBoundingBoxChange }) => (
     customPosition={[5.237, 1.67, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -147,7 +147,7 @@ const HdRollup15 = ({ component, onBoundingBoxChange }) => (
     customPosition={[6.152, 1.66, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -159,7 +159,7 @@ const EcHcRollup6 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.578, 2.03, -0.082]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -171,7 +171,7 @@ const EcHcRollup8 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.578, 2.03, -0.082]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -183,7 +183,7 @@ const EcHcRollup10 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.578, 2.03, -0.082]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -195,7 +195,7 @@ const EcHcRollup12 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.578, 2.03, -0.082]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -207,7 +207,7 @@ const EcHcRollup15 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.578, 2.03, -0.082]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -219,7 +219,7 @@ const EcStRollup6 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.58, 2.015, -0.082]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -231,7 +231,7 @@ const EcStRollup8 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.58, 2.015, -0.082]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -243,7 +243,7 @@ const EcStRollup10 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.58, 2.015, -0.082]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -255,7 +255,7 @@ const EcStRollup12 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.58, 2.015, -0.082]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 
@@ -267,7 +267,7 @@ const EcStRollup15 = ({ component, onBoundingBoxChange }) => (
     customPosition={[4.58, 2.015, -0.082]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
-    isRollup
+    isRollUp
   />
 );
 

@@ -1,4 +1,5 @@
 import React, { createContext } from 'react';
+import { useGLTF } from '@react-three/drei';
 
 export const Library3dDataContext = createContext();
 
@@ -120,6 +121,26 @@ export const Library3dDataProvider = ({ children }) => {
     },
   ];
 
+    // Load all paint materials
+    const { materials: redPaint } = useGLTF(
+      `/models/materials/exterior/red-paint.glb`
+    );
+    const { materials: whitePaint } = useGLTF(
+      `/models/materials/exterior/white-paint.glb`
+    );
+    const { materials: greenPaint } = useGLTF(
+      `/models/materials/exterior/green-paint.glb`
+    );
+    const { materials: bluePaint } = useGLTF(
+      `/models/materials/exterior/blue-paint.glb`
+    );
+    const { materials: slateGreyPaint } = useGLTF(
+      `/models/materials/exterior/slate-grey-paint.glb`
+    );
+    const { materials: beigePaint } = useGLTF(
+      `/models/materials/exterior/beige-paint.glb`
+    );
+
   return (
     <Library3dDataContext.Provider
       value={{
@@ -133,6 +154,12 @@ export const Library3dDataProvider = ({ children }) => {
         EXTERIOR_FINISH_OPTIONS,
         INTERIOR_FINISH_OPTIONS,
         FLOORING_OPTIONS,
+        redPaint,
+        whitePaint,
+        greenPaint,
+        bluePaint,
+        slateGreyPaint,
+        beigePaint,
       }}
     >
       {children}

@@ -6,7 +6,7 @@ import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 
 export default function ContainerShell40High() {
   const { DIMENSIONS } = useContext(Library2dDataContext);
-  const { INTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS } =
+  const { INTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS, redPaint, whitePaint, greenPaint, bluePaint, slateGreyPaint, beigePaint } =
     useContext(Library3dDataContext);
 
   const {
@@ -51,26 +51,6 @@ export default function ContainerShell40High() {
         return null;
     }
   }, [echoFloor, timberFloor, flooring]);
-
-  // Load all paint materials
-  const { materials: redPaint } = useGLTF(
-    `/models/materials/exterior/red-paint.glb`
-  );
-  const { materials: whitePaint } = useGLTF(
-    `/models/materials/exterior/white-paint.glb`
-  );
-  const { materials: greenPaint } = useGLTF(
-    `/models/materials/exterior/green-paint.glb`
-  );
-  const { materials: bluePaint } = useGLTF(
-    `/models/materials/exterior/blue-paint.glb`
-  );
-  const { materials: slateGreyPaint } = useGLTF(
-    `/models/materials/exterior/slate-grey-paint.glb`
-  );
-  const { materials: beigePaint } = useGLTF(
-    `/models/materials/exterior/beige-paint.glb`
-  );
 
   const exteriorPaint = useMemo(() => {
     switch (exteriorFinish.name) {

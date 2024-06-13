@@ -12,9 +12,21 @@ export function CsgGeometries({
   ventBoundingBoxes,
 }) {
   const { containerData, DIMENSIONS } = useContext(Library2dDataContext);
-  const { INTERIOR_FINISH_OPTIONS } = useContext(Library3dDataContext);
-  const { exteriorFinish, interiorFinish, selectedContainer, selectedContainerHeight } =
-    useContext(PageDataContext);
+  const {
+    INTERIOR_FINISH_OPTIONS,
+    redPaint,
+    whitePaint,
+    greenPaint,
+    bluePaint,
+    slateGreyPaint,
+    beigePaint,
+  } = useContext(Library3dDataContext);
+  const {
+    exteriorFinish,
+    interiorFinish,
+    selectedContainer,
+    selectedContainerHeight,
+  } = useContext(PageDataContext);
 
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -30,21 +42,41 @@ export function CsgGeometries({
 
   useEffect(() => {
     // Preload GLTF models based on the selected container size
-    useGLTF.preload(`/models/drywall/${size}/${selectedContainerHeight}/drywall-left.glb`);
-    useGLTF.preload(`/models/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`);
-    useGLTF.preload(`/models/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`);
-    useGLTF.preload(`/models/plywood/${size}/${selectedContainerHeight}/plywood-left.glb`);
-    useGLTF.preload(`/models/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`);
-    useGLTF.preload(`/models/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`);
+    useGLTF.preload(
+      `/models/drywall/${size}/${selectedContainerHeight}/drywall-left.glb`
+    );
+    useGLTF.preload(
+      `/models/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`
+    );
+    useGLTF.preload(
+      `/models/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`
+    );
+    useGLTF.preload(
+      `/models/plywood/${size}/${selectedContainerHeight}/plywood-left.glb`
+    );
+    useGLTF.preload(
+      `/models/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`
+    );
+    useGLTF.preload(
+      `/models/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`
+    );
     useGLTF.preload(
       `/models/materials/exterior/${exteriorFinish.fileName}.glb`
     );
     useGLTF.preload('/models/materials/interior/plywood.glb');
     useGLTF.preload('/models/materials/interior/drywall-test.glb');
-    useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`);
-    useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`);
-    useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`);
-    useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/baseboard.glb`);
+    useGLTF.preload(
+      `/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`
+    );
+    useGLTF.preload(
+      `/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`
+    );
+    useGLTF.preload(
+      `/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`
+    );
+    useGLTF.preload(
+      `/models/container/${size}/${selectedContainerHeight}/baseboard.glb`
+    );
   }, [size, exteriorFinish.fileName]);
 
   const adjustForX = useMemo(() => {
@@ -102,29 +134,11 @@ export function CsgGeometries({
     `/models/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`
   );
 
-  const { nodes: baseboard } = useGLTF(`/models/container/${size}/${selectedContainerHeight}/baseboard.glb`);
+  const { nodes: baseboard } = useGLTF(
+    `/models/container/${size}/${selectedContainerHeight}/baseboard.glb`
+  );
 
   const csg = useRef();
-
-  // Load all paint materials
-  const { materials: redPaint } = useGLTF(
-    `/models/materials/exterior/red-paint.glb`
-  );
-  const { materials: whitePaint } = useGLTF(
-    `/models/materials/exterior/white-paint.glb`
-  );
-  const { materials: greenPaint } = useGLTF(
-    `/models/materials/exterior/green-paint.glb`
-  );
-  const { materials: bluePaint } = useGLTF(
-    `/models/materials/exterior/blue-paint.glb`
-  );
-  const { materials: slateGreyPaint } = useGLTF(
-    `/models/materials/exterior/slate-grey-paint.glb`
-  );
-  const { materials: beigePaint } = useGLTF(
-    `/models/materials/exterior/beige-paint.glb`
-  );
 
   const exteriorPaint = useMemo(() => {
     switch (exteriorFinish.name) {
