@@ -141,6 +141,14 @@ export const Library3dDataProvider = ({ children }) => {
       `/models/materials/exterior/beige-paint.glb`
     );
 
+    // Interior materials
+    const { materials: plywoodMaterial } = useGLTF(
+      '/models/materials/interior/plywood.glb'
+    );
+    const { materials: drywallMaterial } = useGLTF(
+      '/models/materials/interior/drywall-test.glb'
+    );
+
   return (
     <Library3dDataContext.Provider
       value={{
@@ -160,6 +168,8 @@ export const Library3dDataProvider = ({ children }) => {
         bluePaint,
         slateGreyPaint,
         beigePaint,
+        plywoodMaterial,
+        drywallMaterial,
       }}
     >
       {children}

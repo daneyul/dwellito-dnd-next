@@ -145,26 +145,26 @@ export function Models() {
   // This detects when the user is orbiting the camera
   // We want to disable the CameraRig logic when the user is orbiting
   // This will prevent the camera from jumping back to its original position
-  // useEffect(() => {
-  //   setCameraReady(false);
-  //   const controls = orbitRef.current;
-  //   if (controls) {
-  //     const startOrbiting = () => setIsOrbiting(true);
-  //     const stopOrbiting = () => setIsOrbiting(false);
+  useEffect(() => {
+    setCameraReady(false);
+    const controls = orbitRef.current;
+    if (controls) {
+      const startOrbiting = () => setIsOrbiting(true);
+      const stopOrbiting = () => setIsOrbiting(false);
 
-  //     controls.addEventListener('start', startOrbiting);
-  //     controls.addEventListener('end', stopOrbiting);
+      controls.addEventListener('start', startOrbiting);
+      controls.addEventListener('end', stopOrbiting);
 
-  //     return () => {
-  //       controls.removeEventListener('start', startOrbiting);
-  //       controls.removeEventListener('end', stopOrbiting);
-  //     };
-  //   }
-  // }, [showExterior]);
+      return () => {
+        controls.removeEventListener('start', startOrbiting);
+        controls.removeEventListener('end', stopOrbiting);
+      };
+    }
+  }, [orbitRef, showExterior]);
 
-  const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
-  const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
-  const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
+  const [doorBoundingBoxes, setDoorBoundingBoxes] = useState({});
+  const [windowBoundingBoxes, setWindowBoundingBoxes] = useState({});
+  const [ventBoundingBoxes, setVentBoundingBoxes] = useState({});
 
   const handleDoorBoundingBox = useCallback(
     (index, data) => {
@@ -267,27 +267,27 @@ export function Models() {
   };
 
   // Update bounding box states when components are removed
-  useEffect(() => {
-    const doorIds = doors.map((door) => door.id);
-    const windowIds = windows.map((window) => window.id);
-    const ventIds = vents.map((vent) => vent.id);
+  const doorIds = useMemo(() => doors.map((door) => door.id), [doors]);
+  const windowIds = useMemo(() => windows.map((window) => window.id), [windows]);
+  const ventIds = useMemo(() => vents.map((vent) => vent.id), [vents]);
 
+  useEffect(() => {
     setDoorBoundingBoxes((prev) =>
-      Object.fromEntries(
-        Object.entries(prev).filter(([key]) => doorIds.includes(key))
-      )
+      Object.fromEntries(Object.entries(prev).filter(([key]) => doorIds.includes(key)))
     );
+  }, [doorIds]);
+
+  useEffect(() => {
     setWindowBoundingBoxes((prev) =>
-      Object.fromEntries(
-        Object.entries(prev).filter(([key]) => windowIds.includes(key))
-      )
+      Object.fromEntries(Object.entries(prev).filter(([key]) => windowIds.includes(key)))
     );
+  }, [windowIds]);
+
+  useEffect(() => {
     setVentBoundingBoxes((prev) =>
-      Object.fromEntries(
-        Object.entries(prev).filter(([key]) => ventIds.includes(key))
-      )
+      Object.fromEntries(Object.entries(prev).filter(([key]) => ventIds.includes(key)))
     );
-  }, [selectedComponents]);
+  }, [ventIds]);
 
   return (
     <div

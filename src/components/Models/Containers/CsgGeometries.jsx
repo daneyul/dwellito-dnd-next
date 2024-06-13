@@ -20,6 +20,8 @@ export function CsgGeometries({
     bluePaint,
     slateGreyPaint,
     beigePaint,
+    plywoodMaterial,
+    drywallMaterial
   } = useContext(Library3dDataContext);
   const {
     exteriorFinish,
@@ -39,45 +41,6 @@ export function CsgGeometries({
   };
 
   const size = containerSize();
-
-  useEffect(() => {
-    // Preload GLTF models based on the selected container size
-    useGLTF.preload(
-      `/models/drywall/${size}/${selectedContainerHeight}/drywall-left.glb`
-    );
-    useGLTF.preload(
-      `/models/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`
-    );
-    useGLTF.preload(
-      `/models/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`
-    );
-    useGLTF.preload(
-      `/models/plywood/${size}/${selectedContainerHeight}/plywood-left.glb`
-    );
-    useGLTF.preload(
-      `/models/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`
-    );
-    useGLTF.preload(
-      `/models/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`
-    );
-    useGLTF.preload(
-      `/models/materials/exterior/${exteriorFinish.fileName}.glb`
-    );
-    useGLTF.preload('/models/materials/interior/plywood.glb');
-    useGLTF.preload('/models/materials/interior/drywall-test.glb');
-    useGLTF.preload(
-      `/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`
-    );
-    useGLTF.preload(
-      `/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`
-    );
-    useGLTF.preload(
-      `/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`
-    );
-    useGLTF.preload(
-      `/models/container/${size}/${selectedContainerHeight}/baseboard.glb`
-    );
-  }, [size, exteriorFinish.fileName]);
 
   const adjustForX = useMemo(() => {
     if (selectedContainer.name === `10' Custom Cube`) {
@@ -99,12 +62,6 @@ export function CsgGeometries({
     }
   }, [selectedContainer.name, DIMENSIONS]);
 
-  const { materials: plywoodMaterial } = useGLTF(
-    '/models/materials/interior/plywood.glb'
-  );
-  const { materials: drywallMaterial } = useGLTF(
-    '/models/materials/interior/drywall-test.glb'
-  );
   const { nodes: cRightNodes } = useGLTF(
     `/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`
   );
