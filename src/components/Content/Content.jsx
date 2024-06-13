@@ -94,6 +94,16 @@ const PageDataProvider = ({ children, data }) => {
 
   const [scaleFactor, setScaleFactor] = useState(2.5);
 
+  // Update selectedComponents when selectedContainerHeight changes
+  useEffect(() => {
+    setSelectedComponents((prevComponents) =>
+      prevComponents.filter((component) =>
+        containerHeightIsStandard ? !component.highContainerOnly : true
+      )
+    );
+  }, [selectedContainerHeight, containerHeightIsStandard]);
+
+  // Update drawing scale factor based on the selected container
   useEffect(() => {
     if (slug === CONTAINER_40_SLUG) {
       setScaleFactor(1.75);

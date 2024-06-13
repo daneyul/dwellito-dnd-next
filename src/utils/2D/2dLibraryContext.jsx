@@ -131,7 +131,7 @@ export const Library2dDataProvider = ({ children }) => {
         HEIGHT: 106,
         POSITION: {
           x: 0,
-          y: -18,
+          y: -23,
         },
       },
       EC_HC_ROLLUP_6_74: {
@@ -139,7 +139,7 @@ export const Library2dDataProvider = ({ children }) => {
         HEIGHT: 90,
         POSITION: {
           x: 0,
-          y: 0,
+          y: 17,
         }
       }, 
       EC_HC_ROLLUP_8_74: {
@@ -147,7 +147,7 @@ export const Library2dDataProvider = ({ children }) => {
         HEIGHT: 90,
         POSITION: {
           x: 0,
-          y: 0,
+          y: 17,
         }
       },
       EC_HC_ROLLUP_10_74: {
@@ -155,7 +155,7 @@ export const Library2dDataProvider = ({ children }) => {
         HEIGHT: 90,
         POSITION: {
           x: 0,
-          y: 0,
+          y: 17,
         }
       },
       EC_ST_ROLLUP_6_64: {
@@ -461,7 +461,8 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.EC_HC_ROLLUP_6_74.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Economy_Rollup_Door - 6ft - 72in x 88in - 76in x 90in.glb"
+      model: "Economy_Rollup_Door - 6ft - 72in x 88in - 76in x 90in.glb",
+      highContainerOnly: true,
     },
     {
       name: COMPONENT_NAMES.EC_HC_ROLLUP_8_74,
@@ -475,7 +476,8 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.EC_HC_ROLLUP_8_74.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Economy_Rollup_Door - 8ft - 96in x 88in - 100in x 90in.glb"
+      model: "Economy_Rollup_Door - 8ft - 96in x 88in - 100in x 90in.glb",
+      highContainerOnly: true,
     },
     {
       name: COMPONENT_NAMES.EC_HC_ROLLUP_10_74,
@@ -489,7 +491,8 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.EC_HC_ROLLUP_10_74.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Economy_Rollup_Door - 10ft - 120in x 88in - 124in x 90in.glb"
+      model: "Economy_Rollup_Door - 10ft - 120in x 88in - 124in x 90in.glb",
+      highContainerOnly: true,
     },
     {
       name: COMPONENT_NAMES.EC_ST_ROLLUP_6_64,

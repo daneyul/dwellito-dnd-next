@@ -2,7 +2,7 @@ import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import AddOption from '../AddOption/AddOption';
 import style from './selector.module.scss';
 import { useContext } from 'react';
-import { COMPONENT_TYPES, CONTAINER_STANDARD } from '@/utils/constants';
+import { COMPONENT_TYPES } from '@/utils/constants';
 import { PageDataContext } from '../Content/Content';
 
 const Selector = () => {
