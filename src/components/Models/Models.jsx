@@ -145,22 +145,22 @@ export function Models() {
   // This detects when the user is orbiting the camera
   // We want to disable the CameraRig logic when the user is orbiting
   // This will prevent the camera from jumping back to its original position
-  useEffect(() => {
-    setCameraReady(false);
-    const controls = orbitRef.current;
-    if (controls) {
-      const startOrbiting = () => setIsOrbiting(true);
-      const stopOrbiting = () => setIsOrbiting(false);
+  // useEffect(() => {
+  //   setCameraReady(false);
+  //   const controls = orbitRef.current;
+  //   if (controls) {
+  //     const startOrbiting = () => setIsOrbiting(true);
+  //     const stopOrbiting = () => setIsOrbiting(false);
 
-      controls.addEventListener('start', startOrbiting);
-      controls.addEventListener('end', stopOrbiting);
+  //     controls.addEventListener('start', startOrbiting);
+  //     controls.addEventListener('end', stopOrbiting);
 
-      return () => {
-        controls.removeEventListener('start', startOrbiting);
-        controls.removeEventListener('end', stopOrbiting);
-      };
-    }
-  }, [showExterior]);
+  //     return () => {
+  //       controls.removeEventListener('start', startOrbiting);
+  //       controls.removeEventListener('end', stopOrbiting);
+  //     };
+  //   }
+  // }, [showExterior]);
 
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
   const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
@@ -357,7 +357,7 @@ export function Models() {
           />
         </AccumulativeShadows>
         <Environment files='/adamsbridge.hdr' />
-        {/* <EffectComposer disableNormalPass multisampling={0}>
+        <EffectComposer disableNormalPass multisampling={0}>
           <N8AO
             halfRes
             color='black'
@@ -367,8 +367,8 @@ export function Models() {
             denoiseSamples={4}
           />
           <SMAA />
-        </EffectComposer> */}
-        {/* <CameraRig /> */}
+        </EffectComposer>
+        <CameraRig />
         <OrbitControls
           makeDefault
           ref={orbitRef}
