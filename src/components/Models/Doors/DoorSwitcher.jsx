@@ -1,5 +1,18 @@
 import {
   Double,
+  EcHcRollup10,
+  EcHcRollup6,
+  EcHcRollup8,
+  EcStRollup10,
+  EcStRollup12,
+  EcStRollup15,
+  EcStRollup6,
+  EcStRollup8,
+  HdRollup10,
+  HdRollup12,
+  HdRollup15,
+  HdRollup6,
+  HdRollup8,
   LhrSecurity,
   LhrSecurityGlass,
   RhrSecurity,
@@ -57,37 +70,93 @@ export default function Door({ onBoundingBoxChange, component }) {
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.ROLL_UP_6:
+    case COMPONENT_NAMES.HD_ROLL_UP_6:
       return (
-        <Rollup6
+        <HdRollup6
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.ROLL_UP_8:
+    case COMPONENT_NAMES.HD_ROLL_UP_8:
       return (
-        <Rollup8
+        <HdRollup8
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.ROLL_UP_10:
+    case COMPONENT_NAMES.HD_ROLL_UP_10:
       return (
-        <Rollup10
+        <HdRollup10
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.ROLL_UP_12:
+    case COMPONENT_NAMES.HD_ROLL_UP_12:
       return (
-        <Rollup12
+        <HdRollup12
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.ROLL_UP_15:
+    case COMPONENT_NAMES.HD_ROLL_UP_15:
       return (
-        <Rollup15
+        <HdRollup15
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.EC_HC_ROLLUP_6_74:
+      return (
+        <EcHcRollup6
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.EC_HC_ROLLUP_8_74:
+      return (
+        <EcHcRollup8
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.EC_HC_ROLLUP_10_74:
+      return (
+        <EcHcRollup10
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.EC_ST_ROLLUP_6_64:
+      return (
+        <EcStRollup6
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.EC_ST_ROLLUP_8_64:
+      return (
+        <EcStRollup8
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.EC_ST_ROLLUP_10_64:
+      return (
+        <EcStRollup10
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.EC_ST_ROLLUP_12_64:
+      return (
+        <EcStRollup12
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.EC_ST_ROLLUP_15_64:
+      return (
+        <EcStRollup15
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />

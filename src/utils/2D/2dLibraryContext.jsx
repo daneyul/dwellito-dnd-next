@@ -33,6 +33,10 @@ export const Library2dDataProvider = ({ children }) => {
           SC_HEIGHT: 102,
           HC_HEIGHT: 114,
         },
+        FLOOR_PLAN: {
+          WIDTH: 118,
+          HEIGHT: 96
+        }
       },
       TWENTY: {
         THREE_D: {
@@ -50,6 +54,10 @@ export const Library2dDataProvider = ({ children }) => {
           SC_HEIGHT: 102,
           HC_HEIGHT: 114,
         },
+        FLOOR_PLAN: {
+          WIDTH: 238.5,
+          HEIGHT: 96
+        }
       },
       FORTY: {
         THREE_D: {
@@ -67,6 +75,10 @@ export const Library2dDataProvider = ({ children }) => {
           SC_HEIGHT: 102,
           HC_HEIGHT: 114,
         },
+        FLOOR_PLAN: {
+          WIDTH: 480,
+          HEIGHT: 96
+        }
       },
     },
     DOOR: {
@@ -163,7 +175,7 @@ export const Library2dDataProvider = ({ children }) => {
         HEIGHT: 78,
         POSITION: {
           x: 0,
-          y: 0,
+          y: 46,
         }
       },
       EC_ST_ROLLUP_8_64: {
@@ -171,7 +183,7 @@ export const Library2dDataProvider = ({ children }) => {
         HEIGHT: 78,
         POSITION: {
           x: 0,
-          y: 0,
+          y: 46,
         }
       },
       EC_ST_ROLLUP_10_64: {
@@ -179,7 +191,7 @@ export const Library2dDataProvider = ({ children }) => {
         HEIGHT: 78,
         POSITION: {
           x: 0,
-          y: 0,
+          y: 46,
         }
       },
       EC_ST_ROLLUP_12_64: {
@@ -187,7 +199,7 @@ export const Library2dDataProvider = ({ children }) => {
         HEIGHT: 78,
         POSITION: {
           x: 0,
-          y: 0,
+          y: 46,
         }
       },
       EC_ST_ROLLUP_15_64: {
@@ -195,7 +207,7 @@ export const Library2dDataProvider = ({ children }) => {
         HEIGHT: 78,
         POSITION: {
           x: 0,
-          y: 0,
+          y: 46,
         }
       },
     },
@@ -386,7 +398,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.HD_ROLL_UP_6.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: 'SM_RollUp_6x74',
+      model: 'Heavy Duty Roll Up Door 72in x 88in - 80in x 104in',
       highContainerOnly: true,
     },
     {
@@ -401,7 +413,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.HD_ROLL_UP_8.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "SM_RollUp_8x74",
+      model: "Heavy Duty Roll Up Door 96in x 88in - 104in x 104in",
       highContainerOnly: true,
     },
     {
@@ -416,7 +428,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.HD_ROLL_UP_10.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "SM_RollUp_10x74",
+      model: "Heavy Duty Roll Up Door 120in x 88in - 128in x 104in",
       highContainerOnly: true,
     },
     {
@@ -431,7 +443,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.HD_ROLL_UP_12.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "SM_RollUp_12x74",
+      model: "Heavy Duty Roll Up Door 144in x 88in - 152in x 104in",
       highContainerOnly: true,
     },
     {
@@ -446,7 +458,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.HD_ROLL_UP_15.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "SM_RollUp_15x74",
+      model: "Heavy Duty Roll Up Door 180in x 88in - 188in x 104in",
       highContainerOnly: true,
     },
     {
