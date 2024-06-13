@@ -300,7 +300,8 @@ export const Library2dDataProvider = ({ children }) => {
       scThumbnail: '10/standard/right.svg',
       hcThumbnail: '10/standard/right.svg',
       floorPlan: '10/floor-plan.svg',
-      priceSc: 5400
+      priceSc: 5400,
+      priceHc: 0
     },
     {
       name: `20' Custom Cube`,
