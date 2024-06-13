@@ -162,9 +162,9 @@ export function Models() {
     }
   }, [orbitRef, showExterior]);
 
-  const [doorBoundingBoxes, setDoorBoundingBoxes] = useState({});
-  const [windowBoundingBoxes, setWindowBoundingBoxes] = useState({});
-  const [ventBoundingBoxes, setVentBoundingBoxes] = useState({});
+  const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
+  const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
+  const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
 
   const handleDoorBoundingBox = useCallback(
     (index, data) => {
@@ -267,27 +267,27 @@ export function Models() {
   };
 
   // Update bounding box states when components are removed
-  const doorIds = useMemo(() => doors.map((door) => door.id), [doors]);
-  const windowIds = useMemo(() => windows.map((window) => window.id), [windows]);
-  const ventIds = useMemo(() => vents.map((vent) => vent.id), [vents]);
-
   useEffect(() => {
+    const doorIds = doors.map((door) => door.id);
+    const windowIds = windows.map((window) => window.id);
+    const ventIds = vents.map((vent) => vent.id);
+
     setDoorBoundingBoxes((prev) =>
-      Object.fromEntries(Object.entries(prev).filter(([key]) => doorIds.includes(key)))
+      Object.fromEntries(
+        Object.entries(prev).filter(([key]) => doorIds.includes(key))
+      )
     );
-  }, [doorIds]);
-
-  useEffect(() => {
     setWindowBoundingBoxes((prev) =>
-      Object.fromEntries(Object.entries(prev).filter(([key]) => windowIds.includes(key)))
+      Object.fromEntries(
+        Object.entries(prev).filter(([key]) => windowIds.includes(key))
+      )
     );
-  }, [windowIds]);
-
-  useEffect(() => {
     setVentBoundingBoxes((prev) =>
-      Object.fromEntries(Object.entries(prev).filter(([key]) => ventIds.includes(key)))
+      Object.fromEntries(
+        Object.entries(prev).filter(([key]) => ventIds.includes(key))
+      )
     );
-  }, [ventIds]);
+  }, [doors, windows, vents]);
 
   return (
     <div
