@@ -1,14 +1,30 @@
 import React from 'react';
 import GenericDoor from './GenericDoor';
 
+const Lhr = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    customPosition={[0.99, 1.63, -0.0]}
+  />
+);
+
+const LhrGlass = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    customPosition={[0.99, 1.63, -0.0]}
+  />
+);
+
 const LhrSecurity = ({ component, onBoundingBoxChange }) => (
   <GenericDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.559, 1.43, -0.03]}
-    customRotation={[-Math.PI / 2, 0, 0]}
-    customScale={[-1, 1, 1]}
+    customPosition={[0.99, 1.63, -0.0]}
   />
 );
 
@@ -17,9 +33,25 @@ const LhrSecurityGlass = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.559, 1.43, -0.03]}
-    customRotation={[-Math.PI / 2, 0, 0]}
-    customScale={[-1, 1, 1]}
+    customPosition={[0.99, 1.63, -0.0]}
+  />
+);
+
+const Rhr = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    customPosition={[0.99, 1.63, -0.0]}
+  />
+);
+
+const RhrGlass = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    customPosition={[0.99, 1.63, -0.0]}
   />
 );
 
@@ -28,8 +60,7 @@ const RhrSecurity = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.559, 1.43, -0.03]}
-    customRotation={[-Math.PI / 2, 0, 0]}
+    customPosition={[0.99, 1.63, -0.0]}
   />
 );
 
@@ -38,8 +69,7 @@ const RhrSecurityGlass = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.559, 1.43, -0.03]}
-    customRotation={[-Math.PI / 2, 0, 0]}
+    customPosition={[0.99, 1.63, -0.0]}
   />
 );
 
@@ -157,6 +187,30 @@ const EcHcRollup10 = ({ component, onBoundingBoxChange }) => (
   />
 );
 
+const EcHcRollup12 = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    customPosition={[4.578, 2.03, -0.082]}
+    customRotation={[-Math.PI, 0, -Math.PI]}
+    customScale={1.2}
+    isRollup
+  />
+);
+
+const EcHcRollup15 = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    customPosition={[4.578, 2.03, -0.082]}
+    customRotation={[-Math.PI, 0, -Math.PI]}
+    customScale={1.2}
+    isRollup
+  />
+);
+
 const EcStRollup6 = ({ component, onBoundingBoxChange }) => (
   <GenericDoor
     component={component}
@@ -218,8 +272,12 @@ const EcStRollup15 = ({ component, onBoundingBoxChange }) => (
 );
 
 export {
+  Lhr,
+  LhrGlass,
   LhrSecurity,
   LhrSecurityGlass,
+  Rhr,
+  RhrGlass,
   RhrSecurity,
   RhrSecurityGlass,
   Double,
@@ -232,6 +290,8 @@ export {
   EcHcRollup6,
   EcHcRollup8,
   EcHcRollup10,
+  EcHcRollup12,
+  EcHcRollup15,
   EcStRollup6,
   EcStRollup8,
   EcStRollup10,

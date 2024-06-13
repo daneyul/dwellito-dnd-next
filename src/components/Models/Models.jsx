@@ -175,6 +175,10 @@ export function Models() {
         const doorName = doors[index]?.name;
 
         if (
+          doorName === COMPONENT_NAMES.PERSONNEL_LHR ||
+          doorName === COMPONENT_NAMES.PERSONNEL_RHR ||
+          doorName === COMPONENT_NAMES.PERSONNEL_LHR_GLASS ||
+          doorName === COMPONENT_NAMES.PERSONNEL_RHR_GLASS ||
           doorName === COMPONENT_NAMES.PERSONNEL_LHR_SECURITY ||
           doorName === COMPONENT_NAMES.PERSONNEL_RHR_SECURITY ||
           doorName === COMPONENT_NAMES.PERSONNEL_LHR_SECURITY_GLASS ||
@@ -182,7 +186,7 @@ export function Models() {
         ) {
           updatedData = {
             ...updatedData,
-            size: new Vector3(data.size.x, data.size.y - 3, data.size.z),
+            size: new Vector3(data.size.x - 2, data.size.y - 3, data.size.z),
             center: new Vector3(
               data.center.x,
               data.center.y - 2,

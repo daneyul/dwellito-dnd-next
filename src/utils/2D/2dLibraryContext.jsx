@@ -35,8 +35,8 @@ export const Library2dDataProvider = ({ children }) => {
         },
         FLOOR_PLAN: {
           WIDTH: 118,
-          HEIGHT: 96
-        }
+          HEIGHT: 96,
+        },
       },
       TWENTY: {
         THREE_D: {
@@ -56,8 +56,8 @@ export const Library2dDataProvider = ({ children }) => {
         },
         FLOOR_PLAN: {
           WIDTH: 238.5,
-          HEIGHT: 96
-        }
+          HEIGHT: 96,
+        },
       },
       FORTY: {
         THREE_D: {
@@ -77,11 +77,19 @@ export const Library2dDataProvider = ({ children }) => {
         },
         FLOOR_PLAN: {
           WIDTH: 480,
-          HEIGHT: 96
-        }
+          HEIGHT: 96,
+        },
       },
     },
     DOOR: {
+      PERSONNEL: {
+        WIDTH: 44,
+        HEIGHT: 95,
+        POSITION: {
+          x: 0,
+          y: 7,
+        },
+      },
       PERSONNEL_SECURITY: {
         WIDTH: 46,
         HEIGHT: 95,
@@ -152,15 +160,15 @@ export const Library2dDataProvider = ({ children }) => {
         POSITION: {
           x: 0,
           y: 17,
-        }
-      }, 
+        },
+      },
       EC_HC_ROLLUP_8_74: {
         WIDTH: 100,
         HEIGHT: 90,
         POSITION: {
           x: 0,
           y: 17,
-        }
+        },
       },
       EC_HC_ROLLUP_10_74: {
         WIDTH: 124,
@@ -168,7 +176,23 @@ export const Library2dDataProvider = ({ children }) => {
         POSITION: {
           x: 0,
           y: 17,
-        }
+        },
+      },
+      EC_HC_ROLLUP_12_74: {
+        WIDTH: 148,
+        HEIGHT: 90,
+        POSITION: {
+          x: 0,
+          y: 17,
+        },
+      },
+      EC_HC_ROLLUP_15_74: {
+        WIDTH: 184,
+        HEIGHT: 90,
+        POSITION: {
+          x: 0,
+          y: 17,
+        },
       },
       EC_ST_ROLLUP_6_64: {
         WIDTH: 76,
@@ -176,7 +200,7 @@ export const Library2dDataProvider = ({ children }) => {
         POSITION: {
           x: 0,
           y: 46,
-        }
+        },
       },
       EC_ST_ROLLUP_8_64: {
         WIDTH: 100,
@@ -184,7 +208,7 @@ export const Library2dDataProvider = ({ children }) => {
         POSITION: {
           x: 0,
           y: 46,
-        }
+        },
       },
       EC_ST_ROLLUP_10_64: {
         WIDTH: 124,
@@ -192,7 +216,7 @@ export const Library2dDataProvider = ({ children }) => {
         POSITION: {
           x: 0,
           y: 46,
-        }
+        },
       },
       EC_ST_ROLLUP_12_64: {
         WIDTH: 148,
@@ -200,7 +224,7 @@ export const Library2dDataProvider = ({ children }) => {
         POSITION: {
           x: 0,
           y: 46,
-        }
+        },
       },
       EC_ST_ROLLUP_15_64: {
         WIDTH: 184,
@@ -208,7 +232,7 @@ export const Library2dDataProvider = ({ children }) => {
         POSITION: {
           x: 0,
           y: 46,
-        }
+        },
       },
     },
     WINDOW: {
@@ -258,7 +282,7 @@ export const Library2dDataProvider = ({ children }) => {
     SCALE_FACTOR: 2.5,
     GRID_SIZE: 1,
     BOUNDARIES: {
-      x: 24,
+      x: 18,
     },
   };
 
@@ -275,7 +299,7 @@ export const Library2dDataProvider = ({ children }) => {
       sqFootage: '80 sq ft',
       scThumbnail: '10/standard/right.svg',
       hcThumbnail: '10/standard/right.svg',
-      floorPlan: '10/floor-plan.svg'
+      floorPlan: '10/floor-plan.svg',
     },
     {
       name: `20' Custom Cube`,
@@ -286,7 +310,7 @@ export const Library2dDataProvider = ({ children }) => {
       sqFootage: '160 sq ft',
       scThumbnail: '20/standard/right.svg',
       hcThumbnail: '20/high/right.svg',
-      floorPlan: '20/floor-plan.svg'
+      floorPlan: '20/floor-plan.svg',
     },
     {
       name: `40' Custom Cube`,
@@ -297,11 +321,39 @@ export const Library2dDataProvider = ({ children }) => {
       sqFootage: '320 sq ft',
       scThumbnail: '40/standard/right.svg',
       hcThumbnail: '40/high/right.svg',
-      floorPlan: '40/floor-plan.svg'
+      floorPlan: '40/floor-plan.svg',
     },
   ];
 
   const componentData = [
+    {
+      name: COMPONENT_NAMES.PERSONNEL_LHR,
+      position: {
+        x: DIMENSIONS.DOOR.PERSONNEL.POSITION.x,
+        y: DIMENSIONS.DOOR.PERSONNEL.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/lhr.svg`,
+      desc: 'P202-1-101',
+      objWidth: DIMENSIONS.DOOR.PERSONNEL.WIDTH,
+      objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 2000,
+      model: 'LHR Personnel Door Hardware and Lock Box 36in x 80in',
+    },
+    {
+      name: COMPONENT_NAMES.PERSONNEL_LHR_GLASS,
+      position: {
+        x: DIMENSIONS.DOOR.PERSONNEL.POSITION.x,
+        y: DIMENSIONS.DOOR.PERSONNEL.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/lhr-glass.svg`,
+      desc: 'P202-1-101',
+      objWidth: DIMENSIONS.DOOR.PERSONNEL.WIDTH,
+      objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 2000,
+      model: 'LHR Personnel Door Window Lite Kit for Door 24inx30in Clear Glass',
+    },
     {
       name: COMPONENT_NAMES.PERSONNEL_LHR_SECURITY,
       position: {
@@ -314,7 +366,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.PERSONNEL_SECURITY.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2000,
-      model: 'SM_PDoor_LockBoxLHR_01',
+      model: 'LHR Personnel Door Hardware and Lock Box 36in x 80in',
     },
     {
       name: COMPONENT_NAMES.PERSONNEL_LHR_SECURITY_GLASS,
@@ -328,7 +380,37 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.PERSONNEL_SECURITY.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2000,
-      model: 'SM_PDoor_LockBoxLHR_Glass02',
+      model:
+        'LHR Personnel Door w Hardware and Lock Box 36inx 80in Window Lite Kit for Door 24inx30in Clear Glass',
+    },
+    {
+      name: COMPONENT_NAMES.PERSONNEL_RHR,
+      position: {
+        x: DIMENSIONS.DOOR.PERSONNEL.POSITION.x,
+        y: DIMENSIONS.DOOR.PERSONNEL.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/rhr.svg`,
+      desc: 'P202-1-203',
+      objWidth: DIMENSIONS.DOOR.PERSONNEL.WIDTH,
+      objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 2000,
+      model: 'RHR Personnel Door',
+    },
+    {
+      name: COMPONENT_NAMES.PERSONNEL_RHR_GLASS,
+      position: {
+        x: DIMENSIONS.DOOR.PERSONNEL.POSITION.x,
+        y: DIMENSIONS.DOOR.PERSONNEL.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/rhr-glass.svg`,
+      desc: 'P202-1-203',
+      objWidth: DIMENSIONS.DOOR.PERSONNEL.WIDTH,
+      objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 2000,
+      model:
+        'RHR Personnel Door Window Lite Kit for Door 24inx30in Clear Glass',
     },
     {
       name: COMPONENT_NAMES.PERSONNEL_RHR_SECURITY,
@@ -342,7 +424,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.PERSONNEL_SECURITY.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2000,
-      model: 'SM_PDoor_LockBoxRHR_01',
+      model: 'RHR Personnel Door Hardware and Lock Box 36in x 80in',
     },
     {
       name: COMPONENT_NAMES.PERSONNEL_RHR_SECURITY_GLASS,
@@ -356,7 +438,8 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.PERSONNEL_SECURITY.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2000,
-      model: 'SM_PDoor_LockBoxRHR_Glass02',
+      model:
+        'RHR Personnel Door w Hardware and Lock Box 36inx 80in Window Lite Kit for Door 24inx30in Clear Glass',
     },
     {
       name: COMPONENT_NAMES.SLIDING_GLASS_6,
@@ -414,7 +497,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.HD_ROLL_UP_8.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Heavy Duty Roll Up Door 96in x 88in - 104in x 104in",
+      model: 'Heavy Duty Roll Up Door 96in x 88in - 104in x 104in',
       highContainerOnly: true,
       isRollUp: true,
     },
@@ -430,7 +513,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.HD_ROLL_UP_10.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Heavy Duty Roll Up Door 120in x 88in - 128in x 104in",
+      model: 'Heavy Duty Roll Up Door 120in x 88in - 128in x 104in',
       highContainerOnly: true,
       isRollUp: true,
     },
@@ -446,7 +529,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.HD_ROLL_UP_12.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Heavy Duty Roll Up Door 144in x 88in - 152in x 104in",
+      model: 'Heavy Duty Roll Up Door 144in x 88in - 152in x 104in',
       highContainerOnly: true,
       isRollUp: true,
     },
@@ -462,7 +545,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.HD_ROLL_UP_15.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Heavy Duty Roll Up Door 180in x 88in - 188in x 104in",
+      model: 'Heavy Duty Roll Up Door 180in x 88in - 188in x 104in',
       highContainerOnly: true,
       isRollUp: true,
     },
@@ -478,7 +561,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.EC_HC_ROLLUP_6_74.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Economy_Rollup_Door - 6ft - 72in x 88in - 76in x 90in",
+      model: 'Economy_Rollup_Door - 6ft - 72in x 88in - 76in x 90in',
       highContainerOnly: true,
       isRollUp: true,
     },
@@ -494,7 +577,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.EC_HC_ROLLUP_8_74.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Economy_Rollup_Door - 8ft - 96in x 88in - 100in x 90in",
+      model: 'Economy_Rollup_Door - 8ft - 96in x 88in - 100in x 90in',
       highContainerOnly: true,
       isRollUp: true,
     },
@@ -510,7 +593,39 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.EC_HC_ROLLUP_10_74.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Economy_Rollup_Door - 10ft - 120in x 88in - 124in x 90in",
+      model: 'Economy_Rollup_Door - 10ft - 120in x 88in - 124in x 90in',
+      highContainerOnly: true,
+      isRollUp: true,
+    },
+    {
+      name: COMPONENT_NAMES.EC_HC_ROLLUP_12_74,
+      position: {
+        x: DIMENSIONS.DOOR.EC_HC_ROLLUP_12_74.POSITION.x,
+        y: DIMENSIONS.DOOR.EC_HC_ROLLUP_12_74.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/ec-hc-rollup-12-7_4.svg`,
+      desc: COMPONENT_NAMES.EC_HC_ROLLUP_12_74,
+      objWidth: DIMENSIONS.DOOR.EC_HC_ROLLUP_12_74.WIDTH,
+      objHeight: DIMENSIONS.DOOR.EC_HC_ROLLUP_12_74.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 2625,
+      model: 'Economy_Rollup_Door - 12ft - 144in x 88in - 148 x 90in',
+      highContainerOnly: true,
+      isRollUp: true,
+    },
+    {
+      name: COMPONENT_NAMES.EC_HC_ROLLUP_15_74,
+      position: {
+        x: DIMENSIONS.DOOR.EC_HC_ROLLUP_15_74.POSITION.x,
+        y: DIMENSIONS.DOOR.EC_HC_ROLLUP_15_74.POSITION.y,
+      },
+      imgName: `${COMPONENT_TYPES.DOOR}/ec-hc-rollup-15-7_4.svg`,
+      desc: COMPONENT_NAMES.EC_HC_ROLLUP_15_74,
+      objWidth: DIMENSIONS.DOOR.EC_HC_ROLLUP_15_74.WIDTH,
+      objHeight: DIMENSIONS.DOOR.EC_HC_ROLLUP_15_74.HEIGHT,
+      objType: COMPONENT_TYPES.DOOR,
+      price: 2625,
+      model: 'Economy_Rollup_Door - 15ft - 180in x 88in - 184in x 90in',
       highContainerOnly: true,
       isRollUp: true,
     },
@@ -526,7 +641,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.EC_ST_ROLLUP_6_64.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Economy_Rollup_Door - 6ft - 72in x 76in - 76in x 78in",
+      model: 'Economy_Rollup_Door - 6ft - 72in x 76in - 76in x 78in',
       isRollUp: true,
     },
     {
@@ -541,7 +656,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.EC_ST_ROLLUP_8_64.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Economy_Rollup_Door - 8ft - 80in x 76in - 84in x 78in",
+      model: 'Economy_Rollup_Door - 8ft - 80in x 76in - 84in x 78in',
       isRollUp: true,
     },
     {
@@ -556,7 +671,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.EC_ST_ROLLUP_10_64.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Economy_Rollup_Door - 10ft ST - 120in x 76in - 124in x 78in",
+      model: 'Economy_Rollup_Door - 10ft ST - 120in x 76in - 124in x 78in',
       isRollUp: true,
     },
     {
@@ -571,7 +686,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.EC_ST_ROLLUP_12_64.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Economy_Rollup_Door - 12ft - 144in x 76in - 148in x 78in",
+      model: 'Economy_Rollup_Door - 12ft - 144in x 76in - 148in x 78in',
       isRollUp: true,
     },
     {
@@ -586,7 +701,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.EC_ST_ROLLUP_15_64.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Economy_Rollup_Door - 15ft - 180in x 76in - 184in x 78in",
+      model: 'Economy_Rollup_Door - 15ft - 180in x 76in - 184in x 78in',
       isRollUp: true,
     },
     {
@@ -705,7 +820,7 @@ export const Library2dDataProvider = ({ children }) => {
     {
       name: ELEVATION_NAMES.BACK,
       imgScName: 'elevation/10/standard/back.svg',
-      homePlan:CONTAINER_10_SLUG,
+      homePlan: CONTAINER_10_SLUG,
       objWidth: DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH,
       objScHeight: DIMENSIONS.CONTAINER.TEN.FRONT.SC_HEIGHT,
       objHcHeight: DIMENSIONS.CONTAINER.TEN.FRONT.HC_HEIGHT,

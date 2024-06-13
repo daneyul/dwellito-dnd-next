@@ -5,12 +5,14 @@ export const COMPONENT_TYPES = {
 };
 
 export const COMPONENT_NAMES = {
-  PERSONNEL_LHR: `Personnel Door LHR`,
-  PERSONNEL_LHR_SECURITY: `Personnel Door w/Hardware and Lock Box LHR`,
-  PERSONNEL_LHR_SECURITY_GLASS: `Personnel Door w/Hardware and Lock Box and Glass LHR`,
-  PERSONNEL_RHR: `Personnel Door RHR`,
-  PERSONNEL_RHR_SECURITY: `Personnel Door w/Hardware and Lock Box RHR`,
-  PERSONNEL_RHR_SECURITY_GLASS: `Personnel Door w/Hardware and Lock Box and Glass RHR`,
+  PERSONNEL_LHR: `LHR Personnel Door`,
+  PERSONNEL_LHR_GLASS: `LHR Personnel Door Window Lite Kit for Door 24inx30in Clear Glass`,
+  PERSONNEL_LHR_SECURITY: `LHR Personnel Door Hardware and Lock Box 36in x 80in`,
+  PERSONNEL_LHR_SECURITY_GLASS: `LHR Personnel Door w Hardware and Lock Box 36inx 80in Window Lite Kit for Door 24inx30in Clear Glass`,
+  PERSONNEL_RHR: `RHR Personnel Door`,
+  PERSONNEL_RHR_GLASS: `RHR Personnel Door Window Lite Kit for Door 24inx30in Clear Glass`,
+  PERSONNEL_RHR_SECURITY: `RHR Personnel Door Hardware and Lock Box 36in x 80in`,
+  PERSONNEL_RHR_SECURITY_GLASS: `RHR Personnel Door w Hardware and Lock Box 36inx 80in Window Lite Kit for Door 24inx30in Clear Glass`,
   DOUBLE_DOOR: 'Double Door',
   SLIDING_GLASS_5: "5' Wide Sliding Glass Door",
   SLIDING_GLASS_6: "6' Wide Sliding Glass Door",

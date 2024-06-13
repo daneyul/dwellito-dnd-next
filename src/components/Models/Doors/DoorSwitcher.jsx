@@ -1,6 +1,8 @@
 import {
   Double,
   EcHcRollup10,
+  EcHcRollup12,
+  EcHcRollup15,
   EcHcRollup6,
   EcHcRollup8,
   EcStRollup10,
@@ -13,21 +15,34 @@ import {
   HdRollup15,
   HdRollup6,
   HdRollup8,
+  Lhr,
+  LhrGlass,
   LhrSecurity,
   LhrSecurityGlass,
+  Rhr,
+  RhrGlass,
   RhrSecurity,
   RhrSecurityGlass,
-  Rollup10,
-  Rollup12,
-  Rollup15,
-  Rollup6,
-  Rollup8,
   Sliding6,
 } from './SpecificDoors';
 import { COMPONENT_NAMES } from '@/utils/constants';
 
 export default function Door({ onBoundingBoxChange, component }) {
   switch (component.name) {
+    case COMPONENT_NAMES.PERSONNEL_LHR:
+      return (
+        <Lhr
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.PERSONNEL_LHR_GLASS:
+      return (
+        <LhrGlass
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
     case COMPONENT_NAMES.PERSONNEL_LHR_SECURITY:
       return (
         <LhrSecurity
@@ -38,6 +53,20 @@ export default function Door({ onBoundingBoxChange, component }) {
     case COMPONENT_NAMES.PERSONNEL_LHR_SECURITY_GLASS:
       return (
         <LhrSecurityGlass
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.PERSONNEL_RHR:
+      return (
+        <Rhr
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.PERSONNEL_RHR_GLASS:
+      return (
+        <RhrGlass
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
@@ -122,6 +151,20 @@ export default function Door({ onBoundingBoxChange, component }) {
     case COMPONENT_NAMES.EC_HC_ROLLUP_10_74:
       return (
         <EcHcRollup10
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.EC_HC_ROLLUP_12_74:
+      return (
+        <EcHcRollup12
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.EC_HC_ROLLUP_15_74:
+      return (
+        <EcHcRollup15
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
