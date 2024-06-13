@@ -107,7 +107,6 @@ const GenericDoor = React.memo(
     const meshKeys = Object.keys(nodes).filter(
       (nodeKey) => nodes[nodeKey].isMesh
     );
-    console.log(exteriorPaint);
 
     return (
       <group

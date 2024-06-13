@@ -160,7 +160,7 @@ export function Models() {
         controls.removeEventListener('end', stopOrbiting);
       };
     }
-  }, [orbitRef, showExterior]);
+  }, [showExterior]);
 
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
   const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
@@ -287,7 +287,7 @@ export function Models() {
         Object.entries(prev).filter(([key]) => ventIds.includes(key))
       )
     );
-  }, [doors, windows, vents]);
+  }, [selectedComponents]);
 
   return (
     <div
@@ -357,7 +357,7 @@ export function Models() {
           />
         </AccumulativeShadows>
         <Environment files='/adamsbridge.hdr' />
-        <EffectComposer disableNormalPass multisampling={0}>
+        {/* <EffectComposer disableNormalPass multisampling={0}>
           <N8AO
             halfRes
             color='black'
@@ -367,8 +367,8 @@ export function Models() {
             denoiseSamples={4}
           />
           <SMAA />
-        </EffectComposer>
-        <CameraRig />
+        </EffectComposer> */}
+        {/* <CameraRig /> */}
         <OrbitControls
           makeDefault
           ref={orbitRef}
