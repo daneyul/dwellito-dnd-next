@@ -161,15 +161,6 @@ export default function ContainerShell20Standard() {
             castShadow
             receiveShadow
             geometry={
-              rearTopPlywoodNodes['20FT_Blank_PlywoodWall_RearTop_01_1']
-                .geometry
-            }
-            material={rearTopPlywoodMaterials['Black_Vinyl.002']}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
               rearTopPlywoodNodes['20FT_Blank_PlywoodWall_RearTop_01_2']
                 .geometry
             }
@@ -188,14 +179,6 @@ export default function ContainerShell20Standard() {
           rotation={[-Math.PI / 2, 0, 0]}
           scale={0.01}
         >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              rearTopDrywallNodes['20FT_Blank_DryWall_RearTop_01'].geometry
-            }
-            material={rearTopDrywallMaterials['Black_Rubber_01.002']}
-          />
           <mesh
             castShadow
             receiveShadow

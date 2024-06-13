@@ -15,35 +15,35 @@ import { COMPONENT_NAMES } from '@/utils/constants';
 
 export default function Door({ onBoundingBoxChange, component }) {
   switch (component.name) {
-    case COMPONENT_NAMES.PERSONNEL_DOOR_LHR_SECURITY:
+    case COMPONENT_NAMES.PERSONNEL_LHR_SECURITY:
       return (
         <LhrSecurity
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.PERSONNEL_DOOR_LHR_SECURITY_GLASS:
+    case COMPONENT_NAMES.PERSONNEL_LHR_SECURITY_GLASS:
       return (
         <LhrSecurityGlass
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.PERSONNEL_DOOR_RHR_SECURITY:
+    case COMPONENT_NAMES.PERSONNEL_RHR_SECURITY:
       return (
         <RhrSecurity
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.PERSONNEL_DOOR_RHR_SECURITY_GLASS:
+    case COMPONENT_NAMES.PERSONNEL_RHR_SECURITY_GLASS:
       return (
         <RhrSecurityGlass
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.SLIDING_GLASS_DOOR_6:
+    case COMPONENT_NAMES.SLIDING_GLASS_6:
       return (
         <Sliding6
           component={component}
@@ -57,35 +57,35 @@ export default function Door({ onBoundingBoxChange, component }) {
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.ROLL_UP_DOOR_6:
+    case COMPONENT_NAMES.ROLL_UP_6:
       return (
         <Rollup6
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.ROLL_UP_DOOR_8:
+    case COMPONENT_NAMES.ROLL_UP_8:
       return (
         <Rollup8
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.ROLL_UP_DOOR_10:
+    case COMPONENT_NAMES.ROLL_UP_10:
       return (
         <Rollup10
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.ROLL_UP_DOOR_12:
+    case COMPONENT_NAMES.ROLL_UP_12:
       return (
         <Rollup12
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.ROLL_UP_DOOR_15:
+    case COMPONENT_NAMES.ROLL_UP_15:
       return (
         <Rollup15
           component={component}

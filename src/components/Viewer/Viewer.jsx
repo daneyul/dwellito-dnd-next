@@ -32,7 +32,7 @@ const Viewer = () => {
     selectedContainer,
     scaleFactor,
   } = useContext(PageDataContext);
-  const { DIMENSIONS, ELEVATION_NAMES } = useContext(Library2dDataContext);
+  const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const LeftArrow = () => {
     return (

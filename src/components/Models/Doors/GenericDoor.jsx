@@ -23,7 +23,7 @@ const GenericDoor = React.memo(
     const { nodes, materials } = useGLTF(modelPath);
     const { selectedComponents, selectedContainer, scaleFactor } =
       useContext(PageDataContext);
-    const { elevationData, ELEVATION_NAMES, DIMENSIONS } =
+    const { elevationData, DIMENSIONS } =
       useContext(Library2dDataContext);
     const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
     const selectedElevation = component.elevation[0];

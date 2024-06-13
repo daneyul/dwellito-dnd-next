@@ -175,10 +175,10 @@ export function Models() {
         const doorName = doors[index]?.name;
 
         if (
-          doorName === COMPONENT_NAMES.PERSONNEL_DOOR_LHR_SECURITY ||
-          doorName === COMPONENT_NAMES.PERSONNEL_DOOR_RHR_SECURITY ||
-          doorName === COMPONENT_NAMES.PERSONNEL_DOOR_LHR_SECURITY_GLASS ||
-          doorName === COMPONENT_NAMES.PERSONNEL_DOOR_RHR_SECURITY_GLASS
+          doorName === COMPONENT_NAMES.PERSONNEL_LHR_SECURITY ||
+          doorName === COMPONENT_NAMES.PERSONNEL_RHR_SECURITY ||
+          doorName === COMPONENT_NAMES.PERSONNEL_LHR_SECURITY_GLASS ||
+          doorName === COMPONENT_NAMES.PERSONNEL_RHR_SECURITY_GLASS
         ) {
           updatedData = {
             ...updatedData,
