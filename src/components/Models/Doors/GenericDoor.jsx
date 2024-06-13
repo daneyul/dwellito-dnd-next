@@ -1,21 +1,18 @@
-/* eslint-disable react/display-name */
-import { PageDataContext } from '@/components/Content/Content';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
-import { checkDistance } from '@/utils/2D/utils';
-import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
-import { preloadGLTFModel } from '@/utils/3D/preloadGLTFModel';
-import { calcPosition, calcRotation } from '@/utils/3D/utils';
-import { useGLTF } from '@react-three/drei';
 import React, { useContext, useEffect, useMemo, useRef } from 'react';
 import { Box3, Vector3 } from 'three';
+import { useGLTF } from '@react-three/drei';
+import { PageDataContext } from '@/components/Content/Content';
+import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
+import { checkDistance } from '@/utils/2D/utils';
+import { preloadGLTFModel } from '@/utils/3D/preloadGLTFModel';
+import { calcPosition, calcRotation } from '@/utils/3D/utils';
 
 const GenericDoor = React.memo(
   ({
     component,
     onBoundingBoxChange,
     modelPath,
-    geometryNodes,
-    materialNodes,
     customPosition,
     customRotation,
     customScale,
@@ -91,15 +88,21 @@ const GenericDoor = React.memo(
           scale={customScale}
         >
           <group scale={0.01}>
-            {geometryNodes.map((node, index) => (
-              <mesh
-                key={index}
-                castShadow
-                receiveShadow
-                geometry={nodes[node].geometry}
-                material={materials[materialNodes[index]]}
-              />
-            ))}
+            {Object.keys(nodes).map((nodeKey) => {
+              const node = nodes[nodeKey];
+              if (node.isMesh) {
+                return (
+                  <mesh
+                    key={nodeKey}
+                    castShadow
+                    receiveShadow
+                    geometry={node.geometry}
+                    material={materials[node.material.name]}
+                  />
+                );
+              }
+              return null;
+            })}
           </group>
         </group>
       </group>

@@ -14,15 +14,13 @@ const GenericVent = React.memo(
     component,
     onBoundingBoxChange,
     modelPath,
-    geometryNodes,
-    materialNodes,
     customPosition,
     customRotation,
   }) => {
     const { nodes, materials } = useGLTF(modelPath);
     const { selectedComponents, selectedContainer, scaleFactor } =
       useContext(PageDataContext);
-    const { elevationData, ELEVATION_NAMES, DIMENSIONS } =
+    const { elevationData, DIMENSIONS } =
       useContext(Library2dDataContext);
     const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
     const selectedElevation = component.elevation[0];
@@ -75,16 +73,23 @@ const GenericVent = React.memo(
         rotation={rotation}
       >
         <group position={customPosition} rotation={customRotation}>
-          {geometryNodes.map((node, index) => (
-            <mesh
-              key={index}
-              castShadow
-              receiveShadow
-              geometry={nodes[node].geometry}
-              material={materials[materialNodes[index]]}
-              scale={0.01}
-            />
-          ))}
+          {Object.keys(nodes).map((nodeKey) => {
+            const node = nodes[nodeKey];
+            if (node.isMesh) {
+              const material = materials[node.material.name];
+              return (
+                <mesh
+                  key={nodeKey}
+                  castShadow
+                  receiveShadow
+                  geometry={node.geometry}
+                  material={material || materials.default}
+                  scale={0.01}
+                />
+              );
+            }
+            return null;
+          })}
         </group>
       </group>
     );

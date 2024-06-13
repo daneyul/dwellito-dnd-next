@@ -370,7 +370,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.SLIDING_SIX.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 3025,
-      model: 'SM_Wide_Sliding_Glass_6feet',
+      model: 'SM_Wide_Sliding_Glass_Door_6feet',
     },
     {
       name: COMPONENT_NAMES.DOUBLE_DOOR,
@@ -518,7 +518,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.EC_ST_ROLLUP_6_64.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2625,
-      model: "Economy_Rollup_Door - 6ft - 76in x 78in - 76in x 78in"
+      model: "Economy_Rollup_Door - 6ft - 72in x 76in - 76in x 78in"
     },
     {
       name: COMPONENT_NAMES.EC_ST_ROLLUP_8_64,

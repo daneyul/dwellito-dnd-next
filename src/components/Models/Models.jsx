@@ -23,7 +23,7 @@ import { CsgGeometries } from './Containers/CsgGeometries';
 import { PageDataContext } from '../Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
-import { COMPONENT_NAMES, COMPONENT_TYPES } from '@/utils/constants';
+import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES } from '@/utils/constants';
 import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
 import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
 import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
@@ -39,7 +39,7 @@ export function Models() {
     setThreeDModelLoaded,
     containerHeightIsStandard
   } = useContext(PageDataContext);
-  const { containerData, ELEVATION_NAMES } = useContext(Library2dDataContext);
+  const { containerData } = useContext(Library2dDataContext);
 
   const { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } =
     useContext(Library3dDataContext);
