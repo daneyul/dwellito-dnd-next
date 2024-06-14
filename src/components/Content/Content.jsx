@@ -127,7 +127,7 @@ const PageDataProvider = ({ children, data }) => {
       exteriorFinish.price +
       flooring.price;
     setOrderTotal(total);
-  }, [selectedComponents, interiorFinish]);
+  }, [selectedComponents, interiorFinish, exteriorFinish, flooring]);
 
   // For each elevation change, reset the isSelected state for all components
   useEffect(() => {
@@ -153,6 +153,8 @@ const PageDataProvider = ({ children, data }) => {
 
   // Deselect components when clicking outside the component
   useEffect(() => {
+    if (show3d) return;
+    
     function handleClickOutside(event) {
       const isInsideDraggable = Object.values(draggableRefs).some(
         (ref) => ref.current && ref.current.contains(event.target)

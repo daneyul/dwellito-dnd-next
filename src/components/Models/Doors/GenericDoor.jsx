@@ -19,22 +19,10 @@ const GenericDoor = React.memo(
     isRollUp,
   }) => {
     const { nodes, materials } = useGLTF(modelPath);
-    const {
-      selectedComponents,
-      selectedContainer,
-      scaleFactor,
-      exteriorFinish,
-    } = useContext(PageDataContext);
+    const { selectedComponents, selectedContainer, scaleFactor } =
+      useContext(PageDataContext);
     const { elevationData, DIMENSIONS } = useContext(Library2dDataContext);
-    const {
-      SCALE_FACTOR_FOR_CALCULATIONS,
-      redPaint,
-      whitePaint,
-      greenPaint,
-      bluePaint,
-      slateGreyPaint,
-      beigePaint,
-    } = useContext(Library3dDataContext);
+    const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
     const selectedElevation = component.elevation[0];
     const distanceObject = checkDistance({
       component,
@@ -44,32 +32,6 @@ const GenericDoor = React.memo(
       scaleFactor,
     });
     const ref = useRef();
-
-    const exteriorPaint = useMemo(() => {
-      switch (exteriorFinish.name) {
-        case 'Red':
-          return redPaint[exteriorFinish.glbObject];
-        case 'White':
-          return whitePaint[exteriorFinish.glbObject];
-        case 'Green':
-          return greenPaint[exteriorFinish.glbObject];
-        case 'Blue':
-          return bluePaint[exteriorFinish.glbObject];
-        case 'Slate Grey':
-          return slateGreyPaint[exteriorFinish.glbObject];
-        case 'Beige':
-          return beigePaint[exteriorFinish.glbObject];
-        default:
-          return null;
-      }
-    }, [
-      exteriorFinish,
-      redPaint,
-      whitePaint,
-      greenPaint,
-      bluePaint,
-      slateGreyPaint,
-    ]);
 
     const rotation = useMemo(
       () => [
@@ -131,10 +93,6 @@ const GenericDoor = React.memo(
           <group scale={0.01}>
             {meshKeys.map((nodeKey) => {
               const node = nodes[nodeKey];
-              const material =
-                isRollUp
-                  ? exteriorPaint
-                  : materials[node.material.name];
               return (
                 <mesh
                   key={nodeKey}

@@ -10,6 +10,9 @@ export function CsgGeometries({
   doorBoundingBoxes,
   windowBoundingBoxes,
   ventBoundingBoxes,
+  doors,
+  windows,
+  vents
 }) {
   const { containerData, DIMENSIONS } = useContext(Library2dDataContext);
   const {
@@ -124,61 +127,67 @@ export function CsgGeometries({
   ]);
 
   const doorBoundingBoxGeometries = useMemo(() => {
-    return Object.entries(doorBoundingBoxes).map(([id, bbox]) => (
-      <group key={id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
-        <Subtraction>
-          {/* Geometry with bounding box size */}
-          <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
-          <mesh>
-            {/* Material applied to a mesh, not directly in Subtraction */}
-            <meshStandardMaterial
-              attach='material'
-              color='white'
-              side={THREE.DoubleSide}
-            />
-          </mesh>
-        </Subtraction>
-      </group>
-    ));
-  }, [doorBoundingBoxes]);
+    return doors.map((door, index) => {
+      const bbox = doorBoundingBoxes[index];
+      if (!bbox) return null; // Ensure bbox is defined
+      return (
+        <group key={door.id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
+          <Subtraction>
+            <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
+            <mesh>
+              <meshStandardMaterial
+                attach='material'
+                color='white'
+                side={THREE.DoubleSide}
+              />
+            </mesh>
+          </Subtraction>
+        </group>
+      );
+    });
+  }, [doors, doorBoundingBoxes]);
 
   const windowBoundingBoxGeometries = useMemo(() => {
-    return Object.entries(windowBoundingBoxes).map(([id, bbox]) => (
-      <group key={id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
-        <Subtraction>
-          {/* Geometry with bounding box size */}
-          <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
-          <mesh>
-            {/* Material applied to a mesh, not directly in Subtraction */}
-            <meshStandardMaterial
-              attach='material'
-              color='white'
-              side={THREE.DoubleSide}
-            />
-          </mesh>
-        </Subtraction>
-      </group>
-    ));
-  }, [windowBoundingBoxes]);
+    return windows.map((window, index) => {
+      const bbox = windowBoundingBoxes[index];
+      if (!bbox) return null; // Ensure bbox is defined
+      return (
+        <group key={window.id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
+          <Subtraction>
+            <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
+            <mesh>
+              <meshStandardMaterial
+                attach='material'
+                color='white'
+                side={THREE.DoubleSide}
+              />
+            </mesh>
+          </Subtraction>
+        </group>
+      );
+    });
+  }, [windows, windowBoundingBoxes]);
 
   const ventBoundingBoxGeometries = useMemo(() => {
-    return Object.entries(ventBoundingBoxes).map(([id, bbox]) => (
-      <group key={id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
-        <Subtraction>
-          {/* Geometry with bounding box size */}
-          <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
-          <mesh>
-            {/* Material applied to a mesh, not directly in Subtraction */}
-            <meshStandardMaterial
-              attach='material'
-              color='white'
-              side={THREE.DoubleSide}
-            />
-          </mesh>
-        </Subtraction>
-      </group>
-    ));
-  }, [ventBoundingBoxes]);
+    return vents.map((vent, index) => {
+      const bbox = ventBoundingBoxes[index];
+      if (!bbox) return null; // Ensure bbox is defined
+      return (
+        <group key={vent.id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
+          <Subtraction>
+            <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
+            <mesh>
+              <meshStandardMaterial
+                attach='material'
+                color='white'
+                side={THREE.DoubleSide}
+              />
+            </mesh>
+          </Subtraction>
+        </group>
+      );
+    });
+  }, [vents, ventBoundingBoxes]);
 
   return (
     <mesh receiveShadow castShadow>

@@ -23,7 +23,11 @@ import { CsgGeometries } from './Containers/CsgGeometries';
 import { PageDataContext } from '../Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
-import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES } from '@/utils/constants';
+import {
+  COMPONENT_NAMES,
+  COMPONENT_TYPES,
+  ELEVATION_NAMES,
+} from '@/utils/constants';
 import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
 import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
 import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
@@ -37,7 +41,7 @@ export function Models() {
     showExterior,
     selectedContainer,
     setThreeDModelLoaded,
-    containerHeightIsStandard
+    containerHeightIsStandard,
   } = useContext(PageDataContext);
   const { containerData } = useContext(Library2dDataContext);
 
@@ -193,12 +197,14 @@ export function Models() {
               data.center.z
             ),
           };
-        } else if (
-          doors[index].isRollUp
-        ) {
+        } else if (doors[index].isRollUp) {
           updatedData = {
             ...updatedData,
-            size: new Vector3(data.size.x - 2.3, data.size.y - 1.5, data.size.z),
+            size: new Vector3(
+              data.size.x - 2.3,
+              data.size.y - 1.5,
+              data.size.z
+            ),
             center: new Vector3(
               data.center.x,
               data.center.y - 0.8,
@@ -266,29 +272,6 @@ export function Models() {
     }
   };
 
-  // Update bounding box states when components are removed
-  useEffect(() => {
-    const doorIds = doors.map((door) => door.id);
-    const windowIds = windows.map((window) => window.id);
-    const ventIds = vents.map((vent) => vent.id);
-
-    setDoorBoundingBoxes((prev) =>
-      Object.fromEntries(
-        Object.entries(prev).filter(([key]) => doorIds.includes(key))
-      )
-    );
-    setWindowBoundingBoxes((prev) =>
-      Object.fromEntries(
-        Object.entries(prev).filter(([key]) => windowIds.includes(key))
-      )
-    );
-    setVentBoundingBoxes((prev) =>
-      Object.fromEntries(
-        Object.entries(prev).filter(([key]) => ventIds.includes(key))
-      )
-    );
-  }, [doors, windows, vents]);
-
   return (
     <div
       id='canvas-container'
@@ -298,6 +281,9 @@ export function Models() {
         <color attach='background' args={['#fdfdf7']} />
         <ContainerShell />
         <CsgGeometries
+          doors={doors}
+          windows={windows}
+          vents={vents}
           doorBoundingBoxes={doorBoundingBoxes}
           windowBoundingBoxes={windowBoundingBoxes}
           ventBoundingBoxes={ventBoundingBoxes}
