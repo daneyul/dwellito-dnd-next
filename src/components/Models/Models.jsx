@@ -137,22 +137,10 @@ export function Models() {
       }
     });
 
-    useEffect(() => {
-      // Make sure OrbitControls is enabled/disabled based on the camera readiness
-      const controls = orbitRef.current;
-      if (controls) {
-        controls.enabled = cameraReady && showExterior;
-      }
-    }, [cameraReady, showExterior]);
-  }
-
-  // This detects when the user is orbiting the camera
-  // We want to disable the CameraRig logic when the user is orbiting
-  // This will prevent the camera from jumping back to its original position
-  useEffect(() => {
-    setCameraReady(false);
+    // Make sure OrbitControls is enabled/disabled based on the camera readiness
     const controls = orbitRef.current;
     if (controls) {
+      controls.enabled = cameraReady && showExterior;
       const startOrbiting = () => setIsOrbiting(true);
       const stopOrbiting = () => setIsOrbiting(false);
 
@@ -164,6 +152,13 @@ export function Models() {
         controls.removeEventListener('end', stopOrbiting);
       };
     }
+  }
+
+  // This detects when the user is orbiting the camera
+  // We want to disable the CameraRig logic when the user is orbiting
+  // This will prevent the camera from jumping back to its original position
+  useEffect(() => {
+    setCameraReady(false);
   }, [orbitRef, showExterior]);
 
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
