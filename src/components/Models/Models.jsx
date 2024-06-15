@@ -42,6 +42,8 @@ export function Models() {
     selectedContainer,
     setThreeDModelLoaded,
     containerHeightIsStandard,
+    cameraReady,
+    setCameraReady
   } = useContext(PageDataContext);
   const { containerData } = useContext(Library2dDataContext);
 
@@ -113,7 +115,6 @@ export function Models() {
   const cameraRot = showExterior ? [0, 0, 0] : interiorCamRot();
 
   const [isOrbiting, setIsOrbiting] = useState(false);
-  const [cameraReady, setCameraReady] = useState(true);
   const orbitRef = useRef();
 
   function CameraRig() {
@@ -141,25 +142,15 @@ export function Models() {
     const controls = orbitRef.current;
     if (controls) {
       controls.enabled = cameraReady && showExterior;
-      const startOrbiting = () => setIsOrbiting(true);
-      const stopOrbiting = () => setIsOrbiting(false);
-
-      controls.addEventListener('start', startOrbiting);
-      controls.addEventListener('end', stopOrbiting);
-
-      return () => {
-        controls.removeEventListener('start', startOrbiting);
-        controls.removeEventListener('end', stopOrbiting);
-      };
     }
   }
 
   // This detects when the user is orbiting the camera
   // We want to disable the CameraRig logic when the user is orbiting
   // This will prevent the camera from jumping back to its original position
-  useEffect(() => {
-    setCameraReady(false);
-  }, [orbitRef, showExterior]);
+  // useEffect(() => {
+  //   setCameraReady(false);
+  // }, [showExterior]);
 
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
   const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
@@ -356,7 +347,7 @@ export function Models() {
           minPolarAngle={0}
           maxPolarAngle={Math.PI / 2}
           enablePan={false}
-          enableRotate={true}
+          enableRotate={showExterior}
         />
       </Canvas>
     </div>

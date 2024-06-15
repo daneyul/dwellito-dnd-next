@@ -58,6 +58,7 @@ const PageDataProvider = ({ children, data }) => {
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);
+  const [cameraReady, setCameraReady] = useState(true);
   const [hasCollisions, setHasCollisions] = useState(false);
   const [showYourOrder, setShowYourOrder] = useState(false);
   const [zipCode, setZipCode] = useState('');
@@ -329,6 +330,8 @@ const PageDataProvider = ({ children, data }) => {
         setSelectedContainerHeight,
         handleSelect,
         handleDeleteSelected,
+        cameraReady,
+        setCameraReady
       }}
     >
       {children}
