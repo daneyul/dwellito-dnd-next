@@ -123,7 +123,7 @@ export const Library3dDataProvider = ({ children }) => {
       price40: 0
     },
     {
-      name: 'Vinyl Plank Flooring - 12mil Echo - 20ft',
+      name: 'Vinyl Plank Flooring - 12mil Echo',
       type: 'Echo',
       fileName: 'echo',
       glbObject: 'Echo.004',
@@ -134,7 +134,7 @@ export const Library3dDataProvider = ({ children }) => {
       price40: 1845
     },
     {
-      name: 'Vinyl Plank Flooring - 12mil Timber - 20ft',
+      name: 'Vinyl Plank Flooring - 12mil Timber',
       type: 'Timber',
       fileName: 'timber',
       glbObject: 'Timber.001',

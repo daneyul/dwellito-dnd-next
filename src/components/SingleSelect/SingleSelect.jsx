@@ -16,7 +16,8 @@ const SingleSelect = ({ type }) => {
     setFlooring,
     setShow3d,
     setShowExterior,
-    slug
+    slug,
+    setCameraReady
   } = useContext(PageDataContext);
   const {
     EXTERIOR,
@@ -82,6 +83,7 @@ const SingleSelect = ({ type }) => {
             setInteriorFinish(selection);
             setShow3d(true);
             setShowExterior(false);
+            setCameraReady(false);
           }}
         >
           <img className={style.img} src={`/images/interior-finishes/${selection.img}`} alt='thumbnail' />
@@ -138,6 +140,7 @@ const SingleSelect = ({ type }) => {
             setFlooring(selection);
             setShow3d(true);
             setShowExterior(false);
+            setCameraReady(false)
           }}
         >
           <img className={style.img} src={`/images/flooring/${selection.img}`} alt='thumbnail' />
