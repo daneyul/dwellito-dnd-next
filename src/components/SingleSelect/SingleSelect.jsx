@@ -3,6 +3,7 @@ import Subtitle from '../Subtitle/Subtitle';
 import style from './singleSelect.module.scss';
 import { PageDataContext } from '@/components/Content/Content';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
+import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG, INTERIOR_FINISH_NAMES } from '@/utils/constants';
 
 /* eslint-disable @next/next/no-img-element */
 const SingleSelect = ({ type }) => {
@@ -15,6 +16,7 @@ const SingleSelect = ({ type }) => {
     setFlooring,
     setShow3d,
     setShowExterior,
+    slug
   } = useContext(PageDataContext);
   const {
     EXTERIOR,
@@ -91,12 +93,33 @@ const SingleSelect = ({ type }) => {
   const interiorDesc = () => {
     return INTERIOR_FINISH_OPTIONS.map((selection, index) => {
       const isSelected = interiorFinish === selection;
+      const interiorFinishPrice = () => {
+        if (selection.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
+          if (slug === CONTAINER_10_SLUG) {
+            return selection.price10C
+          } else if (slug === CONTAINER_20_SLUG) {
+            return selection.price20C
+          } else if (slug === CONTAINER_40_SLUG) {
+            return selection.price40C
+          }
+        } else if (selection.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS) {
+          if (slug === CONTAINER_10_SLUG) {
+            return selection.price10CW
+          } else if (slug === CONTAINER_20_SLUG) {
+            return selection.price20SCW
+          } else if (slug === CONTAINER_40_SLUG) {
+            return selection.price40SCW
+          }
+        } else {
+          return selection.price
+        }
+      }
 
       return (
         isSelected && (
           <div className={style.singleSelDescriptionContainer} key={index}>
             <Subtitle text={selection.name} />
-            <Subtitle text={`+ $${selection.price.toLocaleString()}`} />
+            <Subtitle text={`+ $${interiorFinishPrice().toLocaleString()}`} />
           </div>
         )
       );

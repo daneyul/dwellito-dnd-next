@@ -1,5 +1,6 @@
 import React, { createContext } from 'react';
 import { useGLTF } from '@react-three/drei';
+import { INTERIOR_FINISH_NAMES } from '../constants';
 
 export const Library3dDataContext = createContext();
 
@@ -27,17 +28,35 @@ export const Library3dDataProvider = ({ children }) => {
 
   const INTERIOR_FINISH_OPTIONS = [
     {
-      name: '½” Cabinet Grade Plywood, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
+      name: INTERIOR_FINISH_NAMES.PLYWOOD,
       hex: '#C19A6B',
       price: 3685,
       img: 'plywood.png'
     },
     {
-      name: '½” Pre- Finished Drywall, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
+      name: INTERIOR_FINISH_NAMES.DRYWALL,
       hex: '#F2F2F2',
       price: 4400,
       img: 'drywall.png'
     },
+    {
+      name: INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING,
+      hex: '',
+      price10C: 440,
+      price20C: 615,
+      price40C: 1150,
+      img: 'spray-foam.png'
+    },
+    {
+      name: INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS,
+      hex: '',
+      price10CW: 1235,
+      price20SCW: 1975,
+      price20HCW: 2145,
+      price40SCW: 3460,
+      price40HCW: 7210,
+      img: 'spray-foam.png'
+    }
   ];
 
   const EXTERIOR_FINISH_OPTIONS = [
@@ -146,7 +165,7 @@ export const Library3dDataProvider = ({ children }) => {
       '/models/materials/interior/plywood.glb'
     );
     const { materials: drywallMaterial } = useGLTF(
-      '/models/materials/interior/drywall-test.glb'
+      '/models/materials/interior/drywall.glb'
     );
 
   return (

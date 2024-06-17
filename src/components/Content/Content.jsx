@@ -26,9 +26,12 @@ import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 import {
   COMPONENT_TYPES,
+  CONTAINER_10_SLUG,
+  CONTAINER_20_SLUG,
   CONTAINER_40_SLUG,
   CONTAINER_STANDARD,
   ELEVATION_NAMES,
+  INTERIOR_FINISH_NAMES,
 } from '@/utils/constants';
 
 export const PageDataContext = createContext();
@@ -119,14 +122,37 @@ const PageDataProvider = ({ children, data }) => {
 
   // Calculate the total price of all selected components
   useEffect(() => {
+    const interiorFinishPrice = () => {
+      if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
+        if (slug === CONTAINER_10_SLUG) {
+          return interiorFinish.price10C
+        } else if (slug === CONTAINER_20_SLUG) {
+          return interiorFinish.price20C
+        } else if (slug === CONTAINER_40_SLUG) {
+          return interiorFinish.price40C
+        }
+      } else if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS) {
+        if (slug === CONTAINER_10_SLUG) {
+          return interiorFinish.price10CW
+        } else if (slug === CONTAINER_20_SLUG) {
+          return interiorFinish.price20SCW
+        } else if (slug === CONTAINER_40_SLUG) {
+          return interiorFinish.price40SCW
+        }
+      } else {
+        return interiorFinish.price
+      }
+    }
+
     const total =
       selectedComponents.reduce(
         (accumulator, currentComponent) => accumulator + currentComponent.price,
         0
       ) +
-      interiorFinish.price +
+      interiorFinishPrice() +
       exteriorFinish.price +
       flooring.price;
+    
     setOrderTotal(total);
   }, [selectedComponents, interiorFinish, exteriorFinish, flooring]);
 

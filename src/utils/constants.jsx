@@ -2,6 +2,7 @@ export const COMPONENT_TYPES = {
   DOOR: 'door',
   WINDOW: 'window',
   VENT: 'vent',
+  ELECTRICAL: 'electrical',
 };
 
 export const COMPONENT_NAMES = {
@@ -59,3 +60,10 @@ export const CONTAINER_HIGH = 'high';
 export const CONTAINER_10_SLUG = '10-custom-cube';
 export const CONTAINER_20_SLUG = '20-custom-cube';
 export const CONTAINER_40_SLUG = '40-custom-cube';
+
+export const INTERIOR_FINISH_NAMES = {
+  PLYWOOD: '½” Cabinet Grade Plywood, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
+  DRYWALL: '½” Pre- Finished Drywall, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
+  SPRAY_FOAM_CEILING: '1” Spray Foam (Ceiling Only)',
+  SPRAY_FOAM_CEILING_WALLS: '1” Spray Foam (Ceiling & Walls)'
+}
