@@ -11,14 +11,14 @@ export const Library3dDataProvider = ({ children }) => {
   const FLOORING = 'flooring';
 
   const EXTERIOR_CAM_POS = {
-    TEN: [100, 50, 100],
-    TWENTY: [100, 50, 100],
-    FORTY: [150, 50, 150],
+    TEN: [-100, 50, 100],
+    TWENTY: [-100, 50, 100],
+    FORTY: [-150, 50, 150],
   };
   const INTERIOR_CAM_POS = {
-    TEN: [13, 12, -3],
-    TWENTY: [28.68, 12, -3],
-    FORTY: [28.68, 12, -3],
+    TEN: [-13, 14, -3],
+    TWENTY: [-28.68, 14, -3],
+    FORTY: [-28.68, 14, -3],
   };
   const INTERIOR_CAM_ROT = {
     TEN: [2.15, 12, 6],

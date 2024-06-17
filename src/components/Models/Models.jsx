@@ -145,13 +145,6 @@ export function Models() {
     }
   }
 
-  // This detects when the user is orbiting the camera
-  // We want to disable the CameraRig logic when the user is orbiting
-  // This will prevent the camera from jumping back to its original position
-  // useEffect(() => {
-  //   setCameraReady(false);
-  // }, [showExterior]);
-
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
   const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
   const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
@@ -346,8 +339,8 @@ export function Models() {
           ref={orbitRef}
           minPolarAngle={0}
           maxPolarAngle={Math.PI / 2}
-          enablePan={false}
-          enableRotate={showExterior}
+          enableZoom={false}
+          enableRotate={true}
         />
       </Canvas>
     </div>

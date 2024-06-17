@@ -344,7 +344,7 @@ export const Library2dDataProvider = ({ children }) => {
       objHeight: DIMENSIONS.DOOR.PERSONNEL.HEIGHT,
       objType: COMPONENT_TYPES.DOOR,
       price: 2000,
-      model: 'LHR Personnel Door Hardware and Lock Box 36in x 80in',
+      model: 'LHR Personnel Door',
     },
     {
       name: COMPONENT_NAMES.PERSONNEL_LHR_GLASS,
