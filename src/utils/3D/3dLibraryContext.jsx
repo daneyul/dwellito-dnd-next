@@ -42,19 +42,19 @@ export const Library3dDataProvider = ({ children }) => {
     {
       name: INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING,
       hex: '',
-      price10C: 440,
-      price20C: 615,
-      price40C: 1150,
+      price10: 440,
+      price20: 615,
+      price40: 1150,
       img: 'spray-foam.png'
     },
     {
       name: INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS,
       hex: '',
-      price10CW: 1235,
-      price20SCW: 1975,
-      price20HCW: 2145,
-      price40SCW: 3460,
-      price40HCW: 7210,
+      price10: 1235,
+      price20S: 1975,
+      price20H: 2145,
+      price40S: 3460,
+      price40H: 7210,
       img: 'spray-foam.png'
     }
   ];
@@ -118,7 +118,9 @@ export const Library3dDataProvider = ({ children }) => {
       glbObject: '',
       img: 'none.png',
       hex: '#FFFFFF',
-      price: 0,
+      price10: 0,
+      price20: 0,
+      price40: 0
     },
     {
       name: 'Vinyl Plank Flooring - 12mil Echo - 20ft',
@@ -127,7 +129,9 @@ export const Library3dDataProvider = ({ children }) => {
       glbObject: 'Echo.004',
       img: 'Vinyl Plank Flooring - 12mil Echo.png',
       hex: '#C19A6B',
-      price: 950,
+      price10: 610,
+      price20: 950,
+      price40: 1845
     },
     {
       name: 'Vinyl Plank Flooring - 12mil Timber - 20ft',
@@ -136,7 +140,9 @@ export const Library3dDataProvider = ({ children }) => {
       glbObject: 'Timber.001',
       img: 'Vinyl Plank Flooring - 12mil Timber.png',
       hex: '#000000',
-      price: 950,
+      price10: 610,
+      price20: 950,
+      price40: 1845
     },
   ];
 

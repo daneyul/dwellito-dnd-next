@@ -96,19 +96,19 @@ const SingleSelect = ({ type }) => {
       const interiorFinishPrice = () => {
         if (selection.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
           if (slug === CONTAINER_10_SLUG) {
-            return selection.price10C
+            return selection.price10
           } else if (slug === CONTAINER_20_SLUG) {
-            return selection.price20C
+            return selection.price20
           } else if (slug === CONTAINER_40_SLUG) {
-            return selection.price40C
+            return selection.price40
           }
         } else if (selection.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS) {
           if (slug === CONTAINER_10_SLUG) {
-            return selection.price10CW
+            return selection.price10
           } else if (slug === CONTAINER_20_SLUG) {
-            return selection.price20SCW
+            return selection.price20S
           } else if (slug === CONTAINER_40_SLUG) {
-            return selection.price40SCW
+            return selection.price40S
           }
         } else {
           return selection.price
@@ -148,13 +148,22 @@ const SingleSelect = ({ type }) => {
 
   const flooringDesc = () => {
     return FLOORING_OPTIONS.map((selection, index) => {
+      const flooringPrice = () => {
+        if (slug === CONTAINER_10_SLUG) {
+          return selection.price10
+        } else if (slug === CONTAINER_20_SLUG) {
+          return selection.price20
+        } else if (slug === CONTAINER_40_SLUG) {
+          return selection.price40
+        }
+      }
       const isSelected = flooring.hex === selection.hex;
 
       return (
         isSelected && (
           <div className={style.singleSelDescriptionContainer} key={index}>
             <Subtitle text={selection.name} />
-            <Subtitle text={`+ $${selection.price.toLocaleString()}`} />
+            <Subtitle text={`+ $${flooringPrice().toLocaleString()}`} />
           </div>
         )
       );

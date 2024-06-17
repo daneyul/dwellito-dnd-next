@@ -9,6 +9,7 @@ import {
   getUniqueElevationObjects,
 } from '@/utils/2D/utils';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from '@/utils/constants';
 
 const PriceTotal = () => {
   const {
@@ -19,11 +20,22 @@ const PriceTotal = () => {
     interiorFinish,
     exteriorFinish,
     flooring,
+    slug
   } = useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const [dialogOpen, setDialogOpen] = useState(false);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
+
+  const flooringPrice = () => {
+    if (slug === CONTAINER_10_SLUG) {
+      return flooring.price10
+    } else if (slug === CONTAINER_20_SLUG) {
+      return flooring.price20
+    } else if (slug === CONTAINER_40_SLUG) {
+      return flooring.price40
+    }
+  }
 
   const ExteriorSection = () => {
     return (
@@ -86,7 +98,7 @@ const PriceTotal = () => {
             </div>
             <div className={style.description}>{flooring.name}</div>
             <div className={style.price}>
-              ${flooring.price.toLocaleString()}
+              ${flooringPrice().toLocaleString()}
             </div>
           </div>
         </div>

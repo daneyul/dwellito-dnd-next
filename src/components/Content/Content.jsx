@@ -125,22 +125,32 @@ const PageDataProvider = ({ children, data }) => {
     const interiorFinishPrice = () => {
       if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
         if (slug === CONTAINER_10_SLUG) {
-          return interiorFinish.price10C
+          return interiorFinish.price10
         } else if (slug === CONTAINER_20_SLUG) {
-          return interiorFinish.price20C
+          return interiorFinish.price20
         } else if (slug === CONTAINER_40_SLUG) {
-          return interiorFinish.price40C
+          return interiorFinish.price40
         }
       } else if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS) {
         if (slug === CONTAINER_10_SLUG) {
-          return interiorFinish.price10CW
+          return interiorFinish.price10
         } else if (slug === CONTAINER_20_SLUG) {
-          return interiorFinish.price20SCW
+          return interiorFinish.price20S
         } else if (slug === CONTAINER_40_SLUG) {
-          return interiorFinish.price40SCW
+          return interiorFinish.price40S
         }
       } else {
         return interiorFinish.price
+      }
+    }
+
+    const flooringPrice = () => {
+      if (slug === CONTAINER_10_SLUG) {
+        return flooring.price10
+      } else if (slug === CONTAINER_20_SLUG) {
+        return flooring.price20
+      } else if (slug === CONTAINER_40_SLUG) {
+        return flooring.price40
       }
     }
 
@@ -151,7 +161,7 @@ const PageDataProvider = ({ children, data }) => {
       ) +
       interiorFinishPrice() +
       exteriorFinish.price +
-      flooring.price;
+      flooringPrice();
     
     setOrderTotal(total);
   }, [selectedComponents, interiorFinish, exteriorFinish, flooring]);
