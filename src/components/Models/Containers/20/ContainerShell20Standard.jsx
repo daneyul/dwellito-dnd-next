@@ -138,14 +138,17 @@ export default function ContainerShell20Standard() {
           scale={0.01}
         >
           <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              rearTopPlywoodNodes['20FT_Blank_PlywoodWall_RearTop_01_2']
-                .geometry
-            }
-            material={rearTopPlywoodMaterials['Plywood_Texture_01.001']}
-          />
+          castShadow
+          receiveShadow
+          geometry={rearTopPlywoodNodes['20FT_Blank_PlywoodWall_RearTop_01_1'].geometry}
+          material={rearTopPlywoodMaterials['Black_Vinyl.002']}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={rearTopPlywoodNodes['20FT_Blank_PlywoodWall_RearTop_01_2'].geometry}
+          material={rearTopPlywoodMaterials['Plywood_Texture_01.001']}
+        />
         </group>
       );
     }

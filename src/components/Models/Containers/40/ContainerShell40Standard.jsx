@@ -6,8 +6,16 @@ import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 
 export default function ContainerShell40Standard() {
   const { DIMENSIONS } = useContext(Library2dDataContext);
-  const { INTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS, redPaint, whitePaint, greenPaint, bluePaint, slateGreyPaint, beigePaint } =
-    useContext(Library3dDataContext);
+  const {
+    INTERIOR_FINISH_OPTIONS,
+    FLOORING_OPTIONS,
+    redPaint,
+    whitePaint,
+    greenPaint,
+    bluePaint,
+    slateGreyPaint,
+    beigePaint,
+  } = useContext(Library3dDataContext);
 
   const {
     exteriorFinish,
@@ -22,10 +30,16 @@ export default function ContainerShell40Standard() {
     `/models/container/40/${selectedContainerHeight}/container-shell.glb`
   );
   const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
-    useGLTF(`/models/container/40/${selectedContainerHeight}/rear-top-drywall.glb`);
+    useGLTF(
+      `/models/container/40/${selectedContainerHeight}/rear-top-drywall.glb`
+    );
   const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
-    useGLTF(`/models/container/40/${selectedContainerHeight}/rear-top-plywood.glb`);
-  const { nodes: flooringNodes } = useGLTF(`/models/container/40/${selectedContainerHeight}/flooring.glb`);
+    useGLTF(
+      `/models/container/40/${selectedContainerHeight}/rear-top-plywood.glb`
+    );
+  const { nodes: flooringNodes } = useGLTF(
+    `/models/container/40/${selectedContainerHeight}/flooring.glb`
+  );
 
   // Load all flooring materials
   const { materials: echoFloor } = useGLTF(
@@ -102,6 +116,15 @@ export default function ContainerShell40Standard() {
           rotation={[-Math.PI / 2, 0, 0]}
           scale={0.01}
         >
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={
+              rearTopPlywoodNodes['40FT_Blank_PlywoodWall_RearTop_001_1']
+                .geometry
+            }
+            material={rearTopPlywoodMaterials['Black_Vinyl.003']}
+          />
           <mesh
             castShadow
             receiveShadow
