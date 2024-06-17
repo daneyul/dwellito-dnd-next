@@ -145,6 +145,13 @@ export function Models() {
     }
   }
 
+  // This detects when the user is orbiting the camera
+  // We want to disable the CameraRig logic when the user is orbiting
+  // This will prevent the camera from jumping back to its original position
+  // useEffect(() => {
+  //   setCameraReady(false);
+  // }, [showExterior]);
+
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
   const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
   const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
@@ -167,15 +174,30 @@ export function Models() {
           doorName === COMPONENT_NAMES.PERSONNEL_LHR_SECURITY_GLASS ||
           doorName === COMPONENT_NAMES.PERSONNEL_RHR_SECURITY_GLASS
         ) {
-          updatedData = {
-            ...updatedData,
-            size: new Vector3(data.size.x - 2, data.size.y - 3, data.size.z),
-            center: new Vector3(
-              data.center.x,
-              data.center.y - 2,
-              data.center.z
-            ),
-          };
+          if (
+            data.selectedElevation.name === ELEVATION_NAMES.RIGHT ||
+            data.selectedElevation.name === ELEVATION_NAMES.LEFT
+          ) {
+            updatedData = {
+              ...updatedData,
+              size: new Vector3(data.size.x - 2, data.size.y - 3, data.size.z),
+              center: new Vector3(
+                data.center.x,
+                data.center.y - 2,
+                data.center.z
+              ),
+            };
+          } else {
+            updatedData = {
+              ...updatedData,
+              size: new Vector3(data.size.x, data.size.y - 3, data.size.z - 2),
+              center: new Vector3(
+                data.center.x,
+                data.center.y - 2,
+                data.center.z
+              ),
+            };
+          }
         } else if (doors[index].isRollUp) {
           updatedData = {
             ...updatedData,
@@ -339,8 +361,8 @@ export function Models() {
           ref={orbitRef}
           minPolarAngle={0}
           maxPolarAngle={Math.PI / 2}
-          enableZoom={false}
-          enableRotate={true}
+          enablePan={false}
+          enableRotate={showExterior}
         />
       </Canvas>
     </div>

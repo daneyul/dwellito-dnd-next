@@ -125,7 +125,7 @@ export function CsgGeometries({
     bluePaint,
     slateGreyPaint,
   ]);
-
+  
   const doorBoundingBoxGeometries = useMemo(() => {
     return doors.map((door, index) => {
       const bbox = doorBoundingBoxes[index];

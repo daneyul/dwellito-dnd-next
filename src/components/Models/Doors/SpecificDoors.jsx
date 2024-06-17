@@ -6,7 +6,7 @@ const Lhr = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.63, -0.0]}
+    customPosition={[0.99, 1.6, -0.01]}
     isRollUp={false}
   />
 );
@@ -16,7 +16,7 @@ const LhrGlass = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.63, -0.0]}
+    customPosition={[0.99, 1.6, -0.01]}
     isRollUp={false}
   />
 );
@@ -26,7 +26,7 @@ const LhrSecurity = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.63, -0.0]}
+    customPosition={[0.99, 1.6, -0.015]}
     isRollUp={false}
   />
 );
@@ -36,7 +36,7 @@ const LhrSecurityGlass = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.63, -0.0]}
+    customPosition={[0.99, 1.6, -0.015]}
     isRollUp={false}
   />
 );
@@ -46,7 +46,7 @@ const Rhr = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.63, -0.0]}
+    customPosition={[0.99, 1.6, -0.01]}
     isRollUp={false}
   />
 );
@@ -56,7 +56,7 @@ const RhrGlass = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.63, -0.0]}
+    customPosition={[0.99, 1.6, -0.01]}
     isRollUp={false}
   />
 );
@@ -66,7 +66,7 @@ const RhrSecurity = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.63, -0.0]}
+    customPosition={[0.99, 1.6, -0.015]}
     isRollUp={false}
   />
 );
@@ -76,7 +76,7 @@ const RhrSecurityGlass = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.63, -0.0]}
+    customPosition={[0.99, 1.6, -0.015]}
     isRollUp={false}
   />
 );
