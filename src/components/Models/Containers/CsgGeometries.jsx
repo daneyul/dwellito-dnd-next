@@ -205,7 +205,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={dBackNodes[key].geometry}
-                material={drywallMaterial['Drywall']}
+                material={drywallMaterial['Drywall_v2']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
@@ -214,7 +214,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={dRightNodes[key].geometry}
-                material={drywallMaterial['Drywall']}
+                material={drywallMaterial['Drywall_v2']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
@@ -223,7 +223,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={dLeftNodes[key].geometry}
-                material={drywallMaterial['Drywall']}
+                material={drywallMaterial['Drywall_v2']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
@@ -236,7 +236,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={pBackNodes[key].geometry}
-                material={plywoodMaterial['Plywood']}
+                material={plywoodMaterial['Plywood_v2']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
@@ -245,7 +245,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={pRightNodes[key].geometry}
-                material={plywoodMaterial['Plywood']}
+                material={plywoodMaterial['Plywood_v2']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
@@ -254,7 +254,7 @@ export function CsgGeometries({
               <Base
                 key={key}
                 geometry={pLeftNodes[key].geometry}
-                material={plywoodMaterial['Plywood']}
+                material={plywoodMaterial['Plywood_v2']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />

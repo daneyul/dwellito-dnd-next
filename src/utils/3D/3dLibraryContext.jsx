@@ -126,7 +126,7 @@ export const Library3dDataProvider = ({ children }) => {
       name: 'Vinyl Plank Flooring - 12mil Echo',
       type: 'Echo',
       fileName: 'echo',
-      glbObject: 'Echo.004',
+      glbObject: 'Material__119',
       img: 'Vinyl Plank Flooring - 12mil Echo.png',
       hex: '#C19A6B',
       price10: 610,

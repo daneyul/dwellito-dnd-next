@@ -256,7 +256,7 @@ export function Models() {
       if (containerHeightIsStandard) {
         return <ContainerShell10Standard />;
       } else {
-        return <ContainerShell10High />;
+        return null;
       }
     } else if (selectedContainer === containerData[1]) {
       if (containerHeightIsStandard) {

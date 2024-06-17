@@ -7,8 +7,17 @@ import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 export default function ContainerShell10High() {
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
-  const { INTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS, redPaint, whitePaint, greenPaint, bluePaint, slateGreyPaint, beigePaint } =
-    useContext(Library3dDataContext);
+  const {
+    INTERIOR_FINISH_OPTIONS,
+    FLOORING_OPTIONS,
+    redPaint,
+    whitePaint,
+    greenPaint,
+    bluePaint,
+    slateGreyPaint,
+    beigePaint,
+    plywoodMaterial
+  } = useContext(Library3dDataContext);
 
   const {
     exteriorFinish,
@@ -22,13 +31,16 @@ export default function ContainerShell10High() {
   const { nodes, materials } = useGLTF(
     `/models/container/10/${selectedContainerHeight}/container-shell.glb`
   );
-  const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
-    useGLTF(
-      `/models/container/10/${selectedContainerHeight}/rear-top-plywood.glb`
-    );
+  const { nodes: rearTopPlywoodNodes } = useGLTF(
+    `/models/container/10/${selectedContainerHeight}/rear-top-plywood.glb`
+  );
   const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
-    useGLTF(`/models/container/10/${selectedContainerHeight}/rear-top-drywall.glb`);
-  const { nodes: flooringNodes } = useGLTF(`/models/container/10/${selectedContainerHeight}/flooring.glb`);
+    useGLTF(
+      `/models/container/10/${selectedContainerHeight}/rear-top-drywall.glb`
+    );
+  const { nodes: flooringNodes } = useGLTF(
+    `/models/container/10/${selectedContainerHeight}/flooring.glb`
+  );
 
   // Load all flooring materials
   const { materials: echoFloor } = useGLTF(
@@ -112,7 +124,7 @@ export default function ContainerShell10High() {
               rearTopPlywoodNodes['10FT_Blank_PlywoodWall_RearTop_001_2']
                 .geometry
             }
-            material={rearTopPlywoodMaterials.Plywood_Texture_01}
+            material={plywoodMaterial['Plywood_v2']}
           />
         </group>
       );
