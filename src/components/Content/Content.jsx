@@ -7,6 +7,7 @@ import {
 } from '@/utils/2D/utils';
 import {
   restrictToHorizontalAxis,
+  restrictToVerticalAxis,
   restrictToParentElement,
 } from '@dnd-kit/modifiers';
 import Logo from '@/components/Logo';
@@ -234,11 +235,15 @@ const PageDataProvider = ({ children, data }) => {
 
     const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];
 
+    const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis]
+
     // Handles component snapping
     if (draggedItem && draggedItem.objType === COMPONENT_TYPES.DOOR) {
       setModifiers([...doorWindowModifiers, snapToIncrement(11 * scaleFactor)]);
     } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.WINDOW) {
       setModifiers([...doorWindowModifiers, snapToIncrement(6 * scaleFactor)]);
+    } else if (draggedItem && draggedItem.fixed) {
+      setModifiers([...fixedModifiers]);
     } else {
       setModifiers([...defaultModifiers]);
     }

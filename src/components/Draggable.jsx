@@ -12,7 +12,6 @@ export function Draggable({ id, styles, piece, onSelect }) {
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
-    disabled: piece.fixed
   });
   
   const {

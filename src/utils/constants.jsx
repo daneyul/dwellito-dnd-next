@@ -42,7 +42,8 @@ export const COMPONENT_NAMES = {
   BASEBOARD_HEATER: `2000W Baseboard Heater w/ Thermostat`,
   AIR_CONDITIONER: `6,000BTU Air Conditioner`,
   WORKSHOP_HEATER: `5Kw 240v Fan Forced Workshop Heater Install`,
-  ROOF_VENT: `Vent Roof Whirly Bird`
+  ROOF_VENT: `Vent Roof Whirly Bird`,
+  OUTLET: `15amp 120V Duplex Receptacle`
 };
 
 export const ELEVATION_NAMES = {
