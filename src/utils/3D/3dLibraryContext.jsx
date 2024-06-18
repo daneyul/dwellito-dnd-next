@@ -31,13 +31,13 @@ export const Library3dDataProvider = ({ children }) => {
       name: INTERIOR_FINISH_NAMES.PLYWOOD,
       hex: '#C19A6B',
       price: 3685,
-      img: 'plywood.png'
+      img: 'plywood.png',
     },
     {
       name: INTERIOR_FINISH_NAMES.DRYWALL,
       hex: '#F2F2F2',
       price: 4400,
-      img: 'drywall.png'
+      img: 'drywall.png',
     },
     {
       name: INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING,
@@ -45,7 +45,7 @@ export const Library3dDataProvider = ({ children }) => {
       price10: 440,
       price20: 615,
       price40: 1150,
-      img: 'spray-foam.png'
+      img: 'spray-foam.png',
     },
     {
       name: INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS,
@@ -55,8 +55,8 @@ export const Library3dDataProvider = ({ children }) => {
       price20H: 2145,
       price40S: 3460,
       price40H: 7210,
-      img: 'spray-foam.png'
-    }
+      img: 'spray-foam.png',
+    },
   ];
 
   const EXTERIOR_FINISH_OPTIONS = [
@@ -120,7 +120,7 @@ export const Library3dDataProvider = ({ children }) => {
       hex: '#FFFFFF',
       price10: 0,
       price20: 0,
-      price40: 0
+      price40: 0,
     },
     {
       name: 'Vinyl Plank Flooring - 12mil Echo',
@@ -131,48 +131,56 @@ export const Library3dDataProvider = ({ children }) => {
       hex: '#C19A6B',
       price10: 610,
       price20: 950,
-      price40: 1845
+      price40: 1845,
     },
     {
       name: 'Vinyl Plank Flooring - 12mil Timber',
       type: 'Timber',
       fileName: 'timber',
-      glbObject: 'Timber.001',
+      glbObject: 'Echo',
       img: 'Vinyl Plank Flooring - 12mil Timber.png',
       hex: '#000000',
       price10: 610,
       price20: 950,
-      price40: 1845
+      price40: 1845,
     },
   ];
 
-    // Load all paint materials
-    const { materials: redPaint } = useGLTF(
-      `/models/materials/exterior/red-paint.glb`
-    );
-    const { materials: whitePaint } = useGLTF(
-      `/models/materials/exterior/white-paint.glb`
-    );
-    const { materials: greenPaint } = useGLTF(
-      `/models/materials/exterior/green-paint.glb`
-    );
-    const { materials: bluePaint } = useGLTF(
-      `/models/materials/exterior/blue-paint.glb`
-    );
-    const { materials: slateGreyPaint } = useGLTF(
-      `/models/materials/exterior/slate-grey-paint.glb`
-    );
-    const { materials: beigePaint } = useGLTF(
-      `/models/materials/exterior/beige-paint.glb`
-    );
+  // Load all paint materials
+  const { materials: redPaint } = useGLTF(
+    `/models/materials/exterior/red-paint.glb`
+  );
+  const { materials: whitePaint } = useGLTF(
+    `/models/materials/exterior/white-paint.glb`
+  );
+  const { materials: greenPaint } = useGLTF(
+    `/models/materials/exterior/green-paint.glb`
+  );
+  const { materials: bluePaint } = useGLTF(
+    `/models/materials/exterior/blue-paint.glb`
+  );
+  const { materials: slateGreyPaint } = useGLTF(
+    `/models/materials/exterior/slate-grey-paint.glb`
+  );
+  const { materials: beigePaint } = useGLTF(
+    `/models/materials/exterior/beige-paint.glb`
+  );
 
-    // Interior materials
-    const { materials: plywoodMaterial } = useGLTF(
-      '/models/materials/interior/plywood.glb'
-    );
-    const { materials: drywallMaterial } = useGLTF(
-      '/models/materials/interior/drywall.glb'
-    );
+  // Interior materials
+  const { materials: plywoodMaterial } = useGLTF(
+    '/models/materials/interior/plywood.glb'
+  );
+  const { materials: drywallMaterial } = useGLTF(
+    '/models/materials/interior/drywall.glb'
+  );
+
+  // Load all flooring materials
+  const { materials: echoFloor } = useGLTF(
+    `/models/materials/flooring/echo.glb`
+  );
+  const { materials: timberFloor } = useGLTF(
+    `/models/materials/flooring/timber.glb`
+  );
 
   return (
     <Library3dDataContext.Provider
@@ -195,6 +203,8 @@ export const Library3dDataProvider = ({ children }) => {
         beigePaint,
         plywoodMaterial,
         drywallMaterial,
+        echoFloor,
+        timberFloor
       }}
     >
       {children}

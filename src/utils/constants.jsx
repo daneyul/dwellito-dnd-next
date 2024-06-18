@@ -39,12 +39,10 @@ export const COMPONENT_NAMES = {
   EC_ST_ROLLUP_15_64: `Economy Roll Up Door - 15ft x (6'4" ST)`,
   ELECTRICAL_PANEL_60_AMP: `60amp Panel with Exterior JB Connection`,
   ELECTRICAL_PANEL_100_AMP: `100amp Panel with Exterior JB Connection`,
-  LED_LIGHTS: `4’ Led wrap lights w/ switch`,
-  POWER_OUTLET: `15amp 120V Duplex Receptacle`,
-  ELECTRICAL_INSPECTION: `Electrical Inspection - CSA SPE-1000-13`,
   BASEBOARD_HEATER: `2000W Baseboard Heater w/ Thermostat`,
   AIR_CONDITIONER: `6,000BTU Air Conditioner`,
   WORKSHOP_HEATER: `5Kw 240v Fan Forced Workshop Heater Install`,
+  ROOF_VENT: `Vent Roof Whirly Bird`
 };
 
 export const ELEVATION_NAMES = {

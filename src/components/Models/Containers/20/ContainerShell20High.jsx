@@ -15,6 +15,8 @@ export default function ContainerShell20High() {
     bluePaint,
     slateGreyPaint,
     beigePaint,
+    echoFloor,
+    timberFloor
   } = useContext(Library3dDataContext);
 
   const {
@@ -40,14 +42,6 @@ export default function ContainerShell20High() {
     useGLTF(
       `/models/container/20/${selectedContainerHeight}/rear-top-drywall.glb`
     );
-
-  // Load all flooring materials
-  const { materials: echoFloor } = useGLTF(
-    `/models/materials/flooring/echo.glb`
-  );
-  const { materials: timberFloor } = useGLTF(
-    `/models/materials/flooring/timber.glb`
-  );
 
   const flooringMaterial = useMemo(() => {
     switch (flooring.type) {

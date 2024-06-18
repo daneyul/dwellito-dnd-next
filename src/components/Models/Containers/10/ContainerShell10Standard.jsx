@@ -7,8 +7,18 @@ import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 export default function ContainerShell10Standard() {
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
-  const { INTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS, redPaint, whitePaint, greenPaint, bluePaint, slateGreyPaint, beigePaint } =
-    useContext(Library3dDataContext);
+  const {
+    INTERIOR_FINISH_OPTIONS,
+    FLOORING_OPTIONS,
+    redPaint,
+    whitePaint,
+    greenPaint,
+    bluePaint,
+    slateGreyPaint,
+    beigePaint,
+    echoFloor,
+    timberFloor
+  } = useContext(Library3dDataContext);
 
   const {
     exteriorFinish,
@@ -27,15 +37,11 @@ export default function ContainerShell10Standard() {
       `/models/container/10/${selectedContainerHeight}/rear-top-plywood.glb`
     );
   const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
-    useGLTF(`/models/container/10/${selectedContainerHeight}/rear-top-drywall.glb`);
-  const { nodes: flooringNodes } = useGLTF(`/models/container/10/${selectedContainerHeight}/flooring.glb`);
-
-  // Load all flooring materials
-  const { materials: echoFloor } = useGLTF(
-    `/models/materials/flooring/echo.glb`
-  );
-  const { materials: timberFloor } = useGLTF(
-    `/models/materials/flooring/timber.glb`
+    useGLTF(
+      `/models/container/10/${selectedContainerHeight}/rear-top-drywall.glb`
+    );
+  const { nodes: flooringNodes } = useGLTF(
+    `/models/container/10/${selectedContainerHeight}/flooring.glb`
   );
 
   const flooringMaterial = useMemo(() => {
@@ -106,17 +112,23 @@ export default function ContainerShell10Standard() {
           scale={0.01}
         >
           <mesh
-          castShadow
-          receiveShadow
-          geometry={rearTopPlywoodNodes['10FT_Blank_PlywoodWall_RearTop_001_1'].geometry}
-          material={rearTopPlywoodMaterials['Black_Vinyl.001']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={rearTopPlywoodNodes['10FT_Blank_PlywoodWall_RearTop_001_2'].geometry}
-          material={rearTopPlywoodMaterials.Plywood_Texture_01}
-        />
+            castShadow
+            receiveShadow
+            geometry={
+              rearTopPlywoodNodes['10FT_Blank_PlywoodWall_RearTop_001_1']
+                .geometry
+            }
+            material={rearTopPlywoodMaterials['Black_Vinyl.001']}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={
+              rearTopPlywoodNodes['10FT_Blank_PlywoodWall_RearTop_001_2']
+                .geometry
+            }
+            material={rearTopPlywoodMaterials.Plywood_Texture_01}
+          />
         </group>
       );
     }
