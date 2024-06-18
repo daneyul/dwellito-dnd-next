@@ -53,12 +53,20 @@ const rightSideCoordinates = ({
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
+  const adjustForZ = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return -(parseFloat(distanceObject.top) + 4);
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return  -(parseFloat(distanceObject.top) + 4);
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return  -(parseFloat(distanceObject.top / 1.4) + 4);
+    }
+  }
 
   let xPosition =
     distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX();
   let yPosition = 0 + adjustForY() - 0.1;
-  let zPosition =
-    -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
+  let zPosition = adjustForZ() / SCALE_FACTOR_FOR_CALCULATIONS;
 
   return [xPosition, zPosition, yPosition];
 };

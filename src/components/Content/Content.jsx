@@ -8,7 +8,7 @@ import {
 import {
   restrictToHorizontalAxis,
   restrictToVerticalAxis,
-  restrictToParentElement,
+  restrictToParentElement
 } from '@dnd-kit/modifiers';
 import Logo from '@/components/Logo';
 import Viewer from '@/components/Viewer/Viewer';
@@ -225,6 +225,43 @@ const PageDataProvider = ({ children, data }) => {
     };
   }, [draggableRefs]);
 
+  const restrictToParentEdges = ({ transform, activeNodeRect, containerNodeRect }) => {
+    if (!activeNodeRect || !containerNodeRect) {
+      return transform;
+    }
+  
+    const { x, y } = transform;
+    const margin = 10; // adjust the margin as needed
+  
+    const restrictedX = Math.max(
+      Math.min(x, containerNodeRect.width - activeNodeRect.width - margin),
+      margin
+    );
+  
+    const restrictedY = Math.max(
+      Math.min(y, containerNodeRect.height - activeNodeRect.height - margin),
+      margin
+    );
+  
+    // If the element is closer to the left/right edge, restrict along the Y axis
+    if (
+      Math.abs(restrictedX - margin) < 10 ||
+      Math.abs(restrictedX - (containerNodeRect.width - activeNodeRect.width - margin)) < 10
+    ) {
+      return { x: restrictedX, y };
+    }
+  
+    // If the element is closer to the top/bottom edge, restrict along the X axis
+    if (
+      Math.abs(restrictedY - margin) < 10 ||
+      Math.abs(restrictedY - (containerNodeRect.height - activeNodeRect.height - margin)) < 10
+    ) {
+      return { x, y: restrictedY };
+    }
+  
+    return transform;
+  };
+
   const handleDragStart = (event) => {
     const { active } = event;
     const draggedItem = selectedComponents.find(
@@ -244,6 +281,8 @@ const PageDataProvider = ({ children, data }) => {
       setModifiers([...doorWindowModifiers, snapToIncrement(6 * scaleFactor)]);
     } else if (draggedItem && draggedItem.fixed) {
       setModifiers([...fixedModifiers]);
+    } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.ELECTRICAL) {
+      setModifiers([...restrictToParentEdges])
     } else {
       setModifiers([...defaultModifiers]);
     }

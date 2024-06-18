@@ -5,8 +5,9 @@ import { toScale, generateImgSrc } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import DeleteBtn from './DeleteBtn/DeleteBtn';
 import DragToMove from './DragToMove/DragToMove';
-import { CONTAINER_40_SLUG } from '@/utils/constants';
+import { COMPONENT_TYPES, CONTAINER_40_SLUG } from '@/utils/constants';
 import { ELEVATION_NAMES } from '@/utils/constants';
+import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 
 export function Draggable({ id, styles, piece, onSelect }) {
 
@@ -24,6 +25,8 @@ export function Draggable({ id, styles, piece, onSelect }) {
     selectedElevation
   } = useContext(PageDataContext);
 
+  const { DIMENSIONS } = useContext(Library2dDataContext);
+
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseDown = (e) => {
@@ -37,16 +40,16 @@ export function Draggable({ id, styles, piece, onSelect }) {
 
   const objTop = () => {
     if (containerHeightIsStandard) {
-      if (slug !== CONTAINER_40_SLUG) {
+      if (slug !== CONTAINER_40_SLUG && piece.objType !== COMPONENT_TYPES.ELECTRICAL) {
         return piece.position.y;
       } else {
-        return piece.position.y - 2;
+        return piece.position.y / 1.4;
       }
     } else {
       if (slug !== CONTAINER_40_SLUG) {
-        return piece.position.y + 30;
+        return piece.position.y * 5.28;
       } else {
-        return piece.position.y + 18;
+        return piece.position.y * 2.57;
       }
     }
   };
