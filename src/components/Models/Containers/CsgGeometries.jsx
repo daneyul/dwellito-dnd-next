@@ -14,7 +14,7 @@ export function CsgGeometries({
   windows,
   vents
 }) {
-  const { containerData, DIMENSIONS } = useContext(Library2dDataContext);
+  const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
     INTERIOR_FINISH_OPTIONS,
     redPaint,
@@ -31,17 +31,8 @@ export function CsgGeometries({
     interiorFinish,
     selectedContainer,
     selectedContainerHeight,
+    containerSize
   } = useContext(PageDataContext);
-
-  const containerSize = () => {
-    if (selectedContainer === containerData[0]) {
-      return '10';
-    } else if (selectedContainer === containerData[1]) {
-      return '20';
-    } else if (selectedContainer === containerData[2]) {
-      return '40';
-    }
-  };
 
   const size = containerSize();
 

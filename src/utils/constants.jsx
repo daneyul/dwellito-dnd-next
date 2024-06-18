@@ -50,6 +50,7 @@ export const ELEVATION_NAMES = {
   BACK: 'Back',
   LEFT: 'Left',
   RIGHT: 'Right',
+  FLOOR_PLAN: 'Floor Plan'
 };
 
 export const CONTAINER_STANDARD = 'standard';

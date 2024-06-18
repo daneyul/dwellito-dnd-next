@@ -944,6 +944,27 @@ export const Library2dDataProvider = ({ children }) => {
       objScHeight: DIMENSIONS.CONTAINER.FORTY.SIDE.SC_HEIGHT,
       objHcHeight: DIMENSIONS.CONTAINER.FORTY.SIDE.HC_HEIGHT,
     },
+    {
+      name: ELEVATION_NAMES.FLOOR_PLAN,
+      imgScName: 'floor-plans/10/floor-plan.svg',
+      homePlan: CONTAINER_10_SLUG,
+      objWidth: DIMENSIONS.CONTAINER.TEN.FLOOR_PLAN.WIDTH,
+      objScHeight: DIMENSIONS.CONTAINER.TEN.FLOOR_PLAN.HEIGHT,
+    },
+    {
+      name: ELEVATION_NAMES.FLOOR_PLAN,
+      imgScName: 'floor-plans/20/floor-plan.svg',
+      homePlan: CONTAINER_20_SLUG,
+      objWidth: DIMENSIONS.CONTAINER.TWENTY.FLOOR_PLAN.WIDTH,
+      objScHeight: DIMENSIONS.CONTAINER.TWENTY.FLOOR_PLAN.HEIGHT,
+    },
+    {
+      name: ELEVATION_NAMES.FLOOR_PLAN,
+      imgScName: 'floor-plans/40/floor-plan.svg',
+      homePlan: CONTAINER_40_SLUG,
+      objWidth: DIMENSIONS.CONTAINER.FORTY.FLOOR_PLAN.WIDTH,
+      objScHeight: DIMENSIONS.CONTAINER.FORTY.FLOOR_PLAN.HEIGHT,
+    }
   ]
     .filter((item) => item.name !== ELEVATION_NAMES.FRONT)
     .map((item) => ({

@@ -88,6 +88,17 @@ const PageDataProvider = ({ children, data }) => {
     (container) => container.slug === slug
   );
   const containerId = selectedContainer.id;
+
+  const containerSize = () => {
+    if (selectedContainer === containerData[0]) {
+      return '10';
+    } else if (selectedContainer === containerData[1]) {
+      return '20';
+    } else if (selectedContainer === containerData[2]) {
+      return '40';
+    }
+  };
+
   const [mappedElevations, setMappedElevations] = useState(
     elevationData.filter((elevation) => {
       if (elevation.homePlan === selectedContainer.slug) {
@@ -367,7 +378,8 @@ const PageDataProvider = ({ children, data }) => {
         handleSelect,
         handleDeleteSelected,
         cameraReady,
-        setCameraReady
+        setCameraReady,
+        containerSize
       }}
     >
       {children}

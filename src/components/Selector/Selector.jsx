@@ -19,6 +19,9 @@ const Selector = () => {
   const vents = componentData.filter(
     (item) => item.objType === COMPONENT_TYPES.VENT
   );
+  const electricals = componentData.filter(
+    (item) => item.objType === COMPONENT_TYPES.ELECTRICAL
+  );
 
   return (
     <div className={style.container}>
