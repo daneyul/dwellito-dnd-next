@@ -16,21 +16,22 @@ const AddElecOption = ({ options }) => {
     setSelectedElevationIndex,
     mappedElevations
   } = useContext(PageDataContext);
+  
   return options.map((item) => {
     return (
       <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
         <HoverCard.Trigger>
           <img
-            src={generateImgSrc(item.imgName)}
+            src={generateImgSrc(item.floorPlanImg)}
             alt={item.name}
             onClick={() => {
               setShow3d(false);
-              setSelectedElevation(elevation);
-              setSelectedElevationIndex(index);
+              setSelectedElevation(mappedElevations[3]);
+              setSelectedElevationIndex(3);
               handleAddComponent(
                 item,
                 setSelectedComponents,
-                selectedElevation,
+                mappedElevations[3],
                 setHasCollisions,
                 scaleFactor
               );

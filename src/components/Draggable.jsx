@@ -6,13 +6,24 @@ import { PageDataContext } from './Content/Content';
 import DeleteBtn from './DeleteBtn/DeleteBtn';
 import DragToMove from './DragToMove/DragToMove';
 import { CONTAINER_40_SLUG } from '@/utils/constants';
+import { ELEVATION_NAMES } from '@/utils/constants';
 
 export function Draggable({ id, styles, piece, onSelect }) {
+
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
+    disabled: piece.fixed
   });
-  const { scaleFactor, selectedComponents, show3d, handleDeleteSelected, containerHeightIsStandard, slug } =
-    useContext(PageDataContext);
+  
+  const {
+    scaleFactor,
+    selectedComponents,
+    show3d,
+    handleDeleteSelected,
+    containerHeightIsStandard,
+    slug,
+    selectedElevation
+  } = useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -39,7 +50,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
         return piece.position.y + 18;
       }
     }
-  }
+  };
 
   const CustomStyle = {
     position: 'absolute',
@@ -70,6 +81,8 @@ export function Draggable({ id, styles, piece, onSelect }) {
   //   ? piece.position.x + transform.x
   //   : piece.position.x;
 
+  const imgSrc = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN ? piece.floorPlanImg : piece.imgName
+
   return (
     <>
       <div
@@ -82,7 +95,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
         onMouseDown={handleMouseDown}
       >
         <img
-          src={generateImgSrc(piece.imgName)}
+          src={generateImgSrc(imgSrc)}
           alt={piece.name}
           style={{
             width: '100%',
@@ -94,7 +107,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
       {isAnyItemSelected && !show3d && (
         <DeleteBtn onDeleteSelected={handleDeleteSelected} />
       )}
-      {isHovered && !show3d && !isAnyItemSelected && <DragToMove />}
+      {isHovered && !show3d && !isAnyItemSelected && !piece.fixed && <DragToMove />}
     </>
   );
 }

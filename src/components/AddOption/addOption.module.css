@@ -1,5 +1,6 @@
 .objImg {
   width: auto;
+  max-width: 72px;
   height: 60px;
   border: 1px solid transparent;
   box-sizing: border-box;

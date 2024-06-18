@@ -126,15 +126,6 @@ const Viewer = () => {
                     piece.elevation.includes(selectedElevation)
                   )
                   .map((piece) => {
-                    console.log(
-                      checkDistance({
-                        component: piece,
-                        selectedElevation,
-                        DIMENSIONS,
-                        selectedContainer,
-                        scaleFactor,
-                      })
-                    );
                     return (
                       <Draggable
                         piece={piece}
