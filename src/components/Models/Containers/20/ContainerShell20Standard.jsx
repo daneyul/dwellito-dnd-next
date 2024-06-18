@@ -16,7 +16,7 @@ export default function ContainerShell20Standard() {
     slateGreyPaint,
     beigePaint,
     echoFloor,
-    timberFloor
+    timberFloor,
   } = useContext(Library3dDataContext);
 
   const {
@@ -140,30 +140,96 @@ export default function ContainerShell20Standard() {
   const Plywood = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[0]) {
       return (
-        <group
-          position={[3.031, 0.173, -1.198]}
-          rotation={[-Math.PI / 2, 0, 0]}
-          scale={0.01}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              rearTopPlywoodNodes['20FT_Blank_PlywoodWall_RearTop_01_1']
-                .geometry
-            }
-            material={rearTopPlywoodMaterials['Black_Vinyl.002']}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              rearTopPlywoodNodes['20FT_Blank_PlywoodWall_RearTop_01_2']
-                .geometry
-            }
-            material={rearTopPlywoodMaterials['Plywood_Texture_01.001']}
-          />
-        </group>
+        <>
+          <group
+            position={[3.965, 2.48, -0.081]}
+            rotation={[Math.PI, 0, -Math.PI]}
+            scale={[-1, 1, 1]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={rearTopPlywoodNodes['20FT_Blank_Plywood_reartop'].geometry}
+              material={rearTopPlywoodMaterials.Plywood_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.092, 0.148, -1.742]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={rearTopPlywoodNodes.Obj_20FT_Blank_Plywood_reartop.geometry}
+              material={rearTopPlywoodMaterials.Plywood_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[4.923, 2.48, -0.081]}
+            rotation={[Math.PI, 0, -Math.PI]}
+            scale={[-1, 1, 1]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={rearTopPlywoodNodes.Obj_20FT_Blank_Plywood_reartop_1.geometry}
+              material={rearTopPlywoodMaterials.Plywood_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.092, 0.148, -1.717]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={rearTopPlywoodNodes.Obj_20FT_Blank_Plywood_reartop_2.geometry}
+              material={rearTopPlywoodMaterials.Black_Rubber_01}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.092, 0.148, -0.623]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={rearTopPlywoodNodes.Obj_20FT_Blank_Plywood_reartop_3.geometry}
+              material={rearTopPlywoodMaterials.Plywood_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[2.517, 2.48, -0.081]}
+            rotation={[Math.PI, 0, -Math.PI]}
+            scale={[-1, 1, 1]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={rearTopPlywoodNodes.Obj_20FT_Blank_Plywood_reartop_4.geometry}
+              material={rearTopPlywoodMaterials.Plywood_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[1.07, 2.48, -0.081]}
+            rotation={[Math.PI, 0, -Math.PI]}
+            scale={[-1, 1, 1]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={rearTopPlywoodNodes.Obj_20FT_Blank_Plywood_reartop_5.geometry}
+              material={rearTopPlywoodMaterials.Plywood_v2}
+              scale={0.01}
+            />
+          </group>
+        </>
       );
     }
   };
@@ -171,20 +237,110 @@ export default function ContainerShell20Standard() {
   const Drywall = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[1]) {
       return (
-        <group
-          position={[3.031, 0.173, -1.219]}
-          rotation={[-Math.PI / 2, 0, 0]}
-          scale={0.01}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              rearTopDrywallNodes['20FT_Blank_DryWall_RearTop_01_1'].geometry
-            }
-            material={rearTopDrywallMaterials['White_Drywall_Wall.001']}
-          />
-        </group>
+        <>
+          <group
+            position={[3.965, 2.48, -0.081]}
+            rotation={[Math.PI, 0, -Math.PI]}
+            scale={[-1, 1, 1]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopDrywallNodes['20FT_Blank_DryWall_reartop'].geometry
+              }
+              material={rearTopDrywallMaterials.Drywall_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.092, 0.148, -1.742]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopDrywallNodes.Obj_20FT_Blank_DryWall_reartop.geometry
+              }
+              material={rearTopDrywallMaterials.Drywall_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[4.923, 2.48, -0.081]}
+            rotation={[Math.PI, 0, -Math.PI]}
+            scale={[-1, 1, 1]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopDrywallNodes.Obj_20FT_Blank_DryWall_reartop_1.geometry
+              }
+              material={rearTopDrywallMaterials.Drywall_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.092, 0.148, -1.717]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopDrywallNodes.Obj_20FT_Blank_DryWall_reartop_2.geometry
+              }
+              material={rearTopDrywallMaterials.Black_Rubber_01}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.092, 0.148, -0.623]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopDrywallNodes.Obj_20FT_Blank_DryWall_reartop_3.geometry
+              }
+              material={rearTopDrywallMaterials.Drywall_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[2.517, 2.48, -0.081]}
+            rotation={[Math.PI, 0, -Math.PI]}
+            scale={[-1, 1, 1]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopDrywallNodes.Obj_20FT_Blank_DryWall_reartop_4.geometry
+              }
+              material={rearTopDrywallMaterials.Drywall_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[1.07, 2.48, -0.081]}
+            rotation={[Math.PI, 0, -Math.PI]}
+            scale={[-1, 1, 1]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopDrywallNodes.Obj_20FT_Blank_DryWall_reartop_5.geometry
+              }
+              material={rearTopDrywallMaterials.Drywall_v2}
+              scale={0.01}
+            />
+          </group>
+        </>
       );
     }
   };

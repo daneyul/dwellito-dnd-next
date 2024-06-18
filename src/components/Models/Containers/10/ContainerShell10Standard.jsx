@@ -17,7 +17,7 @@ export default function ContainerShell10Standard() {
     slateGreyPaint,
     beigePaint,
     echoFloor,
-    timberFloor
+    timberFloor,
   } = useContext(Library3dDataContext);
 
   const {
@@ -106,30 +106,70 @@ export default function ContainerShell10Standard() {
   const Plywood = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[0]) {
       return (
-        <group
-          position={[3.031, 0.173, -1.196]}
-          rotation={[-Math.PI / 2, 0, 0]}
-          scale={0.01}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              rearTopPlywoodNodes['10FT_Blank_PlywoodWall_RearTop_001_1']
-                .geometry
-            }
-            material={rearTopPlywoodMaterials['Black_Vinyl.001']}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              rearTopPlywoodNodes['10FT_Blank_PlywoodWall_RearTop_001_2']
-                .geometry
-            }
-            material={rearTopPlywoodMaterials.Plywood_Texture_01}
-          />
-        </group>
+        <>
+          <group
+            position={[0.909, 2.48, -0.083]}
+            rotation={[Math.PI, 0, -Math.PI]}
+            scale={[-1, 1, 1]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={rearTopPlywoodNodes['10FT_Blank_Plywood_reartop'].geometry}
+              material={rearTopPlywoodMaterials.Plywood_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.093, 0.148, -1.744]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={rearTopPlywoodNodes.Obj_10FT_Blank_Plywood_reartop.geometry}
+              material={rearTopPlywoodMaterials.Plywood_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[1.867, 2.48, -0.083]}
+            rotation={[Math.PI, 0, -Math.PI]}
+            scale={[-1, 1, 1]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={rearTopPlywoodNodes.Obj_10FT_Blank_Plywood_reartop_1.geometry}
+              material={rearTopPlywoodMaterials.Plywood_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.093, 0.148, -1.718]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={rearTopPlywoodNodes.Obj_10FT_Blank_Plywood_reartop_2.geometry}
+              material={rearTopPlywoodMaterials.Black_Rubber_01}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.093, 0.148, -0.625]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={rearTopPlywoodNodes.Obj_10FT_Blank_Plywood_reartop_3.geometry}
+              material={rearTopPlywoodMaterials.Plywood_v2}
+              scale={0.01}
+            />
+          </group>
+        </>
       );
     }
   };
@@ -137,20 +177,80 @@ export default function ContainerShell10Standard() {
   const Drywall = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[1]) {
       return (
-        <group
-          position={[3.031, 0.173, -1.216]}
-          rotation={[-Math.PI / 2, 0, 0]}
-          scale={0.01}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              rearTopDrywallNodes['10FT_Blank_DryWall_RearTop_001_2'].geometry
-            }
-            material={rearTopDrywallMaterials.White_Drywall_Wall}
-          />
-        </group>
+        <>
+          <group
+            position={[2.324, 2.479, -0.075]}
+            rotation={[Math.PI, 0, -Math.PI]}
+            scale={[-1, 1, 1]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopDrywallNodes['10FT_Blank_Drywall_Reartop'].geometry
+              }
+              material={rearTopDrywallMaterials.Drywall_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.909, 2.48, -0.075]}
+            rotation={[Math.PI, 0, -Math.PI]}
+            scale={[-1, 1, 1]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopDrywallNodes.Obj_10FT_Blank_Drywall_Reartop.geometry
+              }
+              material={rearTopDrywallMaterials.Drywall_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.093, 0.148, -0.616]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopDrywallNodes.Obj_10FT_Blank_Drywall_Reartop_1.geometry
+              }
+              material={rearTopDrywallMaterials.Drywall_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.093, 0.148, -1.736]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopDrywallNodes.Obj_10FT_Blank_Drywall_Reartop_2.geometry
+              }
+              material={rearTopDrywallMaterials.Drywall_v2}
+              scale={0.01}
+            />
+          </group>
+          <group
+            position={[0.093, 0.148, -1.71]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopDrywallNodes.Obj_10FT_Blank_Drywall_Reartop_3.geometry
+              }
+              material={rearTopDrywallMaterials.Black_Paint_01}
+              scale={0.01}
+            />
+          </group>
+        </>
       );
     }
   };
