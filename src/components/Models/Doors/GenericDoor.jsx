@@ -69,14 +69,6 @@ const GenericDoor = React.memo(
     const meshKeys = Object.keys(nodes).filter(
       (nodeKey) => nodes[nodeKey].isMesh
     );
-    console.log(calcPosition(
-      selectedElevation,
-      distanceObject,
-      elevationData,
-      SCALE_FACTOR_FOR_CALCULATIONS,
-      DIMENSIONS,
-      selectedContainer
-    ))
 
     return (
       <group
