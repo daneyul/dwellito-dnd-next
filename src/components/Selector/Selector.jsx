@@ -23,7 +23,7 @@ const Selector = () => {
   );
   const electricals = componentData.filter((item) => {
     if (containerSize() === '40') {
-      return item.objType === COMPONENT_TYPES.ELECTRICAL || item.name === COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP;
+      return item.objType === COMPONENT_TYPES.ELECTRICAL && item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP;
     } else {
       return item.objType === COMPONENT_TYPES.ELECTRICAL && item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP;
     }
