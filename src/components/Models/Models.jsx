@@ -145,14 +145,7 @@ export function Models() {
       controls.enabled = cameraReady && showExterior;
     }
   }
-
-  // This detects when the user is orbiting the camera
-  // We want to disable the CameraRig logic when the user is orbiting
-  // This will prevent the camera from jumping back to its original position
-  // useEffect(() => {
-  //   setCameraReady(false);
-  // }, [showExterior]);
-
+  
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
   const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
   const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
