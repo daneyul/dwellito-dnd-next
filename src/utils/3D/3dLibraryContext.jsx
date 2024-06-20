@@ -173,6 +173,9 @@ export const Library3dDataProvider = ({ children }) => {
   const { materials: drywallMaterial } = useGLTF(
     '/models/materials/interior/drywall.glb'
   );
+  const { materials: sprayFoamMaterial } = useGLTF(
+    '/models/materials/interior/sprayfoam.glb'
+  );
 
   // Load all flooring materials
   const { materials: echoFloor } = useGLTF(
@@ -203,6 +206,7 @@ export const Library3dDataProvider = ({ children }) => {
         beigePaint,
         plywoodMaterial,
         drywallMaterial,
+        sprayFoamMaterial,
         echoFloor,
         timberFloor
       }}

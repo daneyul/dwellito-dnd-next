@@ -12,7 +12,7 @@ export function CsgGeometries({
   ventBoundingBoxes,
   doors,
   windows,
-  vents
+  vents,
 }) {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
@@ -24,14 +24,15 @@ export function CsgGeometries({
     slateGreyPaint,
     beigePaint,
     plywoodMaterial,
-    drywallMaterial
+    drywallMaterial,
+    sprayFoamMaterial,
   } = useContext(Library3dDataContext);
   const {
     exteriorFinish,
     interiorFinish,
     selectedContainer,
     selectedContainerHeight,
-    containerSize
+    containerSize,
   } = useContext(PageDataContext);
 
   const size = containerSize();
@@ -56,6 +57,7 @@ export function CsgGeometries({
     }
   }, [selectedContainer.name, DIMENSIONS]);
 
+  // Container nodes
   const { nodes: cRightNodes } = useGLTF(
     `/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`
   );
@@ -65,6 +67,8 @@ export function CsgGeometries({
   const { nodes: cLeftNodes } = useGLTF(
     `/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`
   );
+
+  // Drywall nodes
   const { nodes: dRightNodes } = useGLTF(
     `/models/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`
   );
@@ -75,6 +79,7 @@ export function CsgGeometries({
     `/models/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`
   );
 
+  // Plywood nodes
   const { nodes: pRightNodes } = useGLTF(
     `/models/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`
   );
@@ -85,6 +90,18 @@ export function CsgGeometries({
     `/models/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`
   );
 
+  // Sprayfoam nodes
+  const { nodes: sRightNodes } = useGLTF(
+    `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-right.glb`
+  );
+  const { nodes: sLeftNodes } = useGLTF(
+    `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-left.glb`
+  );
+  const { nodes: sBackNodes } = useGLTF(
+    `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-back.glb`
+  );
+
+  // Baseboard nodes
   const { nodes: baseboard } = useGLTF(
     `/models/container/${size}/${selectedContainerHeight}/baseboard.glb`
   );
@@ -116,13 +133,16 @@ export function CsgGeometries({
     bluePaint,
     slateGreyPaint,
   ]);
-  
+
   const doorBoundingBoxGeometries = useMemo(() => {
     return doors.map((door, index) => {
       const bbox = doorBoundingBoxes[index];
       if (!bbox) return null; // Ensure bbox is defined
       return (
-        <group key={door.id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
+        <group
+          key={door.id}
+          position={[bbox.center.x, bbox.center.y, bbox.center.z]}
+        >
           <Subtraction>
             <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
             <mesh>
@@ -143,7 +163,10 @@ export function CsgGeometries({
       const bbox = windowBoundingBoxes[index];
       if (!bbox) return null; // Ensure bbox is defined
       return (
-        <group key={window.id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
+        <group
+          key={window.id}
+          position={[bbox.center.x, bbox.center.y, bbox.center.z]}
+        >
           <Subtraction>
             <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
             <mesh>
@@ -164,7 +187,10 @@ export function CsgGeometries({
       const bbox = ventBoundingBoxes[index];
       if (!bbox) return null; // Ensure bbox is defined
       return (
-        <group key={vent.id} position={[bbox.center.x, bbox.center.y, bbox.center.z]}>
+        <group
+          key={vent.id}
+          position={[bbox.center.x, bbox.center.y, bbox.center.z]}
+        >
           <Subtraction>
             <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
             <mesh>
@@ -183,13 +209,16 @@ export function CsgGeometries({
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
-        <Base
-          geometry={baseboard.mesh_0.geometry}
-          scale={10}
-          position={[adjustForX, 0, adjustForY]}
-        >
-          <meshStandardMaterial color='black' />
-        </Base>
+        {interiorFinish === INTERIOR_FINISH_OPTIONS[2] ||
+        interiorFinish === INTERIOR_FINISH_OPTIONS[3] ? null : (
+          <Base
+            geometry={baseboard.mesh_0.geometry}
+            scale={10}
+            position={[adjustForX, 0, adjustForY]}
+          >
+            <meshStandardMaterial color='black' />
+          </Base>
+        )}
         {interiorFinish === INTERIOR_FINISH_OPTIONS[1] ? (
           <>
             {Object.keys(dBackNodes).map((key) => (
@@ -246,6 +275,37 @@ export function CsgGeometries({
                 key={key}
                 geometry={pLeftNodes[key].geometry}
                 material={plywoodMaterial['Plywood_v2']}
+                scale={10}
+                position={[adjustForX, 0, adjustForY]}
+              />
+            ))}
+          </>
+        ) : null}
+        {interiorFinish === INTERIOR_FINISH_OPTIONS[3] ? (
+          <>
+            {Object.keys(sBackNodes).map((key) => (
+              <Base
+                key={key}
+                geometry={sBackNodes[key].geometry}
+                material={sprayFoamMaterial['Sprayfoam']}
+                scale={10}
+                position={[adjustForX, 0, adjustForY]}
+              />
+            ))}
+            {Object.keys(sRightNodes).map((key) => (
+              <Base
+                key={key}
+                geometry={sRightNodes[key].geometry}
+                material={sprayFoamMaterial['Sprayfoam']}
+                scale={10}
+                position={[adjustForX, 0, adjustForY]}
+              />
+            ))}
+            {Object.keys(sLeftNodes).map((key) => (
+              <Base
+                key={key}
+                geometry={sLeftNodes[key].geometry}
+                material={sprayFoamMaterial['Sprayfoam']}
                 scale={10}
                 position={[adjustForX, 0, adjustForY]}
               />
