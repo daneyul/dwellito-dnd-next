@@ -34,6 +34,7 @@ import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
 import ContainerShell20High from './Containers/20/ContainerShell20High';
 import ContainerShell10High from './Containers/10/ContainerShell10High';
 import ContainerShell40High from './Containers/40/ContainerShell40High';
+import Airconditioner from './Electrical/Airconditioner';
 
 export function Models() {
   const {
@@ -280,6 +281,7 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />
+        <Airconditioner />
         <ContainerShell />
         <CsgGeometries
           doors={doors}
