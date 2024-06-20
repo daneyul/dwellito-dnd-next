@@ -476,30 +476,41 @@ export default function ContainerShell40Standard() {
   const SprayFoamCw = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[3]) {
       return (
-        <group
-          position={[6.031, 1.085, -2.005]}
-          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-          scale={[1, 0.915, 1]}
-        >
-          <group scale={0.01}>
+        <>
+          <group
+            position={[6.031, 1.085, -1.983]}
+            rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+            scale={[1, 0.915, 1]}
+          >
+            <group scale={0.01}>
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={rearTopSprayFoamNodes['40FT_Sprayfoam_RearTop_1'].geometry}
+                material={rearTopSprayFoamMaterials.Black_Rubber_01}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={rearTopSprayFoamNodes['40FT_Sprayfoam_RearTop_2'].geometry}
+                material={rearTopSprayFoamMaterials.Sprayfoam}
+              />
+            </group>
+          </group>
+          <group
+            position={[6.031, 1.085, -1.983]}
+            rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+            scale={[1, 0.915, 1]}
+          >
             <mesh
               castShadow
               receiveShadow
-              geometry={
-                rearTopSprayFoamNodes['20FT_Sprayfoam_RearTop_1'].geometry
-              }
-              material={rearTopSprayFoamMaterials.Black_Rubber_01}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={
-                rearTopSprayFoamNodes['20FT_Sprayfoam_RearTop_2'].geometry
-              }
+              geometry={rearTopSprayFoamNodes['40FT_Sprayfoam_Ceiling'].geometry}
               material={rearTopSprayFoamMaterials.Sprayfoam}
+              scale={0.01}
             />
           </group>
-        </group>
+        </>
       );
     }
   };
