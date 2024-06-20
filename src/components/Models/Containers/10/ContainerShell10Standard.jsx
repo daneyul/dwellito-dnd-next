@@ -46,7 +46,7 @@ export default function ContainerShell10Standard() {
     );
   const { nodes: ceilingSprayFoamNodes, materials: ceilingSprayFoamMaterials } =
     useGLTF(
-      `/models/container/10/${selectedContainerHeight}/ceiling_sprayfoam.glb`
+      `/models/container/10/${selectedContainerHeight}/ceiling-sprayfoam.glb`
     );
   const { nodes: flooringNodes } = useGLTF(
     `/models/container/10/${selectedContainerHeight}/flooring.glb`
