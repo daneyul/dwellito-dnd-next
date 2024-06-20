@@ -44,6 +44,10 @@ export default function ContainerShell10Standard() {
     useGLTF(
       `/models/container/10/${selectedContainerHeight}/rear-top-sprayfoam.glb`
     );
+  const { nodes: ceilingSprayFoamNodes, materials: ceilingSprayFoamMaterials } =
+    useGLTF(
+      `/models/container/10/${selectedContainerHeight}/ceiling_sprayfoam.glb`
+    );
   const { nodes: flooringNodes } = useGLTF(
     `/models/container/10/${selectedContainerHeight}/flooring.glb`
   );
@@ -119,7 +123,9 @@ export default function ContainerShell10Standard() {
             <mesh
               castShadow
               receiveShadow
-              geometry={rearTopPlywoodNodes['10FT_Blank_Plywood_reartop'].geometry}
+              geometry={
+                rearTopPlywoodNodes['10FT_Blank_Plywood_reartop'].geometry
+              }
               material={rearTopPlywoodMaterials.Plywood_v2}
               scale={0.01}
             />
@@ -131,7 +137,9 @@ export default function ContainerShell10Standard() {
             <mesh
               castShadow
               receiveShadow
-              geometry={rearTopPlywoodNodes.Obj_10FT_Blank_Plywood_reartop.geometry}
+              geometry={
+                rearTopPlywoodNodes.Obj_10FT_Blank_Plywood_reartop.geometry
+              }
               material={rearTopPlywoodMaterials.Plywood_v2}
               scale={0.01}
             />
@@ -144,7 +152,9 @@ export default function ContainerShell10Standard() {
             <mesh
               castShadow
               receiveShadow
-              geometry={rearTopPlywoodNodes.Obj_10FT_Blank_Plywood_reartop_1.geometry}
+              geometry={
+                rearTopPlywoodNodes.Obj_10FT_Blank_Plywood_reartop_1.geometry
+              }
               material={rearTopPlywoodMaterials.Plywood_v2}
               scale={0.01}
             />
@@ -156,7 +166,9 @@ export default function ContainerShell10Standard() {
             <mesh
               castShadow
               receiveShadow
-              geometry={rearTopPlywoodNodes.Obj_10FT_Blank_Plywood_reartop_2.geometry}
+              geometry={
+                rearTopPlywoodNodes.Obj_10FT_Blank_Plywood_reartop_2.geometry
+              }
               material={rearTopPlywoodMaterials.Black_Rubber_01}
               scale={0.01}
             />
@@ -168,7 +180,9 @@ export default function ContainerShell10Standard() {
             <mesh
               castShadow
               receiveShadow
-              geometry={rearTopPlywoodNodes.Obj_10FT_Blank_Plywood_reartop_3.geometry}
+              geometry={
+                rearTopPlywoodNodes.Obj_10FT_Blank_Plywood_reartop_3.geometry
+              }
               material={rearTopPlywoodMaterials.Plywood_v2}
               scale={0.01}
             />
@@ -262,36 +276,55 @@ export default function ContainerShell10Standard() {
   const SprayFoamCeiling = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[2]) {
       return (
-        <></>
-      )
+        <group
+          position={[6.031, 1.085, -2.005]}
+          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+          scale={[1, 0.915, 1]}
+        >
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={ceilingSprayFoamNodes['10FT_Sprayfoam_Ceiling'].geometry}
+            material={ceilingSprayFoamMaterials.Sprayfoam}
+            scale={0.01}
+          />
+        </group>
+      );
     }
-  }
+  };
 
   const SprayFoamCw = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[3]) {
       return (
         <group
-        position={[6.031, 1.085, -2.005]}
-        rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-        scale={[1, 0.915, 1]}>
-        <group scale={0.01}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopSprayFoamNodes['10FT_Container_Sprayfoam_RearTop_1'].geometry}
-            material={rearTopSprayFoamMaterials.Black_Rubber_01}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopSprayFoamNodes['10FT_Container_Sprayfoam_RearTop_2'].geometry}
-            material={rearTopSprayFoamMaterials.Sprayfoam}
-          />
+          position={[6.031, 1.085, -2.005]}
+          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+          scale={[1, 0.915, 1]}
+        >
+          <group scale={0.01}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopSprayFoamNodes['10FT_Container_Sprayfoam_RearTop_1']
+                  .geometry
+              }
+              material={rearTopSprayFoamMaterials.Black_Rubber_01}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                rearTopSprayFoamNodes['10FT_Container_Sprayfoam_RearTop_2']
+                  .geometry
+              }
+              material={rearTopSprayFoamMaterials.Sprayfoam}
+            />
+          </group>
         </group>
-      </group>
-      )
+      );
     }
-  }
+  };
 
   const Lighting = () => {
     return (
