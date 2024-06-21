@@ -1,15 +1,17 @@
 import { PageDataContext } from "@/components/Content/Content";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from "@/utils/constants";
+import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { useGLTF } from "@react-three/drei";
 import { useContext } from "react";
 
-const AirConditioner = () => {
-  const { containerSize, slug } = useContext(PageDataContext);
+const RoofVent = () => {
+  const { containerHeightIsStandard, slug } = useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
-  const { nodes, materials } = useGLTF(`/models/electrical/${containerSize()}/airconditioner.glb`);
-  
+  const fileName = containerHeightIsStandard ? 'roofvent-st.glb' : 'roofvent-hc.glb'
+
+  const { nodes, materials } = useGLTF(`/models/electrical/${fileName}`);
+
   const position = () => {
     let x = 0;
     let y = 0;
@@ -34,29 +36,11 @@ const AirConditioner = () => {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes['P203-1-101_-_6K_BTU_Air_Conditioner_v02'].geometry}
-        material={materials.White_PVC}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['P203-1-101_-_6K_BTU_Air_Conditioner_v02_1'].geometry}
-        material={materials.Inside_Color}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['P203-1-101_-_6K_BTU_Air_Conditioner_v02_2'].geometry}
-        material={materials.Black_PVC}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['P203-1-101_-_6K_BTU_Air_Conditioner_Assembly_v02'].geometry}
-        material={materials.Zinc}
+        geometry={nodes['P203-1-309_-_Vent_Roof_Whirly_Bird'].geometry}
+        material={materials.Black_Metal}
       />
     </group>
   )
 }
 
-export default AirConditioner;
+export default RoofVent;

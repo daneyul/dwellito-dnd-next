@@ -4,11 +4,11 @@ import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from "@/utils
 import { useGLTF } from "@react-three/drei";
 import { useContext } from "react";
 
-const AirConditioner = () => {
+const Amp = () => {
   const { containerSize, slug } = useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
-  const { nodes, materials } = useGLTF(`/models/electrical/${containerSize()}/airconditioner.glb`);
+  const { nodes, materials } = useGLTF(`/models/electrical/${containerSize()}/amp.glb`);
   
   const position = () => {
     let x = 0;
@@ -34,29 +34,23 @@ const AirConditioner = () => {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes['P203-1-101_-_6K_BTU_Air_Conditioner_v02'].geometry}
-        material={materials.White_PVC}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['P203-1-101_-_6K_BTU_Air_Conditioner_v02_1'].geometry}
-        material={materials.Inside_Color}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['P203-1-101_-_6K_BTU_Air_Conditioner_v02_2'].geometry}
-        material={materials.Black_PVC}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['P203-1-101_-_6K_BTU_Air_Conditioner_Assembly_v02'].geometry}
+        geometry={nodes['P601-1-102_-_100amp_Panel_with_Exterior_JB_Connection'].geometry}
         material={materials.Zinc}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Outdoor_Junction_Box.geometry}
+        material={materials['Zinc (3)']}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Outdoor_Junction_Box_1.geometry}
+        material={materials['disjuntor_color (2)']}
       />
     </group>
   )
 }
 
-export default AirConditioner;
+export default Amp;
