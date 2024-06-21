@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useRef } from 'react';
+import React, { useContext, useMemo, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
 import * as THREE from 'three';
@@ -10,6 +10,7 @@ export function CsgGeometries({
   doorBoundingBoxes,
   windowBoundingBoxes,
   ventBoundingBoxes,
+  exhaustFanBoundingBox,
   doors,
   windows,
   vents,
@@ -206,6 +207,36 @@ export function CsgGeometries({
     });
   }, [vents, ventBoundingBoxes]);
 
+  const exhaustFanBoundingBoxGeometry = useMemo(() => {
+    if (!exhaustFanBoundingBox) return null; // Ensure bbox is defined
+    return (
+      <group
+        position={[
+          exhaustFanBoundingBox.center.x,
+          exhaustFanBoundingBox.center.y,
+          exhaustFanBoundingBox.center.z,
+        ]}
+      >
+        <Subtraction>
+          <boxGeometry
+            args={[
+              exhaustFanBoundingBox.size.x,
+              exhaustFanBoundingBox.size.y,
+              exhaustFanBoundingBox.size.z,
+            ]}
+          />
+          <mesh>
+            <meshStandardMaterial
+              attach='material'
+              color='white'
+              side={THREE.DoubleSide}
+            />
+          </mesh>
+        </Subtraction>
+      </group>
+    );
+  }, [exhaustFanBoundingBox]);
+
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
@@ -333,6 +364,7 @@ export function CsgGeometries({
         {doorBoundingBoxGeometries}
         {windowBoundingBoxGeometries}
         {ventBoundingBoxGeometries}
+        {exhaustFanBoundingBoxGeometry}
       </Geometry>
     </mesh>
   );

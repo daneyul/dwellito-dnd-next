@@ -35,6 +35,7 @@ import ContainerShell20High from './Containers/20/ContainerShell20High';
 import ContainerShell10High from './Containers/10/ContainerShell10High';
 import ContainerShell40High from './Containers/40/ContainerShell40High';
 import Airconditioner from './Electrical/Airconditioner';
+import ExhaustFan from './Electrical/ExhaustFan';
 
 export function Models() {
   const {
@@ -149,6 +150,11 @@ export function Models() {
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
   const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
   const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
+  const [exhaustFanBoundingBox, setExhaustFanBoundingBox] = useState(null);
+
+  const handleExhaustFanBoundingBox = useCallback((data) => {
+    setExhaustFanBoundingBox(data);
+  }, []);
 
   const handleDoorBoundingBox = useCallback(
     (index, data) => {
@@ -275,6 +281,7 @@ export function Models() {
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />
         <Airconditioner />
+        <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
         <ContainerShell />
         <CsgGeometries
           doors={doors}
@@ -283,6 +290,7 @@ export function Models() {
           doorBoundingBoxes={doorBoundingBoxes}
           windowBoundingBoxes={windowBoundingBoxes}
           ventBoundingBoxes={ventBoundingBoxes}
+          exhaustFanBoundingBox={exhaustFanBoundingBox}
         />
         {doors.map((door, index) => (
           <Door
