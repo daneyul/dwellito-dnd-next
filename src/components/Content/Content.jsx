@@ -284,8 +284,6 @@ const PageDataProvider = ({ children, data }) => {
       setModifiers([...doorWindowModifiers, snapToIncrement(6 * scaleFactor)]);
     } else if (draggedItem && draggedItem.fixed) {
       setModifiers([...fixedModifiers]);
-    } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.ELECTRICAL) {
-      setModifiers([...restrictToParentEdges])
     } else {
       setModifiers([...defaultModifiers]);
     }

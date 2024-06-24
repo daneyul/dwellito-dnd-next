@@ -6,6 +6,7 @@ import { PageDataContext } from './Content/Content';
 import DeleteBtn from './DeleteBtn/DeleteBtn';
 import DragToMove from './DragToMove/DragToMove';
 import {
+  COMPONENT_NAMES,
   COMPONENT_TYPES,
   CONTAINER_40_SLUG,
   ELEVATION_NAMES,
@@ -70,99 +71,28 @@ export function Draggable({ id, styles, piece, onSelect }) {
 
   const isFixed = piece.fixed && !!piece.fixedSide;
 
-  const fixedElectricalPositions = () => {
-    if (piece.fixedSide === ELEVATION_NAMES.BACK) {
-      return `calc(${piece.position.x}px - ${piece.objWidth}px)`;
-    }
-  };
-
   // Render on corresponding elevation or render on floor plan view
   if (!piece.elevation.includes(selectedElevation) && !isFloorPlanView) {
     return null;
   }
 
-  // These calculate the CSS positions based on the piece's position and elevation
-  const LeftPos = () => {
-    if (isFloorPlanView) {
-      if (isFixed) {
-        return { left: 'auto' };
-      } else if (piece.elevation[0].name !== ELEVATION_NAMES.BACK) {
-        return {
-          left: `${
-            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
-          }px`,
-        };
-      }
-    } else {
-      if (isFixed) {
-        return { left: 'auto' };
-      } else {
-        return { left: `${piece.position.x}px` };
-      }
-    }
-  };
-
-  const RightPos = () => {
-    if (isFloorPlanView) {
-      if (isFixed) {
-        return { right: fixedElectricalPositions() };
-      } else {
-        if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
-          return { right: '0', transform: 'rotate(270deg)' };
-        } else {
-          return { right: 'auto' };
-        }
-      }
-    } else {
-      return { right: 'auto' };
-    }
-  };
-
-  const TopPos = () => {
-    if (isFloorPlanView) {
-      if (isFixed) {
-        return { top: `${piece.position.y}px` };
-      } else {
-        if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
-          return { top: '10px', transform: 'rotate(180deg) translateY(100%)' };
-        } else {
-          return { top: 'auto' };
-        }
-      }
-    } else {
-      return { top: `${objTop()}px` };
-    }
-  };
-
-  const BotPos = () => {
-    if (isFloorPlanView) {
-      if (isFixed) {
-        return { bottom: `${piece.position.y}px` };
-      } else {
-        if (piece.elevation[0].name === ELEVATION_NAMES.RIGHT) {
-          return { bottom: '10px', transform: 'translateY(100%)' };
-        } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
-          return {
-            bottom: `calc(${piece.position.x}px + ${toScale(
-              DIMENSIONS.BOUNDARIES.x
-            )}px)`,
-            transform: 'rotate(270deg) translateX(50%)',
-          };
-        }
-      }
-    } else {
-      return { bottom: 'auto' };
-    }
-  };
-
+  // This calculates the CSS positions based on the piece's position and elevation
   const calculateCSSPos = () => {
     if (isFloorPlanView) {
       if (isFixed) {
-        return {
-          bottom: `${piece.position.y}px`,
-          top: `${piece.position.y}px`,
-          right: fixedElectricalPositions(),
-        };
+        if (piece.fixedSide === ELEVATION_NAMES.RIGHT) {
+          return {
+            bottom: "0",
+            right: `${toScale(piece.position.x, scaleFactor)}px`,
+            transform: `rotate(90deg) translateX(${piece.position.y}px)`
+          }
+        } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
+          return {
+            top: `${piece.position.y}px`,
+            right: "0",
+            transform: "translateX(50%)"
+          };
+        }
       } else {
         if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
           return {
