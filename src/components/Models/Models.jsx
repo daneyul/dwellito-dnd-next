@@ -43,7 +43,7 @@ export function Models() {
     setThreeDModelLoaded,
     containerHeightIsStandard,
     cameraReady,
-    setCameraReady
+    setCameraReady,
   } = useContext(PageDataContext);
   const { containerData } = useContext(Library2dDataContext);
 
@@ -144,7 +144,7 @@ export function Models() {
       controls.enabled = cameraReady && showExterior;
     }
   }
-  
+
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
   const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
   const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
@@ -278,7 +278,10 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />
-        <Electrical handleExhaustFanBoundingBox={handleExhaustFanBoundingBox} />
+        <Amp />
+        <RoofVent />
+        <AirConditioner />
+        <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
         <ContainerShell />
         <CsgGeometries
           doors={doors}
