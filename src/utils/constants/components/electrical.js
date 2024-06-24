@@ -1,11 +1,11 @@
-import { COMPONENT_NAMES, COMPONENT_TYPES } from "../names";
+import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES } from "../names";
 
 export const electricalComponents = [
   {
     name: COMPONENT_NAMES.AIR_CONDITIONER,
     position: {
       x: 0,
-      y: 0,
+      y: 40,
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/ac.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/ac.svg`,
@@ -15,7 +15,8 @@ export const electricalComponents = [
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 975,
     model: 'airconditioner',
-    fixed: true
+    fixed: true,
+    fixedSide: ELEVATION_NAMES.BACK
   },
   {
     name: COMPONENT_NAMES.ROOF_VENT,
@@ -47,7 +48,8 @@ export const electricalComponents = [
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 925,
     model: 'electricalpanel',
-    fixed: true
+    fixed: true,
+    fixedSide: ELEVATION_NAMES.BACK
   },
   {
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP,
@@ -63,7 +65,8 @@ export const electricalComponents = [
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 1075,
     model: 'electricalpanel',
-    fixed: true
+    fixed: true,
+    fixedSide: ELEVATION_NAMES.BACK
   },
   {
     name: COMPONENT_NAMES.BASEBOARD_HEATER,

@@ -24,8 +24,6 @@ export function Draggable({ id, styles, piece, onSelect }) {
     selectedElevation
   } = useContext(PageDataContext);
 
-  const { DIMENSIONS } = useContext(Library2dDataContext);
-
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseDown = (e) => {
@@ -53,13 +51,22 @@ export function Draggable({ id, styles, piece, onSelect }) {
     }
   };
 
+  const isFixed = piece.fixed && !!piece.fixedSide
+
+  const fixedElectricalPositions = () => {
+    if (piece.fixedSide === ELEVATION_NAMES.BACK) {
+      return `calc(0px - ${piece.objWidth}px)`
+    }
+  }
+  
   const CustomStyle = {
     position: 'absolute',
     display: 'flex',
     cursor: 'pointer',
     width: `${toScale(piece.objWidth, scaleFactor)}px`,
     height: `${Math.floor(toScale(piece.objHeight, scaleFactor))}px`,
-    left: `${piece.position.x}px`,
+    left: isFixed ? 'auto' : `${piece.position.x}px`,
+    right: isFixed ? fixedElectricalPositions() : 'auto',
     top: `${objTop()}px`,
     boxShadow:
       isHovered || piece.isSelected
@@ -77,10 +84,6 @@ export function Draggable({ id, styles, piece, onSelect }) {
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
       }
     : {};
-
-  // const dynamicLineWidth = transform
-  //   ? piece.position.x + transform.x
-  //   : piece.position.x;
 
   const imgSrc = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN ? piece.floorPlanImg : piece.imgName
 

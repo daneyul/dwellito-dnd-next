@@ -154,11 +154,11 @@ export const getUniqueElevationObjects = (selectedComponents) => {
 
 export const DROPPABLE_FLOOR_PLAN_WIDTH = (DIMENSIONS, selectedContainer) => {
   if (selectedContainer.name === `10' Custom Cube`) {
-    return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH;
+    return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH;
   } else if (selectedContainer.name === `20' Custom Cube`) {
-    return DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH;
+    return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH;
   } else if (selectedContainer.name === `40' Custom Cube`) {
-    return DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH;
+    return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH;
   }
 };
 

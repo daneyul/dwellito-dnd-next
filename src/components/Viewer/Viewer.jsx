@@ -118,7 +118,7 @@ const Viewer = () => {
                   height: '100%',
                   position: 'absolute',
                   left: '50%',
-                  transform: 'translateX(-50%)',
+                  transform: 'translateX(-50%)'
                 }}
               >
                 {selectedComponents
