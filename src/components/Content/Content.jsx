@@ -89,6 +89,9 @@ const PageDataProvider = ({ children, data }) => {
     (container) => container.slug === slug
   );
   const containerId = selectedContainer.id;
+  const floorPlan = elevationData.find((elevation) => {
+   return elevation.name === ELEVATION_NAMES.FLOOR_PLAN && elevation.homePlan === slug;
+  })
 
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -423,7 +426,8 @@ const PageDataProvider = ({ children, data }) => {
         handleDeleteSelected,
         cameraReady,
         setCameraReady,
-        containerSize
+        containerSize,
+        floorPlan
       }}
     >
       {children}

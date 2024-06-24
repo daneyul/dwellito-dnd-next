@@ -103,7 +103,6 @@ export const elevationData = [
     objScHeight: DIMENSIONS.CONTAINER.FORTY.FLOOR_PLAN.HEIGHT,
   }
 ]
-  .filter((item) => item.name !== ELEVATION_NAMES.FRONT)
   .map((item) => ({
     id: uuid(),
     width: '100%',

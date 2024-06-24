@@ -31,6 +31,7 @@ const Viewer = () => {
     mappedElevations,
     selectedContainer,
     scaleFactor,
+    floorPlan
   } = useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
@@ -118,20 +119,17 @@ const Viewer = () => {
                   height: '100%',
                   position: 'absolute',
                   left: '50%',
-                  transform: 'translateX(-50%)'
+                  transform: 'translateX(-50%)',
                 }}
               >
+                {/* Map through selected components and render on corresponding elevation view */}
                 {selectedComponents
-                  .filter((piece) =>
-                    piece.elevation.includes(selectedElevation)
-                  )
                   .map((piece) => {
                     return (
                       <Draggable
                         piece={piece}
                         key={piece.id}
                         id={piece.id}
-                        imgName={piece.imgName}
                         onSelect={() => handleSelect(piece.id)}
                         ref={draggableRefs[piece.id]}
                       />

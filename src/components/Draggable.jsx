@@ -5,15 +5,17 @@ import { toScale, generateImgSrc } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import DeleteBtn from './DeleteBtn/DeleteBtn';
 import DragToMove from './DragToMove/DragToMove';
-import { COMPONENT_TYPES, CONTAINER_40_SLUG, ELEVATION_NAMES } from '@/utils/constants/names';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import {
+  COMPONENT_TYPES,
+  CONTAINER_40_SLUG,
+  ELEVATION_NAMES,
+} from '@/utils/constants/names';
 
 export function Draggable({ id, styles, piece, onSelect }) {
-
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
-  
+
   const {
     scaleFactor,
     selectedComponents,
@@ -21,7 +23,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
     handleDeleteSelected,
     containerHeightIsStandard,
     slug,
-    selectedElevation
+    selectedElevation,
   } = useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
@@ -37,7 +39,10 @@ export function Draggable({ id, styles, piece, onSelect }) {
 
   const objTop = () => {
     if (containerHeightIsStandard) {
-      if (slug !== CONTAINER_40_SLUG && piece.objType !== COMPONENT_TYPES.ELECTRICAL) {
+      if (
+        slug !== CONTAINER_40_SLUG &&
+        piece.objType !== COMPONENT_TYPES.ELECTRICAL
+      ) {
         return piece.position.y;
       } else {
         return piece.position.y / 1.4;
@@ -51,14 +56,14 @@ export function Draggable({ id, styles, piece, onSelect }) {
     }
   };
 
-  const isFixed = piece.fixed && !!piece.fixedSide
+  const isFixed = piece.fixed && !!piece.fixedSide;
 
   const fixedElectricalPositions = () => {
     if (piece.fixedSide === ELEVATION_NAMES.BACK) {
-      return `calc(${piece.position.x}px - ${piece.objWidth}px)`
+      return `calc(${piece.position.x}px - ${piece.objWidth}px)`;
     }
-  }
-  
+  };
+
   const CustomStyle = {
     position: 'absolute',
     display: 'flex',
@@ -85,8 +90,18 @@ export function Draggable({ id, styles, piece, onSelect }) {
       }
     : {};
 
-  const imgSrc = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN ? piece.floorPlanImg : piece.imgName
+  const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN
 
+  const imgSrc =
+    isFloorPlanView
+      ? piece.floorPlanImg
+      : piece.imgName;
+
+  // Render on corresponding elevation or render on floor plan view
+  if (!piece.elevation.includes(selectedElevation) && !isFloorPlanView) {
+    return null;
+  }
+  
   return (
     <>
       <div
@@ -111,7 +126,9 @@ export function Draggable({ id, styles, piece, onSelect }) {
       {isAnyItemSelected && !show3d && (
         <DeleteBtn onDeleteSelected={handleDeleteSelected} />
       )}
-      {isHovered && !show3d && !isAnyItemSelected && !piece.fixed && <DragToMove />}
+      {isHovered && !show3d && !isAnyItemSelected && !piece.fixed && (
+        <DragToMove />
+      )}
     </>
   );
 }
