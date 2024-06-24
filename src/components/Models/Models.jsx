@@ -33,10 +33,7 @@ import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
 import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
 import ContainerShell20High from './Containers/20/ContainerShell20High';
 import ContainerShell40High from './Containers/40/ContainerShell40High';
-import AirConditioner from './Electrical/AirConditioner';
-import ExhaustFan from './Electrical/ExhaustFan';
-import RoofVent from './Electrical/RoofVent';
-import Amp from './Electrical/Amp';
+import Electrical from './Electrical/Electrical';
 
 export function Models() {
   const {
@@ -281,10 +278,7 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />
-        <Amp />
-        <RoofVent />
-        <AirConditioner />
-        <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
+        <Electrical handleExhaustFanBoundingBox={handleExhaustFanBoundingBox} />
         <ContainerShell />
         <CsgGeometries
           doors={doors}

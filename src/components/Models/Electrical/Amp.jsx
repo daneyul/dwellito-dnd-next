@@ -1,11 +1,12 @@
 import { PageDataContext } from "@/components/Content/Content";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
-import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from "@/utils/constants/names";
+import { electricalComponents } from "@/utils/constants/components/electrical";
+import { COMPONENT_NAMES, CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from "@/utils/constants/names";
 import { useGLTF } from "@react-three/drei";
 import { useContext } from "react";
 
 const Amp = () => {
-  const { containerSize, slug } = useContext(PageDataContext);
+  const { containerSize, slug, selectedComponents } = useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const { nodes, materials } = useGLTF(`/models/electrical/${containerSize()}/amp.glb`);

@@ -1,6 +1,7 @@
 import { PageDataContext } from '@/components/Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import {
+  COMPONENT_NAMES,
   CONTAINER_10_SLUG,
   CONTAINER_20_SLUG,
   CONTAINER_40_SLUG,
@@ -10,7 +11,8 @@ import { useContext, useEffect, useRef } from 'react';
 import { Box3, Vector3 } from 'three';
 
 const ExhaustFan = ({ onBoundingBoxChange }) => {
-  const { containerSize, slug } = useContext(PageDataContext);
+  const { containerSize, slug, selectedComponents } =
+    useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const groupRef = useRef();
 
@@ -47,6 +49,14 @@ const ExhaustFan = ({ onBoundingBoxChange }) => {
       onBoundingBoxChange({ size, center });
     }
   }, [onBoundingBoxChange]);
+
+  if (
+    !selectedComponents.some(
+      (component) => component.name === COMPONENT_NAMES.EXHAUST_FAN
+    )
+  ) {
+    return null;
+  }
 
   return (
     <group ref={groupRef} dispose={null} scale={10} position={position()}>
