@@ -1,11 +1,11 @@
 import { PageDataContext } from "@/components/Content/Content";
-import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from "@/utils/constants/names";
+import { COMPONENT_NAMES, CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from "@/utils/constants/names";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { useGLTF } from "@react-three/drei";
 import { useContext } from "react";
 
 const RoofVent = () => {
-  const { containerHeightIsStandard, slug } = useContext(PageDataContext);
+  const { containerHeightIsStandard, slug, selectedComponents } = useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const fileName = containerHeightIsStandard ? 'roofvent-st.glb' : 'roofvent-hc.glb'
@@ -29,6 +29,14 @@ const RoofVent = () => {
     }
 
     return [x, z, y];
+  }
+
+  if (
+    !selectedComponents.some(
+      (component) => component.name === COMPONENT_NAMES.ROOF_VENT
+    )
+  ) {
+    return null;
   }
 
   return (
