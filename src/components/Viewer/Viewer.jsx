@@ -2,7 +2,7 @@ import Collision from '@/components/Collision/Collision';
 import { Droppable } from '@/components/Droppable';
 import { Draggable } from '@/components/Draggable';
 import { DndContext } from '@dnd-kit/core';
-import { useContext, useEffect } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { droppableWidth, toScale } from '@/utils/2D/utils';
 import ChevronLeftBlack from '../ChevronLeftBlack';
 import ChevronRightBlack from '../ChevronRightBlack';
@@ -13,10 +13,12 @@ import ToggleCamera from '../ToggleCamera/ToggleCamera';
 import { PageDataContext } from '../Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import ElevationToggle from '../ElevationToggle/ElevationToggle';
+import debounce from 'lodash.debounce';
 
 const Viewer = () => {
   const {
     selectedComponents,
+    setSelectedComponents,
     selectedElevation,
     setSelectedElevation,
     modifiers,
@@ -30,9 +32,11 @@ const Viewer = () => {
     show3d,
     mappedElevations,
     selectedContainer,
-    scaleFactor
+    scaleFactor,
   } = useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
+
+  const [tempPositions, setTempPositions] = useState({});
 
   const LeftArrow = () => {
     return (
@@ -71,6 +75,51 @@ const Viewer = () => {
   const showRightArrow =
     selectedElevationIndex < mappedElevations.length - 1 && !show3d;
 
+  const debouncedUpdatePosition = useCallback(
+    debounce((id, delta) => {
+      setTempPositions((prev) => ({
+        ...prev,
+        [id]: {
+          x: (prev[id]?.x || 0) + delta.x,
+          y: (prev[id]?.y || 0) + delta.y,
+        },
+      }));
+    }, 50), // Adjust debounce delay as needed
+    []
+  );
+
+  const handleDragMove = (event) => {
+    const { id, delta } = event;
+    debouncedUpdatePosition(id, delta);
+  };
+
+  const handleDragEndEnhanced = (event) => {
+    const { id } = event;
+    const tempPos = tempPositions[id];
+    if (tempPos) {
+      setSelectedComponents((prevComponents) =>
+        prevComponents.map((piece) => {
+          if (piece.id === id) {
+            return {
+              ...piece,
+              position: {
+                x: piece.position.x + tempPos.x,
+                y: piece.position.y + tempPos.y,
+              },
+            };
+          }
+          return piece;
+        })
+      );
+      setTempPositions((prev) => {
+        const newPos = { ...prev };
+        delete newPos[id];
+        return newPos;
+      });
+    }
+    handleDragEnd(event); // Perform collision and closeness checks
+  };
+
   return (
     <>
       <div
@@ -101,7 +150,8 @@ const Viewer = () => {
           <Collision showCollision={showCollision} />
           <DndContext
             onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
+            onDragMove={handleDragMove}
+            onDragEnd={handleDragEndEnhanced}
             modifiers={modifiers}
           >
             <Droppable>
@@ -122,18 +172,17 @@ const Viewer = () => {
                 }}
               >
                 {/* Map through selected components and render on corresponding elevation view */}
-                {selectedComponents
-                  .map((piece) => {
-                    return (
-                      <Draggable
-                        piece={piece}
-                        key={piece.id}
-                        id={piece.id}
-                        onSelect={() => handleSelect(piece.id)}
-                        ref={draggableRefs[piece.id]}
-                      />
-                    );
-                  })}
+                {selectedComponents.map((piece) => {
+                  return (
+                    <Draggable
+                      piece={piece}
+                      key={piece.id}
+                      id={piece.id}
+                      onSelect={() => handleSelect(piece.id)}
+                      ref={draggableRefs[piece.id]}
+                    />
+                  );
+                })}
               </div>
             </Droppable>
           </DndContext>

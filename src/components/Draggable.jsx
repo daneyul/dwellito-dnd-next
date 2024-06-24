@@ -6,7 +6,6 @@ import { PageDataContext } from './Content/Content';
 import DeleteBtn from './DeleteBtn/DeleteBtn';
 import DragToMove from './DragToMove/DragToMove';
 import {
-  COMPONENT_NAMES,
   COMPONENT_TYPES,
   CONTAINER_40_SLUG,
   ELEVATION_NAMES,
