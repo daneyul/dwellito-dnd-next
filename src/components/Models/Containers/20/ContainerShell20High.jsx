@@ -378,7 +378,9 @@ export default function ContainerShell20High() {
           <mesh
             castShadow
             receiveShadow
-            geometry={ceilingSprayFoamNodes['20FT_HC_Sprayfoam_Ceiling'].geometry}
+            geometry={
+              ceilingSprayFoamNodes['20FT_HC_Sprayfoam_Ceiling'].geometry
+            }
             material={ceilingSprayFoamMaterials.Sprayfoam}
             scale={0.01}
           />

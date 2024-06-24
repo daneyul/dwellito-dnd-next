@@ -1,5 +1,10 @@
-import { DIMENSIONS } from "./dimensions";
-import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG, ELEVATION_NAMES } from "./names";
+import { DIMENSIONS } from './dimensions';
+import {
+  CONTAINER_10_SLUG,
+  CONTAINER_20_SLUG,
+  CONTAINER_40_SLUG,
+  ELEVATION_NAMES,
+} from './names';
 import { v4 as uuid } from 'uuid';
 
 export const elevationData = [
@@ -101,11 +106,10 @@ export const elevationData = [
     homePlan: CONTAINER_40_SLUG,
     objWidth: DIMENSIONS.CONTAINER.FORTY.FLOOR_PLAN.WIDTH,
     objScHeight: DIMENSIONS.CONTAINER.FORTY.FLOOR_PLAN.HEIGHT,
-  }
-]
-  .map((item) => ({
-    id: uuid(),
-    width: '100%',
-    height: 'auto',
-    ...item,
-  }));
+  },
+].map((item) => ({
+  id: uuid(),
+  width: '100%',
+  height: 'auto',
+  ...item,
+}));

@@ -3,7 +3,12 @@ import Subtitle from '../Subtitle/Subtitle';
 import style from './singleSelect.module.scss';
 import { PageDataContext } from '@/components/Content/Content';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
-import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG, INTERIOR_FINISH_NAMES } from '@/utils/constants/names';
+import {
+  CONTAINER_10_SLUG,
+  CONTAINER_20_SLUG,
+  CONTAINER_40_SLUG,
+  INTERIOR_FINISH_NAMES,
+} from '@/utils/constants/names';
 
 /* eslint-disable @next/next/no-img-element */
 const SingleSelect = ({ type }) => {
@@ -17,7 +22,7 @@ const SingleSelect = ({ type }) => {
     setShow3d,
     setShowExterior,
     slug,
-    setCameraReady
+    setCameraReady,
   } = useContext(PageDataContext);
   const {
     EXTERIOR,
@@ -86,7 +91,11 @@ const SingleSelect = ({ type }) => {
             setCameraReady(false);
           }}
         >
-          <img className={style.img} src={`/images/interior-finishes/${selection.img}`} alt='thumbnail' />
+          <img
+            className={style.img}
+            src={`/images/interior-finishes/${selection.img}`}
+            alt='thumbnail'
+          />
         </div>
       );
     });
@@ -98,24 +107,26 @@ const SingleSelect = ({ type }) => {
       const interiorFinishPrice = () => {
         if (selection.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
           if (slug === CONTAINER_10_SLUG) {
-            return selection.price10
+            return selection.price10;
           } else if (slug === CONTAINER_20_SLUG) {
-            return selection.price20
+            return selection.price20;
           } else if (slug === CONTAINER_40_SLUG) {
-            return selection.price40
+            return selection.price40;
           }
-        } else if (selection.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS) {
+        } else if (
+          selection.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS
+        ) {
           if (slug === CONTAINER_10_SLUG) {
-            return selection.price10
+            return selection.price10;
           } else if (slug === CONTAINER_20_SLUG) {
-            return selection.price20S
+            return selection.price20S;
           } else if (slug === CONTAINER_40_SLUG) {
-            return selection.price40S
+            return selection.price40S;
           }
         } else {
-          return selection.price
+          return selection.price;
         }
-      }
+      };
 
       return (
         isSelected && (
@@ -140,10 +151,14 @@ const SingleSelect = ({ type }) => {
             setFlooring(selection);
             setShow3d(true);
             setShowExterior(false);
-            setCameraReady(false)
+            setCameraReady(false);
           }}
         >
-          <img className={style.img} src={`/images/flooring/${selection.img}`} alt='thumbnail' />
+          <img
+            className={style.img}
+            src={`/images/flooring/${selection.img}`}
+            alt='thumbnail'
+          />
         </div>
       );
     });
@@ -153,13 +168,13 @@ const SingleSelect = ({ type }) => {
     return FLOORING_OPTIONS.map((selection, index) => {
       const flooringPrice = () => {
         if (slug === CONTAINER_10_SLUG) {
-          return selection.price10
+          return selection.price10;
         } else if (slug === CONTAINER_20_SLUG) {
-          return selection.price20
+          return selection.price20;
         } else if (slug === CONTAINER_40_SLUG) {
-          return selection.price40
+          return selection.price40;
         }
-      }
+      };
       const isSelected = flooring.hex === selection.hex;
 
       return (

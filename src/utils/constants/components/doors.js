@@ -146,7 +146,7 @@ export const doorComponents = [
     objType: COMPONENT_TYPES.DOOR,
     price: 3025,
     model: 'SM_Wide_Sliding_Glass_Door_6feet',
-    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/sliding.svg`
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/sliding.svg`,
   },
   {
     name: COMPONENT_NAMES.DOUBLE_DOOR,
@@ -162,7 +162,7 @@ export const doorComponents = [
     objType: COMPONENT_TYPES.DOOR,
     price: 3895,
     model: 'P202-1-503_6ft_6ft8in_Height_French Door White_and_Black Frame',
-    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/double.svg`
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/double.svg`,
   },
   {
     name: COMPONENT_NAMES.HD_ROLL_UP_6,

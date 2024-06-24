@@ -29,7 +29,9 @@ const Sidebar = () => {
   const supplierName = 'Custom Cubes';
 
   const canSelectContainerHeight = slug !== CONTAINER_10_SLUG;
-  const containerPrice = containerHeightIsStandard ? selectedContainer.priceSc : selectedContainer.priceHc;
+  const containerPrice = containerHeightIsStandard
+    ? selectedContainer.priceSc
+    : selectedContainer.priceHc;
 
   const NotYourOrder = () => {
     return (

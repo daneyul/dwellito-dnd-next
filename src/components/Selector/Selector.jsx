@@ -8,12 +8,13 @@ import AddElecOption from '../AddOption/AddElecOption';
 
 const Selector = () => {
   const { componentData } = useContext(Library2dDataContext);
-  const { containerHeightIsStandard, containerSize } = useContext(PageDataContext);
-  
+  const { containerHeightIsStandard, containerSize } =
+    useContext(PageDataContext);
 
   const doors = componentData.filter(
-    (item) => item.objType === COMPONENT_TYPES.DOOR &&
-    !(containerHeightIsStandard && item.highContainerOnly)
+    (item) =>
+      item.objType === COMPONENT_TYPES.DOOR &&
+      !(containerHeightIsStandard && item.highContainerOnly)
   );
   const windows = componentData.filter(
     (item) => item.objType === COMPONENT_TYPES.WINDOW
@@ -23,9 +24,15 @@ const Selector = () => {
   );
   const electricals = componentData.filter((item) => {
     if (containerSize() === '40') {
-      return item.objType === COMPONENT_TYPES.ELECTRICAL && item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP;
+      return (
+        item.objType === COMPONENT_TYPES.ELECTRICAL &&
+        item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP
+      );
     } else {
-      return item.objType === COMPONENT_TYPES.ELECTRICAL && item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP;
+      return (
+        item.objType === COMPONENT_TYPES.ELECTRICAL &&
+        item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP
+      );
     }
   });
 

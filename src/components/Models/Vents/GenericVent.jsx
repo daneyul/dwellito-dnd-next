@@ -19,8 +19,7 @@ const GenericVent = React.memo(
     const { nodes, materials } = useGLTF(modelPath);
     const { selectedComponents, selectedContainer, scaleFactor } =
       useContext(PageDataContext);
-    const { elevationData, DIMENSIONS } =
-      useContext(Library2dDataContext);
+    const { elevationData, DIMENSIONS } = useContext(Library2dDataContext);
     const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
     const selectedElevation = component.elevation[0];
     const distanceObject = checkDistance({

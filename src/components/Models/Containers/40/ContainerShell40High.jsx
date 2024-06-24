@@ -526,13 +526,17 @@ export default function ContainerShell40High() {
               <mesh
                 castShadow
                 receiveShadow
-                geometry={rearTopSprayFoamNodes['40FT_HC_Sprayfoam_RearTop_1'].geometry}
+                geometry={
+                  rearTopSprayFoamNodes['40FT_HC_Sprayfoam_RearTop_1'].geometry
+                }
                 material={rearTopSprayFoamMaterials.Black_Rubber_01}
               />
               <mesh
                 castShadow
                 receiveShadow
-                geometry={rearTopSprayFoamNodes['40FT_HC_Sprayfoam_RearTop_2'].geometry}
+                geometry={
+                  rearTopSprayFoamNodes['40FT_HC_Sprayfoam_RearTop_2'].geometry
+                }
                 material={rearTopSprayFoamMaterials.Sprayfoam}
               />
             </group>
@@ -545,7 +549,9 @@ export default function ContainerShell40High() {
             <mesh
               castShadow
               receiveShadow
-              geometry={rearTopSprayFoamNodes['40FT_HC_Sprayfoam_Ceiling'].geometry}
+              geometry={
+                rearTopSprayFoamNodes['40FT_HC_Sprayfoam_Ceiling'].geometry
+              }
               material={rearTopSprayFoamMaterials.Sprayfoam}
               scale={0.01}
             />

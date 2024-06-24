@@ -3,7 +3,8 @@ import style from './toggleCamera.module.scss';
 import { PageDataContext } from '../Content/Content';
 
 const ToggleCamera = () => {
-  const { show3d, showExterior, setShowExterior, setCameraReady } = useContext(PageDataContext);
+  const { show3d, showExterior, setShowExterior, setCameraReady } =
+    useContext(PageDataContext);
 
   if (show3d) {
     return (
@@ -20,7 +21,7 @@ const ToggleCamera = () => {
         <button
           className={showExterior ? style.button : style.buttonSelected}
           onClick={() => {
-            setShowExterior(false)
+            setShowExterior(false);
             setCameraReady(false);
           }}
         >

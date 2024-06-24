@@ -81,15 +81,15 @@ export function Draggable({ id, styles, piece, onSelect }) {
       if (isFixed) {
         if (piece.fixedSide === ELEVATION_NAMES.RIGHT) {
           return {
-            bottom: "0",
+            bottom: '0',
             right: `${toScale(piece.position.x, scaleFactor)}px`,
-            transform: `rotate(90deg) translateX(${piece.position.y}px)`
-          }
+            transform: `rotate(90deg) translateX(${piece.position.y}px)`,
+          };
         } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
           return {
             top: `${piece.position.y}px`,
-            right: "0",
-            transform: "translateX(50%)"
+            right: '0',
+            transform: 'translateX(50%)',
           };
         }
       } else {
@@ -103,18 +103,20 @@ export function Draggable({ id, styles, piece, onSelect }) {
           };
         } else if (piece.elevation[0].name === ELEVATION_NAMES.RIGHT) {
           return {
-            bottom: '10px', transform: 'translateY(100%)',
-            left: `${piece.position.x}px`
-          }
+            bottom: '10px',
+            transform: 'translateY(100%)',
+            left: `${piece.position.x}px`,
+          };
         } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
           return {
             bottom: `calc(${piece.position.x}px + ${toScale(
-              DIMENSIONS.BOUNDARIES.x, scaleFactor
+              DIMENSIONS.BOUNDARIES.x,
+              scaleFactor
             )}px)`,
             right: `0`,
-            transformOrigin: "right bottom",
+            transformOrigin: 'right bottom',
             transform: `rotate(270deg) translateX(100%) translateY(calc(100% - 12px)`,
-          }
+          };
         }
       }
     } else {

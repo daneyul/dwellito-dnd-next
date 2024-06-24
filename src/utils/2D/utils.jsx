@@ -219,10 +219,7 @@ export const droppableWidth = (
         selectedContainer
       );
     case ELEVATION_NAMES.FLOOR_PLAN:
-      return DROPPABLE_FLOOR_PLAN_WIDTH(
-        DIMENSIONS,
-        selectedContainer
-      )
+      return DROPPABLE_FLOOR_PLAN_WIDTH(DIMENSIONS, selectedContainer);
     default:
       console.warn('Unknown elevation name:', selectedElevation.name);
       return 0; // Or any default value you see fit

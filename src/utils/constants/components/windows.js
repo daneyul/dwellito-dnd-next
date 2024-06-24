@@ -1,5 +1,5 @@
-import { DIMENSIONS } from "../dimensions";
-import { COMPONENT_NAMES, COMPONENT_TYPES } from "../names";
+import { DIMENSIONS } from '../dimensions';
+import { COMPONENT_NAMES, COMPONENT_TYPES } from '../names';
 
 export const windowComponents = [
   {
@@ -33,5 +33,5 @@ export const windowComponents = [
     price: 1080,
     model: 'SM_Window_48x36_01_No_Security',
     floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/window-security.svg`,
-  }
-]
+  },
+];

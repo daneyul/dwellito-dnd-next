@@ -57,11 +57,11 @@ const rightSideCoordinates = ({
     if (selectedContainer.name === `10' Custom Cube`) {
       return -(parseFloat(distanceObject.top) + 4);
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return  -(parseFloat(distanceObject.top) + 4);
+      return -(parseFloat(distanceObject.top) + 4);
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return  -(parseFloat(distanceObject.top / 1.4) + 4);
+      return -(parseFloat(distanceObject.top / 1.4) + 4);
     }
-  }
+  };
 
   let xPosition =
     distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX();

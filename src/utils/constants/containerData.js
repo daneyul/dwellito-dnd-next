@@ -1,4 +1,8 @@
-import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from "./names";
+import {
+  CONTAINER_10_SLUG,
+  CONTAINER_20_SLUG,
+  CONTAINER_40_SLUG,
+} from './names';
 
 export const containerData = [
   {
@@ -12,7 +16,7 @@ export const containerData = [
     hcThumbnail: '10/standard/right.svg',
     floorPlan: '10/floor-plan.svg',
     priceSc: 5400,
-    priceHc: 0
+    priceHc: 0,
   },
   {
     name: `20' Custom Cube`,
@@ -25,7 +29,7 @@ export const containerData = [
     hcThumbnail: '20/high/right.svg',
     floorPlan: '20/floor-plan.svg',
     priceSc: 3800,
-    priceHc: 5200 
+    priceHc: 5200,
   },
   {
     name: `40' Custom Cube`,
@@ -38,6 +42,6 @@ export const containerData = [
     hcThumbnail: '40/high/right.svg',
     floorPlan: '40/floor-plan.svg',
     priceSc: 6300,
-    priceHc: 6300
+    priceHc: 6300,
   },
 ];

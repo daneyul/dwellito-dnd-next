@@ -44,7 +44,7 @@ export const COMPONENT_NAMES = {
   WORKSHOP_HEATER: `5Kw 240v Fan Forced Workshop Heater Install`,
   ROOF_VENT: `Vent Roof Whirly Bird`,
   OUTLET: `15amp 120V Duplex Receptacle`,
-  EXHAUST_FAN: `12" Exhaust Fan with Gravity Damper`
+  EXHAUST_FAN: `12" Exhaust Fan with Gravity Damper`,
 };
 
 export const ELEVATION_NAMES = {
@@ -52,7 +52,7 @@ export const ELEVATION_NAMES = {
   BACK: 'Back',
   LEFT: 'Left',
   RIGHT: 'Right',
-  FLOOR_PLAN: 'Floor Plan'
+  FLOOR_PLAN: 'Floor Plan',
 };
 
 export const CONTAINER_STANDARD = 'standard';
@@ -63,8 +63,10 @@ export const CONTAINER_20_SLUG = '20-custom-cube';
 export const CONTAINER_40_SLUG = '40-custom-cube';
 
 export const INTERIOR_FINISH_NAMES = {
-  PLYWOOD: '½” Cabinet Grade Plywood, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
-  DRYWALL: '½” Pre- Finished Drywall, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
+  PLYWOOD:
+    '½” Cabinet Grade Plywood, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
+  DRYWALL:
+    '½” Pre- Finished Drywall, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
   SPRAY_FOAM_CEILING: '1” Spray Foam (Ceiling Only)',
-  SPRAY_FOAM_CEILING_WALLS: '1” Spray Foam (Ceiling & Walls)'
-}
+  SPRAY_FOAM_CEILING_WALLS: '1” Spray Foam (Ceiling & Walls)',
+};

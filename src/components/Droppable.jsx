@@ -13,12 +13,13 @@ export function Droppable({ children }) {
     id: 'droppable',
   });
 
-  const objectHeight =
-  containerHeightIsStandard
-      ? selectedElevation.objScHeight
-      : selectedElevation.objHcHeight;
+  const objectHeight = containerHeightIsStandard
+    ? selectedElevation.objScHeight
+    : selectedElevation.objHcHeight;
 
-  const elevationImg = containerHeightIsStandard ? selectedElevation.imgScName : selectedElevation.imgHcName;
+  const elevationImg = containerHeightIsStandard
+    ? selectedElevation.imgScName
+    : selectedElevation.imgHcName;
 
   const CustomStyle = {
     display: 'flex',

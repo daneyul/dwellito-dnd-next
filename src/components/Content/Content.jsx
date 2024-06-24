@@ -8,7 +8,7 @@ import {
 import {
   restrictToHorizontalAxis,
   restrictToVerticalAxis,
-  restrictToParentElement
+  restrictToParentElement,
 } from '@dnd-kit/modifiers';
 import Logo from '@/components/Logo';
 import Viewer from '@/components/Viewer/Viewer';
@@ -58,7 +58,8 @@ const PageDataProvider = ({ children, data }) => {
   );
   const [selectedContainerHeight, setSelectedContainerHeight] =
     useState(CONTAINER_STANDARD);
-  const containerHeightIsStandard = selectedContainerHeight === CONTAINER_STANDARD;
+  const containerHeightIsStandard =
+    selectedContainerHeight === CONTAINER_STANDARD;
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);
@@ -90,8 +91,11 @@ const PageDataProvider = ({ children, data }) => {
   );
   const containerId = selectedContainer.id;
   const floorPlan = elevationData.find((elevation) => {
-   return elevation.name === ELEVATION_NAMES.FLOOR_PLAN && elevation.homePlan === slug;
-  })
+    return (
+      elevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
+      elevation.homePlan === slug
+    );
+  });
 
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -140,34 +144,36 @@ const PageDataProvider = ({ children, data }) => {
     const interiorFinishPrice = () => {
       if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
         if (slug === CONTAINER_10_SLUG) {
-          return interiorFinish.price10
+          return interiorFinish.price10;
         } else if (slug === CONTAINER_20_SLUG) {
-          return interiorFinish.price20
+          return interiorFinish.price20;
         } else if (slug === CONTAINER_40_SLUG) {
-          return interiorFinish.price40
+          return interiorFinish.price40;
         }
-      } else if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS) {
+      } else if (
+        interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS
+      ) {
         if (slug === CONTAINER_10_SLUG) {
-          return interiorFinish.price10
+          return interiorFinish.price10;
         } else if (slug === CONTAINER_20_SLUG) {
-          return interiorFinish.price20S
+          return interiorFinish.price20S;
         } else if (slug === CONTAINER_40_SLUG) {
-          return interiorFinish.price40S
+          return interiorFinish.price40S;
         }
       } else {
-        return interiorFinish.price
+        return interiorFinish.price;
       }
-    }
+    };
 
     const flooringPrice = () => {
       if (slug === CONTAINER_10_SLUG) {
-        return flooring.price10
+        return flooring.price10;
       } else if (slug === CONTAINER_20_SLUG) {
-        return flooring.price20
+        return flooring.price20;
       } else if (slug === CONTAINER_40_SLUG) {
-        return flooring.price40
+        return flooring.price40;
       }
-    }
+    };
 
     const total =
       selectedComponents.reduce(
@@ -177,7 +183,7 @@ const PageDataProvider = ({ children, data }) => {
       interiorFinishPrice() +
       exteriorFinish.price +
       flooringPrice();
-    
+
     setOrderTotal(total);
   }, [selectedComponents, interiorFinish, exteriorFinish, flooring]);
 
@@ -206,7 +212,7 @@ const PageDataProvider = ({ children, data }) => {
   // Deselect components when clicking outside the component
   useEffect(() => {
     if (show3d) return;
-    
+
     function handleClickOutside(event) {
       const isInsideDraggable = Object.values(draggableRefs).some(
         (ref) => ref.current && ref.current.contains(event.target)
@@ -228,40 +234,49 @@ const PageDataProvider = ({ children, data }) => {
     };
   }, [draggableRefs]);
 
-  const restrictToParentEdges = ({ transform, activeNodeRect, containerNodeRect }) => {
+  const restrictToParentEdges = ({
+    transform,
+    activeNodeRect,
+    containerNodeRect,
+  }) => {
     if (!activeNodeRect || !containerNodeRect) {
       return transform;
     }
-  
+
     const { x, y } = transform;
     const margin = 10; // adjust the margin as needed
-  
+
     const restrictedX = Math.max(
       Math.min(x, containerNodeRect.width - activeNodeRect.width - margin),
       margin
     );
-  
+
     const restrictedY = Math.max(
       Math.min(y, containerNodeRect.height - activeNodeRect.height - margin),
       margin
     );
-  
+
     // If the element is closer to the left/right edge, restrict along the Y axis
     if (
       Math.abs(restrictedX - margin) < 10 ||
-      Math.abs(restrictedX - (containerNodeRect.width - activeNodeRect.width - margin)) < 10
+      Math.abs(
+        restrictedX - (containerNodeRect.width - activeNodeRect.width - margin)
+      ) < 10
     ) {
       return { x: restrictedX, y };
     }
-  
+
     // If the element is closer to the top/bottom edge, restrict along the X axis
     if (
       Math.abs(restrictedY - margin) < 10 ||
-      Math.abs(restrictedY - (containerNodeRect.height - activeNodeRect.height - margin)) < 10
+      Math.abs(
+        restrictedY -
+          (containerNodeRect.height - activeNodeRect.height - margin)
+      ) < 10
     ) {
       return { x, y: restrictedY };
     }
-  
+
     return transform;
   };
 
@@ -275,7 +290,7 @@ const PageDataProvider = ({ children, data }) => {
 
     const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];
 
-    const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis]
+    const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis];
 
     // Handles component snapping
     if (draggedItem && draggedItem.objType === COMPONENT_TYPES.DOOR) {
@@ -425,7 +440,7 @@ const PageDataProvider = ({ children, data }) => {
         cameraReady,
         setCameraReady,
         containerSize,
-        floorPlan
+        floorPlan,
       }}
     >
       {children}

@@ -1,14 +1,22 @@
-import { PageDataContext } from "@/components/Content/Content";
-import { COMPONENT_NAMES, CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from "@/utils/constants/names";
-import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
-import { useGLTF } from "@react-three/drei";
-import { useContext } from "react";
+import { PageDataContext } from '@/components/Content/Content';
+import {
+  COMPONENT_NAMES,
+  CONTAINER_10_SLUG,
+  CONTAINER_20_SLUG,
+  CONTAINER_40_SLUG,
+} from '@/utils/constants/names';
+import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import { useGLTF } from '@react-three/drei';
+import { useContext } from 'react';
 
 const RoofVent = () => {
-  const { containerHeightIsStandard, slug, selectedComponents } = useContext(PageDataContext);
+  const { containerHeightIsStandard, slug, selectedComponents } =
+    useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
-  const fileName = containerHeightIsStandard ? 'roofvent-st.glb' : 'roofvent-hc.glb'
+  const fileName = containerHeightIsStandard
+    ? 'roofvent-st.glb'
+    : 'roofvent-hc.glb';
 
   const { nodes, materials } = useGLTF(`/models/electrical/${fileName}`);
 
@@ -18,18 +26,18 @@ const RoofVent = () => {
     let z = 0;
 
     if (slug === CONTAINER_10_SLUG) {
-      x = -DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2
-      y = DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2
+      x = -DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2;
+      y = DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
     } else if (slug === CONTAINER_20_SLUG) {
-      x = -DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2
-      y = DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2
+      x = -DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2;
+      y = DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
     } else if (slug === CONTAINER_40_SLUG) {
-      x = -DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2
-      y = DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2
+      x = -DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2;
+      y = DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
 
     return [x, z, y];
-  }
+  };
 
   if (
     !selectedComponents.some(
@@ -40,7 +48,7 @@ const RoofVent = () => {
   }
 
   return (
-    <group dispose={null} scale={10} position={position()} >
+    <group dispose={null} scale={10} position={position()}>
       <mesh
         castShadow
         receiveShadow
@@ -48,7 +56,7 @@ const RoofVent = () => {
         material={materials.Black_Metal}
       />
     </group>
-  )
-}
+  );
+};
 
 export default RoofVent;

@@ -96,10 +96,10 @@ const PriceTotal = () => {
           <div className={style.lineItem}>
             <div className={style.thumbnailContainer}>
               <img
-                    src={generateImgSrc(`flooring/${flooring.img}`)}
-                    alt={flooring.name}
-                    className={style.thumbnailImg}
-                  />
+                src={generateImgSrc(`flooring/${flooring.img}`)}
+                alt={flooring.name}
+                className={style.thumbnailImg}
+              />
             </div>
             <div className={style.description}>{flooring.name}</div>
             <div className={style.price}>${flooringPrice().toLocaleString}</div>

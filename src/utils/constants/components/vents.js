@@ -1,5 +1,5 @@
-import { DIMENSIONS } from "../dimensions";
-import { COMPONENT_NAMES, COMPONENT_TYPES } from "../names";
+import { DIMENSIONS } from '../dimensions';
+import { COMPONENT_NAMES, COMPONENT_TYPES } from '../names';
 
 export const ventComponents = [
   {
@@ -49,5 +49,5 @@ export const ventComponents = [
     price: 540,
     model: 'P203-1-306_24in_x_24in Aluminum Fixed Louver 16ga Bolt on Frame',
     floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/24x24.svg`,
-  }
-]
+  },
+];

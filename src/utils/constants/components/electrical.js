@@ -1,4 +1,4 @@
-import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES } from "../names";
+import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES } from '../names';
 
 export const electricalComponents = [
   {
@@ -16,7 +16,7 @@ export const electricalComponents = [
     price: 975,
     model: 'airconditioner',
     fixed: true,
-    fixedSide: ELEVATION_NAMES.BACK
+    fixedSide: ELEVATION_NAMES.BACK,
   },
   {
     name: COMPONENT_NAMES.ROOF_VENT,
@@ -32,7 +32,7 @@ export const electricalComponents = [
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 670,
     model: 'roofvent',
-    fixed: true
+    fixed: true,
   },
   {
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP,
@@ -49,7 +49,7 @@ export const electricalComponents = [
     price: 925,
     model: 'electricalpanel',
     fixed: true,
-    fixedSide: ELEVATION_NAMES.BACK
+    fixedSide: ELEVATION_NAMES.BACK,
   },
   {
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP,
@@ -66,7 +66,7 @@ export const electricalComponents = [
     price: 1075,
     model: 'electricalpanel',
     fixed: true,
-    fixedSide: ELEVATION_NAMES.BACK
+    fixedSide: ELEVATION_NAMES.BACK,
   },
   // {
   //   name: COMPONENT_NAMES.BASEBOARD_HEATER,
@@ -113,6 +113,6 @@ export const electricalComponents = [
     price: 1540,
     model: 'fan',
     fixed: true,
-    fixedSide: ELEVATION_NAMES.RIGHT
-  }
-]
+    fixedSide: ELEVATION_NAMES.RIGHT,
+  },
+];

@@ -31,10 +31,7 @@ export default function Door({ onBoundingBoxChange, component }) {
   switch (component.name) {
     case COMPONENT_NAMES.PERSONNEL_LHR:
       return (
-        <Lhr
-          component={component}
-          onBoundingBoxChange={onBoundingBoxChange}
-        />
+        <Lhr component={component} onBoundingBoxChange={onBoundingBoxChange} />
       );
     case COMPONENT_NAMES.PERSONNEL_LHR_GLASS:
       return (
@@ -59,10 +56,7 @@ export default function Door({ onBoundingBoxChange, component }) {
       );
     case COMPONENT_NAMES.PERSONNEL_RHR:
       return (
-        <Rhr
-          component={component}
-          onBoundingBoxChange={onBoundingBoxChange}
-        />
+        <Rhr component={component} onBoundingBoxChange={onBoundingBoxChange} />
       );
     case COMPONENT_NAMES.PERSONNEL_RHR_GLASS:
       return (

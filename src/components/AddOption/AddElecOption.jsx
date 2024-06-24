@@ -14,9 +14,9 @@ const AddElecOption = ({ options }) => {
     setShow3d,
     setSelectedElevation,
     setSelectedElevationIndex,
-    mappedElevations
+    mappedElevations,
   } = useContext(PageDataContext);
-  
+
   return options.map((item) => {
     return (
       <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>

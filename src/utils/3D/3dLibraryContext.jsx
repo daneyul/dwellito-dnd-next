@@ -208,7 +208,7 @@ export const Library3dDataProvider = ({ children }) => {
         drywallMaterial,
         sprayFoamMaterial,
         echoFloor,
-        timberFloor
+        timberFloor,
       }}
     >
       {children}
