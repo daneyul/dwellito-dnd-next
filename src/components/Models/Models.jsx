@@ -369,6 +369,7 @@ export function Models() {
           maxPolarAngle={Math.PI / 2}
           enablePan={false}
           enableRotate={showExterior}
+          dampingFactor={0.1}
         />
       </Canvas>
     </div>
