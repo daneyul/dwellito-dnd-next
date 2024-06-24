@@ -33,6 +33,10 @@ import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
 import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
 import ContainerShell20High from './Containers/20/ContainerShell20High';
 import ContainerShell40High from './Containers/40/ContainerShell40High';
+import Amp from './Electrical/Amp';
+import RoofVent from './Electrical/RoofVent';
+import AirConditioner from './Electrical/AirConditioner';
+import ExhaustFan from './Electrical/ExhaustFan';
 
 export function Models() {
   const {
