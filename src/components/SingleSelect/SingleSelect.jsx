@@ -3,7 +3,7 @@ import Subtitle from '../Subtitle/Subtitle';
 import style from './singleSelect.module.scss';
 import { PageDataContext } from '@/components/Content/Content';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
-import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG, INTERIOR_FINISH_NAMES } from '@/utils/constants';
+import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG, INTERIOR_FINISH_NAMES } from '@/utils/constants/names';
 
 /* eslint-disable @next/next/no-img-element */
 const SingleSelect = ({ type }) => {

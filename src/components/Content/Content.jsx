@@ -33,7 +33,7 @@ import {
   CONTAINER_STANDARD,
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
-} from '@/utils/constants';
+} from '@/utils/constants/names';
 
 export const PageDataContext = createContext();
 

@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { INTERIOR_FINISH_NAMES } from '../constants';
+import { INTERIOR_FINISH_NAMES } from '../constants/names';
 
 export const Library3dDataContext = createContext();
 

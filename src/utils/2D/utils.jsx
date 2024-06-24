@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { ELEVATION_NAMES } from '../constants';
+import { ELEVATION_NAMES } from '../constants/names';
 
 export const generateImgSrc = (imgName) => `../../../images/${imgName}`;
 
@@ -152,6 +152,16 @@ export const getUniqueElevationObjects = (selectedComponents) => {
   return uniqueElevationObjects;
 };
 
+export const DROPPABLE_FLOOR_PLAN_WIDTH = (DIMENSIONS, selectedContainer) => {
+  if (selectedContainer.name === `10' Custom Cube`) {
+    return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH;
+  } else if (selectedContainer.name === `20' Custom Cube`) {
+    return DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH;
+  } else if (selectedContainer.name === `40' Custom Cube`) {
+    return DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH;
+  }
+};
+
 export const DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES = (
   DIMENSIONS,
   selectedContainer
@@ -208,6 +218,11 @@ export const droppableWidth = (
         DIMENSIONS,
         selectedContainer
       );
+    case ELEVATION_NAMES.FLOOR_PLAN:
+      return DROPPABLE_FLOOR_PLAN_WIDTH(
+        DIMENSIONS,
+        selectedContainer
+      )
     default:
       console.warn('Unknown elevation name:', selectedElevation.name);
       return 0; // Or any default value you see fit

@@ -15,7 +15,7 @@ import {
   CONTAINER_10_SLUG,
   CONTAINER_HIGH,
   CONTAINER_STANDARD,
-} from '@/utils/constants';
+} from '@/utils/constants/names';
 
 const Sidebar = () => {
   const {

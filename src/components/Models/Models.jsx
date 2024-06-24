@@ -27,7 +27,7 @@ import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
   ELEVATION_NAMES,
-} from '@/utils/constants';
+} from '@/utils/constants/names';
 import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
 import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
 import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';

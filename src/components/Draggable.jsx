@@ -5,8 +5,7 @@ import { toScale, generateImgSrc } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import DeleteBtn from './DeleteBtn/DeleteBtn';
 import DragToMove from './DragToMove/DragToMove';
-import { COMPONENT_TYPES, CONTAINER_40_SLUG } from '@/utils/constants';
-import { ELEVATION_NAMES } from '@/utils/constants';
+import { COMPONENT_TYPES, CONTAINER_40_SLUG, ELEVATION_NAMES } from '@/utils/constants/names';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 
 export function Draggable({ id, styles, piece, onSelect }) {

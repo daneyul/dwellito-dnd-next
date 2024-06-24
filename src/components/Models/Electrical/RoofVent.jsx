@@ -1,5 +1,5 @@
 import { PageDataContext } from "@/components/Content/Content";
-import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from "@/utils/constants";
+import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from "@/utils/constants/names";
 import { Library2dDataContext } from "@/utils/2D/2dLibraryContext";
 import { useGLTF } from "@react-three/drei";
 import { useContext } from "react";

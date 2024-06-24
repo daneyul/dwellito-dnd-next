@@ -8,7 +8,7 @@ import {
   CONTAINER_20_SLUG,
   CONTAINER_40_SLUG,
   ELEVATION_NAMES,
-} from '../constants';
+} from '../constants/names';
 
 export const Library2dDataContext = createContext();
 

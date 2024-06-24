@@ -9,7 +9,7 @@ import {
   getUniqueElevationObjects,
 } from '@/utils/2D/utils';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
-import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from '@/utils/constants';
+import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from '@/utils/constants/names';
 
 const PriceTotal = () => {
   const {

@@ -4,7 +4,7 @@ import {
   CONTAINER_10_SLUG,
   CONTAINER_20_SLUG,
   CONTAINER_40_SLUG,
-} from '@/utils/constants';
+} from '@/utils/constants/names';
 import { useGLTF } from '@react-three/drei';
 import { useContext, useEffect, useRef } from 'react';
 import { Box3, Vector3 } from 'three';

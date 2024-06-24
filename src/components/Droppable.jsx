@@ -9,13 +9,9 @@ export function Droppable({ children }) {
   const { scaleFactor, selectedElevation, containerHeightIsStandard } =
     useContext(PageDataContext);
   const { elevationData } = useContext(Library2dDataContext);
-  const { isOver, setNodeRef } = useDroppable({
+  const { setNodeRef } = useDroppable({
     id: 'droppable',
   });
-
-  const style = {
-    color: isOver ? 'green' : undefined,
-  };
 
   const objectHeight =
   containerHeightIsStandard
@@ -34,7 +30,7 @@ export function Droppable({ children }) {
   };
 
   return (
-    <div ref={setNodeRef} style={{ ...style, ...CustomStyle }}>
+    <div ref={setNodeRef} style={{ ...CustomStyle }}>
       {elevationData.map((elevation, index) => (
         <Image
           key={index}

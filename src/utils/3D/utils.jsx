@@ -1,4 +1,4 @@
-import { ELEVATION_NAMES } from '../constants';
+import { ELEVATION_NAMES } from '../constants/names';
 
 const degrees = {
   90: Math.PI / 2,
