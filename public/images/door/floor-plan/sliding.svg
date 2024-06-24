@@ -1,118 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76.75 7.81">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: none;
-        stroke: #000;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: .25px;
-      }
-    </style>
-  </defs>
-  <g id="Default">
-    <g id="LINE">
-      <line class="cls-1" x1="2.12" y1="1.19" x2="74.63" y2="1.19"/>
-    </g>
-    <g id="LINE-2" data-name="LINE">
-      <line class="cls-1" x1="74.63" y1="1.19" x2="74.63" y2="4.69"/>
-    </g>
-    <g id="LINE-3" data-name="LINE">
-      <line class="cls-1" x1="74.63" y1="4.69" x2="2.12" y2="4.69"/>
-    </g>
-    <g id="LINE-4" data-name="LINE">
-      <line class="cls-1" x1="2.12" y1="4.69" x2="2.12" y2="1.19"/>
-    </g>
-    <g id="LINE-5" data-name="LINE">
-      <line class="cls-1" x1="2.62" y1=".12" x2="74.63" y2=".12"/>
-    </g>
-    <g id="LINE-6" data-name="LINE">
-      <line class="cls-1" x1="74.63" y1=".12" x2="74.63" y2="4.69"/>
-    </g>
-    <g id="LINE-7" data-name="LINE">
-      <line class="cls-1" x1="74.63" y1="4.69" x2="2.62" y2="4.69"/>
-    </g>
-    <g id="LINE-8" data-name="LINE">
-      <line class="cls-1" x1="2.62" y1="4.69" x2="2.62" y2=".12"/>
-    </g>
-    <g id="CIRCLE">
-      <circle class="cls-1" cx="2.38" cy="4.44" r=".25"/>
-    </g>
-    <g id="CIRCLE-2" data-name="CIRCLE">
-      <circle class="cls-1" cx="74.38" cy="4.44" r=".25"/>
-    </g>
-    <g id="LINE-9" data-name="LINE">
-      <line class="cls-1" x1="2.62" y1="3.44" x2="74.13" y2="3.44"/>
-    </g>
-    <g id="LINE-10" data-name="LINE">
-      <line class="cls-1" x1="74.13" y1="3.44" x2="74.13" y2="4.69"/>
-    </g>
-    <g id="LINE-11" data-name="LINE">
-      <line class="cls-1" x1="74.13" y1="4.69" x2="2.62" y2="4.69"/>
-    </g>
-    <g id="LINE-12" data-name="LINE">
-      <line class="cls-1" x1="2.62" y1="4.69" x2="2.62" y2="3.44"/>
-    </g>
-    <g id="LINE-13" data-name="LINE">
-      <line class="cls-1" x1="4.19" y1=".94" x2="38.09" y2=".94"/>
-    </g>
-    <g id="LINE-14" data-name="LINE">
-      <line class="cls-1" x1="38.09" y1=".94" x2="38.09" y2="2.19"/>
-    </g>
-    <g id="LINE-15" data-name="LINE">
-      <line class="cls-1" x1="38.09" y1="2.19" x2="4.19" y2="2.19"/>
-    </g>
-    <g id="LINE-16" data-name="LINE">
-      <line class="cls-1" x1="4.19" y1="2.19" x2="4.19" y2=".94"/>
-    </g>
-    <g id="LINE-17" data-name="LINE">
-      <line class="cls-1" x1="34.5" y1="2.19" x2="72.56" y2="2.19"/>
-    </g>
-    <g id="LINE-18" data-name="LINE">
-      <line class="cls-1" x1="72.56" y1="2.19" x2="72.56" y2="3.44"/>
-    </g>
-    <g id="LINE-19" data-name="LINE">
-      <line class="cls-1" x1="72.56" y1="3.44" x2="34.5" y2="3.44"/>
-    </g>
-    <g id="LINE-20" data-name="LINE">
-      <line class="cls-1" x1="34.5" y1="3.44" x2="34.5" y2="2.19"/>
-    </g>
-    <g id="LINE-21" data-name="LINE">
-      <line class="cls-1" x1=".12" y1="2.69" x2="2.12" y2="2.69"/>
-    </g>
-    <g id="LINE-22" data-name="LINE">
-      <line class="cls-1" x1="2.12" y1="2.69" x2="2.12" y2="4.69"/>
-    </g>
-    <g id="LINE-23" data-name="LINE">
-      <line class="cls-1" x1="2.12" y1="4.69" x2=".12" y2="4.69"/>
-    </g>
-    <g id="LINE-24" data-name="LINE">
-      <line class="cls-1" x1=".12" y1="4.69" x2=".12" y2="2.69"/>
-    </g>
-    <g id="LINE-25" data-name="LINE">
-      <line class="cls-1" x1="74.63" y1="2.69" x2="76.63" y2="2.69"/>
-    </g>
-    <g id="LINE-26" data-name="LINE">
-      <line class="cls-1" x1="76.63" y1="2.69" x2="76.63" y2="4.69"/>
-    </g>
-    <g id="LINE-27" data-name="LINE">
-      <line class="cls-1" x1="76.63" y1="4.69" x2="74.63" y2="4.69"/>
-    </g>
-    <g id="LINE-28" data-name="LINE">
-      <line class="cls-1" x1="74.63" y1="4.69" x2="74.63" y2="2.69"/>
-    </g>
-    <g id="LINE-29" data-name="LINE">
-      <line class="cls-1" x1=".13" y1="4.69" x2="76.63" y2="4.69"/>
-    </g>
-    <g id="LINE-30" data-name="LINE">
-      <line class="cls-1" x1="76.63" y1="4.69" x2="76.63" y2="7.69"/>
-    </g>
-    <g id="LINE-31" data-name="LINE">
-      <line class="cls-1" x1="76.63" y1="7.69" x2=".13" y2="7.69"/>
-    </g>
-    <g id="LINE-32" data-name="LINE">
-      <line class="cls-1" x1=".13" y1="7.69" x2=".13" y2="4.69"/>
-    </g>
-  </g>
+<svg width="77" height="8" viewBox="0 0 77 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_788_931)">
+<path d="M0.0500488 2.61005H2.05005V1.11005H2.55005V0.0500488H74.55V2.61005H76.55V7.61005H0.0500488V2.61005Z" fill="white"/>
+<path d="M2.05005 1.11011H74.55" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74.55 1.11011V4.61011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74.55 4.61011H2.05005" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.05005 4.61011V1.11011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.55005 0.0500488H74.55" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74.55 0.0500488V4.61005" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74.55 4.61011H2.55005" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.55005 4.61005V0.0500488" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.30005 4.61011C2.43812 4.61011 2.55005 4.49818 2.55005 4.36011C2.55005 4.22204 2.43812 4.11011 2.30005 4.11011C2.16198 4.11011 2.05005 4.22204 2.05005 4.36011C2.05005 4.49818 2.16198 4.61011 2.30005 4.61011Z" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74.3 4.61011C74.4381 4.61011 74.55 4.49818 74.55 4.36011C74.55 4.22204 74.4381 4.11011 74.3 4.11011C74.162 4.11011 74.05 4.22204 74.05 4.36011C74.05 4.49818 74.162 4.61011 74.3 4.61011Z" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.55005 3.36011H74.05" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74.05 3.36011V4.61011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74.05 4.61011H2.55005" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.55005 4.61011V3.36011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M4.11011 0.860107H38.0201" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M38.02 0.860107V2.11011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M38.0201 2.11011H4.11011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M4.11011 2.11011V0.860107" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M34.4301 2.11011H72.4901" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M72.49 2.11011V3.36011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M72.4901 3.36011H34.4301" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M34.4301 3.36011V2.11011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0.0500488 2.61011H2.05005" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.05005 2.61011V4.61011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.05005 4.61011H0.0500488" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0.0500488 4.61011V2.61011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74.55 2.61011H76.55" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M76.55 2.61011V4.61011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M76.55 4.61011H74.55" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74.55 4.61011V2.61011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0.0500488 4.61011H76.55" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M76.55 4.61011V7.61011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M76.55 7.61011H0.0500488" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0.0500488 7.61011V4.61011" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_788_931">
+<rect width="76.6" height="7.66" fill="white"/>
+</clipPath>
+</defs>
 </svg>

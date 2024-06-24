@@ -9,7 +9,12 @@ import {
   getUniqueElevationObjects,
 } from '@/utils/2D/utils';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
-import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG, ELEVATION_NAMES } from '@/utils/constants/names';
+import {
+  CONTAINER_10_SLUG,
+  CONTAINER_20_SLUG,
+  CONTAINER_40_SLUG,
+  ELEVATION_NAMES,
+} from '@/utils/constants/names';
 
 const PriceTotal = () => {
   const {
@@ -20,7 +25,7 @@ const PriceTotal = () => {
     interiorFinish,
     exteriorFinish,
     flooring,
-    slug
+    slug,
   } = useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -29,13 +34,13 @@ const PriceTotal = () => {
 
   const flooringPrice = () => {
     if (slug === CONTAINER_10_SLUG) {
-      return flooring.price10
+      return flooring.price10;
     } else if (slug === CONTAINER_20_SLUG) {
-      return flooring.price20
+      return flooring.price20;
     } else if (slug === CONTAINER_40_SLUG) {
-      return flooring.price40
+      return flooring.price40;
     }
-  }
+  };
 
   const ExteriorSection = () => {
     return (
@@ -44,11 +49,11 @@ const PriceTotal = () => {
         <div style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
           <div className={style.lineItem}>
             <div className={style.thumbnailContainer}>
-              {/* <img
-                src={generateImgSrc(component.imgName)}
-                alt={component.desc}
+              <img
+                src={generateImgSrc(`exterior-finishes/${exteriorFinish.img}`)}
+                alt={exteriorFinish.name}
                 className={style.thumbnailImg}
-              /> */}
+              />
             </div>
             <div className={style.description}>{exteriorFinish.name}</div>
             <div className={style.price}>
@@ -67,11 +72,11 @@ const PriceTotal = () => {
         <div style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
           <div className={style.lineItem}>
             <div className={style.thumbnailContainer}>
-              {/* <img
-                    src={generateImgSrc(component.imgName)}
-                    alt={component.desc}
-                    className={style.thumbnailImg}
-                  /> */}
+              <img
+                src={generateImgSrc(`interior-finishes/${interiorFinish.img}`)}
+                alt={interiorFinish.name}
+                className={style.thumbnailImg}
+              />
             </div>
             <div className={style.description}>{interiorFinish.name}</div>
             <div className={style.price}>
@@ -90,16 +95,14 @@ const PriceTotal = () => {
         <div style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
           <div className={style.lineItem}>
             <div className={style.thumbnailContainer}>
-              {/* <img
-                    src={generateImgSrc(component.imgName)}
-                    alt={component.desc}
+              <img
+                    src={generateImgSrc(`flooring/${flooring.img}`)}
+                    alt={flooring.name}
                     className={style.thumbnailImg}
-                  /> */}
+                  />
             </div>
             <div className={style.description}>{flooring.name}</div>
-            <div className={style.price}>
-              ${flooringPrice().toLocaleString}
-            </div>
+            <div className={style.price}>${flooringPrice().toLocaleString}</div>
           </div>
         </div>
       </div>
@@ -112,7 +115,9 @@ const PriceTotal = () => {
     );
 
     const isElectrical = elevation.name === ELEVATION_NAMES.FLOOR_PLAN;
-    const elevationName = isElectrical ? "Electrical" : `${elevation.name} Wall`
+    const elevationName = isElectrical
+      ? 'Electrical'
+      : `${elevation.name} Wall`;
 
     return (
       <div className={style.section}>
@@ -141,8 +146,8 @@ const PriceTotal = () => {
                   <div className={style.desc}>{component.name}</div>
                   {!isElectrical && (
                     <div className={style.distance}>
-                      {distance.left}&quot; from left, {distance.right}&quot; from
-                      right
+                      {distance.left}&quot; from left, {distance.right}&quot;
+                      from right
                     </div>
                   )}
                 </div>

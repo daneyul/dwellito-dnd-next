@@ -10,6 +10,7 @@ import {
   CONTAINER_40_SLUG,
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
+import { DIMENSIONS } from '@/utils/constants/dimensions';
 
 export function Draggable({ id, styles, piece, onSelect }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -37,6 +38,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
     (component) => component.isSelected
   );
 
+  // This is for adjusting the top value  based on the container height
   const objTop = () => {
     if (containerHeightIsStandard) {
       if (
@@ -56,6 +58,16 @@ export function Draggable({ id, styles, piece, onSelect }) {
     }
   };
 
+  const dragStyle = transform
+    ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+      }
+    : {};
+
+  const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
+
+  const imgSrc = isFloorPlanView ? piece.floorPlanImg : piece.imgName;
+
   const isFixed = piece.fixed && !!piece.fixedSide;
 
   const fixedElectricalPositions = () => {
@@ -64,15 +76,83 @@ export function Draggable({ id, styles, piece, onSelect }) {
     }
   };
 
+  // Render on corresponding elevation or render on floor plan view
+  if (!piece.elevation.includes(selectedElevation) && !isFloorPlanView) {
+    return null;
+  }
+
+  const LeftPos = () => {
+    if (isFloorPlanView) {
+      if (isFixed) {
+        return { left: 'auto' };
+      } else {
+        return {
+          left: `${
+            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+          }px`,
+        };
+      }
+    } else {
+      if (isFixed) {
+        return { left: 'auto' };
+      } else {
+        return { left: `${piece.position.x}px` };
+      }
+    }
+  };
+
+  const RightPos = () => {
+    if (isFloorPlanView) {
+      if (isFixed) {
+        return { right: fixedElectricalPositions() };
+      } else {
+        return { right: 'auto' };
+      }
+    } else {
+      return { right: 'auto' };
+    }
+  };
+
+  const TopPos = () => {
+    if (isFloorPlanView) {
+      if (isFixed) {
+        return { top: `${piece.position.y}px` };
+      } else {
+        if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
+          return { top: '10px', transform: 'rotate(180deg) translateY(100%)' };
+        } else {
+          return { top: 'auto' };
+        }
+      }
+    } else {
+      return { top: `${objTop()}px` };
+    }
+  };
+
+  const BotPos = () => {
+    if (isFloorPlanView) {
+      if (isFixed) {
+        return { bottom: `${piece.position.y}px` };
+      } else {
+        if (piece.elevation[0].name === ELEVATION_NAMES.RIGHT) {
+          return { bottom: '10px', transform: 'translateY(100%)' };
+        }
+      }
+    } else {
+      return { bottom: 'auto' };
+    }
+  };
+
   const CustomStyle = {
     position: 'absolute',
     display: 'flex',
     cursor: 'pointer',
     width: `${toScale(piece.objWidth, scaleFactor)}px`,
-    height: `${Math.floor(toScale(piece.objHeight, scaleFactor))}px`,
-    left: isFixed ? 'auto' : `${piece.position.x}px`,
-    right: isFixed ? fixedElectricalPositions() : 'auto',
-    top: `${objTop()}px`,
+    height: `auto`,
+    ...LeftPos(),
+    ...RightPos(),
+    ...TopPos(),
+    ...BotPos(),
     boxShadow:
       isHovered || piece.isSelected
         ? '0px 4px 30px 0px rgba(128, 129, 238, 0.19)'
@@ -84,24 +164,6 @@ export function Draggable({ id, styles, piece, onSelect }) {
     boxSizing: 'border-box',
   };
 
-  const dragStyle = transform
-    ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      }
-    : {};
-
-  const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN
-
-  const imgSrc =
-    isFloorPlanView
-      ? piece.floorPlanImg
-      : piece.imgName;
-
-  // Render on corresponding elevation or render on floor plan view
-  if (!piece.elevation.includes(selectedElevation) && !isFloorPlanView) {
-    return null;
-  }
-  
   return (
     <>
       <div
@@ -124,10 +186,13 @@ export function Draggable({ id, styles, piece, onSelect }) {
         />
       </div>
       {isAnyItemSelected && !show3d && (
-        <DeleteBtn onDeleteSelected={handleDeleteSelected} />
+        <DeleteBtn
+          onDeleteSelected={handleDeleteSelected}
+          isFloorPlanView={isFloorPlanView}
+        />
       )}
       {isHovered && !show3d && !isAnyItemSelected && !piece.fixed && (
-        <DragToMove />
+        <DragToMove isFloorPlanView={isFloorPlanView} />
       )}
     </>
   );

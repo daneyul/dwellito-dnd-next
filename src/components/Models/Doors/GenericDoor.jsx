@@ -5,7 +5,6 @@ import { PageDataContext } from '@/components/Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 import { checkDistance } from '@/utils/2D/utils';
-import { preloadGLTFModel } from '@/utils/3D/preloadGLTFModel';
 import { calcPosition, calcRotation } from '@/utils/3D/utils';
 
 const GenericDoor = React.memo(
@@ -41,10 +40,6 @@ const GenericDoor = React.memo(
       ],
       [selectedElevation, elevationData]
     );
-
-    useEffect(() => {
-      preloadGLTFModel(modelPath);
-    }, [modelPath]);
 
     useEffect(() => {
       if (ref.current) {

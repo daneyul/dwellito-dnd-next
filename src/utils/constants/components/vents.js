@@ -15,6 +15,7 @@ export const ventComponents = [
     objType: COMPONENT_TYPES.VENT,
     price: 440,
     model: 'P203-1-304_12in_x_12in Aluminum Fixed Louver 16ga Bolt on Frame',
+    floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/12x12.svg`,
   },
   {
     name: COMPONENT_NAMES.VENT_20,
@@ -29,6 +30,7 @@ export const ventComponents = [
     objType: COMPONENT_TYPES.VENT,
     price: 490,
     model: 'P203-1-305_20in_x_20in Aluminum Fixed Louver 16ga Bolt on Frame',
+    floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/20x20.svg`,
   },
   {
     name: COMPONENT_NAMES.VENT_24,
@@ -43,5 +45,6 @@ export const ventComponents = [
     objType: COMPONENT_TYPES.VENT,
     price: 540,
     model: 'P203-1-306_24in_x_24in Aluminum Fixed Louver 16ga Bolt on Frame',
+    floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/24x24.svg`,
   }
 ]

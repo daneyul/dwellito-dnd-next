@@ -2,14 +2,17 @@ import DeleteIcon from './DeleteIcon';
 import style from './delete.module.scss';
 import * as HoverCard from '@radix-ui/react-hover-card';
 
-const DeleteBtn = ({ onDeleteSelected }) => {
+const DeleteBtn = ({ onDeleteSelected, isFloorPlanView }) => {
   const handleClick = (e) => {
     e.stopPropagation();
     onDeleteSelected();
   };
 
   return (
-    <div className={style.container}>
+    <div
+      className={style.container}
+      style={{ bottom: isFloorPlanView ? '-6rem' : '-2.25rem' }}
+    >
       <HoverCard.Root openDelay={0} closeDelay={0}>
         <HoverCard.Trigger>
           <button className={style.icon} onClick={handleClick}>

@@ -30,8 +30,7 @@ const Viewer = () => {
     show3d,
     mappedElevations,
     selectedContainer,
-    scaleFactor,
-    floorPlan
+    scaleFactor
   } = useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
 

@@ -3,7 +3,6 @@ import { PageDataContext } from '@/components/Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { checkDistance } from '@/utils/2D/utils';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
-import { preloadGLTFModel } from '@/utils/3D/preloadGLTFModel';
 import { calcPosition, calcRotation } from '@/utils/3D/utils';
 import { useGLTF } from '@react-three/drei';
 import React, { useContext, useEffect, useMemo, useRef } from 'react';
@@ -41,10 +40,6 @@ const GenericVent = React.memo(
       ],
       [selectedElevation, elevationData]
     );
-
-    useEffect(() => {
-      preloadGLTFModel(`vents/${component.model}`);
-    }, [component.model]);
 
     useEffect(() => {
       if (ref.current) {

@@ -15,6 +15,7 @@ export const windowComponents = [
     objType: COMPONENT_TYPES.WINDOW,
     price: 1720,
     model: 'SM_Window 48x36_Hinged_Security_01',
+    floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/window.svg`,
   },
   {
     name: COMPONENT_NAMES.WINDOW,
@@ -22,12 +23,13 @@ export const windowComponents = [
       x: DIMENSIONS.WINDOW.WINDOW_SECURITY.POSITION.x,
       y: DIMENSIONS.WINDOW.WINDOW_SECURITY.POSITION.y,
     },
-    imgName: `${COMPONENT_TYPES.WINDOW}/window_security.svg`,
+    imgName: `${COMPONENT_TYPES.WINDOW}/window-security.svg`,
     desc: 'P201-1-03',
     objWidth: DIMENSIONS.WINDOW.WINDOW_SECURITY.WIDTH,
     objHeight: DIMENSIONS.WINDOW.WINDOW_SECURITY.HEIGHT,
     objType: COMPONENT_TYPES.WINDOW,
     price: 1080,
     model: 'SM_Window_48x36_01_No_Security',
+    floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/window-security.svg`,
   }
 ]
