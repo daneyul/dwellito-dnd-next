@@ -81,11 +81,12 @@ export function Draggable({ id, styles, piece, onSelect }) {
     return null;
   }
 
+  // These calculate the CSS positions based on the piece's position and elevation
   const LeftPos = () => {
     if (isFloorPlanView) {
       if (isFixed) {
         return { left: 'auto' };
-      } else {
+      } else if (piece.elevation[0].name !== ELEVATION_NAMES.BACK) {
         return {
           left: `${
             piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
@@ -106,7 +107,11 @@ export function Draggable({ id, styles, piece, onSelect }) {
       if (isFixed) {
         return { right: fixedElectricalPositions() };
       } else {
-        return { right: 'auto' };
+        if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
+          return { right: '0', transform: 'rotate(270deg)' };
+        } else {
+          return { right: 'auto' };
+        }
       }
     } else {
       return { right: 'auto' };
@@ -136,10 +141,58 @@ export function Draggable({ id, styles, piece, onSelect }) {
       } else {
         if (piece.elevation[0].name === ELEVATION_NAMES.RIGHT) {
           return { bottom: '10px', transform: 'translateY(100%)' };
+        } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
+          return {
+            bottom: `calc(${piece.position.x}px + ${toScale(
+              DIMENSIONS.BOUNDARIES.x
+            )}px)`,
+            transform: 'rotate(270deg) translateX(50%)',
+          };
         }
       }
     } else {
       return { bottom: 'auto' };
+    }
+  };
+
+  const calculateCSSPos = () => {
+    if (isFloorPlanView) {
+      if (isFixed) {
+        return {
+          bottom: `${piece.position.y}px`,
+          top: `${piece.position.y}px`,
+          right: fixedElectricalPositions(),
+        };
+      } else {
+        if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
+          return {
+            left: `${
+              piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            }px`,
+            top: '10px',
+            transform: 'rotate(180deg) translateY(100%)',
+          };
+        } else if (piece.elevation[0].name === ELEVATION_NAMES.RIGHT) {
+          return {
+            bottom: '10px', transform: 'translateY(100%)',
+            left: `${piece.position.x}px`
+          }
+        } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
+          return {
+            bottom: `calc(${piece.position.x}px + ${toScale(
+              DIMENSIONS.BOUNDARIES.x, scaleFactor
+            )}px)`,
+            right: `0`,
+            transformOrigin: "right bottom",
+            transform: `rotate(270deg) translateX(100%) translateY(calc(100% - 12px)`,
+          }
+        }
+      }
+    } else {
+      return {
+        left: `${piece.position.x}px`,
+        top: `${objTop()}px`,
+      };
     }
   };
 
@@ -149,10 +202,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
     cursor: 'pointer',
     width: `${toScale(piece.objWidth, scaleFactor)}px`,
     height: `auto`,
-    ...LeftPos(),
-    ...RightPos(),
-    ...TopPos(),
-    ...BotPos(),
+    ...calculateCSSPos(),
     boxShadow:
       isHovered || piece.isSelected
         ? '0px 4px 30px 0px rgba(128, 129, 238, 0.19)'

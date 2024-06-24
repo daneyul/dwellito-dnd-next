@@ -70,6 +70,7 @@ export const DIMENSIONS = {
     PERSONNEL: {
       WIDTH: 44,
       HEIGHT: 95,
+      FP_HEIGHT: 30,
       POSITION: {
         x: 0,
         y: 7,
@@ -78,6 +79,7 @@ export const DIMENSIONS = {
     PERSONNEL_SECURITY: {
       WIDTH: 46,
       HEIGHT: 95,
+      FP_HEIGHT: 36,
       POSITION: {
         x: 0,
         y: 7,
@@ -86,6 +88,7 @@ export const DIMENSIONS = {
     SLIDING_SIX: {
       WIDTH: 78,
       HEIGHT: 80,
+      FP_HEIGHT: 8,
       POSITION: {
         x: 0,
         y: 40,
@@ -94,6 +97,7 @@ export const DIMENSIONS = {
     DOUBLE: {
       WIDTH: 76,
       HEIGHT: 84,
+      FP_HEIGHT: 26,
       POSITION: {
         x: 0,
         y: 30,
@@ -110,6 +114,7 @@ export const DIMENSIONS = {
     HD_ROLL_UP_8: {
       WIDTH: 104,
       HEIGHT: 104,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: -18,
@@ -118,6 +123,7 @@ export const DIMENSIONS = {
     HD_ROLL_UP_10: {
       WIDTH: 128,
       HEIGHT: 104,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: -18,
@@ -126,6 +132,7 @@ export const DIMENSIONS = {
     HD_ROLL_UP_12: {
       WIDTH: 152,
       HEIGHT: 104,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: -18,
@@ -134,6 +141,7 @@ export const DIMENSIONS = {
     HD_ROLL_UP_15: {
       WIDTH: 188,
       HEIGHT: 106,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: -23,
@@ -142,6 +150,7 @@ export const DIMENSIONS = {
     EC_HC_ROLLUP_6_74: {
       WIDTH: 76,
       HEIGHT: 90,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: 17,
@@ -150,6 +159,7 @@ export const DIMENSIONS = {
     EC_HC_ROLLUP_8_74: {
       WIDTH: 100,
       HEIGHT: 90,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: 17,
@@ -158,6 +168,7 @@ export const DIMENSIONS = {
     EC_HC_ROLLUP_10_74: {
       WIDTH: 124,
       HEIGHT: 90,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: 17,
@@ -166,6 +177,7 @@ export const DIMENSIONS = {
     EC_HC_ROLLUP_12_74: {
       WIDTH: 148,
       HEIGHT: 90,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: 17,
@@ -174,6 +186,7 @@ export const DIMENSIONS = {
     EC_HC_ROLLUP_15_74: {
       WIDTH: 184,
       HEIGHT: 90,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: 17,
@@ -182,6 +195,7 @@ export const DIMENSIONS = {
     EC_ST_ROLLUP_6_64: {
       WIDTH: 76,
       HEIGHT: 78,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: 46,
@@ -190,6 +204,7 @@ export const DIMENSIONS = {
     EC_ST_ROLLUP_8_64: {
       WIDTH: 100,
       HEIGHT: 78,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: 46,
@@ -198,6 +213,7 @@ export const DIMENSIONS = {
     EC_ST_ROLLUP_10_64: {
       WIDTH: 124,
       HEIGHT: 78,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: 46,
@@ -206,6 +222,7 @@ export const DIMENSIONS = {
     EC_ST_ROLLUP_12_64: {
       WIDTH: 148,
       HEIGHT: 78,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: 46,
@@ -214,6 +231,7 @@ export const DIMENSIONS = {
     EC_ST_ROLLUP_15_64: {
       WIDTH: 184,
       HEIGHT: 78,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: 46,
@@ -224,6 +242,7 @@ export const DIMENSIONS = {
     WINDOW: {
       WIDTH: 54,
       HEIGHT: 42,
+      FP_HEIGHT: 5,
       POSITION: {
         x: 0,
         y: 40,
@@ -232,6 +251,7 @@ export const DIMENSIONS = {
     WINDOW_SECURITY: {
       WIDTH: 54,
       HEIGHT: 42,
+      FP_HEIGHT: 6,
       POSITION: {
         x: 0,
         y: 40,
@@ -242,6 +262,7 @@ export const DIMENSIONS = {
     SQ_12: {
       WIDTH: 16,
       HEIGHT: 16,
+      FP_HEIGHT: 2,
       POSITION: {
         x: 0,
         y: 24,
@@ -250,6 +271,7 @@ export const DIMENSIONS = {
     SQ_20: {
       WIDTH: 24,
       HEIGHT: 24,
+      FP_HEIGHT: 2,
       POSITION: {
         x: 0,
         y: 24,
@@ -258,6 +280,7 @@ export const DIMENSIONS = {
     SQ_24: {
       WIDTH: 28,
       HEIGHT: 28,
+      FP_HEIGHT: 2,
       POSITION: {
         x: 0,
         y: 24,
