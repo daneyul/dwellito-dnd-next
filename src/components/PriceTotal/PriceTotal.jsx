@@ -9,7 +9,7 @@ import {
   getUniqueElevationObjects,
 } from '@/utils/2D/utils';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
-import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG } from '@/utils/constants/names';
+import { CONTAINER_10_SLUG, CONTAINER_20_SLUG, CONTAINER_40_SLUG, ELEVATION_NAMES } from '@/utils/constants/names';
 
 const PriceTotal = () => {
   const {
@@ -111,9 +111,12 @@ const PriceTotal = () => {
       component.elevation.some((i) => i.name === elevation.name)
     );
 
+    const isElectrical = elevation.name === ELEVATION_NAMES.FLOOR_PLAN;
+    const elevationName = isElectrical ? "Electrical" : `${elevation.name} Wall`
+
     return (
       <div className={style.section}>
-        <div className={style.elevationName}>{elevation.name} Wall</div>
+        <div className={style.elevationName}>{elevationName}</div>
         <ul style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
           {componentsForElevation.map((component) => {
             const distance = checkDistance({
@@ -136,10 +139,12 @@ const PriceTotal = () => {
                 <div className={style.description}>
                   <div className={style.partNumber}>{component.desc}</div>
                   <div className={style.desc}>{component.name}</div>
-                  <div className={style.distance}>
-                    {distance.left}&quot; from left, {distance.right}&quot; from
-                    right
-                  </div>
+                  {!isElectrical && (
+                    <div className={style.distance}>
+                      {distance.left}&quot; from left, {distance.right}&quot; from
+                      right
+                    </div>
+                  )}
                 </div>
                 <div className={style.price}>${component.price}</div>
               </li>

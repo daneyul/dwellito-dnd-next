@@ -12,18 +12,18 @@ const AirConditioner = () => {
   
   const position = () => {
     let x = 0;
-    let y = 0;
+    let y = 2.7;
     let z = 0;
 
     if (slug === CONTAINER_10_SLUG) {
-      x = -DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2
-      y = DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2
+      x += -DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2
+      y += DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2
     } else if (slug === CONTAINER_20_SLUG) {
-      x = -DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2
-      y = DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2
+      x += -DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2
+      y += DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2
     } else if (slug === CONTAINER_40_SLUG) {
-      x = -DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2
-      y = DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2
+      x += -DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2
+      y += DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2
     }
 
     return [x, z, y];

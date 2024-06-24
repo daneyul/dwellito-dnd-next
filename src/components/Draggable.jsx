@@ -55,7 +55,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
 
   const fixedElectricalPositions = () => {
     if (piece.fixedSide === ELEVATION_NAMES.BACK) {
-      return `calc(0px - ${piece.objWidth}px)`
+      return `calc(${piece.position.x}px - ${piece.objWidth}px)`
     }
   }
   

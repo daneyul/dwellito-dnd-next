@@ -5,7 +5,7 @@ export const electricalComponents = [
     name: COMPONENT_NAMES.AIR_CONDITIONER,
     position: {
       x: 0,
-      y: 40,
+      y: 75,
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/ac.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/ac.svg`,
@@ -37,8 +37,8 @@ export const electricalComponents = [
   {
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP,
     position: {
-      x: 0,
-      y: 0,
+      x: 2,
+      y: 205,
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/box-panel.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/box-panel.svg`,
@@ -55,7 +55,7 @@ export const electricalComponents = [
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP,
     position: {
       x: 0,
-      y: 0,
+      y: 100,
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/box-panel.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/box-panel.svg`,
