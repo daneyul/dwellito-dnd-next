@@ -96,6 +96,7 @@ const PageDataProvider = ({ children, data }) => {
       elevation.homePlan === slug
     );
   });
+  const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -442,6 +443,7 @@ const PageDataProvider = ({ children, data }) => {
         setCameraReady,
         containerSize,
         floorPlan,
+        isFloorPlanView
       }}
     >
       {children}

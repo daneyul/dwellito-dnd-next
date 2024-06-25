@@ -59,7 +59,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
 
   const { collisions } = useDndContext();
 
-  const { setShowCollision } = useContext(PageDataContext);
+  const { setShowCollision, isFloorPlanView } = useContext(PageDataContext);
 
   // Filter out the droppable element from collisions
   const filteredCollisions = collisions?.filter(
@@ -120,8 +120,6 @@ export function Draggable({ id, styles, piece, onSelect }) {
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
       }
     : {};
-
-  const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
   const imgSrc = isFloorPlanView ? piece.floorPlanImg : piece.imgName;
 

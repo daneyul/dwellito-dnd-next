@@ -12,8 +12,28 @@ const AddOption = ({ options }) => {
     setHasCollisions,
     scaleFactor,
     setShow3d,
+    isFloorPlanView,
   } = useContext(PageDataContext);
   return options.map((item) => {
+    if (isFloorPlanView) {
+      return (
+        <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
+          <HoverCard.Trigger>
+            <img
+              style={{ opacity: '0.25' }}
+              src={generateImgSrc(item.imgName)}
+              alt={item.name}
+              className={style.objImg}
+            />
+          </HoverCard.Trigger>
+          <HoverCard.Portal>
+            <HoverCard.Content className={style.tooltipText} side='top'>
+              Select a container side to place this item
+            </HoverCard.Content>
+          </HoverCard.Portal>
+        </HoverCard.Root>
+      );
+    }
     return (
       <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
         <HoverCard.Trigger>
