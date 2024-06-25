@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useContext, useState } from 'react';
-import { useDraggable } from '@dnd-kit/core';
+import React, { useContext, useEffect, useState } from 'react';
+import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
 import { toScale, generateImgSrc } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import DeleteBtn from './DeleteBtn/DeleteBtn';
@@ -11,11 +11,68 @@ import {
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
 import { DIMENSIONS } from '@/utils/constants/dimensions';
+import { useCombinedRefs } from '@dnd-kit/utilities';
+
+function useCollidableDraggable({ id, data: customData, disabled }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef: setDraggableNodeRef,
+    transform,
+    isDragging,
+  } = useDraggable({
+    id,
+    data: customData,
+    disabled,
+  });
+
+  const {
+    isOver,
+    setNodeRef: setDroppableNodeRef,
+  } = useDroppable({
+    id,
+    data: customData,
+    disabled,
+  });
+
+  const setNodeRef = useCombinedRefs(setDraggableNodeRef, setDroppableNodeRef);
+
+  return {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    isDragging
+  };
+}
 
 export function Draggable({ id, styles, piece, onSelect }) {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+  } = useCollidableDraggable({
     id,
+    data: { ...piece },
   });
+
+  const { collisions } = useDndContext();
+
+  const { setShowCollision } = useContext(PageDataContext);
+
+  // Filter out the droppable element from collisions
+  const filteredCollisions = collisions?.filter(
+    (collision) => collision.id !== 'droppable'
+  );
+
+  useEffect(() => {
+    if (filteredCollisions?.length > 1) {
+      setShowCollision(true);
+    } else {
+      setShowCollision(false);
+    }
+  }, [collisions]);
 
   const {
     scaleFactor,

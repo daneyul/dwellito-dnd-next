@@ -9,7 +9,7 @@ export const checkCollision = (
   selectedElevation,
   scaleFactor
 ) => {
-  if (item1.fixed || item2.fixed) { return false };
+  // if (item1.fixed || item2.fixed) { return false };
   
   // First, check if both items are on the selected elevation.
   // This assumes every item has an `elevation` array and that `selectedElevation` is a singular value or an identifier.
@@ -34,6 +34,7 @@ export const checkCollision = (
     top: item2.position.y,
     bottom: item2.position.y + parseInt(item2.objHeight * scaleFactor, 10),
   };
+
 
   // Check if any side from A is outside of B
   return !(
@@ -99,19 +100,20 @@ export const handleAddComponent = (
       elevation: [...item.elevation, selectedElevation],
     };
 
-    // Check for collision with each previously selected component
-    const collisionDetected = prevSelectedComponents.some((component) =>
-      checkCollision(newItem, component, selectedElevation, scaleFactor)
-    );
+    return [...prevSelectedComponents, newItem];
+    // // Check for collision with each previously selected component
+    // const collisionDetected = prevSelectedComponents.some((component) =>
+    //   checkCollision(newItem, component, selectedElevation, scaleFactor)
+    // );
 
-    if (collisionDetected) {
-      setHasCollisions(true);
-      console.warn('Collision detected');
-      return [...prevSelectedComponents, newItem];
-    } else {
-      setHasCollisions(false);
-      return [...prevSelectedComponents, newItem];
-    }
+    // if (collisionDetected) {
+    //   setHasCollisions(true);
+    //   console.warn('Collision detected');
+    //   return [...prevSelectedComponents, newItem];
+    // } else {
+    //   setHasCollisions(false);
+    //   return [...prevSelectedComponents, newItem];
+    // }
   });
 };
 

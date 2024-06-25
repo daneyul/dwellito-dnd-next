@@ -323,7 +323,7 @@ const PageDataProvider = ({ children, data }) => {
     // Reset collision and closeness states before checking
     updatedPieces = updatedPieces.map((piece) => ({
       ...piece,
-      isColliding: false,
+      // isColliding: false,
       isTooClose: false,
     }));
 
@@ -332,17 +332,17 @@ const PageDataProvider = ({ children, data }) => {
       if (piece.id !== draggedId) {
         const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
 
-        // Check for collisions and update the state accordingly
-        if (
-          draggedPiece &&
-          checkCollision(draggedPiece, piece, selectedElevation, scaleFactor)
-        ) {
-          updatedPieces[index].isColliding = true;
-          const draggedPieceIndex = updatedPieces.findIndex(
-            ({ id }) => id === draggedId
-          );
-          updatedPieces[draggedPieceIndex].isColliding = true;
-        }
+        // // Check for collisions and update the state accordingly
+        // if (
+        //   draggedPiece &&
+        //   checkCollision(draggedPiece, piece, selectedElevation, scaleFactor)
+        // ) {
+        //   updatedPieces[index].isColliding = true;
+        //   const draggedPieceIndex = updatedPieces.findIndex(
+        //     ({ id }) => id === draggedId
+        //   );
+        //   updatedPieces[draggedPieceIndex].isColliding = true;
+        // }
 
         // Check for closeness and update the state accordingly
         if (
@@ -402,6 +402,7 @@ const PageDataProvider = ({ children, data }) => {
         handleDragStart,
         handleDragEnd,
         showCollision,
+        setShowCollision,
         setSelectedElevation,
         selectedComponents,
         draggableRefs,

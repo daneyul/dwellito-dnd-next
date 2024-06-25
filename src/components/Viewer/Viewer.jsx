@@ -1,7 +1,7 @@
 import Collision from '@/components/Collision/Collision';
 import { Droppable } from '@/components/Droppable';
 import { Draggable } from '@/components/Draggable';
-import { DndContext } from '@dnd-kit/core';
+import { DndContext, rectIntersection } from '@dnd-kit/core';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { droppableWidth, toScale } from '@/utils/2D/utils';
 import ChevronLeftBlack from '../ChevronLeftBlack';

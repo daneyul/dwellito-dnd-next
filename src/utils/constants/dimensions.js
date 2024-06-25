@@ -91,7 +91,7 @@ export const DIMENSIONS = {
       FP_HEIGHT: 8,
       POSITION: {
         x: 0,
-        y: 40,
+        y: 35,
       },
     },
     DOUBLE: {
@@ -100,7 +100,7 @@ export const DIMENSIONS = {
       FP_HEIGHT: 26,
       POSITION: {
         x: 0,
-        y: 30,
+        y: 33,
       },
     },
     HD_ROLL_UP_6: {
