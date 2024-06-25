@@ -20,6 +20,10 @@ const ExhaustFan = ({ onBoundingBoxChange }) => {
     `/models/electrical/${containerSize()}/fan.glb`
   );
 
+  const isSelected = selectedComponents.some(
+    (component) => component.name === COMPONENT_NAMES.EXHAUST_FAN
+  );
+
   const position = () => {
     let x = -2.2;
     let y = 0;
@@ -48,13 +52,9 @@ const ExhaustFan = ({ onBoundingBoxChange }) => {
       box.getCenter(center);
       onBoundingBoxChange({ size, center });
     }
-  }, [onBoundingBoxChange]);
+  }, [onBoundingBoxChange, isSelected]);
 
-  if (
-    !selectedComponents.some(
-      (component) => component.name === COMPONENT_NAMES.EXHAUST_FAN
-    )
-  ) {
+  if (!isSelected) {
     return null;
   }
 

@@ -9,6 +9,8 @@ export const checkCollision = (
   selectedElevation,
   scaleFactor
 ) => {
+  if (item1.fixed || item2.fixed) { return false };
+  
   // First, check if both items are on the selected elevation.
   // This assumes every item has an `elevation` array and that `selectedElevation` is a singular value or an identifier.
   const isOnSelectedElevation =
