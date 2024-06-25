@@ -68,7 +68,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
 
   const imgSrc = isFloorPlanView ? piece.floorPlanImg : piece.imgName;
 
-  const isFixed = piece.fixed && !!piece.fixedSide;
+  const isFixed = piece.fixed;
 
   // Render on corresponding elevation or render on floor plan view
   if (!piece.elevation.includes(selectedElevation) && !isFloorPlanView) {
@@ -90,6 +90,12 @@ export function Draggable({ id, styles, piece, onSelect }) {
             top: `${piece.position.y}px`,
             right: '0',
             transform: 'translateX(50%)',
+          };
+        } else {
+          return {
+            left: `${toScale(piece.position.x, scaleFactor)}px`,
+            top: "50%",
+            transform: "translateY(-50%)"
           };
         }
       } else {

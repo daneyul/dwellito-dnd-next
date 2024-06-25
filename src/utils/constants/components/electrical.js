@@ -21,11 +21,12 @@ export const electricalComponents = [
   {
     name: COMPONENT_NAMES.ROOF_VENT,
     position: {
-      x: 0,
+      x: 18,
       y: 0,
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/roof-vent.svg`,
-    floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/roof-vent.svg`,
+    floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/roof-vent-dash.svg`,
+    sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/roof-vent.svg`,
     desc: 'P203-1-309',
     objWidth: 12,
     objHeight: 12,

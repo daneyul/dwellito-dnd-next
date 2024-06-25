@@ -8,7 +8,6 @@ import { PageDataContext } from '../Content/Content';
 const AddElecOption = ({ options }) => {
   const {
     setSelectedComponents,
-    selectedElevation,
     setHasCollisions,
     scaleFactor,
     setShow3d,
@@ -18,11 +17,12 @@ const AddElecOption = ({ options }) => {
   } = useContext(PageDataContext);
 
   return options.map((item) => {
+    const imgSrc = !!item.sidebarImg ? item.sidebarImg : item.floorPlanImg; 
     return (
       <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
         <HoverCard.Trigger>
           <img
-            src={generateImgSrc(item.floorPlanImg)}
+            src={generateImgSrc(imgSrc)}
             alt={item.name}
             onClick={() => {
               setShow3d(false);
