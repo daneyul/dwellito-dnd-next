@@ -12,8 +12,6 @@ const ElevationToggle = () => {
     selectedContainer,
   } = useContext(PageDataContext);
 
-  const floorPlan = selectedContainer.floorPlan;
-
   if (!show3d) {
     return (
       <div className={style.container}>

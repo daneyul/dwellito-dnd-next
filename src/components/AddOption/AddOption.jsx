@@ -4,6 +4,7 @@ import { generateImgSrc, handleAddComponent } from '../../utils/2D/utils';
 import style from './addOption.module.css';
 import * as HoverCard from '@radix-ui/react-hover-card';
 import { PageDataContext } from '../Content/Content';
+import { ELEVATION_NAMES } from '@/utils/constants/names';
 
 const AddOption = ({ options }) => {
   const {
@@ -13,7 +14,36 @@ const AddOption = ({ options }) => {
     scaleFactor,
     setShow3d,
     isFloorPlanView,
+    setSelectedElevation,
+    mappedElevations
   } = useContext(PageDataContext);
+
+  const rightElevation = mappedElevations.find(
+    (elevation) => elevation.name === ELEVATION_NAMES.RIGHT
+  );
+
+  const handleSelect = (item) => {
+    setShow3d(false);
+    if (isFloorPlanView) {
+      setSelectedElevation(rightElevation);
+      handleAddComponent(
+        item,
+        setSelectedComponents,
+        rightElevation,
+        setHasCollisions,
+        scaleFactor
+      );
+    } else {
+      handleAddComponent(
+        item,
+        setSelectedComponents,
+        selectedElevation,
+        setHasCollisions,
+        scaleFactor
+      );
+    }
+  };
+
   return options.map((item) => {
     if (isFloorPlanView) {
       return (
@@ -33,33 +63,25 @@ const AddOption = ({ options }) => {
           </HoverCard.Portal>
         </HoverCard.Root>
       );
+    } else {
+      return (
+        <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
+          <HoverCard.Trigger>
+            <img
+              src={generateImgSrc(item.imgName)}
+              alt={item.name}
+              onClick={() => handleSelect(item)}
+              className={style.objImg}
+            />
+          </HoverCard.Trigger>
+          <HoverCard.Portal>
+            <HoverCard.Content className={style.tooltipText} side='top'>
+              {item.name}
+            </HoverCard.Content>
+          </HoverCard.Portal>
+        </HoverCard.Root>
+      );
     }
-    return (
-      <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
-        <HoverCard.Trigger>
-          <img
-            src={generateImgSrc(item.imgName)}
-            alt={item.name}
-            onClick={() => {
-              setShow3d(false);
-              handleAddComponent(
-                item,
-                setSelectedComponents,
-                selectedElevation,
-                setHasCollisions,
-                scaleFactor
-              );
-            }}
-            className={style.objImg}
-          />
-        </HoverCard.Trigger>
-        <HoverCard.Portal>
-          <HoverCard.Content className={style.tooltipText} side='top'>
-            {item.name}
-          </HoverCard.Content>
-        </HoverCard.Portal>
-      </HoverCard.Root>
-    );
   });
 };
 

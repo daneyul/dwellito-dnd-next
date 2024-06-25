@@ -4,9 +4,30 @@ import { PageDataContext } from '../Content/Content';
 import HighlightIcon from '../svgs/HighlightIcon';
 import ViewerIcon from '../svgs/ViewerIcon';
 import { Spinner } from '@radix-ui/themes';
+import { ELEVATION_NAMES } from '@/utils/constants/names';
 
 const ToggleView = () => {
-  const { show3d, setShow3d, threeDModelLoaded } = useContext(PageDataContext);
+  const {
+    show3d,
+    setShow3d,
+    threeDModelLoaded,
+    mappedElevations,
+    isFloorPlanView,
+    setSelectedElevation
+  } = useContext(PageDataContext);
+
+  const rightElevation = mappedElevations.find(
+    (elevation) => elevation.name === ELEVATION_NAMES.RIGHT
+  );
+
+  const toggle3d = () => {
+    if (isFloorPlanView) {
+      setShow3d(true);
+      setSelectedElevation(rightElevation);
+    } else {
+      setShow3d(true);
+    }
+  };
 
   return (
     <div className={style.container}>
@@ -19,7 +40,7 @@ const ToggleView = () => {
       </button>
       <button
         className={show3d ? style.viewerSelected : style.viewer}
-        onClick={() => setShow3d(true)}
+        onClick={toggle3d}
         disabled={!threeDModelLoaded}
         style={{ cursor: !threeDModelLoaded ? 'not-allowed' : 'pointer' }}
       >
