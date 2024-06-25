@@ -26,10 +26,7 @@ function useCollidableDraggable({ id, data: customData, disabled }) {
     disabled,
   });
 
-  const {
-    isOver,
-    setNodeRef: setDroppableNodeRef,
-  } = useDroppable({
+  const { setNodeRef: setDroppableNodeRef } = useDroppable({
     id,
     data: customData,
     disabled,
@@ -42,20 +39,16 @@ function useCollidableDraggable({ id, data: customData, disabled }) {
     listeners,
     setNodeRef,
     transform,
-    isDragging
+    isDragging,
   };
 }
 
 export function Draggable({ id, styles, piece, onSelect }) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-  } = useCollidableDraggable({
-    id,
-    data: { ...piece },
-  });
+  const { attributes, listeners, setNodeRef, transform } =
+    useCollidableDraggable({
+      id,
+      data: { ...piece },
+    });
 
   const { collisions } = useDndContext();
 
@@ -102,9 +95,17 @@ export function Draggable({ id, styles, piece, onSelect }) {
         slug !== CONTAINER_40_SLUG &&
         piece.objType !== COMPONENT_TYPES.ELECTRICAL
       ) {
-        return piece.position.y;
+        if (!!piece.alwaysShowOn) {
+          return piece.position.elevation.y;
+        } else {
+          return piece.position.y;
+        }
       } else {
-        return piece.position.y / 1.4;
+        if (!!piece.alwaysShowOn) {
+          return piece.position.elevation.y / 1.4;
+        } else {
+          return piece.position.y / 1.4;
+        }
       }
     } else {
       if (slug !== CONTAINER_40_SLUG) {
@@ -126,7 +127,11 @@ export function Draggable({ id, styles, piece, onSelect }) {
   const isFixed = piece.fixed;
 
   // Render on corresponding elevation or render on floor plan view
-  if (!piece.elevation.includes(selectedElevation) && !isFloorPlanView) {
+  if (
+    !piece.alwaysShowOn?.includes(selectedElevation.name) &&
+    !piece.elevation.includes(selectedElevation) &&
+    !isFloorPlanView
+  ) {
     return null;
   }
 
@@ -149,8 +154,8 @@ export function Draggable({ id, styles, piece, onSelect }) {
         } else {
           return {
             left: `${toScale(piece.position.x, scaleFactor)}px`,
-            top: "50%",
-            transform: "translateY(-50%)"
+            top: '50%',
+            transform: 'translateY(-50%)',
           };
         }
       } else {
@@ -166,7 +171,10 @@ export function Draggable({ id, styles, piece, onSelect }) {
           return {
             bottom: '10px',
             transform: 'translateY(100%)',
-            left: `${toScale((piece.position.x + DIMENSIONS.BOUNDARIES.x), scaleFactor)}px`,
+            left: `${toScale(
+              piece.position.x + DIMENSIONS.BOUNDARIES.x,
+              scaleFactor
+            )}px`,
           };
         } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
           return {
@@ -179,6 +187,11 @@ export function Draggable({ id, styles, piece, onSelect }) {
             transform: `rotate(270deg) translateX(100%) translateY(calc(100% - 12px)`,
           };
         }
+      }
+    } else if (isFixed && !!piece.alwaysShowOn) {
+      return {
+        left: `${piece.position.elevation.x}px`,
+        top: `${piece.position.elevation.y}px`,
       }
     } else {
       return {

@@ -75,27 +75,36 @@ const Viewer = () => {
   const showRightArrow =
     selectedElevationIndex < mappedElevations.length - 1 && !show3d;
 
-  const debouncedUpdatePosition = useCallback(
-    debounce((id, delta) => {
-      setTempPositions((prev) => ({
-        ...prev,
-        [id]: {
-          x: (prev[id]?.x || 0) + delta.x,
-          y: (prev[id]?.y || 0) + delta.y,
-        },
-      }));
-    }, 50), // Adjust debounce delay as needed
-    []
-  );
+    const debouncedUpdatePosition = useCallback(
+      debounce((id, delta) => {
+        console.log('Debounced Update Position - ID:', id, 'Delta:', delta); // Debugging log
+        setTempPositions((prev) => {
+          const newPos = {
+            ...prev,
+            [id]: {
+              x: (prev[id]?.x || 0) + delta.x,
+              y: (prev[id]?.y || 0) + delta.y,
+            },
+          };
+          console.log('Updated tempPositions in debounce:', newPos); // Debugging log
+          return newPos;
+        });
+      }, 1000), // Adjust debounce delay as needed
+      []
+    );
 
   const handleDragMove = (event) => {
-    const { id, delta } = event;
+    const id = event.active.id;
+    const delta = event.delta;
+    console.log("Drag Move - ID:", id, "Delta:", delta); // Debugging log
     debouncedUpdatePosition(id, delta);
   };
 
   const handleDragEndEnhanced = (event) => {
-    const { id } = event;
+    const id = event.active.id;
     const tempPos = tempPositions[id];
+    console.log("Drag End - ID:", id, "TempPos:", tempPos); // Debugging log
+
     if (tempPos) {
       setSelectedComponents((prevComponents) =>
         prevComponents.map((piece) => {
@@ -117,6 +126,7 @@ const Viewer = () => {
         return newPos;
       });
     }
+    console.log("Updated tempPositions after drag end:", tempPositions); // Debugging log
     handleDragEnd(event); // Perform collision and closeness checks
   };
 

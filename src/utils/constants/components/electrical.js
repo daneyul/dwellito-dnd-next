@@ -6,6 +6,10 @@ export const electricalComponents = [
     position: {
       x: 0,
       y: 55,
+      elevation: {
+        x: 105,
+        y: 40
+      }
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/ac.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/ac.svg`,
@@ -17,12 +21,17 @@ export const electricalComponents = [
     model: 'airconditioner',
     fixed: true,
     fixedSide: ELEVATION_NAMES.BACK,
+    alwaysShowOn: [ELEVATION_NAMES.BACK]
   },
   {
     name: COMPONENT_NAMES.ROOF_VENT,
     position: {
       x: 18,
       y: 0,
+      elevation: {
+        x: 0,
+        y: 0
+      }
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/roof-vent.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/roof-vent-dash.svg`,
@@ -34,12 +43,17 @@ export const electricalComponents = [
     price: 670,
     model: 'roofvent',
     fixed: true,
+    alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
   },
   {
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP,
     position: {
       x: 2,
       y: 148,
+      elevation: {
+        x: 0,
+        y: 0
+      }
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/box-panel.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/box-panel.svg`,
@@ -51,12 +65,17 @@ export const electricalComponents = [
     model: 'electricalpanel',
     fixed: true,
     fixedSide: ELEVATION_NAMES.BACK,
+    alwaysShowOn: [ELEVATION_NAMES.BACK]
   },
   {
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP,
     position: {
       x: 2,
       y: 148,
+      elevation: {
+        x: 0,
+        y: 0
+      }
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/box-panel.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/box-panel.svg`,
@@ -68,6 +87,7 @@ export const electricalComponents = [
     model: 'electricalpanel',
     fixed: true,
     fixedSide: ELEVATION_NAMES.BACK,
+    alwaysShowOn: [ELEVATION_NAMES.BACK]
   },
   // {
   //   name: COMPONENT_NAMES.BASEBOARD_HEATER,
@@ -104,6 +124,10 @@ export const electricalComponents = [
     position: {
       x: 18,
       y: 10,
+      elevation: {
+        x: 0,
+        y: 0
+      }
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/exhaust-fan.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/exhaust-fan.svg`,
@@ -115,5 +139,6 @@ export const electricalComponents = [
     model: 'fan',
     fixed: true,
     fixedSide: ELEVATION_NAMES.RIGHT,
+    alwaysShowOn: [ELEVATION_NAMES.RIGHT]
   },
 ];

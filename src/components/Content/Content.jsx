@@ -287,6 +287,8 @@ const PageDataProvider = ({ children, data }) => {
       (item) => item.id === active.id
     );
 
+    if (draggedItem && draggedItem.fixed) { return; };
+
     const defaultModifiers = [restrictToParentElement, snapToGridModifier];
 
     const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];
@@ -332,18 +334,6 @@ const PageDataProvider = ({ children, data }) => {
     updatedPieces.forEach((piece, index) => {
       if (piece.id !== draggedId) {
         const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
-
-        // // Check for collisions and update the state accordingly
-        // if (
-        //   draggedPiece &&
-        //   checkCollision(draggedPiece, piece, selectedElevation, scaleFactor)
-        // ) {
-        //   updatedPieces[index].isColliding = true;
-        //   const draggedPieceIndex = updatedPieces.findIndex(
-        //     ({ id }) => id === draggedId
-        //   );
-        //   updatedPieces[draggedPieceIndex].isColliding = true;
-        // }
 
         // Check for closeness and update the state accordingly
         if (
