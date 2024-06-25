@@ -158,7 +158,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
       } else {
         if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
           return {
-            left: `${
+            right: `${
               piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
             }px`,
             top: '10px',
@@ -168,7 +168,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
           return {
             bottom: '10px',
             transform: 'translateY(100%)',
-            left: `${piece.position.x}px`,
+            left: `${toScale((piece.position.x + DIMENSIONS.BOUNDARIES.x), scaleFactor)}px`,
           };
         } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
           return {
