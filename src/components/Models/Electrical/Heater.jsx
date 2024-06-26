@@ -17,9 +17,15 @@ const Heater = ({ component }) => {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
 
-  const selectedElevation = component.elevation[0];
-
   const { nodes, materials } = useGLTF(`/models/electrical/heater.glb`);
+
+  if (
+    !selectedComponents.some(
+      (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
+    )
+  ) {
+    return null;
+  }
 
   const distanceObject = checkDistance({
     component,
@@ -29,13 +35,7 @@ const Heater = ({ component }) => {
     scaleFactor,
   });
 
-  if (
-    !selectedComponents.some(
-      (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
-    )
-  ) {
-    return null;
-  }
+  const selectedElevation = component.elevation[0];
 
   return (
     <group
