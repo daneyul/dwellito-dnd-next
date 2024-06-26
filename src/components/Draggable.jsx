@@ -127,7 +127,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
       if (isFloorPlanView) {
         return piece.floorPlanImg;
       } else if (piece.alwaysShowOn.includes(selectedElevation.name)) {
-        if (selectedElevation.name !== piece.fixedSide) {
+        if (!!piece.fixedSide && selectedElevation.name !== piece.fixedSide) {
           return piece.sideImg;
         } else {
           return piece.frontImg;
@@ -210,12 +210,32 @@ export function Draggable({ id, styles, piece, onSelect }) {
         }
       }
     } else if (isFixed && !!piece.alwaysShowOn) {
-      if (selectedElevation.name === piece.fixedSide) {
+      if (!!piece.fixedSide && selectedElevation.name === piece.fixedSide) {
         // For fixed components on elevation views, show front view
         return {
           left: `${piece.position.x}px`,
           top: `${piece.position.y}px`,
         };
+      } else if (!piece.fixedSide) {
+        if (selectedElevation.name === ELEVATION_NAMES.RIGHT) {
+          return {
+            left: `${piece.position.x}px`,
+            top: "3px",
+            transform: "translateY(-100%)",
+          }
+        } else if (selectedElevation.name === ELEVATION_NAMES.LEFT) {
+          return {
+            right: `${piece.position.x}px`,
+            top: "3px",
+            transform: "translateY(-100%)",
+          }
+        } else if (selectedElevation.name === ELEVATION_NAMES.BACK) {
+          return {
+            left: "50%",
+            top: "3px",
+            transform: 'translateX(-50%) translateY(-100%)',
+          };
+        }
       } else if (selectedElevation.name === ELEVATION_NAMES.RIGHT) {
         return {
           right: `${4 - toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
@@ -228,6 +248,11 @@ export function Draggable({ id, styles, piece, onSelect }) {
           top: `${piece.position.y}px`,
           transform: 'translateX(-100%) scaleX(-1)',
         }
+      } else {
+        return {
+          left: `${piece.position.x}px`,
+          top: `${piece.position.y}px`,
+        };
       }
     } else {
       return {
