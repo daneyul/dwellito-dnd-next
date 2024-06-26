@@ -175,7 +175,9 @@ export function Draggable({ id, styles, piece, onSelect }) {
           };
         } else {
           return {
-            left: `${piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+            left: `${
+              piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            }px`,
             top: '50%',
             transform: 'translateY(-50%)',
           };
@@ -220,19 +222,19 @@ export function Draggable({ id, styles, piece, onSelect }) {
         if (selectedElevation.name === ELEVATION_NAMES.RIGHT) {
           return {
             left: `${piece.position.x}px`,
-            top: "3px",
-            transform: "translateY(-100%)",
-          }
+            top: '3px',
+            transform: 'translateY(-100%)',
+          };
         } else if (selectedElevation.name === ELEVATION_NAMES.LEFT) {
           return {
             right: `${piece.position.x}px`,
-            top: "3px",
-            transform: "translateY(-100%)",
-          }
+            top: '3px',
+            transform: 'translateY(-100%)',
+          };
         } else if (selectedElevation.name === ELEVATION_NAMES.BACK) {
           return {
-            left: "50%",
-            top: "3px",
+            left: '50%',
+            top: '3px',
             transform: 'translateX(-50%) translateY(-100%)',
           };
         }
@@ -247,7 +249,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
           left: `${3 - toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
           top: `${piece.position.y}px`,
           transform: 'translateX(-100%) scaleX(-1)',
-        }
+        };
       } else {
         return {
           left: `${piece.position.x}px`,
@@ -319,9 +321,14 @@ export function Draggable({ id, styles, piece, onSelect }) {
           isFloorPlanView={isFloorPlanView}
         />
       )}
-      {isHovered && !show3d && !isAnyItemSelected && !piece.fixed && (
-        <DragToMove isFloorPlanView={isFloorPlanView} />
-      )}
+      {isHovered &&
+        !show3d &&
+        !isAnyItemSelected &&
+        !piece.fixed &&
+        selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
+        piece.objType === COMPONENT_TYPES.ELECTRICAL && (
+          <DragToMove isFloorPlanView={isFloorPlanView} />
+        )}
     </>
   );
 }

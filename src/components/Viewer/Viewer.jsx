@@ -77,7 +77,6 @@ const Viewer = () => {
 
     const debouncedUpdatePosition = useCallback(
       debounce((id, delta) => {
-        console.log('Debounced Update Position - ID:', id, 'Delta:', delta); // Debugging log
         setTempPositions((prev) => {
           const newPos = {
             ...prev,
@@ -86,7 +85,6 @@ const Viewer = () => {
               y: (prev[id]?.y || 0) + delta.y,
             },
           };
-          console.log('Updated tempPositions in debounce:', newPos); // Debugging log
           return newPos;
         });
       }, 1000), // Adjust debounce delay as needed

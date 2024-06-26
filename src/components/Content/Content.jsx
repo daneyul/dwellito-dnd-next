@@ -294,7 +294,12 @@ const PageDataProvider = ({ children, data }) => {
     const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis];
 
     // Handles component snapping
-    if (draggedItem && draggedItem.objType === COMPONENT_TYPES.DOOR) {
+    if (
+      selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
+      draggedItem.objType !== COMPONENT_TYPES.ELECTRICAL
+    ) {
+      setModifiers([...fixedModifiers]);
+    } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.DOOR) {
       setModifiers([...doorWindowModifiers, snapToIncrement(11 * scaleFactor)]);
     } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.WINDOW) {
       setModifiers([...doorWindowModifiers, snapToIncrement(6 * scaleFactor)]);
@@ -431,7 +436,7 @@ const PageDataProvider = ({ children, data }) => {
         setCameraReady,
         containerSize,
         floorPlan,
-        isFloorPlanView
+        isFloorPlanView,
       }}
     >
       {children}
