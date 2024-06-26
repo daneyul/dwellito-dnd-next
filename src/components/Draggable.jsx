@@ -222,6 +222,12 @@ export function Draggable({ id, styles, piece, onSelect }) {
           top: `${piece.position.y}px`,
           transform: 'translateX(100%)',
         };
+      } else if (selectedElevation.name === ELEVATION_NAMES.LEFT) {
+        return {
+          left: `${3 - toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+          top: `${piece.position.y}px`,
+          transform: 'translateX(-100%) scaleX(-1)',
+        }
       }
     } else {
       return {
