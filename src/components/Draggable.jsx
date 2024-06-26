@@ -325,8 +325,8 @@ export function Draggable({ id, styles, piece, onSelect }) {
         !show3d &&
         !isAnyItemSelected &&
         !piece.fixed &&
-        selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
-        piece.objType === COMPONENT_TYPES.ELECTRICAL && (
+        selectedElevation.name !== ELEVATION_NAMES.FLOOR_PLAN &&
+        piece.objType !== COMPONENT_TYPES.ELECTRICAL && (
           <DragToMove isFloorPlanView={isFloorPlanView} />
         )}
     </>
