@@ -282,3 +282,34 @@ export const snapToIncrement =
 
     return transform;
   };
+
+export const snapToEdgesModifier = ({ transform, active, over }) => {
+  if (!over || !active) {
+    return transform;
+  }
+
+  const overRect = over.rect.current;
+  const activeRect = active.rect.current;
+
+  if (!overRect || !activeRect) {
+    return transform;
+  }
+
+  const snapTo = {
+    x: activeRect.width / 2,
+    y: activeRect.height / 2,
+  };
+
+  const deltaX = transform.x - snapTo.x;
+  const deltaY = transform.y - snapTo.y;
+
+  const closestEdge = {
+    x: deltaX < overRect.width / 2 ? 0 : overRect.width - activeRect.width,
+    y: deltaY < overRect.height / 2 ? 0 : overRect.height - activeRect.height,
+  };
+
+  return {
+    x: closestEdge.x,
+    y: closestEdge.y,
+  };
+}

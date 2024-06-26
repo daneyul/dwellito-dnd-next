@@ -6,6 +6,7 @@ import { PageDataContext } from './Content/Content';
 import DeleteBtn from './DeleteBtn/DeleteBtn';
 import DragToMove from './DragToMove/DragToMove';
 import {
+  COMPONENT_NAMES,
   COMPONENT_TYPES,
   CONTAINER_40_SLUG,
   ELEVATION_NAMES,
@@ -89,29 +90,21 @@ export function Draggable({ id, styles, piece, onSelect }) {
   );
 
   // This is for adjusting the top value  based on the container height
-  const objTop = () => {
+  const adjForContainerHeight = (value) => {
     if (containerHeightIsStandard) {
       if (
         slug !== CONTAINER_40_SLUG &&
         piece.objType !== COMPONENT_TYPES.ELECTRICAL
       ) {
-        if (!!piece.alwaysShowOn) {
-          return piece.position.elevation.y;
-        } else {
-          return piece.position.y;
-        }
+        return value;
       } else {
-        if (!!piece.alwaysShowOn) {
-          return piece.position.elevation.y / 1.4;
-        } else {
-          return piece.position.y / 1.4;
-        }
+        return value / 1.4;
       }
     } else {
       if (slug !== CONTAINER_40_SLUG) {
-        return piece.position.y * 5.28;
+        return value * 5.28;
       } else {
-        return piece.position.y * 2.57;
+        return value * 2.57;
       }
     }
   };
@@ -160,15 +153,15 @@ export function Draggable({ id, styles, piece, onSelect }) {
         if (piece.fixedSide === ELEVATION_NAMES.RIGHT) {
           return {
             bottom: '0',
-            left: `${
-              piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            right: `${
+              adjForContainerHeight(piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor))
             }px`,
             transform: `rotate(90deg) translateX(10px)`,
           };
         } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
           return {
             bottom: `${
-              piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+              adjForContainerHeight(piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor))
             }px`,
             right: '0',
             transform: 'translateX(50%)',
@@ -183,7 +176,12 @@ export function Draggable({ id, styles, piece, onSelect }) {
           };
         }
       } else {
-        if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
+        if (piece.name === COMPONENT_NAMES.BASEBOARD_HEATER) {
+          return {
+            left: `${piece.position.x}px`,
+            top: `${piece.position.y}px`,
+          };
+        } else if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
           return {
             right: `${
               piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
@@ -214,10 +212,17 @@ export function Draggable({ id, styles, piece, onSelect }) {
     } else if (isFixed && !!piece.alwaysShowOn) {
       if (!!piece.fixedSide && selectedElevation.name === piece.fixedSide) {
         // For fixed components on elevation views, show front view
-        return {
-          left: `${piece.position.x}px`,
-          top: `${piece.position.y}px`,
-        };
+        if (piece.name === COMPONENT_NAMES.EXHAUST_FAN) {
+          return {
+            right: `${adjForContainerHeight(piece.position.x)}px`,
+            top: `${adjForContainerHeight(piece.position.y)}px`,
+          };
+        } else {
+          return {
+            left: `${adjForContainerHeight(piece.position.x)}px`,
+            top: `${adjForContainerHeight(piece.position.y)}px`,
+          };
+        }
       } else if (!piece.fixedSide) {
         if (selectedElevation.name === ELEVATION_NAMES.RIGHT) {
           return {
@@ -259,7 +264,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
     } else {
       return {
         left: `${piece.position.x}px`,
-        top: `${objTop()}px`,
+        top: `${adjForContainerHeight(piece.position.y)}px`,
       };
     }
   };
