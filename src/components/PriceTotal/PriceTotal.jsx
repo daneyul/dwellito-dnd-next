@@ -132,11 +132,13 @@ const PriceTotal = () => {
               scaleFactor,
             });
 
+            const imgSrc = isElectrical ? component.floorPlanImg : component.frontImg;
+
             return (
               <li key={component.id} className={style.lineItem}>
                 <div className={style.thumbnailContainer}>
                   <img
-                    src={generateImgSrc(component.imgName)}
+                    src={generateImgSrc(imgSrc)}
                     alt={component.desc}
                     className={style.thumbnailImg}
                   />
