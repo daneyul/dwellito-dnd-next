@@ -122,7 +122,25 @@ export function Draggable({ id, styles, piece, onSelect }) {
       }
     : {};
 
-  const imgSrc = isFloorPlanView ? piece.floorPlanImg : piece.imgName;
+  const imgSrc = () => {
+    if (piece.objType === COMPONENT_TYPES.ELECTRICAL) {
+      if (isFloorPlanView) {
+        return piece.floorPlanImg;
+      } else if (piece.alwaysShowOn.includes(selectedElevation.name)) {
+        if (selectedElevation.name !== piece.fixedSide) {
+          return piece.sideImg;
+        } else {
+          return piece.frontImg;
+        }
+      } else {
+        return piece.frontImg;
+      }
+    } else if (selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN) {
+      return piece.floorPlanImg;
+    } else {
+      return piece.frontImg;
+    }
+  };
 
   const isFixed = piece.fixed;
 
@@ -142,12 +160,16 @@ export function Draggable({ id, styles, piece, onSelect }) {
         if (piece.fixedSide === ELEVATION_NAMES.RIGHT) {
           return {
             bottom: '0',
-            left: `${piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+            left: `${
+              piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            }px`,
             transform: `rotate(90deg) translateX(10px)`,
           };
         } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
           return {
-            bottom: `${piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+            bottom: `${
+              piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            }px`,
             right: '0',
             transform: 'translateX(50%)',
           };
@@ -172,9 +194,8 @@ export function Draggable({ id, styles, piece, onSelect }) {
             bottom: '10px',
             transform: 'translateY(100%)',
             left: `${
-              piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x,
-              scaleFactor
-            )}px`,
+              piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            }px`,
           };
         } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
           return {
@@ -189,10 +210,18 @@ export function Draggable({ id, styles, piece, onSelect }) {
         }
       }
     } else if (isFixed && !!piece.alwaysShowOn) {
-      // For fixed components on elevation views
-      return {
-        left: `${piece.position.x}px`,
-        top: `${piece.position.y}px`,
+      if (selectedElevation.name === piece.fixedSide) {
+        // For fixed components on elevation views, show front view
+        return {
+          left: `${piece.position.x}px`,
+          top: `${piece.position.y}px`,
+        };
+      } else if (selectedElevation.name === ELEVATION_NAMES.RIGHT) {
+        return {
+          right: `${4 - toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+          top: `${piece.position.y}px`,
+          transform: 'translateX(100%)',
+        };
       }
     } else {
       return {
@@ -202,11 +231,23 @@ export function Draggable({ id, styles, piece, onSelect }) {
     }
   };
 
+  const imgWidth = () => {
+    if (
+      selectedElevation.name !== piece.fixedSide &&
+      !!piece.objThickness &&
+      !isFloorPlanView
+    ) {
+      return toScale(piece.objThickness, scaleFactor);
+    } else {
+      return toScale(piece.objWidth, scaleFactor);
+    }
+  };
+
   const CustomStyle = {
     position: 'absolute',
     display: 'flex',
     cursor: 'pointer',
-    width: `${toScale(piece.objWidth, scaleFactor)}px`,
+    width: `${imgWidth()}px`,
     height: `auto`,
     ...calculateCSSPos(),
     boxShadow:
@@ -232,7 +273,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
         onMouseDown={handleMouseDown}
       >
         <img
-          src={generateImgSrc(imgSrc)}
+          src={generateImgSrc(imgSrc())}
           alt={piece.name}
           style={{
             width: '100%',

@@ -287,8 +287,6 @@ const PageDataProvider = ({ children, data }) => {
       (item) => item.id === active.id
     );
 
-    if (draggedItem && draggedItem.fixed) { return; };
-
     const defaultModifiers = [restrictToParentElement, snapToGridModifier];
 
     const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];

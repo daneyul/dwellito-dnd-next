@@ -96,14 +96,12 @@ const Viewer = () => {
   const handleDragMove = (event) => {
     const id = event.active.id;
     const delta = event.delta;
-    console.log("Drag Move - ID:", id, "Delta:", delta); // Debugging log
     debouncedUpdatePosition(id, delta);
   };
 
   const handleDragEndEnhanced = (event) => {
     const id = event.active.id;
     const tempPos = tempPositions[id];
-    console.log("Drag End - ID:", id, "TempPos:", tempPos); // Debugging log
 
     if (tempPos) {
       setSelectedComponents((prevComponents) =>
@@ -126,7 +124,6 @@ const Viewer = () => {
         return newPos;
       });
     }
-    console.log("Updated tempPositions after drag end:", tempPositions); // Debugging log
     handleDragEnd(event); // Perform collision and closeness checks
   };
 
