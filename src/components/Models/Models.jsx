@@ -292,7 +292,7 @@ export function Models() {
         <RoofVent />
         <AirConditioner />
         <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
-        {/* <ContainerShell /> */}
+        <ContainerShell />
         <CsgGeometries
           doors={doors}
           windows={windows}
