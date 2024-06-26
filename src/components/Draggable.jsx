@@ -175,7 +175,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
           };
         } else {
           return {
-            left: `${piece.position.x}px`,
+            left: `${piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
             top: '50%',
             transform: 'translateY(-50%)',
           };
