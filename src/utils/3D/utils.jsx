@@ -256,11 +256,11 @@ const electricalCoordinates = (
   };
   const adjustForY = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
+      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2 - 0.6;
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
+      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2 - 0.6;
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
+      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2 - 0.6;
     }
   };
 
