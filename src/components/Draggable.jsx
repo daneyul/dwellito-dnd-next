@@ -138,7 +138,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
     } else if (selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN) {
       return piece.floorPlanImg;
     } else {
-      return piece.frontImg;
+      return piece.imgName;
     }
   };
 

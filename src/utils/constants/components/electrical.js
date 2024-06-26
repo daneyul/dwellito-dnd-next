@@ -43,7 +43,7 @@ export const electricalComponents = [
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP,
     position: {
       x: 7,
-      y: 80,
+      y: 90,
     },
     frontImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/box-panel.svg`,
     sideImg: `${COMPONENT_TYPES.ELECTRICAL}/side-view/box-panel.svg`,
@@ -63,7 +63,7 @@ export const electricalComponents = [
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP,
     position: {
       x: 7,
-      y: 80,
+      y: 90,
     },
     frontImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/box-panel.svg`,
     sideImg: `${COMPONENT_TYPES.ELECTRICAL}/side-view/box-panel.svg`,
