@@ -25,9 +25,9 @@ const ExhaustFan = ({ onBoundingBoxChange }) => {
   );
 
   const position = () => {
-    let x = -2.2;
+    let x = -3.1;
     let y = 0;
-    let z = 0;
+    let z = -1.2;
 
     if (slug === CONTAINER_10_SLUG) {
       x += -DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2;

@@ -142,8 +142,8 @@ export function Draggable({ id, styles, piece, onSelect }) {
         if (piece.fixedSide === ELEVATION_NAMES.RIGHT) {
           return {
             bottom: '0',
-            right: `${piece.position.x}px`,
-            transform: `rotate(90deg) translateX(${piece.position.y}px)`,
+            left: `${piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+            transform: `rotate(90deg) translateX(10px)`,
           };
         } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
           return {
@@ -189,6 +189,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
         }
       }
     } else if (isFixed && !!piece.alwaysShowOn) {
+      // For fixed components on elevation views
       return {
         left: `${piece.position.x}px`,
         top: `${piece.position.y}px`,

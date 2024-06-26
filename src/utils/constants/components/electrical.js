@@ -106,10 +106,10 @@ export const electricalComponents = [
   {
     name: COMPONENT_NAMES.EXHAUST_FAN,
     position: {
-      x: 18,
-      y: 10,
+      x: 450,
+      y: 42,
     },
-    imgName: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/exhaust-fan.svg`,
+    imgName: `${COMPONENT_TYPES.ELECTRICAL}/exhaust-fan.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/exhaust-fan.svg`,
     desc: 'P203-1-307',
     objWidth: 17,
