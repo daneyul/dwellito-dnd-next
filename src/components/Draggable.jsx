@@ -142,18 +142,18 @@ export function Draggable({ id, styles, piece, onSelect }) {
         if (piece.fixedSide === ELEVATION_NAMES.RIGHT) {
           return {
             bottom: '0',
-            right: `${toScale(piece.position.x, scaleFactor)}px`,
+            right: `${piece.position.x}px`,
             transform: `rotate(90deg) translateX(${piece.position.y}px)`,
           };
         } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
           return {
-            top: `${piece.position.y}px`,
+            bottom: `${piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
             right: '0',
             transform: 'translateX(50%)',
           };
         } else {
           return {
-            left: `${toScale(piece.position.x, scaleFactor)}px`,
+            left: `${piece.position.x}px`,
             top: '50%',
             transform: 'translateY(-50%)',
           };
@@ -171,8 +171,8 @@ export function Draggable({ id, styles, piece, onSelect }) {
           return {
             bottom: '10px',
             transform: 'translateY(100%)',
-            left: `${toScale(
-              piece.position.x + DIMENSIONS.BOUNDARIES.x,
+            left: `${
+              piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x,
               scaleFactor
             )}px`,
           };
@@ -190,8 +190,8 @@ export function Draggable({ id, styles, piece, onSelect }) {
       }
     } else if (isFixed && !!piece.alwaysShowOn) {
       return {
-        left: `${piece.position.elevation.x}px`,
-        top: `${piece.position.elevation.y}px`,
+        left: `${piece.position.x}px`,
+        top: `${piece.position.y}px`,
       }
     } else {
       return {

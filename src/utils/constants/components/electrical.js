@@ -4,12 +4,8 @@ export const electricalComponents = [
   {
     name: COMPONENT_NAMES.AIR_CONDITIONER,
     position: {
-      x: 0,
-      y: 55,
-      elevation: {
-        x: 105,
-        y: 40
-      }
+      x: 105,
+      y: 40,
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/ac.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/ac.svg`,
@@ -28,10 +24,6 @@ export const electricalComponents = [
     position: {
       x: 18,
       y: 0,
-      elevation: {
-        x: 0,
-        y: 0
-      }
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/roof-vent.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/roof-vent-dash.svg`,
@@ -48,12 +40,8 @@ export const electricalComponents = [
   {
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP,
     position: {
-      x: 2,
-      y: 148,
-      elevation: {
-        x: 0,
-        y: 0
-      }
+      x: 7,
+      y: 80,
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/box-panel.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/box-panel.svg`,
@@ -70,12 +58,8 @@ export const electricalComponents = [
   {
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP,
     position: {
-      x: 2,
-      y: 148,
-      elevation: {
-        x: 0,
-        y: 0
-      }
+      x: 7,
+      y: 80,
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/box-panel.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/box-panel.svg`,
@@ -124,10 +108,6 @@ export const electricalComponents = [
     position: {
       x: 18,
       y: 10,
-      elevation: {
-        x: 0,
-        y: 0
-      }
     },
     imgName: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/exhaust-fan.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/exhaust-fan.svg`,
