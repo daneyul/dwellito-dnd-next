@@ -248,7 +248,6 @@ const PageDataProvider = ({ children, data }) => {
 
     const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis];
 
-    const nonFixedElectricalModifiers = [restrictToParentElement, snapToEdgesModifier];
 
     // Handles component snapping
     if (
@@ -262,12 +261,6 @@ const PageDataProvider = ({ children, data }) => {
       setModifiers([...doorWindowModifiers, snapToIncrement(6 * scaleFactor)]);
     } else if (draggedItem && draggedItem.fixed) {
       setModifiers([...fixedModifiers]);
-    } else if (
-      draggedItem &&
-      selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
-      draggedItem.objType === COMPONENT_TYPES.ELECTRICAL
-    ) {
-      setModifiers([...nonFixedElectricalModifiers]);
     } else {
       setModifiers([...defaultModifiers]);
     }

@@ -10,7 +10,7 @@ export const checkCollision = (
   scaleFactor
 ) => {
   // if (item1.fixed || item2.fixed) { return false };
-  
+
   // First, check if both items are on the selected elevation.
   // This assumes every item has an `elevation` array and that `selectedElevation` is a singular value or an identifier.
   const isOnSelectedElevation =
@@ -34,7 +34,6 @@ export const checkCollision = (
     top: item2.position.y,
     bottom: item2.position.y + parseInt(item2.objHeight * scaleFactor, 10),
   };
-
 
   // Check if any side from A is outside of B
   return !(
@@ -69,19 +68,22 @@ export const checkDistance = ({
   selectedContainer,
   scaleFactor,
 }) => {
-  const droppableWidthValue = droppableWidth(
-    selectedElevation,
-    DIMENSIONS,
-    selectedContainer
-  ); // Use the function to get dynamic width
+  if (!component) { return null; };
+  
+  const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
+
+  // Use the function to get dynamic width
+  const droppableWidthValue = droppableWidth(selectedElevation, DIMENSIONS, selectedContainer);
+
+  const boundaries = isFloorPlanView ? 0 : DIMENSIONS.BOUNDARIES.x;
 
   return {
-    left: deScale(component.position.x, scaleFactor) + DIMENSIONS.BOUNDARIES.x,
+    left: deScale(component?.position.x, scaleFactor) + boundaries,
     right:
       droppableWidthValue -
-      (deScale(component.position.x, scaleFactor) + component.objWidth) +
-      DIMENSIONS.BOUNDARIES.x,
-    top: deScale(component.position.y, scaleFactor),
+      (deScale(component?.position.x, scaleFactor) + component.objWidth) +
+      boundaries,
+    top: deScale(component?.position.y, scaleFactor),
   };
 };
 
@@ -89,8 +91,6 @@ export const handleAddComponent = (
   item,
   setSelectedComponents,
   selectedElevation,
-  setHasCollisions,
-  scaleFactor
 ) => {
   setSelectedComponents((prevSelectedComponents) => {
     const newItem = {
@@ -101,19 +101,6 @@ export const handleAddComponent = (
     };
 
     return [...prevSelectedComponents, newItem];
-    // // Check for collision with each previously selected component
-    // const collisionDetected = prevSelectedComponents.some((component) =>
-    //   checkCollision(newItem, component, selectedElevation, scaleFactor)
-    // );
-
-    // if (collisionDetected) {
-    //   setHasCollisions(true);
-    //   console.warn('Collision detected');
-    //   return [...prevSelectedComponents, newItem];
-    // } else {
-    //   setHasCollisions(false);
-    //   return [...prevSelectedComponents, newItem];
-    // }
   });
 };
 
@@ -312,4 +299,4 @@ export const snapToEdgesModifier = ({ transform, active, over }) => {
     x: closestEdge.x,
     y: closestEdge.y,
   };
-}
+};

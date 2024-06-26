@@ -37,6 +37,7 @@ import Amp from './Electrical/Amp';
 import RoofVent from './Electrical/RoofVent';
 import AirConditioner from './Electrical/AirConditioner';
 import ExhaustFan from './Electrical/ExhaustFan';
+import Heater from './Electrical/Heater';
 
 export function Models() {
   const {
@@ -82,6 +83,12 @@ export function Models() {
       ),
     [selectedComponents, COMPONENT_TYPES]
   );
+  const heater = useMemo(
+    () =>
+      selectedComponents.find(
+        (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
+      ),
+  )
 
   const exteriorCamPos = () => {
     if (selectedContainer === containerData[0]) {
@@ -117,7 +124,6 @@ export function Models() {
   const cameraPos = showExterior ? exteriorCamPos() : interiorCamPos();
   const cameraRot = showExterior ? [0, 0, 0] : interiorCamRot();
 
-  const [isOrbiting, setIsOrbiting] = useState(false);
   const orbitRef = useRef();
 
   function CameraRig() {
@@ -129,7 +135,7 @@ export function Models() {
       camera.fov = camFov;
       camera.updateProjectionMatrix();
 
-      if (!isOrbiting && !cameraReady) {
+      if (!cameraReady) {
         camera.position.lerp(targetPosition, 0.1);
         camera.lookAt(lookAtPosition);
 
@@ -281,11 +287,12 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />
+        <Heater component={heater} />
         <Amp />
         <RoofVent />
         <AirConditioner />
         <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
-        <ContainerShell />
+        {/* <ContainerShell /> */}
         <CsgGeometries
           doors={doors}
           windows={windows}

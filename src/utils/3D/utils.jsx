@@ -1,3 +1,4 @@
+import { DIMENSIONS } from '../constants/dimensions';
 import { ELEVATION_NAMES } from '../constants/names';
 
 const degrees = {
@@ -32,7 +33,6 @@ const calcRotation = (elevation, elevationData, selectedContainer) => {
 const rightSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  DIMENSIONS,
   selectedContainer,
 }) => {
   const adjustForX = () => {
@@ -73,7 +73,6 @@ const rightSideCoordinates = ({
 const leftSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  DIMENSIONS,
   selectedContainer,
 }) => {
   const adjustForX = () => {
@@ -146,7 +145,6 @@ const leftSideCoordinates = ({
 const frontSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  DIMENSIONS,
   selectedContainer,
 }) => {
   const adjustForX = () => {
@@ -196,7 +194,6 @@ const frontSideCoordinates = ({
 const backSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  DIMENSIONS,
   selectedContainer,
 }) => {
   const adjustForX = () => {
@@ -243,12 +240,51 @@ const backSideCoordinates = ({
   return [xPosition(), zPosition, yPosition];
 };
 
+const electricalCoordinates = (
+  distanceObject,
+  SCALE_FACTOR_FOR_CALCULATIONS,
+  selectedContainer
+) => {
+  const adjustForX = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2) - 0.2;
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2) - 0.2;
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2) - 0.2;
+    }
+  };
+  const adjustForY = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
+    }
+  };
+
+  let xPosition =
+    distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX();
+
+  let yPosition = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - distanceObject.top / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY();
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return -(DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - distanceObject.top) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY();
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - distanceObject.top / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY();
+    }
+  }
+
+  return [xPosition, 0, yPosition()];
+};
+
 const calcPosition = (
   elevation,
   distanceObject,
   elevationData,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  DIMENSIONS,
   selectedContainer
 ) => {
   const matchingElevation = elevationData.find(
@@ -261,30 +297,32 @@ const calcPosition = (
         return leftSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          DIMENSIONS,
           selectedContainer,
         });
       case ELEVATION_NAMES.FRONT:
         return frontSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          DIMENSIONS,
           selectedContainer,
         });
       case ELEVATION_NAMES.RIGHT:
         return rightSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          DIMENSIONS,
           selectedContainer,
         });
       case ELEVATION_NAMES.BACK:
         return backSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          DIMENSIONS,
           selectedContainer,
         });
+      case ELEVATION_NAMES.FLOOR_PLAN:
+        return electricalCoordinates(
+          distanceObject,
+          SCALE_FACTOR_FOR_CALCULATIONS,
+          selectedContainer
+        );
       default:
         break;
     }

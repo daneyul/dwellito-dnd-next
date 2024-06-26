@@ -61,7 +61,6 @@ const GenericVent = React.memo(
           distanceObject,
           elevationData,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          DIMENSIONS,
           selectedContainer
         )}
         rotation={rotation}

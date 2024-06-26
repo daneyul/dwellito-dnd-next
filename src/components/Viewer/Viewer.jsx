@@ -3,7 +3,7 @@ import { Droppable } from '@/components/Droppable';
 import { Draggable } from '@/components/Draggable';
 import { DndContext, rectIntersection } from '@dnd-kit/core';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import { droppableWidth, toScale } from '@/utils/2D/utils';
+import { checkDistance, droppableWidth, toScale } from '@/utils/2D/utils';
 import ChevronLeftBlack from '../ChevronLeftBlack';
 import ChevronRightBlack from '../ChevronRightBlack';
 import style from './viewer.module.scss';
