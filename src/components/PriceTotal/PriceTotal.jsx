@@ -132,7 +132,7 @@ const PriceTotal = () => {
               scaleFactor,
             });
 
-            const imgSrc = isElectrical ? component.floorPlanImg : component.frontImg;
+            const imgSrc = isElectrical ? component.floorPlanImg : component.frontImg || component.imgName;
 
             return (
               <li key={component.id} className={style.lineItem}>
