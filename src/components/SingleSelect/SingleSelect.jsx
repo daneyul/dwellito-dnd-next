@@ -49,6 +49,7 @@ const SingleSelect = ({ type }) => {
             setExteriorFinish(selection);
             setShow3d(true);
             setShowExterior(true);
+            setCameraReady(false);
           }}
         >
           <img
