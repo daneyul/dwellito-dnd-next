@@ -1,11 +1,12 @@
 'use client';
-import React, { useState, useEffect, createContext, useContext } from 'react';
-import {
-  checkCloseness,
-  checkCollision,
-  snapToEdgesModifier,
-  snapToIncrement,
-} from '@/utils/2D/utils';
+import React, {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  use,
+} from 'react';
+import { checkCloseness, snapToIncrement } from '@/utils/2D/utils';
 import {
   restrictToHorizontalAxis,
   restrictToVerticalAxis,
@@ -27,6 +28,7 @@ import style from './content.module.scss';
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 import {
+  COMPONENT_NAMES,
   COMPONENT_TYPES,
   CONTAINER_10_SLUG,
   CONTAINER_20_SLUG,
@@ -98,6 +100,7 @@ const PageDataProvider = ({ children, data }) => {
     );
   });
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
+  const [hasLighting, setHasLighting] = useState(false);
 
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -118,6 +121,13 @@ const PageDataProvider = ({ children, data }) => {
   );
 
   const [scaleFactor, setScaleFactor] = useState(2.5);
+
+  useEffect(() => {
+    const includesLighting = selectedComponents.some(
+      (component) => component.name === COMPONENT_NAMES.WRAP_LIGHT
+    );
+    setHasLighting(includesLighting);
+  }, [selectedComponents]);
 
   // Update selectedComponents when selectedContainerHeight changes
   useEffect(() => {
@@ -140,7 +150,7 @@ const PageDataProvider = ({ children, data }) => {
   const toggleOrder = () => {
     setShowYourOrder(!showYourOrder);
   };
-  
+
   // Calculate the total price of all selected components
   useEffect(() => {
     const interiorFinishPrice = () => {
@@ -393,6 +403,7 @@ const PageDataProvider = ({ children, data }) => {
         containerSize,
         floorPlan,
         isFloorPlanView,
+        hasLighting,
       }}
     >
       {children}

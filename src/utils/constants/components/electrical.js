@@ -129,4 +129,20 @@ export const electricalComponents = [
     fixedSide: ELEVATION_NAMES.RIGHT,
     alwaysShowOn: [ELEVATION_NAMES.RIGHT]
   },
+  {
+    name: COMPONENT_NAMES.WRAP_LIGHT,
+    position: {
+      x: 18,
+      y: 0,
+    },
+    floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light-dash.svg`,
+    sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light.svg`,
+    desc: "P602-1-01",
+    objWidth: 50,
+    objHeight: 6,
+    objType: COMPONENT_TYPES.ELECTRICAL,
+    price: 375,
+    model: '',
+    fixed: true
+  }
 ];

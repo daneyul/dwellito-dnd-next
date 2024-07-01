@@ -16,7 +16,7 @@ export default function ContainerShell20Standard() {
     slateGreyPaint,
     beigePaint,
     echoFloor,
-    timberFloor,
+    timberFloor
   } = useContext(Library3dDataContext);
 
   const {
@@ -25,6 +25,7 @@ export default function ContainerShell20Standard() {
     selectedContainer,
     flooring,
     selectedContainerHeight,
+    hasLighting
   } = useContext(PageDataContext);
 
   // Load all 3d objects
@@ -113,18 +114,26 @@ export default function ContainerShell20Standard() {
   const Lighting = () => {
     return (
       <>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes['20FT_Container_Exterior_Blank_Whole_1'].geometry}
-          material={materials.Emissive_Light}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes['20FT_Container_Exterior_Blank_Whole_3'].geometry}
-          material={materials.White_Mtl}
-        />
+        <group
+          position={[6.019, 1.138, -4.273]}
+          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+          scale={[1, 0.915, 1]}
+        >
+          <group scale={0.01}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes['20FT_Container_Exterior_Blank_Whole_1'].geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes['20FT_Container_Exterior_Blank_Whole_3'].geometry}
+              material={materials.White_Mtl}
+            />
+          </group>
+        </group>
       </>
     );
   };
@@ -457,7 +466,7 @@ export default function ContainerShell20Standard() {
           scale={0.01}
         />
       </group>
-      <Lighting />
+      {hasLighting ? <Lighting /> : null}
       <Drywall />
       <Plywood />
       <SprayFoamCeiling />

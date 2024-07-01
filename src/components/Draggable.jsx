@@ -163,13 +163,19 @@ export function Draggable({ id, styles, piece, onSelect }) {
             right: '0',
             transform: 'translateX(50%)',
           };
-        } else {
+        } else if (piece.name === COMPONENT_NAMES.ROOF_VENT) {
           return {
             left: `${
               piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
             }px`,
             top: '50%',
             transform: 'translateY(-50%)',
+          };
+        } else if (piece.name === COMPONENT_NAMES.WRAP_LIGHT) {
+          return {
+            left: `50%`,
+            top: '50%',
+            transform: 'translateY(-50%) translateX(-50%)',
           };
         }
       } else {

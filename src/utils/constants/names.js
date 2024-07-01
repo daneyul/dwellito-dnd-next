@@ -45,6 +45,7 @@ export const COMPONENT_NAMES = {
   ROOF_VENT: `Vent Roof Whirly Bird`,
   OUTLET: `15amp 120V Duplex Receptacle`,
   EXHAUST_FAN: `12" Exhaust Fan with Gravity Damper`,
+  WRAP_LIGHT: `4ft LED Wrap Light`
 };
 
 export const ELEVATION_NAMES = {
