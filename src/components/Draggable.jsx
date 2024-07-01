@@ -102,7 +102,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
       }
     } else {
       if (slug !== CONTAINER_40_SLUG) {
-        return value * 5.28;
+        return value + 30;
       } else {
         return value * 2.57;
       }
