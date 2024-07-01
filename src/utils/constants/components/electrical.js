@@ -93,12 +93,13 @@ export const electricalComponents = [
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 450,
     model: 'heater',
+    fixed: false,
   },
   {
     name: COMPONENT_NAMES.OUTLET,
     position: {
-      x: 0,
-      y: 0,
+      x: 30,
+      y: 30,
     },
     frontImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/outlet.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/outlet.svg`,
@@ -108,6 +109,7 @@ export const electricalComponents = [
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 225,
     model: 'outlet',
+    fixed: false,
   },
   {
     name: COMPONENT_NAMES.EXHAUST_FAN,

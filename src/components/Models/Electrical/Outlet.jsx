@@ -8,17 +8,20 @@ import { COMPONENT_NAMES } from '@/utils/constants/names';
 import { useGLTF } from '@react-three/drei';
 import { useContext } from 'react';
 
-const Heater = ({ component }) => {
-  const { selectedComponents, selectedContainer, scaleFactor } =
-    useContext(PageDataContext);
+const Outlet = ({ component }) => {
+  const {
+    selectedComponents,
+    selectedContainer,
+    scaleFactor,
+  } = useContext(PageDataContext);
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
 
-  const { nodes, materials } = useGLTF(`/models/electrical/heater.glb`);
+  const { nodes, materials } = useGLTF(`/models/electrical/outlet.glb`);
 
   if (
     !selectedComponents.some(
-      (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
+      (component) => component.name === COMPONENT_NAMES.OUTLET
     )
   ) {
     return null;
@@ -34,6 +37,7 @@ const Heater = ({ component }) => {
     scaleFactor,
   });
 
+
   return (
     <group
       dispose={null}
@@ -45,25 +49,19 @@ const Heater = ({ component }) => {
         SCALE_FACTOR_FOR_CALCULATIONS,
         selectedContainer
       )}
+      rotation={[0, Math.PI, 0]}
     >
-      <group position={[0.953, 0.2, 0.15]} rotation={[-Math.PI / 2, 0, 0]}>
-        <group scale={0.01}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['P605-1-01_-_2000W_Baseboard_Heater_1'].geometry}
-            material={materials.Material__116}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['P605-1-01_-_2000W_Baseboard_Heater_2'].geometry}
-            material={materials.Material__118}
-          />
-        </group>
+      <group position={[0.035, 1, -0.155]} scale={100}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Wall_PlugSocket.geometry}
+          material={materials.White_PVC}
+          scale={0.01}
+        />
       </group>
     </group>
   );
 };
 
-export default Heater;
+export default Outlet;

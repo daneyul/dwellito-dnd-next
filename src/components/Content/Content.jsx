@@ -242,14 +242,14 @@ const PageDataProvider = ({ children, data }) => {
       (item) => item.id === active.id
     );
 
+    // Modifiers for dragging
+
     const defaultModifiers = [restrictToParentElement, snapToGridModifier];
 
     const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];
 
     const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis];
 
-
-    // Handles component snapping
     if (
       selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
       draggedItem.objType !== COMPONENT_TYPES.ELECTRICAL

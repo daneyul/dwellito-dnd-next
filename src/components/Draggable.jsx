@@ -176,7 +176,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
           };
         }
       } else {
-        if (piece.name === COMPONENT_NAMES.BASEBOARD_HEATER) {
+        if (piece.name === COMPONENT_NAMES.BASEBOARD_HEATER || piece.name === COMPONENT_NAMES.OUTLET) {
           return {
             left: `${piece.position.x}px`,
             top: `${piece.position.y}px`,
@@ -262,6 +262,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
         };
       }
     } else {
+      console.log('here')
       return {
         left: `${piece.position.x}px`,
         top: `${adjForContainerHeight(piece.position.y)}px`,
@@ -330,8 +331,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
         !show3d &&
         !isAnyItemSelected &&
         !piece.fixed &&
-        selectedElevation.name !== ELEVATION_NAMES.FLOOR_PLAN &&
-        piece.objType !== COMPONENT_TYPES.ELECTRICAL && (
+        piece.objType === COMPONENT_TYPES.ELECTRICAL && (
           <DragToMove isFloorPlanView={isFloorPlanView} />
         )}
     </>

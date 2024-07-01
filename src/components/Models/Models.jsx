@@ -38,6 +38,7 @@ import RoofVent from './Electrical/RoofVent';
 import AirConditioner from './Electrical/AirConditioner';
 import ExhaustFan from './Electrical/ExhaustFan';
 import Heater from './Electrical/Heater';
+import Outlet from './Electrical/Outlet';
 
 export function Models() {
   const {
@@ -87,6 +88,12 @@ export function Models() {
     () =>
       selectedComponents.find(
         (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
+      ),
+  )
+  const outlet = useMemo(
+    () =>
+      selectedComponents.find(
+        (component) => component.name === COMPONENT_NAMES.OUTLET
       ),
   )
 
@@ -287,12 +294,13 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />
+        <Outlet component={outlet} />
         <Heater component={heater} />
         <Amp />
         <RoofVent />
         <AirConditioner />
         <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
-        <ContainerShell />
+        {/* <ContainerShell /> */}
         <CsgGeometries
           doors={doors}
           windows={windows}
