@@ -458,18 +458,8 @@ export default function ContainerShell40High() {
         <mesh
           castShadow
           receiveShadow
-          geometry={
-            nodes['40FT_HC_Interior_Blank_LED_Light_Fixture_001'].geometry
-          }
-          material={materials['White_Mtl.005']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={
-            nodes['40FT_HC_Interior_Blank_LED_Light_Fixture_001_1'].geometry
-          }
-          material={materials['Emissive_Light.005']}
+          geometry={nodes['40FT_HC_Container_Exterior_Blank_Whole_1'].geometry}
+          material={materials.Emissive_Light}
         />
       </>
     );
@@ -494,11 +484,7 @@ export default function ContainerShell40High() {
   const SprayFoamCeiling = () => {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[2]) {
       return (
-        <group
-          position={[6.031, 1.085, -2.005]}
-          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-          scale={[1, 0.915, 1]}
-        >
+        <group position={[0, 2.886, 0.137]} rotation={[Math.PI, 0, 0]}>
           <mesh
             castShadow
             receiveShadow
@@ -517,41 +503,27 @@ export default function ContainerShell40High() {
     if (interiorFinish === INTERIOR_FINISH_OPTIONS[3]) {
       return (
         <>
-          <group
-            position={[6.031, 1.085, -2.005]}
-            rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-            scale={[1, 0.915, 1]}
-          >
+          <group rotation={[-Math.PI / 2, 0, 0]}>
             <group scale={0.01}>
               <mesh
                 castShadow
                 receiveShadow
-                geometry={
-                  rearTopSprayFoamNodes['40FT_HC_Sprayfoam_RearTop_1'].geometry
-                }
+                geometry={rearTopSprayFoamNodes['40FT_HC_Sprayfoam_RearTop_1'].geometry}
                 material={rearTopSprayFoamMaterials.Black_Rubber_01}
               />
               <mesh
                 castShadow
                 receiveShadow
-                geometry={
-                  rearTopSprayFoamNodes['40FT_HC_Sprayfoam_RearTop_2'].geometry
-                }
+                geometry={rearTopSprayFoamNodes['40FT_HC_Sprayfoam_RearTop_2'].geometry}
                 material={rearTopSprayFoamMaterials.Sprayfoam}
               />
             </group>
           </group>
-          <group
-            position={[6.031, 1.085, -2.005]}
-            rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-            scale={[1, 0.915, 1]}
-          >
+          <group position={[0, 2.886, 0.137]} rotation={[Math.PI, 0, 0]}>
             <mesh
               castShadow
               receiveShadow
-              geometry={
-                rearTopSprayFoamNodes['40FT_HC_Sprayfoam_Ceiling'].geometry
-              }
+              geometry={rearTopSprayFoamNodes['40FT_HC_Sprayfoam_Ceiling'].geometry}
               material={rearTopSprayFoamMaterials.Sprayfoam}
               scale={0.01}
             />
@@ -568,24 +540,51 @@ export default function ContainerShell40High() {
       position={[adjustForX, 0, adjustForY]}
       ref={ref}
     >
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh_2.geometry}
-        material={materials['Black_Rubber_01.006']}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh_3.geometry}
-        material={exteriorPaint}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh_4.geometry}
-        material={exteriorPaint}
-      />
+      <group
+        position={[6.077, 1.138, -4.275]}
+        rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+        scale={[1, 0.915, 1]}
+      >
+        <group scale={0.01}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={
+              nodes['40FT_HC_Container_Exterior_Blank_Whole_1'].geometry
+            }
+            material={materials.Emissive_Light}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={
+              nodes['40FT_HC_Container_Exterior_Blank_Whole_2'].geometry
+            }
+            material={exteriorPaint}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={
+              nodes['40FT_HC_Container_Exterior_Blank_Whole_3'].geometry
+            }
+            material={materials.White_Mtl}
+          />
+        </group>
+      </group>
+      <group
+        position={[11.748, 4.727, -1.682]}
+        rotation={[0, 0, -Math.PI / 2]}
+        scale={[1, 0.915, 1]}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes['40FT_HC_Container_Exterior_Blank_Ceiling'].geometry}
+          material={exteriorPaint}
+          scale={0.01}
+        />
+      </group>
       <Lighting />
       <SprayFoamCeiling />
       <SprayFoamCw />
