@@ -102,7 +102,7 @@ const PriceTotal = () => {
               />
             </div>
             <div className={style.description}>{flooring.name}</div>
-            <div className={style.price}>${flooringPrice().toLocaleString}</div>
+            <div className={style.price}>${flooringPrice().toLocaleString()}</div>
           </div>
         </div>
       </div>
