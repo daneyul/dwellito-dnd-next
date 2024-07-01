@@ -42,11 +42,11 @@ const Heater = ({ component }) => {
         selectedElevation,
         distanceObject,
         elevationData,
-        SCALE_FACTOR_FOR_CALCULATIONS,
+        4,
         selectedContainer
       )}
     >
-      <group position={[0.953, 0.2, 0.15]} rotation={[-Math.PI / 2, 0, 0]}>
+      <group position={[0.953, 0.2, 0.03]} rotation={[-Math.PI / 2, 0, 0]}>
         <group scale={0.01}>
           <mesh
             castShadow

@@ -37,7 +37,6 @@ const Outlet = ({ component }) => {
     scaleFactor,
   });
 
-
   return (
     <group
       dispose={null}
@@ -51,7 +50,7 @@ const Outlet = ({ component }) => {
       )}
       rotation={[0, Math.PI, 0]}
     >
-      <group position={[0.035, 1, -0.155]} scale={100}>
+      <group position={[0.035, 0.5, 0]} scale={100}>
         <mesh
           castShadow
           receiveShadow

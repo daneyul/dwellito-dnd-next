@@ -256,11 +256,11 @@ const electricalCoordinates = (
   };
   const adjustForY = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2 - 0.6;
+      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2 - 0.6;
+      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2 - 0.6;
+      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
 
@@ -269,13 +269,25 @@ const electricalCoordinates = (
 
   let yPosition = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - distanceObject.top / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY();
+      return (
+        DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH -
+        distanceObject.top / SCALE_FACTOR_FOR_CALCULATIONS +
+        adjustForY()
+      );
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - distanceObject.top) / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY();
+      return (
+        -(DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - distanceObject.top) /
+          SCALE_FACTOR_FOR_CALCULATIONS +
+        adjustForY()
+      );
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - distanceObject.top / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY();
+      return (
+        DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH -
+        distanceObject.top / SCALE_FACTOR_FOR_CALCULATIONS +
+        adjustForY()
+      );
     }
-  }
+  };
 
   return [xPosition, 0, yPosition()];
 };
