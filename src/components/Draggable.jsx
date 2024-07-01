@@ -89,22 +89,19 @@ export function Draggable({ id, styles, piece, onSelect }) {
     (component) => component.isSelected
   );
 
-  // This is for adjusting the top value  based on the container height
+  // This is for adjusting the top value based on the container height
   const adjForContainerHeight = (value) => {
     if (containerHeightIsStandard) {
-      if (
-        slug !== CONTAINER_40_SLUG &&
-        piece.objType !== COMPONENT_TYPES.ELECTRICAL
-      ) {
-        return value;
+      if (slug !== CONTAINER_40_SLUG) {
+        return value / 1.17;
       } else {
-        return value / 1.4;
+        return value / 1.5;
       }
     } else {
       if (slug !== CONTAINER_40_SLUG) {
-        return value + 30;
+        return value / 1.17;
       } else {
-        return value * 2.57;
+        return value / 1.5;
       }
     }
   };
@@ -153,16 +150,16 @@ export function Draggable({ id, styles, piece, onSelect }) {
         if (piece.fixedSide === ELEVATION_NAMES.RIGHT) {
           return {
             bottom: '0',
-            right: `${
-              adjForContainerHeight(piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor))
-            }px`,
+            right: `${adjForContainerHeight(
+              piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            )}px`,
             transform: `rotate(90deg) translateX(10px)`,
           };
         } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
           return {
-            bottom: `${
-              adjForContainerHeight(piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor))
-            }px`,
+            bottom: `${adjForContainerHeight(
+              piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            )}px`,
             right: '0',
             transform: 'translateX(50%)',
           };
@@ -176,7 +173,10 @@ export function Draggable({ id, styles, piece, onSelect }) {
           };
         }
       } else {
-        if (piece.name === COMPONENT_NAMES.BASEBOARD_HEATER || piece.name === COMPONENT_NAMES.OUTLET) {
+        if (
+          piece.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+          piece.name === COMPONENT_NAMES.OUTLET
+        ) {
           return {
             left: `${piece.position.x}px`,
             top: `${piece.position.y}px`,
@@ -262,7 +262,6 @@ export function Draggable({ id, styles, piece, onSelect }) {
         };
       }
     } else {
-      console.log('here')
       return {
         left: `${piece.position.x}px`,
         top: `${adjForContainerHeight(piece.position.y)}px`,

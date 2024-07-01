@@ -140,7 +140,7 @@ const PageDataProvider = ({ children, data }) => {
   const toggleOrder = () => {
     setShowYourOrder(!showYourOrder);
   };
-
+  
   // Calculate the total price of all selected components
   useEffect(() => {
     const interiorFinishPrice = () => {
