@@ -14,38 +14,53 @@ const AddElecOption = ({ options }) => {
     setSelectedElevation,
     setSelectedElevationIndex,
     mappedElevations,
+    selectedComponents
   } = useContext(PageDataContext);
 
   return options.map((item) => {
-    const imgSrc = !!item.sidebarImg ? item.sidebarImg : item.floorPlanImg; 
-    return (
-      <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
-        <HoverCard.Trigger>
-          <img
-            src={generateImgSrc(imgSrc)}
-            alt={item.name}
-            onClick={() => {
-              setShow3d(false);
-              setSelectedElevation(mappedElevations[3]);
-              setSelectedElevationIndex(3);
-              handleAddComponent(
-                item,
-                setSelectedComponents,
-                mappedElevations[3],
-                setHasCollisions,
-                scaleFactor
-              );
-            }}
-            className={style.objImg}
-          />
-        </HoverCard.Trigger>
-        <HoverCard.Portal>
-          <HoverCard.Content className={style.tooltipText} side='top'>
-            {item.name}
-          </HoverCard.Content>
-        </HoverCard.Portal>
-      </HoverCard.Root>
-    );
+    const imgSrc = !!item.sidebarImg ? item.sidebarImg : item.floorPlanImg;
+    const isFixed = item.fixed;
+    const alreadySelected = selectedComponents.some(component => component.name === item.name);
+
+    if (isFixed && alreadySelected) {
+      return (
+        <img
+          src={generateImgSrc(imgSrc)}
+          style={{ opacity: '0.25' }}
+          alt={item.name}
+          className={style.objImgDisabled}
+        />
+      );
+    } else {
+        return (
+          <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
+            <HoverCard.Trigger>
+              <img
+                src={generateImgSrc(imgSrc)}
+                alt={item.name}
+                onClick={() => {
+                  setShow3d(false);
+                  setSelectedElevation(mappedElevations[3]);
+                  setSelectedElevationIndex(3);
+                  handleAddComponent(
+                    item,
+                    setSelectedComponents,
+                    mappedElevations[3],
+                    setHasCollisions,
+                    scaleFactor
+                  );
+                }}
+                className={style.objImg}
+              />
+            </HoverCard.Trigger>
+            <HoverCard.Portal>
+              <HoverCard.Content className={style.tooltipText} side='top'>
+                {item.name}
+              </HoverCard.Content>
+            </HoverCard.Portal>
+          </HoverCard.Root>
+        );
+      }
   });
 };
 

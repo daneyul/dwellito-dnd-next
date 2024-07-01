@@ -1,4 +1,4 @@
-.objImg {
+.objImg, .objImgDisabled {
   width: auto;
   max-width: 72px;
   height: 60px;
