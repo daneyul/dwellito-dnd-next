@@ -3,11 +3,15 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
 import { toScale, generateImgSrc } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
-import DragToMove from './DragToMove/DragToMove';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
   CONTAINER_40_SLUG,
+  DROPPABLE,
+  DROPPABLE_BACK,
+  DROPPABLE_LEFT,
+  DROPPABLE_MIDDLE,
+  DROPPABLE_RIGHT,
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
 import { DIMENSIONS } from '@/utils/constants/dimensions';
@@ -44,17 +48,23 @@ function useCollidableDraggable({ id, data: customData, disabled }) {
 }
 
 export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
-  const { attributes, listeners, setNodeRef, transform } =
+  const { attributes, listeners, setNodeRef, transform, isDragging } =
     useCollidableDraggable({
       id,
-      data: { ...piece },
+      data: { ...piece }
     });
 
   const { collisions } = useDndContext();
 
   const { setShowCollision, isFloorPlanView } = useContext(PageDataContext);
 
-  const excludedDroppables = ['droppable', 'droppable-left', 'droppable-right', 'droppable-back', 'droppable-middle'];
+  const excludedDroppables = [
+    DROPPABLE,
+    DROPPABLE_LEFT,
+    DROPPABLE_RIGHT,
+    DROPPABLE_BACK,
+    DROPPABLE_MIDDLE,
+  ];
 
   // Filter out the droppable element from collisions
   const filteredCollisions = collisions?.filter(
@@ -75,8 +85,7 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
     containerHeightIsStandard,
     slug,
     selectedElevation,
-    setShowDragToMove,
-    showDragToMove
+    setShowDragToMove
   } = useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
@@ -300,16 +309,19 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
         ? '1px solid #2A2CB1'
         : '1px solid transparent',
     boxSizing: 'border-box',
+    zIndex: 2000
   };
 
   useEffect(() => {
-    if (
-      isHovered &&
-      !show3d &&
-      !isAnyItemSelected &&
-      !piece.fixed
-    ) {
-      setShowDragToMove(true);
+    if (isHovered && !show3d && !isAnyItemSelected && !piece.fixed) {
+      if (
+        (selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
+          piece.objType === COMPONENT_TYPES.ELECTRICAL) ||
+        (selectedElevation.name !== ELEVATION_NAMES.FLOOR_PLAN &&
+          piece.objType !== COMPONENT_TYPES.ELECTRICAL)
+      ) {
+        setShowDragToMove(true);
+      }
     } else {
       setShowDragToMove(false);
     }

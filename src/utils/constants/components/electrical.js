@@ -1,4 +1,4 @@
-import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES } from '../names';
+import { COMPONENT_NAMES, COMPONENT_TYPES, DROPPABLE_BACK, DROPPABLE_LEFT, DROPPABLE_RIGHT, ELEVATION_NAMES } from '../names';
 
 export const electricalComponents = [
   {

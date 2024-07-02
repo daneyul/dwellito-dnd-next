@@ -71,3 +71,9 @@ export const INTERIOR_FINISH_NAMES = {
   SPRAY_FOAM_CEILING: '1” Spray Foam (Ceiling Only)',
   SPRAY_FOAM_CEILING_WALLS: '1” Spray Foam (Ceiling & Walls)',
 };
+
+export const DROPPABLE_LEFT = 'droppable-left';
+export const DROPPABLE_RIGHT = 'droppable-right';
+export const DROPPABLE_BACK = 'droppable-back';
+export const DROPPABLE_MIDDLE = 'droppable-middle';
+export const DROPPABLE = 'droppable';

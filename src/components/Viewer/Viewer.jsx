@@ -203,6 +203,7 @@ const Viewer = () => {
                         onSelect={() => handleSelect(piece.id)}
                         ref={draggableRefs[piece.id]}
                         isAnyItemSelected={isAnyItemSelected}
+                        allowedDropContainers={piece.allowedDropContainers}
                       />
                     );
                   })}

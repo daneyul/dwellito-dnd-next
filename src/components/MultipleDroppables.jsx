@@ -2,7 +2,15 @@ import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { droppableWidth, generateImgSrc, toScale } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
-import { COMPONENT_TYPES, ELEVATION_NAMES } from '@/utils/constants/names';
+import {
+  COMPONENT_NAMES,
+  COMPONENT_TYPES,
+  DROPPABLE_BACK,
+  DROPPABLE_LEFT,
+  DROPPABLE_MIDDLE,
+  DROPPABLE_RIGHT,
+  ELEVATION_NAMES,
+} from '@/utils/constants/names';
 import { Draggable } from './Draggable';
 import { DIMENSIONS } from '@/utils/constants/dimensions';
 
@@ -22,17 +30,24 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
     ? selectedElevation.objScHeight
     : selectedElevation.objHcHeight;
 
+  const heater = selectedComponents.find(
+    (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
+  );
+  const outlet = selectedComponents.find(
+    (component) => component.name === COMPONENT_NAMES.OUTLET
+  );
+
   const { setNodeRef: setLeftDroppableRef } = useDroppable({
-    id: 'droppable-left',
+    id: DROPPABLE_LEFT,
   });
   const { setNodeRef: setRightDroppableRef } = useDroppable({
-    id: 'droppable-right',
+    id: DROPPABLE_RIGHT,
   });
   const { setNodeRef: setBackDroppableRef } = useDroppable({
-    id: 'droppable-back',
+    id: DROPPABLE_BACK,
   });
   const { setNodeRef: setMiddleDroppableRef } = useDroppable({
-    id: 'droppable-middle',
+    id: DROPPABLE_MIDDLE,
   });
 
   const CustomStyle = {
@@ -40,14 +55,16 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
     boxSizing: 'border-box',
     margin: '0 auto',
     position: 'relative',
-    border: '1px solid blue', // For visual debugging
+    border: '1px solid blue',
   };
 
   const filterComponents = ({ elevationName, isLeft }) => {
     if (isLeft) {
       return selectedComponents.filter(
         (piece) =>
-          piece.elevation.some((elevation) => elevation.name === elevationName) ||
+          piece.elevation.some(
+            (elevation) => elevation.name === elevationName
+          ) ||
           (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
             (piece.fixedSide === elevationName ||
               !piece.fixedSide ||
@@ -56,7 +73,9 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
     } else {
       return selectedComponents.filter(
         (piece) =>
-          piece.elevation.some((elevation) => elevation.name === elevationName) ||
+          piece.elevation.some(
+            (elevation) => elevation.name === elevationName
+          ) ||
           (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
             piece.fixedSide === elevationName)
       );
@@ -66,11 +85,9 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
   const filterFixedCeilingComponents = () => {
     return selectedComponents.filter(
       (piece) =>
-        (
-          piece.objType === COMPONENT_TYPES.ELECTRICAL &&
-          piece.fixed &&
-          !piece.fixedSide
-        )
+        piece.objType === COMPONENT_TYPES.ELECTRICAL &&
+        piece.fixed &&
+        !piece.fixedSide
     );
   };
 
@@ -102,10 +119,13 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
             droppableWidth(selectedElevation, DIMENSIONS, selectedContainer),
             scaleFactor
           )}px`,
-          height: `${toScale(12, scaleFactor)}px`
+          height: `${toScale(12, scaleFactor)}px`,
         }}
       >
-        {filterComponents({ elevationName: ELEVATION_NAMES.LEFT, isLeft: true }).map((piece) => (
+        {filterComponents({
+          elevationName: ELEVATION_NAMES.LEFT,
+          isLeft: true,
+        }).map((piece) => (
           <Draggable
             piece={piece}
             key={piece.id}
@@ -113,6 +133,7 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
             onSelect={() => handleSelect(piece.id)}
             ref={draggableRefs[piece.id]}
             isAnyItemSelected={isAnyItemSelected}
+            allowedDropContainers={piece.allowedDropContainers}
           />
         ))}
       </div>
@@ -130,16 +151,19 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
           height: toScale(12, scaleFactor),
         }}
       >
-        {filterComponents({ elevationName: ELEVATION_NAMES.RIGHT }).map((piece) => (
-          <Draggable
-            piece={piece}
-            key={piece.id}
-            id={piece.id}
-            onSelect={() => handleSelect(piece.id)}
-            ref={draggableRefs[piece.id]}
-            isAnyItemSelected={isAnyItemSelected}
-          />
-        ))}
+        {filterComponents({ elevationName: ELEVATION_NAMES.RIGHT }).map(
+          (piece) => (
+            <Draggable
+              piece={piece}
+              key={piece.id}
+              id={piece.id}
+              onSelect={() => handleSelect(piece.id)}
+              ref={draggableRefs[piece.id]}
+              isAnyItemSelected={isAnyItemSelected}
+              allowedDropContainers={piece.allowedDropContainers}
+            />
+          )
+        )}
       </div>
       <div
         ref={setBackDroppableRef}
@@ -152,16 +176,19 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
           right: 0,
         }}
       >
-        {filterComponents({ elevationName: ELEVATION_NAMES.BACK }).map((piece) => (
-          <Draggable
-            piece={piece}
-            key={piece.id}
-            id={piece.id}
-            onSelect={() => handleSelect(piece.id)}
-            ref={draggableRefs[piece.id]}
-            isAnyItemSelected={isAnyItemSelected}
-          />
-        ))}
+        {filterComponents({ elevationName: ELEVATION_NAMES.BACK }).map(
+          (piece) => (
+            <Draggable
+              piece={piece}
+              key={piece.id}
+              id={piece.id}
+              onSelect={() => handleSelect(piece.id)}
+              ref={draggableRefs[piece.id]}
+              isAnyItemSelected={isAnyItemSelected}
+              allowedDropContainers={piece.allowedDropContainers}
+            />
+          )
+        )}
       </div>
       <div
         ref={setMiddleDroppableRef}
@@ -174,8 +201,8 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
             scaleFactor
           )}px`,
           height: `${toScale(24, scaleFactor)}px`,
-          top: "50%",
-          transform: "translateY(-50%)",
+          top: '50%',
+          transform: 'translateY(-50%)',
         }}
       >
         {filterFixedCeilingComponents().map((piece) => (
@@ -186,6 +213,7 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
             onSelect={() => handleSelect(piece.id)}
             ref={draggableRefs[piece.id]}
             isAnyItemSelected={isAnyItemSelected}
+            allowedDropContainers={piece.allowedDropContainers}
           />
         ))}
       </div>

@@ -273,12 +273,16 @@ const PageDataProvider = ({ children, data }) => {
       setModifiers([...doorWindowModifiers, snapToIncrement(6 * scaleFactor)]);
     } else if (draggedItem && draggedItem.fixed) {
       setModifiers([...fixedModifiers]);
+    } else if (draggedItem && draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER || draggedItem.name === COMPONENT_NAMES.OUTLET) {
+      setModifiers();
     } else {
       setModifiers([...defaultModifiers]);
     }
   };
 
   const handleDragEnd = (event) => {
+    const { active, over} = event;
+    console.log(over)
     const draggedId = event.active.id;
     let updatedPieces = selectedComponents.map((piece) => {
       if (piece.id === draggedId) {
