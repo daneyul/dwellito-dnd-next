@@ -44,7 +44,7 @@ function useCollidableDraggable({ id, data: customData, disabled }) {
   };
 }
 
-export function Draggable({ id, styles, piece, onSelect }) {
+export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
   const { attributes, listeners, setNodeRef, transform } =
     useCollidableDraggable({
       id,
@@ -72,9 +72,7 @@ export function Draggable({ id, styles, piece, onSelect }) {
 
   const {
     scaleFactor,
-    selectedComponents,
     show3d,
-    handleDeleteSelected,
     containerHeightIsStandard,
     slug,
     selectedElevation,
@@ -86,10 +84,6 @@ export function Draggable({ id, styles, piece, onSelect }) {
     e.stopPropagation();
     onSelect();
   };
-
-  const isAnyItemSelected = selectedComponents.some(
-    (component) => component.isSelected
-  );
 
   // This is for adjusting the top value based on the container height
   const adjForContainerHeight = (value) => {
@@ -328,12 +322,6 @@ export function Draggable({ id, styles, piece, onSelect }) {
           }}
         />
       </div>
-      {isAnyItemSelected && !show3d && (
-        <DeleteBtn
-          onDeleteSelected={handleDeleteSelected}
-          isFloorPlanView={isFloorPlanView}
-        />
-      )}
       {isHovered &&
         !show3d &&
         !isAnyItemSelected &&

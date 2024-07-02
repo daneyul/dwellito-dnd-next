@@ -21,6 +21,7 @@ import debounce from 'lodash.debounce';
 import { ELEVATION_NAMES } from '@/utils/constants/names';
 import { DIMENSIONS } from '@/utils/constants/dimensions';
 import MultipleDroppables from '../MultipleDroppables';
+import DeleteBtn from '../DeleteBtn/DeleteBtn';
 
 const Viewer = () => {
   const {
@@ -39,12 +40,17 @@ const Viewer = () => {
     show3d,
     mappedElevations,
     selectedContainer,
-    scaleFactor
+    scaleFactor,
+    handleDeleteSelected,
   } = useContext(PageDataContext);
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
   const [tempPositions, setTempPositions] = useState({});
+  
+  const isAnyItemSelected = selectedComponents.some(
+    (component) => component.isSelected
+  );
 
   const LeftArrow = () => {
     return (
@@ -168,7 +174,7 @@ const Viewer = () => {
             modifiers={modifiers}
           >
             {isFloorPlanView ? (
-              <MultipleDroppables />
+              <MultipleDroppables isAnyItemSelected={isAnyItemSelected} />
             ) : (
               <Droppable>
                 <div
@@ -196,6 +202,7 @@ const Viewer = () => {
                         id={piece.id}
                         onSelect={() => handleSelect(piece.id)}
                         ref={draggableRefs[piece.id]}
+                        isAnyItemSelected={isAnyItemSelected}
                       />
                     );
                   })}
@@ -206,6 +213,12 @@ const Viewer = () => {
         </div>
         {showLeftArrow && <LeftArrow />}
         {showRightArrow && <RightArrow />}
+        {isAnyItemSelected && !show3d && (
+          <DeleteBtn
+            onDeleteSelected={handleDeleteSelected}
+            isFloorPlanView={isFloorPlanView}
+          />
+        )}
         <ToggleCamera />
         <ToggleView />
         <ElevationToggle />

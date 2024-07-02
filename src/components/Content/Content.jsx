@@ -59,6 +59,7 @@ const PageDataProvider = ({ children, data }) => {
   const DEFAULT_ELEVATION = elevationData.find(
     (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug
   );
+  const [isHovered, setIsHovered] = useState(false);
   const [selectedContainerHeight, setSelectedContainerHeight] =
     useState(CONTAINER_STANDARD);
   const containerHeightIsStandard =
@@ -404,6 +405,8 @@ const PageDataProvider = ({ children, data }) => {
         floorPlan,
         isFloorPlanView,
         hasLighting,
+        isHovered,
+        setIsHovered
       }}
     >
       {children}

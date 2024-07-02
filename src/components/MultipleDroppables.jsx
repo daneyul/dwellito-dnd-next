@@ -6,7 +6,7 @@ import { COMPONENT_TYPES, ELEVATION_NAMES } from '@/utils/constants/names';
 import { Draggable } from './Draggable';
 import { DIMENSIONS } from '@/utils/constants/dimensions';
 
-const MultipleDroppables = () => {
+const MultipleDroppables = ({ isAnyItemSelected }) => {
   const {
     scaleFactor,
     selectedElevation,
@@ -43,13 +43,24 @@ const MultipleDroppables = () => {
     border: '1px solid blue', // For visual debugging
   };
 
-  const filterComponents = (elevationName) => {
-    return selectedComponents.filter(
-      (piece) =>
-        piece.elevation.some((elevation) => elevation.name === elevationName) ||
-        (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
-          piece.fixedSide === elevationName)
-    );
+  const filterComponents = ({ elevationName, isLeft }) => {
+    if (isLeft) {
+      return selectedComponents.filter(
+        (piece) =>
+          piece.elevation.some((elevation) => elevation.name === elevationName) ||
+          (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
+            (piece.fixedSide === elevationName ||
+              !piece.fixedSide ||
+              !piece.alwaysShowOn))
+      );
+    } else {
+      return selectedComponents.filter(
+        (piece) =>
+          piece.elevation.some((elevation) => elevation.name === elevationName) ||
+          (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
+            piece.fixedSide === elevationName)
+      );
+    }
   };
 
   const filterFixedCeilingComponents = () => {
@@ -74,7 +85,7 @@ const MultipleDroppables = () => {
         height: `${toScale(objectHeight, scaleFactor)}px`,
         left: '50%',
         top: '50%',
-        transform: 'translateX(-50%) translateY(-50%)',
+        transform: 'translateX(-50%)',
       }}
     >
       <img
@@ -94,13 +105,14 @@ const MultipleDroppables = () => {
           height: `${toScale(12, scaleFactor)}px`
         }}
       >
-        {filterComponents(ELEVATION_NAMES.LEFT).map((piece) => (
+        {filterComponents({ elevationName: ELEVATION_NAMES.LEFT }).map((piece) => (
           <Draggable
             piece={piece}
             key={piece.id}
             id={piece.id}
             onSelect={() => handleSelect(piece.id)}
             ref={draggableRefs[piece.id]}
+            isAnyItemSelected={isAnyItemSelected}
           />
         ))}
       </div>
@@ -118,13 +130,14 @@ const MultipleDroppables = () => {
           height: toScale(12, scaleFactor),
         }}
       >
-        {filterComponents(ELEVATION_NAMES.RIGHT).map((piece) => (
+        {filterComponents({ elevationName: ELEVATION_NAMES.RIGHT }).map((piece) => (
           <Draggable
             piece={piece}
             key={piece.id}
             id={piece.id}
             onSelect={() => handleSelect(piece.id)}
             ref={draggableRefs[piece.id]}
+            isAnyItemSelected={isAnyItemSelected}
           />
         ))}
       </div>
@@ -139,13 +152,14 @@ const MultipleDroppables = () => {
           right: 0,
         }}
       >
-        {filterComponents(ELEVATION_NAMES.BACK).map((piece) => (
+        {filterComponents({ elevationName: ELEVATION_NAMES.BACK }).map((piece) => (
           <Draggable
             piece={piece}
             key={piece.id}
             id={piece.id}
             onSelect={() => handleSelect(piece.id)}
             ref={draggableRefs[piece.id]}
+            isAnyItemSelected={isAnyItemSelected}
           />
         ))}
       </div>
@@ -171,6 +185,7 @@ const MultipleDroppables = () => {
             id={piece.id}
             onSelect={() => handleSelect(piece.id)}
             ref={draggableRefs[piece.id]}
+            isAnyItemSelected={isAnyItemSelected}
           />
         ))}
       </div>

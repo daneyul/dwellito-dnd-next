@@ -11,7 +11,7 @@ const DeleteBtn = ({ onDeleteSelected, isFloorPlanView }) => {
   return (
     <div
       className={style.container}
-      style={{ bottom: isFloorPlanView ? '-6rem' : '-2.25rem' }}
+      style={{ bottom: "calc(9rem + 58px)" }}
     >
       <HoverCard.Root openDelay={0} closeDelay={0}>
         <HoverCard.Trigger>
