@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { droppableWidth, generateImgSrc, toScale } from '../utils/2D/utils';
-import Image from 'next/image';
 import { PageDataContext } from './Content/Content';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { COMPONENT_TYPES, ELEVATION_NAMES } from '@/utils/constants/names';
 import { Draggable } from './Draggable';
 import { DIMENSIONS } from '@/utils/constants/dimensions';
@@ -33,6 +31,9 @@ const MultipleDroppables = () => {
   const { setNodeRef: setBackDroppableRef } = useDroppable({
     id: 'droppable-back',
   });
+  const { setNodeRef: setMiddleDroppableRef } = useDroppable({
+    id: 'droppable-middle',
+  });
 
   const CustomStyle = {
     display: 'flex',
@@ -48,6 +49,17 @@ const MultipleDroppables = () => {
         piece.elevation.some((elevation) => elevation.name === elevationName) ||
         (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
           piece.fixedSide === elevationName)
+    );
+  };
+
+  const filterFixedCeilingComponents = () => {
+    return selectedComponents.filter(
+      (piece) =>
+        (
+          piece.objType === COMPONENT_TYPES.ELECTRICAL &&
+          piece.fixed &&
+          !piece.fixedSide
+        )
     );
   };
 
@@ -128,6 +140,31 @@ const MultipleDroppables = () => {
         }}
       >
         {filterComponents(ELEVATION_NAMES.BACK).map((piece) => (
+          <Draggable
+            piece={piece}
+            key={piece.id}
+            id={piece.id}
+            onSelect={() => handleSelect(piece.id)}
+            ref={draggableRefs[piece.id]}
+          />
+        ))}
+      </div>
+      <div
+        ref={setMiddleDroppableRef}
+        style={{
+          ...CustomStyle,
+          borderColor: 'brown',
+          position: 'absolute',
+          width: `${toScale(
+            droppableWidth(selectedElevation, DIMENSIONS, selectedContainer),
+            scaleFactor
+          )}px`,
+          height: `${toScale(24, scaleFactor)}px`,
+          top: "50%",
+          transform: "translateY(-50%)",
+        }}
+      >
+        {filterFixedCeilingComponents().map((piece) => (
           <Draggable
             piece={piece}
             key={piece.id}
