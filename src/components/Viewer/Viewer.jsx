@@ -3,7 +3,12 @@ import { Droppable } from '@/components/Droppable';
 import { Draggable } from '@/components/Draggable';
 import { DndContext, rectIntersection } from '@dnd-kit/core';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import { checkDistance, droppableWidth, toScale } from '@/utils/2D/utils';
+import {
+  checkDistance,
+  droppableWidth,
+  generateImgSrc,
+  toScale,
+} from '@/utils/2D/utils';
 import ChevronLeftBlack from '../ChevronLeftBlack';
 import ChevronRightBlack from '../ChevronRightBlack';
 import style from './viewer.module.scss';
@@ -11,9 +16,11 @@ import ToggleView from '../ToggleView/ToggleView';
 import { Models } from '../Models/Models';
 import ToggleCamera from '../ToggleCamera/ToggleCamera';
 import { PageDataContext } from '../Content/Content';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import ElevationToggle from '../ElevationToggle/ElevationToggle';
 import debounce from 'lodash.debounce';
+import { ELEVATION_NAMES } from '@/utils/constants/names';
+import { DIMENSIONS } from '@/utils/constants/dimensions';
+import MultipleDroppables from '../MultipleDroppables';
 
 const Viewer = () => {
   const {
@@ -32,9 +39,10 @@ const Viewer = () => {
     show3d,
     mappedElevations,
     selectedContainer,
-    scaleFactor,
+    scaleFactor
   } = useContext(PageDataContext);
-  const { DIMENSIONS } = useContext(Library2dDataContext);
+
+  const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
   const [tempPositions, setTempPositions] = useState({});
 
@@ -75,21 +83,21 @@ const Viewer = () => {
   const showRightArrow =
     selectedElevationIndex < mappedElevations.length - 1 && !show3d;
 
-    const debouncedUpdatePosition = useCallback(
-      debounce((id, delta) => {
-        setTempPositions((prev) => {
-          const newPos = {
-            ...prev,
-            [id]: {
-              x: (prev[id]?.x || 0) + delta.x,
-              y: (prev[id]?.y || 0) + delta.y,
-            },
-          };
-          return newPos;
-        });
-      }, 1000), // Adjust debounce delay as needed
-      []
-    );
+  const debouncedUpdatePosition = useCallback(
+    debounce((id, delta) => {
+      setTempPositions((prev) => {
+        const newPos = {
+          ...prev,
+          [id]: {
+            x: (prev[id]?.x || 0) + delta.x,
+            y: (prev[id]?.y || 0) + delta.y,
+          },
+        };
+        return newPos;
+      });
+    }, 1000), // Adjust debounce delay as needed
+    []
+  );
 
   const handleDragMove = (event) => {
     const id = event.active.id;
@@ -159,37 +167,41 @@ const Viewer = () => {
             onDragEnd={handleDragEndEnhanced}
             modifiers={modifiers}
           >
-            <Droppable>
-              <div
-                style={{
-                  width: `${toScale(
-                    droppableWidth(
-                      selectedElevation,
-                      DIMENSIONS,
-                      selectedContainer
-                    ),
-                    scaleFactor
-                  )}px`,
-                  height: '100%',
-                  position: 'absolute',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                }}
-              >
-                {/* Map through selected components and render on corresponding elevation view */}
-                {selectedComponents.map((piece) => {
-                  return (
-                    <Draggable
-                      piece={piece}
-                      key={piece.id}
-                      id={piece.id}
-                      onSelect={() => handleSelect(piece.id)}
-                      ref={draggableRefs[piece.id]}
-                    />
-                  );
-                })}
-              </div>
-            </Droppable>
+            {isFloorPlanView ? (
+              <MultipleDroppables />
+            ) : (
+              <Droppable id='main-droppable'>
+                <div
+                  style={{
+                    width: `${toScale(
+                      droppableWidth(
+                        selectedElevation,
+                        DIMENSIONS,
+                        selectedContainer
+                      ),
+                      scaleFactor
+                    )}px`,
+                    height: '100%',
+                    position: 'absolute',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                  }}
+                >
+                  {/* Map through selected components and render on corresponding elevation view */}
+                  {selectedComponents.map((piece) => {
+                    return (
+                      <Draggable
+                        piece={piece}
+                        key={piece.id}
+                        id={piece.id}
+                        onSelect={() => handleSelect(piece.id)}
+                        ref={draggableRefs[piece.id]}
+                      />
+                    );
+                  })}
+                </div>
+              </Droppable>
+            )}
           </DndContext>
         </div>
         {showLeftArrow && <LeftArrow />}
