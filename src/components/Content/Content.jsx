@@ -4,7 +4,6 @@ import React, {
   useEffect,
   createContext,
   useContext,
-  use,
 } from 'react';
 import { checkCloseness, snapToIncrement } from '@/utils/2D/utils';
 import {
@@ -34,6 +33,9 @@ import {
   CONTAINER_20_SLUG,
   CONTAINER_40_SLUG,
   CONTAINER_STANDARD,
+  DROPPABLE_LEFT,
+  DROPPABLE_RIGHT,
+  DROPPABLE_BACK,
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
 } from '@/utils/constants/names';
@@ -73,8 +75,12 @@ const PageDataProvider = ({ children, data }) => {
   const [zipCode, setZipCode] = useState('');
   const [, setIsTooClose] = useState(false);
   const [showCollision, setShowCollision] = useState(false);
-  const [selectedComponents, setSelectedComponents] =
-    useState(DEFAULT_COMPONENTS);
+  const [selectedComponents, setSelectedComponents] = useState(
+    DEFAULT_COMPONENTS.map(component => ({
+      ...component,
+      lastValidPosition: { ...component.position }
+    }))
+  );
   const [selectedElevation, setSelectedElevation] = useState(DEFAULT_ELEVATION);
   const [selectedElevationIndex, setSelectedElevationIndex] = useState(0);
   const [modifiers, setModifiers] = useState([]);
@@ -253,15 +259,22 @@ const PageDataProvider = ({ children, data }) => {
     const draggedItem = selectedComponents.find(
       (item) => item.id === active.id
     );
-
-    // Modifiers for dragging
-
+  
+    setSelectedComponents((prevComponents) =>
+      prevComponents.map((component) =>
+        component.id === active.id
+          ? {
+              ...component,
+              lastValidPosition: { ...component.position },
+            }
+          : component
+      )
+    );
+  
     const defaultModifiers = [restrictToParentElement, snapToGridModifier];
-
     const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];
-
     const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis];
-
+  
     if (
       selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
       draggedItem.objType !== COMPONENT_TYPES.ELECTRICAL
@@ -281,57 +294,74 @@ const PageDataProvider = ({ children, data }) => {
   };
 
   const handleDragEnd = (event) => {
-    const { active, over} = event;
-    console.log(over)
-    const draggedId = event.active.id;
-    let updatedPieces = selectedComponents.map((piece) => {
-      if (piece.id === draggedId) {
-        // Apply the drag delta to update the position
-        return {
-          ...piece,
-          position: {
-            x: piece.position.x + event.delta.x,
-            y: piece.position.y + event.delta.y,
-          },
-        };
-      }
-      return piece;
-    });
-
-    // Reset collision and closeness states before checking
-    updatedPieces = updatedPieces.map((piece) => ({
-      ...piece,
-      // isColliding: false,
-      isTooClose: false,
-    }));
-
-    // Check each piece for collisions and closeness with the newly positioned dragged piece
-    updatedPieces.forEach((piece, index) => {
-      if (piece.id !== draggedId) {
-        const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
-
-        // Check for closeness and update the state accordingly
-        if (
-          draggedPiece &&
-          checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
-        ) {
-          updatedPieces[index].isTooClose = true;
-          const draggedPieceIndex = updatedPieces.findIndex(
-            ({ id }) => id === draggedId
-          );
-          updatedPieces[draggedPieceIndex].isTooClose = true;
+    const { over, active } = event;
+    const draggedId = active.id;
+    const draggedComponent = selectedComponents.find(
+      (component) => component.id === draggedId
+    );
+  
+    if (
+      draggedComponent &&
+      draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER &&
+      (!over || ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(over.id))
+    ) {
+      setSelectedComponents((prevComponents) =>
+        prevComponents.map((component) =>
+          component.id === draggedId
+            ? {
+                ...component,
+                position: { ...component.lastValidPosition },
+              }
+            : component
+        )
+      );
+    } else {
+      let updatedPieces = selectedComponents.map((piece) => {
+        if (piece.id === draggedId) {
+          return {
+            ...piece,
+            position: {
+              x: piece.position.x + event.delta.x,
+              y: piece.position.y + event.delta.y,
+            },
+            lastValidPosition: {
+              x: piece.position.x + event.delta.x,
+              y: piece.position.y + event.delta.y,
+            },
+          };
         }
-      }
-    });
-
-    // Update the component state with the pieces after checks
-    setSelectedComponents(updatedPieces);
-
-    // Update any other relevant state, such as flags for collision or closeness
-    const collisionDetected = updatedPieces.some((piece) => piece.isColliding);
-    const closenessDetected = updatedPieces.some((piece) => piece.isTooClose);
-    setHasCollisions(collisionDetected);
-    setIsTooClose(closenessDetected);
+        return piece;
+      });
+  
+      updatedPieces = updatedPieces.map((piece) => ({
+        ...piece,
+        isTooClose: false,
+      }));
+  
+      updatedPieces.forEach((piece, index) => {
+        if (piece.id !== draggedId) {
+          const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
+  
+          if (
+            draggedPiece &&
+            checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
+          ) {
+            updatedPieces[index].isTooClose = true;
+            const draggedPieceIndex = updatedPieces.findIndex(
+              ({ id }) => id === draggedId
+            );
+            updatedPieces[draggedPieceIndex].isTooClose = true;
+          }
+        }
+      });
+  
+      setSelectedComponents(updatedPieces);
+  
+      const collisionDetected = updatedPieces.some((piece) => piece.isColliding);
+      const closenessDetected = updatedPieces.some((piece) => piece.isTooClose);
+      setHasCollisions(collisionDetected);
+      setIsTooClose(closenessDetected);
+    }
   };
 
   const handleSelect = (selectedId) => {

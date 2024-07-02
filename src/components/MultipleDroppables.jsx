@@ -30,13 +30,6 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
     ? selectedElevation.objScHeight
     : selectedElevation.objHcHeight;
 
-  const heater = selectedComponents.find(
-    (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
-  );
-  const outlet = selectedComponents.find(
-    (component) => component.name === COMPONENT_NAMES.OUTLET
-  );
-
   const { setNodeRef: setLeftDroppableRef } = useDroppable({
     id: DROPPABLE_LEFT,
   });
