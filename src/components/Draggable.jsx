@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
 import { toScale, generateImgSrc } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
-import DeleteBtn from './DeleteBtn/DeleteBtn';
 import DragToMove from './DragToMove/DragToMove';
 import {
   COMPONENT_NAMES,
@@ -76,6 +75,8 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
     containerHeightIsStandard,
     slug,
     selectedElevation,
+    setShowDragToMove,
+    showDragToMove
   } = useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
@@ -301,6 +302,19 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
     boxSizing: 'border-box',
   };
 
+  useEffect(() => {
+    if (
+      isHovered &&
+      !show3d &&
+      !isAnyItemSelected &&
+      !piece.fixed
+    ) {
+      setShowDragToMove(true);
+    } else {
+      setShowDragToMove(false);
+    }
+  }, [isHovered, show3d, isAnyItemSelected, piece, setShowDragToMove]);
+
   return (
     <>
       <div
@@ -322,13 +336,6 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
           }}
         />
       </div>
-      {isHovered &&
-        !show3d &&
-        !isAnyItemSelected &&
-        !piece.fixed &&
-        piece.objType === COMPONENT_TYPES.ELECTRICAL && (
-          <DragToMove isFloorPlanView={isFloorPlanView} />
-        )}
     </>
   );
 }

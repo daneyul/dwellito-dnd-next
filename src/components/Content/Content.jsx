@@ -102,6 +102,7 @@ const PageDataProvider = ({ children, data }) => {
   });
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
   const [hasLighting, setHasLighting] = useState(false);
+  const [showDragToMove, setShowDragToMove] = useState(false);
 
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -406,7 +407,9 @@ const PageDataProvider = ({ children, data }) => {
         isFloorPlanView,
         hasLighting,
         isHovered,
-        setIsHovered
+        setIsHovered,
+        showDragToMove,
+        setShowDragToMove,
       }}
     >
       {children}

@@ -1,12 +1,10 @@
 import Collision from '@/components/Collision/Collision';
 import { Droppable } from '@/components/Droppable';
 import { Draggable } from '@/components/Draggable';
-import { DndContext, rectIntersection } from '@dnd-kit/core';
+import { DndContext } from '@dnd-kit/core';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import {
-  checkDistance,
   droppableWidth,
-  generateImgSrc,
   toScale,
 } from '@/utils/2D/utils';
 import ChevronLeftBlack from '../ChevronLeftBlack';
@@ -22,6 +20,7 @@ import { ELEVATION_NAMES } from '@/utils/constants/names';
 import { DIMENSIONS } from '@/utils/constants/dimensions';
 import MultipleDroppables from '../MultipleDroppables';
 import DeleteBtn from '../DeleteBtn/DeleteBtn';
+import DragToMove from '../DragToMove/DragToMove';
 
 const Viewer = () => {
   const {
@@ -42,6 +41,7 @@ const Viewer = () => {
     selectedContainer,
     scaleFactor,
     handleDeleteSelected,
+    showDragToMove
   } = useContext(PageDataContext);
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
@@ -219,6 +219,7 @@ const Viewer = () => {
             isFloorPlanView={isFloorPlanView}
           />
         )}
+        {showDragToMove ? (<DragToMove isFloorPlanView={isFloorPlanView} />) : null}
         <ToggleCamera />
         <ToggleView />
         <ElevationToggle />

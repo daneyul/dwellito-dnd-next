@@ -5,7 +5,7 @@ const DragToMove = ({ isFloorPlanView }) => {
   return (
     <div
       className={style.container}
-      style={{ bottom: isFloorPlanView ? '-6rem' : '-2.25rem' }}
+      style={{ bottom: "calc(9rem + 58px)"  }}
     >
       <DragIcon />
       <div className={style.text}>Drag to move</div>

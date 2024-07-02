@@ -105,7 +105,7 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
           height: `${toScale(12, scaleFactor)}px`
         }}
       >
-        {filterComponents({ elevationName: ELEVATION_NAMES.LEFT }).map((piece) => (
+        {filterComponents({ elevationName: ELEVATION_NAMES.LEFT, isLeft: true }).map((piece) => (
           <Draggable
             piece={piece}
             key={piece.id}
