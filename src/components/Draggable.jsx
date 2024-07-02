@@ -55,9 +55,11 @@ export function Draggable({ id, styles, piece, onSelect }) {
 
   const { setShowCollision, isFloorPlanView } = useContext(PageDataContext);
 
+  const excludedDroppables = ['droppable', 'droppable-left', 'droppable-right', 'droppable-back', 'droppable-middle'];
+
   // Filter out the droppable element from collisions
   const filteredCollisions = collisions?.filter(
-    (collision) => collision.id !== 'droppable'
+    (collision) => !excludedDroppables.includes(collision.id)
   );
 
   useEffect(() => {

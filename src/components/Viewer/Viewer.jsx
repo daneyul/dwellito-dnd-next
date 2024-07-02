@@ -170,7 +170,7 @@ const Viewer = () => {
             {isFloorPlanView ? (
               <MultipleDroppables />
             ) : (
-              <Droppable id='main-droppable'>
+              <Droppable>
                 <div
                   style={{
                     width: `${toScale(
