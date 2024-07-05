@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, createContext, useContext } from 'react';
+import React, { useState, useEffect, createContext, useContext, use } from 'react';
 import { checkCloseness, snapToIncrement } from '@/utils/2D/utils';
 import {
   restrictToHorizontalAxis,
@@ -104,6 +104,8 @@ const PageDataProvider = ({ children, data }) => {
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
   const [hasLighting, setHasLighting] = useState(false);
   const [showDragToMove, setShowDragToMove] = useState(false);
+  const [showRotate, setShowRotate] = useState(false);
+  const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] = useState(false);
 
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -299,6 +301,7 @@ const PageDataProvider = ({ children, data }) => {
     );
 
     if (
+      // Return to last valid position if dragged outside of floor plan bounding boxes
       draggedComponent &&
       (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
         draggedComponent.name === COMPONENT_NAMES.OUTLET) &&
@@ -315,6 +318,7 @@ const PageDataProvider = ({ children, data }) => {
             : component
         )
       );
+      setShowOutsideDroppableWarning(false);
     } else {
       let updatedPieces = selectedComponents.map((piece) => {
         if (piece.id === draggedId) {
@@ -446,6 +450,10 @@ const PageDataProvider = ({ children, data }) => {
         setIsHovered,
         showDragToMove,
         setShowDragToMove,
+        showRotate,
+        setShowRotate,
+        showOutsideDroppableWarning,
+        setShowOutsideDroppableWarning
       }}
     >
       {children}

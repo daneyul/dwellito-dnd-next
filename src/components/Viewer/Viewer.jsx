@@ -42,13 +42,15 @@ const Viewer = () => {
     selectedContainer,
     scaleFactor,
     handleDeleteSelected,
-    showDragToMove
+    showDragToMove,
+    showRotate,
+    showOutsideDroppableWarning,
+    setShowOutsideDroppableWarning
   } = useContext(PageDataContext);
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
   const [tempPositions, setTempPositions] = useState({});
-  const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] = useState(false);
   
   const isAnyItemSelected = selectedComponents.some(
     (component) => component.isSelected
@@ -246,7 +248,8 @@ const Viewer = () => {
             isFloorPlanView={isFloorPlanView}
           />
         )}
-        {showDragToMove ? (<DragToMove isFloorPlanView={isFloorPlanView} />) : null}
+        {showDragToMove ? (<DragToMove />) : null}
+        {showRotate ? (<Rotate isFloorPlanView={isFloorPlanView} />) : null}
         <ToggleCamera />
         <ToggleView />
         <ElevationToggle />
