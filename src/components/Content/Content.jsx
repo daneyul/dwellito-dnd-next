@@ -1,10 +1,5 @@
 'use client';
-import React, {
-  useState,
-  useEffect,
-  createContext,
-  useContext,
-} from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import { checkCloseness, snapToIncrement } from '@/utils/2D/utils';
 import {
   restrictToHorizontalAxis,
@@ -76,9 +71,9 @@ const PageDataProvider = ({ children, data }) => {
   const [, setIsTooClose] = useState(false);
   const [showCollision, setShowCollision] = useState(false);
   const [selectedComponents, setSelectedComponents] = useState(
-    DEFAULT_COMPONENTS.map(component => ({
+    DEFAULT_COMPONENTS.map((component) => ({
       ...component,
-      lastValidPosition: { ...component.position }
+      lastValidPosition: { ...component.position },
     }))
   );
   const [selectedElevation, setSelectedElevation] = useState(DEFAULT_ELEVATION);
@@ -259,7 +254,7 @@ const PageDataProvider = ({ children, data }) => {
     const draggedItem = selectedComponents.find(
       (item) => item.id === active.id
     );
-  
+
     setSelectedComponents((prevComponents) =>
       prevComponents.map((component) =>
         component.id === active.id
@@ -270,11 +265,11 @@ const PageDataProvider = ({ children, data }) => {
           : component
       )
     );
-  
+
     const defaultModifiers = [restrictToParentElement, snapToGridModifier];
     const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];
     const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis];
-  
+
     if (
       selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
       draggedItem.objType !== COMPONENT_TYPES.ELECTRICAL
@@ -286,7 +281,10 @@ const PageDataProvider = ({ children, data }) => {
       setModifiers([...doorWindowModifiers, snapToIncrement(6 * scaleFactor)]);
     } else if (draggedItem && draggedItem.fixed) {
       setModifiers([...fixedModifiers]);
-    } else if (draggedItem && draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER || draggedItem.name === COMPONENT_NAMES.OUTLET) {
+    } else if (
+      (draggedItem && draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER) ||
+      draggedItem.name === COMPONENT_NAMES.OUTLET
+    ) {
       setModifiers();
     } else {
       setModifiers([...defaultModifiers]);
@@ -299,11 +297,13 @@ const PageDataProvider = ({ children, data }) => {
     const draggedComponent = selectedComponents.find(
       (component) => component.id === draggedId
     );
-  
+
     if (
       draggedComponent &&
-      draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER &&
-      (!over || ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(over.id))
+      (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+        draggedComponent.name === COMPONENT_NAMES.OUTLET) &&
+      (!over ||
+        ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(over.id))
     ) {
       setSelectedComponents((prevComponents) =>
         prevComponents.map((component) =>
@@ -332,16 +332,16 @@ const PageDataProvider = ({ children, data }) => {
         }
         return piece;
       });
-  
+
       updatedPieces = updatedPieces.map((piece) => ({
         ...piece,
         isTooClose: false,
       }));
-  
+
       updatedPieces.forEach((piece, index) => {
         if (piece.id !== draggedId) {
           const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
-  
+
           if (
             draggedPiece &&
             checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
@@ -354,10 +354,12 @@ const PageDataProvider = ({ children, data }) => {
           }
         }
       });
-  
+
       setSelectedComponents(updatedPieces);
-  
-      const collisionDetected = updatedPieces.some((piece) => piece.isColliding);
+
+      const collisionDetected = updatedPieces.some(
+        (piece) => piece.isColliding
+      );
       const closenessDetected = updatedPieces.some((piece) => piece.isTooClose);
       setHasCollisions(collisionDetected);
       setIsTooClose(closenessDetected);

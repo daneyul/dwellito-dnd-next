@@ -16,11 +16,12 @@ import ToggleCamera from '../ToggleCamera/ToggleCamera';
 import { PageDataContext } from '../Content/Content';
 import ElevationToggle from '../ElevationToggle/ElevationToggle';
 import debounce from 'lodash.debounce';
-import { ELEVATION_NAMES } from '@/utils/constants/names';
+import { COMPONENT_NAMES, DROPPABLE_BACK, DROPPABLE_LEFT, DROPPABLE_RIGHT, ELEVATION_NAMES } from '@/utils/constants/names';
 import { DIMENSIONS } from '@/utils/constants/dimensions';
 import MultipleDroppables from '../MultipleDroppables';
 import DeleteBtn from '../DeleteBtn/DeleteBtn';
 import DragToMove from '../DragToMove/DragToMove';
+import OutsideDroppable from '../Collision/OutsideDroppable';
 
 const Viewer = () => {
   const {
@@ -47,6 +48,7 @@ const Viewer = () => {
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
   const [tempPositions, setTempPositions] = useState({});
+  const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] = useState(false);
   
   const isAnyItemSelected = selectedComponents.some(
     (component) => component.isSelected
@@ -89,27 +91,50 @@ const Viewer = () => {
   const showRightArrow =
     selectedElevationIndex < mappedElevations.length - 1 && !show3d;
 
-  const debouncedUpdatePosition = useCallback(
-    debounce((id, delta) => {
-      setTempPositions((prev) => {
-        const newPos = {
-          ...prev,
-          [id]: {
-            x: (prev[id]?.x || 0) + delta.x,
-            y: (prev[id]?.y || 0) + delta.y,
-          },
-        };
-        return newPos;
-      });
-    }, 1000), // Adjust debounce delay as needed
-    []
-  );
+    const debouncedUpdatePosition = useCallback(
+      debounce((id, delta, over) => {
+        setTempPositions((prev) => {
+          const newPos = {
+            ...prev,
+            [id]: {
+              x: (prev[id]?.x || 0) + delta.x,
+              y: (prev[id]?.y || 0) + delta.y,
+            },
+          };
+  
+          // Check if the component is outside the droppable areas
+          const draggedComponent = selectedComponents.find((component) => component.id === id);
+          if (
+            draggedComponent &&
+            (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+              draggedComponent.name === COMPONENT_NAMES.OUTLET)
+          ) {
+            const isOutsideDroppable = !over || ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(over?.id);
+  
+            setSelectedComponents((prevComponents) =>
+              prevComponents.map((component) =>
+                component.id === id
+                  ? {
+                      ...component
+                    }
+                  : component
+              )
+            );
+            setShowOutsideDroppableWarning(isOutsideDroppable);
+          }
 
-  const handleDragMove = (event) => {
-    const id = event.active.id;
-    const delta = event.delta;
-    debouncedUpdatePosition(id, delta);
-  };
+          return newPos;
+        });
+      }, 100),
+      [selectedComponents, setSelectedComponents]
+    );
+
+    const handleDragMove = (event) => {
+      const { over, active } = event;
+      const id = active.id;
+      const delta = event.delta;
+      debouncedUpdatePosition(id, delta, over);
+    };
 
   const handleDragEndEnhanced = (event) => {
     const id = event.active.id;
@@ -166,6 +191,7 @@ const Viewer = () => {
             width: '100%',
           }}
         >
+          <OutsideDroppable showWarning={showOutsideDroppableWarning} />
           <Collision showCollision={showCollision} />
           <DndContext
             onDragStart={handleDragStart}

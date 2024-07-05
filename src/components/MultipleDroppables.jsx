@@ -3,7 +3,6 @@ import { useDroppable } from '@dnd-kit/core';
 import { droppableWidth, generateImgSrc, toScale } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import {
-  COMPONENT_NAMES,
   COMPONENT_TYPES,
   DROPPABLE_BACK,
   DROPPABLE_LEFT,

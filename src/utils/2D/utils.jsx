@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
-import { ELEVATION_NAMES } from '../constants/names';
+import { COMPONENT_NAMES, ELEVATION_NAMES } from '../constants/names';
+import { DIMENSIONS } from '../constants/dimensions';
 
 export const generateImgSrc = (imgName) => `../../../images/${imgName}`;
 
@@ -299,4 +300,136 @@ export const snapToEdgesModifier = ({ transform, active, over }) => {
     x: closestEdge.x,
     y: closestEdge.y,
   };
+};
+
+// This calculates the CSS positions based on the piece's position and elevation
+export const calculateCSSPos = ({ isFloorPlanView, isFixed, piece, scaleFactor, adjForContainerHeight }) => {
+  if (isFloorPlanView) {
+    if (isFixed) {
+      if (piece.fixedSide === ELEVATION_NAMES.RIGHT) {
+        return {
+          bottom: '0',
+          right: `${adjForContainerHeight(
+            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+          )}px`,
+          transform: `rotate(90deg) translateX(10px)`,
+        };
+      } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
+        return {
+          bottom: `${adjForContainerHeight(
+            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+          )}px`,
+          right: '0',
+          transform: 'translateX(50%)',
+        };
+      } else if (piece.name === COMPONENT_NAMES.ROOF_VENT) {
+        return {
+          left: `${
+            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+          }px`,
+          top: '50%',
+          transform: 'translateY(-50%)',
+        };
+      } else if (piece.name === COMPONENT_NAMES.WRAP_LIGHT) {
+        return {
+          left: `50%`,
+          top: '50%',
+          transform: 'translateY(-50%) translateX(-50%)',
+        };
+      }
+    } else {
+      if (
+        piece.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+        piece.name === COMPONENT_NAMES.OUTLET
+      ) {
+        return {
+          left: `${piece.position.x}px`,
+          top: `${piece.position.y}px`,
+        };
+      } else if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
+        return {
+          right: `${
+            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+          }px`,
+          top: '10px',
+          transform: 'rotate(180deg) translateY(100%)',
+        };
+      } else if (piece.elevation[0].name === ELEVATION_NAMES.RIGHT) {
+        return {
+          bottom: '10px',
+          transform: 'translateY(100%)',
+          left: `${
+            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+          }px`,
+        };
+      } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
+        return {
+          bottom: `calc(${piece.position.x}px + ${toScale(
+            DIMENSIONS.BOUNDARIES.x,
+            scaleFactor
+          )}px)`,
+          right: `0`,
+          transformOrigin: 'right bottom',
+          transform: `rotate(270deg) translateX(100%) translateY(calc(100% - 12px)`,
+        };
+      }
+    }
+  } else if (isFixed && !!piece.alwaysShowOn) {
+    if (!!piece.fixedSide && selectedElevation.name === piece.fixedSide) {
+      // For fixed components on elevation views, show front view
+      if (piece.name === COMPONENT_NAMES.EXHAUST_FAN) {
+        return {
+          right: `${adjForContainerHeight(piece.position.x)}px`,
+          top: `${adjForContainerHeight(piece.position.y)}px`,
+        };
+      } else {
+        return {
+          left: `${adjForContainerHeight(piece.position.x)}px`,
+          top: `${adjForContainerHeight(piece.position.y)}px`,
+        };
+      }
+    } else if (!piece.fixedSide) {
+      if (selectedElevation.name === ELEVATION_NAMES.RIGHT) {
+        return {
+          left: `${piece.position.x}px`,
+          top: '3px',
+          transform: 'translateY(-100%)',
+        };
+      } else if (selectedElevation.name === ELEVATION_NAMES.LEFT) {
+        return {
+          right: `${piece.position.x}px`,
+          top: '3px',
+          transform: 'translateY(-100%)',
+        };
+      } else if (selectedElevation.name === ELEVATION_NAMES.BACK) {
+        return {
+          left: '50%',
+          top: '3px',
+          transform: 'translateX(-50%) translateY(-100%)',
+        };
+      }
+    } else if (selectedElevation.name === ELEVATION_NAMES.RIGHT) {
+      return {
+        right: `${4 - toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+        top: `${piece.position.y}px`,
+        transform: 'translateX(100%)',
+      };
+    } else if (selectedElevation.name === ELEVATION_NAMES.LEFT) {
+      return {
+        left: `${3 - toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+        top: `${piece.position.y}px`,
+        transform: 'translateX(-100%) scaleX(-1)',
+      };
+    } else {
+      return {
+        left: `${piece.position.x}px`,
+        top: `${piece.position.y}px`,
+      };
+    }
+  } else {
+    return {
+      left: `${piece.position.x}px`,
+      top: `${adjForContainerHeight(piece.position.y)}px`,
+    };
+  }
 };
