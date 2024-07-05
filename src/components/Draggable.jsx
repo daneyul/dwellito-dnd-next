@@ -4,7 +4,6 @@ import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
 import { toScale, generateImgSrc, calculateCSSPos } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import {
-  COMPONENT_NAMES,
   COMPONENT_TYPES,
   CONTAINER_40_SLUG,
   DROPPABLE,
@@ -14,7 +13,6 @@ import {
   DROPPABLE_RIGHT,
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
-import { DIMENSIONS } from '@/utils/constants/dimensions';
 import { useCombinedRefs } from '@dnd-kit/utilities';
 
 function useCollidableDraggable({ id, data: customData, disabled }) {
@@ -22,7 +20,7 @@ function useCollidableDraggable({ id, data: customData, disabled }) {
     attributes,
     listeners,
     setNodeRef: setDraggableNodeRef,
-    transform
+    transform,
   } = useDraggable({
     id,
     data: customData,
@@ -41,7 +39,7 @@ function useCollidableDraggable({ id, data: customData, disabled }) {
     attributes,
     listeners,
     setNodeRef,
-    transform
+    transform,
   };
 }
 
@@ -49,7 +47,7 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
   const { attributes, listeners, setNodeRef, transform } =
     useCollidableDraggable({
       id,
-      data: { ...piece }
+      data: { ...piece },
     });
 
   const { collisions } = useDndContext();
@@ -83,7 +81,7 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
     selectedElevation,
     setShowDragToMove,
     setShowCollision,
-    isFloorPlanView
+    isFloorPlanView,
   } = useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
@@ -159,23 +157,23 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
     }
   };
 
-  const CustomStyle = {
+  // Calculate CSS position
+  const calculatedPos = calculateCSSPos({
+    isFloorPlanView,
+    isFixed,
+    piece,
+    scaleFactor,
+    adjForContainerHeight,
+  });
+
+  const combinedStyles = {
     position: 'absolute',
     display: 'flex',
     cursor: 'pointer',
-    width: `${imgWidth()}px`,
-    height: `auto`,
-    ...calculateCSSPos({ isFloorPlanView, isFixed, piece, scaleFactor, adjForContainerHeight }),
-    boxShadow:
-      isHovered || piece.isSelected
-        ? '0px 4px 30px 0px rgba(128, 129, 238, 0.19)'
-        : 'none',
-    border:
-      isHovered || piece.isSelected
-        ? '1px solid #2A2CB1'
-        : '1px solid transparent',
-    boxSizing: 'border-box',
-    zIndex: 2000
+    ...calculatedPos,
+    ...dragStyle,
+    ...styles,
+    zIndex: 2000,
   };
 
   useEffect(() => {
@@ -197,7 +195,7 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
     <>
       <div
         ref={setNodeRef}
-        style={{ ...dragStyle, ...CustomStyle, ...styles }}
+        style={combinedStyles}
         {...listeners}
         {...attributes}
         onMouseEnter={() => setIsHovered(true)}
@@ -208,9 +206,19 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
           src={generateImgSrc(imgSrc())}
           alt={piece.name}
           style={{
-            width: '100%',
-            height: '100%',
+            width: `${imgWidth()}px`,
+            height: 'auto',
             objectFit: 'fill',
+            transform: `rotate(${piece.rotate}deg)`,
+            boxShadow:
+              isHovered || piece.isSelected
+                ? '0px 4px 30px 0px rgba(128, 129, 238, 0.19)'
+                : 'none',
+            border:
+              isHovered || piece.isSelected
+                ? '1px solid #2A2CB1'
+                : '1px solid transparent',
+            boxSizing: 'border-box',
           }}
         />
       </div>

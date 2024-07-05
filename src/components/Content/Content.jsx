@@ -104,7 +104,6 @@ const PageDataProvider = ({ children, data }) => {
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
   const [hasLighting, setHasLighting] = useState(false);
   const [showDragToMove, setShowDragToMove] = useState(false);
-  const [showRotate, setShowRotate] = useState(false);
   const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] = useState(false);
 
   const containerSize = () => {
@@ -295,6 +294,7 @@ const PageDataProvider = ({ children, data }) => {
 
   const handleDragEnd = (event) => {
     const { over, active } = event;
+    console.log(over)
     const draggedId = active.id;
     const draggedComponent = selectedComponents.find(
       (component) => component.id === draggedId
@@ -450,8 +450,6 @@ const PageDataProvider = ({ children, data }) => {
         setIsHovered,
         showDragToMove,
         setShowDragToMove,
-        showRotate,
-        setShowRotate,
         showOutsideDroppableWarning,
         setShowOutsideDroppableWarning
       }}

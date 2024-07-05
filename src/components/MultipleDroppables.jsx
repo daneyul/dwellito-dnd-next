@@ -111,7 +111,7 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
             droppableWidth(selectedElevation, DIMENSIONS, selectedContainer),
             scaleFactor
           )}px`,
-          height: `${toScale(12, scaleFactor)}px`,
+          height: `${toScale(24, scaleFactor)}px`,
         }}
       >
         {filterComponents({
@@ -140,7 +140,7 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
             droppableWidth(selectedElevation, DIMENSIONS, selectedContainer),
             scaleFactor
           )}px`,
-          height: toScale(12, scaleFactor),
+          height: toScale(24, scaleFactor),
         }}
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.RIGHT }).map(
@@ -163,7 +163,7 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
           ...CustomStyle,
           borderColor: 'yellow',
           position: 'absolute',
-          width: toScale(12, scaleFactor),
+          width: toScale(24, scaleFactor),
           height: `${toScale(objectHeight, scaleFactor)}px`,
           right: 0,
         }}

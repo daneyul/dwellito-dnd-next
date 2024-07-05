@@ -3,10 +3,7 @@ import { Droppable } from '@/components/Droppable';
 import { Draggable } from '@/components/Draggable';
 import { DndContext } from '@dnd-kit/core';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import {
-  droppableWidth,
-  toScale,
-} from '@/utils/2D/utils';
+import { droppableWidth, toScale } from '@/utils/2D/utils';
 import ChevronLeftBlack from '../ChevronLeftBlack';
 import ChevronRightBlack from '../ChevronRightBlack';
 import style from './viewer.module.scss';
@@ -16,12 +13,19 @@ import ToggleCamera from '../ToggleCamera/ToggleCamera';
 import { PageDataContext } from '../Content/Content';
 import ElevationToggle from '../ElevationToggle/ElevationToggle';
 import debounce from 'lodash.debounce';
-import { COMPONENT_NAMES, DROPPABLE_BACK, DROPPABLE_LEFT, DROPPABLE_RIGHT, ELEVATION_NAMES } from '@/utils/constants/names';
+import {
+  COMPONENT_NAMES,
+  DROPPABLE_BACK,
+  DROPPABLE_LEFT,
+  DROPPABLE_RIGHT,
+  ELEVATION_NAMES,
+} from '@/utils/constants/names';
 import { DIMENSIONS } from '@/utils/constants/dimensions';
 import MultipleDroppables from '../MultipleDroppables';
 import DeleteBtn from '../DeleteBtn/DeleteBtn';
 import DragToMove from '../DragToMove/DragToMove';
 import OutsideDroppable from '../Collision/OutsideDroppable';
+import RotateBtn from '../DeleteBtn/Rotate';
 
 const Viewer = () => {
   const {
@@ -43,15 +47,14 @@ const Viewer = () => {
     scaleFactor,
     handleDeleteSelected,
     showDragToMove,
-    showRotate,
     showOutsideDroppableWarning,
-    setShowOutsideDroppableWarning
+    setShowOutsideDroppableWarning,
   } = useContext(PageDataContext);
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
   const [tempPositions, setTempPositions] = useState({});
-  
+
   const isAnyItemSelected = selectedComponents.some(
     (component) => component.isSelected
   );
@@ -93,50 +96,56 @@ const Viewer = () => {
   const showRightArrow =
     selectedElevationIndex < mappedElevations.length - 1 && !show3d;
 
-    const debouncedUpdatePosition = useCallback(
-      debounce((id, delta, over) => {
-        setTempPositions((prev) => {
-          const newPos = {
-            ...prev,
-            [id]: {
-              x: (prev[id]?.x || 0) + delta.x,
-              y: (prev[id]?.y || 0) + delta.y,
-            },
-          };
-  
-          // Check if the component is outside the droppable areas
-          const draggedComponent = selectedComponents.find((component) => component.id === id);
-          if (
-            draggedComponent &&
-            (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-              draggedComponent.name === COMPONENT_NAMES.OUTLET)
-          ) {
-            const isOutsideDroppable = !over || ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(over?.id);
-  
-            setSelectedComponents((prevComponents) =>
-              prevComponents.map((component) =>
-                component.id === id
-                  ? {
-                      ...component
-                    }
-                  : component
-              )
+  const debouncedUpdatePosition = useCallback(
+    debounce((id, delta, over) => {
+      setTempPositions((prev) => {
+        const newPos = {
+          ...prev,
+          [id]: {
+            x: (prev[id]?.x || 0) + delta.x,
+            y: (prev[id]?.y || 0) + delta.y,
+          },
+        };
+
+        // Check if the component is outside the droppable areas
+        const draggedComponent = selectedComponents.find(
+          (component) => component.id === id
+        );
+        if (
+          draggedComponent &&
+          (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+            draggedComponent.name === COMPONENT_NAMES.OUTLET)
+        ) {
+          const isOutsideDroppable =
+            !over ||
+            ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(
+              over?.id
             );
-            setShowOutsideDroppableWarning(isOutsideDroppable);
-          }
 
-          return newPos;
-        });
-      }, 100),
-      [selectedComponents, setSelectedComponents]
-    );
+          setSelectedComponents((prevComponents) =>
+            prevComponents.map((component) =>
+              component.id === id
+                ? {
+                    ...component,
+                  }
+                : component
+            )
+          );
+          setShowOutsideDroppableWarning(isOutsideDroppable);
+        }
 
-    const handleDragMove = (event) => {
-      const { over, active } = event;
-      const id = active.id;
-      const delta = event.delta;
-      debouncedUpdatePosition(id, delta, over);
-    };
+        return newPos;
+      });
+    }, 100),
+    [selectedComponents, setSelectedComponents]
+  );
+
+  const handleDragMove = (event) => {
+    const { over, active } = event;
+    const id = active.id;
+    const delta = event.delta;
+    debouncedUpdatePosition(id, delta, over);
+  };
 
   const handleDragEndEnhanced = (event) => {
     const id = event.active.id;
@@ -164,6 +173,28 @@ const Viewer = () => {
       });
     }
     handleDragEnd(event); // Perform collision and closeness checks
+  };
+
+  const selectedComponent = selectedComponents.find(
+    (component) => component.isSelected
+  );
+  const isHeaterOrOutlet =
+    selectedComponent &&
+    (selectedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+      selectedComponent.name === COMPONENT_NAMES.OUTLET);
+
+  const handleRotate = () => {
+    setSelectedComponents((prevComponents) =>
+      prevComponents.map((piece) => {
+        if (piece.id === selectedComponent.id) {
+          return {
+            ...piece,
+            rotate: piece.rotate + 90,
+          };
+        }
+        return piece;
+      })
+    );
   };
 
   return (
@@ -242,14 +273,28 @@ const Viewer = () => {
         </div>
         {showLeftArrow && <LeftArrow />}
         {showRightArrow && <RightArrow />}
-        {isAnyItemSelected && !show3d && (
-          <DeleteBtn
-            onDeleteSelected={handleDeleteSelected}
-            isFloorPlanView={isFloorPlanView}
-          />
-        )}
-        {showDragToMove ? (<DragToMove />) : null}
-        {showRotate ? (<Rotate isFloorPlanView={isFloorPlanView} />) : null}
+        <div
+          style={{
+            display: 'flex',
+            position: 'absolute',
+            transform: 'translate(-50%, 50%)',
+            left: '50%',
+            bottom: "calc(7.5rem + 58px)",
+            zIndex: 100,
+            gap: "1rem"
+          }}
+        >
+          {isAnyItemSelected && !show3d && (
+            <DeleteBtn onDeleteSelected={handleDeleteSelected} />
+          )}
+          {isHeaterOrOutlet && !show3d && isFloorPlanView && (
+            <RotateBtn
+              handleRotate={handleRotate}
+              component={selectedComponent}
+            />
+          )}
+        </div>
+        {showDragToMove ? <DragToMove /> : null}
         <ToggleCamera />
         <ToggleView />
         <ElevationToggle />

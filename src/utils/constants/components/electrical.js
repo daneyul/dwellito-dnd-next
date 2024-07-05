@@ -94,6 +94,7 @@ export const electricalComponents = [
     price: 450,
     model: 'heater',
     fixed: false,
+    rotate: 0,
   },
   {
     name: COMPONENT_NAMES.OUTLET,
@@ -110,6 +111,7 @@ export const electricalComponents = [
     price: 225,
     model: 'outlet',
     fixed: false,
+    rotate: 0,
   },
   {
     name: COMPONENT_NAMES.EXHAUST_FAN,
