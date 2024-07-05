@@ -19,7 +19,6 @@ import {
 
 const Sidebar = () => {
   const {
-    showYourOrder,
     containerHeightIsStandard,
     setSelectedContainerHeight,
     selectedContainer,
@@ -103,7 +102,7 @@ const Sidebar = () => {
 
   return (
     <div className={style.container}>
-      {showYourOrder ? <YourOrder /> : <NotYourOrder />}
+      <NotYourOrder />
     </div>
   );
 };

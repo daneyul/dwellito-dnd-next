@@ -66,7 +66,6 @@ const PageDataProvider = ({ children, data }) => {
   const [showExterior, setShowExterior] = useState(true);
   const [cameraReady, setCameraReady] = useState(true);
   const [hasCollisions, setHasCollisions] = useState(false);
-  const [showYourOrder, setShowYourOrder] = useState(false);
   const [zipCode, setZipCode] = useState('');
   const [, setIsTooClose] = useState(false);
   const [showCollision, setShowCollision] = useState(false);
@@ -105,6 +104,7 @@ const PageDataProvider = ({ children, data }) => {
   const [hasLighting, setHasLighting] = useState(false);
   const [showDragToMove, setShowDragToMove] = useState(false);
   const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -150,10 +150,6 @@ const PageDataProvider = ({ children, data }) => {
       setScaleFactor(2.5);
     }
   }, [slug, containerData]);
-
-  const toggleOrder = () => {
-    setShowYourOrder(!showYourOrder);
-  };
 
   // Calculate the total price of all selected components
   useEffect(() => {
@@ -410,8 +406,6 @@ const PageDataProvider = ({ children, data }) => {
         hasCollisions,
         setHasCollisions,
         modifiers,
-        showYourOrder,
-        toggleOrder,
         selectedElevationIndex,
         setSelectedElevationIndex,
         zipCode,
@@ -450,7 +444,9 @@ const PageDataProvider = ({ children, data }) => {
         showDragToMove,
         setShowDragToMove,
         showOutsideDroppableWarning,
-        setShowOutsideDroppableWarning
+        setShowOutsideDroppableWarning,
+        dialogOpen,
+        setDialogOpen
       }}
     >
       {children}
