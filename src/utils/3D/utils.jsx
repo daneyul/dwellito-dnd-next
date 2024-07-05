@@ -30,6 +30,16 @@ const calcRotation = (elevation, elevationData, selectedContainer) => {
   return null;
 };
 
+const calcElecRotation = (twoDimDegrees) => {
+  // Normalize the degrees to a value between 0 and 360
+  const normalizedDegrees = twoDimDegrees % 360;
+
+  // Calculate the corresponding 3D rotation in radians
+  const radians = (normalizedDegrees * Math.PI) / -180;
+
+  return radians;
+};
+
 const rightSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
@@ -343,4 +353,4 @@ const calcPosition = (
   return null;
 };
 
-export { calcRotation, calcPosition };
+export { calcRotation, calcPosition, calcElecRotation };

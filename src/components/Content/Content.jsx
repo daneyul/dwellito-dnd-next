@@ -294,7 +294,6 @@ const PageDataProvider = ({ children, data }) => {
 
   const handleDragEnd = (event) => {
     const { over, active } = event;
-    console.log(over)
     const draggedId = active.id;
     const draggedComponent = selectedComponents.find(
       (component) => component.id === draggedId

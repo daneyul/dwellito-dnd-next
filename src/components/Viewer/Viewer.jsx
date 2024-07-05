@@ -116,9 +116,7 @@ const Viewer = () => {
           (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
             draggedComponent.name === COMPONENT_NAMES.OUTLET)
         ) {
-          const isOutsideDroppable =
-            !over ||
-            ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(
+          const isOutsideDroppable = ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(
               over?.id
             );
 

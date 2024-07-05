@@ -47,7 +47,6 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
     boxSizing: 'border-box',
     margin: '0 auto',
     position: 'relative',
-    border: '1px solid blue',
   };
 
   const filterComponents = ({ elevationName, isLeft }) => {
@@ -105,7 +104,6 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
         ref={setLeftDroppableRef}
         style={{
           ...CustomStyle,
-          borderColor: 'red',
           position: 'absolute',
           width: `${toScale(
             droppableWidth(selectedElevation, DIMENSIONS, selectedContainer),
@@ -133,7 +131,6 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
         ref={setRightDroppableRef}
         style={{
           ...CustomStyle,
-          borderColor: 'green',
           position: 'absolute',
           bottom: '0',
           width: `${toScale(
@@ -161,7 +158,6 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
         ref={setBackDroppableRef}
         style={{
           ...CustomStyle,
-          borderColor: 'yellow',
           position: 'absolute',
           width: toScale(24, scaleFactor),
           height: `${toScale(objectHeight, scaleFactor)}px`,
@@ -186,7 +182,6 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
         ref={setMiddleDroppableRef}
         style={{
           ...CustomStyle,
-          borderColor: 'brown',
           position: 'absolute',
           width: `${toScale(
             droppableWidth(selectedElevation, DIMENSIONS, selectedContainer),
