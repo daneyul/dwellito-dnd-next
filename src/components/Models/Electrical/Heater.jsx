@@ -41,7 +41,6 @@ const Heater = ({ component }) => {
 
       // Calculate the size of the bounding box
       const size = boundingBox.getSize(new THREE.Vector3());
-      const refScaleFactor = heaterRef.current.scale.x; // Assuming uniform scaling
 
       // Calculate the actual length of the heater considering the scaling factor
       const actualLength = size.z;
