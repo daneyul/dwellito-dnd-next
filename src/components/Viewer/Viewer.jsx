@@ -134,7 +134,7 @@ const Viewer = () => {
 
         return newPos;
       });
-    }, 100),
+    }, 200),
     [selectedComponents, setSelectedComponents]
   );
 

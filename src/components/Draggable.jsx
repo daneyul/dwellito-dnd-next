@@ -44,10 +44,24 @@ function useCollidableDraggable({ id, data: customData, disabled }) {
 }
 
 export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
+  const {
+    scaleFactor,
+    show3d,
+    containerHeightIsStandard,
+    slug,
+    selectedElevation,
+    setShowDragToMove,
+    setShowCollision,
+    isFloorPlanView,
+  } = useContext(PageDataContext);
+
+  const isDisabled = piece.fixed || (piece.objType !== COMPONENT_TYPES.ELECTRICAL && isFloorPlanView);
+  
   const { attributes, listeners, setNodeRef, transform } =
     useCollidableDraggable({
       id,
       data: { ...piece },
+      disabled: isDisabled
     });
 
   const { collisions } = useDndContext();
@@ -72,17 +86,6 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
       setShowCollision(false);
     }
   }, [collisions]);
-
-  const {
-    scaleFactor,
-    show3d,
-    containerHeightIsStandard,
-    slug,
-    selectedElevation,
-    setShowDragToMove,
-    setShowCollision,
-    isFloorPlanView,
-  } = useContext(PageDataContext);
 
   const [isHovered, setIsHovered] = useState(false);
 
