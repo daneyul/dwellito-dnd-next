@@ -167,6 +167,7 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
     piece,
     scaleFactor,
     adjForContainerHeight,
+    selectedElevation
   });
 
   const combinedStyles = {

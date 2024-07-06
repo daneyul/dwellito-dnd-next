@@ -303,7 +303,7 @@ export const snapToEdgesModifier = ({ transform, active, over }) => {
 };
 
 // This calculates the CSS positions based on the piece's position and elevation
-export const calculateCSSPos = ({ isFloorPlanView, isFixed, piece, scaleFactor, adjForContainerHeight }) => {
+export const calculateCSSPos = ({ isFloorPlanView, isFixed, piece, scaleFactor, adjForContainerHeight, selectedElevation }) => {
   if (isFloorPlanView) {
     if (isFixed) {
       if (piece.fixedSide === ELEVATION_NAMES.RIGHT) {
