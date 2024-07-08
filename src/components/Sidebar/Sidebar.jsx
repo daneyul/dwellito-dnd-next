@@ -91,9 +91,17 @@ const Sidebar = () => {
         />
         <SingleSelect type={EXTERIOR} />
         <Selector />
-        <div className={style.selectionTagName}>Select your wall finish</div>
+        <div className={style.selectionTagName}>Interior Finishes</div>
+        <Subtitle
+          text='Select your wall finish'
+          css={{ fontWeight: 400, marginBottom: '1rem' }}
+        />
         <SingleSelect type={INTERIOR} />
-        <div className={style.selectionTagName}>Select your flooring</div>
+        <div className={style.selectionTagName}>Flooring Options</div>
+        <Subtitle
+          text='Select your flooring'
+          css={{ fontWeight: 400, marginBottom: '1rem' }}
+        />
         <SingleSelect type={FLOORING} />
         <SaveOrder />
       </>
