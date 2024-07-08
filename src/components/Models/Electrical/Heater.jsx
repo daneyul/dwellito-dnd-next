@@ -120,3 +120,5 @@ const Heater = ({ component }) => {
 };
 
 export default Heater;
+
+useGLTF.preload('/models/electrical/heater.glb');

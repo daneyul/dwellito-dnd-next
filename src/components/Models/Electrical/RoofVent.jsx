@@ -60,3 +60,6 @@ const RoofVent = () => {
 };
 
 export default RoofVent;
+
+useGLTF.preload('/models/electrical/roofvent-st.glb');
+useGLTF.preload('/models/electrical/roofvent-hc.glb');

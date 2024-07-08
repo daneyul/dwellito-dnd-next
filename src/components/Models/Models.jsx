@@ -39,6 +39,7 @@ import AirConditioner from './Electrical/AirConditioner';
 import ExhaustFan from './Electrical/ExhaustFan';
 import Heater from './Electrical/Heater';
 import Outlet from './Electrical/Outlet';
+import { preloadContainerModels } from '@/utils/3D/preloadGLTFModel';
 
 export function Models() {
   const {
@@ -58,9 +59,7 @@ export function Models() {
   const { progress } = useProgress();
 
   useEffect(() => {
-    if (progress === 100) {
-      setThreeDModelLoaded(true);
-    }
+    setThreeDModelLoaded(progress === 100);
   }, [progress, setThreeDModelLoaded]);
 
   const doors = useMemo(
@@ -286,6 +285,14 @@ export function Models() {
       }
     }
   };
+
+  useEffect(() => {
+    preloadContainerModels('10', 'standard');
+    preloadContainerModels('20', 'standard');
+    preloadContainerModels('40', 'standard');
+    preloadContainerModels('20', 'high');
+    preloadContainerModels('40', 'high');
+  }, []);
 
   return (
     <div

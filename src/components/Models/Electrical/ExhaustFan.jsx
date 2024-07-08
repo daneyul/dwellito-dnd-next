@@ -77,3 +77,7 @@ const ExhaustFan = ({ onBoundingBoxChange }) => {
 };
 
 export default ExhaustFan;
+
+useGLTF.preload('/models/electrical/10/fan.glb');
+useGLTF.preload('/models/electrical/20/fan.glb');
+useGLTF.preload('/models/electrical/40/fan.glb');

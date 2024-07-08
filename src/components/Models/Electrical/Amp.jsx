@@ -76,3 +76,8 @@ const Amp = () => {
 };
 
 export default Amp;
+
+
+useGLTF.preload('/models/electrical/10/amp.glb');
+useGLTF.preload('/models/electrical/20/amp.glb');
+useGLTF.preload('/models/electrical/40/amp.glb');

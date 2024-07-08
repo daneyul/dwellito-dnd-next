@@ -115,3 +115,5 @@ const Outlet = ({ component }) => {
 };
 
 export default Outlet;
+
+useGLTF.preload('/models/electrical/outlet.glb');
