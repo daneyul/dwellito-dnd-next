@@ -40,6 +40,7 @@ import {
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
 } from '@/utils/constants/names';
+import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
 
 export const PageDataContext = createContext();
 
@@ -499,7 +500,7 @@ const Content = ({ data }) => {
               >
                 <Viewer />
                 <Sidebar />
-                <PriceTotal />
+                <OrderSummaryModal trigger={<PriceTotal />}/>
               </div>
             </div>
           </PageDataProvider>

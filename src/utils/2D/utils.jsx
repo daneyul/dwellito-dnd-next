@@ -429,3 +429,13 @@ export const calculateCSSPos = ({ isFloorPlanView, isFixed, piece, scaleFactor, 
     };
   }
 };
+
+export const jsonToBase64 = (jsonObj) => {
+  // Convert JSON object to string
+  const jsonString = JSON.stringify(jsonObj);
+
+  // Encode the URI component in Base64
+  const base64Encoded = btoa(jsonString);
+
+  return base64Encoded;
+};

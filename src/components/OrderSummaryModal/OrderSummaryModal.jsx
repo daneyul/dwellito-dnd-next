@@ -15,8 +15,9 @@ import {
   CONTAINER_40_SLUG,
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
+import * as Form from '@radix-ui/react-form';
 
-const OrderSummaryModal = () => {
+const OrderSummaryModal = ({ trigger }) => {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
     orderTotal,
@@ -27,8 +28,6 @@ const OrderSummaryModal = () => {
     exteriorFinish,
     flooring,
     slug,
-    dialogOpen,
-    setDialogOpen
   } = useContext(PageDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
@@ -104,6 +103,49 @@ const OrderSummaryModal = () => {
     </div>
   );
 
+  const triggerZapier = async (email) => {
+    const responseData = {
+      // siteName: 'Container Configurator',
+      // 'data__Detail Order': jsonToBase64(detailOrder),
+      // data__Email: email,
+      // data__eventType: 'Save Design',
+      // data__Exterior: selectedExteriors,
+      // data__Interior: selectedInteriors,
+      // data__Services: selectedServices,
+      // data__Layout: selectedLayout,
+      // data__model: modelData['Name'],
+      // data__Supplier: supplierData['Name'],
+      // data__currency: supplierData['Currency'],
+      // 'data__Estimated Shipping': shippingCost,
+      // scrollDepth: scrollDepth,
+      // sessionLength: sessionLength,
+    };
+    const JSONdata = JSON.stringify(responseData);
+    const endpoint = 'https://hooks.zapier.com/hooks/catch/5485468/2yjklei/';
+
+    try {
+      const options = {
+        method: 'POST',
+        body: JSONdata,
+        mode: 'no-cors',
+      };
+      const response = await fetch(endpoint, options);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior if not already handled
+
+    try {
+      await triggerZapier({ data });
+      console.log('Zapier request attempted');
+    } catch (error) {
+      console.error('Error triggering Zapier:', error);
+    }
+  };
+
   const Section = ({ elevation }) => {
     const componentsForElevation = selectedComponents.filter((component) =>
       component.elevation.some((i) => i.name === elevation.name)
@@ -127,7 +169,9 @@ const OrderSummaryModal = () => {
               scaleFactor,
             });
 
-            const imgSrc = isElectrical ? component.floorPlanImg : component.frontImg || component.imgName;
+            const imgSrc = isElectrical
+              ? component.floorPlanImg
+              : component.frontImg || component.imgName;
 
             return (
               <li key={component.id} className={style.lineItem}>
@@ -165,9 +209,9 @@ const OrderSummaryModal = () => {
   );
 
   return (
-    <Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
-      <Dialog.Trigger asChild>
-        <div className={style.trigger}></div>
+    <Dialog.Root>
+      <Dialog.Trigger>
+        {trigger}
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={style.overlay}>
@@ -187,11 +231,59 @@ const OrderSummaryModal = () => {
                 parseInt(orderTotal) + parseInt(tax)
               ).toLocaleString()}`}
             />
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Dialog.Close className={style.confirm}>
-                Confirm Order
-              </Dialog.Close>
-            </div>
+            <Form.Root onSubmit={(e) => handleSubmit(e)}>
+              <div className={style.nameWrapper}>
+                <Form.Field className={style.formField} name='fname'>
+                  <Form.Control asChild>
+                    <input
+                      className={style.input}
+                      type='text'
+                      required
+                      placeholder='First Name'
+                    />
+                  </Form.Control>
+                </Form.Field>
+                <Form.Field className={style.formField} name='lname'>
+                  <Form.Control asChild>
+                    <input
+                      className={style.input}
+                      type='text'
+                      required
+                      placeholder='Last Name'
+                    />
+                  </Form.Control>
+                </Form.Field>
+              </div>
+              <div className={style.addressWrapper}>
+                <Form.Field className={style.formField} name='email'>
+                  <div>
+                    <Form.Message
+                      className={style.message}
+                      match='valueMissing'
+                    >
+                      Please enter your email
+                    </Form.Message>
+                    <Form.Message
+                      className={style.message}
+                      match='typeMismatch'
+                    >
+                      Please provide a valid email
+                    </Form.Message>
+                  </div>
+                  <Form.Control asChild>
+                    <input
+                      className={style.input}
+                      type='email'
+                      required
+                      placeholder='Email'
+                    />
+                  </Form.Control>
+                </Form.Field>
+              </div>
+              <Form.Submit asChild>
+                <button className={style.button}>Submit</button>
+              </Form.Submit>
+            </Form.Root>
           </Dialog.Content>
         </Dialog.Overlay>
       </Dialog.Portal>

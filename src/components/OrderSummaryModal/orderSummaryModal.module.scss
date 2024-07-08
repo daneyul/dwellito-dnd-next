@@ -276,3 +276,23 @@
   height: 50px;
   margin-top: 1rem;
 }
+
+.addressWrapper {
+  margin-bottom: space(4);
+}
+
+.nameWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: space(4);
+  margin-bottom: space(4);
+}
+
+.message {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.messageWrapper {
+  margin-bottom: space(2);
+}
