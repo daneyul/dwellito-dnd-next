@@ -1,5 +1,11 @@
 'use client';
-import React, { useState, useEffect, createContext, useContext, use } from 'react';
+import React, {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  use,
+} from 'react';
 import { checkCloseness, snapToIncrement } from '@/utils/2D/utils';
 import {
   restrictToHorizontalAxis,
@@ -103,7 +109,8 @@ const PageDataProvider = ({ children, data }) => {
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
   const [hasLighting, setHasLighting] = useState(false);
   const [showDragToMove, setShowDragToMove] = useState(false);
-  const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] = useState(false);
+  const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] =
+    useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const containerSize = () => {
@@ -381,9 +388,22 @@ const PageDataProvider = ({ children, data }) => {
   };
 
   const handleDeleteSelected = () => {
-    setSelectedComponents((prevComponents) =>
-      prevComponents.filter((component) => !component.isSelected)
+    const selectedIsVent = selectedComponents.find(
+      (component) =>
+        component.objType === COMPONENT_TYPES.VENT && component.isSelected
     );
+
+    setSelectedComponents((prevComponents) => {
+      if (selectedIsVent) {
+        return prevComponents.filter(
+          (component) =>
+            !component.isSelected &&
+            component.name !== COMPONENT_NAMES.ROOF_VENT
+        );
+      } else {
+        return prevComponents.filter((component) => !component.isSelected);
+      }
+    });
   };
 
   return (
@@ -446,7 +466,7 @@ const PageDataProvider = ({ children, data }) => {
         showOutsideDroppableWarning,
         setShowOutsideDroppableWarning,
         dialogOpen,
-        setDialogOpen
+        setDialogOpen,
       }}
     >
       {children}

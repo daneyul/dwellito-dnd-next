@@ -5,7 +5,7 @@ import * as HoverCard from '@radix-ui/react-hover-card';
 const DeleteBtn = ({ onDeleteSelected }) => {
   const handleClick = (e) => {
     e.stopPropagation();
-    onDeleteSelected();
+    onDeleteSelected(e);
   };
 
   return (

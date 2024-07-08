@@ -8,14 +8,14 @@ import { ELEVATION_NAMES } from '@/utils/constants/names';
 
 const AddOption = ({ options }) => {
   const {
+    selectedComponents,
     setSelectedComponents,
     selectedElevation,
-    setHasCollisions,
-    scaleFactor,
     setShow3d,
     isFloorPlanView,
     setSelectedElevation,
-    mappedElevations
+    mappedElevations,
+    floorPlan
   } = useContext(PageDataContext);
 
   const rightElevation = mappedElevations.find(
@@ -26,21 +26,21 @@ const AddOption = ({ options }) => {
     setShow3d(false);
     if (isFloorPlanView) {
       setSelectedElevation(rightElevation);
-      handleAddComponent(
+      handleAddComponent({
         item,
+        selectedComponents,
         setSelectedComponents,
-        rightElevation,
-        setHasCollisions,
-        scaleFactor
-      );
+        selectedElevation: rightElevation,
+        floorPlan
+      });
     } else {
-      handleAddComponent(
+      handleAddComponent({
         item,
+        selectedComponents,
         setSelectedComponents,
         selectedElevation,
-        setHasCollisions,
-        scaleFactor
-      );
+        floorPlan
+      });
     }
   };
 

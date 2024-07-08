@@ -8,8 +8,7 @@ import { PageDataContext } from '../Content/Content';
 const AddElecOption = ({ options }) => {
   const {
     setSelectedComponents,
-    setHasCollisions,
-    scaleFactor,
+    floorPlan,
     setShow3d,
     setSelectedElevation,
     setSelectedElevationIndex,
@@ -42,12 +41,13 @@ const AddElecOption = ({ options }) => {
                   setShow3d(false);
                   setSelectedElevation(mappedElevations[3]);
                   setSelectedElevationIndex(3);
-                  handleAddComponent(
+                  handleAddComponent({
                     item,
+                    selectedComponents,
                     setSelectedComponents,
-                    mappedElevations[3],
-                    setHasCollisions,
-                    scaleFactor
+                    selectedElevation: mappedElevations[3],
+                    floorPlan
+                  }
                   );
                 }}
                 className={style.objImg}

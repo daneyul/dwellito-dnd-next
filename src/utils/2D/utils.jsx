@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
-import { COMPONENT_NAMES, ELEVATION_NAMES } from '../constants/names';
+import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES } from '../constants/names';
 import { DIMENSIONS } from '../constants/dimensions';
+import { electricalComponents } from '../constants/components/electrical';
 
 export const generateImgSrc = (imgName) => `../../../images/${imgName}`;
 
@@ -88,41 +89,36 @@ export const checkDistance = ({
   };
 };
 
-export const handleAddComponent = (
+export const handleAddComponent = ({
   item,
+  selectedComponents,
   setSelectedComponents,
   selectedElevation,
+  floorPlan
+}
 ) => {
+  const newItem = {
+    ...item,
+    id: uuid(),
+    position: { ...item.position },
+    elevation: [...item.elevation, selectedElevation],
+  };
+  const isVent = item.objType === COMPONENT_TYPES.VENT;
+  const findRoofVent = selectedComponents.find((component) => component.name === COMPONENT_NAMES.ROOF_VENT);
+  const roofVentObjData = electricalComponents.find((component) => component.name === COMPONENT_NAMES.ROOF_VENT);
+
+  const roofVent = { ...roofVentObjData, id: uuid(), position: { ...roofVentObjData.position }, elevation: [floorPlan] };
+
   setSelectedComponents((prevSelectedComponents) => {
-    const newItem = {
-      ...item,
-      id: uuid(),
-      position: { ...item.position },
-      elevation: [...item.elevation, selectedElevation],
-    };
-
-    return [...prevSelectedComponents, newItem];
-  });
-};
-
-export const handleRemoveComponent = (itemToRemove, setSelectedComponents) => {
-  setSelectedComponents((prevSelectedComponents) => {
-    // Find the last index where the objType matches the item to remove
-    const lastIndex = prevSelectedComponents
-      .slice()
-      .reverse()
-      .findIndex((obj) => obj.objType === itemToRemove.objType);
-    const indexToRemove =
-      lastIndex >= 0 ? prevSelectedComponents.length - 1 - lastIndex : -1;
-
-    // Remove the item from the array
-    if (indexToRemove > -1) {
-      return [
-        ...prevSelectedComponents.slice(0, indexToRemove),
-        ...prevSelectedComponents.slice(indexToRemove + 1),
-      ];
+    if (findRoofVent) {
+      return [...prevSelectedComponents, newItem];
+    } else {
+      if (isVent) {
+        return [...prevSelectedComponents, newItem, roofVent];
+      } else {
+        return [...prevSelectedComponents, newItem];
+      }
     }
-    return prevSelectedComponents;
   });
 };
 
