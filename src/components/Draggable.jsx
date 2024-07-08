@@ -41,7 +41,7 @@ function useCollidableDraggable({ id, data: customData }) {
   };
 }
 
-export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
+export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
   const {
     scaleFactor,
     show3d,
@@ -53,12 +53,10 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
     isFloorPlanView,
   } = useContext(PageDataContext);
 
-  // const isDisabled = piece.fixed || (piece.objType !== COMPONENT_TYPES.ELECTRICAL && isFloorPlanView);
-  
   const { attributes, listeners, setNodeRef, transform } =
     useCollidableDraggable({
       id,
-      data: { ...piece }
+      data: { ...piece },
     });
 
   const { collisions } = useDndContext();
@@ -158,13 +156,13 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
     piece,
     scaleFactor,
     adjForContainerHeight,
-    selectedElevation
+    selectedElevation,
   });
 
   const dragStyle = transform
     ? {
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-        ...calculatedPos
+        ...calculatedPos,
       }
     : {};
 
@@ -178,21 +176,6 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
     zIndex: 2000,
   };
 
-  useEffect(() => {
-    if (isHovered && !show3d && !isAnyItemSelected && !piece.fixed) {
-      if (
-        (selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
-          piece.objType === COMPONENT_TYPES.ELECTRICAL) ||
-        (selectedElevation.name !== ELEVATION_NAMES.FLOOR_PLAN &&
-          piece.objType !== COMPONENT_TYPES.ELECTRICAL)
-      ) {
-        setShowDragToMove(true);
-      }
-    } else {
-      setShowDragToMove(false);
-    }
-  }, [isHovered, show3d, isAnyItemSelected, piece, setShowDragToMove]);
-
   return (
     <>
       <div
@@ -200,8 +183,14 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
         style={combinedStyles}
         {...listeners}
         {...attributes}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => {
+          setIsHovered(true);
+          onHover();
+        }}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          onLeave();
+        }}
         onMouseDown={handleMouseDown}
       >
         <img

@@ -15,6 +15,7 @@ import ElevationToggle from '../ElevationToggle/ElevationToggle';
 import debounce from 'lodash.debounce';
 import {
   COMPONENT_NAMES,
+  COMPONENT_TYPES,
   DROPPABLE_BACK,
   DROPPABLE_LEFT,
   DROPPABLE_RIGHT,
@@ -47,6 +48,7 @@ const Viewer = () => {
     scaleFactor,
     handleDeleteSelected,
     showDragToMove,
+    setShowDragToMove,
     showOutsideDroppableWarning,
     setShowOutsideDroppableWarning,
   } = useContext(PageDataContext);
@@ -54,6 +56,7 @@ const Viewer = () => {
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
   const [tempPositions, setTempPositions] = useState({});
+  const [hoveredPiece, setHoveredPiece] = useState(null);
 
   const isAnyItemSelected = selectedComponents.some(
     (component) => component.isSelected
@@ -92,6 +95,28 @@ const Viewer = () => {
     setSelectedElevation(mappedElevations[selectedElevationIndex]);
   }, [selectedElevationIndex, setSelectedElevation]);
 
+  const shouldShowDragToMove = () => {
+    const baseConditions =
+      hoveredPiece && !show3d && !isAnyItemSelected && !hoveredPiece?.fixed;
+
+    const allowedTypes = [
+      COMPONENT_TYPES.DOOR,
+      COMPONENT_TYPES.WINDOW,
+      COMPONENT_TYPES.VENT,
+    ];
+
+    const additionalConditions =
+      allowedTypes.includes(hoveredPiece?.objType) ||
+      hoveredPiece?.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+      hoveredPiece?.name === COMPONENT_NAMES.OUTLET;
+
+    return baseConditions && additionalConditions;
+  };
+
+  useEffect(() => {
+    setShowDragToMove(shouldShowDragToMove());
+  }, [hoveredPiece, show3d, isAnyItemSelected, setShowDragToMove]);
+
   const showLeftArrow = selectedElevationIndex > 0 && !show3d;
   const showRightArrow =
     selectedElevationIndex < mappedElevations.length - 1 && !show3d;
@@ -116,9 +141,11 @@ const Viewer = () => {
           (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
             draggedComponent.name === COMPONENT_NAMES.OUTLET)
         ) {
-          const isOutsideDroppable = ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(
-              over?.id
-            );
+          const isOutsideDroppable = ![
+            DROPPABLE_LEFT,
+            DROPPABLE_RIGHT,
+            DROPPABLE_BACK,
+          ].includes(over?.id);
 
           setSelectedComponents((prevComponents) =>
             prevComponents.map((component) =>
@@ -231,7 +258,7 @@ const Viewer = () => {
             modifiers={modifiers}
           >
             {isFloorPlanView ? (
-              <MultipleDroppables isAnyItemSelected={isAnyItemSelected} />
+              <MultipleDroppables setHoveredPiece={setHoveredPiece} />
             ) : (
               <Droppable>
                 <div
@@ -259,8 +286,8 @@ const Viewer = () => {
                         id={piece.id}
                         onSelect={() => handleSelect(piece.id)}
                         ref={draggableRefs[piece.id]}
-                        isAnyItemSelected={isAnyItemSelected}
-                        allowedDropContainers={piece.allowedDropContainers}
+                        onHover={() => setHoveredPiece(piece)}
+                        onLeave={() => setHoveredPiece(null)}
                       />
                     );
                   })}
@@ -277,9 +304,9 @@ const Viewer = () => {
             position: 'absolute',
             transform: 'translate(-50%, 50%)',
             left: '50%',
-            bottom: "calc(7.5rem + 58px)",
+            bottom: 'calc(7.5rem + 58px)',
             zIndex: 100,
-            gap: "1rem"
+            gap: '1rem',
           }}
         >
           {isAnyItemSelected && !show3d && (
@@ -292,7 +319,7 @@ const Viewer = () => {
             />
           )}
         </div>
-        {showDragToMove ? <DragToMove /> : null}
+        {showDragToMove && <DragToMove isFloorPlanView={isFloorPlanView} />}
         <ToggleCamera />
         <ToggleView />
         <ElevationToggle />

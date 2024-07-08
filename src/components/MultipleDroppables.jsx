@@ -13,7 +13,7 @@ import {
 import { Draggable } from './Draggable';
 import { DIMENSIONS } from '@/utils/constants/dimensions';
 
-const MultipleDroppables = ({ isAnyItemSelected }) => {
+const MultipleDroppables = ({ setHoveredPiece }) => {
   const {
     scaleFactor,
     selectedElevation,
@@ -123,7 +123,8 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
             id={piece.id}
             onSelect={() => handleSelect(piece.id)}
             ref={draggableRefs[piece.id]}
-            isAnyItemSelected={isAnyItemSelected}
+            onHover={() => setHoveredPiece(piece)}
+            onLeave={() => setHoveredPiece(null)}
           />
         ))}
       </div>
@@ -148,7 +149,8 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
               id={piece.id}
               onSelect={() => handleSelect(piece.id)}
               ref={draggableRefs[piece.id]}
-              isAnyItemSelected={isAnyItemSelected}
+              onHover={() => setHoveredPiece(piece)}
+              onLeave={() => setHoveredPiece(null)}
             />
           )
         )}
@@ -171,7 +173,8 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
               id={piece.id}
               onSelect={() => handleSelect(piece.id)}
               ref={draggableRefs[piece.id]}
-              isAnyItemSelected={isAnyItemSelected}
+              onHover={() => setHoveredPiece(piece)}
+              onLeave={() => setHoveredPiece(null)}
             />
           )
         )}
@@ -197,7 +200,8 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
             id={piece.id}
             onSelect={() => handleSelect(piece.id)}
             ref={draggableRefs[piece.id]}
-            isAnyItemSelected={isAnyItemSelected}
+            onHover={() => setHoveredPiece(piece)}
+            onLeave={() => setHoveredPiece(null)}
           />
         ))}
       </div>
