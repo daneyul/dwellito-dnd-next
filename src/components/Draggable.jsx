@@ -15,7 +15,7 @@ import {
 } from '@/utils/constants/names';
 import { useCombinedRefs } from '@dnd-kit/utilities';
 
-function useCollidableDraggable({ id, data: customData, disabled }) {
+function useCollidableDraggable({ id, data: customData }) {
   const {
     attributes,
     listeners,
@@ -24,13 +24,11 @@ function useCollidableDraggable({ id, data: customData, disabled }) {
   } = useDraggable({
     id,
     data: customData,
-    disabled,
   });
 
   const { setNodeRef: setDroppableNodeRef } = useDroppable({
     id,
     data: customData,
-    disabled,
   });
 
   const setNodeRef = useCombinedRefs(setDraggableNodeRef, setDroppableNodeRef);
@@ -55,13 +53,12 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
     isFloorPlanView,
   } = useContext(PageDataContext);
 
-  const isDisabled = piece.fixed || (piece.objType !== COMPONENT_TYPES.ELECTRICAL && isFloorPlanView);
+  // const isDisabled = piece.fixed || (piece.objType !== COMPONENT_TYPES.ELECTRICAL && isFloorPlanView);
   
   const { attributes, listeners, setNodeRef, transform } =
     useCollidableDraggable({
       id,
-      data: { ...piece },
-      disabled: isDisabled
+      data: { ...piece }
     });
 
   const { collisions } = useDndContext();
@@ -110,12 +107,6 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
       }
     }
   };
-
-  const dragStyle = transform
-    ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      }
-    : {};
 
   const imgSrc = () => {
     if (piece.objType === COMPONENT_TYPES.ELECTRICAL) {
@@ -169,6 +160,13 @@ export function Draggable({ id, styles, piece, onSelect, isAnyItemSelected }) {
     adjForContainerHeight,
     selectedElevation
   });
+
+  const dragStyle = transform
+    ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+        ...calculatedPos
+      }
+    : {};
 
   const combinedStyles = {
     position: 'absolute',

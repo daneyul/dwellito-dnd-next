@@ -37,6 +37,7 @@ export const electricalComponents = [
     price: 670,
     model: 'roofvent',
     fixed: true,
+    ceilingOnly: true,
     alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
   },
   {

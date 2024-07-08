@@ -57,6 +57,7 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
             (elevation) => elevation.name === elevationName
           ) ||
           (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
+            !piece.ceilingOnly &&
             (piece.fixedSide === elevationName ||
               !piece.fixedSide ||
               !piece.alwaysShowOn))
@@ -123,7 +124,6 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
             onSelect={() => handleSelect(piece.id)}
             ref={draggableRefs[piece.id]}
             isAnyItemSelected={isAnyItemSelected}
-            allowedDropContainers={piece.allowedDropContainers}
           />
         ))}
       </div>
@@ -149,7 +149,6 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
               onSelect={() => handleSelect(piece.id)}
               ref={draggableRefs[piece.id]}
               isAnyItemSelected={isAnyItemSelected}
-              allowedDropContainers={piece.allowedDropContainers}
             />
           )
         )}
@@ -173,7 +172,6 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
               onSelect={() => handleSelect(piece.id)}
               ref={draggableRefs[piece.id]}
               isAnyItemSelected={isAnyItemSelected}
-              allowedDropContainers={piece.allowedDropContainers}
             />
           )
         )}
@@ -200,7 +198,6 @@ const MultipleDroppables = ({ isAnyItemSelected }) => {
             onSelect={() => handleSelect(piece.id)}
             ref={draggableRefs[piece.id]}
             isAnyItemSelected={isAnyItemSelected}
-            allowedDropContainers={piece.allowedDropContainers}
           />
         ))}
       </div>
