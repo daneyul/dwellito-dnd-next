@@ -40,6 +40,7 @@ import ExhaustFan from './Electrical/ExhaustFan';
 import Heater from './Electrical/Heater';
 import Outlet from './Electrical/Outlet';
 import { preloadContainerModels } from '@/utils/3D/preloadGLTFModel';
+import { useBoundingBoxes } from '@/utils/useBoundingBoxes';
 
 export function Models() {
   const {
@@ -160,118 +161,25 @@ export function Models() {
     }
   }
 
-  const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
-  const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
-  const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
-  const [exhaustFanBoundingBox, setExhaustFanBoundingBox] = useState(null);
-
-  const handleExhaustFanBoundingBox = useCallback((data) => {
-    setExhaustFanBoundingBox(data);
-  }, []);
-
-  const handleDoorBoundingBox = useCallback(
-    (index, data) => {
-      let updatedData = { ...data };
-
-      // Adjust the bounding box height for personnel doors
-      if (typeof data.size.y === 'number') {
-        const doorName = doors[index]?.name;
-
-        if (
-          doorName === COMPONENT_NAMES.PERSONNEL_LHR ||
-          doorName === COMPONENT_NAMES.PERSONNEL_RHR ||
-          doorName === COMPONENT_NAMES.PERSONNEL_LHR_GLASS ||
-          doorName === COMPONENT_NAMES.PERSONNEL_RHR_GLASS ||
-          doorName === COMPONENT_NAMES.PERSONNEL_LHR_SECURITY ||
-          doorName === COMPONENT_NAMES.PERSONNEL_RHR_SECURITY ||
-          doorName === COMPONENT_NAMES.PERSONNEL_LHR_SECURITY_GLASS ||
-          doorName === COMPONENT_NAMES.PERSONNEL_RHR_SECURITY_GLASS
-        ) {
-          if (
-            data.selectedElevation.name === ELEVATION_NAMES.RIGHT ||
-            data.selectedElevation.name === ELEVATION_NAMES.LEFT
-          ) {
-            updatedData = {
-              ...updatedData,
-              size: new Vector3(data.size.x - 2, data.size.y - 3, data.size.z),
-              center: new Vector3(
-                data.center.x,
-                data.center.y - 2,
-                data.center.z
-              ),
-            };
-          } else {
-            updatedData = {
-              ...updatedData,
-              size: new Vector3(data.size.x, data.size.y - 3, data.size.z - 2),
-              center: new Vector3(
-                data.center.x,
-                data.center.y - 2,
-                data.center.z
-              ),
-            };
-          }
-        } else if (doors[index].isRollUp) {
-          updatedData = {
-            ...updatedData,
-            size: new Vector3(
-              data.size.x - 2.3,
-              data.size.y - 1.5,
-              data.size.z
-            ),
-            center: new Vector3(
-              data.center.x,
-              data.center.y - 0.8,
-              data.center.z
-            ),
-          };
-        }
-      }
-
-      setDoorBoundingBoxes((prev) => ({ ...prev, [index]: updatedData }));
-    },
-    [doors, COMPONENT_NAMES]
-  );
-
-  const handleWindowBoundingBox = useCallback((index, data) => {
-    let updatedData = { ...data };
-
-    if (
-      data.selectedElevation.name === ELEVATION_NAMES.RIGHT ||
-      data.selectedElevation.name === ELEVATION_NAMES.LEFT
-    ) {
-      updatedData = {
-        ...updatedData,
-        size: new Vector3(data.size.x - 2, data.size.y - 1.7, data.size.z),
-        center: new Vector3(
-          data.center.x - 0.1,
-          data.center.y - 0.1,
-          data.center.z
-        ),
-      };
-    } else {
-      updatedData = {
-        ...updatedData,
-        size: new Vector3(data.size.x, data.size.y - 1.7, data.size.z - 1.7),
-        center: new Vector3(data.center.x, data.center.y - 0.1, data.center.z),
-      };
-    }
-
-    setWindowBoundingBoxes((prev) => ({ ...prev, [index]: updatedData }));
-  }, []);
-
-  const handleVentBoundingBox = useCallback((index, data) => {
-    setVentBoundingBoxes((prev) => ({ ...prev, [index]: data }));
-  }, []);
+  const {
+    doorBoundingBoxes,
+    windowBoundingBoxes,
+    ventBoundingBoxes,
+    exhaustFanBoundingBox,
+    handleExhaustFanBoundingBox,
+    handleDoorBoundingBox,
+    handleWindowBoundingBox,
+    handleVentBoundingBox,
+  } = useBoundingBoxes({ doors, windows, vents });
 
   const ContainerShell = () => {
-    if (selectedContainer === containerData[0]) {
+    if (selectedContainer.size === "10") {
       if (containerHeightIsStandard) {
         return <ContainerShell10Standard />;
       } else {
         return null;
       }
-    } else if (selectedContainer === containerData[1]) {
+    } else if (selectedContainer.size === "20") {
       if (containerHeightIsStandard) {
         return <ContainerShell20Standard />;
       } else {

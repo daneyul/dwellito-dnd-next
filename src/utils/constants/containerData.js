@@ -17,6 +17,7 @@ export const containerData = [
     floorPlan: '10/floor-plan.svg',
     priceSc: 5400,
     priceHc: 0,
+    size: '10'
   },
   {
     name: `20' Custom Cube`,
@@ -30,6 +31,7 @@ export const containerData = [
     floorPlan: '20/floor-plan.svg',
     priceSc: 3800,
     priceHc: 5200,
+    size: '20'
   },
   {
     name: `40' Custom Cube`,
@@ -43,5 +45,6 @@ export const containerData = [
     floorPlan: '40/floor-plan.svg',
     priceSc: 6300,
     priceHc: 6300,
+    size: '40'
   },
 ];
