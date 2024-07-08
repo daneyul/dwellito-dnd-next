@@ -26,12 +26,14 @@ const Selector = () => {
     if (containerSize() === '40') {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
-        item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP
+        item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP &&
+        item.name !== COMPONENT_NAMES.ROOF_VENT
       );
     } else {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
-        item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP
+        item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP &&
+        item.name !== COMPONENT_NAMES.ROOF_VENT
       );
     }
   });
