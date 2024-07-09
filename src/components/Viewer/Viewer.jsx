@@ -95,14 +95,7 @@ const Viewer = () => {
       const baseConditions =
         hoveredPiece && !show3d && !isAnyItemSelected && !hoveredPiece?.fixed;
   
-      const allowedTypes = [
-        COMPONENT_TYPES.DOOR,
-        COMPONENT_TYPES.WINDOW,
-        COMPONENT_TYPES.VENT,
-      ];
-  
       const additionalConditions =
-        allowedTypes.includes(hoveredPiece?.objType) ||
         hoveredPiece?.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
         hoveredPiece?.name === COMPONENT_NAMES.OUTLET;
   
