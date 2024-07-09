@@ -40,7 +40,7 @@ import ExhaustFan from './Electrical/ExhaustFan';
 import Heater from './Electrical/Heater';
 import Outlet from './Electrical/Outlet';
 import { preloadContainerModels } from '@/utils/3D/preloadGLTFModel';
-import { useBoundingBoxes } from '@/utils/useBoundingBoxes';
+import { useBoundingBoxes } from '@/utils/hooks/useBoundingBoxes';
 
 export function Models() {
   const {

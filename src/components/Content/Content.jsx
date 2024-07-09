@@ -1,16 +1,5 @@
 'use client';
-import React, {
-  useState,
-  useEffect,
-  createContext,
-  useContext,
-} from 'react';
-import { checkCloseness, snapToIncrement } from '@/utils/2D/utils';
-import {
-  restrictToHorizontalAxis,
-  restrictToVerticalAxis,
-  restrictToParentElement,
-} from '@dnd-kit/modifiers';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import Logo from '@/components/Logo';
 import Viewer from '@/components/Viewer/Viewer';
 import Sidebar from '@/components/Sidebar/Sidebar';
@@ -40,6 +29,7 @@ import {
   INTERIOR_FINISH_NAMES,
 } from '@/utils/constants/names';
 import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
+import useDragHandlers from '@/utils/hooks/useDragHandlers';
 
 export const PageDataContext = createContext();
 
@@ -73,7 +63,6 @@ const PageDataProvider = ({ children, data }) => {
   const [cameraReady, setCameraReady] = useState(true);
   const [hasCollisions, setHasCollisions] = useState(false);
   const [zipCode, setZipCode] = useState('');
-  const [, setIsTooClose] = useState(false);
   const [showCollision, setShowCollision] = useState(false);
   const [selectedComponents, setSelectedComponents] = useState(
     DEFAULT_COMPONENTS.map((component) => ({
@@ -83,7 +72,6 @@ const PageDataProvider = ({ children, data }) => {
   );
   const [selectedElevation, setSelectedElevation] = useState(DEFAULT_ELEVATION);
   const [selectedElevationIndex, setSelectedElevationIndex] = useState(0);
-  const [modifiers, setModifiers] = useState([]);
   const draggableRefs = selectedComponents.reduce((acc, component) => {
     acc[component.id] = React.createRef();
     return acc;
@@ -112,6 +100,24 @@ const PageDataProvider = ({ children, data }) => {
   const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] =
     useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [scaleFactor, setScaleFactor] = useState(2.5);
+
+  const {
+    handleDragStart,
+    handleDragEnd,
+    handleFpDragStart,
+    handleFpDragEnd,
+    handleSelect,
+    handleDeleteSelected,
+    modifiers,
+  } = useDragHandlers({
+    selectedComponents,
+    setSelectedComponents,
+    snapToGridModifier,
+    selectedElevation,
+    setHasCollisions,
+    scaleFactor
+  });
 
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -130,8 +136,6 @@ const PageDataProvider = ({ children, data }) => {
       }
     })
   );
-
-  const [scaleFactor, setScaleFactor] = useState(2.5);
 
   useEffect(() => {
     const includesLighting = selectedComponents.some(
@@ -253,159 +257,6 @@ const PageDataProvider = ({ children, data }) => {
     };
   }, [draggableRefs]);
 
-  const handleDragStart = (event) => {
-    const { active } = event;
-    const draggedItem = selectedComponents.find(
-      (item) => item.id === active.id
-    );
-
-    setSelectedComponents((prevComponents) =>
-      prevComponents.map((component) =>
-        component.id === active.id
-          ? {
-              ...component,
-              lastValidPosition: { ...component.position },
-            }
-          : component
-      )
-    );
-
-    const defaultModifiers = [restrictToParentElement, snapToGridModifier];
-    const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];
-    const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis];
-
-    if (
-      selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
-      draggedItem.objType !== COMPONENT_TYPES.ELECTRICAL
-    ) {
-      setModifiers([...fixedModifiers]);
-    } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.DOOR) {
-      setModifiers([...doorWindowModifiers, snapToIncrement(11 * scaleFactor)]);
-    } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.WINDOW) {
-      setModifiers([...doorWindowModifiers, snapToIncrement(6 * scaleFactor)]);
-    } else if (draggedItem && draggedItem.fixed) {
-      setModifiers([...fixedModifiers]);
-    } else if (
-      (draggedItem && draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER) ||
-      draggedItem.name === COMPONENT_NAMES.OUTLET
-    ) {
-      setModifiers();
-    } else {
-      setModifiers([...defaultModifiers]);
-    }
-  };
-
-  const handleDragEnd = (event) => {
-    const { over, active } = event;
-    const draggedId = active.id;
-    const draggedComponent = selectedComponents.find(
-      (component) => component.id === draggedId
-    );
-
-    if (
-      // Return to last valid position if dragged outside of floor plan bounding boxes
-      draggedComponent &&
-      (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-        draggedComponent.name === COMPONENT_NAMES.OUTLET) &&
-      (!over ||
-        ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(over.id))
-    ) {
-      setSelectedComponents((prevComponents) =>
-        prevComponents.map((component) =>
-          component.id === draggedId
-            ? {
-                ...component,
-                position: { ...component.lastValidPosition },
-              }
-            : component
-        )
-      );
-      setShowOutsideDroppableWarning(false);
-    } else {
-      let updatedPieces = selectedComponents.map((piece) => {
-        if (piece.id === draggedId) {
-          return {
-            ...piece,
-            position: {
-              x: piece.position.x + event.delta.x,
-              y: piece.position.y + event.delta.y,
-            },
-            lastValidPosition: {
-              x: piece.position.x + event.delta.x,
-              y: piece.position.y + event.delta.y,
-            },
-          };
-        }
-        return piece;
-      });
-
-      updatedPieces = updatedPieces.map((piece) => ({
-        ...piece,
-        isTooClose: false,
-      }));
-
-      updatedPieces.forEach((piece, index) => {
-        if (piece.id !== draggedId) {
-          const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
-
-          if (
-            draggedPiece &&
-            checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
-          ) {
-            updatedPieces[index].isTooClose = true;
-            const draggedPieceIndex = updatedPieces.findIndex(
-              ({ id }) => id === draggedId
-            );
-            updatedPieces[draggedPieceIndex].isTooClose = true;
-          }
-        }
-      });
-
-      setSelectedComponents(updatedPieces);
-
-      const collisionDetected = updatedPieces.some(
-        (piece) => piece.isColliding
-      );
-      const closenessDetected = updatedPieces.some((piece) => piece.isTooClose);
-      setHasCollisions(collisionDetected);
-      setIsTooClose(closenessDetected);
-    }
-  };
-
-  const handleSelect = (selectedId) => {
-    setSelectedComponents((prevComponents) =>
-      prevComponents.map((component) => {
-        // Check if the current component is the one being selected
-        if (component.id === selectedId) {
-          // Toggle the isSelected state for the component
-          return { ...component, isSelected: !component.isSelected };
-        } else {
-          // Set isSelected to false for all other components
-          return { ...component, isSelected: false };
-        }
-      })
-    );
-  };
-
-  const handleDeleteSelected = () => {
-    const selectedIsVent = selectedComponents.find(
-      (component) =>
-        component.objType === COMPONENT_TYPES.VENT && component.isSelected
-    );
-
-    setSelectedComponents((prevComponents) => {
-      if (selectedIsVent) {
-        return prevComponents.filter(
-          (component) =>
-            !component.isSelected &&
-            component.name !== COMPONENT_NAMES.ROOF_VENT
-        );
-      } else {
-        return prevComponents.filter((component) => !component.isSelected);
-      }
-    });
-  };
-
   return (
     <PageDataContext.Provider
       value={{
@@ -416,8 +267,6 @@ const PageDataProvider = ({ children, data }) => {
         setSelectedElevation,
         orderTotal,
         setOrderTotal,
-        handleDragStart,
-        handleDragEnd,
         showCollision,
         setShowCollision,
         setSelectedElevation,
@@ -425,7 +274,6 @@ const PageDataProvider = ({ children, data }) => {
         draggableRefs,
         hasCollisions,
         setHasCollisions,
-        modifiers,
         selectedElevationIndex,
         setSelectedElevationIndex,
         zipCode,
@@ -451,8 +299,6 @@ const PageDataProvider = ({ children, data }) => {
         setThreeDModelLoaded,
         selectedContainerHeight,
         setSelectedContainerHeight,
-        handleSelect,
-        handleDeleteSelected,
         cameraReady,
         setCameraReady,
         containerSize,
@@ -467,6 +313,14 @@ const PageDataProvider = ({ children, data }) => {
         setShowOutsideDroppableWarning,
         dialogOpen,
         setDialogOpen,
+        modifiers,
+        handleDragStart,
+        handleDragEnd,
+        handleFpDragStart,
+        handleFpDragEnd,
+        handleSelect,
+        handleDeleteSelected,
+        modifiers,
       }}
     >
       {children}
@@ -499,7 +353,7 @@ const Content = ({ data }) => {
               >
                 <Viewer />
                 <Sidebar />
-                <OrderSummaryModal trigger={<PriceTotal />}/>
+                <OrderSummaryModal trigger={<PriceTotal />} />
               </div>
             </div>
           </PageDataProvider>
