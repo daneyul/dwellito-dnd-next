@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useContext, useEffect, useState } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
-import { toScale, generateImgSrc, calculateCSSPos } from '../utils/2D/utils';
+import { toScale, generateImgSrc, calculateCSSPos, deScale } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import {
   COMPONENT_TYPES,
@@ -14,6 +14,7 @@ import {
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
 import { useCombinedRefs } from '@dnd-kit/utilities';
+import { DIMENSIONS } from '@/utils/constants/dimensions';
 
 function useCollidableDraggable({ id, data: customData }) {
   const {
@@ -51,11 +52,15 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     isFloorPlanView,
   } = useContext(PageDataContext);
 
-  const { attributes, listeners, setNodeRef, transform: dragTransform } =
-    useCollidableDraggable({
-      id,
-      data: { ...piece },
-    });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform: dragTransform,
+  } = useCollidableDraggable({
+    id,
+    data: { ...piece },
+  });
 
   const { collisions } = useDndContext();
 
@@ -97,9 +102,9 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
       }
     } else {
       if (slug !== CONTAINER_40_SLUG) {
-        return value + (toScale(12, scaleFactor));
+        return value + toScale(12, scaleFactor);
       } else {
-        return value / 1.5 + (toScale(12, scaleFactor));
+        return value / 1.5 + toScale(12, scaleFactor);
       }
     }
   };
@@ -159,8 +164,12 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
 
   const combinedTransforms = [
     calculatedPos.transform,
-    dragTransform ? `translate3d(${dragTransform.x}px, ${dragTransform.y}px, 0)` : ''
-  ].filter(Boolean).join(' ');
+    dragTransform
+      ? `translate3d(${dragTransform.x}px, ${dragTransform.y}px, 0)`
+      : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   const combinedStyles = {
     position: 'absolute',
@@ -171,6 +180,37 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     ...styles,
     zIndex: 2000,
   };
+
+  // const showDimensions = dragTransform ? false : !piece.fixed && isHovered;
+
+  // const DimensionIndicators = () => {
+  //   {showDimensions && (
+  //     <>
+  //     <div
+  //       style={{
+  //         position: 'absolute',
+  //         top: '50%',
+  //         left: `-${toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+  //         width: `${piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+  //         borderTop: '1px solid black',
+  //         transform: 'translateY(-50%)',
+  //       }}
+  //     />
+  //     <div
+  //       style={{
+  //         position: 'absolute',
+  //         top: '50%',
+  //         left: `${piece.position.x / 2}px`,
+  //         transform: 'translateY(-50%) translateX(-50%)',
+  //         backgroundColor: 'black',
+  //         color: 'white'
+  //       }}
+  //     >
+  //       {deScale(piece.position.x, scaleFactor)}
+  //     </div>
+  //   </>
+  //   )}
+  // }
 
   return (
     <>
