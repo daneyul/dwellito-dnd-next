@@ -96,7 +96,7 @@ const Sliding6 = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.81, 1.83, 0]}
+    customPosition={[0.81, 1.78, 0]}
     isRollUp={false}
   />
 );

@@ -46,13 +46,11 @@ const Viewer = () => {
     handleDeleteSelected,
     showDragToMove,
     setShowDragToMove,
-    showOutsideDroppableWarning,
-    setShowOutsideDroppableWarning,
+    showOutsideDroppableWarning
   } = useContext(PageDataContext);
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
-  const [tempPositions, setTempPositions] = useState({});
   const [hoveredPiece, setHoveredPiece] = useState(null);
 
   const isAnyItemSelected = selectedComponents.some(

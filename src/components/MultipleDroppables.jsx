@@ -26,7 +26,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
     draggableRefs,
     selectedContainer,
     floorPlan,
-    slug
+    slug,
   } = useContext(PageDataContext);
 
   const containerSize = () => {
@@ -37,7 +37,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
     } else if (slug === CONTAINER_40_SLUG) {
       return DIMENSIONS.CONTAINER.FORTY;
     }
-  }
+  };
 
   const objectHeight = containerHeightIsStandard
     ? selectedElevation.objScHeight
@@ -122,9 +122,8 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
             scaleFactor
           )}px`,
           height: `${toScale(24, scaleFactor)}px`,
-          left: "50%",
+          left: '50%',
           transform: 'translateX(-50%)',
-          border: '1px solid red',
         }}
       >
         {filterComponents({
@@ -153,9 +152,8 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
             scaleFactor
           )}px`,
           height: toScale(24, scaleFactor),
-          left: "50%",
+          left: '50%',
           transform: 'translateX(-50%)',
-          border: '1px solid red',
         }}
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.RIGHT }).map(
@@ -178,11 +176,13 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
           ...CustomStyle,
           position: 'absolute',
           width: `${toScale(24, scaleFactor)}px`,
-          height: `${toScale(containerSize().FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2, scaleFactor)}px`,
+          height: `${toScale(
+            containerSize().FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2,
+            scaleFactor
+          )}px`,
           right: 0,
-          top: "50%",
+          top: '50%',
           transform: 'translateY(-50%)',
-          border: '1px solid red',
         }}
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.BACK }).map(
@@ -204,7 +204,9 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
         style={{
           ...CustomStyle,
           position: 'absolute',
-          width: `${toScale(containerSize().FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2)}px`,
+          width: `${toScale(
+            containerSize().FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2
+          )}px`,
           height: `${toScale(24, scaleFactor)}px`,
           top: '50%',
           transform: 'translateY(-50%)',
