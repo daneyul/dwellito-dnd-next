@@ -142,11 +142,11 @@ export const getUniqueElevationObjects = (selectedComponents) => {
 
 export const DROPPABLE_FLOOR_PLAN_WIDTH = (DIMENSIONS, selectedContainer) => {
   if (selectedContainer.name === `10' Custom Cube`) {
-    return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH;
+    return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
   } else if (selectedContainer.name === `20' Custom Cube`) {
-    return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH;
+    return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
   } else if (selectedContainer.name === `40' Custom Cube`) {
-    return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH;
+    return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
   }
 };
 
@@ -299,38 +299,48 @@ export const snapToEdgesModifier = ({ transform, active, over }) => {
 };
 
 // This calculates the CSS positions based on the piece's position and elevation
-export const calculateCSSPos = ({ isFloorPlanView, isFixed, piece, scaleFactor, adjForContainerHeight, selectedElevation }) => {
+export const calculateCSSPos = ({
+  isFloorPlanView,
+  isFixed,
+  piece,
+  scaleFactor,
+  adjForContainerHeight,
+  selectedElevation,
+}) => {
+  let transform = '';
+  let positionStyles = {};
+
   if (isFloorPlanView) {
     if (isFixed) {
       if (piece.fixedSide === ELEVATION_NAMES.RIGHT) {
-        return {
+        transform = `rotate(90deg) translateX(10px)`;
+        positionStyles = {
           bottom: '0',
           right: `${adjForContainerHeight(
-            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            piece.position.x
           )}px`,
-          transform: `rotate(90deg) translateX(10px)`,
         };
       } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
-        return {
+        transform = 'translateX(50%)';
+        positionStyles = {
           bottom: `${adjForContainerHeight(
-            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            piece.position.x
           )}px`,
           right: '0',
-          transform: 'translateX(50%)',
         };
       } else if (piece.name === COMPONENT_NAMES.ROOF_VENT) {
-        return {
+        transform = 'translateY(-50%)';
+        positionStyles = {
           left: `${
             piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
           }px`,
           top: '50%',
-          transform: 'translateY(-50%)',
         };
       } else if (piece.name === COMPONENT_NAMES.WRAP_LIGHT) {
-        return {
+        transform = 'translateY(-50%) translateX(-50%)';
+        positionStyles = {
           left: `50%`,
           top: '50%',
-          transform: 'translateY(-50%) translateX(-50%)',
         };
       }
     } else {
@@ -338,35 +348,32 @@ export const calculateCSSPos = ({ isFloorPlanView, isFixed, piece, scaleFactor, 
         piece.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
         piece.name === COMPONENT_NAMES.OUTLET
       ) {
-        return {
+        positionStyles = {
           left: `${piece.position.x}px`,
           top: `${piece.position.y}px`,
         };
       } else if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
-        return {
+        transform = 'rotate(180deg) translateY(100%)';
+        positionStyles = {
           right: `${
-            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            piece.position.x
           }px`,
           top: '10px',
-          transform: 'rotate(180deg) translateY(100%)',
         };
       } else if (piece.elevation[0].name === ELEVATION_NAMES.RIGHT) {
-        return {
+        transform = 'translateY(100%)';
+        positionStyles = {
           bottom: '10px',
-          transform: 'translateY(100%)',
           left: `${
-            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            piece.position.x
           }px`,
         };
       } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
-        return {
-          bottom: `calc(${piece.position.x}px + ${toScale(
-            DIMENSIONS.BOUNDARIES.x,
-            scaleFactor
-          )}px)`,
+        transform = `rotate(270deg) translateX(100%) translateY(calc(100% - 12px))`;
+        positionStyles = {
+          bottom: `${piece.position.x}px`,
           right: `0`,
           transformOrigin: 'right bottom',
-          transform: `rotate(270deg) translateX(100%) translateY(calc(100% - 12px)`,
         };
       }
     }
@@ -374,60 +381,65 @@ export const calculateCSSPos = ({ isFloorPlanView, isFixed, piece, scaleFactor, 
     if (!!piece.fixedSide && selectedElevation.name === piece.fixedSide) {
       // For fixed components on elevation views, show front view
       if (piece.name === COMPONENT_NAMES.EXHAUST_FAN) {
-        return {
+        positionStyles = {
           right: `${adjForContainerHeight(piece.position.x)}px`,
           top: `${adjForContainerHeight(piece.position.y)}px`,
         };
       } else {
-        return {
+        positionStyles = {
           left: `${adjForContainerHeight(piece.position.x)}px`,
           top: `${adjForContainerHeight(piece.position.y)}px`,
         };
       }
     } else if (!piece.fixedSide) {
       if (selectedElevation.name === ELEVATION_NAMES.RIGHT) {
-        return {
+        transform = 'translateY(-100%)';
+        positionStyles = {
           left: `${piece.position.x}px`,
           top: '3px',
-          transform: 'translateY(-100%)',
         };
       } else if (selectedElevation.name === ELEVATION_NAMES.LEFT) {
-        return {
+        transform = 'translateY(-100%)';
+        positionStyles = {
           right: `${piece.position.x}px`,
           top: '3px',
-          transform: 'translateY(-100%)',
         };
       } else if (selectedElevation.name === ELEVATION_NAMES.BACK) {
-        return {
+        transform = 'translateX(-50%) translateY(-100%)';
+        positionStyles = {
           left: '50%',
           top: '3px',
-          transform: 'translateX(-50%) translateY(-100%)',
         };
       }
     } else if (selectedElevation.name === ELEVATION_NAMES.RIGHT) {
-      return {
+      transform = 'translateX(100%)';
+      positionStyles = {
         right: `${4 - toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
         top: `${piece.position.y}px`,
-        transform: 'translateX(100%)',
       };
     } else if (selectedElevation.name === ELEVATION_NAMES.LEFT) {
-      return {
+      transform = 'translateX(-100%) scaleX(-1)';
+      positionStyles = {
         left: `${3 - toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
         top: `${piece.position.y}px`,
-        transform: 'translateX(-100%) scaleX(-1)',
       };
     } else {
-      return {
+      positionStyles = {
         left: `${piece.position.x}px`,
         top: `${piece.position.y}px`,
       };
     }
   } else {
-    return {
+    positionStyles = {
       left: `${piece.position.x}px`,
       top: `${adjForContainerHeight(piece.position.y)}px`,
     };
   }
+
+  return {
+    ...positionStyles,
+    transform,
+  };
 };
 
 export const jsonToBase64 = (jsonObj) => {

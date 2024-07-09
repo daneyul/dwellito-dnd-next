@@ -16,9 +16,6 @@ import debounce from 'lodash.debounce';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
-  DROPPABLE_BACK,
-  DROPPABLE_LEFT,
-  DROPPABLE_RIGHT,
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
 import { DIMENSIONS } from '@/utils/constants/dimensions';

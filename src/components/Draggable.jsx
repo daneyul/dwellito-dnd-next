@@ -51,7 +51,7 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     isFloorPlanView,
   } = useContext(PageDataContext);
 
-  const { attributes, listeners, setNodeRef, transform } =
+  const { attributes, listeners, setNodeRef, transform: dragTransform } =
     useCollidableDraggable({
       id,
       data: { ...piece },
@@ -157,19 +157,17 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     selectedElevation,
   });
 
-  const dragStyle = transform
-    ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-        ...calculatedPos,
-      }
-    : {};
+  const combinedTransforms = [
+    calculatedPos.transform,
+    dragTransform ? `translate3d(${dragTransform.x}px, ${dragTransform.y}px, 0)` : ''
+  ].filter(Boolean).join(' ');
 
   const combinedStyles = {
     position: 'absolute',
     display: 'flex',
     cursor: 'pointer',
     ...calculatedPos,
-    ...dragStyle,
+    transform: combinedTransforms,
     ...styles,
     zIndex: 2000,
   };

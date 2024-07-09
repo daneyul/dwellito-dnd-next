@@ -4,7 +4,6 @@ import React, {
   useEffect,
   createContext,
   useContext,
-  use,
 } from 'react';
 import { checkCloseness, snapToIncrement } from '@/utils/2D/utils';
 import {
