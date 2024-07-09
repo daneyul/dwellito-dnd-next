@@ -14,7 +14,6 @@ import {
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
 import { useCombinedRefs } from '@dnd-kit/utilities';
-import { DIMENSIONS } from '@/utils/constants/dimensions';
 
 function useCollidableDraggable({ id, data: customData }) {
   const {

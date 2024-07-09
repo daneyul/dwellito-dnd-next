@@ -10,18 +10,19 @@ import {
   COMPONENT_TYPES,
   ELEVATION_NAMES,
 } from '../constants/names';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const useDragHandlers = ({
   selectedComponents,
   setSelectedComponents,
   snapToGridModifier,
   selectedElevation,
-  setHasCollisions,
-  scaleFactor
+  scaleFactor,
 }) => {
-  const [, setIsTooClose] = useState(false);
   const [modifiers, setModifiers] = useState([]);
+  const [hasCollisions, setHasCollisions] = useState(false);
+  const [showCollision, setShowCollision] = useState(false);
+  const [, setIsTooClose] = useState(false);
 
   const handleDragStart = (event) => {
     const { active } = event;
@@ -111,6 +112,7 @@ const useDragHandlers = ({
 
       updatedPieces = updatedPieces.map((piece) => ({
         ...piece,
+        isColliding: false,
         isTooClose: false,
       }));
 
@@ -118,6 +120,18 @@ const useDragHandlers = ({
         if (piece.id !== draggedId) {
           const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
 
+          if (
+            draggedPiece &&
+            checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
+          ) {
+            updatedPieces[index].isColliding = true;
+            const draggedPieceIndex = updatedPieces.findIndex(
+              ({ id }) => id === draggedId
+            );
+            updatedPieces[draggedPieceIndex].isColliding = true;
+          }
+
+          // Check for closeness and update the state accordingly
           if (
             draggedPiece &&
             checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
@@ -133,6 +147,7 @@ const useDragHandlers = ({
 
       setSelectedComponents(updatedPieces);
 
+      // Update any other relevant state, such as flags for collision or closeness
       const collisionDetected = updatedPieces.some(
         (piece) => piece.isColliding
       );
@@ -191,7 +206,10 @@ const useDragHandlers = ({
     handleFpDragEnd,
     handleSelect,
     handleDeleteSelected,
-    modifiers
+    modifiers,
+    hasCollisions,
+    showCollision,
+    setShowCollision,
   };
 };
 

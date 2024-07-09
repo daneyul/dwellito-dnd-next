@@ -6,7 +6,7 @@ import { PageDataContext } from './Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 
 export function Droppable({ children }) {
-  const { scaleFactor, selectedElevation, containerHeightIsStandard } =
+  const { scaleFactor, selectedElevation, containerHeightIsStandard, setShowCollisions } =
     useContext(PageDataContext);
   const { elevationData } = useContext(Library2dDataContext);
   const { setNodeRef } = useDroppable({

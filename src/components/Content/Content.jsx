@@ -17,19 +17,13 @@ import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 import {
   COMPONENT_NAMES,
-  COMPONENT_TYPES,
-  CONTAINER_10_SLUG,
-  CONTAINER_20_SLUG,
   CONTAINER_40_SLUG,
   CONTAINER_STANDARD,
-  DROPPABLE_LEFT,
-  DROPPABLE_RIGHT,
-  DROPPABLE_BACK,
   ELEVATION_NAMES,
-  INTERIOR_FINISH_NAMES,
 } from '@/utils/constants/names';
 import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
 import useDragHandlers from '@/utils/hooks/useDragHandlers';
+import useOrderTotal from '@/utils/hooks/useOrderTotal';
 
 export const PageDataContext = createContext();
 
@@ -52,7 +46,6 @@ const PageDataProvider = ({ children, data }) => {
   const DEFAULT_ELEVATION = elevationData.find(
     (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug
   );
-  const [isHovered, setIsHovered] = useState(false);
   const [selectedContainerHeight, setSelectedContainerHeight] =
     useState(CONTAINER_STANDARD);
   const containerHeightIsStandard =
@@ -61,9 +54,7 @@ const PageDataProvider = ({ children, data }) => {
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);
   const [cameraReady, setCameraReady] = useState(true);
-  const [hasCollisions, setHasCollisions] = useState(false);
   const [zipCode, setZipCode] = useState('');
-  const [showCollision, setShowCollision] = useState(false);
   const [selectedComponents, setSelectedComponents] = useState(
     DEFAULT_COMPONENTS.map((component) => ({
       ...component,
@@ -76,7 +67,6 @@ const PageDataProvider = ({ children, data }) => {
     acc[component.id] = React.createRef();
     return acc;
   }, {});
-  const [orderTotal, setOrderTotal] = useState(0);
   const [exteriorFinish, setExteriorFinish] = useState(
     EXTERIOR_FINISH_OPTIONS[0]
   );
@@ -99,7 +89,7 @@ const PageDataProvider = ({ children, data }) => {
   const [showDragToMove, setShowDragToMove] = useState(false);
   const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] =
     useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
+const [dialogOpen, setDialogOpen] = useState(false);
   const [scaleFactor, setScaleFactor] = useState(2.5);
 
   const {
@@ -110,13 +100,23 @@ const PageDataProvider = ({ children, data }) => {
     handleSelect,
     handleDeleteSelected,
     modifiers,
+    hasCollisions,
+    showCollision,
+    setShowCollision
   } = useDragHandlers({
     selectedComponents,
     setSelectedComponents,
     snapToGridModifier,
     selectedElevation,
-    setHasCollisions,
-    scaleFactor
+    scaleFactor,
+  });
+
+  const { orderTotal, setOrderTotal } = useOrderTotal({
+    slug,
+    selectedComponents,
+    interiorFinish,
+    exteriorFinish,
+    flooring,
   });
 
   const containerSize = () => {
@@ -161,54 +161,6 @@ const PageDataProvider = ({ children, data }) => {
       setScaleFactor(2.5);
     }
   }, [slug, containerData]);
-
-  // Calculate the total price of all selected components
-  useEffect(() => {
-    const interiorFinishPrice = () => {
-      if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
-        if (slug === CONTAINER_10_SLUG) {
-          return interiorFinish.price10;
-        } else if (slug === CONTAINER_20_SLUG) {
-          return interiorFinish.price20;
-        } else if (slug === CONTAINER_40_SLUG) {
-          return interiorFinish.price40;
-        }
-      } else if (
-        interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS
-      ) {
-        if (slug === CONTAINER_10_SLUG) {
-          return interiorFinish.price10;
-        } else if (slug === CONTAINER_20_SLUG) {
-          return interiorFinish.price20S;
-        } else if (slug === CONTAINER_40_SLUG) {
-          return interiorFinish.price40S;
-        }
-      } else {
-        return interiorFinish.price;
-      }
-    };
-
-    const flooringPrice = () => {
-      if (slug === CONTAINER_10_SLUG) {
-        return flooring.price10;
-      } else if (slug === CONTAINER_20_SLUG) {
-        return flooring.price20;
-      } else if (slug === CONTAINER_40_SLUG) {
-        return flooring.price40;
-      }
-    };
-
-    const total =
-      selectedComponents.reduce(
-        (accumulator, currentComponent) => accumulator + currentComponent.price,
-        0
-      ) +
-      interiorFinishPrice() +
-      exteriorFinish.price +
-      flooringPrice();
-
-    setOrderTotal(total);
-  }, [selectedComponents, interiorFinish, exteriorFinish, flooring]);
 
   // For each elevation change, reset the isSelected state for all components
   useEffect(() => {
@@ -273,7 +225,6 @@ const PageDataProvider = ({ children, data }) => {
         selectedComponents,
         draggableRefs,
         hasCollisions,
-        setHasCollisions,
         selectedElevationIndex,
         setSelectedElevationIndex,
         zipCode,
@@ -305,8 +256,6 @@ const PageDataProvider = ({ children, data }) => {
         floorPlan,
         isFloorPlanView,
         hasLighting,
-        isHovered,
-        setIsHovered,
         showDragToMove,
         setShowDragToMove,
         showOutsideDroppableWarning,
@@ -320,7 +269,7 @@ const PageDataProvider = ({ children, data }) => {
         handleFpDragEnd,
         handleSelect,
         handleDeleteSelected,
-        modifiers,
+        modifiers
       }}
     >
       {children}

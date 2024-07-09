@@ -12,12 +12,7 @@ import { Models } from '../Models/Models';
 import ToggleCamera from '../ToggleCamera/ToggleCamera';
 import { PageDataContext } from '../Content/Content';
 import ElevationToggle from '../ElevationToggle/ElevationToggle';
-import debounce from 'lodash.debounce';
-import {
-  COMPONENT_NAMES,
-  COMPONENT_TYPES,
-  ELEVATION_NAMES,
-} from '@/utils/constants/names';
+import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names';
 import { DIMENSIONS } from '@/utils/constants/dimensions';
 import MultipleDroppables from '../MultipleDroppables';
 import DeleteBtn from '../DeleteBtn/DeleteBtn';
@@ -46,7 +41,8 @@ const Viewer = () => {
     handleDeleteSelected,
     showDragToMove,
     setShowDragToMove,
-    showOutsideDroppableWarning
+    showOutsideDroppableWarning,
+    handleDragMove,
   } = useContext(PageDataContext);
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
@@ -94,14 +90,14 @@ const Viewer = () => {
     const shouldShowDragToMove = () => {
       const baseConditions =
         hoveredPiece && !show3d && !isAnyItemSelected && !hoveredPiece?.fixed;
-  
+
       const additionalConditions =
         hoveredPiece?.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
         hoveredPiece?.name === COMPONENT_NAMES.OUTLET;
-  
+
       return baseConditions && additionalConditions;
     };
-    
+
     setShowDragToMove(shouldShowDragToMove());
   }, [hoveredPiece, show3d, isAnyItemSelected, setShowDragToMove]);
 
