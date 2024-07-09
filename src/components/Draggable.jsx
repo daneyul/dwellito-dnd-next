@@ -44,11 +44,9 @@ function useCollidableDraggable({ id, data: customData }) {
 export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
   const {
     scaleFactor,
-    show3d,
     containerHeightIsStandard,
     slug,
     selectedElevation,
-    setShowDragToMove,
     setShowCollision,
     isFloorPlanView,
   } = useContext(PageDataContext);
@@ -93,15 +91,15 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
   const adjForContainerHeight = (value) => {
     if (containerHeightIsStandard) {
       if (slug !== CONTAINER_40_SLUG) {
-        return value / 1.17;
+        return value;
       } else {
         return value / 1.5;
       }
     } else {
       if (slug !== CONTAINER_40_SLUG) {
-        return value / 1.17;
+        return value + (toScale(12, scaleFactor));
       } else {
-        return value / 1.5;
+        return value / 1.5 + (toScale(12, scaleFactor));
       }
     }
   };

@@ -146,6 +146,7 @@ export const electricalComponents = [
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 375,
     model: '',
-    fixed: true
+    fixed: true,
+    ceilingOnly: true
   }
 ];

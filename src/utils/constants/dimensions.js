@@ -87,11 +87,11 @@ export const DIMENSIONS = {
     },
     SLIDING_SIX: {
       WIDTH: 78,
-      HEIGHT: 80,
+      HEIGHT: 84,
       FP_HEIGHT: 8,
       POSITION: {
         x: 0,
-        y: 35,
+        y: 34,
       },
     },
     DOUBLE: {
@@ -100,7 +100,7 @@ export const DIMENSIONS = {
       FP_HEIGHT: 26,
       POSITION: {
         x: 0,
-        y: 33,
+        y: 34,
       },
     },
     HD_ROLL_UP_6: {
