@@ -86,7 +86,7 @@ const Double = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[0.81, 1.73, -0.007]}
+    customPosition={[0.81, 1.78, -0.007]}
     isRollUp={false}
   />
 );
