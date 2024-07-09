@@ -121,85 +121,6 @@ const Viewer = () => {
   const showRightArrow =
     selectedElevationIndex < mappedElevations.length - 1 && !show3d;
 
-  const debouncedUpdatePosition = useCallback(
-    debounce((id, delta, over) => {
-      setTempPositions((prev) => {
-        const newPos = {
-          ...prev,
-          [id]: {
-            x: (prev[id]?.x || 0) + delta.x,
-            y: (prev[id]?.y || 0) + delta.y,
-          },
-        };
-
-        // Check if the component is outside the droppable areas
-        const draggedComponent = selectedComponents.find(
-          (component) => component.id === id
-        );
-        if (
-          draggedComponent &&
-          (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-            draggedComponent.name === COMPONENT_NAMES.OUTLET)
-        ) {
-          const isOutsideDroppable = ![
-            DROPPABLE_LEFT,
-            DROPPABLE_RIGHT,
-            DROPPABLE_BACK,
-          ].includes(over?.id);
-
-          setSelectedComponents((prevComponents) =>
-            prevComponents.map((component) =>
-              component.id === id
-                ? {
-                    ...component,
-                  }
-                : component
-            )
-          );
-          setShowOutsideDroppableWarning(isOutsideDroppable);
-        }
-
-        return newPos;
-      });
-    }, 100),
-    [selectedComponents, setSelectedComponents]
-  );
-
-  const handleDragMove = (event) => {
-    const { over, active } = event;
-    const id = active.id;
-    const delta = event.delta;
-    debouncedUpdatePosition(id, delta, over);
-  };
-
-  const handleDragEndEnhanced = (event) => {
-    const id = event.active.id;
-    const tempPos = tempPositions[id];
-
-    if (tempPos) {
-      setSelectedComponents((prevComponents) =>
-        prevComponents.map((piece) => {
-          if (piece.id === id) {
-            return {
-              ...piece,
-              position: {
-                x: piece.position.x + tempPos.x,
-                y: piece.position.y + tempPos.y,
-              },
-            };
-          }
-          return piece;
-        })
-      );
-      setTempPositions((prev) => {
-        const newPos = { ...prev };
-        delete newPos[id];
-        return newPos;
-      });
-    }
-    handleDragEnd(event); // Perform collision and closeness checks
-  };
-
   const selectedComponent = selectedComponents.find(
     (component) => component.isSelected
   );
@@ -253,8 +174,7 @@ const Viewer = () => {
           <Collision showCollision={showCollision} />
           <DndContext
             onDragStart={handleDragStart}
-            onDragMove={handleDragMove}
-            onDragEnd={handleDragEndEnhanced}
+            onDragEnd={handleDragEnd}
             modifiers={modifiers}
           >
             {isFloorPlanView ? (
