@@ -10,6 +10,7 @@ import { v4 as uuid } from 'uuid';
 export const elevationData = [
   {
     name: ELEVATION_NAMES.RIGHT,
+    id: "elevation-right-10",
     homePlan: CONTAINER_10_SLUG,
     imgScName: 'elevation/10/standard/right.svg',
     objWidth: DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH,
@@ -18,6 +19,7 @@ export const elevationData = [
   },
   {
     name: ELEVATION_NAMES.RIGHT,
+    id: "elevation-right-20",
     homePlan: CONTAINER_20_SLUG,
     imgScName: 'elevation/20/standard/right.svg',
     imgHcName: 'elevation/20/high/right.svg',
@@ -27,6 +29,7 @@ export const elevationData = [
   },
   {
     name: ELEVATION_NAMES.RIGHT,
+    id: "elevation-right-40",
     homePlan: CONTAINER_40_SLUG,
     imgScName: 'elevation/40/standard/right.svg',
     imgHcName: 'elevation/40/high/right.svg',
@@ -36,6 +39,7 @@ export const elevationData = [
   },
   {
     name: ELEVATION_NAMES.BACK,
+    id: "elevation-back-10",
     imgScName: 'elevation/10/standard/back.svg',
     homePlan: CONTAINER_10_SLUG,
     objWidth: DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH,
@@ -44,6 +48,7 @@ export const elevationData = [
   },
   {
     name: ELEVATION_NAMES.BACK,
+    id: "elevation-back-20",
     imgScName: 'elevation/20/standard/back.svg',
     imgHcName: 'elevation/20/high/back.svg',
     homePlan: CONTAINER_20_SLUG,
@@ -53,6 +58,7 @@ export const elevationData = [
   },
   {
     name: ELEVATION_NAMES.BACK,
+    id: "elevation-back-40",
     imgScName: 'elevation/40/standard/back.svg',
     imgHcName: 'elevation/40/high/back.svg',
     homePlan: CONTAINER_40_SLUG,
@@ -62,6 +68,7 @@ export const elevationData = [
   },
   {
     name: ELEVATION_NAMES.LEFT,
+    id: "elevation-left-10",
     imgScName: 'elevation/10/standard/left.svg',
     homePlan: CONTAINER_10_SLUG,
     objWidth: DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH,
@@ -70,6 +77,7 @@ export const elevationData = [
   },
   {
     name: ELEVATION_NAMES.LEFT,
+    id: "elevation-left-20",
     imgScName: 'elevation/20/standard/left.svg',
     imgHcName: 'elevation/20/high/left.svg',
     homePlan: CONTAINER_20_SLUG,
@@ -79,6 +87,7 @@ export const elevationData = [
   },
   {
     name: ELEVATION_NAMES.LEFT,
+    id: "elevation-left-40",
     imgScName: 'elevation/40/standard/left.svg',
     imgHcName: 'elevation/40/high/left.svg',
     homePlan: CONTAINER_40_SLUG,
@@ -88,6 +97,7 @@ export const elevationData = [
   },
   {
     name: ELEVATION_NAMES.FLOOR_PLAN,
+    id: "elevation-floor-10",
     imgScName: 'floor-plans/10/floor-plan.svg',
     imgHcName: 'floor-plans/10/floor-plan.svg',
     homePlan: CONTAINER_10_SLUG,
@@ -97,6 +107,7 @@ export const elevationData = [
   },
   {
     name: ELEVATION_NAMES.FLOOR_PLAN,
+    id: "elevation-floor-20",
     imgScName: 'floor-plans/20/floor-plan.svg',
     imgHcName: 'floor-plans/20/floor-plan.svg',
     homePlan: CONTAINER_20_SLUG,
@@ -106,6 +117,7 @@ export const elevationData = [
   },
   {
     name: ELEVATION_NAMES.FLOOR_PLAN,
+    id: "elevation-floor-40",
     imgScName: 'floor-plans/40/floor-plan.svg',
     imgHcName: 'floor-plans/40/floor-plan.svg',
     homePlan: CONTAINER_40_SLUG,
@@ -114,7 +126,6 @@ export const elevationData = [
     objHcHeight: DIMENSIONS.CONTAINER.FORTY.FLOOR_PLAN.HEIGHT,
   },
 ].map((item) => ({
-  id: uuid(),
   width: '100%',
   height: 'auto',
   ...item,

@@ -1,18 +1,15 @@
-import { useContext } from 'react';
 import style from './saveOrder.module.scss';
-import { PageDataContext } from '@/components/Content/Content';
-import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
+import { useContext } from 'react';
+import { PageDataContext } from '../Content/Content';
 
 const SaveOrder = () => {
-  const { dialogOpen, setDialogOpen } = useContext(PageDataContext);
+  const { setDialogOpen } = useContext(PageDataContext);
 
   return (
     <div className={style.container}>
       <div className={style.heading}>Save Your Order</div>
       <div className={style.subheading}>Est Delivery: October 2024</div>
-      <OrderSummaryModal
-        trigger={<div className={style.button}>Continue</div>}
-      />
+      <button className={style.button} onClick={setDialogOpen}>Continue</button>
     </div>
   );
 };

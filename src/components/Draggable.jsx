@@ -133,7 +133,7 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
   // Render on corresponding elevation or render on floor plan view
   if (
     !piece.alwaysShowOn?.includes(selectedElevation.name) &&
-    !piece.elevation.includes(selectedElevation) &&
+    !piece.elevation.some(elevation => elevation.id === selectedElevation.id) &&
     !isFloorPlanView
   ) {
     return null;

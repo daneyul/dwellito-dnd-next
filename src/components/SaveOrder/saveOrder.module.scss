@@ -12,10 +12,10 @@
 .subheading {
   font-size: 18px;
   margin-top: space(6);
+  margin-bottom: space(8);
 }
 
 .button {
-  margin: space(8) 0;
   border-radius: 2px;
   background-color: color(blue);
   color: color(white);
@@ -23,4 +23,7 @@
   height: auto;
   width: 100%;
   cursor: pointer;
+  font-family: 'Chromatica', sans-serif;
+  font-size: 16px;
+  border: none;
 }

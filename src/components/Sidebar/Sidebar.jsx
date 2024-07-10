@@ -6,7 +6,6 @@ import Selector from '../Selector/Selector';
 import style from './sidebar.module.scss';
 import { PageDataContext } from '@/components/Content/Content';
 import SaveOrder from '../SaveOrder/SaveOrder';
-import YourOrder from '../YourOrder/YourOrder';
 import SingleSelect from '../SingleSelect/SingleSelect';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 import Layouts from '../Layouts/Layouts';
@@ -16,6 +15,7 @@ import {
   CONTAINER_HIGH,
   CONTAINER_STANDARD,
 } from '@/utils/constants/names';
+import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
 
 const Sidebar = () => {
   const {

@@ -21,14 +21,24 @@ import {
   CONTAINER_STANDARD,
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
-import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
 import useDragHandlers from '@/utils/hooks/useDragHandlers';
 import useOrderTotal from '@/utils/hooks/useOrderTotal';
+import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
+import {
+  getExteriorFinishFromUrl,
+  getFlooringFromUrl,
+  getInteriorFinishFromUrl,
+  getSelectionsFromUrl,
+} from '@/utils/2D/utils';
 
 export const PageDataContext = createContext();
 
 const PageDataProvider = ({ children, data }) => {
   const slug = data.slug;
+  const querySelections = getSelectionsFromUrl(data.querySelectionData);
+  const queryInterior = getInteriorFinishFromUrl(data.querySelectionData);
+  const queryExterior = getExteriorFinishFromUrl(data.querySelectionData);
+  const queryFlooring = getFlooringFromUrl(data.querySelectionData);
 
   // 2D Library Data
   const {
@@ -43,41 +53,67 @@ const PageDataProvider = ({ children, data }) => {
     useContext(Library3dDataContext);
 
   // State
-  const DEFAULT_ELEVATION = elevationData.find(
-    (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug
-  );
-  const [selectedContainerHeight, setSelectedContainerHeight] =
-    useState(CONTAINER_STANDARD);
-  const containerHeightIsStandard =
-    selectedContainerHeight === CONTAINER_STANDARD;
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);
   const [cameraReady, setCameraReady] = useState(true);
-  const [zipCode, setZipCode] = useState('');
+  const [hasLighting, setHasLighting] = useState(false);
+  const [showDragToMove, setShowDragToMove] = useState(false);
+  const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] =
+    useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [scaleFactor, setScaleFactor] = useState(2.5);
+
+  // Selections
   const [selectedComponents, setSelectedComponents] = useState(
-    DEFAULT_COMPONENTS.map((component) => ({
-      ...component,
-      lastValidPosition: { ...component.position },
-    }))
+    querySelections ||
+      DEFAULT_COMPONENTS.map((component) => ({
+        ...component,
+        lastValidPosition: { ...component.position },
+      }))
+  );
+  const [exteriorFinish, setExteriorFinish] = useState(
+    queryExterior || EXTERIOR_FINISH_OPTIONS[0]
+  );
+  const [interiorFinish, setInteriorFinish] = useState(
+    queryInterior || INTERIOR_FINISH_OPTIONS[0]
+  );
+  const [flooring, setFlooring] = useState(
+    queryFlooring || FLOORING_OPTIONS[0]
+  );
+
+  // Elevation
+  const DEFAULT_ELEVATION = elevationData.find(
+    (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug
   );
   const [selectedElevation, setSelectedElevation] = useState(DEFAULT_ELEVATION);
   const [selectedElevationIndex, setSelectedElevationIndex] = useState(0);
+
   const draggableRefs = selectedComponents.reduce((acc, component) => {
     acc[component.id] = React.createRef();
     return acc;
   }, {});
-  const [exteriorFinish, setExteriorFinish] = useState(
-    EXTERIOR_FINISH_OPTIONS[0]
-  );
-  const [interiorFinish, setInteriorFinish] = useState(
-    INTERIOR_FINISH_OPTIONS[0]
-  );
-  const [flooring, setFlooring] = useState(FLOORING_OPTIONS[0]);
+
+  // Container
+  const [selectedContainerHeight, setSelectedContainerHeight] =
+    useState(CONTAINER_STANDARD);
+  const containerHeightIsStandard =
+    selectedContainerHeight === CONTAINER_STANDARD;
   const selectedContainer = containerData.find(
     (container) => container.slug === slug
   );
   const containerId = selectedContainer.id;
+  const containerSize = () => {
+    if (selectedContainer === containerData[0]) {
+      return '10';
+    } else if (selectedContainer === containerData[1]) {
+      return '20';
+    } else if (selectedContainer === containerData[2]) {
+      return '40';
+    }
+  };
+
+  // Floor Plan
   const floorPlan = elevationData.find((elevation) => {
     return (
       elevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
@@ -85,12 +121,6 @@ const PageDataProvider = ({ children, data }) => {
     );
   });
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
-  const [hasLighting, setHasLighting] = useState(false);
-  const [showDragToMove, setShowDragToMove] = useState(false);
-  const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] =
-    useState(false);
-const [dialogOpen, setDialogOpen] = useState(false);
-  const [scaleFactor, setScaleFactor] = useState(2.5);
 
   const {
     handleDragStart,
@@ -102,7 +132,7 @@ const [dialogOpen, setDialogOpen] = useState(false);
     modifiers,
     hasCollisions,
     showCollision,
-    setShowCollision
+    setShowCollision,
   } = useDragHandlers({
     selectedComponents,
     setSelectedComponents,
@@ -118,16 +148,6 @@ const [dialogOpen, setDialogOpen] = useState(false);
     exteriorFinish,
     flooring,
   });
-
-  const containerSize = () => {
-    if (selectedContainer === containerData[0]) {
-      return '10';
-    } else if (selectedContainer === containerData[1]) {
-      return '20';
-    } else if (selectedContainer === containerData[2]) {
-      return '40';
-    }
-  };
 
   const [mappedElevations, setMappedElevations] = useState(
     elevationData.filter((elevation) => {
@@ -222,13 +242,10 @@ const [dialogOpen, setDialogOpen] = useState(false);
         showCollision,
         setShowCollision,
         setSelectedElevation,
-        selectedComponents,
         draggableRefs,
         hasCollisions,
         selectedElevationIndex,
         setSelectedElevationIndex,
-        zipCode,
-        setZipCode,
         show3d,
         setShow3d,
         exteriorFinish,
@@ -269,7 +286,7 @@ const [dialogOpen, setDialogOpen] = useState(false);
         handleFpDragEnd,
         handleSelect,
         handleDeleteSelected,
-        modifiers
+        modifiers,
       }}
     >
       {children}
@@ -302,7 +319,8 @@ const Content = ({ data }) => {
               >
                 <Viewer />
                 <Sidebar />
-                <OrderSummaryModal trigger={<PriceTotal />} />
+                <PriceTotal />
+                <OrderSummaryModal />
               </div>
             </div>
           </PageDataProvider>

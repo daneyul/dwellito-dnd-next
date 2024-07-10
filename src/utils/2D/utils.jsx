@@ -443,11 +443,75 @@ export const calculateCSSPos = ({
 };
 
 export const jsonToBase64 = (jsonObj) => {
-  // Convert JSON object to string
-  const jsonString = JSON.stringify(jsonObj);
+  try {
+    // Convert JSON object to string
+    const jsonString = JSON.stringify(jsonObj);
 
-  // Encode the URI component in Base64
-  const base64Encoded = btoa(jsonString);
+    // Encode the JSON string to Base64
+    const base64Encoded = btoa(encodeURIComponent(jsonString).replace(/%([0-9A-F]{2})/g, (match, p1) => {
+      return String.fromCharCode('0x' + p1);
+    }));
 
-  return base64Encoded;
+    return base64Encoded;
+  } catch (error) {
+    console.error('Failed to convert JSON to Base64:', error);
+    return null;
+  }
 };
+
+export const base64ToJson = (base64String) => {
+  try {
+    // Decode the Base64 string
+    const jsonString = decodeURIComponent(atob(base64String).split('').map(c => {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    // Parse the JSON string to get the JSON object
+    const jsonObj = JSON.parse(jsonString);
+
+    return jsonObj;
+  } catch (error) {
+    console.error('Failed to convert Base64 to JSON:', error);
+    return null;
+  }
+};
+
+export const getSelectionsFromUrl = (querySelectionData) => {
+  if (querySelectionData) {
+    const jsonSelections = base64ToJson(querySelectionData);
+    if (jsonSelections && jsonSelections.components) {
+      return Object.values(jsonSelections.components);
+    }
+  }
+  return null;
+};
+
+export const getInteriorFinishFromUrl = (querySelectionData) => {
+  if (querySelectionData) {
+    const jsonSelections = base64ToJson(querySelectionData);
+    if (jsonSelections && jsonSelections.interior) {
+      return jsonSelections.interior;
+    }
+  }
+  return null;
+}
+
+export const getExteriorFinishFromUrl = (querySelectionData) => {
+  if (querySelectionData) {
+    const jsonSelections = base64ToJson(querySelectionData);
+    if (jsonSelections && jsonSelections.exterior) {
+      return jsonSelections.exterior;
+    }
+  }
+  return null;
+}
+
+export const getFlooringFromUrl = (querySelectionData) => {
+  if (querySelectionData) {
+    const jsonSelections = base64ToJson(querySelectionData);
+    if (jsonSelections && jsonSelections.flooring) {
+      return jsonSelections.flooring;
+    }
+  }
+  return null;
+}

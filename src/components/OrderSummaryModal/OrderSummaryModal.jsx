@@ -4,6 +4,7 @@ import style from './orderSummaryModal.module.scss';
 import * as Dialog from '@radix-ui/react-dialog';
 import { PageDataContext } from '@/components/Content/Content';
 import {
+  base64ToJson,
   checkDistance,
   generateImgSrc,
   getUniqueElevationObjects,
@@ -16,6 +17,7 @@ import {
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
 import * as Form from '@radix-ui/react-form';
+import useSaveSelections from '@/utils/hooks/useSaveSelections';
 
 const OrderSummaryModal = ({ trigger }) => {
   const { DIMENSIONS } = useContext(Library2dDataContext);
@@ -28,6 +30,8 @@ const OrderSummaryModal = ({ trigger }) => {
     exteriorFinish,
     flooring,
     slug,
+    dialogOpen,
+    setDialogOpen
   } = useContext(PageDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
@@ -138,11 +142,19 @@ const OrderSummaryModal = ({ trigger }) => {
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior if not already handled
 
+    const { convertedSelections } = useSaveSelections({
+      selectedComponents,
+      interiorFinish,
+      exteriorFinish,
+      flooring,
+    });
+
     try {
-      await triggerZapier({ data });
-      console.log('Zapier request attempted');
+      // const saveURL = `?data=${convertedSelections}`;
+      // await triggerZapier({ data });
+      // console.log('Zapier request attempted');
     } catch (error) {
-      console.error('Error triggering Zapier:', error);
+      // console.error('Error triggering Zapier:', error);
     }
   };
 
@@ -209,10 +221,7 @@ const OrderSummaryModal = ({ trigger }) => {
   );
 
   return (
-    <Dialog.Root>
-      <Dialog.Trigger>
-        {trigger}
-      </Dialog.Trigger>
+    <Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
       <Dialog.Portal>
         <Dialog.Overlay className={style.overlay}>
           <Dialog.Content className={style.content}>

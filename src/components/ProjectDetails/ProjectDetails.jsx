@@ -9,7 +9,7 @@ import { PageDataContext } from '@/components/Content/Content';
 
 const ProjectDetails = () => {
   const router = useRouter();
-  const { setZipCode } = useContext(PageDataContext);
+  const [zipCode, setZipCode] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
 
