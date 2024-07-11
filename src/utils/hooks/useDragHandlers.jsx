@@ -42,14 +42,16 @@ const useDragHandlers = ({
 
     if (!draggedItem) return null;
 
+    const isOnElevationRight = draggedItem.elevation[0].name === ELEVATION_NAMES.RIGHT;
+    const isOnElevationLeft = draggedItem.elevation[0].name === ELEVATION_NAMES.LEFT;
+    const isOnElevationBack = draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
+
     const isDoor = draggedItem.objType === COMPONENT_TYPES.DOOR;
     const isWindow = draggedItem.objType === COMPONENT_TYPES.WINDOW;
     const isFixed = draggedItem.fixed;
     const isHeaterOrOutlet =
       draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
       draggedItem.name === COMPONENT_NAMES.OUTLET;
-
-    const floorPlan = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
     setSelectedComponents((prevComponents) =>
       prevComponents.map((component) =>
@@ -62,9 +64,26 @@ const useDragHandlers = ({
       )
     );
 
-    if (floorPlan) {
-      if (draggedItem.objType !== COMPONENT_TYPES.ELECTRICAL || isFixed) {
-        setModifiers([...fixedModifiers]);
+    // Set modifiers
+    if (isFloorPlanView) {
+      if (isFixed) {
+        setModifiers([fixedModifiers]);
+      } else if (isOnElevationRight || isOnElevationLeft) {
+        if (isDoor) {
+          setModifiers([...defaultModifiers, restrictToHorizontalAxis, snapToIncrement(11 * scaleFactor)]);
+        } else if (isWindow) {
+          setModifiers([...defaultModifiers, restrictToHorizontalAxis, snapToIncrement(6 * scaleFactor)]);
+        } else {
+          setModifiers([...defaultModifiers, restrictToHorizontalAxis]);
+        }
+      } else if (isOnElevationBack) {
+        if (isDoor) {
+          setModifiers([...defaultModifiers, restrictToVerticalAxis, snapToIncrement(11 * scaleFactor)]);
+        } else if (isWindow) {
+          setModifiers([...defaultModifiers, restrictToVerticalAxis, snapToIncrement(6 * scaleFactor)]);
+        } else {
+          setModifiers([...defaultModifiers, restrictToVerticalAxis]);
+        }
       } else {
         setModifiers([]);
       }
@@ -93,17 +112,18 @@ const useDragHandlers = ({
     const isOnElevationRight = draggedItem.elevation[0].name === ELEVATION_NAMES.RIGHT;
     const isOnElevationLeft = draggedItem.elevation[0].name === ELEVATION_NAMES.LEFT;
     const isOnElevationBack = draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
-    
+
     const isHeaterOrOutlet =
       draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
       draggedItem.name === COMPONENT_NAMES.OUTLET;
 
-    const floorPlan = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
-    const isOutsideFloorPlanBounds =
+    const isOutsideBounds =
       !over ||
       ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(over.id);
 
-    if (isHeaterOrOutlet && isOutsideFloorPlanBounds) {
+    
+    if (isHeaterOrOutlet && isOutsideBounds) {
+      // Reset position of heater or outlet if outside droppable area
       setSelectedComponents((prevComponents) =>
         prevComponents.map((component) =>
           component.id === draggedId
@@ -116,29 +136,76 @@ const useDragHandlers = ({
       );
       setShowOutsideDroppableWarning(false);
     } else {
+      // Update position of dragged component
       let updatedPieces = selectedComponents.map((piece) => {
         if (piece.id === draggedId) {
-          return {
-            ...piece,
-            position: {
-              x: piece.position.x + event.delta.x,
-              y: piece.position.y + event.delta.y,
-            },
-            lastValidPosition: {
-              x: piece.position.x + event.delta.x,
-              y: piece.position.y + event.delta.y,
-            },
-          };
+          if (isFloorPlanView) {
+            // If floor plan view
+            if (isOnElevationRight) {
+              // If elevation is right, update the x position
+              return {
+                ...piece,
+                position: {
+                  x: piece.position.x + event.delta.x,
+                  y: piece.position.y + event.delta.y,
+                },
+                lastValidPosition: {
+                  x: piece.position.x + event.delta.x,
+                  y: piece.position.y + event.delta.y,
+                },
+              };
+            } else if (isOnElevationLeft) {
+              // If elevation is left, update the x position in reverse
+              return {
+                ...piece,
+                position: {
+                  x: piece.position.x - event.delta.x,
+                  y: piece.position.y + event.delta.y,
+                },
+                lastValidPosition: {
+                  x: piece.position.x -event.delta.x,
+                  y: piece.position.y + event.delta.y,
+                },
+              };
+            } else if (isOnElevationBack) {
+              // If elevation is back, update the x position based on the delta.y
+              return {
+                ...piece,
+                position: {
+                  x: piece.position.x - event.delta.y,
+                  y: piece.position.y
+                },
+                lastValidPosition: {
+                  x: piece.position.x - event.delta.y,
+                  y: piece.position.y
+                },
+              };
+            }
+          } else {
+            return {
+              ...piece,
+              position: {
+                x: piece.position.x + event.delta.x,
+                y: piece.position.y + event.delta.y,
+              },
+              lastValidPosition: {
+                x: piece.position.x + event.delta.x,
+                y: piece.position.y + event.delta.y,
+              },
+            };
+          }
         }
         return piece;
       });
 
+      // Reset collision and closeness flags
       updatedPieces = updatedPieces.map((piece) => ({
         ...piece,
         isColliding: false,
         isTooClose: false,
       }));
 
+      // Check for collisions and closeness
       updatedPieces.forEach((piece, index) => {
         if (piece.id !== draggedId) {
           const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
@@ -168,6 +235,7 @@ const useDragHandlers = ({
 
       setSelectedComponents(updatedPieces);
 
+      // Set collision and closeness states
       const collisionDetected = updatedPieces.some(
         (piece) => piece.isColliding
       );

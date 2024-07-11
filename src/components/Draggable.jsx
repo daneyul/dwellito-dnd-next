@@ -1,7 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useContext, useEffect, useState } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
-import { toScale, generateImgSrc, calculateCSSPos, deScale } from '../utils/2D/utils';
+import {
+  toScale,
+  generateImgSrc,
+  calculateCSSPos,
+  deScale,
+} from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import {
   COMPONENT_TYPES,
@@ -133,7 +138,9 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
   // Render on corresponding elevation or render on floor plan view
   if (
     !piece.alwaysShowOn?.includes(selectedElevation.name) &&
-    !piece.elevation.some(elevation => elevation.id === selectedElevation.id) &&
+    !piece.elevation.some(
+      (elevation) => elevation.id === selectedElevation.id
+    ) &&
     !isFloorPlanView
   ) {
     return null;
@@ -161,37 +168,42 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     selectedElevation,
   });
 
-  const isRightOrLeft = piece.elevation[0].name === ELEVATION_NAMES.RIGHT || piece.elevation[0].name === ELEVATION_NAMES.LEFT;
+  const isRight = piece.elevation[0].name === ELEVATION_NAMES.RIGHT;
+  const isLeft = piece.elevation[0].name === ELEVATION_NAMES.LEFT;
   const isBack = piece.elevation[0].name === ELEVATION_NAMES.BACK;
 
   const determineTransformX = (dragTransform) => {
     if (isFloorPlanView) {
-      if (isRightOrLeft) {
-        return dragTransform.x;
+      if (isRight) {
+        return dragTransform?.x;
+      } else if (isLeft) {
+        return -dragTransform?.x;
       } else if (isBack) {
-        return 0;
+        return -dragTransform?.y;
       }
     } else {
-      return dragTransform.x;
+      return dragTransform?.x;
     }
-  }
+  };
 
   const determineTransformY = (dragTransform) => {
     if (isFloorPlanView) {
-      if (isRightOrLeft) {
-        return 0;
+      if (isRight || isLeft) {
+        return dragTransform?.y;
       } else if (isBack) {
         return 0;
       }
     } else {
-      return dragTransform.y;
+      return dragTransform?.y;
     }
-  }
+  };
 
   const combinedTransforms = [
     calculatedPos.transform,
     dragTransform
-      ? `translate3d(${dragTransform.x}px, ${dragTransform.y}px, 0)`
+      ? `translate3d(${determineTransformX(
+          dragTransform
+        )}px, ${determineTransformY(dragTransform)}px, 0)`
       : '',
   ]
     .filter(Boolean)
