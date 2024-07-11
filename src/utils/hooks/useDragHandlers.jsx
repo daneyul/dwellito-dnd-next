@@ -85,6 +85,7 @@ const useDragHandlers = ({
           setModifiers([...defaultModifiers, restrictToVerticalAxis]);
         }
       } else {
+        console.log('here')
         setModifiers([]);
       }
     } else if (isDoor) {
@@ -178,6 +179,18 @@ const useDragHandlers = ({
                 lastValidPosition: {
                   x: piece.position.x - event.delta.y,
                   y: piece.position.y
+                },
+              };
+            } else {
+              return {
+                ...piece,
+                position: {
+                  x: piece.position.x + event.delta.x,
+                  y: piece.position.y + event.delta.y,
+                },
+                lastValidPosition: {
+                  x: piece.position.x + event.delta.x,
+                  y: piece.position.y + event.delta.y,
                 },
               };
             }

@@ -180,6 +180,8 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
         return -dragTransform?.x;
       } else if (isBack) {
         return -dragTransform?.y;
+      } else {
+        return dragTransform?.x;
       }
     } else {
       return dragTransform?.x;
@@ -192,6 +194,8 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
         return dragTransform?.y;
       } else if (isBack) {
         return 0;
+      } else {
+        return dragTransform?.y;
       }
     } else {
       return dragTransform?.y;
