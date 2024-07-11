@@ -104,8 +104,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
           ...CustomStyle,
           position: 'absolute',
           width: `${toScale(floorPlan.objWidth, scaleFactor)}px`,
-          height: `${toScale(24, scaleFactor)}px`,
-          border: '1px solid red',
+          height: `${toScale(18, scaleFactor)}px`,
         }}
       >
         {filterComponents({
@@ -130,8 +129,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
           position: 'absolute',
           bottom: '0',
           width: `${toScale(floorPlan.objWidth, scaleFactor)}px`,
-          height: toScale(24, scaleFactor),
-          border: '1px solid red'
+          height: toScale(18, scaleFactor),
         }}
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.RIGHT }).map(
@@ -153,10 +151,9 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
         style={{
           ...CustomStyle,
           position: 'absolute',
-          width: toScale(24, scaleFactor),
+          width: toScale(18, scaleFactor),
           height: `${toScale(objectHeight, scaleFactor)}px`,
           right: 0,
-          border: '1px solid red'
         }}
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.BACK }).map(
@@ -179,10 +176,9 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
           ...CustomStyle,
           position: 'absolute',
           width: `${toScale(floorPlan.objWidth, scaleFactor)}px`,
-          height: `${toScale(24, scaleFactor)}px`,
+          height: `${toScale(18, scaleFactor)}px`,
           top: '50%',
           transform: 'translateY(-50%)',
-          border: '1px solid red'
         }}
       >
         {filterFixedCeilingComponents().map((piece) => (

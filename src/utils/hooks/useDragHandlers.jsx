@@ -84,17 +84,26 @@ const useDragHandlers = ({
   const handleDragEnd = (event) => {
     const { over, active } = event;
     const draggedId = active.id;
-    const draggedComponent = selectedComponents.find(
+    const draggedItem = selectedComponents.find(
       (component) => component.id === draggedId
     );
 
-    if (
-      draggedComponent &&
-      (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-        draggedComponent.name === COMPONENT_NAMES.OUTLET) &&
-      (!over ||
-        ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(over.id))
-    ) {
+    if (!draggedItem) return null;
+
+    const isOnElevationRight = draggedItem.elevation[0].name === ELEVATION_NAMES.RIGHT;
+    const isOnElevationLeft = draggedItem.elevation[0].name === ELEVATION_NAMES.LEFT;
+    const isOnElevationBack = draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
+    
+    const isHeaterOrOutlet =
+      draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+      draggedItem.name === COMPONENT_NAMES.OUTLET;
+
+    const floorPlan = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
+    const isOutsideFloorPlanBounds =
+      !over ||
+      ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(over.id);
+
+    if (isHeaterOrOutlet && isOutsideFloorPlanBounds) {
       setSelectedComponents((prevComponents) =>
         prevComponents.map((component) =>
           component.id === draggedId
@@ -133,9 +142,9 @@ const useDragHandlers = ({
       updatedPieces.forEach((piece, index) => {
         if (piece.id !== draggedId) {
           const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
+          if (!draggedPiece) return null;
 
           if (
-            draggedPiece &&
             checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
           ) {
             updatedPieces[index].isColliding = true;
@@ -146,7 +155,6 @@ const useDragHandlers = ({
           }
 
           if (
-            draggedPiece &&
             checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
           ) {
             updatedPieces[index].isTooClose = true;
@@ -176,9 +184,8 @@ const useDragHandlers = ({
     );
 
     if (
-      draggedComponent &&
-      (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-        draggedComponent.name === COMPONENT_NAMES.OUTLET)
+      draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+      draggedComponent.name === COMPONENT_NAMES.OUTLET
     ) {
       const isOutsideDroppable = ![
         DROPPABLE_LEFT,
