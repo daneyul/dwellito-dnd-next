@@ -4,9 +4,6 @@ import { droppableWidth, generateImgSrc, toScale } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import {
   COMPONENT_TYPES,
-  CONTAINER_10_SLUG,
-  CONTAINER_20_SLUG,
-  CONTAINER_40_SLUG,
   DROPPABLE_BACK,
   DROPPABLE_LEFT,
   DROPPABLE_MIDDLE,
@@ -26,18 +23,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
     draggableRefs,
     selectedContainer,
     floorPlan,
-    slug,
   } = useContext(PageDataContext);
-
-  const containerSize = () => {
-    if (slug === CONTAINER_10_SLUG) {
-      return DIMENSIONS.CONTAINER.TEN;
-    } else if (slug === CONTAINER_20_SLUG) {
-      return DIMENSIONS.CONTAINER.TWENTY;
-    } else if (slug === CONTAINER_40_SLUG) {
-      return DIMENSIONS.CONTAINER.FORTY;
-    }
-  };
 
   const objectHeight = containerHeightIsStandard
     ? selectedElevation.objScHeight
@@ -117,13 +103,9 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
         style={{
           ...CustomStyle,
           position: 'absolute',
-          width: `${toScale(
-            droppableWidth(selectedElevation, DIMENSIONS, selectedContainer),
-            scaleFactor
-          )}px`,
+          width: `${toScale(floorPlan.objWidth, scaleFactor)}px`,
           height: `${toScale(24, scaleFactor)}px`,
-          left: '50%',
-          transform: 'translateX(-50%)',
+          border: '1px solid red',
         }}
       >
         {filterComponents({
@@ -147,13 +129,9 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
           ...CustomStyle,
           position: 'absolute',
           bottom: '0',
-          width: `${toScale(
-            droppableWidth(selectedElevation, DIMENSIONS, selectedContainer),
-            scaleFactor
-          )}px`,
+          width: `${toScale(floorPlan.objWidth, scaleFactor)}px`,
           height: toScale(24, scaleFactor),
-          left: '50%',
-          transform: 'translateX(-50%)',
+          border: '1px solid red'
         }}
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.RIGHT }).map(
@@ -175,14 +153,10 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
         style={{
           ...CustomStyle,
           position: 'absolute',
-          width: `${toScale(24, scaleFactor)}px`,
-          height: `${toScale(
-            containerSize().FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2,
-            scaleFactor
-          )}px`,
+          width: toScale(24, scaleFactor),
+          height: `${toScale(objectHeight, scaleFactor)}px`,
           right: 0,
-          top: '50%',
-          transform: 'translateY(-50%)',
+          border: '1px solid red'
         }}
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.BACK }).map(
@@ -204,12 +178,11 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
         style={{
           ...CustomStyle,
           position: 'absolute',
-          width: `${toScale(
-            containerSize().FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2
-          )}px`,
+          width: `${toScale(floorPlan.objWidth, scaleFactor)}px`,
           height: `${toScale(24, scaleFactor)}px`,
           top: '50%',
           transform: 'translateY(-50%)',
+          border: '1px solid red'
         }}
       >
         {filterFixedCeilingComponents().map((piece) => (

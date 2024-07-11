@@ -13,7 +13,8 @@ import {
   DROPPABLE_RIGHT,
   ELEVATION_NAMES,
 } from '../constants/names';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import debounce from 'lodash.debounce';
 
 const useDragHandlers = ({
   selectedComponents,
@@ -28,6 +29,7 @@ const useDragHandlers = ({
   const [hasCollisions, setHasCollisions] = useState(false);
   const [showCollision, setShowCollision] = useState(false);
   const [, setIsTooClose] = useState(false);
+  const [tempPositions, setTempPositions] = useState({});
 
   // Modifiers
   const defaultModifiers = [restrictToParentElement, snapToGridModifier];
@@ -49,12 +51,12 @@ const useDragHandlers = ({
       draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
       draggedItem.name === COMPONENT_NAMES.OUTLET;
 
-    // const itemIsOnElevationLeft =
-    //   draggedItem.elevation[0] === ELEVATION_NAMES.LEFT;
-    // const itemIsOnElevationRight =
-    //   draggedItem.elevation[0] === ELEVATION_NAMES.RIGHT;
-    // const itemIsOnElevationBack =
-    //   draggedItem.elevation[0] === ELEVATION_NAMES.BACK;
+    const itemIsOnElevationLeft =
+      draggedItem.elevation[0] === ELEVATION_NAMES.LEFT;
+    const itemIsOnElevationRight =
+      draggedItem.elevation[0] === ELEVATION_NAMES.RIGHT;
+    const itemIsOnElevationBack =
+      draggedItem.elevation[0] === ELEVATION_NAMES.BACK;
     const floorPlan = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
     setSelectedComponents((prevComponents) =>
@@ -183,12 +185,83 @@ const useDragHandlers = ({
     }
   };
 
-  const handleFpDragStart = () => {
-    return null;
+  const debouncedUpdatePosition = useCallback(
+    debounce((id, delta, over) => {
+      setTempPositions((prev) => {
+        const newPos = {
+          ...prev,
+          [id]: {
+            x: (prev[id]?.x || 0) + delta.x,
+            y: (prev[id]?.y || 0) + delta.y,
+          },
+        };
+
+        // Check if the component is outside the droppable areas
+        const draggedComponent = selectedComponents.find(
+          (component) => component.id === id
+        );
+        if (
+          draggedComponent &&
+          (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+            draggedComponent.name === COMPONENT_NAMES.OUTLET)
+        ) {
+          const isOutsideDroppable = ![
+            DROPPABLE_LEFT,
+            DROPPABLE_RIGHT,
+            DROPPABLE_BACK,
+          ].includes(over?.id);
+
+          setSelectedComponents((prevComponents) =>
+            prevComponents.map((component) =>
+              component.id === id
+                ? {
+                    ...component,
+                  }
+                : component
+            )
+          );
+          setShowOutsideDroppableWarning(isOutsideDroppable);
+        }
+
+        return newPos;
+      });
+    }, 100),
+    [selectedComponents, setSelectedComponents]
+  );
+
+  const handleDragMove = (event) => {
+    const { over, active } = event;
+    const id = active.id;
+    const delta = event.delta;
+    debouncedUpdatePosition(id, delta, over);
   };
 
-  const handleFpDragEnd = () => {
-    return null;
+  const handleDragEndEnhanced = (event) => {
+    const id = event.active.id;
+    const tempPos = tempPositions[id];
+
+    if (tempPos) {
+      setSelectedComponents((prevComponents) =>
+        prevComponents.map((piece) => {
+          if (piece.id === id) {
+            return {
+              ...piece,
+              position: {
+                x: piece.position.x + tempPos.x,
+                y: piece.position.y + tempPos.y,
+              },
+            };
+          }
+          return piece;
+        })
+      );
+      setTempPositions((prev) => {
+        const newPos = { ...prev };
+        delete newPos[id];
+        return newPos;
+      });
+    }
+    handleDragEnd(event); // Perform collision and closeness checks
   };
 
   const handleSelect = (selectedId) => {
@@ -228,8 +301,8 @@ const useDragHandlers = ({
   return {
     handleDragStart,
     handleDragEnd,
-    handleFpDragStart,
-    handleFpDragEnd,
+    handleDragMove,
+    handleDragEndEnhanced,
     handleSelect,
     handleDeleteSelected,
     modifiers,

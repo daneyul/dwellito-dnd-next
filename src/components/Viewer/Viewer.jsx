@@ -42,6 +42,8 @@ const Viewer = () => {
     showDragToMove,
     setShowDragToMove,
     showOutsideDroppableWarning,
+    handleDragMove,
+    handleDragEndEnhanced,
   } = useContext(PageDataContext);
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
@@ -126,10 +128,6 @@ const Viewer = () => {
     );
   };
 
-  const handleDragMove = (event) => {
-    const { over, active } = event;
-  }
-
   return (
     <>
       <div
@@ -161,8 +159,8 @@ const Viewer = () => {
           <Collision showCollision={showCollision} />
           <DndContext
             onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
             onDragMove={handleDragMove}
+            onDragEnd={handleDragEndEnhanced}
             modifiers={modifiers}
           >
             {isFloorPlanView ? (

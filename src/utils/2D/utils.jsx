@@ -334,12 +334,12 @@ export const calculateCSSPos = ({
         transform = `rotate(90deg) translateX(10px)`;
         positionStyles = {
           bottom: '0',
-          right: `${adjForContainerHeight(piece.position.x)}px`,
+          right: `${adjForContainerHeight(piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor))}px`,
         };
       } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
         transform = 'translateX(50%)';
         positionStyles = {
-          bottom: `${adjForContainerHeight(piece.position.x)}px`,
+          bottom: `${adjForContainerHeight(piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor))}px`,
           right: '0',
         };
       } else if (piece.name === COMPONENT_NAMES.ROOF_VENT) {
@@ -376,12 +376,12 @@ export const calculateCSSPos = ({
         transform = 'translateY(100%)';
         positionStyles = {
           bottom: '10px',
-          left: `${piece.position.x}px`,
+          left: `${piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
         };
       } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
         transform = `rotate(270deg) translateX(100%) translateY(calc(100% - 12px))`;
         positionStyles = {
-          bottom: `${piece.position.x}px`,
+          bottom: `${piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
           right: `0`,
           transformOrigin: 'right bottom',
         };
