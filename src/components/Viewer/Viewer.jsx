@@ -42,7 +42,6 @@ const Viewer = () => {
     showDragToMove,
     setShowDragToMove,
     showOutsideDroppableWarning,
-    handleDragMove,
   } = useContext(PageDataContext);
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
@@ -127,6 +126,10 @@ const Viewer = () => {
     );
   };
 
+  const handleDragMove = (event) => {
+    const { over, active } = event;
+  }
+
   return (
     <>
       <div
@@ -159,6 +162,7 @@ const Viewer = () => {
           <DndContext
             onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
+            onDragMove={handleDragMove}
             modifiers={modifiers}
           >
             {isFloorPlanView ? (

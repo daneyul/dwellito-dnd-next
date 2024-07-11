@@ -1,5 +1,9 @@
 import { v4 as uuid } from 'uuid';
-import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES } from '../constants/names';
+import {
+  COMPONENT_NAMES,
+  COMPONENT_TYPES,
+  ELEVATION_NAMES,
+} from '../constants/names';
 import { DIMENSIONS } from '../constants/dimensions';
 import { electricalComponents } from '../constants/components/electrical';
 
@@ -70,12 +74,18 @@ export const checkDistance = ({
   selectedContainer,
   scaleFactor,
 }) => {
-  if (!component) { return null; };
-  
+  if (!component) {
+    return null;
+  }
+
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
   // Use the function to get dynamic width
-  const droppableWidthValue = droppableWidth(selectedElevation, DIMENSIONS, selectedContainer);
+  const droppableWidthValue = droppableWidth(
+    selectedElevation,
+    DIMENSIONS,
+    selectedContainer
+  );
 
   const boundaries = isFloorPlanView ? 0 : DIMENSIONS.BOUNDARIES.x;
 
@@ -94,9 +104,8 @@ export const handleAddComponent = ({
   selectedComponents,
   setSelectedComponents,
   selectedElevation,
-  floorPlan
-}
-) => {
+  floorPlan,
+}) => {
   const newItem = {
     ...item,
     id: uuid(),
@@ -104,10 +113,19 @@ export const handleAddComponent = ({
     elevation: [...item.elevation, selectedElevation],
   };
   const isVent = item.objType === COMPONENT_TYPES.VENT;
-  const findRoofVent = selectedComponents.find((component) => component.name === COMPONENT_NAMES.ROOF_VENT);
-  const roofVentObjData = electricalComponents.find((component) => component.name === COMPONENT_NAMES.ROOF_VENT);
+  const findRoofVent = selectedComponents.find(
+    (component) => component.name === COMPONENT_NAMES.ROOF_VENT
+  );
+  const roofVentObjData = electricalComponents.find(
+    (component) => component.name === COMPONENT_NAMES.ROOF_VENT
+  );
 
-  const roofVent = { ...roofVentObjData, id: uuid(), position: { ...roofVentObjData.position }, elevation: [floorPlan] };
+  const roofVent = {
+    ...roofVentObjData,
+    id: uuid(),
+    position: { ...roofVentObjData.position },
+    elevation: [floorPlan],
+  };
 
   setSelectedComponents((prevSelectedComponents) => {
     if (findRoofVent) {
@@ -316,16 +334,12 @@ export const calculateCSSPos = ({
         transform = `rotate(90deg) translateX(10px)`;
         positionStyles = {
           bottom: '0',
-          right: `${adjForContainerHeight(
-            piece.position.x
-          )}px`,
+          right: `${adjForContainerHeight(piece.position.x)}px`,
         };
       } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
         transform = 'translateX(50%)';
         positionStyles = {
-          bottom: `${adjForContainerHeight(
-            piece.position.x
-          )}px`,
+          bottom: `${adjForContainerHeight(piece.position.x)}px`,
           right: '0',
         };
       } else if (piece.name === COMPONENT_NAMES.ROOF_VENT) {
@@ -355,18 +369,14 @@ export const calculateCSSPos = ({
       } else if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
         transform = 'rotate(180deg) translateY(100%)';
         positionStyles = {
-          right: `${
-            piece.position.x
-          }px`,
+          right: `${piece.position.x}px`,
           top: '10px',
         };
       } else if (piece.elevation[0].name === ELEVATION_NAMES.RIGHT) {
         transform = 'translateY(100%)';
         positionStyles = {
           bottom: '10px',
-          left: `${
-            piece.position.x
-          }px`,
+          left: `${piece.position.x}px`,
         };
       } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
         transform = `rotate(270deg) translateX(100%) translateY(calc(100% - 12px))`;
@@ -448,9 +458,11 @@ export const jsonToBase64 = (jsonObj) => {
     const jsonString = JSON.stringify(jsonObj);
 
     // Encode the JSON string to Base64
-    const base64Encoded = btoa(encodeURIComponent(jsonString).replace(/%([0-9A-F]{2})/g, (match, p1) => {
-      return String.fromCharCode('0x' + p1);
-    }));
+    const base64Encoded = btoa(
+      encodeURIComponent(jsonString).replace(/%([0-9A-F]{2})/g, (match, p1) => {
+        return String.fromCharCode('0x' + p1);
+      })
+    );
 
     return base64Encoded;
   } catch (error) {
@@ -462,9 +474,14 @@ export const jsonToBase64 = (jsonObj) => {
 export const base64ToJson = (base64String) => {
   try {
     // Decode the Base64 string
-    const jsonString = decodeURIComponent(atob(base64String).split('').map(c => {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    const jsonString = decodeURIComponent(
+      atob(base64String)
+        .split('')
+        .map((c) => {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join('')
+    );
 
     // Parse the JSON string to get the JSON object
     const jsonObj = JSON.parse(jsonString);
@@ -494,7 +511,7 @@ export const getInteriorFinishFromUrl = (querySelectionData) => {
     }
   }
   return null;
-}
+};
 
 export const getExteriorFinishFromUrl = (querySelectionData) => {
   if (querySelectionData) {
@@ -504,7 +521,7 @@ export const getExteriorFinishFromUrl = (querySelectionData) => {
     }
   }
   return null;
-}
+};
 
 export const getFlooringFromUrl = (querySelectionData) => {
   if (querySelectionData) {
@@ -514,4 +531,4 @@ export const getFlooringFromUrl = (querySelectionData) => {
     }
   }
   return null;
-}
+};

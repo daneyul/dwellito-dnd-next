@@ -139,6 +139,8 @@ const PageDataProvider = ({ children, data }) => {
     snapToGridModifier,
     selectedElevation,
     scaleFactor,
+    isFloorPlanView,
+    setShowOutsideDroppableWarning
   });
 
   const { orderTotal, setOrderTotal } = useOrderTotal({

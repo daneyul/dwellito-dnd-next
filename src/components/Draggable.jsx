@@ -161,6 +161,33 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     selectedElevation,
   });
 
+  const isRightOrLeft = piece.elevation[0].name === ELEVATION_NAMES.RIGHT || piece.elevation[0].name === ELEVATION_NAMES.LEFT;
+  const isBack = piece.elevation[0].name === ELEVATION_NAMES.BACK;
+
+  const determineTransformX = (dragTransform) => {
+    if (isFloorPlanView) {
+      if (isRightOrLeft) {
+        return dragTransform.x;
+      } else if (isBack) {
+        return 0;
+      }
+    } else {
+      return dragTransform.x;
+    }
+  }
+
+  const determineTransformY = (dragTransform) => {
+    if (isFloorPlanView) {
+      if (isRightOrLeft) {
+        return 0;
+      } else if (isBack) {
+        return 0;
+      }
+    } else {
+      return dragTransform.y;
+    }
+  }
+
   const combinedTransforms = [
     calculatedPos.transform,
     dragTransform

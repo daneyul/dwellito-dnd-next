@@ -8,9 +8,12 @@ import { checkCloseness, snapToIncrement } from '@/utils/2D/utils';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
+  DROPPABLE_BACK,
+  DROPPABLE_LEFT,
+  DROPPABLE_RIGHT,
   ELEVATION_NAMES,
 } from '../constants/names';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const useDragHandlers = ({
   selectedComponents,
@@ -18,17 +21,41 @@ const useDragHandlers = ({
   snapToGridModifier,
   selectedElevation,
   scaleFactor,
+  isFloorPlanView,
+  setShowOutsideDroppableWarning,
 }) => {
   const [modifiers, setModifiers] = useState([]);
   const [hasCollisions, setHasCollisions] = useState(false);
   const [showCollision, setShowCollision] = useState(false);
   const [, setIsTooClose] = useState(false);
 
+  // Modifiers
+  const defaultModifiers = [restrictToParentElement, snapToGridModifier];
+  const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];
+  const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis];
+
   const handleDragStart = (event) => {
     const { active } = event;
     const draggedItem = selectedComponents.find(
       (item) => item.id === active.id
     );
+
+    if (!draggedItem) return null;
+
+    const isDoor = draggedItem.objType === COMPONENT_TYPES.DOOR;
+    const isWindow = draggedItem.objType === COMPONENT_TYPES.WINDOW;
+    const isFixed = draggedItem.fixed;
+    const isHeaterOrOutlet =
+      draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+      draggedItem.name === COMPONENT_NAMES.OUTLET;
+
+    // const itemIsOnElevationLeft =
+    //   draggedItem.elevation[0] === ELEVATION_NAMES.LEFT;
+    // const itemIsOnElevationRight =
+    //   draggedItem.elevation[0] === ELEVATION_NAMES.RIGHT;
+    // const itemIsOnElevationBack =
+    //   draggedItem.elevation[0] === ELEVATION_NAMES.BACK;
+    const floorPlan = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
     setSelectedComponents((prevComponents) =>
       prevComponents.map((component) =>
@@ -41,26 +68,25 @@ const useDragHandlers = ({
       )
     );
 
-    const defaultModifiers = [restrictToParentElement, snapToGridModifier];
-    const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];
-    const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis];
-
-    if (
-      selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
-      draggedItem.objType !== COMPONENT_TYPES.ELECTRICAL
-    ) {
-      setModifiers([...fixedModifiers]);
-    } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.DOOR) {
+    if (floorPlan) {
+      // if (itemIsOnElevationLeft || itemIsOnElevationRight) {
+      //   setModifiers([...restrictToHorizontalAxis, snapToGridModifier]);
+      // } else if (itemIsOnElevationBack) {
+      //   setModifiers([...restrictToVerticalAxis, snapToGridModifier]);
+      // }
+      if (draggedItem.objType !== COMPONENT_TYPES.ELECTRICAL || isFixed) {
+        setModifiers([...fixedModifiers]);
+      } else {
+        setModifiers([]);
+      }
+    } else if (isDoor) {
       setModifiers([...doorWindowModifiers, snapToIncrement(11 * scaleFactor)]);
-    } else if (draggedItem && draggedItem.objType === COMPONENT_TYPES.WINDOW) {
+    } else if (isWindow) {
       setModifiers([...doorWindowModifiers, snapToIncrement(6 * scaleFactor)]);
-    } else if (draggedItem && draggedItem.fixed) {
+    } else if (isFixed) {
       setModifiers([...fixedModifiers]);
-    } else if (
-      (draggedItem && draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER) ||
-      draggedItem.name === COMPONENT_NAMES.OUTLET
-    ) {
-      setModifiers();
+    } else if (isHeaterOrOutlet) {
+      setModifiers([]);
     } else {
       setModifiers([...defaultModifiers]);
     }
