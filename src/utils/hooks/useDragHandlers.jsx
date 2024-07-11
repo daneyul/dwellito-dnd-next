@@ -13,8 +13,7 @@ import {
   DROPPABLE_RIGHT,
   ELEVATION_NAMES,
 } from '../constants/names';
-import { useCallback, useState } from 'react';
-import debounce from 'lodash.debounce';
+import { useState } from 'react';
 
 const useDragHandlers = ({
   selectedComponents,
@@ -29,7 +28,6 @@ const useDragHandlers = ({
   const [hasCollisions, setHasCollisions] = useState(false);
   const [showCollision, setShowCollision] = useState(false);
   const [, setIsTooClose] = useState(false);
-  const [tempPositions, setTempPositions] = useState({});
 
   // Modifiers
   const defaultModifiers = [restrictToParentElement, snapToGridModifier];
@@ -51,12 +49,6 @@ const useDragHandlers = ({
       draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
       draggedItem.name === COMPONENT_NAMES.OUTLET;
 
-    const itemIsOnElevationLeft =
-      draggedItem.elevation[0] === ELEVATION_NAMES.LEFT;
-    const itemIsOnElevationRight =
-      draggedItem.elevation[0] === ELEVATION_NAMES.RIGHT;
-    const itemIsOnElevationBack =
-      draggedItem.elevation[0] === ELEVATION_NAMES.BACK;
     const floorPlan = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
     setSelectedComponents((prevComponents) =>
@@ -71,11 +63,6 @@ const useDragHandlers = ({
     );
 
     if (floorPlan) {
-      // if (itemIsOnElevationLeft || itemIsOnElevationRight) {
-      //   setModifiers([...restrictToHorizontalAxis, snapToGridModifier]);
-      // } else if (itemIsOnElevationBack) {
-      //   setModifiers([...restrictToVerticalAxis, snapToGridModifier]);
-      // }
       if (draggedItem.objType !== COMPONENT_TYPES.ELECTRICAL || isFixed) {
         setModifiers([...fixedModifiers]);
       } else {
@@ -102,7 +89,6 @@ const useDragHandlers = ({
     );
 
     if (
-      // Return to last valid position if dragged outside of floor plan bounding boxes
       draggedComponent &&
       (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
         draggedComponent.name === COMPONENT_NAMES.OUTLET) &&
@@ -159,7 +145,6 @@ const useDragHandlers = ({
             updatedPieces[draggedPieceIndex].isColliding = true;
           }
 
-          // Check for closeness and update the state accordingly
           if (
             draggedPiece &&
             checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
@@ -175,7 +160,6 @@ const useDragHandlers = ({
 
       setSelectedComponents(updatedPieces);
 
-      // Update any other relevant state, such as flags for collision or closeness
       const collisionDetected = updatedPieces.some(
         (piece) => piece.isColliding
       );
@@ -185,94 +169,33 @@ const useDragHandlers = ({
     }
   };
 
-  const debouncedUpdatePosition = useCallback(
-    debounce((id, delta, over) => {
-      setTempPositions((prev) => {
-        const newPos = {
-          ...prev,
-          [id]: {
-            x: (prev[id]?.x || 0) + delta.x,
-            y: (prev[id]?.y || 0) + delta.y,
-          },
-        };
-
-        // Check if the component is outside the droppable areas
-        const draggedComponent = selectedComponents.find(
-          (component) => component.id === id
-        );
-        if (
-          draggedComponent &&
-          (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-            draggedComponent.name === COMPONENT_NAMES.OUTLET)
-        ) {
-          const isOutsideDroppable = ![
-            DROPPABLE_LEFT,
-            DROPPABLE_RIGHT,
-            DROPPABLE_BACK,
-          ].includes(over?.id);
-
-          setSelectedComponents((prevComponents) =>
-            prevComponents.map((component) =>
-              component.id === id
-                ? {
-                    ...component,
-                  }
-                : component
-            )
-          );
-          setShowOutsideDroppableWarning(isOutsideDroppable);
-        }
-
-        return newPos;
-      });
-    }, 100),
-    [selectedComponents, setSelectedComponents]
-  );
-
   const handleDragMove = (event) => {
     const { over, active } = event;
-    const id = active.id;
-    const delta = event.delta;
-    debouncedUpdatePosition(id, delta, over);
-  };
+    const draggedComponent = selectedComponents.find(
+      (component) => component.id === active.id
+    );
 
-  const handleDragEndEnhanced = (event) => {
-    const id = event.active.id;
-    const tempPos = tempPositions[id];
+    if (
+      draggedComponent &&
+      (draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+        draggedComponent.name === COMPONENT_NAMES.OUTLET)
+    ) {
+      const isOutsideDroppable = ![
+        DROPPABLE_LEFT,
+        DROPPABLE_RIGHT,
+        DROPPABLE_BACK,
+      ].includes(over?.id);
 
-    if (tempPos) {
-      setSelectedComponents((prevComponents) =>
-        prevComponents.map((piece) => {
-          if (piece.id === id) {
-            return {
-              ...piece,
-              position: {
-                x: piece.position.x + tempPos.x,
-                y: piece.position.y + tempPos.y,
-              },
-            };
-          }
-          return piece;
-        })
-      );
-      setTempPositions((prev) => {
-        const newPos = { ...prev };
-        delete newPos[id];
-        return newPos;
-      });
+      setShowOutsideDroppableWarning(isOutsideDroppable);
     }
-    handleDragEnd(event); // Perform collision and closeness checks
   };
 
   const handleSelect = (selectedId) => {
     setSelectedComponents((prevComponents) =>
       prevComponents.map((component) => {
-        // Check if the current component is the one being selected
         if (component.id === selectedId) {
-          // Toggle the isSelected state for the component
           return { ...component, isSelected: !component.isSelected };
         } else {
-          // Set isSelected to false for all other components
           return { ...component, isSelected: false };
         }
       })
@@ -302,7 +225,6 @@ const useDragHandlers = ({
     handleDragStart,
     handleDragEnd,
     handleDragMove,
-    handleDragEndEnhanced,
     handleSelect,
     handleDeleteSelected,
     modifiers,

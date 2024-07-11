@@ -160,7 +160,7 @@ const Viewer = () => {
           <DndContext
             onDragStart={handleDragStart}
             onDragMove={handleDragMove}
-            onDragEnd={handleDragEndEnhanced}
+            onDragEnd={handleDragEnd}
             modifiers={modifiers}
           >
             {isFloorPlanView ? (

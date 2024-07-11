@@ -126,7 +126,6 @@ const PageDataProvider = ({ children, data }) => {
     handleDragStart,
     handleDragEnd,
     handleDragMove,
-    handleDragEndEnhanced,
     handleSelect,
     handleDeleteSelected,
     modifiers,
@@ -140,7 +139,7 @@ const PageDataProvider = ({ children, data }) => {
     selectedElevation,
     scaleFactor,
     isFloorPlanView,
-    setShowOutsideDroppableWarning,
+    setShowOutsideDroppableWarning
   });
 
   const { orderTotal, setOrderTotal } = useOrderTotal({
@@ -285,7 +284,6 @@ const PageDataProvider = ({ children, data }) => {
         handleDragStart,
         handleDragEnd,
         handleDragMove,
-        handleDragEndEnhanced,
         handleSelect,
         handleDeleteSelected,
         modifiers,
