@@ -11,12 +11,19 @@
   font-family: 'Chromatica', serif;
 }
 
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
 .header {
   font-family: 'Linotype', serif;
   font-weight: 300;
   font-size: 40px;
   text-align: center;
   color: #03163b;
+  margin-bottom: 1rem;
 }
 
 .supplier {
