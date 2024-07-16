@@ -13,8 +13,17 @@ const Selector = () => {
 
   const doors = componentData.filter(
     (item) =>
+      item.objType === COMPONENT_TYPES.DOOR && !item.isRollUp
+  );
+  const economyDoors = componentData.filter(
+    (item) =>
       item.objType === COMPONENT_TYPES.DOOR &&
-      !(containerHeightIsStandard && item.highContainerOnly)
+      item.isRollUp && !item.isHeavyDuty
+  );
+  const heavyDutyDoors = componentData.filter(
+    (item) =>
+      item.objType === COMPONENT_TYPES.DOOR &&
+      item.isRollUp && item.isHeavyDuty
   );
   const windows = componentData.filter(
     (item) => item.objType === COMPONENT_TYPES.WINDOW
@@ -48,6 +57,14 @@ const Selector = () => {
         <div className={style.subTitle}>Doors</div>
         <div className={style.objectContainer}>
           <AddOption options={doors} />
+        </div>
+        <div className={style.subTitle}>Economy Roll Up Doors</div>
+        <div className={style.objectContainer}>
+          <AddOption options={economyDoors} />
+        </div>
+        <div className={style.subTitle}>Heavy Duty Roll Up Doors</div>
+        <div className={style.objectContainer}>
+          <AddOption options={heavyDutyDoors} />
         </div>
         <div className={style.subTitle}>Windows</div>
         <div className={style.objectContainer}>
