@@ -49,8 +49,15 @@ const PageDataProvider = ({ children, data }) => {
   } = useContext(Library2dDataContext);
 
   // 3D Library Data
-  const { INTERIOR_FINISH_OPTIONS, EXTERIOR_FINISH_OPTIONS, FLOORING_OPTIONS } =
-    useContext(Library3dDataContext);
+  const {
+    INTERIOR_FINISH_OPTIONS,
+    EXTERIOR_FINISH_OPTIONS,
+    FLOORING_OPTIONS,
+    plywoodInterior,
+    drywallInterior,
+    sprayfoamCeilingInterior,
+    sprayfoamCeilingWallsInterior,
+  } = useContext(Library3dDataContext);
 
   // State
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
@@ -81,6 +88,12 @@ const PageDataProvider = ({ children, data }) => {
   const [flooring, setFlooring] = useState(
     queryFlooring || FLOORING_OPTIONS[0]
   );
+  const interiorIsPlywood = interiorFinish === plywoodInterior;
+  const interiorIsDrywall = interiorFinish === drywallInterior;
+  const interiorIsSprayFoamCeiling =
+    interiorFinish === sprayfoamCeilingInterior;
+  const interiorIsSprayFoamCeilingWalls =
+    interiorFinish === sprayfoamCeilingWallsInterior;
 
   // Elevation
   const DEFAULT_ELEVATION = elevationData.find(
@@ -139,7 +152,7 @@ const PageDataProvider = ({ children, data }) => {
     selectedElevation,
     scaleFactor,
     isFloorPlanView,
-    setShowOutsideDroppableWarning
+    setShowOutsideDroppableWarning,
   });
 
   const { orderTotal, setOrderTotal } = useOrderTotal({
@@ -287,6 +300,10 @@ const PageDataProvider = ({ children, data }) => {
         handleSelect,
         handleDeleteSelected,
         modifiers,
+        interiorIsPlywood,
+        interiorIsDrywall,
+        interiorIsSprayFoamCeiling,
+        interiorIsSprayFoamCeilingWalls,
       }}
     >
       {children}

@@ -8,7 +8,6 @@ export default function ContainerShell20High() {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
     FLOORING_OPTIONS,
-    INTERIOR_FINISH_OPTIONS,
     redPaint,
     whitePaint,
     greenPaint,
@@ -16,12 +15,15 @@ export default function ContainerShell20High() {
     slateGreyPaint,
     beigePaint,
     echoFloor,
-    timberFloor,
+    timberFloor
   } = useContext(Library3dDataContext);
 
   const {
     exteriorFinish,
-    interiorFinish,
+    interiorIsPlywood,
+    interiorIsDrywall,
+    interiorIsSprayFoamCeiling,
+    interiorIsSprayFoamCeilingWalls,
     selectedContainer,
     flooring,
     selectedContainerHeight,
@@ -143,7 +145,7 @@ export default function ContainerShell20High() {
   };
 
   const Plywood = () => {
-    if (interiorFinish === INTERIOR_FINISH_OPTIONS[0]) {
+    if (interiorIsPlywood) {
       return (
         <>
           <group
@@ -254,7 +256,7 @@ export default function ContainerShell20High() {
   };
 
   const Drywall = () => {
-    if (interiorFinish === INTERIOR_FINISH_OPTIONS[1]) {
+    if (interiorIsDrywall) {
       return (
         <>
           <group
@@ -381,7 +383,7 @@ export default function ContainerShell20High() {
   };
 
   const SprayFoamCeiling = () => {
-    if (interiorFinish === INTERIOR_FINISH_OPTIONS[2]) {
+    if (interiorIsSprayFoamCeiling) {
       return (
         <group position={[0, 2.877, 0.139]} rotation={[Math.PI, 0, 0]}>
           <mesh
@@ -399,7 +401,7 @@ export default function ContainerShell20High() {
   };
 
   const SprayFoamCw = () => {
-    if (interiorFinish === INTERIOR_FINISH_OPTIONS[3]) {
+    if (interiorIsSprayFoamCeilingWalls) {
       return (
         <>
           <group position={[0, 2.877, 0.139]} rotation={[Math.PI, 0, 0]}>

@@ -17,16 +17,19 @@ export default function ContainerShell10Standard() {
     slateGreyPaint,
     beigePaint,
     echoFloor,
-    timberFloor,
+    timberFloor
   } = useContext(Library3dDataContext);
 
   const {
     exteriorFinish,
-    interiorFinish,
     selectedContainer,
     flooring,
     selectedContainerHeight,
     hasLighting,
+    interiorIsPlywood,
+    interiorIsDrywall,
+    interiorIsSprayFoamCeiling,
+    interiorIsSprayFoamCeilingWalls,
   } = useContext(PageDataContext);
 
   // Load all 3d objects
@@ -113,7 +116,7 @@ export default function ContainerShell10Standard() {
   }, [selectedContainer.name, DIMENSIONS]);
 
   const Plywood = () => {
-    if (interiorFinish === INTERIOR_FINISH_OPTIONS[0]) {
+    if (interiorIsPlywood) {
       return (
         <>
           <group
@@ -194,7 +197,7 @@ export default function ContainerShell10Standard() {
   };
 
   const Drywall = () => {
-    if (interiorFinish === INTERIOR_FINISH_OPTIONS[1]) {
+    if (interiorIsDrywall) {
       return (
         <>
           <group
@@ -275,7 +278,7 @@ export default function ContainerShell10Standard() {
   };
 
   const SprayFoamCeiling = () => {
-    if (interiorFinish === INTERIOR_FINISH_OPTIONS[2]) {
+    if (interiorIsSprayFoamCeiling) {
       return (
         <group position={[0, 2.877, 0.137]} rotation={[Math.PI, 0, 0]}>
           <mesh
@@ -291,7 +294,7 @@ export default function ContainerShell10Standard() {
   };
 
   const SprayFoamCw = () => {
-    if (interiorFinish === INTERIOR_FINISH_OPTIONS[3]) {
+    if (interiorIsSprayFoamCeilingWalls) {
       return (
         <>
           <group position={[0, 2.877, 0.137]} rotation={[Math.PI, 0, 0]}>

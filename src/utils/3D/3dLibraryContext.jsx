@@ -59,6 +59,11 @@ export const Library3dDataProvider = ({ children }) => {
     },
   ];
 
+  const plywoodInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.PLYWOOD);
+  const drywallInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.DRYWALL);
+  const sprayfoamCeilingInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING);
+  const sprayfoamCeilingWallsInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS);
+
   const EXTERIOR_FINISH_OPTIONS = [
     {
       name: 'Beige',
@@ -209,6 +214,10 @@ export const Library3dDataProvider = ({ children }) => {
         sprayFoamMaterial,
         echoFloor,
         timberFloor,
+        plywoodInterior,
+        drywallInterior,
+        sprayfoamCeilingInterior,
+        sprayfoamCeilingWallsInterior
       }}
     >
       {children}
