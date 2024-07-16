@@ -28,18 +28,6 @@ export const Library3dDataProvider = ({ children }) => {
 
   const INTERIOR_FINISH_OPTIONS = [
     {
-      name: INTERIOR_FINISH_NAMES.PLYWOOD,
-      hex: '#C19A6B',
-      price: 3685,
-      img: 'plywood.png',
-    },
-    {
-      name: INTERIOR_FINISH_NAMES.DRYWALL,
-      hex: '#F2F2F2',
-      price: 4400,
-      img: 'drywall.png',
-    },
-    {
       name: INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING,
       hex: '',
       price10: 440,
@@ -56,6 +44,18 @@ export const Library3dDataProvider = ({ children }) => {
       price40S: 3460,
       price40H: 7210,
       img: 'spray-foam.png',
+    },
+    {
+      name: INTERIOR_FINISH_NAMES.PLYWOOD,
+      hex: '#C19A6B',
+      price: 3685,
+      img: 'plywood.png',
+    },
+    {
+      name: INTERIOR_FINISH_NAMES.DRYWALL,
+      hex: '#F2F2F2',
+      price: 4400,
+      img: 'drywall.png',
     },
   ];
 
