@@ -26,6 +26,11 @@ import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
+  CONTAINER_HIGH,
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
+  CONTAINER_STANDARD,
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
 import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
@@ -195,11 +200,11 @@ export function Models() {
   };
 
   useEffect(() => {
-    preloadContainerModels('10', 'standard');
-    preloadContainerModels('20', 'standard');
-    preloadContainerModels('40', 'standard');
-    preloadContainerModels('20', 'high');
-    preloadContainerModels('40', 'high');
+    preloadContainerModels(CONTAINER_SIZE_10, CONTAINER_STANDARD);
+    preloadContainerModels(CONTAINER_SIZE_20, CONTAINER_STANDARD);
+    preloadContainerModels(CONTAINER_SIZE_40, CONTAINER_STANDARD);
+    preloadContainerModels(CONTAINER_SIZE_20, CONTAINER_HIGH);
+    preloadContainerModels(CONTAINER_SIZE_40, CONTAINER_HIGH);
   }, []);
 
   return (

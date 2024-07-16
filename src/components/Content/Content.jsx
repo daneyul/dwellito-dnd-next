@@ -18,6 +18,9 @@ import { Theme } from '@radix-ui/themes';
 import {
   COMPONENT_NAMES,
   CONTAINER_40_SLUG,
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
   CONTAINER_STANDARD,
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
@@ -105,11 +108,11 @@ const PageDataProvider = ({ children, data }) => {
   const containerId = selectedContainer.id;
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
-      return '10';
+      return CONTAINER_SIZE_10;
     } else if (selectedContainer === containerData[1]) {
-      return '20';
+      return CONTAINER_SIZE_20;
     } else if (selectedContainer === containerData[2]) {
-      return '40';
+      return CONTAINER_SIZE_40;
     }
   };
 

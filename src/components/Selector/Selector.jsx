@@ -2,7 +2,7 @@ import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import AddOption from '../AddOption/AddOption';
 import style from './selector.module.scss';
 import { useContext } from 'react';
-import { COMPONENT_NAMES, COMPONENT_TYPES } from '@/utils/constants/names';
+import { COMPONENT_NAMES, COMPONENT_TYPES, CONTAINER_SIZE_40 } from '@/utils/constants/names';
 import { PageDataContext } from '../Content/Content';
 import AddElecOption from '../AddOption/AddElecOption';
 
@@ -23,7 +23,7 @@ const Selector = () => {
     (item) => item.objType === COMPONENT_TYPES.VENT
   );
   const electricals = componentData.filter((item) => {
-    if (containerSize() === '40') {
+    if (containerSize() === CONTAINER_SIZE_40) {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
         item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP &&

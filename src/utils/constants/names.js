@@ -63,6 +63,10 @@ export const CONTAINER_10_SLUG = '10-custom-cube';
 export const CONTAINER_20_SLUG = '20-custom-cube';
 export const CONTAINER_40_SLUG = '40-custom-cube';
 
+export const CONTAINER_SIZE_10 = '10';
+export const CONTAINER_SIZE_20 = '20';
+export const CONTAINER_SIZE_40 = '40';
+
 export const INTERIOR_FINISH_NAMES = {
   PLYWOOD:
     '½” Cabinet Grade Plywood, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
