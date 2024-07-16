@@ -85,7 +85,6 @@ const useDragHandlers = ({
           setModifiers([...defaultModifiers, restrictToVerticalAxis]);
         }
       } else {
-        console.log('here')
         setModifiers([]);
       }
     } else if (isDoor) {
