@@ -11,11 +11,15 @@ import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 import Layouts from '../Layouts/Layouts';
 import Subtitle from '../Subtitle/Subtitle';
 import {
+  COMPONENT_NAMES,
+  COMPONENT_TYPES,
   CONTAINER_10_SLUG,
   CONTAINER_HIGH,
   CONTAINER_STANDARD,
 } from '@/utils/constants/names';
 import Logo from '../Logo';
+import AddElecOption from '../AddOption/AddElecOption';
+import { componentData } from '@/utils/constants/componentData';
 
 const Sidebar = () => {
   const {
@@ -23,6 +27,7 @@ const Sidebar = () => {
     setSelectedContainerHeight,
     selectedContainer,
     slug,
+    containerSize
   } = useContext(PageDataContext);
   const { EXTERIOR, INTERIOR, FLOORING } = useContext(Library3dDataContext);
   const supplierName = 'Custom Cubes';
@@ -31,6 +36,22 @@ const Sidebar = () => {
   const containerPrice = containerHeightIsStandard
     ? selectedContainer.priceSc
     : selectedContainer.priceHc;
+
+  const electricals = componentData.filter((item) => {
+    if (containerSize() === '40') {
+      return (
+        item.objType === COMPONENT_TYPES.ELECTRICAL &&
+        item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP &&
+        item.name !== COMPONENT_NAMES.ROOF_VENT
+      );
+    } else {
+      return (
+        item.objType === COMPONENT_TYPES.ELECTRICAL &&
+        item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP &&
+        item.name !== COMPONENT_NAMES.ROOF_VENT
+      );
+    }
+  });
 
   const NotYourOrder = () => {
     return (
@@ -100,6 +121,13 @@ const Sidebar = () => {
           css={{ fontWeight: 400, marginBottom: '1rem' }}
         />
         <SingleSelect type={INTERIOR} />
+        <Subtitle
+          text='Select your electrical add-ons'
+          css={{ fontWeight: 400, marginBottom: '1rem' }}
+        />
+        <div className={style.objectContainer}>
+          <AddElecOption options={electricals} />
+        </div>
         <div className={style.selectionTagName}>Flooring Options</div>
         <Subtitle
           text='Select your flooring'
