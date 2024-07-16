@@ -7,7 +7,6 @@ import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 export default function ContainerShell40Standard() {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
-    INTERIOR_FINISH_OPTIONS,
     FLOORING_OPTIONS,
     redPaint,
     whitePaint,

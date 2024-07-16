@@ -120,31 +120,38 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     if (piece.objType === COMPONENT_TYPES.ELECTRICAL) {
       if (isFloorPlanView) {
         if (piece.name === COMPONENT_NAMES.WRAP_LIGHT) {
-          switch (slug) {
-            case CONTAINER_10_SLUG:
-              return piece.floorPlanImg.TEN;
-            case CONTAINER_20_SLUG:
-              return piece.floorPlanImg.TWENTY;
-            case CONTAINER_40_SLUG:
-              return piece.floorPlanImg.FORTY;
-            default:
-              return piece.floorPlanImg;
+          if (slug === CONTAINER_10_SLUG) {
+            return piece.floorPlanImg.TEN;
+          } else if (slug === CONTAINER_20_SLUG) {
+            return piece.floorPlanImg.TWENTY;
+          } else if (slug === CONTAINER_40_SLUG) {
+            return piece.floorPlanImg.FORTY;
           }
+        } else {
+          return piece.floorPlanImg;
         }
+      } else if (piece.alwaysShowOn.includes(selectedElevation.name)) {
+        if (!!piece.fixedSide && selectedElevation.name !== piece.fixedSide) {
+          return piece.sideImg;
+        } else {
+          return piece.frontImg;
+        }
+      } else {
+        return piece.frontImg;
+      }
+    } else if (piece.name === COMPONENT_NAMES.ROOF_VENT) {
+      if (isFloorPlanView) {
         return piece.floorPlanImg;
+      } else if (!!piece.fixedSide && selectedElevation.name !== piece.fixedSide) {
+        return piece.sideImg;
+      } else {
+        return piece.frontImg;
       }
-  
-      if (piece.alwaysShowOn.includes(selectedElevation.name)) {
-        return piece.fixedSide && selectedElevation.name !== piece.fixedSide ? piece.sideImg : piece.frontImg;
-      }
-      return piece.frontImg;
-    }
-  
-    if (selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN) {
+    } else if (selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN) {
       return piece.floorPlanImg;
+    } else {
+      return piece.imgName;
     }
-  
-    return piece.imgName;
   };
   
 

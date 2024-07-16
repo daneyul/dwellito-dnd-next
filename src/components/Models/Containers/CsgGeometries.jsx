@@ -239,8 +239,6 @@ export function CsgGeometries({
     );
   }, [exhaustFanBoundingBox]);
 
-  console.log(interiorIsDrywall)
-
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>

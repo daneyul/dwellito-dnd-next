@@ -67,8 +67,6 @@ const OrderSummaryModal = () => {
     </div>
   );
 
-  console.log(interiorFinish)
-
   const InteriorSection = () => (
     <div className={style.section}>
       <div className={style.elevationName}>Interior Finish</div>

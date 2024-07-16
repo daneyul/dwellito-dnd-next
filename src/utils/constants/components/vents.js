@@ -1,5 +1,5 @@
 import { DIMENSIONS } from '../dimensions';
-import { COMPONENT_NAMES, COMPONENT_TYPES } from '../names';
+import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES } from '../names';
 
 export const ventComponents = [
   {
@@ -49,5 +49,24 @@ export const ventComponents = [
     price: 540,
     model: 'P203-1-306_24in_x_24in Aluminum Fixed Louver 16ga Bolt on Frame',
     floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/24x24.svg`,
+  },
+  {
+    name: COMPONENT_NAMES.ROOF_VENT,
+    position: {
+      x: 18,
+      y: 0,
+    },
+    frontImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/roof-vent.svg`,
+    floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/roof-vent-dash.svg`,
+    sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/roof-vent.svg`,
+    desc: 'P203-1-309',
+    objWidth: 12,
+    objHeight: 12,
+    objType: COMPONENT_TYPES.VENT,
+    price: 670,
+    model: 'roofvent',
+    fixed: true,
+    ceilingOnly: true,
+    alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
   },
 ];

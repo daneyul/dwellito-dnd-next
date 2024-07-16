@@ -22,25 +22,6 @@ export const electricalComponents = [
     alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
   },
   {
-    name: COMPONENT_NAMES.ROOF_VENT,
-    position: {
-      x: 18,
-      y: 0,
-    },
-    frontImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/roof-vent.svg`,
-    floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/roof-vent-dash.svg`,
-    sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/roof-vent.svg`,
-    desc: 'P203-1-309',
-    objWidth: 12,
-    objHeight: 12,
-    objType: COMPONENT_TYPES.ELECTRICAL,
-    price: 670,
-    model: 'roofvent',
-    fixed: true,
-    ceilingOnly: true,
-    alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
-  },
-  {
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP,
     position: {
       x: 7,
