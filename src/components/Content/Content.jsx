@@ -308,9 +308,6 @@ const Content = ({ data }) => {
               </p>
             </div>
             <div className={style.pageWrapper}>
-              <div style={{ position: 'absolute', top: '2rem', left: '2rem' }}>
-                <Logo />
-              </div>
               <div
                 style={{
                   display: 'flex',

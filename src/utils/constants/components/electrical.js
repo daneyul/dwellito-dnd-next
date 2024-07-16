@@ -139,6 +139,11 @@ export const electricalComponents = [
       y: 0,
     },
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light-dash.svg`,
+    // floorPlanImg: {
+    //   10: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light-dash.svg`,
+    //   20: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light-dash.svg`,
+    //   40: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light-dash.svg`
+    // },
     sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light.svg`,
     desc: "P602-1-01",
     objWidth: 50,

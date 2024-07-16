@@ -15,7 +15,7 @@ import {
   CONTAINER_HIGH,
   CONTAINER_STANDARD,
 } from '@/utils/constants/names';
-import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
+import Logo from '../Logo';
 
 const Sidebar = () => {
   const {
@@ -35,6 +35,9 @@ const Sidebar = () => {
   const NotYourOrder = () => {
     return (
       <>
+        <div className={style.logo}>
+          <Logo />
+        </div>
         <div className={style.header}>{supplierName}</div>
         <div className={style.supplier}>By {supplierName}</div>
         <div className={style.description}>
