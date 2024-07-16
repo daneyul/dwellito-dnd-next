@@ -8,7 +8,7 @@ const PriceTotal = () => {
   return (
     <button className={style.container} onClick={setDialogOpen}>
       <div className={style.price}>${orderTotal.toLocaleString()}</div>
-      <div className={style.text}>&nbsp;USD</div>
+      <div className={style.text}>&nbsp;CAD</div>
     </button>
   );
 };

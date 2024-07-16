@@ -8,7 +8,6 @@ const SaveOrder = () => {
   return (
     <div className={style.container}>
       <div className={style.heading}>Save Your Order</div>
-      <div className={style.subheading}>Est Delivery: October 2024</div>
       <button className={style.button} onClick={setDialogOpen}>Continue</button>
     </div>
   );
