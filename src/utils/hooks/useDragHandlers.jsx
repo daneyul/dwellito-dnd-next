@@ -67,7 +67,7 @@ const useDragHandlers = ({
     // Set modifiers
     if (isFloorPlanView) {
       if (isFixed) {
-        setModifiers([fixedModifiers]);
+        setModifiers([...fixedModifiers]);
       } else if (isOnElevationRight || isOnElevationLeft) {
         if (isDoor) {
           setModifiers([...defaultModifiers, restrictToHorizontalAxis, snapToIncrement(11 * scaleFactor)]);
@@ -85,7 +85,6 @@ const useDragHandlers = ({
           setModifiers([...defaultModifiers, restrictToVerticalAxis]);
         }
       } else {
-        console.log('here')
         setModifiers([]);
       }
     } else if (isDoor) {
