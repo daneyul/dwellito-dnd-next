@@ -78,7 +78,3 @@ const AirConditioner = () => {
 };
 
 export default AirConditioner;
-
-useGLTF.preload('/models/electrical/10/airconditioner.glb');
-useGLTF.preload('/models/electrical/20/airconditioner.glb');
-useGLTF.preload('/models/electrical/40/airconditioner.glb');
