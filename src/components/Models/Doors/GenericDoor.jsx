@@ -15,7 +15,6 @@ const GenericDoor = React.memo(
     customPosition,
     customRotation,
     customScale,
-    isRollUp,
   }) => {
     const { nodes, materials } = useGLTF(modelPath);
     const { selectedComponents, selectedContainer, scaleFactor } =

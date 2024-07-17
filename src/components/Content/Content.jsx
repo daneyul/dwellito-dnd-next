@@ -105,6 +105,7 @@ const PageDataProvider = ({ children, data }) => {
   const selectedContainer = containerData.find(
     (container) => container.slug === slug
   );
+  console.log(containerHeightIsStandard)
   const containerId = selectedContainer.id;
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -290,6 +291,14 @@ const PageDataProvider = ({ children, data }) => {
         handleSelect,
         handleDeleteSelected,
         modifiers,
+<<<<<<< HEAD
+=======
+        interiorIsPlywood,
+        interiorIsDrywall,
+        interiorIsSprayFoamCeiling,
+        interiorIsSprayFoamCeilingWalls,
+        containerHeightIsStandard
+>>>>>>> 33f3d55 (new rollup doors)
       }}
     >
       {children}

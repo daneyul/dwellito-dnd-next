@@ -2,6 +2,7 @@ import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import AddOption from '../AddOption/AddOption';
 import style from './selector.module.scss';
 import { useContext } from 'react';
+<<<<<<< HEAD
 import { COMPONENT_NAMES, COMPONENT_TYPES, CONTAINER_SIZE_40 } from '@/utils/constants/names';
 import { PageDataContext } from '../Content/Content';
 import AddElecOption from '../AddOption/AddElecOption';
@@ -15,7 +16,50 @@ const Selector = () => {
     (item) =>
       item.objType === COMPONENT_TYPES.DOOR &&
       !(containerHeightIsStandard && item.highContainerOnly)
+=======
+import { COMPONENT_TYPES } from '@/utils/constants/names';
+import { PageDataContext } from '../Content/Content';
+
+const Selector = () => {
+  const { componentData } = useContext(Library2dDataContext);
+  const { containerHeightIsStandard } =useContext(PageDataContext);
+
+  const doors = componentData.filter(
+    (item) =>
+      item.objType === COMPONENT_TYPES.DOOR && !item.isRollUp
   );
+  const economyDoors = componentData.filter(
+    (item) => {
+      if (containerHeightIsStandard) {
+        return (
+          item.objType === COMPONENT_TYPES.DOOR &&
+          item.isRollUp && !item.isHeavyDuty && !item.highContainerOnly
+        );
+      } else {
+        return (
+          item.objType === COMPONENT_TYPES.DOOR &&
+          item.isRollUp && !item.isHeavyDuty && item.highContainerOnly
+        )
+      }
+    }
+  );
+  const heavyDutyDoors = componentData.filter(
+    (item) => {
+      if (containerHeightIsStandard) {
+        return (
+          item.objType === COMPONENT_TYPES.DOOR &&
+          item.isRollUp && item.isHeavyDuty && !item.highContainerOnly
+        );
+      } else {
+        return (
+          item.objType === COMPONENT_TYPES.DOOR &&
+          item.isRollUp && item.isHeavyDuty && item.highContainerOnly
+        )
+      }
+    }
+>>>>>>> 33f3d55 (new rollup doors)
+  );
+  console.log(economyDoors)
   const windows = componentData.filter(
     (item) => item.objType === COMPONENT_TYPES.WINDOW
   );

@@ -103,15 +103,16 @@ export const DIMENSIONS = {
         y: 34,
       },
     },
-    HD_ROLL_UP_6: {
+    HD_HC_ROLL_UP_6: {
       WIDTH: 80,
       HEIGHT: 104,
+      FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: -18,
       },
     },
-    HD_ROLL_UP_8: {
+    HD_HC_ROLL_UP_8: {
       WIDTH: 104,
       HEIGHT: 104,
       FP_HEIGHT: 21,
@@ -120,7 +121,7 @@ export const DIMENSIONS = {
         y: -18,
       },
     },
-    HD_ROLL_UP_10: {
+    HD_HC_ROLL_UP_10: {
       WIDTH: 128,
       HEIGHT: 104,
       FP_HEIGHT: 21,
@@ -129,7 +130,7 @@ export const DIMENSIONS = {
         y: -18,
       },
     },
-    HD_ROLL_UP_12: {
+    HD_HC_ROLL_UP_12: {
       WIDTH: 152,
       HEIGHT: 104,
       FP_HEIGHT: 21,
@@ -138,13 +139,58 @@ export const DIMENSIONS = {
         y: -18,
       },
     },
-    HD_ROLL_UP_15: {
+    HD_HC_ROLL_UP_15: {
       WIDTH: 188,
       HEIGHT: 106,
       FP_HEIGHT: 21,
       POSITION: {
         x: 0,
         y: -23,
+      },
+    },
+    HD_ST_ROLL_UP_6: {
+      WIDTH: 80,
+      HEIGHT: 78,
+      FP_HEIGHT: 21,
+      POSITION: {
+        x: 0,
+        y: 46,
+      },
+    },
+    HD_ST_ROLL_UP_8: {
+      WIDTH: 104,
+      HEIGHT: 78,
+      FP_HEIGHT: 21,
+      POSITION: {
+        x: 0,
+        y: 46,
+      },
+    },
+    HD_ST_ROLL_UP_10: {
+      WIDTH: 128,
+      HEIGHT: 78,
+      FP_HEIGHT: 21,
+      POSITION: {
+        x: 0,
+        y: 46,
+      },
+    },
+    HD_ST_ROLL_UP_12: {
+      WIDTH: 152,
+      HEIGHT: 78,
+      FP_HEIGHT: 21,
+      POSITION: {
+        x: 0,
+        y: 46,
+      },
+    },
+    HD_ST_ROLL_UP_15: {
+      WIDTH: 188,
+      HEIGHT: 78,
+      FP_HEIGHT: 21,
+      POSITION: {
+        x: 0,
+        y: 46,
       },
     },
     EC_HC_ROLLUP_6_74: {
