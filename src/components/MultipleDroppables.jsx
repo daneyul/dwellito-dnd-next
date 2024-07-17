@@ -78,7 +78,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
   const filterFixedCeilingComponents = () => {
     return selectedComponents.filter(
       (piece) =>
-        piece.objType === COMPONENT_TYPES.ELECTRICAL ||
+        piece.objType === COMPONENT_TYPES.ELECTRICAL && piece.fixed ||
         (piece.name === COMPONENT_NAMES.ROOF_VENT &&
           piece.fixed &&
           !piece.fixedSide)
