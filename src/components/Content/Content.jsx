@@ -105,7 +105,6 @@ const PageDataProvider = ({ children, data }) => {
   const selectedContainer = containerData.find(
     (container) => container.slug === slug
   );
-  console.log(containerHeightIsStandard)
   const containerId = selectedContainer.id;
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {

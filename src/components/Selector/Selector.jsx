@@ -43,7 +43,6 @@ const Selector = () => {
       }
     }
   );
-  console.log(economyDoors)
   const windows = componentData.filter(
     (item) => item.objType === COMPONENT_TYPES.WINDOW
   );
