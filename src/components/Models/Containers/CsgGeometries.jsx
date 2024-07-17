@@ -17,7 +17,6 @@ export function CsgGeometries({
 }) {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
-    INTERIOR_FINISH_OPTIONS,
     redPaint,
     whitePaint,
     greenPaint,
@@ -26,11 +25,14 @@ export function CsgGeometries({
     beigePaint,
     plywoodMaterial,
     drywallMaterial,
-    sprayFoamMaterial,
+    sprayFoamMaterial
   } = useContext(Library3dDataContext);
   const {
     exteriorFinish,
-    interiorFinish,
+    interiorIsPlywood,
+    interiorIsDrywall,
+    interiorIsSprayFoamCeiling,
+    interiorIsSprayFoamCeilingWalls,
     selectedContainer,
     selectedContainerHeight,
     containerSize,
@@ -240,8 +242,8 @@ export function CsgGeometries({
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
-        {interiorFinish === INTERIOR_FINISH_OPTIONS[2] ||
-        interiorFinish === INTERIOR_FINISH_OPTIONS[3] ? null : (
+        {interiorIsSprayFoamCeiling ||
+        interiorIsSprayFoamCeilingWalls ? null : (
           <Base
             geometry={baseboard.mesh_0.geometry}
             scale={10}
@@ -250,7 +252,7 @@ export function CsgGeometries({
             <meshStandardMaterial color='black' />
           </Base>
         )}
-        {interiorFinish === INTERIOR_FINISH_OPTIONS[1] ? (
+        {interiorIsDrywall ? (
           <>
             {Object.keys(dBackNodes).map((key) => (
               <Base
@@ -281,7 +283,7 @@ export function CsgGeometries({
             ))}
           </>
         ) : null}
-        {interiorFinish === INTERIOR_FINISH_OPTIONS[0] ? (
+        {interiorIsPlywood ? (
           <>
             {Object.keys(pBackNodes).map((key) => (
               <Base
@@ -312,7 +314,7 @@ export function CsgGeometries({
             ))}
           </>
         ) : null}
-        {interiorFinish === INTERIOR_FINISH_OPTIONS[3] ? (
+        {interiorIsSprayFoamCeilingWalls ? (
           <>
             {Object.keys(sBackNodes).map((key) => (
               <Base

@@ -28,18 +28,6 @@ export const Library3dDataProvider = ({ children }) => {
 
   const INTERIOR_FINISH_OPTIONS = [
     {
-      name: INTERIOR_FINISH_NAMES.PLYWOOD,
-      hex: '#C19A6B',
-      price: 3685,
-      img: 'plywood.png',
-    },
-    {
-      name: INTERIOR_FINISH_NAMES.DRYWALL,
-      hex: '#F2F2F2',
-      price: 4400,
-      img: 'drywall.png',
-    },
-    {
       name: INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING,
       hex: '',
       price10: 440,
@@ -57,7 +45,24 @@ export const Library3dDataProvider = ({ children }) => {
       price40H: 7210,
       img: 'spray-foam.png',
     },
+    {
+      name: INTERIOR_FINISH_NAMES.PLYWOOD,
+      hex: '#C19A6B',
+      price: 3685,
+      img: 'plywood.png',
+    },
+    {
+      name: INTERIOR_FINISH_NAMES.DRYWALL,
+      hex: '#F2F2F2',
+      price: 4400,
+      img: 'drywall.png',
+    },
   ];
+
+  const plywoodInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.PLYWOOD);
+  const drywallInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.DRYWALL);
+  const sprayfoamCeilingInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING);
+  const sprayfoamCeilingWallsInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS);
 
   const EXTERIOR_FINISH_OPTIONS = [
     {
@@ -209,6 +214,10 @@ export const Library3dDataProvider = ({ children }) => {
         sprayFoamMaterial,
         echoFloor,
         timberFloor,
+        plywoodInterior,
+        drywallInterior,
+        sprayfoamCeilingInterior,
+        sprayfoamCeilingWallsInterior
       }}
     >
       {children}

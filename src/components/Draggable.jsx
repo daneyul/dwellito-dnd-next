@@ -9,7 +9,10 @@ import {
 } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import {
+  COMPONENT_NAMES,
   COMPONENT_TYPES,
+  CONTAINER_10_SLUG,
+  CONTAINER_20_SLUG,
   CONTAINER_40_SLUG,
   DROPPABLE,
   DROPPABLE_BACK,
@@ -116,7 +119,17 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
   const imgSrc = () => {
     if (piece.objType === COMPONENT_TYPES.ELECTRICAL) {
       if (isFloorPlanView) {
-        return piece.floorPlanImg;
+        if (piece.name === COMPONENT_NAMES.WRAP_LIGHT) {
+          if (slug === CONTAINER_10_SLUG) {
+            return piece.floorPlanImg.TEN;
+          } else if (slug === CONTAINER_20_SLUG) {
+            return piece.floorPlanImg.TWENTY;
+          } else if (slug === CONTAINER_40_SLUG) {
+            return piece.floorPlanImg.FORTY;
+          }
+        } else {
+          return piece.floorPlanImg;
+        }
       } else if (piece.alwaysShowOn.includes(selectedElevation.name)) {
         if (!!piece.fixedSide && selectedElevation.name !== piece.fixedSide) {
           return piece.sideImg;
@@ -126,12 +139,21 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
       } else {
         return piece.frontImg;
       }
+    } else if (piece.name === COMPONENT_NAMES.ROOF_VENT) {
+      if (isFloorPlanView) {
+        return piece.floorPlanImg;
+      } else if (!!piece.fixedSide && selectedElevation.name !== piece.fixedSide) {
+        return piece.sideImg;
+      } else {
+        return piece.frontImg;
+      }
     } else if (selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN) {
       return piece.floorPlanImg;
     } else {
       return piece.imgName;
     }
   };
+  
 
   const isFixed = piece.fixed;
 
@@ -154,7 +176,17 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     ) {
       return toScale(piece.objThickness, scaleFactor);
     } else {
-      return toScale(piece.objWidth, scaleFactor);
+      if (piece.name === COMPONENT_NAMES.WRAP_LIGHT) {
+        if (slug === CONTAINER_10_SLUG) {
+          return toScale(piece.objWidth.TEN, scaleFactor);
+        } else if (slug === CONTAINER_20_SLUG) {
+          return toScale(piece.objWidth.TWENTY, scaleFactor);
+        } else if (slug === CONTAINER_40_SLUG) {
+          return toScale(piece.objWidth.FORTY, scaleFactor);
+        }
+      } else {
+        return toScale(piece.objWidth, scaleFactor);
+      }
     }
   };
 

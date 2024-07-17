@@ -3,6 +3,7 @@ import { useDroppable } from '@dnd-kit/core';
 import { droppableWidth, generateImgSrc, toScale } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import {
+  COMPONENT_NAMES,
   COMPONENT_TYPES,
   DROPPABLE_BACK,
   DROPPABLE_LEFT,
@@ -77,9 +78,10 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
   const filterFixedCeilingComponents = () => {
     return selectedComponents.filter(
       (piece) =>
-        piece.objType === COMPONENT_TYPES.ELECTRICAL &&
-        piece.fixed &&
-        !piece.fixedSide
+        piece.objType === COMPONENT_TYPES.ELECTRICAL ||
+        (piece.name === COMPONENT_NAMES.ROOF_VENT &&
+          piece.fixed &&
+          !piece.fixedSide)
     );
   };
 

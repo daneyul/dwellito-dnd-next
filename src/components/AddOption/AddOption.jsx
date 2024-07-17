@@ -4,7 +4,7 @@ import { generateImgSrc, handleAddComponent } from '../../utils/2D/utils';
 import style from './addOption.module.css';
 import * as HoverCard from '@radix-ui/react-hover-card';
 import { PageDataContext } from '../Content/Content';
-import { ELEVATION_NAMES } from '@/utils/constants/names';
+import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES } from '@/utils/constants/names';
 
 const AddOption = ({ options }) => {
   const {
@@ -28,7 +28,6 @@ const AddOption = ({ options }) => {
       setSelectedElevation(rightElevation);
       handleAddComponent({
         item,
-        selectedComponents,
         setSelectedComponents,
         selectedElevation: rightElevation,
         floorPlan
@@ -36,7 +35,6 @@ const AddOption = ({ options }) => {
     } else {
       handleAddComponent({
         item,
-        selectedComponents,
         setSelectedComponents,
         selectedElevation,
         floorPlan
@@ -44,14 +42,22 @@ const AddOption = ({ options }) => {
     }
   };
 
+  const imgSrc = (item) => {
+    if (item.name === COMPONENT_NAMES.ROOF_VENT) {
+      return item.sidebarImg
+    } else {
+      return item.imgName
+    }
+  }
+  
   return options.map((item) => {
-    if (isFloorPlanView) {
+    if (isFloorPlanView && item.name !== COMPONENT_NAMES.ROOF_VENT) {
       return (
         <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
           <HoverCard.Trigger>
             <img
               style={{ opacity: '0.25' }}
-              src={generateImgSrc(item.imgName)}
+              src={generateImgSrc(imgSrc(item))}
               alt={item.name}
               className={style.objImg}
             />
@@ -68,7 +74,7 @@ const AddOption = ({ options }) => {
         <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
           <HoverCard.Trigger>
             <img
-              src={generateImgSrc(item.imgName)}
+              src={generateImgSrc(imgSrc(item))}
               alt={item.name}
               onClick={() => handleSelect(item)}
               className={style.objImg}

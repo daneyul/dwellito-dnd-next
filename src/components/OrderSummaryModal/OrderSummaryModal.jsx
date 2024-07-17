@@ -19,7 +19,7 @@ import {
 import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/useSaveSelections';
 
-const OrderSummaryModal = ({ trigger }) => {
+const OrderSummaryModal = () => {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
     orderTotal,

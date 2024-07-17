@@ -22,25 +22,6 @@ export const electricalComponents = [
     alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
   },
   {
-    name: COMPONENT_NAMES.ROOF_VENT,
-    position: {
-      x: 18,
-      y: 0,
-    },
-    frontImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/roof-vent.svg`,
-    floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/roof-vent-dash.svg`,
-    sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/roof-vent.svg`,
-    desc: 'P203-1-309',
-    objWidth: 12,
-    objHeight: 12,
-    objType: COMPONENT_TYPES.ELECTRICAL,
-    price: 670,
-    model: 'roofvent',
-    fixed: true,
-    ceilingOnly: true,
-    alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
-  },
-  {
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP,
     position: {
       x: 7,
@@ -138,15 +119,18 @@ export const electricalComponents = [
       x: 18,
       y: 0,
     },
-    floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light-dash.svg`,
-    // floorPlanImg: {
-    //   10: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light-dash.svg`,
-    //   20: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light-dash.svg`,
-    //   40: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light-dash.svg`
-    // },
+    floorPlanImg: {
+      TEN: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/10/wrap-light-dash.svg`,
+      TWENTY: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/20/wrap-light-dash.svg`,
+      FORTY: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/40/wrap-light-dash.svg`
+    },
     sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light.svg`,
     desc: "P602-1-01",
-    objWidth: 50,
+    objWidth: {
+      TEN: 50,
+      TWENTY: 170,
+      FORTY: 375
+    },
     objHeight: 6,
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 375,

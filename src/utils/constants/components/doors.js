@@ -181,6 +181,7 @@ export const doorComponents = [
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-6.svg`,
     highContainerOnly: true,
     isRollUp: true,
+    isHeavyDuty: true,
   },
   {
     name: COMPONENT_NAMES.HD_HC_ROLL_UP_8,
@@ -199,6 +200,7 @@ export const doorComponents = [
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-8.svg`,
     highContainerOnly: true,
     isRollUp: true,
+    isHeavyDuty: true
   },
   {
     name: COMPONENT_NAMES.HD_HC_ROLL_UP_10,
@@ -217,6 +219,7 @@ export const doorComponents = [
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-10.svg`,
     highContainerOnly: true,
     isRollUp: true,
+    isHeavyDuty: true
   },
   {
     name: COMPONENT_NAMES.HD_HC_ROLL_UP_12,
@@ -235,6 +238,7 @@ export const doorComponents = [
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-12.svg`,
     highContainerOnly: true,
     isRollUp: true,
+    isHeavyDuty: true
   },
   {
     name: COMPONENT_NAMES.HD_HC_ROLL_UP_15,
@@ -253,6 +257,102 @@ export const doorComponents = [
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-15.svg`,
     highContainerOnly: true,
     isRollUp: true,
+    isHeavyDuty: true
+  },
+  {
+    name: COMPONENT_NAMES.HD_ST_ROLL_UP_6,
+    position: {
+      x: DIMENSIONS.DOOR.HD_ST_ROLL_UP_6.POSITION.x,
+      y: DIMENSIONS.DOOR.HD_ST_ROLL_UP_6.POSITION.y,
+    },
+    imgName: `${COMPONENT_TYPES.DOOR}/hd-st-rollup-6.svg`,
+    desc: COMPONENT_NAMES.HD_ST_ROLL_UP_6,
+    objWidth: DIMENSIONS.DOOR.HD_ST_ROLL_UP_6.WIDTH,
+    objHeight: DIMENSIONS.DOOR.HD_ST_ROLL_UP_6.HEIGHT,
+    objFpHeight: DIMENSIONS.DOOR.HD_ST_ROLL_UP_6.FP_HEIGHT,
+    objType: COMPONENT_TYPES.DOOR,
+    price: 2925,
+    model: 'Heavy Duty Roll Up Door 72in x 76in - 80in x 78in',
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-6.svg`,
+    highContainerOnly: false,
+    isRollUp: true,
+    isHeavyDuty: true,
+  },
+  {
+    name: COMPONENT_NAMES.HD_ST_ROLL_UP_8,
+    position: {
+      x: DIMENSIONS.DOOR.HD_ST_ROLL_UP_8.POSITION.x,
+      y: DIMENSIONS.DOOR.HD_ST_ROLL_UP_8.POSITION.y,
+    },
+    imgName: `${COMPONENT_TYPES.DOOR}/hd-st-rollup-8.svg`,
+    desc: COMPONENT_NAMES.HD_ST_ROLL_UP_8,
+    objWidth: DIMENSIONS.DOOR.HD_ST_ROLL_UP_8.WIDTH,
+    objHeight: DIMENSIONS.DOOR.HD_ST_ROLL_UP_8.HEIGHT,
+    objFpHeight: DIMENSIONS.DOOR.HD_ST_ROLL_UP_8.FP_HEIGHT,
+    objType: COMPONENT_TYPES.DOOR,
+    price: 3280,
+    model: 'Heavy Duty Roll Up Door 96in x 76in - 104in x 78in',
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-8.svg`,
+    highContainerOnly: false,
+    isRollUp: true,
+    isHeavyDuty: true
+  },
+  {
+    name: COMPONENT_NAMES.HD_ST_ROLL_UP_10,
+    position: {
+      x: DIMENSIONS.DOOR.HD_ST_ROLL_UP_10.POSITION.x,
+      y: DIMENSIONS.DOOR.HD_ST_ROLL_UP_10.POSITION.y,
+    },
+    imgName: `${COMPONENT_TYPES.DOOR}/hd-st-rollup-10.svg`,
+    desc: COMPONENT_NAMES.HD_ST_ROLL_UP_10,
+    objWidth: DIMENSIONS.DOOR.HD_ST_ROLL_UP_10.WIDTH,
+    objHeight: DIMENSIONS.DOOR.HD_ST_ROLL_UP_10.HEIGHT,
+    objFpHeight: DIMENSIONS.DOOR.HD_ST_ROLL_UP_10.FP_HEIGHT,
+    objType: COMPONENT_TYPES.DOOR,
+    price: 3590,
+    model: 'Heavy Duty Roll Up Door 120in x 76in - 128in x 78in',
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-10.svg`,
+    highContainerOnly: false,
+    isRollUp: true,
+    isHeavyDuty: true
+  },
+  {
+    name: COMPONENT_NAMES.HD_ST_ROLL_UP_12,
+    position: {
+      x: DIMENSIONS.DOOR.HD_ST_ROLL_UP_12.POSITION.x,
+      y: DIMENSIONS.DOOR.HD_ST_ROLL_UP_12.POSITION.y,
+    },
+    imgName: `${COMPONENT_TYPES.DOOR}/hd-st-rollup-12.svg`,
+    desc: COMPONENT_NAMES.HD_ST_ROLL_UP_12,
+    objWidth: DIMENSIONS.DOOR.HD_ST_ROLL_UP_12.WIDTH,
+    objHeight: DIMENSIONS.DOOR.HD_ST_ROLL_UP_12.HEIGHT,
+    objFpHeight: DIMENSIONS.DOOR.HD_ST_ROLL_UP_12.FP_HEIGHT,
+    objType: COMPONENT_TYPES.DOOR,
+    price: 3895,
+    model: 'Heavy Duty Roll Up Door 144in x 76in - 152in x 78in',
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-12.svg`,
+    highContainerOnly: false,
+    isRollUp: true,
+    isHeavyDuty: true
+  },
+  {
+    name: COMPONENT_NAMES.HD_ST_ROLL_UP_15,
+    position: {
+      x: DIMENSIONS.DOOR.HD_ST_ROLL_UP_15.POSITION.x,
+      y: DIMENSIONS.DOOR.HD_ST_ROLL_UP_15.POSITION.y,
+    },
+    imgName: `${COMPONENT_TYPES.DOOR}/hd-st-rollup-15.svg`,
+    desc: COMPONENT_NAMES.HD_ST_ROLL_UP_15,
+    objWidth: DIMENSIONS.DOOR.HD_ST_ROLL_UP_15.WIDTH,
+    objHeight: DIMENSIONS.DOOR.HD_ST_ROLL_UP_15.HEIGHT,
+    objFpHeight: DIMENSIONS.DOOR.HD_ST_ROLL_UP_15.FP_HEIGHT,
+    objType: COMPONENT_TYPES.DOOR,
+    price: 4615,
+    model: 'Heavy Duty Roll Up Door 180in x 76in - 188in x 78in',
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-15.svg`,
+    highContainerOnly: false,
+    isRollUp: true,
+    isHeavyDuty: true
   },
   {
     name: COMPONENT_NAMES.HD_ST_ROLL_UP_6,
@@ -366,6 +466,7 @@ export const doorComponents = [
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-6.svg`,
     highContainerOnly: true,
     isRollUp: true,
+    isHeavyDuty: false
   },
   {
     name: COMPONENT_NAMES.EC_HC_ROLLUP_8_74,
@@ -384,6 +485,7 @@ export const doorComponents = [
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-8.svg`,
     highContainerOnly: true,
     isRollUp: true,
+    isHeavyDuty: false
   },
   {
     name: COMPONENT_NAMES.EC_HC_ROLLUP_10_74,
@@ -402,6 +504,7 @@ export const doorComponents = [
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-10.svg`,
     highContainerOnly: true,
     isRollUp: true,
+    isHeavyDuty: false
   },
   {
     name: COMPONENT_NAMES.EC_HC_ROLLUP_12_74,
@@ -420,6 +523,7 @@ export const doorComponents = [
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-12.svg`,
     highContainerOnly: true,
     isRollUp: true,
+    isHeavyDuty: false
   },
   {
     name: COMPONENT_NAMES.EC_HC_ROLLUP_15_74,
@@ -438,6 +542,7 @@ export const doorComponents = [
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-15.svg`,
     highContainerOnly: true,
     isRollUp: true,
+    isHeavyDuty: false
   },
   {
     name: COMPONENT_NAMES.EC_ST_ROLLUP_6_64,
@@ -455,6 +560,7 @@ export const doorComponents = [
     model: 'Economy_Rollup_Door - 6ft - 72in x 76in - 76in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-6.svg`,
     isRollUp: true,
+    isHeavyDuty: false
   },
   {
     name: COMPONENT_NAMES.EC_ST_ROLLUP_8_64,
@@ -472,6 +578,7 @@ export const doorComponents = [
     model: 'Economy_Rollup_Door - 8ft - 80in x 76in - 84in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-8.svg`,
     isRollUp: true,
+    isHeavyDuty: false
   },
   {
     name: COMPONENT_NAMES.EC_ST_ROLLUP_10_64,
@@ -489,6 +596,7 @@ export const doorComponents = [
     model: 'Economy_Rollup_Door - 10ft ST - 120in x 76in - 124in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-10.svg`,
     isRollUp: true,
+    isHeavyDuty: false
   },
   {
     name: COMPONENT_NAMES.EC_ST_ROLLUP_12_64,
@@ -506,6 +614,7 @@ export const doorComponents = [
     model: 'Economy_Rollup_Door - 12ft - 144in x 76in - 148in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-12.svg`,
     isRollUp: true,
+    isHeavyDuty: false
   },
   {
     name: COMPONENT_NAMES.EC_ST_ROLLUP_15_64,
@@ -523,5 +632,6 @@ export const doorComponents = [
     model: 'Economy_Rollup_Door - 15ft - 180in x 76in - 184in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-15.svg`,
     isRollUp: true,
+    isHeavyDuty: false
   },
 ];

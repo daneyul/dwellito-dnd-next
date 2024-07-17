@@ -6,6 +6,7 @@ import {
 } from '../constants/names';
 import { DIMENSIONS } from '../constants/dimensions';
 import { electricalComponents } from '../constants/components/electrical';
+import { ventComponents } from '../constants/components/vents';
 
 export const generateImgSrc = (imgName) => `../../../images/${imgName}`;
 
@@ -101,7 +102,6 @@ export const checkDistance = ({
 
 export const handleAddComponent = ({
   item,
-  selectedComponents,
   setSelectedComponents,
   selectedElevation,
   floorPlan,
@@ -112,11 +112,8 @@ export const handleAddComponent = ({
     position: { ...item.position },
     elevation: [...item.elevation, selectedElevation],
   };
-  const isVent = item.objType === COMPONENT_TYPES.VENT;
-  const findRoofVent = selectedComponents.find(
-    (component) => component.name === COMPONENT_NAMES.ROOF_VENT
-  );
-  const roofVentObjData = electricalComponents.find(
+  const isRoofVent = item.name === COMPONENT_NAMES.ROOF_VENT;
+  const roofVentObjData = ventComponents.find(
     (component) => component.name === COMPONENT_NAMES.ROOF_VENT
   );
 
@@ -128,14 +125,10 @@ export const handleAddComponent = ({
   };
 
   setSelectedComponents((prevSelectedComponents) => {
-    if (findRoofVent) {
-      return [...prevSelectedComponents, newItem];
+    if (isRoofVent) {
+      return [...prevSelectedComponents, roofVent];
     } else {
-      if (isVent) {
-        return [...prevSelectedComponents, newItem, roofVent];
-      } else {
-        return [...prevSelectedComponents, newItem];
-      }
+      return [...prevSelectedComponents, newItem];
     }
   });
 };
