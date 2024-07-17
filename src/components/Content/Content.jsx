@@ -156,6 +156,8 @@ const PageDataProvider = ({ children, data }) => {
   });
 
   const { orderTotal, setOrderTotal } = useOrderTotal({
+    containerHeightIsStandard,
+    selectedContainer,
     slug,
     selectedComponents,
     interiorFinish,
