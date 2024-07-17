@@ -291,14 +291,11 @@ const PageDataProvider = ({ children, data }) => {
         handleSelect,
         handleDeleteSelected,
         modifiers,
-<<<<<<< HEAD
-=======
         interiorIsPlywood,
         interiorIsDrywall,
         interiorIsSprayFoamCeiling,
         interiorIsSprayFoamCeilingWalls,
         containerHeightIsStandard
->>>>>>> 33f3d55 (new rollup doors)
       }}
     >
       {children}
