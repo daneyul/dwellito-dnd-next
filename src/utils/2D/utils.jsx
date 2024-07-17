@@ -90,13 +90,17 @@ export const checkDistance = ({
 
   const boundaries = isFloorPlanView ? 0 : DIMENSIONS.BOUNDARIES.x;
 
+  const left = deScale(component?.position.x, scaleFactor) + boundaries;
+  const right =
+    droppableWidthValue -
+    (deScale(component?.position.x, scaleFactor) + component.objWidth) +
+    boundaries;
+  const top = deScale(component?.position.y, scaleFactor);
+
   return {
-    left: deScale(component?.position.x, scaleFactor) + boundaries,
-    right:
-      droppableWidthValue -
-      (deScale(component?.position.x, scaleFactor) + component.objWidth) +
-      boundaries,
-    top: deScale(component?.position.y, scaleFactor),
+    left: Math.round(left * 100) / 100,
+    right: Math.round(right * 100) / 100,
+    top: Math.round(top * 100) / 100,
   };
 };
 

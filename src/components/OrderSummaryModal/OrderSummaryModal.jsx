@@ -237,6 +237,12 @@ const OrderSummaryModal = () => {
                       from right
                     </div>
                   )}
+                  {isElectrical && (
+                    <div className={style.distance}>
+                    {distance.left}&quot; from left, {distance.top}&quot;
+                    from top (on floor plan view)
+                  </div>
+                  )}
                 </div>
                 <div className={style.price}>${component.price}</div>
               </li>
