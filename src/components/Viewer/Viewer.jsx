@@ -2,11 +2,10 @@ import Collision from '@/components/Collision/Collision';
 import { Droppable } from '@/components/Droppable';
 import { Draggable } from '@/components/Draggable';
 import { DndContext } from '@dnd-kit/core';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { droppableWidth, toScale } from '@/utils/2D/utils';
 import ChevronLeftBlack from '../ChevronLeftBlack';
 import ChevronRightBlack from '../ChevronRightBlack';
-import style from './viewer.module.scss';
 import ToggleView from '../ToggleView/ToggleView';
 import { Models } from '../Models/Models';
 import ToggleCamera from '../ToggleCamera/ToggleCamera';
@@ -19,6 +18,9 @@ import DeleteBtn from '../DeleteBtn/DeleteBtn';
 import DragToMove from '../DragToMove/DragToMove';
 import OutsideDroppable from '../Collision/OutsideDroppable';
 import RotateBtn from '../DeleteBtn/Rotate';
+import { LeftArrow, RightArrow } from '../Arrows/Arrows';
+import { DraggableContainer } from '../DraggableContainer';
+import { ConditionalButtons } from '../ConditionalButtons';
 
 const Viewer = () => {
   const {
@@ -54,34 +56,18 @@ const Viewer = () => {
     (component) => component.isSelected
   );
 
-  const LeftArrow = () => {
-    return (
-      <button className={style.left} onClick={handlePrevious}>
-        <ChevronLeftBlack />
-      </button>
-    );
-  };
-
-  const RightArrow = () => {
-    return (
-      <button className={style.right} onClick={handleNext}>
-        <ChevronRightBlack />
-      </button>
-    );
-  };
-
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setSelectedElevationIndex(
       (prevIndex) => (prevIndex + 1) % mappedElevations.length
     );
-  };
+  }, [mappedElevations.length, setSelectedElevationIndex]);
 
-  const handlePrevious = () => {
+  const handlePrevious = useCallback(() => {
     setSelectedElevationIndex(
       (prevIndex) =>
         (prevIndex - 1 + mappedElevations.length) % mappedElevations.length
     );
-  };
+  }, [mappedElevations.length, setSelectedElevationIndex]);
 
   useEffect(() => {
     setSelectedElevation(mappedElevations[selectedElevationIndex]);
@@ -106,15 +92,20 @@ const Viewer = () => {
   const showRightArrow =
     selectedElevationIndex < mappedElevations.length - 1 && !show3d;
 
-  const selectedComponent = selectedComponents.find(
-    (component) => component.isSelected
+  const selectedComponent = useMemo(
+    () => selectedComponents.find((component) => component.isSelected),
+    [selectedComponents]
   );
-  const isHeaterOrOutlet =
-    selectedComponent &&
-    (selectedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-      selectedComponent.name === COMPONENT_NAMES.OUTLET);
 
-  const handleRotate = () => {
+  const isHeaterOrOutlet = useMemo(
+    () =>
+      selectedComponent &&
+      (selectedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
+        selectedComponent.name === COMPONENT_NAMES.OUTLET),
+    [selectedComponent]
+  );
+
+  const handleRotate = useCallback(() => {
     setSelectedComponents((prevComponents) =>
       prevComponents.map((piece) => {
         if (piece.id === selectedComponent.id) {
@@ -126,7 +117,7 @@ const Viewer = () => {
         return piece;
       })
     );
-  };
+  }, [selectedComponent, setSelectedComponents]);
 
   return (
     <>
@@ -167,64 +158,27 @@ const Viewer = () => {
               <MultipleDroppables setHoveredPiece={setHoveredPiece} />
             ) : (
               <Droppable>
-                <div
-                  style={{
-                    width: `${toScale(
-                      droppableWidth(
-                        selectedElevation,
-                        DIMENSIONS,
-                        selectedContainer
-                      ),
-                      scaleFactor
-                    )}px`,
-                    height: '100%',
-                    position: 'absolute',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                  }}
-                >
-                  {/* Map through selected components and render on corresponding elevation view */}
-                  {selectedComponents.map((piece) => {
-                    return (
-                      <Draggable
-                        piece={piece}
-                        key={piece.id}
-                        id={piece.id}
-                        onSelect={() => handleSelect(piece.id)}
-                        ref={draggableRefs[piece.id]}
-                        onHover={() => setHoveredPiece(piece)}
-                        onLeave={() => setHoveredPiece(null)}
-                      />
-                    );
-                  })}
-                </div>
+                 <DraggableContainer
+                  selectedComponents={selectedComponents}
+                  handleSelect={handleSelect}
+                  draggableRefs={draggableRefs}
+                  setHoveredPiece={setHoveredPiece}
+                />
               </Droppable>
             )}
           </DndContext>
         </div>
-        {showLeftArrow && <LeftArrow />}
-        {showRightArrow && <RightArrow />}
-        <div
-          style={{
-            display: 'flex',
-            position: 'absolute',
-            transform: 'translate(-50%, 50%)',
-            left: '50%',
-            bottom: 'calc(7.5rem + 58px)',
-            zIndex: 100,
-            gap: '1rem',
-          }}
-        >
-          {isAnyItemSelected && !show3d && (
-            <DeleteBtn onDeleteSelected={handleDeleteSelected} />
-          )}
-          {isHeaterOrOutlet && !show3d && isFloorPlanView && (
-            <RotateBtn
-              handleRotate={handleRotate}
-              component={selectedComponent}
-            />
-          )}
-        </div>
+        {showLeftArrow && <LeftArrow handlePrevious={handlePrevious} />}
+        {showRightArrow && <RightArrow handleNext={handleNext} />}
+        <ConditionalButtons
+          isAnyItemSelected={isAnyItemSelected}
+          show3d={show3d}
+          handleDeleteSelected={handleDeleteSelected}
+          isHeaterOrOutlet={isHeaterOrOutlet}
+          isFloorPlanView={isFloorPlanView}
+          handleRotate={handleRotate}
+          selectedComponent={selectedComponent}
+        />
         {showDragToMove && <DragToMove isFloorPlanView={isFloorPlanView} />}
         <ToggleCamera />
         <ToggleView />
