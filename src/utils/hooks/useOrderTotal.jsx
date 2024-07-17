@@ -7,6 +7,8 @@ import {
 } from '@/utils/constants/names';
 
 const useOrderTotal = ({
+  containerHeightIsStandard,
+  selectedContainer,
   slug,
   selectedComponents,
   interiorFinish,
@@ -14,6 +16,9 @@ const useOrderTotal = ({
   flooring,
 }) => {
   const [orderTotal, setOrderTotal] = useState(0);
+  const containerPrice = containerHeightIsStandard
+    ? selectedContainer.priceSc
+    : selectedContainer.priceHc;
 
   useEffect(() => {
     const interiorFinishPrice = () => {
@@ -31,9 +36,17 @@ const useOrderTotal = ({
         if (slug === CONTAINER_10_SLUG) {
           return interiorFinish.price10;
         } else if (slug === CONTAINER_20_SLUG) {
-          return interiorFinish.price20S;
+          if (containerHeightIsStandard) {
+            return interiorFinish.price20S;
+          } else {
+            return interiorFinish.price20H;
+          }
         } else if (slug === CONTAINER_40_SLUG) {
-          return interiorFinish.price40S;
+          if (containerHeightIsStandard) {
+            return interiorFinish.price40S;
+          } else {
+            return interiorFinish.price40H;
+          }
         }
       } else {
         return interiorFinish.price;
@@ -57,7 +70,8 @@ const useOrderTotal = ({
       ) +
       interiorFinishPrice() +
       exteriorFinish.price +
-      flooringPrice();
+      flooringPrice() +
+      containerPrice;
 
     setOrderTotal(total);
   }, [selectedComponents, interiorFinish, exteriorFinish, flooring]);

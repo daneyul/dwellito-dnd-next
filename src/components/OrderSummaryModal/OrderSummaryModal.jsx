@@ -15,6 +15,7 @@ import {
   CONTAINER_20_SLUG,
   CONTAINER_40_SLUG,
   ELEVATION_NAMES,
+  INTERIOR_FINISH_NAMES,
 } from '@/utils/constants/names';
 import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/useSaveSelections';
@@ -22,6 +23,7 @@ import useSaveSelections from '@/utils/hooks/useSaveSelections';
 const OrderSummaryModal = () => {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
+    containerHeightIsStandard,
     orderTotal,
     selectedComponents,
     selectedContainer,
@@ -67,6 +69,38 @@ const OrderSummaryModal = () => {
     </div>
   );
 
+  const interiorFinishPrice = () => {
+    if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
+      if (slug === CONTAINER_10_SLUG) {
+        return interiorFinish.price10;
+      } else if (slug === CONTAINER_20_SLUG) {
+        return interiorFinish.price20;
+      } else if (slug === CONTAINER_40_SLUG) {
+        return interiorFinish.price40;
+      }
+    } else if (
+      interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS
+    ) {
+      if (slug === CONTAINER_10_SLUG) {
+        return interiorFinish.price10;
+      } else if (slug === CONTAINER_20_SLUG) {
+        if (containerHeightIsStandard) {
+          return interiorFinish.price20S;
+        } else {
+          return interiorFinish.price20H;
+        }
+      } else if (slug === CONTAINER_40_SLUG) {
+        if (containerHeightIsStandard) {
+          return interiorFinish.price40S;
+        } else {
+          return interiorFinish.price40H;
+        }
+      }
+    } else {
+      return interiorFinish.price;
+    }
+  }
+
   const InteriorSection = () => (
     <div className={style.section}>
       <div className={style.elevationName}>Interior Finish</div>
@@ -81,7 +115,7 @@ const OrderSummaryModal = () => {
           </div>
           <div className={style.description}>{interiorFinish.name}</div>
           <div className={style.price}>
-            ${interiorFinish.price.toLocaleString()}
+            ${interiorFinishPrice().toLocaleString()}
           </div>
         </div>
       </div>
