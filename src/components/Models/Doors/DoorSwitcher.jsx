@@ -10,11 +10,15 @@ import {
   EcStRollup15,
   EcStRollup6,
   EcStRollup8,
-  HdRollup10,
-  HdRollup12,
-  HdRollup15,
-  HdRollup6,
-  HdRollup8,
+  HdHcRollup10,
+  HdHcRollup12,
+  HdHcRollup15,
+  HdHcRollup6,
+  HdHcRollup8,
+  HdStRollup10,
+  HdStRollup15,
+  HdStRollup6,
+  HdStRollup8,
   Lhr,
   LhrGlass,
   LhrSecurity,
@@ -93,37 +97,72 @@ export default function Door({ onBoundingBoxChange, component }) {
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.HD_ROLL_UP_6:
+    case COMPONENT_NAMES.HD_HC_ROLL_UP_6:
       return (
-        <HdRollup6
+        <HdHcRollup6
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.HD_ROLL_UP_8:
+    case COMPONENT_NAMES.HD_HC_ROLL_UP_8:
       return (
-        <HdRollup8
+        <HdHcRollup8
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.HD_ROLL_UP_10:
+    case COMPONENT_NAMES.HD_HC_ROLL_UP_10:
       return (
-        <HdRollup10
+        <HdHcRollup10
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.HD_ROLL_UP_12:
+    case COMPONENT_NAMES.HD_HC_ROLL_UP_12:
       return (
-        <HdRollup12
+        <HdHcRollup12
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />
       );
-    case COMPONENT_NAMES.HD_ROLL_UP_15:
+    case COMPONENT_NAMES.HD_HC_ROLL_UP_15:
       return (
-        <HdRollup15
+        <HdHcRollup15
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.HD_ST_ROLL_UP_6:
+      return (
+        <HdStRollup6
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.HD_ST_ROLL_UP_8:
+      return (
+        <HdStRollup8
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.HD_ST_ROLL_UP_10:
+      return (
+        <HdStRollup10
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.HD_ST_ROLL_UP_12:
+      return (
+        <HdHcRollup12
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+        />
+      );
+    case COMPONENT_NAMES.HD_ST_ROLL_UP_15:
+      return (
+        <HdStRollup15
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
         />

@@ -101,7 +101,7 @@ const Sliding6 = ({ component, onBoundingBoxChange }) => (
   />
 );
 
-const HdRollup6 = ({ component, onBoundingBoxChange }) => (
+const HdHcRollup6 = ({ component, onBoundingBoxChange }) => (
   <GenericDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
@@ -113,7 +113,7 @@ const HdRollup6 = ({ component, onBoundingBoxChange }) => (
   />
 );
 
-const HdRollup8 = ({ component, onBoundingBoxChange }) => (
+const HdHcRollup8 = ({ component, onBoundingBoxChange }) => (
   <GenericDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
@@ -125,7 +125,7 @@ const HdRollup8 = ({ component, onBoundingBoxChange }) => (
   />
 );
 
-const HdRollup10 = ({ component, onBoundingBoxChange }) => (
+const HdHcRollup10 = ({ component, onBoundingBoxChange }) => (
   <GenericDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
@@ -137,7 +137,7 @@ const HdRollup10 = ({ component, onBoundingBoxChange }) => (
   />
 );
 
-const HdRollup12 = ({ component, onBoundingBoxChange }) => (
+const HdHcRollup12 = ({ component, onBoundingBoxChange }) => (
   <GenericDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
@@ -149,12 +149,71 @@ const HdRollup12 = ({ component, onBoundingBoxChange }) => (
   />
 );
 
-const HdRollup15 = ({ component, onBoundingBoxChange }) => (
+const HdHcRollup15 = ({ component, onBoundingBoxChange }) => (
   <GenericDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
     customPosition={[6.152, 1.66, 3.235]}
+    customRotation={[Math.PI, 0, -Math.PI]}
+    customScale={1.2}
+    isRollUp
+  />
+);
+const HdStRollup6 = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    customPosition={[4.02, 2.32, 3.235]}
+    customRotation={[Math.PI, 0, -Math.PI]}
+    customScale={1.2}
+    isRollUp
+  />
+);
+
+const HdStRollup8 = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    customPosition={[4.02, 2.32, 3.235]}
+    customRotation={[Math.PI, 0, -Math.PI]}
+    customScale={1.2}
+    isRollUp
+  />
+);
+
+const HdStRollup10 = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    customPosition={[4.02, 2.32, 3.235]}
+    customRotation={[Math.PI, 0, -Math.PI]}
+    customScale={1.2}
+    isRollUp
+  />
+);
+
+const HdStRollup12 = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    customPosition={[4.02, 2.32, 3.235]}
+    customRotation={[Math.PI, 0, -Math.PI]}
+    customScale={1.2}
+    isRollUp
+  />
+);
+
+const HdStRollup15 = ({ component, onBoundingBoxChange }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/doors/${component.model}.glb`}
+    customPosition={[5.54, 2.36, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
     isRollUp
@@ -292,11 +351,16 @@ export {
   RhrSecurityGlass,
   Double,
   Sliding6,
-  HdRollup6,
-  HdRollup8,
-  HdRollup10,
-  HdRollup12,
-  HdRollup15,
+  HdHcRollup6,
+  HdHcRollup8,
+  HdHcRollup10,
+  HdHcRollup12,
+  HdHcRollup15,
+  HdStRollup6,
+  HdStRollup8,
+  HdStRollup10,
+  HdStRollup12,
+  HdStRollup15,
   EcHcRollup6,
   EcHcRollup8,
   EcHcRollup10,
