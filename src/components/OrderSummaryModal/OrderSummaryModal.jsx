@@ -215,8 +215,6 @@ const OrderSummaryModal = () => {
               scaleFactor,
             });
 
-            console.log(distance)
-
             const imgSrc = isElectrical
               ? component.floorPlanImg
               : component.frontImg || component.imgName;
