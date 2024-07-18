@@ -106,35 +106,42 @@ export const checkDistance = ({
 
 export const handleAddComponent = ({
   item,
+  selectedComponents,
   setSelectedComponents,
   selectedElevation,
   floorPlan,
 }) => {
-  const newItem = {
-    ...item,
-    id: uuid(),
-    position: { ...item.position },
-    elevation: [...item.elevation, selectedElevation],
-  };
-  const isRoofVent = item.name === COMPONENT_NAMES.ROOF_VENT;
-  const roofVentObjData = ventComponents.find(
-    (component) => component.name === COMPONENT_NAMES.ROOF_VENT
-  );
-
-  const roofVent = {
-    ...roofVentObjData,
-    id: uuid(),
-    position: { ...roofVentObjData.position },
-    elevation: [floorPlan],
-  };
-
-  setSelectedComponents((prevSelectedComponents) => {
-    if (isRoofVent) {
-      return [...prevSelectedComponents, roofVent];
-    } else {
-      return [...prevSelectedComponents, newItem];
-    }
-  });
+  if (item.fixed && selectedComponents.some((component) => component.name === item.name)) {
+    setSelectedComponents((prevSelectedComponents) => 
+      prevSelectedComponents.filter((component) => component.name !== item.name)
+    );
+  } else {
+    const newItem = {
+      ...item,
+      id: uuid(),
+      position: { ...item.position },
+      elevation: [...item.elevation, selectedElevation],
+    };
+    const isRoofVent = item.name === COMPONENT_NAMES.ROOF_VENT;
+    const roofVentObjData = ventComponents.find(
+      (component) => component.name === COMPONENT_NAMES.ROOF_VENT
+    );
+  
+    const roofVent = {
+      ...roofVentObjData,
+      id: uuid(),
+      position: { ...roofVentObjData.position },
+      elevation: [floorPlan],
+    };
+  
+    setSelectedComponents((prevSelectedComponents) => {
+      if (isRoofVent) {
+        return [...prevSelectedComponents, roofVent];
+      } else {
+        return [...prevSelectedComponents, newItem];
+      }
+    });
+  }
 };
 
 export const getUniqueElevationObjects = (selectedComponents) => {

@@ -38,14 +38,11 @@ const Viewer = () => {
     setSelectedElevationIndex,
     show3d,
     mappedElevations,
-    selectedContainer,
-    scaleFactor,
     handleDeleteSelected,
     showDragToMove,
     setShowDragToMove,
     showOutsideDroppableWarning,
     handleDragMove,
-    handleDragEndEnhanced,
   } = useContext(PageDataContext);
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;

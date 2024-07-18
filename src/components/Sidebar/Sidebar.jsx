@@ -15,11 +15,12 @@ import {
   COMPONENT_TYPES,
   CONTAINER_10_SLUG,
   CONTAINER_HIGH,
+  CONTAINER_SIZE_40,
   CONTAINER_STANDARD,
 } from '@/utils/constants/names';
 import Logo from '../Logo';
-import AddElecOption from '../AddOption/AddElecOption';
 import { componentData } from '@/utils/constants/componentData';
+import AddFixedElecOption from '../AddOption/AddFixedElecOption';
 
 const Sidebar = () => {
   const {
@@ -37,18 +38,34 @@ const Sidebar = () => {
     ? selectedContainer.priceSc
     : selectedContainer.priceHc;
 
-  const electricals = componentData.filter((item) => {
-    if (containerSize() === '40') {
+  const fixedElectricals = componentData.filter((item) => {
+    if (containerSize() === CONTAINER_SIZE_40) {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
         item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP &&
-        item.name !== COMPONENT_NAMES.ROOF_VENT
+        item.fixed
       );
     } else {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
         item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP &&
-        item.name !== COMPONENT_NAMES.ROOF_VENT
+        item.fixed
+      );
+    }
+  });
+
+  const nonFixedElectricals = componentData.filter((item) => {
+    if (containerSize() === CONTAINER_SIZE_40) {
+      return (
+        item.objType === COMPONENT_TYPES.ELECTRICAL &&
+        item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP &&
+        !item.fixed
+      );
+    } else {
+      return (
+        item.objType === COMPONENT_TYPES.ELECTRICAL &&
+        item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP &&
+        !item.fixed
       );
     }
   });
@@ -114,7 +131,7 @@ const Sidebar = () => {
           css={{ fontWeight: 400, marginBottom: '1rem' }}
         />
         <SingleSelect type={EXTERIOR} />
-        <Selector />
+        <Selector nonFixedElectricals={nonFixedElectricals} />
         <div className={style.selectionTagName}>Interior Finishes</div>
         <Subtitle
           text='Select your wall finish'
@@ -125,8 +142,8 @@ const Sidebar = () => {
           text='Select your electrical add-ons'
           css={{ fontWeight: 400, marginBottom: '1rem' }}
         />
-        <div className={style.objectContainer}>
-          <AddElecOption options={electricals} />
+        <div className={style.fixedObjectContainer}>
+          <AddFixedElecOption options={fixedElectricals} />
         </div>
         <div className={style.selectionTagName}>Flooring Options</div>
         <Subtitle

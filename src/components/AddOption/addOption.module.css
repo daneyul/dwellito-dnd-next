@@ -23,3 +23,32 @@
   z-index: 500;
   margin-bottom: 0.5rem;
 }
+
+.objImgContainer, .objImgContainerSelected {
+  font-size: 14px;
+  padding: 1rem;
+  border-radius: 2px;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.objImgContainer {
+  border: 1px solid #dde5ff;
+}
+
+.objImgContainer:hover, .objImgContainerSelected {
+  box-shadow: 0 0 0 1px #2A2CB1;
+  border: 1px solid #F8F8F7;
+}
+
+.fixedObjImg {
+  width: 72px;
+  height: 72px;
+}
+
+.objDesc {
+  margin-left: 1rem;
+  font-weight: 700;
+}

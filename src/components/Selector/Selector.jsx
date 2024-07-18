@@ -4,8 +4,9 @@ import style from './selector.module.scss';
 import { useContext } from 'react';
 import { COMPONENT_TYPES } from '@/utils/constants/names';
 import { PageDataContext } from '../Content/Content';
+import AddNonFixedElecOption from '../AddOption/AddNonFixedElecOption';
 
-const Selector = () => {
+const Selector = ({ nonFixedElectricals }) => {
   const { componentData } = useContext(Library2dDataContext);
   const { containerHeightIsStandard } =useContext(PageDataContext);
 
@@ -76,6 +77,10 @@ const Selector = () => {
         <div className={style.subTitle}>Vents</div>
         <div className={style.objectContainer}>
           <AddOption options={vents} />
+        </div>
+        <div className={style.subTitle}>Electrical Add-Ons</div>
+        <div className={style.objectContainer}>
+          <AddNonFixedElecOption options={nonFixedElectricals} />
         </div>
       </div>
     </div>

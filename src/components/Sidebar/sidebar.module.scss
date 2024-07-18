@@ -25,6 +25,12 @@
   flex-wrap: wrap;
 }
 
+.fixedObjectContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4rem;
+}
+
 .logo {
   display: flex;
   justify-content: center;

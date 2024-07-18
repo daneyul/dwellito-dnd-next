@@ -5,7 +5,7 @@ import style from './addOption.module.css';
 import * as HoverCard from '@radix-ui/react-hover-card';
 import { PageDataContext } from '../Content/Content';
 
-const AddElecOption = ({ options }) => {
+const AddNonFixedElecOption = ({ options }) => {
   const {
     setSelectedComponents,
     floorPlan,
@@ -64,4 +64,4 @@ const AddElecOption = ({ options }) => {
   });
 };
 
-export default AddElecOption;
+export default AddNonFixedElecOption;
