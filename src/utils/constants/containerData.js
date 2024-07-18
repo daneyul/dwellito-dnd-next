@@ -2,6 +2,9 @@ import {
   CONTAINER_10_SLUG,
   CONTAINER_20_SLUG,
   CONTAINER_40_SLUG,
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
 } from './names';
 
 export const containerData = [
@@ -17,7 +20,7 @@ export const containerData = [
     floorPlan: '10/floor-plan.svg',
     priceSc: 5400,
     priceHc: 0,
-    size: '10'
+    size: CONTAINER_SIZE_10
   },
   {
     name: `20' Custom Cube`,
@@ -31,7 +34,7 @@ export const containerData = [
     floorPlan: '20/floor-plan.svg',
     priceSc: 3800,
     priceHc: 5200,
-    size: '20'
+    size: CONTAINER_SIZE_20
   },
   {
     name: `40' Custom Cube`,
@@ -45,6 +48,6 @@ export const containerData = [
     floorPlan: '40/floor-plan.svg',
     priceSc: 6300,
     priceHc: 6300,
-    size: '40'
+    size: CONTAINER_SIZE_40
   },
 ];

@@ -26,6 +26,14 @@ import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
+  CONTAINER_10_SLUG,
+  CONTAINER_20_SLUG,
+  CONTAINER_40_SLUG,
+  CONTAINER_HIGH,
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
+  CONTAINER_STANDARD,
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
 import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
@@ -51,6 +59,7 @@ export function Models() {
     containerHeightIsStandard,
     cameraReady,
     setCameraReady,
+    slug
   } = useContext(PageDataContext);
   const { containerData } = useContext(Library2dDataContext);
 
@@ -173,13 +182,13 @@ export function Models() {
   } = useBoundingBoxes({ doors, windows, vents });
 
   const ContainerShell = () => {
-    if (selectedContainer.size === "10") {
+    if (selectedContainer.size === CONTAINER_SIZE_10) {
       if (containerHeightIsStandard) {
         return <ContainerShell10Standard />;
       } else {
         return null;
       }
-    } else if (selectedContainer.size === "20") {
+    } else if (selectedContainer.size === CONTAINER_SIZE_20) {
       if (containerHeightIsStandard) {
         return <ContainerShell20Standard />;
       } else {
@@ -195,11 +204,15 @@ export function Models() {
   };
 
   useEffect(() => {
-    preloadContainerModels('10', 'standard');
-    preloadContainerModels('20', 'standard');
-    preloadContainerModels('40', 'standard');
-    preloadContainerModels('20', 'high');
-    preloadContainerModels('40', 'high');
+    if (slug === CONTAINER_10_SLUG) {
+      preloadContainerModels(CONTAINER_SIZE_10, CONTAINER_STANDARD);
+    } else if (slug === CONTAINER_20_SLUG) {
+      preloadContainerModels(CONTAINER_SIZE_20, CONTAINER_STANDARD);
+      preloadContainerModels(CONTAINER_SIZE_20, CONTAINER_HIGH);
+    } else if (slug === CONTAINER_40_SLUG) {
+      preloadContainerModels(CONTAINER_SIZE_40, CONTAINER_STANDARD);
+      preloadContainerModels(CONTAINER_SIZE_40, CONTAINER_HIGH);
+    }
   }, []);
 
   return (
