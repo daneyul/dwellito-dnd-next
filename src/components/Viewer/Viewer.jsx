@@ -116,71 +116,99 @@ const Viewer = () => {
     );
   }, [selectedComponent, setSelectedComponents]);
 
+  const onRenderCallback = (
+    id, // the "id" prop of the Profiler tree that has just committed
+    phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
+    actualDuration, // time spent rendering the committed update
+    baseDuration, // estimated time to render the entire subtree without memoization
+    startTime, // when React began rendering this update
+    commitTime, // when React committed this update
+    interactions // the Set of interactions belonging to this update
+  ) => {
+    console.log({
+      id,
+      phase,
+      actualDuration,
+      baseDuration,
+      startTime,
+      commitTime,
+      interactions,
+    });
+  };
+
   return (
     <>
-      <div
-        style={{
-          width: 'calc(100vw - 430px)',
-          position: 'sticky',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}
-      >
+      <Profiler id="Viewer-Overall" onRender={onRenderCallback}>
         <div
           style={{
-            visibility: show3d ? 'visible' : 'hidden',
-            position: 'absolute',
-            width: '100%',
+            width: 'calc(100vw - 430px)',
+            position: 'sticky',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
           }}
         >
-          <Models />
-        </div>
-        <div
-          style={{
-            visibility: show3d ? 'hidden' : 'visible',
-            position: 'absolute',
-            width: '100%',
-          }}
-        >
-          <OutsideDroppable showWarning={showOutsideDroppableWarning} />
-          <Collision showCollision={showCollision} />
-          <DndContext
-            onDragStart={handleDragStart}
-            onDragMove={handleDragMove}
-            onDragEnd={handleDragEnd}
-            modifiers={modifiers}
-          >
-            {isFloorPlanView ? (
-              <MultipleDroppables setHoveredPiece={setHoveredPiece} />
-            ) : (
-              <Droppable>
-                 <DraggableContainer
-                  selectedComponents={selectedComponents}
-                  handleSelect={handleSelect}
-                  draggableRefs={draggableRefs}
-                  setHoveredPiece={setHoveredPiece}
-                />
-              </Droppable>
+          <Profiler id="Models" onRender={onRenderCallback}>
+            <div
+              style={{
+                visibility: show3d ? 'visible' : 'hidden',
+                position: 'absolute',
+                width: '100%',
+              }}
+            >
+              <Models />
+            </div>
+          </Profiler>
+          <Profiler id="OtherComponents" onRender={onRenderCallback}>
+            <div
+              style={{
+                visibility: show3d ? 'hidden' : 'visible',
+                position: 'absolute',
+                width: '100%',
+              }}
+            >
+              <OutsideDroppable showWarning={showOutsideDroppableWarning} />
+              <Collision showCollision={showCollision} />
+              <DndContext
+                onDragStart={handleDragStart}
+                onDragMove={handleDragMove}
+                onDragEnd={handleDragEnd}
+                modifiers={modifiers}
+              >
+                {isFloorPlanView ? (
+                  <MultipleDroppables setHoveredPiece={setHoveredPiece} />
+                ) : (
+                  <Droppable>
+                    <DraggableContainer
+                      selectedComponents={selectedComponents}
+                      handleSelect={handleSelect}
+                      draggableRefs={draggableRefs}
+                      setHoveredPiece={setHoveredPiece}
+                    />
+                  </Droppable>
+                )}
+              </DndContext>
+            </div>
+            {showLeftArrow && <LeftArrow handlePrevious={handlePrevious} />}
+            {showRightArrow && <RightArrow handleNext={handleNext} />}
+            <ConditionalButtons
+              isAnyItemSelected={isAnyItemSelected}
+              show3d={show3d}
+              handleDeleteSelected={handleDeleteSelected}
+              isHeaterOrOutlet={isHeaterOrOutlet}
+              isFloorPlanView={isFloorPlanView}
+              handleRotate={handleRotate}
+              selectedComponent={selectedComponent}
+            />
+            {showDragToMove && (
+              <DragToMove isFloorPlanView={isFloorPlanView} />
             )}
-          </DndContext>
+            <ToggleCamera />
+            <ToggleView />
+            <ElevationToggle />
+          </Profiler>
         </div>
-        {showLeftArrow && <LeftArrow handlePrevious={handlePrevious} />}
-        {showRightArrow && <RightArrow handleNext={handleNext} />}
-        <ConditionalButtons
-          isAnyItemSelected={isAnyItemSelected}
-          show3d={show3d}
-          handleDeleteSelected={handleDeleteSelected}
-          isHeaterOrOutlet={isHeaterOrOutlet}
-          isFloorPlanView={isFloorPlanView}
-          handleRotate={handleRotate}
-          selectedComponent={selectedComponent}
-        />
-        {showDragToMove && <DragToMove isFloorPlanView={isFloorPlanView} />}
-        <ToggleCamera />
-        <ToggleView />
-        <ElevationToggle />
-      </div>
+      </Profiler>
     </>
   );
 };
