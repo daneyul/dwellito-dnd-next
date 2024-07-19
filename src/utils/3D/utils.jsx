@@ -257,11 +257,11 @@ const electricalCoordinates = (
 ) => {
   const adjustForX = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2) - 0.2;
+      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2) - 0.2;
+      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2) - 0.2;
+      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
@@ -280,8 +280,8 @@ const electricalCoordinates = (
   let yPosition = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
       return (
-        DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH -
-        distanceObject.top / SCALE_FACTOR_FOR_CALCULATIONS +
+        (DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH -
+        distanceObject.top) / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY()
       );
     } else if (selectedContainer.name === `20' Custom Cube`) {
@@ -292,8 +292,8 @@ const electricalCoordinates = (
       );
     } else if (selectedContainer.name === `40' Custom Cube`) {
       return (
-        DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH -
-        distanceObject.top / SCALE_FACTOR_FOR_CALCULATIONS +
+        (DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH -
+        distanceObject.top) / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY()
       );
     }
