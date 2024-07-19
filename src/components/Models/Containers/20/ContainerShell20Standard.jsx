@@ -96,7 +96,6 @@ export default function ContainerShell20Standard() {
   ]);
 
   const ref = useRef();
-  console.log(redPaint)
 
   const adjustForX = useMemo(() => {
     if (selectedContainer.name === `10' Custom Cube`) {
