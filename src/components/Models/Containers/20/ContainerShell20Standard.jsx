@@ -23,16 +23,15 @@ export default function ContainerShell20Standard() {
     interiorIsSprayFoamCeilingWalls,
   } = useContext(PageDataContext);
 
-  const {
-    redPaint,
-    whitePaint,
-    greenPaint,
-    bluePaint,
-    slateGreyPaint,
-    beigePaint,
-    echoFloor,
-    timberFloor
-  } = useGLTFModels();
+  const { materials: redPaint }= useGLTF('/models/materials/exterior/red-paint.glb');
+  const { materials: whitePaint }= useGLTF('/models/materials/exterior/white-paint.glb');
+  const { materials: greenPaint }= useGLTF('/models/materials/exterior/green-paint.glb');
+  const { materials: bluePaint }= useGLTF('/models/materials/exterior/blue-paint.glb');
+  const { materials: slateGreyPaint }= useGLTF('/models/materials/exterior/slate-grey-paint.glb');
+  const { materials: beigePaint }= useGLTF('/models/materials/exterior/beige-paint.glb');
+
+  const { materials: echoFloor }= useGLTF('/models/materials/flooring/echo.glb');
+  const { materials: timberFloor }= useGLTF('/models/materials/flooring/timber.glb');
 
   // Load all 3d objects
   const { nodes, materials } = useGLTF(
