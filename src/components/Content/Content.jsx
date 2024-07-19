@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, createContext, useContext } from 'react';
+import React, { useState, useEffect, createContext, useContext, Profiler } from 'react';
 import Logo from '@/components/Logo';
 import Viewer from '@/components/Viewer/Viewer';
 import Sidebar from '@/components/Sidebar/Sidebar';
@@ -317,6 +317,11 @@ const PageDataProvider = ({ children, data }) => {
   );
 };
 
+
+const onRenderCallback = (id, phase, actualDuration, baseDuration, startTime, commitTime, interactions) => {
+  console.log({ id, phase, actualDuration, baseDuration, startTime, commitTime, interactions });
+};
+
 const Content = ({ data }) => {
   return (
     <Theme>
@@ -337,7 +342,7 @@ const Content = ({ data }) => {
                   position: 'relative',
                 }}
               >
-                {/* <Viewer /> */}
+                <Viewer />
                 <Sidebar />
                 <PriceTotal />
                 <OrderSummaryModal />

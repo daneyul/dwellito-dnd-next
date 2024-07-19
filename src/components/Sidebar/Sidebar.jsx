@@ -1,5 +1,5 @@
 'use client';
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import Badges from '../Badges/Badges';
 import BasePriceDesc from '../BasePriceDesc/BasePriceDesc';
 import Selector from '../Selector/Selector';
@@ -22,7 +22,7 @@ import Logo from '../Logo';
 import { componentData } from '@/utils/constants/componentData';
 import AddFixedElecOption from '../AddOption/AddFixedElecOption';
 
-const Sidebar = () => {
+const Sidebar = memo(() => {
   const {
     containerHeightIsStandard,
     setSelectedContainerHeight,
@@ -161,6 +161,6 @@ const Sidebar = () => {
       <NotYourOrder />
     </div>
   );
-};
+});
 
 export default Sidebar;
