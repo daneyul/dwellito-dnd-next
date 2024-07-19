@@ -154,7 +154,7 @@ const Viewer = () => {
             width: '100%',
           }}
         >
-          {/* <Models /> */}
+          <Models />
         </div>
         <div
           style={{
@@ -165,7 +165,7 @@ const Viewer = () => {
         >
           <OutsideDroppable showWarning={showOutsideDroppableWarning} />
           <Collision showCollision={showCollision} />
-          <DndContext
+          {/* <DndContext
             onDragStart={handleDragStart}
             onDragMove={handleDragMove}
             onDragEnd={handleDragEnd}
@@ -183,7 +183,7 @@ const Viewer = () => {
                 />
               </Droppable>
             )}
-          </DndContext>
+          </DndContext> */}
         </div>
         {showLeftArrow && <LeftArrow handlePrevious={handlePrevious} />}
         {showRightArrow && <RightArrow handleNext={handleNext} />}
