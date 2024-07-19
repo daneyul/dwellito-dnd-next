@@ -10,7 +10,7 @@ import {
   INTERIOR_FINISH_NAMES,
 } from '@/utils/constants/names';
 
-const Selections = memo(({ type, selections, selected, onSelect }) => {
+const Selections = ({ type, selections, selected, onSelect }) => {
   return selections.map((selection) => {
     const isSelected = selected.hex === selection.hex;
     return (
@@ -27,10 +27,10 @@ const Selections = memo(({ type, selections, selected, onSelect }) => {
       </div>
     );
   });
-});
+};
 
-const Descriptions = memo(({ selections, selected, type, slug }) => {
-  const getPrice = useCallback((selection) => {
+const Descriptions = ({ selections, selected, type, slug }) => {
+  const getPrice = (selection) => {
     if (type === 'interior') {
       if (selection.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
         if (slug === CONTAINER_10_SLUG) return selection.price10;
@@ -43,7 +43,7 @@ const Descriptions = memo(({ selections, selected, type, slug }) => {
       }
     }
     return selection.price;
-  }, [type, slug]);
+  };
 
   return selections.map((selection, index) => {
     const isSelected = selected.hex === selection.hex;
@@ -58,7 +58,7 @@ const Descriptions = memo(({ selections, selected, type, slug }) => {
       )
     );
   });
-});
+};
 
 const SingleSelect = ({ type }) => {
   const {
@@ -106,7 +106,7 @@ const SingleSelect = ({ type }) => {
     setCameraReady(false);
   }, [setExteriorFinish, setInteriorFinish, setFlooring, setShow3d, setShowExterior, setCameraReady]);
 
-  const selectionsData = useMemo(() => {
+  const selectionsData = () => {
     switch (type) {
       case EXTERIOR:
         return {
@@ -129,7 +129,7 @@ const SingleSelect = ({ type }) => {
       default:
         return { selections: [], selected: null, onSelect: () => {} };
     }
-  }, [type, exteriorFinish, interiorFinish, flooring, handleSelect]);
+  };
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
