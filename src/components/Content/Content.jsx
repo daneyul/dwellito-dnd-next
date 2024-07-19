@@ -338,7 +338,7 @@ const Content = ({ data }) => {
                 }}
               >
                 <Viewer />
-                <Sidebar />
+                {/* <Sidebar /> */}
                 <PriceTotal />
                 <OrderSummaryModal />
               </div>
