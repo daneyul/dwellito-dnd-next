@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { Vector3 } from 'three';
 import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names';
 
-export function useBoundingBoxes({ doors, windows, vents}) {
+export function useBoundingBoxes({ doors, windows, vents }) {
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
   const [windowBoundingBoxes, setWindowBoundingBoxes] = useState([]);
   const [ventBoundingBoxes, setVentBoundingBoxes] = useState([]);
@@ -55,19 +55,70 @@ export function useBoundingBoxes({ doors, windows, vents}) {
             };
           }
         } else if (doors[index].isRollUp) {
-          updatedData = {
-            ...updatedData,
-            size: new Vector3(
-              data.size.x - 2.3,
-              data.size.y - 1.5,
-              data.size.z
-            ),
-            center: new Vector3(
-              data.center.x,
-              data.center.y - 0.8,
-              data.center.z
-            ),
-          };
+          if (
+            data.selectedElevation.name === ELEVATION_NAMES.RIGHT ||
+            data.selectedElevation.name === ELEVATION_NAMES.LEFT
+          ) {
+            if (doors[index].isHeavyDuty && !doors[index].highContainerOnly) {
+              updatedData = {
+                ...updatedData,
+                size: new Vector3(
+                  data.size.x - 2.3,
+                  data.size.y - 2.6,
+                  data.size.z
+                ),
+                center: new Vector3(
+                  data.center.x,
+                  data.center.y - 1.6,
+                  data.center.z
+                ),
+              };
+            } else {
+              updatedData = {
+                ...updatedData,
+                size: new Vector3(
+                  data.size.x - 2.3,
+                  data.size.y - 1.5,
+                  data.size.z
+                ),
+                center: new Vector3(
+                  data.center.x,
+                  data.center.y - 0.8,
+                  data.center.z
+                ),
+              };
+            }
+          } else {
+            if (doors[index].isHeavyDuty && !doors[index].highContainerOnly) {
+              updatedData = {
+                ...updatedData,
+                size: new Vector3(
+                  data.size.x,
+                  data.size.y - 2.6,
+                  data.size.z - 2.3
+                ),
+                center: new Vector3(
+                  data.center.x,
+                  data.center.y - 1.6,
+                  data.center.z
+                ),
+              };
+            } else {
+              updatedData = {
+                ...updatedData,
+                size: new Vector3(
+                  data.size.x - 2.3,
+                  data.size.y - 1.5,
+                  data.size.z
+                ),
+                center: new Vector3(
+                  data.center.x,
+                  data.center.y - 0.8,
+                  data.center.z - 2.3
+                ),
+              };
+            }
+          }
         }
       }
 
@@ -76,36 +127,46 @@ export function useBoundingBoxes({ doors, windows, vents}) {
     [doors, COMPONENT_NAMES]
   );
 
-  const handleWindowBoundingBox = useCallback((index, data) => {
-    let updatedData = { ...data };
+  const handleWindowBoundingBox = useCallback(
+    (index, data) => {
+      let updatedData = { ...data };
 
-    if (
-      data.selectedElevation.name === ELEVATION_NAMES.RIGHT ||
-      data.selectedElevation.name === ELEVATION_NAMES.LEFT
-    ) {
-      updatedData = {
-        ...updatedData,
-        size: new Vector3(data.size.x - 2, data.size.y - 1.7, data.size.z),
-        center: new Vector3(
-          data.center.x - 0.1,
-          data.center.y - 0.1,
-          data.center.z
-        ),
-      };
-    } else {
-      updatedData = {
-        ...updatedData,
-        size: new Vector3(data.size.x, data.size.y - 1.7, data.size.z - 1.7),
-        center: new Vector3(data.center.x, data.center.y - 0.1, data.center.z),
-      };
-    }
+      if (
+        data.selectedElevation.name === ELEVATION_NAMES.RIGHT ||
+        data.selectedElevation.name === ELEVATION_NAMES.LEFT
+      ) {
+        updatedData = {
+          ...updatedData,
+          size: new Vector3(data.size.x - 2, data.size.y - 1.7, data.size.z),
+          center: new Vector3(
+            data.center.x - 0.1,
+            data.center.y - 0.1,
+            data.center.z
+          ),
+        };
+      } else {
+        updatedData = {
+          ...updatedData,
+          size: new Vector3(data.size.x, data.size.y - 1.7, data.size.z - 1.7),
+          center: new Vector3(
+            data.center.x,
+            data.center.y - 0.1,
+            data.center.z
+          ),
+        };
+      }
 
-    setWindowBoundingBoxes((prev) => ({ ...prev, [index]: updatedData }));
-  }, [windows]);
+      setWindowBoundingBoxes((prev) => ({ ...prev, [index]: updatedData }));
+    },
+    [windows]
+  );
 
-  const handleVentBoundingBox = useCallback((index, data) => {
-    setVentBoundingBoxes((prev) => ({ ...prev, [index]: data }));
-  }, [vents]);
+  const handleVentBoundingBox = useCallback(
+    (index, data) => {
+      setVentBoundingBoxes((prev) => ({ ...prev, [index]: data }));
+    },
+    [vents]
+  );
 
   return {
     doorBoundingBoxes,
