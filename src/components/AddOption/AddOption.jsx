@@ -4,11 +4,10 @@ import { generateImgSrc, handleAddComponent } from '../../utils/2D/utils';
 import style from './addOption.module.css';
 import * as HoverCard from '@radix-ui/react-hover-card';
 import { PageDataContext } from '../Content/Content';
-import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES } from '@/utils/constants/names';
+import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names';
 
 const AddOption = ({ options }) => {
   const {
-    selectedComponents,
     setSelectedComponents,
     selectedElevation,
     setShow3d,
@@ -20,6 +19,9 @@ const AddOption = ({ options }) => {
 
   const rightElevation = mappedElevations.find(
     (elevation) => elevation.name === ELEVATION_NAMES.RIGHT
+  );
+  const backElevation = mappedElevations.find(
+    (elevation) => elevation.name === ELEVATION_NAMES.BACK
   );
 
   const handleSelect = (item) => {
@@ -65,6 +67,24 @@ const AddOption = ({ options }) => {
           <HoverCard.Portal>
             <HoverCard.Content className={style.tooltipText} side='top'>
               Select a container side to place this item
+            </HoverCard.Content>
+          </HoverCard.Portal>
+        </HoverCard.Root>
+      );
+    } else if (item.isRollUp && selectedElevation === backElevation) {
+      return (
+        <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
+          <HoverCard.Trigger>
+            <img
+              style={{ opacity: '0.25' }}
+              src={generateImgSrc(imgSrc(item))}
+              alt={item.name}
+              className={style.objImg}
+            />
+          </HoverCard.Trigger>
+          <HoverCard.Portal>
+            <HoverCard.Content className={style.tooltipText} side='top'>
+              Roll up doors do not fit on this side
             </HoverCard.Content>
           </HoverCard.Portal>
         </HoverCard.Root>

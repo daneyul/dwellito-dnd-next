@@ -177,7 +177,7 @@ const HdStRollup8 = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[4.02, 2.32, 3.235]}
+    customPosition={[4.63, 2.32, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
     isRollUp
@@ -189,7 +189,7 @@ const HdStRollup10 = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[4.02, 2.32, 3.235]}
+    customPosition={[4.63, 2.32, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
     isRollUp
@@ -201,7 +201,7 @@ const HdStRollup12 = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[4.02, 2.32, 3.235]}
+    customPosition={[4.63, 2.32, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
     isRollUp
@@ -213,7 +213,7 @@ const HdStRollup15 = ({ component, onBoundingBoxChange }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/doors/${component.model}.glb`}
-    customPosition={[5.54, 2.36, 3.235]}
+    customPosition={[6.153, 2.36, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
     isRollUp
