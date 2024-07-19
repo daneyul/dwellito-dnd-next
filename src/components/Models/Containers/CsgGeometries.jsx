@@ -4,7 +4,7 @@ import { Base, Geometry, Subtraction } from '@react-three/csg';
 import * as THREE from 'three';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { PageDataContext } from '@/components/Content/Content';
-import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
+import useGLTFModels from '@/utils/hooks/useGLTFModels';
 
 export function CsgGeometries({
   doorBoundingBoxes,
@@ -17,17 +17,6 @@ export function CsgGeometries({
 }) {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
-    redPaint,
-    whitePaint,
-    greenPaint,
-    bluePaint,
-    slateGreyPaint,
-    beigePaint,
-    plywoodMaterial,
-    drywallMaterial,
-    sprayFoamMaterial
-  } = useContext(Library3dDataContext);
-  const {
     exteriorFinish,
     interiorIsPlywood,
     interiorIsDrywall,
@@ -37,6 +26,18 @@ export function CsgGeometries({
     selectedContainerHeight,
     containerSize,
   } = useContext(PageDataContext);
+
+  const {
+    redPaint,
+    whitePaint,
+    greenPaint,
+    bluePaint,
+    slateGreyPaint,
+    beigePaint,
+    plywoodMaterial,
+    drywallMaterial,
+    sprayFoamMaterial,
+  } = useGLTFModels();
 
   const size = containerSize();
 

@@ -151,45 +151,6 @@ export const Library3dDataProvider = ({ children }) => {
     },
   ];
 
-  // Load all paint materials
-  const { materials: redPaint } = useGLTF(
-    `/models/materials/exterior/red-paint.glb`
-  );
-  const { materials: whitePaint } = useGLTF(
-    `/models/materials/exterior/white-paint.glb`
-  );
-  const { materials: greenPaint } = useGLTF(
-    `/models/materials/exterior/green-paint.glb`
-  );
-  const { materials: bluePaint } = useGLTF(
-    `/models/materials/exterior/blue-paint.glb`
-  );
-  const { materials: slateGreyPaint } = useGLTF(
-    `/models/materials/exterior/slate-grey-paint.glb`
-  );
-  const { materials: beigePaint } = useGLTF(
-    `/models/materials/exterior/beige-paint.glb`
-  );
-
-  // Interior materials
-  const { materials: plywoodMaterial } = useGLTF(
-    '/models/materials/interior/plywood.glb'
-  );
-  const { materials: drywallMaterial } = useGLTF(
-    '/models/materials/interior/drywall.glb'
-  );
-  const { materials: sprayFoamMaterial } = useGLTF(
-    '/models/materials/interior/sprayfoam.glb'
-  );
-
-  // Load all flooring materials
-  const { materials: echoFloor } = useGLTF(
-    `/models/materials/flooring/echo.glb`
-  );
-  const { materials: timberFloor } = useGLTF(
-    `/models/materials/flooring/timber.glb`
-  );
-
   return (
     <Library3dDataContext.Provider
       value={{
@@ -203,17 +164,6 @@ export const Library3dDataProvider = ({ children }) => {
         EXTERIOR_FINISH_OPTIONS,
         INTERIOR_FINISH_OPTIONS,
         FLOORING_OPTIONS,
-        redPaint,
-        whitePaint,
-        greenPaint,
-        bluePaint,
-        slateGreyPaint,
-        beigePaint,
-        plywoodMaterial,
-        drywallMaterial,
-        sprayFoamMaterial,
-        echoFloor,
-        timberFloor,
         plywoodInterior,
         drywallInterior,
         sprayfoamCeilingInterior,

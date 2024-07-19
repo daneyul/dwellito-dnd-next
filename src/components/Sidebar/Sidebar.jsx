@@ -130,14 +130,14 @@ const Sidebar = memo(() => {
           text='Select your desired material color'
           css={{ fontWeight: 400, marginBottom: '1rem' }}
         />
-        {/* <SingleSelect type={EXTERIOR} /> */}
+        <SingleSelect type={EXTERIOR} />
         <Selector nonFixedElectricals={nonFixedElectricals} />
         <div className={style.selectionTagName}>Interior Finishes</div>
         <Subtitle
           text='Select your wall finish'
           css={{ fontWeight: 400, marginBottom: '1rem' }}
         />
-        {/* <SingleSelect type={INTERIOR} /> */}
+        <SingleSelect type={INTERIOR} />
         <Subtitle
           text='Select your electrical add-ons'
           css={{ fontWeight: 400, marginBottom: '1rem' }}
@@ -150,7 +150,7 @@ const Sidebar = memo(() => {
           text='Select your flooring'
           css={{ fontWeight: 400, marginBottom: '1rem' }}
         />
-        {/* <SingleSelect type={FLOORING} /> */}
+        <SingleSelect type={FLOORING} />
         <SaveOrder />
       </>
     );

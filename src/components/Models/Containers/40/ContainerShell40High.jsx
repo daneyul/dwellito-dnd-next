@@ -3,19 +3,12 @@ import { useContext, useMemo, useRef } from 'react';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { PageDataContext } from '@/components/Content/Content';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
+import useGLTFModels from '@/utils/hooks/useGLTFModels';
 
 export default function ContainerShell40High() {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
-    FLOORING_OPTIONS,
-    redPaint,
-    whitePaint,
-    greenPaint,
-    bluePaint,
-    slateGreyPaint,
-    beigePaint,
-    echoFloor,
-    timberFloor,
+    FLOORING_OPTIONS
   } = useContext(Library3dDataContext);
 
   const {
@@ -29,6 +22,17 @@ export default function ContainerShell40High() {
     selectedContainerHeight,
     hasLighting
   } = useContext(PageDataContext);
+
+  const {
+    redPaint,
+    whitePaint,
+    greenPaint,
+    bluePaint,
+    slateGreyPaint,
+    beigePaint,
+    echoFloor,
+    timberFloor
+  } = useGLTFModels();
 
   // Load all 3d objects
   const { nodes, materials } = useGLTF(
