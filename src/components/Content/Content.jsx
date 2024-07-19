@@ -337,8 +337,8 @@ const Content = ({ data }) => {
                   position: 'relative',
                 }}
               >
-                <Viewer />
-                {/* <Sidebar /> */}
+                {/* <Viewer /> */}
+                <Sidebar />
                 <PriceTotal />
                 <OrderSummaryModal />
               </div>
