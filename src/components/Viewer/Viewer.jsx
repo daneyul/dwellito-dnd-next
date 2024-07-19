@@ -154,7 +154,7 @@ const Viewer = () => {
             width: '100%',
           }}
         >
-          <Models />
+          {/* <Models /> */}
         </div>
         <div
           style={{

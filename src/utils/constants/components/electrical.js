@@ -64,8 +64,8 @@ export const electricalComponents = [
   {
     name: COMPONENT_NAMES.BASEBOARD_HEATER,
     position: {
-      x: 0,
-      y: 0,
+      x: 15,
+      y: 5,
     },
     frontImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/baseboard-heater.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/baseboard-heater.svg`,
