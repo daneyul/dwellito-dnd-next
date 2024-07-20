@@ -249,7 +249,7 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />
-        {/* <Outlet component={outlet} />
+        <Outlet component={outlet} />
         <Heater component={heater} />
         <Amp />
         <RoofVent />
@@ -285,7 +285,7 @@ export function Models() {
             component={vent}
             onBoundingBoxChange={(data) => handleVentBoundingBox(index, data)}
           />
-        ))} */}
+        ))}
         <ambientLight intensity={0.15} />
         <spotLight
           intensity={0.65}
