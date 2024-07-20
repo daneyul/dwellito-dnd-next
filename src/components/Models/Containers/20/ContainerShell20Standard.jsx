@@ -456,12 +456,12 @@ export default function ContainerShell20Standard() {
           scale={0.01}
         />
       </group>
-      {hasLighting ? <Lighting /> : null}
+      {/* {hasLighting ? <Lighting /> : null}
       <Drywall />
       <Plywood />
       <SprayFoamCeiling />
       <SprayFoamCw />
-      {flooring !== FLOORING_OPTIONS[0] && <Flooring />}
+      {flooring !== FLOORING_OPTIONS[0] && <Flooring />} */}
     </group>
   );
 
