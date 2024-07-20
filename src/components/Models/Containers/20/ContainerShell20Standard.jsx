@@ -36,25 +36,25 @@ export default function ContainerShell20Standard() {
   const { nodes, materials } = useGLTF(
     `/models/container/20/${selectedContainerHeight}/container-shell.glb`
   );
-  // const { nodes: flooringNodes } = useGLTF(
-  //   `/models/container/20/${selectedContainerHeight}/flooring.glb`
-  // );
-  // const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
-  //   useGLTF(
-  //     `/models/container/20/${selectedContainerHeight}/rear-top-plywood.glb`
-  //   );
-  // const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
-  //   useGLTF(
-  //     `/models/container/20/${selectedContainerHeight}/rear-top-drywall.glb`
-  //   );
-  // const { nodes: rearTopSprayFoamNodes, materials: rearTopSprayFoamMaterials } =
-  //   useGLTF(
-  //     `/models/container/20/${selectedContainerHeight}/rear-top-sprayfoam.glb`
-  //   );
-  // const { nodes: ceilingSprayFoamNodes, materials: ceilingSprayFoamMaterials } =
-  //   useGLTF(
-  //     `/models/container/20/${selectedContainerHeight}/ceiling-sprayfoam.glb`
-  //   );
+  const { nodes: flooringNodes } = useGLTF(
+    `/models/container/20/${selectedContainerHeight}/flooring.glb`
+  );
+  const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
+    useGLTF(
+      `/models/container/20/${selectedContainerHeight}/rear-top-plywood.glb`
+    );
+  const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
+    useGLTF(
+      `/models/container/20/${selectedContainerHeight}/rear-top-drywall.glb`
+    );
+  const { nodes: rearTopSprayFoamNodes, materials: rearTopSprayFoamMaterials } =
+    useGLTF(
+      `/models/container/20/${selectedContainerHeight}/rear-top-sprayfoam.glb`
+    );
+  const { nodes: ceilingSprayFoamNodes, materials: ceilingSprayFoamMaterials } =
+    useGLTF(
+      `/models/container/20/${selectedContainerHeight}/ceiling-sprayfoam.glb`
+    );
 
   const flooringMaterial = useMemo(() => {
     switch (flooring.type) {
@@ -456,12 +456,12 @@ export default function ContainerShell20Standard() {
           scale={0.01}
         />
       </group>
-      {/* {hasLighting ? <Lighting /> : null}
+      {hasLighting ? <Lighting /> : null}
       <Drywall />
       <Plywood />
       <SprayFoamCeiling />
       <SprayFoamCw />
-      {flooring !== FLOORING_OPTIONS[0] && <Flooring />} */}
+      {flooring !== FLOORING_OPTIONS[0] && <Flooring />}
     </group>
   );
 
