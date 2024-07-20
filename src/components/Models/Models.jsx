@@ -229,8 +229,8 @@ export function Models() {
         <RoofVent />
         <AirConditioner />
         <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
-        {/* <ContainerShell /> */}
-        <CsgGeometries
+        <ContainerShell />
+        {/* <CsgGeometries
           doors={doors}
           windows={windows}
           vents={vents}
@@ -238,7 +238,7 @@ export function Models() {
           windowBoundingBoxes={windowBoundingBoxes}
           ventBoundingBoxes={ventBoundingBoxes}
           exhaustFanBoundingBox={exhaustFanBoundingBox}
-        />
+        /> */}
         {doors.map((door, index) => (
           <Door
             key={door.id}
