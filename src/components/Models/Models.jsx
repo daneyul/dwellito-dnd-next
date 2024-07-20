@@ -203,17 +203,23 @@ export function Models() {
     }
   };
 
-  useEffect(() => {
-    if (slug === CONTAINER_10_SLUG) {
-      preloadContainerModels(CONTAINER_SIZE_10, CONTAINER_STANDARD);
-    } else if (slug === CONTAINER_20_SLUG) {
-      preloadContainerModels(CONTAINER_SIZE_20, CONTAINER_STANDARD);
-      preloadContainerModels(CONTAINER_SIZE_20, CONTAINER_HIGH);
-    } else if (slug === CONTAINER_40_SLUG) {
-      preloadContainerModels(CONTAINER_SIZE_40, CONTAINER_STANDARD);
-      preloadContainerModels(CONTAINER_SIZE_40, CONTAINER_HIGH);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (slug === CONTAINER_10_SLUG) {
+  //     preloadContainerModels(CONTAINER_SIZE_10, CONTAINER_STANDARD);
+  //   } else if (slug === CONTAINER_20_SLUG) {
+  //     if (containerHeightIsStandard) {
+  //       preloadContainerModels(CONTAINER_SIZE_20, CONTAINER_STANDARD);
+  //     } else {
+  //       preloadContainerModels(CONTAINER_SIZE_20, CONTAINER_HIGH);
+  //     }
+  //   } else if (slug === CONTAINER_40_SLUG) {
+  //     if (containerHeightIsStandard) {
+  //       preloadContainerModels(CONTAINER_SIZE_40, CONTAINER_STANDARD);
+  //     } else {
+  //       preloadContainerModels(CONTAINER_SIZE_40, CONTAINER_HIGH);
+  //     }
+  //   }
+  // }, []);
 
   const onRenderCallback = (
     id, // the "id" prop of the Profiler tree that has just committed
@@ -225,7 +231,14 @@ export function Models() {
     interactions // the Set of interactions belonging to this update
   ) => {
     console.log(
-      `Profiler ID: ${id}, Phase: ${phase}, Actual Duration: ${actualDuration}`
+      `Profiler ID: ${id}
+      Phase: ${phase}
+      Actual Duration: ${actualDuration}
+      Base Duration: ${baseDuration}
+      Start Time: ${startTime}
+      Commit Time: ${commitTime}
+      Interations: ${interactions}
+      `
     );
   };
 
@@ -234,19 +247,14 @@ export function Models() {
       id='canvas-container'
       style={{ width: 'auto', height: '100vh', position: 'relative' }}
     >
-      <Canvas
-        shadows
-        camera={{ position: cameraPos, fov: camFov }}
-      >
+      <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />
-        <Profiler id='Electrical' onRender={onRenderCallback}>
           <Outlet component={outlet} />
           <Heater component={heater} />
           <Amp />
           <RoofVent />
           <AirConditioner />
           <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
-        </Profiler>
         <Profiler id='Shell' onRender={onRenderCallback}>
           <ContainerShell />
         </Profiler>

@@ -1,7 +1,6 @@
 import React, { useContext, useMemo, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
-import * as THREE from 'three';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { PageDataContext } from '@/components/Content/Content';
 import useGLTFModels from '@/utils/hooks/useGLTFModels';
