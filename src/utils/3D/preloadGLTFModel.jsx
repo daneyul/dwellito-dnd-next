@@ -37,17 +37,17 @@ export function preloadContainerModels(size, selectedContainerHeight) {
     `/models/container/${size}/${selectedContainerHeight}/ceiling-sprayfoam.glb`
   );
   // useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/flooring.glb`);
-  useGLTF.preload('/models/materials/exterior/red-paint.glb');
-  useGLTF.preload('/models/materials/exterior/white-paint.glb');
-  useGLTF.preload('/models/materials/exterior/green-paint.glb');
-  useGLTF.preload('/models/materials/exterior/blue-paint.glb');
-  useGLTF.preload('/models/materials/exterior/slate-grey-paint.glb');
-  useGLTF.preload('/models/materials/exterior/beige-paint.glb');
+  // useGLTF.preload('/models/materials/exterior/red-paint.glb');
+  // useGLTF.preload('/models/materials/exterior/white-paint.glb');
+  // useGLTF.preload('/models/materials/exterior/green-paint.glb');
+  // useGLTF.preload('/models/materials/exterior/blue-paint.glb');
+  // useGLTF.preload('/models/materials/exterior/slate-grey-paint.glb');
+  // useGLTF.preload('/models/materials/exterior/beige-paint.glb');
 
-  useGLTF.preload('/models/materials/interior/plywood.glb');
-  useGLTF.preload('/models/materials/interior/drywall.glb');
-  useGLTF.preload('/models/materials/interior/sprayfoam.glb');
+  // useGLTF.preload('/models/materials/interior/plywood.glb');
+  // useGLTF.preload('/models/materials/interior/drywall.glb');
+  // useGLTF.preload('/models/materials/interior/sprayfoam.glb');
 
-  useGLTF.preload('/models/materials/flooring/echo.glb');
-  useGLTF.preload('/models/materials/flooring/timber.glb');
+  // useGLTF.preload('/models/materials/flooring/echo.glb');
+  // useGLTF.preload('/models/materials/flooring/timber.glb');
 }
