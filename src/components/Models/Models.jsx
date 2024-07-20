@@ -249,12 +249,12 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />
-          <Outlet component={outlet} />
+          {/* <Outlet component={outlet} />
           <Heater component={heater} />
           <Amp />
           <RoofVent />
           <AirConditioner />
-          <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
+          <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} /> */}
         <Profiler id='Shell' onRender={onRenderCallback}>
           <ContainerShell />
         </Profiler>
