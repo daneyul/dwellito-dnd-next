@@ -8,6 +8,7 @@ import {
 } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import {
+  Profiler,
   useCallback,
   useContext,
   useEffect,
@@ -60,7 +61,7 @@ export function Models() {
     containerHeightIsStandard,
     cameraReady,
     setCameraReady,
-    slug
+    slug,
   } = useContext(PageDataContext);
   const { containerData } = useContext(Library2dDataContext);
 
@@ -94,18 +95,16 @@ export function Models() {
       ),
     [selectedComponents, COMPONENT_TYPES]
   );
-  const heater = useMemo(
-    () =>
-      selectedComponents.find(
-        (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
-      ),
-  )
-  const outlet = useMemo(
-    () =>
-      selectedComponents.find(
-        (component) => component.name === COMPONENT_NAMES.OUTLET
-      ),
-  )
+  const heater = useMemo(() =>
+    selectedComponents.find(
+      (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
+    )
+  );
+  const outlet = useMemo(() =>
+    selectedComponents.find(
+      (component) => component.name === COMPONENT_NAMES.OUTLET
+    )
+  );
 
   const exteriorCamPos = () => {
     if (selectedContainer === containerData[0]) {
@@ -216,29 +215,53 @@ export function Models() {
     }
   }, []);
 
+  const onRenderCallback = (
+    id, // the "id" prop of the Profiler tree that has just committed
+    phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
+    actualDuration, // time spent rendering the committed update
+    baseDuration, // estimated time to render the entire subtree without memoization
+    startTime, // when React began rendering this update
+    commitTime, // when React committed this update
+    interactions // the Set of interactions belonging to this update
+  ) => {
+    console.log(
+      `Profiler ID: ${id}, Phase: ${phase}, Actual Duration: ${actualDuration}`
+    );
+  };
+
   return (
     <div
       id='canvas-container'
       style={{ width: 'auto', height: '100vh', position: 'relative' }}
     >
-      <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
+      <Canvas
+        shadows
+        camera={{ position: cameraPos, fov: camFov }}
+        frameloop='demand'
+      >
         <color attach='background' args={['#fdfdf7']} />
-        <Outlet component={outlet} />
-        <Heater component={heater} />
-        <Amp />
-        <RoofVent />
-        <AirConditioner />
-        <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
-        <ContainerShell />
-        <CsgGeometries
-          doors={doors}
-          windows={windows}
-          vents={vents}
-          doorBoundingBoxes={doorBoundingBoxes}
-          windowBoundingBoxes={windowBoundingBoxes}
-          ventBoundingBoxes={ventBoundingBoxes}
-          exhaustFanBoundingBox={exhaustFanBoundingBox}
-        />
+        <Profiler id='Electrical' onRender={onRenderCallback}>
+          <Outlet component={outlet} />
+          <Heater component={heater} />
+          <Amp />
+          <RoofVent />
+          <AirConditioner />
+          <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
+        </Profiler>
+        <Profiler id='Shell' onRender={onRenderCallback}>
+          <ContainerShell />
+        </Profiler>
+        <Profiler id='Csg' onRender={onRenderCallback}>
+          <CsgGeometries
+            doors={doors}
+            windows={windows}
+            vents={vents}
+            doorBoundingBoxes={doorBoundingBoxes}
+            windowBoundingBoxes={windowBoundingBoxes}
+            ventBoundingBoxes={ventBoundingBoxes}
+            exhaustFanBoundingBox={exhaustFanBoundingBox}
+          />
+        </Profiler>
         {doors.map((door, index) => (
           <Door
             key={door.id}

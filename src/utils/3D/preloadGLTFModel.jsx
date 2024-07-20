@@ -42,7 +42,7 @@ export function preloadContainerModels(size, selectedContainerHeight) {
   // useGLTF.preload('/models/materials/exterior/green-paint.glb');
   // useGLTF.preload('/models/materials/exterior/blue-paint.glb');
   // useGLTF.preload('/models/materials/exterior/slate-grey-paint.glb');
-  // useGLTF.preload('/models/materials/exterior/beige-paint.glb');
+  useGLTF.preload('/models/materials/exterior/beige-paint.glb');
 
   // useGLTF.preload('/models/materials/interior/plywood.glb');
   // useGLTF.preload('/models/materials/interior/drywall.glb');
