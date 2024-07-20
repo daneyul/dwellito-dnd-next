@@ -8,9 +8,7 @@ import useGLTFModels from '@/utils/hooks/useGLTFModels';
 export default function ContainerShell10Standard() {
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
-  const {
-    FLOORING_OPTIONS,
-  } = useContext(Library3dDataContext);
+  const { FLOORING_OPTIONS } = useContext(Library3dDataContext);
 
   const {
     exteriorFinish,
@@ -32,7 +30,7 @@ export default function ContainerShell10Standard() {
     slateGreyPaint,
     beigePaint,
     echoFloor,
-    timberFloor
+    timberFloor,
   } = useGLTFModels();
 
   // Load all 3d objects
@@ -283,15 +281,15 @@ export default function ContainerShell10Standard() {
   const SprayFoamCeiling = () => {
     if (interiorIsSprayFoamCeiling) {
       return (
-        <group position={[0, 2.877, 0.137]} rotation={[Math.PI, 0, 0]}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={ceilingSprayFoamNodes['10FT_Sprayfoam_Ceiling'].geometry}
-            material={ceilingSprayFoamMaterials.Sprayfoam}
-            scale={0.01}
-          />
-        </group>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={ceilingSprayFoamNodes['10FT_Sprayfoam_Ceiling'].geometry}
+          material={ceilingSprayFoamMaterials.Sprayfoam}
+          position={[0, 2.877, 0.137]}
+          rotation={[Math.PI, 0, 0]}
+          scale={0.01}
+        />
       );
     }
   };
@@ -300,37 +298,23 @@ export default function ContainerShell10Standard() {
     if (interiorIsSprayFoamCeilingWalls) {
       return (
         <>
-          <group position={[0, 2.877, 0.137]} rotation={[Math.PI, 0, 0]}>
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={
-                rearTopSprayFoamNodes['10FT_Sprayfoam_Ceiling'].geometry
-              }
-              material={rearTopSprayFoamMaterials.Sprayfoam}
-              scale={0.01}
-            />
-          </group>
-          <group rotation={[-Math.PI / 2, 0, 0]}>
-            <group scale={0.01}>
-              <mesh
-                castShadow
-                receiveShadow
-                geometry={
-                  rearTopSprayFoamNodes['10FT_Sprayfoam_Reartop_1'].geometry
-                }
-                material={rearTopSprayFoamMaterials.Black_Rubber_01}
-              />
-              <mesh
-                castShadow
-                receiveShadow
-                geometry={
-                  rearTopSprayFoamNodes['10FT_Sprayfoam_Reartop_2'].geometry
-                }
-                material={rearTopSprayFoamMaterials.Sprayfoam}
-              />
-            </group>
-          </group>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={rearTopSprayFoamNodes['10FT_Sprayfoam_Ceiling'].geometry}
+            material={rearTopSprayFoamMaterials.Sprayfoam}
+            position={[0, 2.877, 0.137]}
+            rotation={[Math.PI, 0, 0]}
+            scale={0.01}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={rearTopSprayFoamNodes['10FT_Sprayfoam_Reartop'].geometry}
+            material={rearTopSprayFoamMaterials.Black_Rubber_01}
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={0.01}
+          />
         </>
       );
     }
