@@ -255,10 +255,10 @@ export function Models() {
           <RoofVent />
           <AirConditioner />
           <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
-        <Profiler id='Shell' onRender={onRenderCallback}>
+        {/* <Profiler id='Shell' onRender={onRenderCallback}>
           <ContainerShell />
-        </Profiler>
-        {/* <Profiler id='Csg' onRender={onRenderCallback}>
+        </Profiler> */}
+        <Profiler id='Csg' onRender={onRenderCallback}>
           <CsgGeometries
             doors={doors}
             windows={windows}
@@ -268,7 +268,7 @@ export function Models() {
             ventBoundingBoxes={ventBoundingBoxes}
             exhaustFanBoundingBox={exhaustFanBoundingBox}
           />
-        </Profiler> */}
+        </Profiler>
         {doors.map((door, index) => (
           <Door
             key={door.id}
