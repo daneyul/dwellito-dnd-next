@@ -237,7 +237,6 @@ export function Models() {
       <Canvas
         shadows
         camera={{ position: cameraPos, fov: camFov }}
-        frameloop='demand'
       >
         <color attach='background' args={['#fdfdf7']} />
         <Profiler id='Electrical' onRender={onRenderCallback}>

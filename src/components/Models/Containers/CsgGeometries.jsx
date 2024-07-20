@@ -61,54 +61,19 @@ export function CsgGeometries({
     }
   }, [selectedContainer.name, DIMENSIONS]);
 
-  // Container nodes
-  const { nodes: cRightNodes } = useGLTF(
-    `/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`
-  );
-  const { nodes: cBackNodes } = useGLTF(
-    `/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`
-  );
-  const { nodes: cLeftNodes } = useGLTF(
-    `/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`
-  );
-
-  // Drywall nodes
-  const { nodes: dRightNodes } = useGLTF(
-    `/models/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`
-  );
-  const { nodes: dLeftNodes } = useGLTF(
-    `/models/drywall/${size}/${selectedContainerHeight}/drywall-left.glb`
-  );
-  const { nodes: dBackNodes } = useGLTF(
-    `/models/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`
-  );
-
-  // Plywood nodes
-  const { nodes: pRightNodes } = useGLTF(
-    `/models/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`
-  );
-  const { nodes: pLeftNodes } = useGLTF(
-    `/models/plywood/${size}/${selectedContainerHeight}/plywood-left.glb`
-  );
-  const { nodes: pBackNodes } = useGLTF(
-    `/models/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`
-  );
-
-  // Sprayfoam nodes
-  const { nodes: sRightNodes } = useGLTF(
-    `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-right.glb`
-  );
-  const { nodes: sLeftNodes } = useGLTF(
-    `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-left.glb`
-  );
-  const { nodes: sBackNodes } = useGLTF(
-    `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-back.glb`
-  );
-
-  // Baseboard nodes
-  const { nodes: baseboard } = useGLTF(
-    `/models/container/${size}/${selectedContainerHeight}/baseboard.glb`
-  );
+  const cRightNodes = useMemo(() => useGLTF(`/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`).nodes, [size, selectedContainerHeight]);
+  const cBackNodes = useMemo(() => useGLTF(`/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`).nodes, [size, selectedContainerHeight]);
+  const cLeftNodes = useMemo(() => useGLTF(`/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`).nodes, [size, selectedContainerHeight]);
+  const dRightNodes = useMemo(() => useGLTF(`/models/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`).nodes, [size, selectedContainerHeight]);
+  const dLeftNodes = useMemo(() => useGLTF(`/models/drywall/${size}/${selectedContainerHeight}/drywall-left.glb`).nodes, [size, selectedContainerHeight]);
+  const dBackNodes = useMemo(() => useGLTF(`/models/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`).nodes, [size, selectedContainerHeight]);
+  const pRightNodes = useMemo(() => useGLTF(`/models/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`).nodes, [size, selectedContainerHeight]);
+  const pLeftNodes = useMemo(() => useGLTF(`/models/plywood/${size}/${selectedContainerHeight}/plywood-left.glb`).nodes, [size, selectedContainerHeight]);
+  const pBackNodes = useMemo(() => useGLTF(`/models/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`).nodes, [size, selectedContainerHeight]);
+  const sRightNodes = useMemo(() => useGLTF(`/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-right.glb`).nodes, [size, selectedContainerHeight]);
+  const sLeftNodes = useMemo(() => useGLTF(`/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-left.glb`).nodes, [size, selectedContainerHeight]);
+  const sBackNodes = useMemo(() => useGLTF(`/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-back.glb`).nodes, [size, selectedContainerHeight]);
+  const baseboard = useMemo(() => useGLTF(`/models/container/${size}/${selectedContainerHeight}/baseboard.glb`).nodes, [size, selectedContainerHeight]);
 
   const csg = useRef();
 
@@ -149,13 +114,6 @@ export function CsgGeometries({
         >
           <Subtraction>
             <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
-            <mesh>
-              <meshStandardMaterial
-                attach='material'
-                color='white'
-                side={THREE.DoubleSide}
-              />
-            </mesh>
           </Subtraction>
         </group>
       );
@@ -173,13 +131,6 @@ export function CsgGeometries({
         >
           <Subtraction>
             <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
-            <mesh>
-              <meshStandardMaterial
-                attach='material'
-                color='white'
-                side={THREE.DoubleSide}
-              />
-            </mesh>
           </Subtraction>
         </group>
       );
@@ -197,13 +148,6 @@ export function CsgGeometries({
         >
           <Subtraction>
             <boxGeometry args={[bbox.size.x, bbox.size.y, bbox.size.z]} />
-            <mesh>
-              <meshStandardMaterial
-                attach='material'
-                color='white'
-                side={THREE.DoubleSide}
-              />
-            </mesh>
           </Subtraction>
         </group>
       );
@@ -228,13 +172,6 @@ export function CsgGeometries({
               exhaustFanBoundingBox.size.z,
             ]}
           />
-          <mesh>
-            <meshStandardMaterial
-              attach='material'
-              color='white'
-              side={THREE.DoubleSide}
-            />
-          </mesh>
         </Subtraction>
       </group>
     );
