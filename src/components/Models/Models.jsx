@@ -249,27 +249,24 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />
-          <Outlet component={outlet} />
-          <Heater component={heater} />
-          <Amp />
-          <RoofVent />
-          <AirConditioner />
-          <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
-        {/* <Profiler id='Shell' onRender={onRenderCallback}>
-          <ContainerShell />
-        </Profiler> */}
-        <Profiler id='Csg' onRender={onRenderCallback}>
-          <CsgGeometries
-            doors={doors}
-            windows={windows}
-            vents={vents}
-            doorBoundingBoxes={doorBoundingBoxes}
-            windowBoundingBoxes={windowBoundingBoxes}
-            ventBoundingBoxes={ventBoundingBoxes}
-            exhaustFanBoundingBox={exhaustFanBoundingBox}
-          />
-        </Profiler>
-        {doors.map((door, index) => (
+        <Outlet component={outlet} />
+        <Heater component={heater} />
+        <Amp />
+        <RoofVent />
+        <AirConditioner />
+        <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
+
+        <ContainerShell />
+        <CsgGeometries
+          doors={doors}
+          windows={windows}
+          vents={vents}
+          doorBoundingBoxes={doorBoundingBoxes}
+          windowBoundingBoxes={windowBoundingBoxes}
+          ventBoundingBoxes={ventBoundingBoxes}
+          exhaustFanBoundingBox={exhaustFanBoundingBox}
+        />
+        {/* {doors.map((door, index) => (
           <Door
             key={door.id}
             component={door}
@@ -289,7 +286,7 @@ export function Models() {
             component={vent}
             onBoundingBoxChange={(data) => handleVentBoundingBox(index, data)}
           />
-        ))}
+        ))} */}
         <ambientLight intensity={0.15} />
         <spotLight
           intensity={0.65}
