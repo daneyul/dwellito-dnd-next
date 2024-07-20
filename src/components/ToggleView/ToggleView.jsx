@@ -42,7 +42,8 @@ const ToggleView = () => {
         className={show3d ? style.viewerSelected : style.viewer}
         onClick={toggle3d}
         // disabled={!threeDModelLoaded}
-        style={{ cursor: !threeDModelLoaded ? 'not-allowed' : 'pointer' }}
+        style={{ cursor: 'pointer' }}
+        // style={{ cursor: !threeDModelLoaded ? 'not-allowed' : 'pointer' }}
       >
         <div
           style={{
