@@ -249,14 +249,14 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />
-        {/* <Outlet component={outlet} />
+        <Outlet component={outlet} />
         <Heater component={heater} />
         <Amp />
         <RoofVent />
         <AirConditioner />
-        <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} /> */}
-        {/* <ContainerShell /> */}
-        <CsgGeometries
+        <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
+        <ContainerShell />
+        {/* <CsgGeometries
           doors={doors}
           windows={windows}
           vents={vents}
@@ -264,7 +264,7 @@ export function Models() {
           windowBoundingBoxes={windowBoundingBoxes}
           ventBoundingBoxes={ventBoundingBoxes}
           exhaustFanBoundingBox={exhaustFanBoundingBox}
-        />
+        /> */}
         {/* {doors.map((door, index) => (
           <Door
             key={door.id}
