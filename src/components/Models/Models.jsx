@@ -68,7 +68,8 @@ export function Models() {
   const { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } =
     useContext(Library3dDataContext);
 
-  const { progress } = useProgress();
+  const { active, progress, errors, item, loaded, total } = useProgress();
+  console.log(active, progress, errors, item, loaded, total);
 
   useEffect(() => {
     setThreeDModelLoaded(progress === 100);
