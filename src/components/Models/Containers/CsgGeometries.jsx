@@ -179,7 +179,7 @@ export function CsgGeometries({
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
-        {interiorIsSprayFoamCeiling ||
+        {/* {interiorIsSprayFoamCeiling ||
         interiorIsSprayFoamCeilingWalls ? null : (
           <Base
             geometry={baseboard.mesh_0.geometry}
@@ -188,8 +188,8 @@ export function CsgGeometries({
           >
             <meshStandardMaterial color='black' />
           </Base>
-        )}
-        {interiorIsDrywall ? (
+        )} */}
+        {/* {interiorIsDrywall ? (
           <>
             {Object.keys(dBackNodes).map((key) => (
               <Base
@@ -219,8 +219,8 @@ export function CsgGeometries({
               />
             ))}
           </>
-        ) : null}
-        {interiorIsPlywood ? (
+        ) : null} */}
+        {/* {interiorIsPlywood ? (
           <>
             {Object.keys(pBackNodes).map((key) => (
               <Base
@@ -250,8 +250,8 @@ export function CsgGeometries({
               />
             ))}
           </>
-        ) : null}
-        {interiorIsSprayFoamCeilingWalls ? (
+        ) : null} */}
+        {/* {interiorIsSprayFoamCeilingWalls ? (
           <>
             {Object.keys(sBackNodes).map((key) => (
               <Base
@@ -281,7 +281,7 @@ export function CsgGeometries({
               />
             ))}
           </>
-        ) : null}
+        ) : null} */}
         <Base
           geometry={cRightNodes.mesh_0.geometry}
           material={exteriorPaint}
@@ -300,10 +300,10 @@ export function CsgGeometries({
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
-        {doorBoundingBoxGeometries}
+        {/* {doorBoundingBoxGeometries}
         {windowBoundingBoxGeometries}
         {ventBoundingBoxGeometries}
-        {exhaustFanBoundingBoxGeometry}
+        {exhaustFanBoundingBoxGeometry} */}
       </Geometry>
     </mesh>
   );
