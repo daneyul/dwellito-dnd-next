@@ -165,6 +165,7 @@ const OrderSummaryModal = () => {
       customerName: `${data.fname} ${data.lname}`,
       url: `?data=${convertedSelections}`
     };
+    console.log(responseData)
     const JSONdata = JSON.stringify(responseData);
     const endpoint = 'https://hooks.zapier.com/hooks/catch/5485468/2yjklei/';
 

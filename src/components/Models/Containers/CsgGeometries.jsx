@@ -274,35 +274,37 @@ export function CsgGeometries({
       const sBackNodes = useGLTF(
         `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-back.glb`
       ).nodes;
-      <>
-        {Object.keys(sBackNodes).map((key) => (
-          <Base
-            key={key}
-            geometry={sBackNodes[key].geometry}
-            material={sprayFoamMaterial['Sprayfoam']}
-            scale={10}
-            position={[adjustForX, 0, adjustForY]}
-          />
-        ))}
-        {Object.keys(sRightNodes).map((key) => (
-          <Base
-            key={key}
-            geometry={sRightNodes[key].geometry}
-            material={sprayFoamMaterial['Sprayfoam']}
-            scale={10}
-            position={[adjustForX, 0, adjustForY]}
-          />
-        ))}
-        {Object.keys(sLeftNodes).map((key) => (
-          <Base
-            key={key}
-            geometry={sLeftNodes[key].geometry}
-            material={sprayFoamMaterial['Sprayfoam']}
-            scale={10}
-            position={[adjustForX, 0, adjustForY]}
-          />
-        ))}
-      </>;
+      return (
+        <>
+          {Object.keys(sBackNodes).map((key) => (
+            <Base
+              key={key}
+              geometry={sBackNodes[key].geometry}
+              material={sprayFoamMaterial['Sprayfoam']}
+              scale={10}
+              position={[adjustForX, 0, adjustForY]}
+            />
+          ))}
+          {Object.keys(sRightNodes).map((key) => (
+            <Base
+              key={key}
+              geometry={sRightNodes[key].geometry}
+              material={sprayFoamMaterial['Sprayfoam']}
+              scale={10}
+              position={[adjustForX, 0, adjustForY]}
+            />
+          ))}
+          {Object.keys(sLeftNodes).map((key) => (
+            <Base
+              key={key}
+              geometry={sLeftNodes[key].geometry}
+              material={sprayFoamMaterial['Sprayfoam']}
+              scale={10}
+              position={[adjustForX, 0, adjustForY]}
+            />
+          ))}
+        </>
+      );
     } else {
       return null;
     }
