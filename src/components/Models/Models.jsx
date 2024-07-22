@@ -49,7 +49,7 @@ import AirConditioner from './Electrical/AirConditioner';
 import ExhaustFan from './Electrical/ExhaustFan';
 import Heater from './Electrical/Heater';
 import Outlet from './Electrical/Outlet';
-import { preloadContainerModels } from '@/utils/3D/preloadGLTFModel';
+// import { preloadContainerModels } from '@/utils/3D/preloadGLTFModel';
 import { useBoundingBoxes } from '@/utils/hooks/useBoundingBoxes';
 
 export function Models() {
@@ -68,8 +68,8 @@ export function Models() {
   const { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } =
     useContext(Library3dDataContext);
 
-  const { active, progress, errors, item, loaded, total } = useProgress();
-  console.log(active, progress, errors, item, loaded, total);
+  const { active, progress, item, loaded, total } = useProgress();
+  console.log(active, progress, item, loaded, total);
 
   useEffect(() => {
     setThreeDModelLoaded(progress === 100);
