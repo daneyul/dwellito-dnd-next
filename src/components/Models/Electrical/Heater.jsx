@@ -27,10 +27,19 @@ const calcElecRotationRadians = (twoDimDegrees) => {
 const Heater = ({ component }) => {
   const { selectedComponents, selectedContainer, scaleFactor } =
     useContext(PageDataContext);
+
+  if (
+    !selectedComponents.some(
+      (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
+    )
+  ) {
+    return null;
+  }
+
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const { nodes, materials } = useGLTF(`/models/electrical/heater.glb`);
-  
+
   const heaterRef = useRef();
   const [length, setLength] = useState(0);
 
@@ -47,14 +56,6 @@ const Heater = ({ component }) => {
       setLength(actualLength);
     }
   }, [heaterRef]);
-
-  if (
-    !selectedComponents.some(
-      (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
-    )
-  ) {
-    return null;
-  }
 
   const selectedElevation = component.elevation[0];
 
@@ -79,12 +80,15 @@ const Heater = ({ component }) => {
   // Adjust the position based on the rotation
   let adjustedPosition = [...basePosition];
 
-  if (rotationDegrees === 90) { // 90 degrees clockwise
+  if (rotationDegrees === 90) {
+    // 90 degrees clockwise
     adjustedPosition[2] -= length / 2; // translate along y-axis
     adjustedPosition[0] += length / 2; // translate along x-axis
-  } else if (rotationDegrees === 180) { // 180 degrees clockwise
+  } else if (rotationDegrees === 180) {
+    // 180 degrees clockwise
     adjustedPosition[0] += length; // translate along x-axis
-  } else if (rotationDegrees === 270) { // 270 degrees clockwise
+  } else if (rotationDegrees === 270) {
+    // 270 degrees clockwise
     adjustedPosition[2] += length / 2; // translate along y-axis
     adjustedPosition[0] += length / 2; // translate along x-axis
   }

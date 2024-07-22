@@ -1,6 +1,5 @@
 import { PageDataContext } from '@/components/Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
-import { electricalComponents } from '@/utils/constants/components/electrical';
 import {
   COMPONENT_NAMES,
   CONTAINER_10_SLUG,
@@ -13,6 +12,17 @@ import { useContext } from 'react';
 const Amp = () => {
   const { containerSize, slug, selectedComponents } =
     useContext(PageDataContext);
+
+  if (
+    !selectedComponents.some(
+      (component) =>
+        component.name === COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP ||
+        component.name === COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP
+    )
+  ) {
+    return null;
+  }
+
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const { nodes, materials } = useGLTF(
@@ -37,16 +47,6 @@ const Amp = () => {
 
     return [x, z, y];
   };
-
-  if (
-    !selectedComponents.some(
-      (component) =>
-        component.name === COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP ||
-        component.name === COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP
-    )
-  ) {
-    return null;
-  }
 
   return (
     <group dispose={null} scale={10} position={position()}>

@@ -28,11 +28,20 @@ const calcElecRotationRadians = (twoDimDegrees) => {
 const Outlet = ({ component }) => {
   const { selectedComponents, selectedContainer, scaleFactor } =
     useContext(PageDataContext);
+
+  if (
+    !selectedComponents.some(
+      (component) => component.name === COMPONENT_NAMES.OUTLET
+    )
+  ) {
+    return null;
+  }
+
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
 
   const { nodes, materials } = useGLTF(`/models/electrical/outlet.glb`);
-  
+
   const outletRef = useRef();
   const [length, setLength] = useState(0);
 
@@ -49,14 +58,6 @@ const Outlet = ({ component }) => {
       setLength(actualLength);
     }
   }, [outletRef]);
-
-  if (
-    !selectedComponents.some(
-      (component) => component.name === COMPONENT_NAMES.OUTLET
-    )
-  ) {
-    return null;
-  }
 
   const selectedElevation = component.elevation[0];
 
@@ -81,12 +82,15 @@ const Outlet = ({ component }) => {
   // Adjust the position based on the rotation
   let adjustedPosition = [...basePosition];
 
-  if (rotationDegrees === 90) { // 90 degrees clockwise
+  if (rotationDegrees === 90) {
+    // 90 degrees clockwise
     adjustedPosition[2] -= length / 2; // translate along z-axis
     adjustedPosition[0] += length / 2; // translate along x-axis
-  } else if (rotationDegrees === 180) { // 180 degrees clockwise
+  } else if (rotationDegrees === 180) {
+    // 180 degrees clockwise
     adjustedPosition[0] += length; // translate along x-axis
-  } else if (rotationDegrees === 270) { // 270 degrees clockwise
+  } else if (rotationDegrees === 270) {
+    // 270 degrees clockwise
     adjustedPosition[2] += length / 2; // translate along z-axis
     adjustedPosition[0] -= length / 2; // translate along x-axis
   }
@@ -100,7 +104,11 @@ const Outlet = ({ component }) => {
         position={adjustedPosition}
         rotation={[0, rotationRadians, 0]}
       >
-        <group position={[0.035, 0.5, 0]} scale={100} rotation={[0, Math.PI, 0]}>
+        <group
+          position={[0.035, 0.5, 0]}
+          scale={100}
+          rotation={[0, Math.PI, 0]}
+        >
           <mesh
             castShadow
             receiveShadow

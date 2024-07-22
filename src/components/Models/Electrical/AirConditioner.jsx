@@ -12,6 +12,15 @@ import { useContext } from 'react';
 const AirConditioner = () => {
   const { containerSize, slug, selectedComponents } =
     useContext(PageDataContext);
+
+  if (
+    !selectedComponents.some(
+      (component) => component.name === COMPONENT_NAMES.AIR_CONDITIONER
+    )
+  ) {
+    return null;
+  }
+  
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const { nodes, materials } = useGLTF(
@@ -36,14 +45,6 @@ const AirConditioner = () => {
 
     return [x, z, y];
   };
-
-  if (
-    !selectedComponents.some(
-      (component) => component.name === COMPONENT_NAMES.AIR_CONDITIONER
-    )
-  ) {
-    return null;
-  }
 
   return (
     <group dispose={null} scale={10} position={position()}>

@@ -12,6 +12,15 @@ import { useContext } from 'react';
 const RoofVent = () => {
   const { containerHeightIsStandard, slug, selectedComponents } =
     useContext(PageDataContext);
+
+  if (
+    !selectedComponents.some(
+      (component) => component.name === COMPONENT_NAMES.ROOF_VENT
+    )
+  ) {
+    return null;
+  }
+
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const fileName = containerHeightIsStandard
@@ -38,14 +47,6 @@ const RoofVent = () => {
 
     return [x, z, y];
   };
-
-  if (
-    !selectedComponents.some(
-      (component) => component.name === COMPONENT_NAMES.ROOF_VENT
-    )
-  ) {
-    return null;
-  }
 
   return (
     <group dispose={null} scale={10} position={position()}>

@@ -13,15 +13,20 @@ import { Box3, Vector3 } from 'three';
 const ExhaustFan = ({ onBoundingBoxChange }) => {
   const { containerSize, slug, selectedComponents } =
     useContext(PageDataContext);
+    
+  const isSelected = selectedComponents.some(
+    (component) => component.name === COMPONENT_NAMES.EXHAUST_FAN
+  );
+
+  if (!isSelected) {
+    return null;
+  }
+
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const groupRef = useRef();
 
   const { nodes, materials } = useGLTF(
     `/models/electrical/${containerSize()}/fan.glb`
-  );
-
-  const isSelected = selectedComponents.some(
-    (component) => component.name === COMPONENT_NAMES.EXHAUST_FAN
   );
 
   const position = () => {
@@ -53,10 +58,6 @@ const ExhaustFan = ({ onBoundingBoxChange }) => {
       onBoundingBoxChange({ size, center });
     }
   }, [onBoundingBoxChange, isSelected]);
-
-  if (!isSelected) {
-    return null;
-  }
 
   return (
     <group ref={groupRef} dispose={null} scale={10} position={position()}>

@@ -20,6 +20,7 @@ const AddFixedElecOption = ({ options }) => {
     const alreadySelected = selectedComponents.some(
       (component) => component.name === item.name
     );
+    console.log(selectedComponents)
 
     return (
       <div

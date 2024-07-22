@@ -111,7 +111,7 @@ export const handleAddComponent = ({
   selectedElevation,
   floorPlan,
 }) => {
-  if (item.fixed && selectedComponents.some((component) => component.name === item.name)) {
+  if (item.fixed && selectedComponents?.some((component) => component.name === item.name)) {
     setSelectedComponents((prevSelectedComponents) => 
       prevSelectedComponents.filter((component) => component.name !== item.name)
     );
