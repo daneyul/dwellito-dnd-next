@@ -544,7 +544,7 @@ export default function ContainerShell40Standard({
             castShadow
             receiveShadow
             geometry={flooringNodes['40FT_Interior_Blank_Floor_001'].geometry}
-            material={flooringMaterial}
+            material={flooringMaterial()}
             position={[3.089, 0.173, -1.22]}
             rotation={[-Math.PI / 2, 0, 0]}
             scale={0.01}

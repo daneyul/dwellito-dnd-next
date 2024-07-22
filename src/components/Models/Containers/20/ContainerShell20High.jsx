@@ -371,7 +371,7 @@ export default function ContainerShell20High({
             geometry={
               flooringNodes['20FT_HC_Interior_Echo_Blank_Floor_001'].geometry
             }
-            material={flooringMaterial}
+            material={flooringMaterial()}
             scale={0.01}
           />
         </group>

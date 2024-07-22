@@ -495,7 +495,7 @@ export default function ContainerShell40High({
             geometry={
               flooringNodes['40FT_HC_Interior_Timber_Blank_Floor_001'].geometry
             }
-            material={flooringMaterial}
+            material={flooringMaterial()}
             scale={0.01}
           />
         </group>
