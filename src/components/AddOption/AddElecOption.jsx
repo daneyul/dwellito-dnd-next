@@ -4,7 +4,7 @@ import { generateImgSrc, handleAddComponent } from '../../utils/2D/utils';
 import style from './addOption.module.css';
 import { PageDataContext } from '../Content/Content';
 
-const AddFixedElecOption = ({ options }) => {
+const AddElecOption = ({ options }) => {
   const {
     setSelectedComponents,
     floorPlan,
@@ -53,4 +53,4 @@ const AddFixedElecOption = ({ options }) => {
   });
 };
 
-export default AddFixedElecOption;
+export default AddElecOption;

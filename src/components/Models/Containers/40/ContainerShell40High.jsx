@@ -3,7 +3,10 @@ import { useContext, useMemo, useRef } from 'react';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { PageDataContext } from '@/components/Content/Content';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
-import useGLTFModels from '@/utils/hooks/useGLTFModels';
+import useGLTFModels, {
+  useExteriorGLTFModels,
+  useFlooringGLTFModels,
+} from '@/utils/hooks/useGLTFModels';
 
 export default function ContainerShell40High() {
   const { DIMENSIONS } = useContext(Library2dDataContext);
@@ -19,6 +22,7 @@ export default function ContainerShell40High() {
     flooring,
     selectedContainerHeight,
     hasLighting,
+    containerSize,
   } = useContext(PageDataContext);
 
   const {
@@ -28,44 +32,12 @@ export default function ContainerShell40High() {
     bluePaint,
     slateGreyPaint,
     beigePaint,
-    echoFloor,
-    timberFloor,
-  } = useGLTFModels();
+  } = useExteriorGLTFModels();
 
   // Load all 3d objects
   const { nodes, materials } = useGLTF(
-    `/models/container/40/${selectedContainerHeight}/container-shell.glb`
+    `/models/container/${containerSize()}/${selectedContainerHeight}/container-shell.glb`
   );
-  const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
-    useGLTF(
-      `/models/container/40/${selectedContainerHeight}/rear-top-drywall.glb`
-    );
-  const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
-    useGLTF(
-      `/models/container/40/${selectedContainerHeight}/rear-top-plywood.glb`
-    );
-  const { nodes: rearTopSprayFoamNodes, materials: rearTopSprayFoamMaterials } =
-    useGLTF(
-      `/models/container/40/${selectedContainerHeight}/rear-top-sprayfoam.glb`
-    );
-  const { nodes: ceilingSprayFoamNodes, materials: ceilingSprayFoamMaterials } =
-    useGLTF(
-      `/models/container/40/${selectedContainerHeight}/ceiling-sprayfoam.glb`
-    );
-  const { nodes: flooringNodes } = useGLTF(
-    `/models/container/40/${selectedContainerHeight}/flooring.glb`
-  );
-
-  const flooringMaterial = useMemo(() => {
-    switch (flooring.type) {
-      case 'Echo':
-        return echoFloor[flooring.glbObject];
-      case 'Timber':
-        return timberFloor[flooring.glbObject];
-      default:
-        return null;
-    }
-  }, [echoFloor, timberFloor, flooring]);
 
   const exteriorPaint = useMemo(() => {
     switch (exteriorFinish.name) {
@@ -117,6 +89,10 @@ export default function ContainerShell40High() {
 
   const Plywood = () => {
     if (interiorIsPlywood) {
+      const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
+        useGLTF(
+          `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
+        );
       return (
         <>
           <group
@@ -283,11 +259,17 @@ export default function ContainerShell40High() {
           </group>
         </>
       );
+    } else {
+      return null;
     }
   };
 
   const Drywall = () => {
     if (interiorIsDrywall) {
+      const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
+        useGLTF(
+          `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-drywall.glb`
+        );
       return (
         <>
           <group
@@ -454,6 +436,8 @@ export default function ContainerShell40High() {
           </group>
         </>
       );
+    } else {
+      return null;
     }
   };
 
@@ -489,23 +473,48 @@ export default function ContainerShell40High() {
   };
 
   const Flooring = () => {
-    return (
-      <group position={[3.089, 0.173, -1.22]} rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={
-            flooringNodes['40FT_HC_Interior_Timber_Blank_Floor_001'].geometry
-          }
-          material={flooringMaterial}
-          scale={0.01}
-        />
-      </group>
-    );
+    if (flooring !== FLOORING_OPTIONS[0]) {
+      const { echoFloor, timberFloor } = useFlooringGLTFModels();
+      const { nodes: flooringNodes } = useGLTF(
+        `/models/container/${containerSize()}/${selectedContainerHeight}/flooring.glb`
+      );
+
+      const flooringMaterial = () => {
+        switch (flooring.type) {
+          case 'Echo':
+            return echoFloor[flooring.glbObject];
+          case 'Timber':
+            return timberFloor[flooring.glbObject];
+          default:
+            return null;
+        }
+      };
+      return (
+        <group position={[3.089, 0.173, -1.22]} rotation={[-Math.PI / 2, 0, 0]}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={
+              flooringNodes['40FT_HC_Interior_Timber_Blank_Floor_001'].geometry
+            }
+            material={flooringMaterial}
+            scale={0.01}
+          />
+        </group>
+      );
+    } else {
+      return null;
+    }
   };
 
   const SprayFoamCeiling = () => {
     if (interiorIsSprayFoamCeiling) {
+      const {
+        nodes: ceilingSprayFoamNodes,
+        materials: ceilingSprayFoamMaterials,
+      } = useGLTF(
+        `/models/container/${containerSize()}/${selectedContainerHeight}/ceiling-sprayfoam.glb`
+      );
       return (
         <mesh
           castShadow
@@ -517,29 +526,43 @@ export default function ContainerShell40High() {
           scale={0.01}
         />
       );
+    } else {
+      return null;
     }
   };
 
   const SprayFoamCw = () => {
     if (interiorIsSprayFoamCeilingWalls) {
+      const {
+        nodes: rearTopSprayFoamNodes,
+        materials: rearTopSprayFoamMaterials,
+      } = useGLTF(
+        `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-sprayfoam.glb`
+      );
       return (
         <>
           <group rotation={[-Math.PI / 2, 0, 0]} scale={0.01}>
             <mesh
               castShadow
               receiveShadow
-              geometry={rearTopSprayFoamNodes['40FT_HC_Sprayfoam_RearTop_1'].geometry}
+              geometry={
+                rearTopSprayFoamNodes['40FT_HC_Sprayfoam_RearTop_1'].geometry
+              }
               material={rearTopSprayFoamMaterials.Black_Rubber_01}
             />
             <mesh
               castShadow
               receiveShadow
-              geometry={rearTopSprayFoamNodes['40FT_HC_Sprayfoam_RearTop_2'].geometry}
+              geometry={
+                rearTopSprayFoamNodes['40FT_HC_Sprayfoam_RearTop_2'].geometry
+              }
               material={rearTopSprayFoamMaterials.Sprayfoam}
             />
           </group>
         </>
       );
+    } else {
+      return null;
     }
   };
 
@@ -598,7 +621,7 @@ export default function ContainerShell40High() {
       {hasLighting ? <Lighting /> : null}
       <SprayFoamCeiling />
       <SprayFoamCw />
-      {flooring !== FLOORING_OPTIONS[0] && <Flooring />}
+      <Flooring />
       <Plywood />
       <Drywall />
     </group>

@@ -20,7 +20,7 @@ import {
 } from '@/utils/constants/names';
 import Logo from '../Logo';
 import { componentData } from '@/utils/constants/componentData';
-import AddFixedElecOption from '../AddOption/AddFixedElecOption';
+import AddElecOption from '../AddOption/AddElecOption';
 
 const Sidebar = memo(() => {
   const {
@@ -117,7 +117,7 @@ const Sidebar = memo(() => {
               }
             >
               <span style={{ fontWeight: 700, marginRight: '0.25rem' }}>
-                High Container
+                High Cube
               </span>
               <span>9' 6"</span>
             </button>
@@ -127,11 +127,11 @@ const Sidebar = memo(() => {
           Choose Exterior Paint
         </div>
         <Subtitle
-          text='Select your desired material color'
+          text='Beige is our stock colour, we do often stock white and grey at no extra cost, your sales representative can confirm'
           css={{ fontWeight: 400, marginBottom: '1rem' }}
         />
         <SingleSelect type={EXTERIOR} />
-        <Selector nonFixedElectricals={nonFixedElectricals} />
+        <Selector />
         <div className={style.selectionTagName}>Interior Finishes</div>
         <Subtitle
           text='Select your wall finish'
@@ -143,7 +143,8 @@ const Sidebar = memo(() => {
           css={{ fontWeight: 400, marginBottom: '1rem' }}
         />
         <div className={style.fixedObjectContainer}>
-          <AddFixedElecOption options={fixedElectricals} />
+          <AddElecOption options={fixedElectricals} />
+          <AddElecOption options={nonFixedElectricals} />
         </div>
         <div className={style.selectionTagName}>Flooring Options</div>
         <Subtitle

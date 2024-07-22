@@ -3,7 +3,10 @@ import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { PageDataContext } from '@/components/Content/Content';
-import useGLTFModels from '@/utils/hooks/useGLTFModels';
+import useGLTFModels, {
+  useExteriorGLTFModels,
+  useInteriorGLTFModels,
+} from '@/utils/hooks/useGLTFModels';
 
 export function CsgGeometries({
   doorBoundingBoxes,
@@ -33,10 +36,7 @@ export function CsgGeometries({
     bluePaint,
     slateGreyPaint,
     beigePaint,
-    plywoodMaterial,
-    drywallMaterial,
-    sprayFoamMaterial,
-  } = useGLTFModels();
+  } = useExteriorGLTFModels();
 
   const size = containerSize();
 
@@ -60,19 +60,18 @@ export function CsgGeometries({
     }
   }, [selectedContainer.name, DIMENSIONS]);
 
-  const cRightNodes = useGLTF(`/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`).nodes;
-  const cBackNodes = useGLTF(`/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`).nodes;
-  const cLeftNodes = useGLTF(`/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`).nodes;
-  const dRightNodes = useGLTF(`/models/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`).nodes;
-  const dLeftNodes = useGLTF(`/models/drywall/${size}/${selectedContainerHeight}/drywall-left.glb`).nodes;
-  const dBackNodes = useGLTF(`/models/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`).nodes;
-  const pRightNodes = useGLTF(`/models/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`).nodes;
-  const pLeftNodes = useGLTF(`/models/plywood/${size}/${selectedContainerHeight}/plywood-left.glb`).nodes;
-  const pBackNodes = useGLTF(`/models/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`).nodes;
-  const sRightNodes = useGLTF(`/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-right.glb`).nodes;
-  const sLeftNodes = useGLTF(`/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-left.glb`).nodes;
-  const sBackNodes = useGLTF(`/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-back.glb`).nodes;
-  const baseboard = useGLTF(`/models/container/${size}/${selectedContainerHeight}/baseboard.glb`).nodes;
+  const cRightNodes = useGLTF(
+    `/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`
+  ).nodes;
+  const cBackNodes = useGLTF(
+    `/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`
+  ).nodes;
+  const cLeftNodes = useGLTF(
+    `/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`
+  ).nodes;
+  const baseboard = useGLTF(
+    `/models/container/${size}/${selectedContainerHeight}/baseboard.glb`
+  ).nodes;
 
   const csg = useRef();
 
@@ -176,6 +175,148 @@ export function CsgGeometries({
     );
   }, [exhaustFanBoundingBox]);
 
+  const Drywall = () => {
+    if (interiorIsDrywall) {
+      const { drywallMaterial } = useInteriorGLTFModels();
+      const dRightNodes = useGLTF(
+        `/models/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`
+      ).nodes;
+      const dLeftNodes = useGLTF(
+        `/models/drywall/${size}/${selectedContainerHeight}/drywall-left.glb`
+      ).nodes;
+      const dBackNodes = useGLTF(
+        `/models/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`
+      ).nodes;
+      return (
+        <>
+          {Object.keys(dBackNodes).map((key) => (
+            <Base
+              key={key}
+              geometry={dBackNodes[key].geometry}
+              material={drywallMaterial['Drywall_v2']}
+              scale={10}
+              position={[adjustForX, 0, adjustForY]}
+            />
+          ))}
+          {Object.keys(dRightNodes).map((key) => (
+            <Base
+              key={key}
+              geometry={dRightNodes[key].geometry}
+              material={drywallMaterial['Drywall_v2']}
+              scale={10}
+              position={[adjustForX, 0, adjustForY]}
+            />
+          ))}
+          {Object.keys(dLeftNodes).map((key) => (
+            <Base
+              key={key}
+              geometry={dLeftNodes[key].geometry}
+              material={drywallMaterial['Drywall_v2']}
+              scale={10}
+              position={[adjustForX, 0, adjustForY]}
+            />
+          ))}
+        </>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const Plywood = () => {
+    if (interiorIsPlywood) {
+      const { plywoodMaterial } = useInteriorGLTFModels();
+      const pRightNodes = useGLTF(
+        `/models/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`
+      ).nodes;
+      const pLeftNodes = useGLTF(
+        `/models/plywood/${size}/${selectedContainerHeight}/plywood-left.glb`
+      ).nodes;
+      const pBackNodes = useGLTF(
+        `/models/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`
+      ).nodes;
+      return (
+        <>
+          {Object.keys(pBackNodes).map((key) => (
+            <Base
+              key={key}
+              geometry={pBackNodes[key].geometry}
+              material={plywoodMaterial['Plywood_v2']}
+              scale={10}
+              position={[adjustForX, 0, adjustForY]}
+            />
+          ))}
+          {Object.keys(pRightNodes).map((key) => (
+            <Base
+              key={key}
+              geometry={pRightNodes[key].geometry}
+              material={plywoodMaterial['Plywood_v2']}
+              scale={10}
+              position={[adjustForX, 0, adjustForY]}
+            />
+          ))}
+          {Object.keys(pLeftNodes).map((key) => (
+            <Base
+              key={key}
+              geometry={pLeftNodes[key].geometry}
+              material={plywoodMaterial['Plywood_v2']}
+              scale={10}
+              position={[adjustForX, 0, adjustForY]}
+            />
+          ))}
+        </>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const Sprayfoam = () => {
+    if (interiorIsSprayFoamCeilingWalls) {
+      const { sprayFoamMaterial } = useInteriorGLTFModels();
+      const sRightNodes = useGLTF(
+        `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-right.glb`
+      ).nodes;
+      const sLeftNodes = useGLTF(
+        `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-left.glb`
+      ).nodes;
+      const sBackNodes = useGLTF(
+        `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-back.glb`
+      ).nodes;
+      <>
+        {Object.keys(sBackNodes).map((key) => (
+          <Base
+            key={key}
+            geometry={sBackNodes[key].geometry}
+            material={sprayFoamMaterial['Sprayfoam']}
+            scale={10}
+            position={[adjustForX, 0, adjustForY]}
+          />
+        ))}
+        {Object.keys(sRightNodes).map((key) => (
+          <Base
+            key={key}
+            geometry={sRightNodes[key].geometry}
+            material={sprayFoamMaterial['Sprayfoam']}
+            scale={10}
+            position={[adjustForX, 0, adjustForY]}
+          />
+        ))}
+        {Object.keys(sLeftNodes).map((key) => (
+          <Base
+            key={key}
+            geometry={sLeftNodes[key].geometry}
+            material={sprayFoamMaterial['Sprayfoam']}
+            scale={10}
+            position={[adjustForX, 0, adjustForY]}
+          />
+        ))}
+      </>;
+    } else {
+      return null;
+    }
+  };
+
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
@@ -185,103 +326,11 @@ export function CsgGeometries({
             geometry={baseboard.mesh_0.geometry}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
-          >
-            <meshStandardMaterial color='black' />
-          </Base>
+          ></Base>
         )}
-        {interiorIsDrywall ? (
-          <>
-            {Object.keys(dBackNodes).map((key) => (
-              <Base
-                key={key}
-                geometry={dBackNodes[key].geometry}
-                material={drywallMaterial['Drywall_v2']}
-                scale={10}
-                position={[adjustForX, 0, adjustForY]}
-              />
-            ))}
-            {Object.keys(dRightNodes).map((key) => (
-              <Base
-                key={key}
-                geometry={dRightNodes[key].geometry}
-                material={drywallMaterial['Drywall_v2']}
-                scale={10}
-                position={[adjustForX, 0, adjustForY]}
-              />
-            ))}
-            {Object.keys(dLeftNodes).map((key) => (
-              <Base
-                key={key}
-                geometry={dLeftNodes[key].geometry}
-                material={drywallMaterial['Drywall_v2']}
-                scale={10}
-                position={[adjustForX, 0, adjustForY]}
-              />
-            ))}
-          </>
-        ) : null}
-        {interiorIsPlywood ? (
-          <>
-            {Object.keys(pBackNodes).map((key) => (
-              <Base
-                key={key}
-                geometry={pBackNodes[key].geometry}
-                material={plywoodMaterial['Plywood_v2']}
-                scale={10}
-                position={[adjustForX, 0, adjustForY]}
-              />
-            ))}
-            {Object.keys(pRightNodes).map((key) => (
-              <Base
-                key={key}
-                geometry={pRightNodes[key].geometry}
-                material={plywoodMaterial['Plywood_v2']}
-                scale={10}
-                position={[adjustForX, 0, adjustForY]}
-              />
-            ))}
-            {Object.keys(pLeftNodes).map((key) => (
-              <Base
-                key={key}
-                geometry={pLeftNodes[key].geometry}
-                material={plywoodMaterial['Plywood_v2']}
-                scale={10}
-                position={[adjustForX, 0, adjustForY]}
-              />
-            ))}
-          </>
-        ) : null}
-        {interiorIsSprayFoamCeilingWalls ? (
-          <>
-            {Object.keys(sBackNodes).map((key) => (
-              <Base
-                key={key}
-                geometry={sBackNodes[key].geometry}
-                material={sprayFoamMaterial['Sprayfoam']}
-                scale={10}
-                position={[adjustForX, 0, adjustForY]}
-              />
-            ))}
-            {Object.keys(sRightNodes).map((key) => (
-              <Base
-                key={key}
-                geometry={sRightNodes[key].geometry}
-                material={sprayFoamMaterial['Sprayfoam']}
-                scale={10}
-                position={[adjustForX, 0, adjustForY]}
-              />
-            ))}
-            {Object.keys(sLeftNodes).map((key) => (
-              <Base
-                key={key}
-                geometry={sLeftNodes[key].geometry}
-                material={sprayFoamMaterial['Sprayfoam']}
-                scale={10}
-                position={[adjustForX, 0, adjustForY]}
-              />
-            ))}
-          </>
-        ) : null}
+        <Drywall />
+        <Plywood />
+        <Sprayfoam />
         <Base
           geometry={cRightNodes.mesh_0.geometry}
           material={exteriorPaint}
