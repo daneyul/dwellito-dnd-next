@@ -8,7 +8,14 @@ import useGLTFModels, {
   useFlooringGLTFModels,
 } from '@/utils/hooks/useGLTFModels';
 
-export default function ContainerShell40High() {
+export default function ContainerShell40High({
+  redPaint,
+  whitePaint,
+  greenPaint,
+  bluePaint,
+  slateGreyPaint,
+  beigePaint,
+}) {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const { FLOORING_OPTIONS } = useContext(Library3dDataContext);
 
@@ -24,15 +31,6 @@ export default function ContainerShell40High() {
     hasLighting,
     containerSize,
   } = useContext(PageDataContext);
-
-  const {
-    redPaint,
-    whitePaint,
-    greenPaint,
-    bluePaint,
-    slateGreyPaint,
-    beigePaint,
-  } = useExteriorGLTFModels();
 
   // Load all 3d objects
   const { nodes, materials } = useGLTF(

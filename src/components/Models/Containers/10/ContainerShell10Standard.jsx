@@ -3,12 +3,16 @@ import { useContext, useMemo, useRef } from 'react';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { PageDataContext } from '@/components/Content/Content';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
-import useGLTFModels, {
-  useExteriorGLTFModels,
-  useFlooringGLTFModels,
-} from '@/utils/hooks/useGLTFModels';
+import { useFlooringGLTFModels } from '@/utils/hooks/useGLTFModels';
 
-export default function ContainerShell10Standard() {
+export default function ContainerShell10Standard({
+  redPaint,
+  whitePaint,
+  greenPaint,
+  bluePaint,
+  slateGreyPaint,
+  beigePaint,
+}) {
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const { FLOORING_OPTIONS } = useContext(Library3dDataContext);
@@ -23,17 +27,8 @@ export default function ContainerShell10Standard() {
     interiorIsDrywall,
     interiorIsSprayFoamCeiling,
     interiorIsSprayFoamCeilingWalls,
-    containerSize
+    containerSize,
   } = useContext(PageDataContext);
-
-  const {
-    redPaint,
-    whitePaint,
-    greenPaint,
-    bluePaint,
-    slateGreyPaint,
-    beigePaint,
-  } = useExteriorGLTFModels();
 
   // Load all 3d objects
   const { nodes, materials } = useGLTF(

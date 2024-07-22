@@ -3,10 +3,7 @@ import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { PageDataContext } from '@/components/Content/Content';
-import useGLTFModels, {
-  useExteriorGLTFModels,
-  useInteriorGLTFModels,
-} from '@/utils/hooks/useGLTFModels';
+import { useInteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
 
 export function CsgGeometries({
   doorBoundingBoxes,
@@ -16,6 +13,12 @@ export function CsgGeometries({
   doors,
   windows,
   vents,
+  redPaint,
+  whitePaint,
+  greenPaint,
+  bluePaint,
+  slateGreyPaint,
+  beigePaint,
 }) {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
@@ -28,15 +31,6 @@ export function CsgGeometries({
     selectedContainerHeight,
     containerSize,
   } = useContext(PageDataContext);
-
-  const {
-    redPaint,
-    whitePaint,
-    greenPaint,
-    bluePaint,
-    slateGreyPaint,
-    beigePaint,
-  } = useExteriorGLTFModels();
 
   const size = containerSize();
 
@@ -68,9 +62,6 @@ export function CsgGeometries({
   ).nodes;
   const cLeftNodes = useGLTF(
     `/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`
-  ).nodes;
-  const baseboard = useGLTF(
-    `/models/container/${size}/${selectedContainerHeight}/baseboard.glb`
   ).nodes;
 
   const csg = useRef();

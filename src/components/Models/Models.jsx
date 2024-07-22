@@ -4,17 +4,13 @@ import {
   Environment,
   RandomizedLight,
   useProgress,
-  useGLTF,
 } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import {
-  Profiler,
-  useCallback,
   useContext,
   useEffect,
   useMemo,
   useRef,
-  useState,
 } from 'react';
 import Door from './Doors/DoorSwitcher';
 import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
@@ -28,15 +24,8 @@ import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
-  CONTAINER_10_SLUG,
-  CONTAINER_20_SLUG,
-  CONTAINER_40_SLUG,
-  CONTAINER_HIGH,
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
-  CONTAINER_SIZE_40,
-  CONTAINER_STANDARD,
-  ELEVATION_NAMES,
 } from '@/utils/constants/names';
 import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
 import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
@@ -49,8 +38,8 @@ import AirConditioner from './Electrical/AirConditioner';
 import ExhaustFan from './Electrical/ExhaustFan';
 import Heater from './Electrical/Heater';
 import Outlet from './Electrical/Outlet';
-// import { preloadContainerModels } from '@/utils/3D/preloadGLTFModel';
 import { useBoundingBoxes } from '@/utils/hooks/useBoundingBoxes';
+import { useExteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
 
 export function Models() {
   const {
@@ -182,24 +171,78 @@ export function Models() {
     handleVentBoundingBox,
   } = useBoundingBoxes({ doors, windows, vents });
 
+  const {
+    redPaint,
+    whitePaint,
+    greenPaint,
+    bluePaint,
+    slateGreyPaint,
+    beigePaint,
+  } = useExteriorGLTFModels();
+
   const ContainerShell = () => {
     if (selectedContainer.size === CONTAINER_SIZE_10) {
       if (containerHeightIsStandard) {
-        return <ContainerShell10Standard />;
+        return (
+          <ContainerShell10Standard
+            redPaint={redPaint}
+            whitePaint={whitePaint}
+            greenPaint={greenPaint}
+            bluePaint={bluePaint}
+            slateGreyPaint={slateGreyPaint}
+            beigePaint={beigePaint}
+          />
+        );
       } else {
         return null;
       }
     } else if (selectedContainer.size === CONTAINER_SIZE_20) {
       if (containerHeightIsStandard) {
-        return <ContainerShell20Standard />;
+        return (
+          <ContainerShell20Standard
+            redPaint={redPaint}
+            whitePaint={whitePaint}
+            greenPaint={greenPaint}
+            bluePaint={bluePaint}
+            slateGreyPaint={slateGreyPaint}
+            beigePaint={beigePaint}
+          />
+        );
       } else {
-        return <ContainerShell20High />;
+        return (
+          <ContainerShell20High
+            redPaint={redPaint}
+            whitePaint={whitePaint}
+            greenPaint={greenPaint}
+            bluePaint={bluePaint}
+            slateGreyPaint={slateGreyPaint}
+            beigePaint={beigePaint}
+          />
+        );
       }
     } else if (selectedContainer === containerData[2]) {
       if (containerHeightIsStandard) {
-        return <ContainerShell40Standard />;
+        return (
+          <ContainerShell40Standard
+            redPaint={redPaint}
+            whitePaint={whitePaint}
+            greenPaint={greenPaint}
+            bluePaint={bluePaint}
+            slateGreyPaint={slateGreyPaint}
+            beigePaint={beigePaint}
+          />
+        );
       } else {
-        return <ContainerShell40High />;
+        return (
+          <ContainerShell40High
+            redPaint={redPaint}
+            whitePaint={whitePaint}
+            greenPaint={greenPaint}
+            bluePaint={bluePaint}
+            slateGreyPaint={slateGreyPaint}
+            beigePaint={beigePaint}
+          />
+        );
       }
     }
   };
@@ -226,6 +269,12 @@ export function Models() {
           windowBoundingBoxes={windowBoundingBoxes}
           ventBoundingBoxes={ventBoundingBoxes}
           exhaustFanBoundingBox={exhaustFanBoundingBox}
+          redPaint={redPaint}
+          whitePaint={whitePaint}
+          greenPaint={greenPaint}
+          bluePaint={bluePaint}
+          slateGreyPaint={slateGreyPaint}
+          beigePaint={beigePaint}
         />
         {doors.map((door, index) => (
           <Door
