@@ -28,6 +28,12 @@ export const Library3dDataProvider = ({ children }) => {
 
   const INTERIOR_FINISH_OPTIONS = [
     {
+      name: "None",
+      price: 0,
+      hex: '#FFFFFF',
+      img: 'none.png'
+    },
+    {
       name: INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING,
       hex: '',
       price10: 440,

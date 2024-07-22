@@ -204,24 +204,6 @@ export function Models() {
     }
   };
 
-  useEffect(() => {
-    if (slug === CONTAINER_10_SLUG) {
-      preloadContainerModels(CONTAINER_SIZE_10, CONTAINER_STANDARD);
-    } else if (slug === CONTAINER_20_SLUG) {
-      if (containerHeightIsStandard) {
-        preloadContainerModels(CONTAINER_SIZE_20, CONTAINER_STANDARD);
-      } else {
-        preloadContainerModels(CONTAINER_SIZE_20, CONTAINER_HIGH);
-      }
-    } else if (slug === CONTAINER_40_SLUG) {
-      if (containerHeightIsStandard) {
-        preloadContainerModels(CONTAINER_SIZE_40, CONTAINER_STANDARD);
-      } else {
-        preloadContainerModels(CONTAINER_SIZE_40, CONTAINER_HIGH);
-      }
-    }
-  }, []);
-
   const onRenderCallback = (
     id, // the "id" prop of the Profiler tree that has just committed
     phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)

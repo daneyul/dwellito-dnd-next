@@ -28,44 +28,12 @@ export default function ContainerShell20Standard() {
     bluePaint,
     slateGreyPaint,
     beigePaint,
-    echoFloor,
-    timberFloor,
   } = useGLTFModels();
 
   // Load all 3d objects
   const { nodes, materials } = useGLTF(
     `/models/container/20/${selectedContainerHeight}/container-shell.glb`
   );
-  const { nodes: flooringNodes } = useGLTF(
-    `/models/container/20/${selectedContainerHeight}/flooring.glb`
-  );
-  const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
-    useGLTF(
-      `/models/container/20/${selectedContainerHeight}/rear-top-plywood.glb`
-    );
-  const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
-    useGLTF(
-      `/models/container/20/${selectedContainerHeight}/rear-top-drywall.glb`
-    );
-  const { nodes: rearTopSprayFoamNodes, materials: rearTopSprayFoamMaterials } =
-    useGLTF(
-      `/models/container/20/${selectedContainerHeight}/rear-top-sprayfoam.glb`
-    );
-  const { nodes: ceilingSprayFoamNodes, materials: ceilingSprayFoamMaterials } =
-    useGLTF(
-      `/models/container/20/${selectedContainerHeight}/ceiling-sprayfoam.glb`
-    );
-
-  const flooringMaterial = useMemo(() => {
-    switch (flooring.type) {
-      case 'Echo':
-        return echoFloor[flooring.glbObject];
-      case 'Timber':
-        return timberFloor[flooring.glbObject];
-      default:
-        return null;
-    }
-  }, [echoFloor, timberFloor, flooring]);
 
   const exteriorPaint = useMemo(() => {
     switch (exteriorFinish.name) {
@@ -143,23 +111,48 @@ export default function ContainerShell20Standard() {
   };
 
   const Flooring = () => {
-    return (
-      <group position={[3.059, 0.173, -1.219]} rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={
-            flooringNodes['20FT_Interior_Echo_Blank_Floor_001'].geometry
-          }
-          material={flooringMaterial}
-          scale={0.01}
-        />
-      </group>
-    );
+    if (flooring !== FLOORING_OPTIONS[0]) {
+      const { echoFloor, timberFloor } = useGLTFModels();
+      const { nodes: flooringNodes } = useGLTF(
+        `/models/container/20/${selectedContainerHeight}/flooring.glb`
+      );
+
+      const flooringMaterial = () => {
+        switch (flooring.type) {
+          case 'Echo':
+            return echoFloor[flooring.glbObject];
+          case 'Timber':
+            return timberFloor[flooring.glbObject];
+          default:
+            return null;
+        }
+      };
+
+      return (
+        <group
+          position={[3.059, 0.173, -1.219]}
+          rotation={[-Math.PI / 2, 0, 0]}
+        >
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={
+              flooringNodes['20FT_Interior_Echo_Blank_Floor_001'].geometry
+            }
+            material={flooringMaterial}
+            scale={0.01}
+          />
+        </group>
+      );
+    }
   };
 
   const Plywood = () => {
     if (interiorIsPlywood) {
+      const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
+        useGLTF(
+          `/models/container/20/${selectedContainerHeight}/rear-top-plywood.glb`
+        );
       return (
         <>
           <group
@@ -271,6 +264,10 @@ export default function ContainerShell20Standard() {
 
   const Drywall = () => {
     if (interiorIsDrywall) {
+      const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
+        useGLTF(
+          `/models/container/20/${selectedContainerHeight}/rear-top-drywall.glb`
+        );
       return (
         <>
           <group
@@ -382,6 +379,12 @@ export default function ContainerShell20Standard() {
 
   const SprayFoamCeiling = () => {
     if (interiorIsSprayFoamCeiling) {
+      const {
+        nodes: ceilingSprayFoamNodes,
+        materials: ceilingSprayFoamMaterials,
+      } = useGLTF(
+        `/models/container/20/${selectedContainerHeight}/ceiling-sprayfoam.glb`
+      );
       return (
         <mesh
           castShadow
@@ -398,6 +401,12 @@ export default function ContainerShell20Standard() {
 
   const SprayFoamCw = () => {
     if (interiorIsSprayFoamCeilingWalls) {
+      const {
+        nodes: rearTopSprayFoamNodes,
+        materials: rearTopSprayFoamMaterials,
+      } = useGLTF(
+        `/models/container/20/${selectedContainerHeight}/rear-top-sprayfoam.glb`
+      );
       return (
         <>
           <mesh
