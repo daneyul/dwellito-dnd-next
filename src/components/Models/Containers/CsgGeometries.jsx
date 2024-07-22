@@ -317,17 +317,29 @@ export function CsgGeometries({
     }
   };
 
+  const BaseBoard = () => {
+    if (interiorIsSprayFoamCeiling || interiorIsSprayFoamCeilingWalls) {
+      return null;
+    } else if (interiorIsDrywall || interiorIsPlywood) {
+      const baseboard = useGLTF(
+        `/models/container/${size}/${selectedContainerHeight}/baseboard.glb`
+      ).nodes;
+      return (
+        <Base
+          geometry={baseboard.mesh_0.geometry}
+          scale={10}
+          position={[adjustForX, 0, adjustForY]}
+        />
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
-        {interiorIsSprayFoamCeiling ||
-        interiorIsSprayFoamCeilingWalls ? null : (
-          <Base
-            geometry={baseboard.mesh_0.geometry}
-            scale={10}
-            position={[adjustForX, 0, adjustForY]}
-          ></Base>
-        )}
+        <BaseBoard />
         <Drywall />
         <Plywood />
         <Sprayfoam />
