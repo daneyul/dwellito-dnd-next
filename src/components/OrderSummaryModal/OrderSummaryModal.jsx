@@ -14,6 +14,8 @@ import {
   CONTAINER_10_SLUG,
   CONTAINER_20_SLUG,
   CONTAINER_40_SLUG,
+  CONTAINER_HIGH,
+  CONTAINER_STANDARD,
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
 } from '@/utils/constants/names';
@@ -141,22 +143,27 @@ const OrderSummaryModal = () => {
     </div>
   );
 
-  const triggerZapier = async (email) => {
+  const detailOrder = selectedComponents.map((component) => {
+
+  });
+
+  const triggerZapier = async (data) => {
+    const { convertedSelections } = useSaveSelections({
+      selectedComponents,
+      interiorFinish,
+      exteriorFinish,
+      flooring,
+    });
     const responseData = {
-      // siteName: 'Container Configurator',
-      // 'data__Detail Order': jsonToBase64(detailOrder),
-      // data__Email: email,
-      // data__eventType: 'Save Design',
-      // data__Exterior: selectedExteriors,
-      // data__Interior: selectedInteriors,
-      // data__Services: selectedServices,
-      // data__Layout: selectedLayout,
-      // data__model: modelData['Name'],
-      // data__Supplier: supplierData['Name'],
-      // data__currency: supplierData['Currency'],
-      // 'data__Estimated Shipping': shippingCost,
-      // scrollDepth: scrollDepth,
-      // sessionLength: sessionLength,
+      containerType: slug,
+      containerHeight: containerHeightIsStandard ? CONTAINER_STANDARD : CONTAINER_HIGH,
+      containerPaint: exteriorFinish.name,
+      containerFlooring: flooring.name,
+      containerInterior: interiorFinish.name,
+      priceTotal: orderTotal,
+      customerEmail: data.email,
+      customerName: `${data.fname} ${data.lname}`,
+      url: `?data=${convertedSelections}`
     };
     const JSONdata = JSON.stringify(responseData);
     const endpoint = 'https://hooks.zapier.com/hooks/catch/5485468/2yjklei/';
@@ -174,23 +181,20 @@ const OrderSummaryModal = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior if not already handled
-
-    const { convertedSelections } = useSaveSelections({
-      selectedComponents,
-      interiorFinish,
-      exteriorFinish,
-      flooring,
-    });
-
+    event.preventDefault(); // Prevent default form submission behavior
+  
+    // Collect form data
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+  
     try {
-      // const saveURL = `?data=${convertedSelections}`;
-      // await triggerZapier({ data });
-      // console.log('Zapier request attempted');
+      await triggerZapier(data); // Assuming triggerZapier accepts form data
+      console.log('Zapier request attempted');
     } catch (error) {
-      // console.error('Error triggering Zapier:', error);
+      console.error('Error triggering Zapier:', error);
     }
   };
+  
 
   const Section = ({ elevation }) => {
     const componentsForElevation = selectedComponents.filter((component) =>
