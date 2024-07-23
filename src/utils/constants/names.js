@@ -73,6 +73,7 @@ export const CONTAINER_SIZE_20 = '20';
 export const CONTAINER_SIZE_40 = '40';
 
 export const INTERIOR_FINISH_NAMES = {
+  NONE: "None",
   PLYWOOD:
     '½” Cabinet Grade Plywood, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
   DRYWALL:

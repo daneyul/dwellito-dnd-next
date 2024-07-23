@@ -1,8 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from 'react';
-import { generateImgSrc, handleAddComponent } from '../../utils/2D/utils';
+import { generateImgSrc, getComponentPrice, handleAddComponent } from '../../utils/2D/utils';
 import style from './addOption.module.css';
 import { PageDataContext } from '../Content/Content';
+import {
+  INTERIOR_FINISH_NAMES,
+} from '@/utils/constants/names';
 
 const AddElecOption = ({ options }) => {
   const {
@@ -13,6 +16,7 @@ const AddElecOption = ({ options }) => {
     setSelectedElevationIndex,
     mappedElevations,
     selectedComponents,
+    interiorFinish
   } = useContext(PageDataContext);
 
   return options.map((item) => {
@@ -21,9 +25,15 @@ const AddElecOption = ({ options }) => {
       (component) => component.name === item.name
     );
 
+    const itemPrice = getComponentPrice(item, interiorFinish);
+
     return (
       <div
-        className={alreadySelected ? style.objImgContainerSelected : style.objImgContainer}
+        className={
+          alreadySelected
+            ? style.objImgContainerSelected
+            : style.objImgContainer
+        }
         onClick={() => {
           setShow3d(false);
           setSelectedElevation(mappedElevations[3]);
@@ -45,7 +55,7 @@ const AddElecOption = ({ options }) => {
         <div className={style.objDesc}>
           {item.name}
           <div style={{ marginTop: '0.5rem', fontWeight: 700 }}>
-            +${item.price.toLocaleString()}
+            +${itemPrice.toLocaleString()}
           </div>
         </div>
       </div>

@@ -23,6 +23,7 @@ const SingleSelect = ({ type }) => {
     setShowExterior,
     slug,
     setCameraReady,
+    interiorFinishPrice
   } = useContext(PageDataContext);
   const {
     EXTERIOR,
@@ -105,35 +106,12 @@ const SingleSelect = ({ type }) => {
   const interiorDesc = () => {
     return INTERIOR_FINISH_OPTIONS.map((selection, index) => {
       const isSelected = interiorFinish === selection;
-      const interiorFinishPrice = () => {
-        if (selection.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
-          if (slug === CONTAINER_10_SLUG) {
-            return selection.price10;
-          } else if (slug === CONTAINER_20_SLUG) {
-            return selection.price20;
-          } else if (slug === CONTAINER_40_SLUG) {
-            return selection.price40;
-          }
-        } else if (
-          selection.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS
-        ) {
-          if (slug === CONTAINER_10_SLUG) {
-            return selection.price10;
-          } else if (slug === CONTAINER_20_SLUG) {
-            return selection.price20S;
-          } else if (slug === CONTAINER_40_SLUG) {
-            return selection.price40S;
-          }
-        } else {
-          return selection.price;
-        }
-      };
 
       return (
         isSelected && (
           <div className={style.singleSelDescriptionContainer} key={index}>
             <Subtitle text={selection.name} />
-            <Subtitle text={`+ $${interiorFinishPrice().toLocaleString()}`} />
+            <Subtitle text={`+ $${interiorFinishPrice.toLocaleString()}`} />
           </div>
         )
       );

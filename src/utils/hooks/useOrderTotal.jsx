@@ -1,10 +1,12 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   INTERIOR_FINISH_NAMES,
+  COMPONENT_NAMES,
   CONTAINER_10_SLUG,
   CONTAINER_20_SLUG,
   CONTAINER_40_SLUG,
 } from '@/utils/constants/names';
+import { getComponentPrice } from '../2D/utils';
 
 const useOrderTotal = ({
   containerHeightIsStandard,
@@ -16,67 +18,70 @@ const useOrderTotal = ({
   flooring,
 }) => {
   const [orderTotal, setOrderTotal] = useState(0);
-  const containerPrice = containerHeightIsStandard
-    ? selectedContainer.priceSc
-    : selectedContainer.priceHc;
+
+  const getContainerSpecificPrice = useMemo(() => (item) => {
+    const sizeSuffix = containerHeightIsStandard ? 'S' : 'H';
+    switch (slug) {
+      case CONTAINER_10_SLUG:
+        return item.price10;
+      case CONTAINER_20_SLUG:
+        return item[`price20${sizeSuffix}`] || item.price20;
+      case CONTAINER_40_SLUG:
+        return item[`price40${sizeSuffix}`] || item.price40;
+      default:
+        return 0;
+    }
+  }, [containerHeightIsStandard, slug]);
+
+  const interiorFinishPrice = useMemo(() => {
+    if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
+      return getContainerSpecificPrice(interiorFinish);
+    }
+
+    const specialFinishes = [
+      INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS,
+      INTERIOR_FINISH_NAMES.PLYWOOD,
+      INTERIOR_FINISH_NAMES.DRYWALL,
+    ];
+
+    if (specialFinishes.includes(interiorFinish.name)) {
+      return getContainerSpecificPrice(interiorFinish);
+    }
+
+    return interiorFinish.price;
+  }, [interiorFinish, getContainerSpecificPrice]);
 
   useEffect(() => {
-    const interiorFinishPrice = () => {
-      if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
-        if (slug === CONTAINER_10_SLUG) {
-          return interiorFinish.price10;
-        } else if (slug === CONTAINER_20_SLUG) {
-          return interiorFinish.price20;
-        } else if (slug === CONTAINER_40_SLUG) {
-          return interiorFinish.price40;
-        }
-      } else if (
-        interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS
-      ) {
-        if (slug === CONTAINER_10_SLUG) {
-          return interiorFinish.price10;
-        } else if (slug === CONTAINER_20_SLUG) {
-          if (containerHeightIsStandard) {
-            return interiorFinish.price20S;
-          } else {
-            return interiorFinish.price20H;
-          }
-        } else if (slug === CONTAINER_40_SLUG) {
-          if (containerHeightIsStandard) {
-            return interiorFinish.price40S;
-          } else {
-            return interiorFinish.price40H;
-          }
-        }
-      } else {
-        return interiorFinish.price;
-      }
-    };
+    const containerPrice = containerHeightIsStandard
+      ? selectedContainer.priceSc
+      : selectedContainer.priceHc;
 
-    const flooringPrice = () => {
-      if (slug === CONTAINER_10_SLUG) {
-        return flooring.price10;
-      } else if (slug === CONTAINER_20_SLUG) {
-        return flooring.price20;
-      } else if (slug === CONTAINER_40_SLUG) {
-        return flooring.price40;
-      }
-    };
+    const flooringPrice = getContainerSpecificPrice(flooring);
+
+    const componentsTotal = selectedComponents.reduce((acc, component) => {
+      return acc + getComponentPrice(component, interiorFinish);
+    }, 0);
 
     const total =
-      selectedComponents.reduce(
-        (accumulator, currentComponent) => accumulator + currentComponent.price,
-        0
-      ) +
-      interiorFinishPrice() +
+      componentsTotal +
+      interiorFinishPrice +
       exteriorFinish.price +
-      flooringPrice() +
+      flooringPrice +
       containerPrice;
 
     setOrderTotal(total);
-  }, [selectedComponents, interiorFinish, exteriorFinish, flooring]);
+  }, [
+    containerHeightIsStandard,
+    selectedContainer,
+    getContainerSpecificPrice,
+    selectedComponents,
+    interiorFinishPrice,
+    interiorFinish,
+    exteriorFinish,
+    flooring,
+  ]);
 
-  return { orderTotal, setOrderTotal };
+  return { orderTotal, setOrderTotal, interiorFinishPrice };
 };
 
 export default useOrderTotal;

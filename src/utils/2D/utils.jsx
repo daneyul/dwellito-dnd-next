@@ -3,6 +3,7 @@ import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
   ELEVATION_NAMES,
+  INTERIOR_FINISH_NAMES,
 } from '../constants/names';
 import { DIMENSIONS } from '../constants/dimensions';
 import { electricalComponents } from '../constants/components/electrical';
@@ -535,4 +536,22 @@ export const getFlooringFromUrl = (querySelectionData) => {
     }
   }
   return null;
+};
+
+export const getComponentPrice = (component, interiorFinish) => {
+  if (!interiorFinish || !interiorFinish.name) {
+    return 0; // Default price if interiorFinish or interiorFinish.name is not defined
+  }
+  if (
+    interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS ||
+    interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING
+  ) {
+    return component.priceSurface || 0;
+  } else if (
+    interiorFinish.name &&
+    interiorFinish.name !== INTERIOR_FINISH_NAMES.NONE
+  ) {
+    return component.priceRecessed || 0;
+  }
+  return component.price || 0; // Default price if no conditions are met
 };

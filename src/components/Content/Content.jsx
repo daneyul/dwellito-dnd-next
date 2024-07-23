@@ -158,7 +158,7 @@ const PageDataProvider = ({ children, data }) => {
     setShowOutsideDroppableWarning,
   });
 
-  const { orderTotal, setOrderTotal } = useOrderTotal({
+  const { orderTotal, setOrderTotal, interiorFinishPrice } = useOrderTotal({
     containerHeightIsStandard,
     selectedContainer,
     slug,
@@ -271,6 +271,7 @@ const PageDataProvider = ({ children, data }) => {
         setExteriorFinish,
         interiorFinish,
         setInteriorFinish,
+        interiorFinishPrice,
         showExterior,
         setShowExterior,
         mappedElevations,
