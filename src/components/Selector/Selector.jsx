@@ -77,7 +77,6 @@ const Selector = () => {
         <div className={style.objectContainer}>
           <AddOption options={vents} />
         </div>
-        <div className={style.subTitle}>Electrical Add-Ons</div>
       </div>
     </div>
   );
