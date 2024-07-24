@@ -414,6 +414,7 @@ const OrderSummaryModal = () => {
                 value={`$${parseInt(orderTotal).toLocaleString()}`}
               />
               <Form.Root onSubmit={(e) => handleSubmit(e)}>
+              <div className={style.formTitle}>Project Details</div>
                 <div className={style.addressWrapper}>
                   <Form.Field className='FormField' name='address'>
                     <div className={style.messageWrapper}>
