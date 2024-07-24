@@ -6,6 +6,7 @@ import { PageDataContext } from '@/components/Content/Content';
 import {
   checkDistance,
   generateImgSrc,
+  getComponentPrice,
   getUniqueElevationObjects,
 } from '@/utils/2D/utils';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
@@ -32,6 +33,7 @@ const OrderSummaryModal = () => {
     selectedContainer,
     scaleFactor,
     interiorFinish,
+    interiorFinishPrice,
     exteriorFinish,
     flooring,
     slug,
@@ -104,6 +106,46 @@ const OrderSummaryModal = () => {
     setTimeout(() => (document.body.style.pointerEvents = ''), 0);
   });
 
+  const prepareSurfaceData = (elevationName) => {
+    return selectedComponents
+      .filter((component) => component.elevation[0].name === elevationName)
+      .map((i) => {
+        const distance = checkDistance({
+          component: i,
+          selectedElevation: i.elevation[0],
+          DIMENSIONS,
+          selectedContainer,
+          scaleFactor,
+        });
+        return {
+          name: i.name,
+          position: `${distance.left}' from left, ${distance.right}' from right`,
+          sku: i.desc,
+          price: i.price,
+        };
+      });
+  };
+
+  const prepareFloorPlanData = () => {
+    return selectedComponents
+      .filter((component) => component.elevation[0].name === ELEVATION_NAMES.FLOOR_PLAN)
+      .map((i) => {
+        const distance = checkDistance({
+          component: i,
+          selectedElevation: i.elevation[0],
+          DIMENSIONS,
+          selectedContainer,
+          scaleFactor,
+        });
+        return {
+          name: i.name,
+          position: `${distance.left}' from left, ${distance.top}' from top (on floor plan view)`,
+          sku: i.desc,
+          price: getComponentPrice(i, interiorFinish),
+        };
+      });
+  };
+
   const triggerZapier = async (data) => {
     const { convertedSelections } = useSaveSelections({
       selectedComponents,
@@ -113,9 +155,7 @@ const OrderSummaryModal = () => {
     });
     const responseData = {
       containerType: slug,
-      containerHeight: containerHeightIsStandard
-        ? CONTAINER_STANDARD
-        : CONTAINER_HIGH,
+      containerHeight: containerHeightIsStandard ? CONTAINER_STANDARD : CONTAINER_HIGH,
       containerPaint: exteriorFinish.name,
       containerFlooring: flooring.name,
       containerInterior: interiorFinish.name,
@@ -125,6 +165,31 @@ const OrderSummaryModal = () => {
       address: data.address,
       zipCode: zipCode,
       url: `https://custom.configure.so/custom-cubes/${slug}/?data=${convertedSelections}`,
+      interiorFinish: {
+        name: interiorFinish.name,
+        price: interiorFinishPrice,
+      },
+      exteriorFinish: {
+        name: exteriorFinish.name,
+        price: exteriorFinish.price,
+      },
+      surface: {
+        front: {
+          components: prepareSurfaceData(ELEVATION_NAMES.FRONT),
+        },
+        back: {
+          components: prepareSurfaceData(ELEVATION_NAMES.BACK),
+        },
+        left: {
+          components: prepareSurfaceData(ELEVATION_NAMES.LEFT),
+        },
+        right: {
+          components: prepareSurfaceData(ELEVATION_NAMES.RIGHT),
+        },
+        floorPlan: {
+          components: prepareFloorPlanData(),
+        },
+      },
     };
     const JSONdata = JSON.stringify(responseData);
     const endpoint = 'https://hooks.zapier.com/hooks/catch/5485468/2yjklei/';
@@ -155,8 +220,10 @@ const OrderSummaryModal = () => {
     try {
       await triggerZapier({ data });
       console.log('Zapier request attempted');
+      setDialogOpen(false);
     } catch (error) {
       console.error('Error triggering Zapier:', error);
+      setDialogOpen(false);
       setOpenToast(true);
     }
   };
@@ -192,38 +259,6 @@ const OrderSummaryModal = () => {
     </div>
   );
 
-  const interiorFinishPrice = () => {
-    if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
-      if (slug === CONTAINER_10_SLUG) {
-        return interiorFinish.price10;
-      } else if (slug === CONTAINER_20_SLUG) {
-        return interiorFinish.price20;
-      } else if (slug === CONTAINER_40_SLUG) {
-        return interiorFinish.price40;
-      }
-    } else if (
-      interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS
-    ) {
-      if (slug === CONTAINER_10_SLUG) {
-        return interiorFinish.price10;
-      } else if (slug === CONTAINER_20_SLUG) {
-        if (containerHeightIsStandard) {
-          return interiorFinish.price20S;
-        } else {
-          return interiorFinish.price20H;
-        }
-      } else if (slug === CONTAINER_40_SLUG) {
-        if (containerHeightIsStandard) {
-          return interiorFinish.price40S;
-        } else {
-          return interiorFinish.price40H;
-        }
-      }
-    } else {
-      return interiorFinish.price;
-    }
-  };
-
   const InteriorSection = () => (
     <div className={style.section}>
       <div className={style.elevationName}>Interior Finish</div>
@@ -238,7 +273,7 @@ const OrderSummaryModal = () => {
           </div>
           <div className={style.description}>{interiorFinish.name}</div>
           <div className={style.price}>
-            ${interiorFinishPrice().toLocaleString()}
+            ${interiorFinishPrice.toLocaleString()}
           </div>
         </div>
       </div>
