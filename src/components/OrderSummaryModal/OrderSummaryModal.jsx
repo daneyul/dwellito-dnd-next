@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import style from './orderSummaryModal.module.scss';
 import * as Dialog from '@radix-ui/react-dialog';
 import { PageDataContext } from '@/components/Content/Content';
 import {
-  base64ToJson,
   checkDistance,
   generateImgSrc,
   getUniqueElevationObjects,
@@ -43,6 +42,7 @@ const OrderSummaryModal = () => {
   const tax = 1000;
   const [zipCode, setZipCode] = useState('');
   const [openToast, setOpenToast] = useState(false);
+  const inputRef = useRef(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -52,36 +52,56 @@ const OrderSummaryModal = () => {
     sessionStorage.setItem('formData', JSON.stringify(formData));
   };
 
-  const { ref } = usePlacesWidget({
-    apiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY,
-    onPlaceSelected: (place) => {
-      const addressComponents = place.address_components;
+  useEffect(() => {
+    if (dialogOpen) {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY}&libraries=places`;
+      script.async = true;
+      script.onload = () => {
+        const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
+          componentRestrictions: { country: ['us', 'ca'] },
+          types: ['address'],
+        });
 
-      const findComponent = (type) => {
-        return addressComponents.find((component) =>
-          component.types.includes(type)
-        )?.long_name;
+        autocomplete.addListener('place_changed', () => {
+          const place = autocomplete.getPlace();
+          const addressComponents = place.address_components;
+
+          const findComponent = (type) => {
+            return addressComponents.find((component) =>
+              component.types.includes(type)
+            )?.long_name;
+          };
+
+          const postalCode = findComponent('postal_code');
+          const localCity =
+            findComponent('locality') || findComponent('sublocality');
+          const state = findComponent('administrative_area_level_1');
+
+          if (postalCode) setZipCode(postalCode);
+
+          const storedData = sessionStorage.getItem('formData');
+          const formData = storedData ? JSON.parse(storedData) : {};
+          formData['address'] = place.formatted_address;
+          formData['zipCode'] = postalCode;
+          formData['city'] = localCity;
+          formData['state'] = state;
+          sessionStorage.setItem('formData', JSON.stringify(formData));
+        });
       };
 
-      const postalCode = findComponent('postal_code');
-      const localCity =
-        findComponent('locality') || findComponent('sublocality');
-      const state = findComponent('administrative_area_level_1');
+      document.head.appendChild(script);
 
-      if (postalCode) setZipCode(postalCode);
+      // Clean up the script when the dialog is closed
+      return () => {
+        document.head.removeChild(script);
+      };
+    }
+  }, [dialogOpen]);
 
-      const storedData = sessionStorage.getItem('formData');
-      const formData = storedData ? JSON.parse(storedData) : {};
-      formData['address'] = place.formatted_address;
-      formData['zipCode'] = postalCode;
-      formData['city'] = localCity;
-      formData['state'] = state;
-      sessionStorage.setItem('formData', JSON.stringify(formData));
-    },
-    options: {
-      componentRestrictions: { country: ['us', 'ca'] },
-      types: ['address'],
-    },
+  useEffect(() => {
+    // Disable Radix ui dialog pointer events lockout
+    setTimeout(() => (document.body.style.pointerEvents = ''), 0);
   });
 
   const triggerZapier = async (data) => {
@@ -111,9 +131,9 @@ const OrderSummaryModal = () => {
 
     try {
       const options = {
-        method: "POST",
+        method: 'POST',
         body: JSONdata,
-        mode: "no-cors",
+        mode: 'no-cors',
       };
       const response = await fetch(endpoint, options);
       if (!response.ok) {
@@ -322,7 +342,20 @@ const OrderSummaryModal = () => {
       <Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
         <Dialog.Portal>
           <Dialog.Overlay className={style.overlay}>
-            <Dialog.Content className={style.content}>
+            <Dialog.Content
+              className={style.content}
+              onInteractOutside={(e) => {
+                const classes = [];
+                e.composedPath().forEach((el) => {
+                  if (el.classList) {
+                    classes.push(Array.from(el.classList));
+                  }
+                });
+                if (classes.join('-').includes('pac-container')) {
+                  e.preventDefault();
+                }
+              }}
+            >
               <Dialog.Title className={style.title}>Order Summary</Dialog.Title>
               {uniqueElevationNames.map((elevation, index) => (
                 <Section key={index} elevation={elevation} />
@@ -354,7 +387,7 @@ const OrderSummaryModal = () => {
                     </div>
                     <Form.Control asChild>
                       <input
-                        ref={ref}
+                        ref={inputRef}
                         className={style.input}
                         type='address'
                         required

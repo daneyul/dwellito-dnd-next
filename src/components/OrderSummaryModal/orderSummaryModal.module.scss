@@ -166,7 +166,9 @@
 }
 
 .content {
-  min-width: 950px;
+  height: 80%;
+  overflow: auto;
+  min-width: 680px;
   background: white;
   padding: 2rem 1rem;
   border-radius: 8px;
@@ -222,7 +224,7 @@
   width: auto;
   object-fit: container;
   max-width: 38px;
-  max-height: 56px;
+  max-height: 38px;
 }
 
 .description {
@@ -299,4 +301,8 @@
 
 .trigger {
   border: none;
+}
+
+.pac-container {
+  z-index: 10000 !important;
 }

@@ -1,4 +1,5 @@
 import Content from '@/components/Content/Content';
+import Script from 'next/script';
 
 export async function generateMetadata() {
   return {
@@ -18,7 +19,7 @@ export default async function Page({ params, searchParams }) {
       <Content
         data={{
           slug,
-          querySelectionData
+          querySelectionData,
         }}
       />
     );
