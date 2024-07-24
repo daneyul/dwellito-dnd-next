@@ -41,7 +41,6 @@ const OrderSummaryModal = () => {
     setDialogOpen,
   } = useContext(PageDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
-  const tax = 1000;
   const [zipCode, setZipCode] = useState('');
   const [openToast, setOpenToast] = useState(false);
   const inputRef = useRef(null);
@@ -60,10 +59,13 @@ const OrderSummaryModal = () => {
       script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY}&libraries=places`;
       script.async = true;
       script.onload = () => {
-        const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
-          componentRestrictions: { country: ['us', 'ca'] },
-          types: ['address'],
-        });
+        const autocomplete = new window.google.maps.places.Autocomplete(
+          inputRef.current,
+          {
+            componentRestrictions: { country: ['us', 'ca'] },
+            types: ['address'],
+          }
+        );
 
         autocomplete.addListener('place_changed', () => {
           const place = autocomplete.getPlace();
@@ -128,7 +130,10 @@ const OrderSummaryModal = () => {
 
   const prepareFloorPlanData = () => {
     return selectedComponents
-      .filter((component) => component.elevation[0].name === ELEVATION_NAMES.FLOOR_PLAN)
+      .filter(
+        (component) =>
+          component.elevation[0].name === ELEVATION_NAMES.FLOOR_PLAN
+      )
       .map((i) => {
         const distance = checkDistance({
           component: i,
@@ -155,7 +160,9 @@ const OrderSummaryModal = () => {
     });
     const responseData = {
       containerType: slug,
-      containerHeight: containerHeightIsStandard ? CONTAINER_STANDARD : CONTAINER_HIGH,
+      containerHeight: containerHeightIsStandard
+        ? CONTAINER_STANDARD
+        : CONTAINER_HIGH,
       containerPaint: exteriorFinish.name,
       containerFlooring: flooring.name,
       containerInterior: interiorFinish.name,
@@ -402,12 +409,9 @@ const OrderSummaryModal = () => {
                 text='Sub Total'
                 value={`$${orderTotal.toLocaleString()}`}
               />
-              <Total text='Tax' value={`$${tax.toLocaleString()}`} />
               <Total
                 text='Total'
-                value={`$${(
-                  parseInt(orderTotal) + parseInt(tax)
-                ).toLocaleString()}`}
+                value={`$${parseInt(orderTotal).toLocaleString()}`}
               />
               <Form.Root onSubmit={(e) => handleSubmit(e)}>
                 <div className={style.addressWrapper}>
