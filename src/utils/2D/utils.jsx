@@ -1,15 +1,13 @@
 import { v4 as uuid } from 'uuid';
 import {
   COMPONENT_NAMES,
-  COMPONENT_TYPES,
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
 } from '../constants/names';
 import { DIMENSIONS } from '../constants/dimensions';
-import { electricalComponents } from '../constants/components/electrical';
 import { ventComponents } from '../constants/components/vents';
 
-export const generateImgSrc = (imgName) => `../../../images/${imgName}`;
+export const generateImgSrc = (supplier, imgName) => `../../../images/${supplier}/${imgName}`;
 
 export const checkCollision = (
   item1,

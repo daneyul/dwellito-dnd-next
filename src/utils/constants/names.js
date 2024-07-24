@@ -64,10 +64,6 @@ export const ELEVATION_NAMES = {
 export const CONTAINER_STANDARD = 'standard';
 export const CONTAINER_HIGH = 'high';
 
-export const CONTAINER_10_SLUG = '10-custom-cube';
-export const CONTAINER_20_SLUG = '20-custom-cube';
-export const CONTAINER_40_SLUG = '40-custom-cube';
-
 export const CONTAINER_SIZE_10 = '10';
 export const CONTAINER_SIZE_20 = '20';
 export const CONTAINER_SIZE_40 = '40';

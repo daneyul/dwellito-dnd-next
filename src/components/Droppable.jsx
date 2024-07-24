@@ -6,7 +6,7 @@ import { PageDataContext } from './Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 
 export function Droppable({ children }) {
-  const { scaleFactor, selectedElevation, containerHeightIsStandard, setShowCollisions } =
+  const { scaleFactor, selectedElevation, containerHeightIsStandard, supplier } =
     useContext(PageDataContext);
   const { elevationData } = useContext(Library2dDataContext);
   const { setNodeRef } = useDroppable({
@@ -35,7 +35,7 @@ export function Droppable({ children }) {
       {elevationData.map((elevation, index) => (
         <Image
           key={index}
-          src={generateImgSrc(elevationImg)}
+          src={generateImgSrc(supplier, elevationImg)}
           alt='Elevation'
           width={toScale(selectedElevation.objWidth, scaleFactor)}
           height={toScale(objectHeight, scaleFactor)}

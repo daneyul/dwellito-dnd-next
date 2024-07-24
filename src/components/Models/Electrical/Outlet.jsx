@@ -26,7 +26,7 @@ const calcElecRotationRadians = (twoDimDegrees) => {
 };
 
 const Outlet = ({ component }) => {
-  const { selectedComponents, selectedContainer, scaleFactor } =
+  const { selectedComponents, selectedContainer, scaleFactor, supplier } =
     useContext(PageDataContext);
 
   if (
@@ -40,7 +40,7 @@ const Outlet = ({ component }) => {
   const { DIMENSIONS } = useContext(Library2dDataContext);
   const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
 
-  const { nodes, materials } = useGLTF(`/models/electrical/outlet.glb`);
+  const { nodes, materials } = useGLTF(`/models/${supplier}/electrical/outlet.glb`);
 
   const outletRef = useRef();
   const [length, setLength] = useState(0);

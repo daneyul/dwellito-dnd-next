@@ -16,7 +16,8 @@ const AddElecOption = ({ options }) => {
     setSelectedElevationIndex,
     mappedElevations,
     selectedComponents,
-    interiorFinish
+    interiorFinish,
+    supplier
   } = useContext(PageDataContext);
 
   return options.map((item) => {
@@ -48,7 +49,7 @@ const AddElecOption = ({ options }) => {
         }}
       >
         <img
-          src={generateImgSrc(imgSrc)}
+          src={generateImgSrc(supplier, imgSrc)}
           alt={item.name}
           className={style.fixedObjImg}
         />

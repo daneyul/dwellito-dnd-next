@@ -5,15 +5,14 @@ import {
   toScale,
   generateImgSrc,
   calculateCSSPos,
-  deScale,
 } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
-  CONTAINER_10_SLUG,
-  CONTAINER_20_SLUG,
-  CONTAINER_40_SLUG,
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
   DROPPABLE,
   DROPPABLE_BACK,
   DROPPABLE_LEFT,
@@ -54,6 +53,7 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     scaleFactor,
     containerHeightIsStandard,
     slug,
+    supplier,
     selectedElevation,
     setShowCollision,
     isFloorPlanView,
@@ -102,13 +102,13 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
   // This is for adjusting the top value based on the container height
   const adjForContainerHeight = (value) => {
     if (containerHeightIsStandard) {
-      if (slug !== CONTAINER_40_SLUG) {
+      if (slug !== CONTAINER_SIZE_40) {
         return value;
       } else {
         return value / 1.5;
       }
     } else {
-      if (slug !== CONTAINER_40_SLUG) {
+      if (slug !== CONTAINER_SIZE_40) {
         return value + toScale(12, scaleFactor);
       } else {
         return value / 1.5 + toScale(12, scaleFactor);
@@ -120,11 +120,11 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     if (piece.objType === COMPONENT_TYPES.ELECTRICAL) {
       if (isFloorPlanView) {
         if (piece.name === COMPONENT_NAMES.WRAP_LIGHT) {
-          if (slug === CONTAINER_10_SLUG) {
+          if (slug === CONTAINER_SIZE_10) {
             return piece.floorPlanImg.TEN;
-          } else if (slug === CONTAINER_20_SLUG) {
+          } else if (slug === CONTAINER_SIZE_20) {
             return piece.floorPlanImg.TWENTY;
-          } else if (slug === CONTAINER_40_SLUG) {
+          } else if (slug === CONTAINER_SIZE_40) {
             return piece.floorPlanImg.FORTY;
           }
         } else {
@@ -177,11 +177,11 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
       return toScale(piece.objThickness, scaleFactor);
     } else {
       if (piece.name === COMPONENT_NAMES.WRAP_LIGHT) {
-        if (slug === CONTAINER_10_SLUG) {
+        if (slug === CONTAINER_SIZE_10) {
           return toScale(piece.objWidth.TEN, scaleFactor);
-        } else if (slug === CONTAINER_20_SLUG) {
+        } else if (slug === CONTAINER_SIZE_20) {
           return toScale(piece.objWidth.TWENTY, scaleFactor);
-        } else if (slug === CONTAINER_40_SLUG) {
+        } else if (slug === CONTAINER_SIZE_40) {
           return toScale(piece.objWidth.FORTY, scaleFactor);
         }
       } else {
@@ -255,37 +255,6 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     zIndex: 2000,
   };
 
-  // const showDimensions = dragTransform ? false : !piece.fixed && isHovered;
-
-  // const DimensionIndicators = () => {
-  //   {showDimensions && (
-  //     <>
-  //     <div
-  //       style={{
-  //         position: 'absolute',
-  //         top: '50%',
-  //         left: `-${toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
-  //         width: `${piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
-  //         borderTop: '1px solid black',
-  //         transform: 'translateY(-50%)',
-  //       }}
-  //     />
-  //     <div
-  //       style={{
-  //         position: 'absolute',
-  //         top: '50%',
-  //         left: `${piece.position.x / 2}px`,
-  //         transform: 'translateY(-50%) translateX(-50%)',
-  //         backgroundColor: 'black',
-  //         color: 'white'
-  //       }}
-  //     >
-  //       {deScale(piece.position.x, scaleFactor)}
-  //     </div>
-  //   </>
-  //   )}
-  // }
-
   return (
     <>
       <div
@@ -304,7 +273,7 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
         onMouseDown={handleMouseDown}
       >
         <img
-          src={generateImgSrc(imgSrc())}
+          src={generateImgSrc(supplier, imgSrc())}
           alt={piece.name}
           style={{
             width: `${imgWidth()}px`,

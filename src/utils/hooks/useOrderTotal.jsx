@@ -1,10 +1,9 @@
 import { useState, useEffect, useMemo } from 'react';
 import {
   INTERIOR_FINISH_NAMES,
-  COMPONENT_NAMES,
-  CONTAINER_10_SLUG,
-  CONTAINER_20_SLUG,
-  CONTAINER_40_SLUG,
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
 } from '@/utils/constants/names';
 import { getComponentPrice } from '../2D/utils';
 
@@ -19,19 +18,22 @@ const useOrderTotal = ({
 }) => {
   const [orderTotal, setOrderTotal] = useState(0);
 
-  const getContainerSpecificPrice = useMemo(() => (item) => {
-    const sizeSuffix = containerHeightIsStandard ? 'S' : 'H';
-    switch (slug) {
-      case CONTAINER_10_SLUG:
-        return item.price10;
-      case CONTAINER_20_SLUG:
-        return item[`price20${sizeSuffix}`] || item.price20;
-      case CONTAINER_40_SLUG:
-        return item[`price40${sizeSuffix}`] || item.price40;
-      default:
-        return 0;
-    }
-  }, [containerHeightIsStandard, slug]);
+  const getContainerSpecificPrice = useMemo(
+    () => (item) => {
+      const sizeSuffix = containerHeightIsStandard ? 'S' : 'H';
+      switch (slug) {
+        case CONTAINER_SIZE_10:
+          return item.price10;
+        case CONTAINER_SIZE_20:
+          return item[`price20${sizeSuffix}`] || item.price20;
+        case CONTAINER_SIZE_40:
+          return item[`price40${sizeSuffix}`] || item.price40;
+        default:
+          return 0;
+      }
+    },
+    [containerHeightIsStandard, slug]
+  );
 
   const interiorFinishPrice = useMemo(() => {
     if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {

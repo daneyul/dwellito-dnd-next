@@ -31,17 +31,22 @@ import {
 } from './SpecificDoors';
 import { COMPONENT_NAMES } from '@/utils/constants/names';
 
-export default function Door({ onBoundingBoxChange, component }) {
+export default function Door({ onBoundingBoxChange, component, supplier }) {
   switch (component.name) {
     case COMPONENT_NAMES.PERSONNEL_LHR:
       return (
-        <Lhr component={component} onBoundingBoxChange={onBoundingBoxChange} />
+        <Lhr
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
+        />
       );
     case COMPONENT_NAMES.PERSONNEL_LHR_GLASS:
       return (
         <LhrGlass
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.PERSONNEL_LHR_SECURITY:
@@ -49,6 +54,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <LhrSecurity
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.PERSONNEL_LHR_SECURITY_GLASS:
@@ -56,17 +62,23 @@ export default function Door({ onBoundingBoxChange, component }) {
         <LhrSecurityGlass
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.PERSONNEL_RHR:
       return (
-        <Rhr component={component} onBoundingBoxChange={onBoundingBoxChange} />
+        <Rhr
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
+        />
       );
     case COMPONENT_NAMES.PERSONNEL_RHR_GLASS:
       return (
         <RhrGlass
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.PERSONNEL_RHR_SECURITY:
@@ -74,6 +86,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <RhrSecurity
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.PERSONNEL_RHR_SECURITY_GLASS:
@@ -81,6 +94,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <RhrSecurityGlass
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.SLIDING_GLASS_6:
@@ -88,6 +102,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <Sliding6
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.DOUBLE_DOOR:
@@ -95,6 +110,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <Double
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.HD_HC_ROLL_UP_6:
@@ -102,6 +118,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <HdHcRollup6
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.HD_HC_ROLL_UP_8:
@@ -109,6 +126,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <HdHcRollup8
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.HD_HC_ROLL_UP_10:
@@ -116,6 +134,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <HdHcRollup10
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.HD_HC_ROLL_UP_12:
@@ -123,6 +142,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <HdHcRollup12
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.HD_HC_ROLL_UP_15:
@@ -130,6 +150,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <HdHcRollup15
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.HD_ST_ROLL_UP_6:
@@ -137,6 +158,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <HdStRollup6
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.HD_ST_ROLL_UP_8:
@@ -144,6 +166,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <HdStRollup8
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.HD_ST_ROLL_UP_10:
@@ -151,6 +174,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <HdStRollup10
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.HD_ST_ROLL_UP_12:
@@ -158,6 +182,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <HdHcRollup12
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.HD_ST_ROLL_UP_15:
@@ -165,6 +190,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <HdStRollup15
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.EC_HC_ROLLUP_6_74:
@@ -172,6 +198,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <EcHcRollup6
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.EC_HC_ROLLUP_8_74:
@@ -179,6 +206,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <EcHcRollup8
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.EC_HC_ROLLUP_10_74:
@@ -186,6 +214,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <EcHcRollup10
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.EC_HC_ROLLUP_12_74:
@@ -193,6 +222,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <EcHcRollup12
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.EC_HC_ROLLUP_15_74:
@@ -200,6 +230,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <EcHcRollup15
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.EC_ST_ROLLUP_6_64:
@@ -207,6 +238,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <EcStRollup6
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.EC_ST_ROLLUP_8_64:
@@ -214,6 +246,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <EcStRollup8
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.EC_ST_ROLLUP_10_64:
@@ -221,6 +254,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <EcStRollup10
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.EC_ST_ROLLUP_12_64:
@@ -228,6 +262,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <EcStRollup12
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     case COMPONENT_NAMES.EC_ST_ROLLUP_15_64:
@@ -235,6 +270,7 @@ export default function Door({ onBoundingBoxChange, component }) {
         <EcStRollup15
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
         />
       );
     default:

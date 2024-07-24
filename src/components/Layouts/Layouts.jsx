@@ -22,7 +22,7 @@ const Layout = ({ name, imgSrc, isSelected, price }) => {
 
 const Layouts = () => {
   const { containerData } = useContext(Library2dDataContext);
-  const { containerId, containerHeightIsStandard } =
+  const { containerId, containerHeightIsStandard, supplier } =
     useContext(PageDataContext);
 
   return (
@@ -32,14 +32,14 @@ const Layouts = () => {
           ? container.scThumbnail
           : container.hcThumbnail;
         const containerName = container.name;
-        const containerImage = `/images/elevation/${thumbnail}`;
+        const containerImage = `/images/${supplier}/elevation/${thumbnail}`;
         const isSelected = container.id === containerId;
         const containerPrice = containerHeightIsStandard
           ? container.priceSc
           : container.priceHc;
 
         return (
-          <a href={`/${container.slug}`} key={index}>
+          <a href={`/${supplier}/${container.slug}`} key={index}>
             <Layout
               name={containerName}
               imgSrc={containerImage}

@@ -3,12 +3,7 @@ import Subtitle from '../Subtitle/Subtitle';
 import style from './singleSelect.module.scss';
 import { PageDataContext } from '@/components/Content/Content';
 import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
-import {
-  CONTAINER_10_SLUG,
-  CONTAINER_20_SLUG,
-  CONTAINER_40_SLUG,
-  INTERIOR_FINISH_NAMES,
-} from '@/utils/constants/names';
+import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40 } from '@/utils/constants/names';
 
 /* eslint-disable @next/next/no-img-element */
 const SingleSelect = ({ type }) => {
@@ -23,7 +18,8 @@ const SingleSelect = ({ type }) => {
     setShowExterior,
     slug,
     setCameraReady,
-    interiorFinishPrice
+    interiorFinishPrice,
+    supplier
   } = useContext(PageDataContext);
   const {
     EXTERIOR,
@@ -55,7 +51,7 @@ const SingleSelect = ({ type }) => {
         >
           <img
             className={style.img}
-            src={`/images/exterior-finishes/${selection.img}`}
+            src={`/images/${supplier}/exterior-finishes/${selection.img}`}
             alt='thumbnail'
           />
         </div>
@@ -95,7 +91,7 @@ const SingleSelect = ({ type }) => {
         >
           <img
             className={style.img}
-            src={`/images/interior-finishes/${selection.img}`}
+            src={`/images/${supplier}/interior-finishes/${selection.img}`}
             alt='thumbnail'
           />
         </div>
@@ -135,7 +131,7 @@ const SingleSelect = ({ type }) => {
         >
           <img
             className={style.img}
-            src={`/images/flooring/${selection.img}`}
+            src={`/images/${supplier}/flooring/${selection.img}`}
             alt='thumbnail'
           />
         </div>
@@ -146,11 +142,11 @@ const SingleSelect = ({ type }) => {
   const flooringDesc = () => {
     return FLOORING_OPTIONS.map((selection, index) => {
       const flooringPrice = () => {
-        if (slug === CONTAINER_10_SLUG) {
+        if (slug === CONTAINER_SIZE_10) {
           return selection.price10;
-        } else if (slug === CONTAINER_20_SLUG) {
+        } else if (slug === CONTAINER_SIZE_20) {
           return selection.price20;
-        } else if (slug === CONTAINER_40_SLUG) {
+        } else if (slug === CONTAINER_SIZE_40) {
           return selection.price40;
         }
       };

@@ -25,7 +25,7 @@ const calcElecRotationRadians = (twoDimDegrees) => {
 };
 
 const Heater = ({ component }) => {
-  const { selectedComponents, selectedContainer, scaleFactor } =
+  const { selectedComponents, selectedContainer, scaleFactor, supplier } =
     useContext(PageDataContext);
 
   if (
@@ -38,7 +38,7 @@ const Heater = ({ component }) => {
 
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
-  const { nodes, materials } = useGLTF(`/models/electrical/heater.glb`);
+  const { nodes, materials } = useGLTF(`/models/${supplier}/electrical/heater.glb`);
 
   const heaterRef = useRef();
   const [length, setLength] = useState(0);

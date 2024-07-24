@@ -11,6 +11,7 @@ export async function generateMetadata() {
 }
 
 export default async function Page({ params, searchParams }) {
+  const supplier = params.supplier;
   const slug = params.slug;
   const querySelectionData = searchParams.data;
 
@@ -19,6 +20,7 @@ export default async function Page({ params, searchParams }) {
       <Content
         data={{
           slug,
+          supplier,
           querySelectionData,
         }}
       />

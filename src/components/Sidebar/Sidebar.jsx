@@ -13,8 +13,8 @@ import Subtitle from '../Subtitle/Subtitle';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
-  CONTAINER_10_SLUG,
   CONTAINER_HIGH,
+  CONTAINER_SIZE_10,
   CONTAINER_SIZE_40,
   CONTAINER_STANDARD,
 } from '@/utils/constants/names';
@@ -33,7 +33,7 @@ const Sidebar = memo(() => {
   const { EXTERIOR, INTERIOR, FLOORING } = useContext(Library3dDataContext);
   const supplierName = 'Custom Cubes';
 
-  const canSelectContainerHeight = slug !== CONTAINER_10_SLUG;
+  const canSelectContainerHeight = slug !== CONTAINER_SIZE_10;
   const containerPrice = containerHeightIsStandard
     ? selectedContainer.priceSc
     : selectedContainer.priceHc;

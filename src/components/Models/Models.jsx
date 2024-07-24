@@ -50,7 +50,7 @@ export function Models() {
     containerHeightIsStandard,
     cameraReady,
     setCameraReady,
-    slug,
+    supplier
   } = useContext(PageDataContext);
   const { containerData } = useContext(Library2dDataContext);
 
@@ -178,7 +178,7 @@ export function Models() {
     bluePaint,
     slateGreyPaint,
     beigePaint,
-  } = useExteriorGLTFModels();
+  } = useExteriorGLTFModels(supplier);
 
   const ContainerShell = () => {
     if (selectedContainer.size === CONTAINER_SIZE_10) {
@@ -281,6 +281,7 @@ export function Models() {
             key={door.id}
             component={door}
             onBoundingBoxChange={(data) => handleDoorBoundingBox(index, data)}
+            supplier={supplier}
           />
         ))}
         {windows.map((window, index) => (
@@ -288,6 +289,7 @@ export function Models() {
             key={index}
             component={window}
             onBoundingBoxChange={(data) => handleWindowBoundingBox(index, data)}
+            supplier={supplier}
           />
         ))}
         {vents.map((vent, index) => (
@@ -295,6 +297,7 @@ export function Models() {
             key={index}
             component={vent}
             onBoundingBoxChange={(data) => handleVentBoundingBox(index, data)}
+            supplier={supplier}
           />
         ))}
         <ambientLight intensity={0.15} />

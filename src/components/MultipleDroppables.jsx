@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
-import { droppableWidth, generateImgSrc, toScale } from '../utils/2D/utils';
+import { generateImgSrc, toScale } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import {
   COMPONENT_NAMES,
@@ -12,7 +12,6 @@ import {
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
 import { Draggable } from './Draggable';
-import { DIMENSIONS } from '@/utils/constants/dimensions';
 
 const MultipleDroppables = ({ setHoveredPiece }) => {
   const {
@@ -22,7 +21,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
     handleSelect,
     selectedComponents,
     draggableRefs,
-    selectedContainer,
+    supplier,
     floorPlan,
   } = useContext(PageDataContext);
 
@@ -97,7 +96,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
       }}
     >
       <img
-        src={generateImgSrc(floorPlan.imgScName)}
+        src={generateImgSrc(supplier, floorPlan.imgScName)}
         style={{ position: 'absolute', width: '100%', height: 'auto' }}
       />
       <div

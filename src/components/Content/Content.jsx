@@ -1,6 +1,5 @@
 'use client';
-import React, { useState, useEffect, createContext, useContext, Profiler } from 'react';
-import Logo from '@/components/Logo';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import Viewer from '@/components/Viewer/Viewer';
 import Sidebar from '@/components/Sidebar/Sidebar';
 import PriceTotal from '@/components/PriceTotal/PriceTotal';
@@ -33,12 +32,13 @@ import {
   getInteriorFinishFromUrl,
   getSelectionsFromUrl,
 } from '@/utils/2D/utils';
-import { usePlacesWidget } from 'react-google-autocomplete';
 
 export const PageDataContext = createContext();
 
 const PageDataProvider = ({ children, data }) => {
   const slug = data.slug;
+  const supplier = data.supplier;
+  console.log(supplier)
   const querySelections = getSelectionsFromUrl(data.querySelectionData);
   const queryInterior = getInteriorFinishFromUrl(data.querySelectionData);
   const queryExterior = getExteriorFinishFromUrl(data.querySelectionData);
@@ -119,6 +119,7 @@ const PageDataProvider = ({ children, data }) => {
   const selectedContainer = containerData.find(
     (container) => container.slug === slug
   );
+  console.log(slug)
   const containerId = selectedContainer.id;
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -280,6 +281,7 @@ const PageDataProvider = ({ children, data }) => {
         selectedContainer,
         containerId,
         slug,
+        supplier,
         scaleFactor,
         setScaleFactor,
         flooring,

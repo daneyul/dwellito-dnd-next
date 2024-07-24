@@ -1,16 +1,11 @@
 import { PageDataContext } from '@/components/Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
-import {
-  COMPONENT_NAMES,
-  CONTAINER_10_SLUG,
-  CONTAINER_20_SLUG,
-  CONTAINER_40_SLUG,
-} from '@/utils/constants/names';
+import { COMPONENT_NAMES, CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40 } from '@/utils/constants/names';
 import { useGLTF } from '@react-three/drei';
 import { useContext } from 'react';
 
 const Amp = () => {
-  const { containerSize, slug, selectedComponents } =
+  const { containerSize, slug, selectedComponents, supplier } =
     useContext(PageDataContext);
 
   if (
@@ -26,7 +21,7 @@ const Amp = () => {
   const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const { nodes, materials } = useGLTF(
-    `/models/electrical/${containerSize()}/amp.glb`
+    `/models/${supplier}/electrical/${containerSize()}/amp.glb`
   );
 
   const position = () => {
@@ -34,13 +29,13 @@ const Amp = () => {
     let y = -2.7;
     let z = 0;
 
-    if (slug === CONTAINER_10_SLUG) {
+    if (slug === CONTAINER_SIZE_10) {
       x += -DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2;
       y += DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (slug === CONTAINER_20_SLUG) {
+    } else if (slug === CONTAINER_SIZE_20) {
       x += -DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2;
       y += DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (slug === CONTAINER_40_SLUG) {
+    } else if (slug === CONTAINER_SIZE_40) {
       x += -DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2;
       y += DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }

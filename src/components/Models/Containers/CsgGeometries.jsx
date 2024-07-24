@@ -30,6 +30,7 @@ export function CsgGeometries({
     selectedContainer,
     selectedContainerHeight,
     containerSize,
+    supplier
   } = useContext(PageDataContext);
 
   const size = containerSize();
@@ -55,13 +56,13 @@ export function CsgGeometries({
   }, [selectedContainer.name, DIMENSIONS]);
 
   const cRightNodes = useGLTF(
-    `/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`
+    `/models/${supplier}/container/${size}/${selectedContainerHeight}/exterior-right.glb`
   ).nodes;
   const cBackNodes = useGLTF(
-    `/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`
+    `/models/${supplier}/container/${size}/${selectedContainerHeight}/exterior-back.glb`
   ).nodes;
   const cLeftNodes = useGLTF(
-    `/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`
+    `/models/${supplier}/container/${size}/${selectedContainerHeight}/exterior-left.glb`
   ).nodes;
 
   const csg = useRef();
@@ -168,15 +169,15 @@ export function CsgGeometries({
 
   const Drywall = () => {
     if (interiorIsDrywall) {
-      const { drywallMaterial } = useInteriorGLTFModels();
+      const { drywallMaterial } = useInteriorGLTFModels(supplier);
       const dRightNodes = useGLTF(
-        `/models/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`
+        `/models/${supplier}/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`
       ).nodes;
       const dLeftNodes = useGLTF(
-        `/models/drywall/${size}/${selectedContainerHeight}/drywall-left.glb`
+        `/models/${supplier}/drywall/${size}/${selectedContainerHeight}/drywall-left.glb`
       ).nodes;
       const dBackNodes = useGLTF(
-        `/models/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`
+        `/models/${supplier}/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`
       ).nodes;
       return (
         <>
@@ -216,15 +217,15 @@ export function CsgGeometries({
 
   const Plywood = () => {
     if (interiorIsPlywood) {
-      const { plywoodMaterial } = useInteriorGLTFModels();
+      const { plywoodMaterial } = useInteriorGLTFModels(supplier);
       const pRightNodes = useGLTF(
-        `/models/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`
+        `/models/${supplier}/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`
       ).nodes;
       const pLeftNodes = useGLTF(
-        `/models/plywood/${size}/${selectedContainerHeight}/plywood-left.glb`
+        `/models/${supplier}/plywood/${size}/${selectedContainerHeight}/plywood-left.glb`
       ).nodes;
       const pBackNodes = useGLTF(
-        `/models/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`
+        `/models/${supplier}/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`
       ).nodes;
       return (
         <>
@@ -264,15 +265,15 @@ export function CsgGeometries({
 
   const Sprayfoam = () => {
     if (interiorIsSprayFoamCeilingWalls) {
-      const { sprayFoamMaterial } = useInteriorGLTFModels();
+      const { sprayFoamMaterial } = useInteriorGLTFModels(supplier);
       const sRightNodes = useGLTF(
-        `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-right.glb`
+        `/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-right.glb`
       ).nodes;
       const sLeftNodes = useGLTF(
-        `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-left.glb`
+        `/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-left.glb`
       ).nodes;
       const sBackNodes = useGLTF(
-        `/models/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-back.glb`
+        `/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-back.glb`
       ).nodes;
       return (
         <>
@@ -315,7 +316,7 @@ export function CsgGeometries({
       return null;
     } else if (interiorIsDrywall || interiorIsPlywood) {
       const baseboard = useGLTF(
-        `/models/container/${size}/${selectedContainerHeight}/baseboard.glb`
+        `/models/${supplier}/container/${size}/${selectedContainerHeight}/baseboard.glb`
       ).nodes;
       return (
         <Base

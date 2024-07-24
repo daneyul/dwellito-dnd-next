@@ -2,16 +2,16 @@ import { PageDataContext } from '@/components/Content/Content';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import {
   COMPONENT_NAMES,
-  CONTAINER_10_SLUG,
-  CONTAINER_20_SLUG,
-  CONTAINER_40_SLUG,
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40
 } from '@/utils/constants/names';
 import { useGLTF } from '@react-three/drei';
 import { useContext, useEffect, useRef } from 'react';
 import { Box3, Vector3 } from 'three';
 
 const ExhaustFan = ({ onBoundingBoxChange }) => {
-  const { containerSize, slug, selectedComponents } =
+  const { containerSize, slug, selectedComponents, supplier } =
     useContext(PageDataContext);
     
   const isSelected = selectedComponents.some(
@@ -26,7 +26,7 @@ const ExhaustFan = ({ onBoundingBoxChange }) => {
   const groupRef = useRef();
 
   const { nodes, materials } = useGLTF(
-    `/models/electrical/${containerSize()}/fan.glb`
+    `/models/${supplier}/electrical/${containerSize()}/fan.glb`
   );
 
   const position = () => {
@@ -34,13 +34,13 @@ const ExhaustFan = ({ onBoundingBoxChange }) => {
     let y = 0;
     let z = -1.2;
 
-    if (slug === CONTAINER_10_SLUG) {
+    if (slug === CONTAINER_SIZE_10) {
       x += -DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2;
       y += DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (slug === CONTAINER_20_SLUG) {
+    } else if (slug === CONTAINER_SIZE_20) {
       x += -DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2;
       y += DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (slug === CONTAINER_40_SLUG) {
+    } else if (slug === CONTAINER_SIZE_40) {
       x += -DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2;
       y += DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }

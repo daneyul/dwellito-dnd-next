@@ -1,7 +1,4 @@
 import {
-  CONTAINER_10_SLUG,
-  CONTAINER_20_SLUG,
-  CONTAINER_40_SLUG,
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40,
@@ -10,7 +7,7 @@ import {
 export const containerData = [
   {
     name: `10' Custom Cube`,
-    slug: CONTAINER_10_SLUG,
+    slug: CONTAINER_SIZE_10,
     id: 1,
     width: `8' width`,
     length: `10' length`,
@@ -24,7 +21,7 @@ export const containerData = [
   },
   {
     name: `20' Custom Cube`,
-    slug: CONTAINER_20_SLUG,
+    slug: CONTAINER_SIZE_20,
     id: 2,
     width: `8' width`,
     length: `20' length`,
@@ -38,7 +35,7 @@ export const containerData = [
   },
   {
     name: `40' Custom Cube`,
-    slug: CONTAINER_40_SLUG,
+    slug: CONTAINER_SIZE_40,
     id: 3,
     width: `8' width`,
     length: `40' length`,

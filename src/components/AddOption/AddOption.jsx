@@ -14,7 +14,8 @@ const AddOption = ({ options }) => {
     isFloorPlanView,
     setSelectedElevation,
     mappedElevations,
-    floorPlan
+    floorPlan,
+    supplier
   } = useContext(PageDataContext);
 
   const rightElevation = mappedElevations.find(
@@ -59,7 +60,7 @@ const AddOption = ({ options }) => {
           <HoverCard.Trigger>
             <img
               style={{ opacity: '0.25' }}
-              src={generateImgSrc(imgSrc(item))}
+              src={generateImgSrc(supplier, imgSrc(item))}
               alt={item.name}
               className={style.objImg}
             />
@@ -77,7 +78,7 @@ const AddOption = ({ options }) => {
           <HoverCard.Trigger>
             <img
               style={{ opacity: '0.25' }}
-              src={generateImgSrc(imgSrc(item))}
+              src={generateImgSrc(supplier, imgSrc(item))}
               alt={item.name}
               className={style.objImg}
             />
@@ -94,7 +95,7 @@ const AddOption = ({ options }) => {
         <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
           <HoverCard.Trigger>
             <img
-              src={generateImgSrc(imgSrc(item))}
+              src={generateImgSrc(supplier, imgSrc(item))}
               alt={item.name}
               onClick={() => handleSelect(item)}
               className={style.objImg}

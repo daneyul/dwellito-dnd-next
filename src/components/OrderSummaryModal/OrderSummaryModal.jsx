@@ -11,17 +11,15 @@ import {
 } from '@/utils/2D/utils';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import {
-  CONTAINER_10_SLUG,
-  CONTAINER_20_SLUG,
-  CONTAINER_40_SLUG,
   CONTAINER_HIGH,
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
   CONTAINER_STANDARD,
   ELEVATION_NAMES,
-  INTERIOR_FINISH_NAMES,
 } from '@/utils/constants/names';
 import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/useSaveSelections';
-import { usePlacesWidget } from 'react-google-autocomplete';
 import Toast from '../Toast/Toast';
 
 const OrderSummaryModal = () => {
@@ -39,6 +37,7 @@ const OrderSummaryModal = () => {
     slug,
     dialogOpen,
     setDialogOpen,
+    supplier
   } = useContext(PageDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const [zipCode, setZipCode] = useState('');
@@ -236,11 +235,11 @@ const OrderSummaryModal = () => {
   };
 
   const flooringPrice = () => {
-    if (slug === CONTAINER_10_SLUG) {
+    if (slug === CONTAINER_SIZE_10) {
       return flooring.price10;
-    } else if (slug === CONTAINER_20_SLUG) {
+    } else if (slug === CONTAINER_SIZE_20) {
       return flooring.price20;
-    } else if (slug === CONTAINER_40_SLUG) {
+    } else if (slug === CONTAINER_SIZE_40) {
       return flooring.price40;
     }
   };
@@ -252,7 +251,7 @@ const OrderSummaryModal = () => {
         <div className={style.lineItem}>
           <div className={style.thumbnailContainer}>
             <img
-              src={generateImgSrc(`exterior-finishes/${exteriorFinish.img}`)}
+              src={generateImgSrc(supplier, `exterior-finishes/${exteriorFinish.img}`)}
               alt={exteriorFinish.name}
               className={style.thumbnailImg}
             />
@@ -273,7 +272,7 @@ const OrderSummaryModal = () => {
         <div className={style.lineItem}>
           <div className={style.thumbnailContainer}>
             <img
-              src={generateImgSrc(`interior-finishes/${interiorFinish.img}`)}
+              src={generateImgSrc(supplier, `interior-finishes/${interiorFinish.img}`)}
               alt={interiorFinish.name}
               className={style.thumbnailImg}
             />
@@ -294,7 +293,7 @@ const OrderSummaryModal = () => {
         <div className={style.lineItem}>
           <div className={style.thumbnailContainer}>
             <img
-              src={generateImgSrc(`flooring/${flooring.img}`)}
+              src={generateImgSrc(supplier, `flooring/${flooring.img}`)}
               alt={flooring.name}
               className={style.thumbnailImg}
             />
@@ -337,7 +336,7 @@ const OrderSummaryModal = () => {
               <li key={component.id} className={style.lineItem}>
                 <div className={style.thumbnailContainer}>
                   <img
-                    src={generateImgSrc(imgSrc)}
+                    src={generateImgSrc(supplier, imgSrc)}
                     alt={component.desc}
                     className={style.thumbnailImg}
                   />

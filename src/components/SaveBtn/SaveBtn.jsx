@@ -12,8 +12,8 @@ import { PageDataContext } from '../Content/Content';
 
 const SaveBtn = ({ selectedComponents, orderTotal }) => {
   const [open, setOpen] = useState(false);
-  const { selectedContainer, scaleFactor } = useContext(PageDataContext);
-  const { ELEVATION_NAMES, DIMENSIONS } = useContext(Library2dDataContext);
+  const { selectedContainer, scaleFactor, supplier } = useContext(PageDataContext);
+  const { DIMENSIONS } = useContext(Library2dDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
 
@@ -39,7 +39,7 @@ const SaveBtn = ({ selectedComponents, orderTotal }) => {
               <li key={component.id} className={style.lineItem}>
                 <div className={style.thumbnailContainer}>
                   <img
-                    src={generateImgSrc(component.imgName)}
+                    src={generateImgSrc(supplier, component.imgName)}
                     alt={component.desc}
                     className={style.thumbnailImg}
                   />
