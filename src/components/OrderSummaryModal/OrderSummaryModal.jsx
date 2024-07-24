@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import style from './orderSummaryModal.module.scss';
 import * as Dialog from '@radix-ui/react-dialog';
 import { PageDataContext } from '@/components/Content/Content';
@@ -21,6 +21,8 @@ import {
 } from '@/utils/constants/names';
 import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/useSaveSelections';
+import { usePlacesWidget } from 'react-google-autocomplete';
+import Toast from '../Toast/Toast';
 
 const OrderSummaryModal = () => {
   const { DIMENSIONS } = useContext(Library2dDataContext);
@@ -35,10 +37,109 @@ const OrderSummaryModal = () => {
     flooring,
     slug,
     dialogOpen,
-    setDialogOpen
+    setDialogOpen,
   } = useContext(PageDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
+  const [zipCode, setZipCode] = useState('');
+  const [openToast, setOpenToast] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    const storedData = sessionStorage.getItem('formData');
+    const formData = storedData ? JSON.parse(storedData) : {};
+    formData[name] = value;
+    sessionStorage.setItem('formData', JSON.stringify(formData));
+  };
+
+  const { ref } = usePlacesWidget({
+    apiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY,
+    onPlaceSelected: (place) => {
+      const addressComponents = place.address_components;
+
+      const findComponent = (type) => {
+        return addressComponents.find((component) =>
+          component.types.includes(type)
+        )?.long_name;
+      };
+
+      const postalCode = findComponent('postal_code');
+      const localCity =
+        findComponent('locality') || findComponent('sublocality');
+      const state = findComponent('administrative_area_level_1');
+
+      if (postalCode) setZipCode(postalCode);
+
+      const storedData = sessionStorage.getItem('formData');
+      const formData = storedData ? JSON.parse(storedData) : {};
+      formData['address'] = place.formatted_address;
+      formData['zipCode'] = postalCode;
+      formData['city'] = localCity;
+      formData['state'] = state;
+      sessionStorage.setItem('formData', JSON.stringify(formData));
+    },
+    options: {
+      componentRestrictions: { country: ['us', 'ca'] },
+      types: ['address'],
+    },
+  });
+
+  const triggerZapier = async (data) => {
+    const { convertedSelections } = useSaveSelections({
+      selectedComponents,
+      interiorFinish,
+      exteriorFinish,
+      flooring,
+    });
+    const responseData = {
+      containerType: slug,
+      containerHeight: containerHeightIsStandard
+        ? CONTAINER_STANDARD
+        : CONTAINER_HIGH,
+      containerPaint: exteriorFinish.name,
+      containerFlooring: flooring.name,
+      containerInterior: interiorFinish.name,
+      priceTotal: orderTotal,
+      customerEmail: data.email,
+      customerName: `${data.fname} ${data.lname}`,
+      address: data.address,
+      zipCode: zipCode,
+      url: `https://custom.configure.so/custom-cubes/${slug}/?data=${convertedSelections}`,
+    };
+    const JSONdata = JSON.stringify(responseData);
+    const endpoint = 'https://hooks.zapier.com/hooks/catch/5485468/2yjklei/';
+
+    try {
+      const options = {
+        method: "POST",
+        body: JSONdata,
+        mode: "no-cors",
+      };
+      const response = await fetch(endpoint, options);
+      if (!response.ok) {
+        throw new Error('Failed to send Zapier request');
+      }
+      console.log('Zapier request sent successfully');
+      setOpenToast(true);
+      setDialogOpen(false);
+    } catch (error) {
+      console.error('Error sending Zapier request:', error);
+      throw error; // Propagate error to handleSubmit for error handling
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+
+    try {
+      await triggerZapier({ data });
+      console.log('Zapier request attempted');
+    } catch (error) {
+      console.error('Error triggering Zapier:', error);
+      setOpenToast(true);
+    }
+  };
 
   const flooringPrice = () => {
     if (slug === CONTAINER_10_SLUG) {
@@ -101,7 +202,7 @@ const OrderSummaryModal = () => {
     } else {
       return interiorFinish.price;
     }
-  }
+  };
 
   const InteriorSection = () => (
     <div className={style.section}>
@@ -142,60 +243,6 @@ const OrderSummaryModal = () => {
       </div>
     </div>
   );
-
-  const detailOrder = selectedComponents.map((component) => {
-
-  });
-
-  const triggerZapier = async (data) => {
-    const { convertedSelections } = useSaveSelections({
-      selectedComponents,
-      interiorFinish,
-      exteriorFinish,
-      flooring,
-    });
-    const responseData = {
-      containerType: slug,
-      containerHeight: containerHeightIsStandard ? CONTAINER_STANDARD : CONTAINER_HIGH,
-      containerPaint: exteriorFinish.name,
-      containerFlooring: flooring.name,
-      containerInterior: interiorFinish.name,
-      priceTotal: orderTotal,
-      customerEmail: data.email,
-      customerName: `${data.fname} ${data.lname}`,
-      url: `?data=${convertedSelections}`
-    };
-    console.log(responseData)
-    const JSONdata = JSON.stringify(responseData);
-    const endpoint = 'https://hooks.zapier.com/hooks/catch/5485468/2yjklei/';
-
-    try {
-      const options = {
-        method: 'POST',
-        body: JSONdata,
-        mode: 'no-cors',
-      };
-      const response = await fetch(endpoint, options);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-  
-    // Collect form data
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData.entries());
-  
-    try {
-      await triggerZapier(data); // Assuming triggerZapier accepts form data
-      console.log('Zapier request attempted');
-    } catch (error) {
-      console.error('Error triggering Zapier:', error);
-    }
-  };
-  
 
   const Section = ({ elevation }) => {
     const componentsForElevation = selectedComponents.filter((component) =>
@@ -244,9 +291,9 @@ const OrderSummaryModal = () => {
                   )}
                   {isElectrical && (
                     <div className={style.distance}>
-                    {distance.left}&quot; from left, {distance.top}&quot;
-                    from top (on floor plan view)
-                  </div>
+                      {distance.left}&quot; from left, {distance.top}&quot; from
+                      top (on floor plan view)
+                    </div>
                   )}
                 </div>
                 <div className={style.price}>${component.price}</div>
@@ -266,82 +313,114 @@ const OrderSummaryModal = () => {
   );
 
   return (
-    <Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
-      <Dialog.Portal>
-        <Dialog.Overlay className={style.overlay}>
-          <Dialog.Content className={style.content}>
-            <Dialog.Title className={style.title}>Order Summary</Dialog.Title>
-            {uniqueElevationNames.map((elevation, index) => (
-              <Section key={index} elevation={elevation} />
-            ))}
-            <ExteriorSection />
-            <InteriorSection />
-            <FlooringSection />
-            <Total text='Sub Total' value={`$${orderTotal.toLocaleString()}`} />
-            <Total text='Tax' value={`$${tax.toLocaleString()}`} />
-            <Total
-              text='Total'
-              value={`$${(
-                parseInt(orderTotal) + parseInt(tax)
-              ).toLocaleString()}`}
-            />
-            <Form.Root onSubmit={(e) => handleSubmit(e)}>
-              <div className={style.nameWrapper}>
-                <Form.Field className={style.formField} name='fname'>
-                  <Form.Control asChild>
-                    <input
-                      className={style.input}
-                      type='text'
-                      required
-                      placeholder='First Name'
-                    />
-                  </Form.Control>
-                </Form.Field>
-                <Form.Field className={style.formField} name='lname'>
-                  <Form.Control asChild>
-                    <input
-                      className={style.input}
-                      type='text'
-                      required
-                      placeholder='Last Name'
-                    />
-                  </Form.Control>
-                </Form.Field>
-              </div>
-              <div className={style.addressWrapper}>
-                <Form.Field className={style.formField} name='email'>
-                  <div>
-                    <Form.Message
-                      className={style.message}
-                      match='valueMissing'
-                    >
-                      Please enter your email
-                    </Form.Message>
-                    <Form.Message
-                      className={style.message}
-                      match='typeMismatch'
-                    >
-                      Please provide a valid email
-                    </Form.Message>
-                  </div>
-                  <Form.Control asChild>
-                    <input
-                      className={style.input}
-                      type='email'
-                      required
-                      placeholder='Email'
-                    />
-                  </Form.Control>
-                </Form.Field>
-              </div>
-              <Form.Submit asChild>
-                <button className={style.button}>Submit</button>
-              </Form.Submit>
-            </Form.Root>
-          </Dialog.Content>
-        </Dialog.Overlay>
-      </Dialog.Portal>
-    </Dialog.Root>
+    <>
+      <Toast
+        isOpen={openToast}
+        setIsOpen={setOpenToast}
+        text='Reservation placed!'
+      />
+      <Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
+        <Dialog.Portal>
+          <Dialog.Overlay className={style.overlay}>
+            <Dialog.Content className={style.content}>
+              <Dialog.Title className={style.title}>Order Summary</Dialog.Title>
+              {uniqueElevationNames.map((elevation, index) => (
+                <Section key={index} elevation={elevation} />
+              ))}
+              <ExteriorSection />
+              <InteriorSection />
+              <FlooringSection />
+              <Total
+                text='Sub Total'
+                value={`$${orderTotal.toLocaleString()}`}
+              />
+              <Total text='Tax' value={`$${tax.toLocaleString()}`} />
+              <Total
+                text='Total'
+                value={`$${(
+                  parseInt(orderTotal) + parseInt(tax)
+                ).toLocaleString()}`}
+              />
+              <Form.Root onSubmit={(e) => handleSubmit(e)}>
+                <div className={style.addressWrapper}>
+                  <Form.Field className='FormField' name='address'>
+                    <div className={style.messageWrapper}>
+                      <Form.Message
+                        className={style.message}
+                        match='valueMissing'
+                      >
+                        Please enter your address
+                      </Form.Message>
+                    </div>
+                    <Form.Control asChild>
+                      <input
+                        ref={ref}
+                        className={style.input}
+                        type='address'
+                        required
+                        placeholder='Property Address'
+                        onChange={handleInputChange}
+                      />
+                    </Form.Control>
+                  </Form.Field>
+                </div>
+                <div className={style.nameWrapper}>
+                  <Form.Field className={style.formField} name='fname'>
+                    <Form.Control asChild>
+                      <input
+                        className={style.input}
+                        type='text'
+                        required
+                        placeholder='First Name'
+                      />
+                    </Form.Control>
+                  </Form.Field>
+                  <Form.Field className={style.formField} name='lname'>
+                    <Form.Control asChild>
+                      <input
+                        className={style.input}
+                        type='text'
+                        required
+                        placeholder='Last Name'
+                      />
+                    </Form.Control>
+                  </Form.Field>
+                </div>
+                <div className={style.addressWrapper}>
+                  <Form.Field className={style.formField} name='email'>
+                    <div>
+                      <Form.Message
+                        className={style.message}
+                        match='valueMissing'
+                      >
+                        Please enter your email
+                      </Form.Message>
+                      <Form.Message
+                        className={style.message}
+                        match='typeMismatch'
+                      >
+                        Please provide a valid email
+                      </Form.Message>
+                    </div>
+                    <Form.Control asChild>
+                      <input
+                        className={style.input}
+                        type='email'
+                        required
+                        placeholder='Email'
+                      />
+                    </Form.Control>
+                  </Form.Field>
+                </div>
+                <Form.Submit asChild>
+                  <button className={style.button}>Submit</button>
+                </Form.Submit>
+              </Form.Root>
+            </Dialog.Content>
+          </Dialog.Overlay>
+        </Dialog.Portal>
+      </Dialog.Root>
+    </>
   );
 };
 
