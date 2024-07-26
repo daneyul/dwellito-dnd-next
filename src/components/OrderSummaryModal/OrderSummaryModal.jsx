@@ -163,13 +163,13 @@ const OrderSummaryModal = () => {
       exteriorFinish,
       flooring,
     });
-    const surfaceComponents = [
-      ...prepareSurfaceData(ELEVATION_NAMES.FRONT),
-      ...prepareSurfaceData(ELEVATION_NAMES.BACK),
-      ...prepareSurfaceData(ELEVATION_NAMES.LEFT),
-      ...prepareSurfaceData(ELEVATION_NAMES.RIGHT),
-      ...prepareFloorPlanData(),
-    ];
+    const surfaceData = {
+      front: prepareSurfaceData(ELEVATION_NAMES.FRONT),
+      back: prepareSurfaceData(ELEVATION_NAMES.BACK),
+      left: prepareSurfaceData(ELEVATION_NAMES.LEFT),
+      right: prepareSurfaceData(ELEVATION_NAMES.RIGHT),
+      floorPlan: prepareFloorPlanData(),
+    };
 
     // Remove null values from surface data
     Object.keys(surfaceData).forEach((key) => {
@@ -200,10 +200,8 @@ const OrderSummaryModal = () => {
         name: exteriorFinish.name,
         price: exteriorFinish.price,
       },
-      surfaceComponents: surfaceComponents,
+      surface: surfaceData,
     };
-
-    console.log(responseData)
 
     const JSONdata = JSON.stringify(responseData);
     const endpoint = 'https://hooks.zapier.com/hooks/catch/18577479/2yjklei/';
