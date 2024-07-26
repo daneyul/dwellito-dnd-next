@@ -108,7 +108,7 @@ const OrderSummaryModal = () => {
   });
 
   const prepareSurfaceData = (elevationName) => {
-    return selectedComponents
+    const components = selectedComponents
       .filter((component) => component.elevation[0].name === elevationName)
       .map((i) => {
         const distance = checkDistance({
@@ -123,12 +123,15 @@ const OrderSummaryModal = () => {
           position: `${distance.left}' from left, ${distance.right}' from right`,
           sku: i.desc,
           price: i.price,
+          surface: elevationName,
         };
       });
+
+    return components.length > 0 ? { components } : null;
   };
 
   const prepareFloorPlanData = () => {
-    return selectedComponents
+    const components = selectedComponents
       .filter(
         (component) =>
           component.elevation[0].name === ELEVATION_NAMES.FLOOR_PLAN
@@ -146,17 +149,35 @@ const OrderSummaryModal = () => {
           position: `${distance.left}' from left, ${distance.top}' from top (on floor plan view)`,
           sku: i.desc,
           price: getComponentPrice(i, interiorFinish),
+          surface: ELEVATION_NAMES.FLOOR_PLAN,
         };
       });
+
+    return components.length > 0 ? { components } : null;
   };
 
-  const triggerZapier = async (data) => {
+  const triggerZapier = async ({ data }) => {
     const { convertedSelections } = useSaveSelections({
       selectedComponents,
       interiorFinish,
       exteriorFinish,
       flooring,
     });
+    const surfaceComponents = [
+      ...prepareSurfaceData(ELEVATION_NAMES.FRONT),
+      ...prepareSurfaceData(ELEVATION_NAMES.BACK),
+      ...prepareSurfaceData(ELEVATION_NAMES.LEFT),
+      ...prepareSurfaceData(ELEVATION_NAMES.RIGHT),
+      ...prepareFloorPlanData(),
+    ];
+
+    // Remove null values from surface data
+    Object.keys(surfaceData).forEach((key) => {
+      if (!surfaceData[key]) {
+        delete surfaceData[key];
+      }
+    });
+
     const responseData = {
       containerType: slug,
       containerHeight: containerHeightIsStandard
@@ -179,26 +200,13 @@ const OrderSummaryModal = () => {
         name: exteriorFinish.name,
         price: exteriorFinish.price,
       },
-      surface: {
-        front: {
-          components: prepareSurfaceData(ELEVATION_NAMES.FRONT),
-        },
-        back: {
-          components: prepareSurfaceData(ELEVATION_NAMES.BACK),
-        },
-        left: {
-          components: prepareSurfaceData(ELEVATION_NAMES.LEFT),
-        },
-        right: {
-          components: prepareSurfaceData(ELEVATION_NAMES.RIGHT),
-        },
-        floorPlan: {
-          components: prepareFloorPlanData(),
-        },
-      },
+      surfaceComponents: surfaceComponents,
     };
+
+    console.log(responseData)
+
     const JSONdata = JSON.stringify(responseData);
-    const endpoint = 'https://hooks.zapier.com/hooks/catch/5485468/2yjklei/';
+    const endpoint = 'https://hooks.zapier.com/hooks/catch/18577479/2yjklei/';
 
     try {
       const options = {

@@ -16,7 +16,6 @@ import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 import {
   COMPONENT_NAMES,
-  CONTAINER_40_SLUG,
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40,
@@ -38,7 +37,6 @@ export const PageDataContext = createContext();
 const PageDataProvider = ({ children, data }) => {
   const slug = data.slug;
   const supplier = data.supplier;
-  console.log(supplier)
   const querySelections = getSelectionsFromUrl(data.querySelectionData);
   const queryInterior = getInteriorFinishFromUrl(data.querySelectionData);
   const queryExterior = getExteriorFinishFromUrl(data.querySelectionData);
@@ -119,7 +117,6 @@ const PageDataProvider = ({ children, data }) => {
   const selectedContainer = containerData.find(
     (container) => container.slug === slug
   );
-  console.log(slug)
   const containerId = selectedContainer.id;
   const containerSize = () => {
     if (selectedContainer === containerData[0]) {
@@ -196,7 +193,7 @@ const PageDataProvider = ({ children, data }) => {
 
   // Update drawing scale factor based on the selected container
   useEffect(() => {
-    if (slug === CONTAINER_40_SLUG) {
+    if (slug === CONTAINER_SIZE_40) {
       setScaleFactor(1.75);
     } else {
       setScaleFactor(2.5);
