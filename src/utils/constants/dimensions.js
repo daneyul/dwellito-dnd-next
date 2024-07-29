@@ -335,7 +335,7 @@ export const DIMENSIONS = {
   },
   PARTITION: {
     ST: {
-      WIDTH: 4,
+      WIDTH: 4.63,
       HEIGHT: 92,
       FP_HEIGHT: 92,
       POSITION: {
@@ -344,7 +344,7 @@ export const DIMENSIONS = {
       },
     },
     HC: {
-      WIDTH: 4,
+      WIDTH: 4.63,
       HEIGHT: 92,
       FP_HEIGHT: 92,
       POSITION: {
