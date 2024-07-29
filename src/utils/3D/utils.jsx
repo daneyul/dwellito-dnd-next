@@ -9,7 +9,7 @@ const degrees = {
 
 const calcRotation = (elevation, elevationData, selectedContainer) => {
   const matchingElevation = elevationData.find(
-    (item) => item.homePlan === selectedContainer.slug && item === elevation
+    (item) => item.homePlan === selectedContainer.slug && item.name === elevation.name
   );
 
   if (matchingElevation) {
