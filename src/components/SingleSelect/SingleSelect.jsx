@@ -15,6 +15,7 @@ const SingleSelect = ({ type }) => {
     flooring,
     setFlooring,
     setShow3d,
+    showExterior,
     setShowExterior,
     slug,
     setCameraReady,
@@ -43,10 +44,15 @@ const SingleSelect = ({ type }) => {
           key={selection.hex}
           className={isSelected ? style.thumbnailSelected : style.thumbnail}
           onClick={() => {
-            setExteriorFinish(selection);
-            setShow3d(true);
-            setShowExterior(true);
-            setCameraReady(false);
+            if (showExterior) {
+              setExteriorFinish(selection);
+              setShow3d(true);
+            } else {
+              setExteriorFinish(selection);
+              setShow3d(true);
+              setShowExterior(true);
+              setCameraReady(false);
+            }
           }}
         >
           <img

@@ -157,15 +157,6 @@ const OrderSummaryModal = () => {
     return components.length > 0 ? { components } : null;
   };
 
-  const { convertedSelections } = useSaveSelections({
-    selectedComponents,
-    interiorFinish,
-    exteriorFinish,
-    flooring,
-  });
-
-  console.log(`${slug}/?data=${convertedSelections}`)
-
   const triggerZapier = async ({ data }) => {
     const { convertedSelections } = useSaveSelections({
       selectedComponents,

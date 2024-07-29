@@ -111,7 +111,7 @@ export default function ContainerShell20Standard({
   };
 
   const Flooring = () => {
-    if (flooring !== FLOORING_OPTIONS[0]) {
+    if (flooring.name !== FLOORING_OPTIONS[0].name) {
       const { echoFloor, timberFloor } = useFlooringGLTFModels(supplier);
       const { nodes: flooringNodes } = useGLTF(
         `/models/${supplier}/container/${containerSize()}/${selectedContainerHeight}/flooring.glb`
