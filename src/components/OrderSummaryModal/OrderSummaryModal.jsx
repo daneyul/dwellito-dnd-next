@@ -121,7 +121,7 @@ const OrderSummaryModal = () => {
         });
         return {
           name: i.name,
-          position: `${distance.left}' from left, ${distance.right}' from right`,
+          position: `${distance.left}' from left & ${distance.right}' from right`,
           sku: i.desc,
           price: i.price,
           surface: elevationName,
@@ -147,7 +147,7 @@ const OrderSummaryModal = () => {
         });
         return {
           name: i.name,
-          position: `${distance.left}' from left, ${distance.top}' from top (on floor plan view)`,
+          position: `${distance.left}' from left & ${distance.top}' from top (on floor plan view)`,
           sku: i.desc,
           price: getComponentPrice(i, interiorFinish),
           surface: ELEVATION_NAMES.FLOOR_PLAN,
