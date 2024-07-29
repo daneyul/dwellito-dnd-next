@@ -128,7 +128,7 @@ const OrderSummaryModal = () => {
         };
       });
 
-    return components.length > 0 ? { components } : null;
+    return components.length > 0 ? components : null;
   };
 
   const prepareFloorPlanData = () => {
@@ -154,7 +154,7 @@ const OrderSummaryModal = () => {
         };
       });
 
-    return components.length > 0 ? { components } : null;
+    return components.length > 0 ? components : null;
   };
 
   const triggerZapier = async ({ data }) => {
