@@ -3,6 +3,7 @@ export const COMPONENT_TYPES = {
   WINDOW: 'window',
   VENT: 'vent',
   ELECTRICAL: 'electrical',
+  PARTITION: 'partition',
 };
 
 export const COMPONENT_NAMES = {
@@ -50,7 +51,10 @@ export const COMPONENT_NAMES = {
   ROOF_VENT: `Vent Roof Whirly Bird`,
   OUTLET: `15amp 120V Duplex Receptacle`,
   EXHAUST_FAN: `12" Exhaust Fan with Gravity Damper`,
-  WRAP_LIGHT: `4ft LED Wrap Light`
+  WRAP_LIGHT: `4ft LED Wrap Light`,
+  PARTITION_ST: 'Pre-finished Drywall Paneling - Partition Wall - ST',
+  PARTITION_HC: 'Pre-finished Drywall Paneling - Partition Wall - HC',
+  PARTITION_DOOR: 'Interior Door for Partition Wall - 36" Door (LH/RH)'
 };
 
 export const ELEVATION_NAMES = {
@@ -82,4 +86,5 @@ export const DROPPABLE_LEFT = 'droppable-left';
 export const DROPPABLE_RIGHT = 'droppable-right';
 export const DROPPABLE_BACK = 'droppable-back';
 export const DROPPABLE_MIDDLE = 'droppable-middle';
+export const DROPPABLE_PARTITIONS = 'droppable-partitions';
 export const DROPPABLE = 'droppable';

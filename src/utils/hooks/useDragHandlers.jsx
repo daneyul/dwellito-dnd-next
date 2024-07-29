@@ -48,6 +48,7 @@ const useDragHandlers = ({
 
     const isDoor = draggedItem.objType === COMPONENT_TYPES.DOOR;
     const isWindow = draggedItem.objType === COMPONENT_TYPES.WINDOW;
+    const isPartition = draggedItem.objType === COMPONENT_TYPES.PARTITION;
     const isFixed = draggedItem.fixed;
     const isHeaterOrOutlet =
       draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
@@ -84,6 +85,8 @@ const useDragHandlers = ({
         } else {
           setModifiers([...defaultModifiers, restrictToVerticalAxis]);
         }
+      } else if (isPartition) {
+        setModifiers([...defaultModifiers, restrictToHorizontalAxis]);
       } else {
         setModifiers([]);
       }
@@ -223,24 +226,26 @@ const useDragHandlers = ({
           const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
           if (!draggedPiece) return null;
 
-          if (
-            checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
-          ) {
-            updatedPieces[index].isColliding = true;
-            const draggedPieceIndex = updatedPieces.findIndex(
-              ({ id }) => id === draggedId
-            );
-            updatedPieces[draggedPieceIndex].isColliding = true;
-          }
-
-          if (
-            checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
-          ) {
-            updatedPieces[index].isTooClose = true;
-            const draggedPieceIndex = updatedPieces.findIndex(
-              ({ id }) => id === draggedId
-            );
-            updatedPieces[draggedPieceIndex].isTooClose = true;
+          if (piece.objType !== COMPONENT_TYPES.PARTITION) {
+            if (
+              checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
+            ) {
+              updatedPieces[index].isColliding = true;
+              const draggedPieceIndex = updatedPieces.findIndex(
+                ({ id }) => id === draggedId
+              );
+              updatedPieces[draggedPieceIndex].isColliding = true;
+            }
+  
+            if (
+              checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
+            ) {
+              updatedPieces[index].isTooClose = true;
+              const draggedPieceIndex = updatedPieces.findIndex(
+                ({ id }) => id === draggedId
+              );
+              updatedPieces[draggedPieceIndex].isTooClose = true;
+            }
           }
         }
       });

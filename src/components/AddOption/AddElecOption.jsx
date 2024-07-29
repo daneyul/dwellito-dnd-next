@@ -3,9 +3,6 @@ import { useContext } from 'react';
 import { generateImgSrc, getComponentPrice, handleAddComponent } from '../../utils/2D/utils';
 import style from './addOption.module.css';
 import { PageDataContext } from '../Content/Content';
-import {
-  INTERIOR_FINISH_NAMES,
-} from '@/utils/constants/names';
 
 const AddElecOption = ({ options }) => {
   const {

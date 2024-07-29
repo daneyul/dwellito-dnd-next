@@ -1,5 +1,6 @@
 import { doorComponents } from './components/doors';
 import { electricalComponents } from './components/electrical';
+import { partitionComponents } from './components/partitions';
 import { ventComponents } from './components/vents';
 import { windowComponents } from './components/windows';
 import { v4 as uuid } from 'uuid';
@@ -8,6 +9,7 @@ export const componentData = [
   ...doorComponents,
   ...windowComponents,
   ...ventComponents,
+  ...partitionComponents,
   ...electricalComponents,
 ].map((item) => ({
   id: uuid(),

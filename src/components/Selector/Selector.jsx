@@ -4,6 +4,7 @@ import style from './selector.module.scss';
 import { useContext } from 'react';
 import { COMPONENT_TYPES } from '@/utils/constants/names';
 import { PageDataContext } from '../Content/Content';
+import AddPartition from '../AddOption/AddPartition';
 
 const Selector = () => {
   const { componentData } = useContext(Library2dDataContext);
@@ -49,6 +50,21 @@ const Selector = () => {
   const vents = componentData.filter(
     (item) => item.objType === COMPONENT_TYPES.VENT
   );
+  const partitions = componentData.filter(
+    (item) => {
+      if (containerHeightIsStandard) {
+        return (
+          item.objType === COMPONENT_TYPES.PARTITION &&
+          !item.highContainerOnly
+        );
+      } else {
+        return (
+          item.objType === COMPONENT_TYPES.PARTITION &&
+          item.highContainerOnly
+        )
+      }
+    }
+  );
 
   return (
     <div className={style.container}>
@@ -76,6 +92,10 @@ const Selector = () => {
         <div className={style.subTitle}>Vents</div>
         <div className={style.objectContainer}>
           <AddOption options={vents} />
+        </div>
+        <div className={style.subTitle}>Partition Walls</div>
+        <div className={style.objectContainer}>
+          <AddPartition options={partitions} />
         </div>
       </div>
     </div>

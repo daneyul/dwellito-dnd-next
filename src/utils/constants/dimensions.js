@@ -333,6 +333,35 @@ export const DIMENSIONS = {
       },
     },
   },
+  PARTITION: {
+    ST: {
+      WIDTH: 4,
+      HEIGHT: 92,
+      FP_HEIGHT: 92,
+      POSITION: {
+        x: 10,
+        y: 7,
+      },
+    },
+    HC: {
+      WIDTH: 4,
+      HEIGHT: 92,
+      FP_HEIGHT: 92,
+      POSITION: {
+        x: 10,
+        y: 7,
+      },
+    },
+    DOOR: {
+      WIDTH: 40,
+      HEIGHT: 92,
+      FP_HEIGHT: 92,
+      POSITION: {
+        x: 10,
+        y: 7,
+      },
+    },
+  },
   SCALE_FACTOR: 2.5,
   GRID_SIZE: 1,
   BOUNDARIES: {

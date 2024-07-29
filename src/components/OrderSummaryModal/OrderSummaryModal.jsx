@@ -11,6 +11,7 @@ import {
 } from '@/utils/2D/utils';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import {
+  COMPONENT_TYPES,
   CONTAINER_HIGH,
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
@@ -316,14 +317,21 @@ const OrderSummaryModal = () => {
       component.elevation.some((i) => i.name === elevation.name)
     );
 
-    const isElectrical = elevation.name === ELEVATION_NAMES.FLOOR_PLAN;
-    const elevationName = isElectrical
-      ? 'Electrical'
-      : `${elevation.name} Wall`;
+    const isElectrical = elevation.name === ELEVATION_NAMES.FLOOR_PLAN && componentsForElevation[0].objType === COMPONENT_TYPES.ELECTRICAL;
+    const isPartition = componentsForElevation[0].objType === COMPONENT_TYPES.PARTITION;
+    const elevationName = () => {
+      if (isElectrical) {
+        return 'Electrical';
+      } else if (isPartition) {
+        return 'Partition Walls';
+      } else {
+        return `${elevation.name} Wall`;
+      }
+    }
 
     return (
       <div className={style.section}>
-        <div className={style.elevationName}>{elevationName}</div>
+        <div className={style.elevationName}>{elevationName()}</div>
         <ul style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
           {componentsForElevation.map((component) => {
             const distance = checkDistance({

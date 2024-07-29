@@ -17,6 +17,7 @@ import {
   DROPPABLE_BACK,
   DROPPABLE_LEFT,
   DROPPABLE_MIDDLE,
+  DROPPABLE_PARTITIONS,
   DROPPABLE_RIGHT,
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
@@ -77,6 +78,7 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     DROPPABLE_RIGHT,
     DROPPABLE_BACK,
     DROPPABLE_MIDDLE,
+    DROPPABLE_PARTITIONS
   ];
 
   // Filter out the droppable element from collisions

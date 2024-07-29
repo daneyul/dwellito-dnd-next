@@ -1,13 +1,15 @@
 import { v4 as uuid } from 'uuid';
 import {
   COMPONENT_NAMES,
+  COMPONENT_TYPES,
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
 } from '../constants/names';
 import { DIMENSIONS } from '../constants/dimensions';
 import { ventComponents } from '../constants/components/vents';
 
-export const generateImgSrc = (supplier, imgName) => `../../../images/${supplier}/${imgName}`;
+export const generateImgSrc = (supplier, imgName) =>
+  `../../../images/${supplier}/${imgName}`;
 
 export const checkCollision = (
   item1,
@@ -110,8 +112,11 @@ export const handleAddComponent = ({
   selectedElevation,
   floorPlan,
 }) => {
-  if (item.fixed && selectedComponents?.some((component) => component.name === item.name)) {
-    setSelectedComponents((prevSelectedComponents) => 
+  if (
+    item.fixed &&
+    selectedComponents?.some((component) => component.name === item.name)
+  ) {
+    setSelectedComponents((prevSelectedComponents) =>
       prevSelectedComponents.filter((component) => component.name !== item.name)
     );
   } else {
@@ -125,14 +130,14 @@ export const handleAddComponent = ({
     const roofVentObjData = ventComponents.find(
       (component) => component.name === COMPONENT_NAMES.ROOF_VENT
     );
-  
+
     const roofVent = {
       ...roofVentObjData,
       id: uuid(),
       position: { ...roofVentObjData.position },
       elevation: [floorPlan],
     };
-  
+
     setSelectedComponents((prevSelectedComponents) => {
       if (isRoofVent) {
         return [...prevSelectedComponents, roofVent];
@@ -337,12 +342,16 @@ export const calculateCSSPos = ({
         transform = `rotate(90deg) translateX(10px)`;
         positionStyles = {
           bottom: '0',
-          right: `${adjForContainerHeight(piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor))}px`,
+          right: `${adjForContainerHeight(
+            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+          )}px`,
         };
       } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
         transform = 'translateX(50%)';
         positionStyles = {
-          bottom: `${adjForContainerHeight(piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor))}px`,
+          bottom: `${adjForContainerHeight(
+            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+          )}px`,
           right: '0',
         };
       } else if (piece.name === COMPONENT_NAMES.ROOF_VENT) {
@@ -363,7 +372,8 @@ export const calculateCSSPos = ({
     } else {
       if (
         piece.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-        piece.name === COMPONENT_NAMES.OUTLET
+        piece.name === COMPONENT_NAMES.OUTLET ||
+        piece.objType === COMPONENT_TYPES.PARTITION
       ) {
         positionStyles = {
           left: `${piece.position.x}px`,
@@ -379,12 +389,16 @@ export const calculateCSSPos = ({
         transform = 'translateY(100%)';
         positionStyles = {
           bottom: '10px',
-          left: `${piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+          left: `${
+            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+          }px`,
         };
       } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
         transform = `rotate(270deg) translateX(100%) translateY(calc(100% - 12px))`;
         positionStyles = {
-          bottom: `${piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+          bottom: `${
+            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+          }px`,
           right: `0`,
           transformOrigin: 'right bottom',
         };

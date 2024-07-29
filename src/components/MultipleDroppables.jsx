@@ -8,6 +8,7 @@ import {
   DROPPABLE_BACK,
   DROPPABLE_LEFT,
   DROPPABLE_MIDDLE,
+  DROPPABLE_PARTITIONS,
   DROPPABLE_RIGHT,
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
@@ -40,6 +41,9 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
   });
   const { setNodeRef: setMiddleDroppableRef } = useDroppable({
     id: DROPPABLE_MIDDLE,
+  });
+  const { setNodeRef: setParititionsDroppableRef } = useDroppable({
+    id: DROPPABLE_PARTITIONS,
   });
 
   const CustomStyle = {
@@ -81,6 +85,13 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
         (piece.name === COMPONENT_NAMES.ROOF_VENT &&
           piece.fixed &&
           !piece.fixedSide)
+    );
+  };
+
+  const filterPartitions = () => {
+    return selectedComponents.filter(
+      (piece) =>
+        piece.objType === COMPONENT_TYPES.PARTITION
     );
   };
 
@@ -183,6 +194,29 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
         }}
       >
         {filterFixedCeilingComponents().map((piece) => (
+          <Draggable
+            piece={piece}
+            key={piece.id}
+            id={piece.id}
+            onSelect={() => handleSelect(piece.id)}
+            ref={draggableRefs[piece.id]}
+            onHover={() => setHoveredPiece(piece)}
+            onLeave={() => setHoveredPiece(null)}
+          />
+        ))}
+      </div>
+      <div
+        ref={setParititionsDroppableRef}
+        style={{
+          ...CustomStyle,
+          position: 'absolute',
+          width: `${toScale(floorPlan.objWidth, scaleFactor)}px`,
+          height: `${toScale(floorPlan.objScHeight, scaleFactor)}px`,
+          top: '50%',
+          transform: 'translateY(-50%)'
+        }}
+      >
+        {filterPartitions().map((piece) => (
           <Draggable
             piece={piece}
             key={piece.id}
