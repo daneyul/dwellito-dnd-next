@@ -552,18 +552,22 @@ export const getFlooringFromUrl = (querySelectionData) => {
 
 export const getComponentPrice = (component, interiorFinish) => {
   if (!interiorFinish || !interiorFinish.name) {
-    return 0; // Default price if interiorFinish or interiorFinish.name is not defined
+    return 0;
   }
   if (
     interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS ||
-    interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING
+    interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING ||
+    interiorFinish.name === INTERIOR_FINISH_NAMES.NONE
   ) {
-    return component.priceSurface || 0;
+    console.log('here', component)
+    return component.priceSurface;
   } else if (
     interiorFinish.name &&
     interiorFinish.name !== INTERIOR_FINISH_NAMES.NONE
   ) {
-    return component.priceRecessed || 0;
+    console.log('or here')
+    return component.priceRecessed;
   }
-  return component.price || 0; // Default price if no conditions are met
+  console.log('or here here')
+  return component.price;
 };
