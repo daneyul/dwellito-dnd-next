@@ -71,6 +71,9 @@ export const CONTAINER_HIGH = 'high';
 export const CONTAINER_SIZE_10 = '10';
 export const CONTAINER_SIZE_20 = '20';
 export const CONTAINER_SIZE_40 = '40';
+export const CONTAINER_SIZE_STR_10 = "TEN";
+export const CONTAINER_SIZE_STR_20 = "TWENTY";
+export const CONTAINER_SIZE_STR_40 = "FORTY";
 
 export const INTERIOR_FINISH_NAMES = {
   NONE: "None",

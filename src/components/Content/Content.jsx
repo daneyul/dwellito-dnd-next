@@ -19,6 +19,9 @@ import {
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40,
+  CONTAINER_SIZE_STR_10,
+  CONTAINER_SIZE_STR_20,
+  CONTAINER_SIZE_STR_40,
   CONTAINER_STANDARD,
   ELEVATION_NAMES,
 } from '@/utils/constants/names';
@@ -127,6 +130,15 @@ const PageDataProvider = ({ children, data }) => {
       return CONTAINER_SIZE_40;
     }
   };
+  const containerSizeStr = () => {
+    if (selectedContainer === containerData[0]) {
+      return CONTAINER_SIZE_STR_10;
+    } else if (selectedContainer === containerData[1]) {
+      return CONTAINER_SIZE_STR_20;
+    } else if (selectedContainer === containerData[2]) {
+      return CONTAINER_SIZE_STR_40;
+    }
+  }
 
   // Floor Plan
   const floorPlan = elevationData.find((elevation) => {
@@ -310,7 +322,8 @@ const PageDataProvider = ({ children, data }) => {
         interiorIsDrywall,
         interiorIsSprayFoamCeiling,
         interiorIsSprayFoamCeilingWalls,
-        containerHeightIsStandard
+        containerHeightIsStandard,
+        containerSizeStr
       }}
     >
       {children}

@@ -11,6 +11,7 @@ import {
 } from '@/utils/2D/utils';
 import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import {
+  COMPONENT_NAMES,
   COMPONENT_TYPES,
   CONTAINER_HIGH,
   CONTAINER_SIZE_10,
@@ -38,7 +39,8 @@ const OrderSummaryModal = () => {
     slug,
     dialogOpen,
     setDialogOpen,
-    supplier
+    supplier,
+    containerSizeStr
   } = useContext(PageDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const [zipCode, setZipCode] = useState('');
@@ -342,15 +344,24 @@ const OrderSummaryModal = () => {
               scaleFactor,
             });
 
-            const imgSrc = isElectrical
-              ? component.floorPlanImg
-              : component.frontImg || component.imgName;
+            const imgSrc = () => {
+              if (isElectrical) {
+                if (component.name === COMPONENT_NAMES.WRAP_LIGHT) {
+                  return component.floorPlanImg[containerSizeStr()]
+                }
+                return component.floorPlanImg
+              } else {
+                return component.frontImg || component.imgName
+              }
+            }
+
+            const itemPrice = getComponentPrice(component, interiorFinish);
 
             return (
               <li key={component.id} className={style.lineItem}>
                 <div className={style.thumbnailContainer}>
                   <img
-                    src={generateImgSrc(supplier, imgSrc)}
+                    src={generateImgSrc(supplier, imgSrc())}
                     alt={component.desc}
                     className={style.thumbnailImg}
                   />
@@ -371,7 +382,7 @@ const OrderSummaryModal = () => {
                     </div>
                   )}
                 </div>
-                <div className={style.price}>${component.price}</div>
+                <div className={style.price}>${itemPrice.toLocaleString()}</div>
               </li>
             );
           })}
