@@ -151,7 +151,7 @@ const OrderSummaryModal = () => {
           name: i.name,
           position: `${distance.left}' from left & ${distance.top}' from top (on floor plan view)`,
           sku: i.desc,
-          price: getComponentPrice(i, interiorFinish),
+          price: getComponentPrice(i, interiorFinish, i.objType === COMPONENT_TYPES.ELECTRICAL),
           surface: ELEVATION_NAMES.FLOOR_PLAN,
         };
       });
