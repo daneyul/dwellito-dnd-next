@@ -31,7 +31,7 @@ const Sidebar = memo(() => {
     selectedContainer,
     slug,
     supplier,
-    containerSize
+    containerSize,
   } = useContext(PageDataContext);
   const { EXTERIOR, INTERIOR, FLOORING } = useContext(Library3dDataContext);
 
@@ -45,13 +45,13 @@ const Sidebar = memo(() => {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
         item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP &&
-        item.fixed
+        item.fixed && item.supplier === supplier
       );
     } else {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
         item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP &&
-        item.fixed
+        item.fixed && item.supplier === supplier
       );
     }
   });
@@ -61,13 +61,13 @@ const Sidebar = memo(() => {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
         item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP &&
-        !item.fixed
+        !item.fixed && item.supplier === supplier
       );
     } else {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
         item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP &&
-        !item.fixed
+        !item.fixed && item.supplier === supplier
       );
     }
   });

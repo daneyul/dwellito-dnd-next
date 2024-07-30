@@ -1,6 +1,6 @@
-import { COMPONENT_NAMES, COMPONENT_TYPES, DROPPABLE_BACK, DROPPABLE_LEFT, DROPPABLE_RIGHT, ELEVATION_NAMES } from '../names';
+import { COMPONENT_NAMES, COMPONENT_TYPES, DROPPABLE_BACK, DROPPABLE_LEFT, DROPPABLE_RIGHT, ELEVATION_NAMES, SUPPLIER_SLUGS } from '../names';
 
-export const electricalComponents = [
+const customCubes = [
   {
     name: COMPONENT_NAMES.AIR_CONDITIONER,
     position: {
@@ -145,4 +145,8 @@ export const electricalComponents = [
     fixed: true,
     ceilingOnly: true
   }
-];
+].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));
+
+export const electricalComponents = [
+  ...customCubes
+]

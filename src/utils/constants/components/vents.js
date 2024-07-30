@@ -1,7 +1,7 @@
 import { DIMENSIONS } from '../dimensions';
-import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES } from '../names';
+import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES, SUPPLIER_SLUGS } from '../names';
 
-export const ventComponents = [
+const customCubes = [
   {
     name: COMPONENT_NAMES.VENT_12,
     position: {
@@ -69,4 +69,9 @@ export const ventComponents = [
     ceilingOnly: true,
     alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
   },
-];
+].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));
+
+
+export const ventComponents = [
+  ...customCubes
+]

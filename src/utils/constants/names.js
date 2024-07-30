@@ -52,9 +52,9 @@ const CUSTOM_CUBE_COMPONENTS = {
   OUTLET: `15amp 120V Duplex Receptacle`,
   EXHAUST_FAN: `12" Exhaust Fan with Gravity Damper`,
   WRAP_LIGHT: `4ft LED Wrap Light`,
-  PARTITION_ST: 'Pre-finished Drywall Paneling - Partition Wall - ST',
-  PARTITION_HC: 'Pre-finished Drywall Paneling - Partition Wall - HC',
-  PARTITION_DOOR: 'Interior Door for Partition Wall - 36" Door (LH/RH)'
+  PARTITION_ST: 'Partition wall with no interior door - ST',
+  PARTITION_HC: 'Partition wall with no interior door - HC',
+  PARTITION_DOOR: 'Partition wall with interior door'
 };
 
 const AT_AND_S_COMPONENTS = {

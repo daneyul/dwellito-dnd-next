@@ -8,23 +8,23 @@ import AddPartition from '../AddOption/AddPartition';
 
 const Selector = () => {
   const { componentData } = useContext(Library2dDataContext);
-  const { containerHeightIsStandard } =useContext(PageDataContext);
+  const { containerHeightIsStandard, supplier } =useContext(PageDataContext);
 
   const doors = componentData.filter(
     (item) =>
-      item.objType === COMPONENT_TYPES.DOOR && !item.isRollUp
+      item.objType === COMPONENT_TYPES.DOOR && !item.isRollUp && item.supplier === supplier
   );
   const economyDoors = componentData.filter(
     (item) => {
       if (containerHeightIsStandard) {
         return (
           item.objType === COMPONENT_TYPES.DOOR &&
-          item.isRollUp && !item.isHeavyDuty && !item.highContainerOnly
+          item.isRollUp && !item.isHeavyDuty && !item.highContainerOnly && item.supplier === supplier
         );
       } else {
         return (
           item.objType === COMPONENT_TYPES.DOOR &&
-          item.isRollUp && !item.isHeavyDuty && item.highContainerOnly
+          item.isRollUp && !item.isHeavyDuty && item.highContainerOnly && item.supplier === supplier
         )
       }
     }
@@ -34,21 +34,21 @@ const Selector = () => {
       if (containerHeightIsStandard) {
         return (
           item.objType === COMPONENT_TYPES.DOOR &&
-          item.isRollUp && item.isHeavyDuty && !item.highContainerOnly
+          item.isRollUp && item.isHeavyDuty && !item.highContainerOnly && item.supplier === supplier
         );
       } else {
         return (
           item.objType === COMPONENT_TYPES.DOOR &&
-          item.isRollUp && item.isHeavyDuty && item.highContainerOnly
+          item.isRollUp && item.isHeavyDuty && item.highContainerOnly && item.supplier === supplier
         )
       }
     }
   );
   const windows = componentData.filter(
-    (item) => item.objType === COMPONENT_TYPES.WINDOW
+    (item) => item.objType === COMPONENT_TYPES.WINDOW && item.supplier === supplier
   );
   const vents = componentData.filter(
-    (item) => item.objType === COMPONENT_TYPES.VENT
+    (item) => item.objType === COMPONENT_TYPES.VENT && item.supplier === supplier
   );
 
   return (

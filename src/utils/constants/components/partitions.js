@@ -14,7 +14,7 @@ export const partitionComponents = [
     objHeight: DIMENSIONS.PARTITION.ST.HEIGHT,
     objFpHeight: DIMENSIONS.PARTITION.ST.FP_HEIGHT,
     objType: COMPONENT_TYPES.PARTITION,
-    price: 1275,
+    price: 1190,
     model: '',
     imgName: `${COMPONENT_TYPES.PARTITION}/partition.svg`,
     floorPlanImg: `${COMPONENT_TYPES.PARTITION}/partition.svg`,
@@ -33,13 +33,13 @@ export const partitionComponents = [
     objHeight: DIMENSIONS.PARTITION.HC.HEIGHT,
     objFpHeight: DIMENSIONS.PARTITION.HC.FP_HEIGHT,
     objType: COMPONENT_TYPES.PARTITION,
-    price: 1355,
+    price: 1190,
     model: '',
     highContainerOnly: true
   },
   {
     name: COMPONENT_NAMES.PARTITION_DOOR,
-    price: 1275,
+    price: 2465,
     desc: 'P202-4-05',
     position: {
       x: DIMENSIONS.PARTITION.DOOR.POSITION.x,

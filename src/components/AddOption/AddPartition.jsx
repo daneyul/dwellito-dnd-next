@@ -110,7 +110,7 @@ const AddPartition = ({ options }) => {
     );
 
     if (item.name === COMPONENT_NAMES.PARTITION_DOOR) {
-      if (!interiorNone && !interiorIsDrywall && !interiorIsPlywood) {
+      if ((interiorNone || interiorIsSprayFoamCeiling || interiorIsSprayFoamCeilingWalls) && !interiorIsDrywall && !interiorIsPlywood) {
         return (
           <Disabled
             text='This door only works with plywood and drywall interior finishes'
@@ -128,27 +128,13 @@ const AddPartition = ({ options }) => {
         );
       }
     } else {
-      if (
-        !interiorNone &&
-        !interiorIsSprayFoamCeiling &&
-        !interiorIsSprayFoamCeilingWalls
-      ) {
-        return (
-          <Disabled
-            text='This door only works with sprayfoam sheeting interiors'
-            imgSrc={imgSrc}
-            item={item}
-          />
-        );
-      } else {
-        return (
-          <Enabled
-            imgSrc={imgSrc}
-            item={item}
-            alreadySelected={alreadySelected}
-          />
-        );
-      }
+      return (
+        <Enabled
+          imgSrc={imgSrc}
+          item={item}
+          alreadySelected={alreadySelected}
+        />
+      );
     }
   });
 };
