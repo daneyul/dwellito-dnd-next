@@ -6,7 +6,7 @@ export const COMPONENT_TYPES = {
   PARTITION: 'partition',
 };
 
-export const COMPONENT_NAMES = {
+const CUSTOM_CUBE_COMPONENTS = {
   PERSONNEL_LHR: `LHR Personnel Door`,
   PERSONNEL_LHR_GLASS: `LHR Personnel Door Window Lite Kit for Door 24inx30in Clear Glass`,
   PERSONNEL_LHR_SECURITY: `LHR Personnel Door Hardware and Lock Box 36in x 80in`,
@@ -57,6 +57,16 @@ export const COMPONENT_NAMES = {
   PARTITION_DOOR: 'Interior Door for Partition Wall - 36" Door (LH/RH)'
 };
 
+const AT_AND_S_COMPONENTS = {
+  GLIDING_PATIO: `Gliding Patio Door 70.5x79.5`,
+  SKYLIGHT: `Skylight 22.5x46.5`,
+}
+
+export const COMPONENT_NAMES = {
+  ...CUSTOM_CUBE_COMPONENTS,
+  ...AT_AND_S_COMPONENTS
+}
+
 export const ELEVATION_NAMES = {
   FRONT: 'Front',
   BACK: 'Back',
@@ -91,3 +101,24 @@ export const DROPPABLE_BACK = 'droppable-back';
 export const DROPPABLE_MIDDLE = 'droppable-middle';
 export const DROPPABLE_PARTITIONS = 'droppable-partitions';
 export const DROPPABLE = 'droppable';
+
+export const SUPPLIER_SLUGS = {
+  CUSTOM_CUBES: 'custom-cubes',
+  AT_AND_S: 'at-and-s',
+}
+
+export const SUPPLIER_NAMES = {
+  CUSTOM_CUBES: 'Custom Cubes',
+  AT_AND_S: 'AT&S',
+}
+
+export const findSupplierName = (supplierSlug) => {
+  switch (supplierSlug) {
+    case SUPPLIER_SLUGS.CUSTOM_CUBES:
+      return SUPPLIER_NAMES.CUSTOM_CUBES;
+    case SUPPLIER_SLUGS.AT_AND_S:
+      return SUPPLIER_NAMES.AT_AND_S;
+    default:
+      return '';
+  }
+}

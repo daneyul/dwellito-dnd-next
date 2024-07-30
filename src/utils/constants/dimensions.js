@@ -283,6 +283,15 @@ export const DIMENSIONS = {
         y: 46,
       },
     },
+    GLIDING_PATIO: {
+      WIDTH: 70.5,
+      HEIGHT: 79.5,
+      FP_HEIGHT: 8,
+      POSITION: {
+        x: 0,
+        y: 34,
+      },
+    },
   },
   WINDOW: {
     WINDOW: {
@@ -303,6 +312,15 @@ export const DIMENSIONS = {
         y: 40,
       },
     },
+    SKYLIGHT: {
+      WIDTH: 22.5,
+      HEIGHT: 46.5,
+      FP_HEIGHT: 2,
+      POSITION: {
+        x: 0,
+        y: 24,
+      },
+    }
   },
   VENT: {
     SQ_12: {

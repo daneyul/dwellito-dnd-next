@@ -17,6 +17,7 @@ import {
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_40,
   CONTAINER_STANDARD,
+  findSupplierName,
 } from '@/utils/constants/names';
 import Logo from '../Logo';
 import { componentData } from '@/utils/constants/componentData';
@@ -29,10 +30,10 @@ const Sidebar = memo(() => {
     setSelectedContainerHeight,
     selectedContainer,
     slug,
+    supplier,
     containerSize
   } = useContext(PageDataContext);
   const { EXTERIOR, INTERIOR, FLOORING } = useContext(Library3dDataContext);
-  const supplierName = 'Custom Cubes';
 
   const canSelectContainerHeight = slug !== CONTAINER_SIZE_10;
   const containerPrice = containerHeightIsStandard
@@ -93,10 +94,10 @@ const Sidebar = memo(() => {
         <div className={style.logo}>
           <Logo />
         </div>
-        <div className={style.header}>{supplierName}</div>
-        <div className={style.supplier}>By {supplierName}</div>
+        <div className={style.header}>{findSupplierName(supplier)}</div>
+        <div className={style.supplier}>By {findSupplierName(supplier)}</div>
         <div className={style.description}>
-          {supplierName} offers shipping containers for sale and modifications.
+          {findSupplierName(supplier)} offers shipping containers for sale and modifications.
           Whether its for storage purposes or mobile office space we got it!
         </div>
         <Badges />
