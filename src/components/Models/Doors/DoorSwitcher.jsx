@@ -10,6 +10,7 @@ import {
   EcStRollup15,
   EcStRollup6,
   EcStRollup8,
+  GlidingPatio,
   HdHcRollup10,
   HdHcRollup12,
   HdHcRollup15,
@@ -232,6 +233,14 @@ export default function Door({ onBoundingBoxChange, component, supplier }) {
     case COMPONENT_NAMES.EC_ST_ROLLUP_15_64:
       return (
         <EcStRollup15
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
+        />
+      );
+    case COMPONENT_NAMES.GLIDING_PATIO:
+      return (
+        <GlidingPatio
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
           supplier={supplier}

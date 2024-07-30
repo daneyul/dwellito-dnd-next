@@ -300,6 +300,16 @@ const EcStRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
   />
 );
 
+const GlidingPatio = ({ component, onBoundingBoxChange, supplier }) => (
+  <GenericDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/${supplier}/doors/${component.model}.glb`}
+    customPosition={[0.99, 1.6, -0.015]}
+    isRollUp={false}
+  />
+);
+
 export {
   LhrSecurity,
   LhrSecurityGlass,
@@ -327,4 +337,5 @@ export {
   EcStRollup10,
   EcStRollup12,
   EcStRollup15,
+  GlidingPatio
 };

@@ -60,6 +60,7 @@ const CUSTOM_CUBE_COMPONENTS = {
 const AT_AND_S_COMPONENTS = {
   GLIDING_PATIO: `Gliding Patio Door 70.5x79.5`,
   SKYLIGHT: `Skylight 22.5x46.5`,
+  FLOOD_LIGHT: `Adjustable Swivel Flood Light`,
 }
 
 export const COMPONENT_NAMES = {
