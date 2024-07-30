@@ -1,26 +1,6 @@
 import React from 'react';
 import GenericDoor from './GenericDoor';
 
-const Lhr = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
-    component={component}
-    onBoundingBoxChange={onBoundingBoxChange}
-    modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.6, -0.01]}
-    isRollUp={false}
-  />
-);
-
-const LhrGlass = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
-    component={component}
-    onBoundingBoxChange={onBoundingBoxChange}
-    modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.6, -0.01]}
-    isRollUp={false}
-  />
-);
-
 const LhrSecurity = ({ component, onBoundingBoxChange, supplier }) => (
   <GenericDoor
     component={component}
@@ -37,26 +17,6 @@ const LhrSecurityGlass = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customPosition={[0.99, 1.6, -0.015]}
-    isRollUp={false}
-  />
-);
-
-const Rhr = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
-    component={component}
-    onBoundingBoxChange={onBoundingBoxChange}
-    modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.6, -0.01]}
-    isRollUp={false}
-  />
-);
-
-const RhrGlass = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
-    component={component}
-    onBoundingBoxChange={onBoundingBoxChange}
-    modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.6, -0.01]}
     isRollUp={false}
   />
 );
@@ -341,12 +301,8 @@ const EcStRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 export {
-  Lhr,
-  LhrGlass,
   LhrSecurity,
   LhrSecurityGlass,
-  Rhr,
-  RhrGlass,
   RhrSecurity,
   RhrSecurityGlass,
   Double,

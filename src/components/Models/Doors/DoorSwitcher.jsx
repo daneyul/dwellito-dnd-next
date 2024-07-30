@@ -19,12 +19,8 @@ import {
   HdStRollup15,
   HdStRollup6,
   HdStRollup8,
-  Lhr,
-  LhrGlass,
   LhrSecurity,
   LhrSecurityGlass,
-  Rhr,
-  RhrGlass,
   RhrSecurity,
   RhrSecurityGlass,
   Sliding6,
@@ -33,22 +29,6 @@ import { COMPONENT_NAMES } from '@/utils/constants/names';
 
 export default function Door({ onBoundingBoxChange, component, supplier }) {
   switch (component.name) {
-    case COMPONENT_NAMES.PERSONNEL_LHR:
-      return (
-        <Lhr
-          component={component}
-          onBoundingBoxChange={onBoundingBoxChange}
-          supplier={supplier}
-        />
-      );
-    case COMPONENT_NAMES.PERSONNEL_LHR_GLASS:
-      return (
-        <LhrGlass
-          component={component}
-          onBoundingBoxChange={onBoundingBoxChange}
-          supplier={supplier}
-        />
-      );
     case COMPONENT_NAMES.PERSONNEL_LHR_SECURITY:
       return (
         <LhrSecurity
@@ -60,22 +40,6 @@ export default function Door({ onBoundingBoxChange, component, supplier }) {
     case COMPONENT_NAMES.PERSONNEL_LHR_SECURITY_GLASS:
       return (
         <LhrSecurityGlass
-          component={component}
-          onBoundingBoxChange={onBoundingBoxChange}
-          supplier={supplier}
-        />
-      );
-    case COMPONENT_NAMES.PERSONNEL_RHR:
-      return (
-        <Rhr
-          component={component}
-          onBoundingBoxChange={onBoundingBoxChange}
-          supplier={supplier}
-        />
-      );
-    case COMPONENT_NAMES.PERSONNEL_RHR_GLASS:
-      return (
-        <RhrGlass
           component={component}
           onBoundingBoxChange={onBoundingBoxChange}
           supplier={supplier}
