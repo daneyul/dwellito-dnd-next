@@ -355,7 +355,7 @@ const OrderSummaryModal = () => {
               }
             }
 
-            const itemPrice = getComponentPrice(component, interiorFinish);
+            const itemPrice = getComponentPrice(component, interiorFinish, isElectrical);
 
             return (
               <li key={component.id} className={style.lineItem}>

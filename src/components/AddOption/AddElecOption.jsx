@@ -23,7 +23,7 @@ const AddElecOption = ({ options }) => {
       (component) => component.name === item.name
     );
 
-    const itemPrice = getComponentPrice(item, interiorFinish);
+    const itemPrice = getComponentPrice(item, interiorFinish, true);
 
     return (
       <div

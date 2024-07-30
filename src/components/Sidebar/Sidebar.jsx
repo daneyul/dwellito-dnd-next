@@ -21,6 +21,7 @@ import {
 import Logo from '../Logo';
 import { componentData } from '@/utils/constants/componentData';
 import AddElecOption from '../AddOption/AddElecOption';
+import AddPartition from '../AddOption/AddPartition';
 
 const Sidebar = memo(() => {
   const {
@@ -69,6 +70,22 @@ const Sidebar = memo(() => {
       );
     }
   });
+
+  const partitions = componentData.filter(
+    (item) => {
+      if (containerHeightIsStandard) {
+        return (
+          item.objType === COMPONENT_TYPES.PARTITION &&
+          !item.highContainerOnly
+        );
+      } else {
+        return (
+          item.objType === COMPONENT_TYPES.PARTITION &&
+          item.highContainerOnly
+        )
+      }
+    }
+  );
 
   const NotYourOrder = () => {
     return (
@@ -139,8 +156,13 @@ const Sidebar = memo(() => {
         />
         <SingleSelect type={INTERIOR} />
         <Subtitle
-          text='Select your electrical add-ons'
+          text='Select your partition walls'
           css={{ fontWeight: 400, marginBottom: '1rem' }}
+        />
+        <AddPartition options={partitions} />
+        <Subtitle
+          text='Select your electrical add-ons'
+          css={{ fontWeight: 400, margin: '2rem 0 1rem 0' }}
         />
         <div className={style.fixedObjectContainer}>
           <AddElecOption options={fixedElectricals} />

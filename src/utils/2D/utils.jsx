@@ -550,24 +550,25 @@ export const getFlooringFromUrl = (querySelectionData) => {
   return null;
 };
 
-export const getComponentPrice = (component, interiorFinish) => {
-  if (!interiorFinish || !interiorFinish.name) {
-    return 0;
+export const getComponentPrice = (component, interiorFinish, isElectrical) => {
+  if (isElectrical) {
+    if (!interiorFinish || !interiorFinish.name) {
+      return 0;
+    }
+    if (
+      interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS ||
+      interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING ||
+      interiorFinish.name === INTERIOR_FINISH_NAMES.NONE
+    ) {
+      return component.priceSurface;
+    } else if (
+      interiorFinish.name &&
+      interiorFinish.name !== INTERIOR_FINISH_NAMES.NONE
+    ) {
+      return component.priceRecessed;
+    }
+    return component.price;
+  } else {
+    return component.price;
   }
-  if (
-    interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS ||
-    interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING ||
-    interiorFinish.name === INTERIOR_FINISH_NAMES.NONE
-  ) {
-    console.log('here', component)
-    return component.priceSurface;
-  } else if (
-    interiorFinish.name &&
-    interiorFinish.name !== INTERIOR_FINISH_NAMES.NONE
-  ) {
-    console.log('or here')
-    return component.priceRecessed;
-  }
-  console.log('or here here')
-  return component.price;
 };

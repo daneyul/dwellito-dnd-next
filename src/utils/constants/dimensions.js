@@ -339,7 +339,7 @@ export const DIMENSIONS = {
       HEIGHT: 92,
       FP_HEIGHT: 92,
       POSITION: {
-        x: 10,
+        x: 40,
         y: 7,
       },
     },
@@ -348,7 +348,7 @@ export const DIMENSIONS = {
       HEIGHT: 92,
       FP_HEIGHT: 92,
       POSITION: {
-        x: 10,
+        x: 40,
         y: 7,
       },
     },
@@ -357,7 +357,7 @@ export const DIMENSIONS = {
       HEIGHT: 92,
       FP_HEIGHT: 92,
       POSITION: {
-        x: 10,
+        x: 40,
         y: 7,
       },
     },

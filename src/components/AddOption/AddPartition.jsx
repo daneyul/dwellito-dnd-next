@@ -4,7 +4,10 @@ import { generateImgSrc, handleAddComponent } from '../../utils/2D/utils';
 import style from './addOption.module.css';
 import { PageDataContext } from '../Content/Content';
 import * as HoverCard from '@radix-ui/react-hover-card';
-import { COMPONENT_NAMES, INTERIOR_FINISH_NAMES } from '@/utils/constants/names';
+import {
+  COMPONENT_NAMES,
+  INTERIOR_FINISH_NAMES,
+} from '@/utils/constants/names';
 
 const AddPartition = ({ options }) => {
   const {
@@ -40,12 +43,20 @@ const AddPartition = ({ options }) => {
     return (
       <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
         <HoverCard.Trigger>
-          <img
-            style={{ opacity: '0.25' }}
-            src={generateImgSrc(supplier, imgSrc)}
-            alt={item.name}
-            className={style.objImg}
-          />
+          <div className={style.objImgContainer} style={{ opacity: '0.25' }}>
+            <img
+              style={{ opacity: '0.25' }}
+              src={generateImgSrc(supplier, imgSrc)}
+              alt={item.name}
+              className={style.objImg}
+            />
+            <div className={style.objDesc}>
+              {item.name}
+              <div style={{ marginTop: '0.5rem', fontWeight: 700 }}>
+                +${item.price.toLocaleString()}
+              </div>
+            </div>
+          </div>
         </HoverCard.Trigger>
         <HoverCard.Portal>
           <HoverCard.Content className={style.tooltipText} side='top'>
@@ -56,16 +67,30 @@ const AddPartition = ({ options }) => {
     );
   };
 
-  const Enabled = ({ item, imgSrc }) => {
+  const Enabled = ({ item, imgSrc, alreadySelected }) => {
     return (
       <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
         <HoverCard.Trigger>
-          <img
-            src={generateImgSrc(supplier, imgSrc)}
-            alt={item.name}
+          <div
+            className={
+              alreadySelected
+                ? style.objImgContainerSelected
+                : style.objImgContainer
+            }
             onClick={() => handleSelect(item)}
-            className={style.objImg}
-          />
+          >
+            <img
+              src={generateImgSrc(supplier, imgSrc)}
+              alt={item.name}
+              className={style.fixedObjImg}
+            />
+            <div className={style.objDesc}>
+              {item.name}
+              <div style={{ marginTop: '0.5rem', fontWeight: 700 }}>
+                +${item.price.toLocaleString()}
+              </div>
+            </div>
+          </div>
         </HoverCard.Trigger>
         <HoverCard.Portal>
           <HoverCard.Content className={style.tooltipText} side='top'>
@@ -80,6 +105,9 @@ const AddPartition = ({ options }) => {
 
   return options.map((item) => {
     const imgSrc = item.imgName;
+    const alreadySelected = selectedComponents.some(
+      (component) => component.name === item.name
+    );
 
     if (item.name === COMPONENT_NAMES.PARTITION_DOOR) {
       if (!interiorNone && !interiorIsDrywall && !interiorIsPlywood) {
@@ -91,10 +119,20 @@ const AddPartition = ({ options }) => {
           />
         );
       } else {
-        return <Enabled imgSrc={imgSrc} item={item} />;
+        return (
+          <Enabled
+            imgSrc={imgSrc}
+            item={item}
+            alreadySelected={alreadySelected}
+          />
+        );
       }
     } else {
-      if (!interiorNone && !interiorIsSprayFoamCeiling && !interiorIsSprayFoamCeilingWalls) {
+      if (
+        !interiorNone &&
+        !interiorIsSprayFoamCeiling &&
+        !interiorIsSprayFoamCeilingWalls
+      ) {
         return (
           <Disabled
             text='This door only works with sprayfoam sheeting interiors'
@@ -103,7 +141,13 @@ const AddPartition = ({ options }) => {
           />
         );
       } else {
-        return <Enabled imgSrc={imgSrc} item={item} />;
+        return (
+          <Enabled
+            imgSrc={imgSrc}
+            item={item}
+            alreadySelected={alreadySelected}
+          />
+        );
       }
     }
   });
