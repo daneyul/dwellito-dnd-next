@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect, createContext, useContext } from 'react';
+import { GoogleTagManager } from '@next/third-parties/google'
 import Viewer from '@/components/Viewer/Viewer';
 import Sidebar from '@/components/Sidebar/Sidebar';
 import PriceTotal from '@/components/PriceTotal/PriceTotal';
@@ -331,14 +332,10 @@ const PageDataProvider = ({ children, data }) => {
   );
 };
 
-
-const onRenderCallback = (id, phase, actualDuration, baseDuration, startTime, commitTime, interactions) => {
-  console.log({ id, phase, actualDuration, baseDuration, startTime, commitTime, interactions });
-};
-
 const Content = ({ data }) => {
   return (
     <Theme>
+      <GoogleTagManager gtmId="GTM-NVCQ2ZW3" />
       <Library2dDataProvider>
         <Library3dDataProvider>
           <PageDataProvider data={data}>
