@@ -19,14 +19,12 @@ import Window from './Windows/WindowSwitcher';
 import Vent from './Vents/VentSwitcher';
 import { CsgGeometries } from './Containers/CsgGeometries';
 import { PageDataContext } from '../Content/Content';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
-import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
-} from '@/utils/constants/names';
+} from '@/utils/constants/names/names';
 import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
 import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
 import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
@@ -40,6 +38,8 @@ import Heater from './Electrical/Heater';
 import Outlet from './Electrical/Outlet';
 import { useBoundingBoxes } from '@/utils/hooks/useBoundingBoxes';
 import { useExteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { containerData } from '@/utils/constants/containerData';
+import { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } from '@/utils/constants/camera/camPos';
 
 export function Models() {
   const {
@@ -52,10 +52,6 @@ export function Models() {
     setCameraReady,
     supplier
   } = useContext(PageDataContext);
-  const { containerData } = useContext(Library2dDataContext);
-
-  const { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } =
-    useContext(Library3dDataContext);
 
   const { active, progress, item, loaded, total } = useProgress();
   // console.log(active, progress, item, loaded, total);

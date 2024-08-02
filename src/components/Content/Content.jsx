@@ -1,17 +1,9 @@
 'use client';
-import React, { useState, useEffect, createContext, useContext } from 'react';
-import { GoogleTagManager } from '@next/third-parties/google'
+import React, { useState, useEffect, createContext } from 'react';
+import { GoogleTagManager } from '@next/third-parties/google';
 import Viewer from '@/components/Viewer/Viewer';
 import Sidebar from '@/components/Sidebar/Sidebar';
 import PriceTotal from '@/components/PriceTotal/PriceTotal';
-import {
-  Library3dDataContext,
-  Library3dDataProvider,
-} from '@/utils/3D/3dLibraryContext';
-import {
-  Library2dDataContext,
-  Library2dDataProvider,
-} from '@/utils/2D/2dLibraryContext';
 import style from './content.module.scss';
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
@@ -25,7 +17,7 @@ import {
   CONTAINER_SIZE_STR_40,
   CONTAINER_STANDARD,
   ELEVATION_NAMES,
-} from '@/utils/constants/names';
+} from '@/utils/constants/names/names';
 import useDragHandlers from '@/utils/hooks/useDragHandlers';
 import useOrderTotal from '@/utils/hooks/useOrderTotal';
 import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
@@ -35,6 +27,20 @@ import {
   getInteriorFinishFromUrl,
   getSelectionsFromUrl,
 } from '@/utils/2D/utils';
+import {
+  drywallInterior,
+  INTERIOR_FINISH_OPTIONS,
+  plywoodInterior,
+  sprayfoamCeilingInterior,
+  sprayfoamCeilingWallsInterior,
+} from '@/utils/constants/components/interiorData';
+import { createSnapModifier } from '@dnd-kit/modifiers';
+import { containerData } from '@/utils/constants/containerData';
+import { DEFAULT_COMPONENTS } from '@/utils/constants/componentData';
+import { elevationData } from '@/utils/constants/elevationData';
+import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
+import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
+import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 
 export const PageDataContext = createContext();
 
@@ -45,25 +51,6 @@ const PageDataProvider = ({ children, data }) => {
   const queryInterior = getInteriorFinishFromUrl(data.querySelectionData);
   const queryExterior = getExteriorFinishFromUrl(data.querySelectionData);
   const queryFlooring = getFlooringFromUrl(data.querySelectionData);
-
-  // 2D Library Data
-  const {
-    DEFAULT_COMPONENTS,
-    snapToGridModifier,
-    elevationData,
-    containerData,
-  } = useContext(Library2dDataContext);
-
-  // 3D Library Data
-  const {
-    INTERIOR_FINISH_OPTIONS,
-    EXTERIOR_FINISH_OPTIONS,
-    FLOORING_OPTIONS,
-    plywoodInterior,
-    drywallInterior,
-    sprayfoamCeilingInterior,
-    sprayfoamCeilingWallsInterior,
-  } = useContext(Library3dDataContext);
 
   // State
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
@@ -139,7 +126,7 @@ const PageDataProvider = ({ children, data }) => {
     } else if (selectedContainer === containerData[2]) {
       return CONTAINER_SIZE_STR_40;
     }
-  }
+  };
 
   // Floor Plan
   const floorPlan = elevationData.find((elevation) => {
@@ -163,7 +150,7 @@ const PageDataProvider = ({ children, data }) => {
   } = useDragHandlers({
     selectedComponents,
     setSelectedComponents,
-    snapToGridModifier,
+    snapToGridModifier: createSnapModifier(DIMENSIONS.GRID_SIZE),
     selectedElevation,
     scaleFactor,
     isFloorPlanView,
@@ -263,7 +250,6 @@ const PageDataProvider = ({ children, data }) => {
   return (
     <PageDataContext.Provider
       value={{
-        containerHeightIsStandard,
         selectedComponents,
         setSelectedComponents,
         selectedElevation,
@@ -324,7 +310,7 @@ const PageDataProvider = ({ children, data }) => {
         interiorIsSprayFoamCeiling,
         interiorIsSprayFoamCeilingWalls,
         containerHeightIsStandard,
-        containerSizeStr
+        containerSizeStr,
       }}
     >
       {children}
@@ -335,33 +321,29 @@ const PageDataProvider = ({ children, data }) => {
 const Content = ({ data }) => {
   return (
     <Theme>
-      <GoogleTagManager gtmId="GTM-NVCQ2ZW3" />
-      <Library2dDataProvider>
-        <Library3dDataProvider>
-          <PageDataProvider data={data}>
-            <div className={style.mobileContent}>
-              <p>Configure on your desktop for the best experience</p>
-              <p>
-                For full functionality and a better experience, please visit
-                this page on a desktop computer.
-              </p>
+      <GoogleTagManager gtmId='GTM-NVCQ2ZW3' />
+        <PageDataProvider data={data}>
+          <div className={style.mobileContent}>
+            <p>Configure on your desktop for the best experience</p>
+            <p>
+              For full functionality and a better experience, please visit this
+              page on a desktop computer.
+            </p>
+          </div>
+          <div className={style.pageWrapper}>
+            <div
+              style={{
+                display: 'flex',
+                position: 'relative',
+              }}
+            >
+              <Viewer />
+              <Sidebar />
+              <PriceTotal />
+              <OrderSummaryModal />
             </div>
-            <div className={style.pageWrapper}>
-              <div
-                style={{
-                  display: 'flex',
-                  position: 'relative',
-                }}
-              >
-                <Viewer />
-                <Sidebar />
-                <PriceTotal />
-                <OrderSummaryModal />
-              </div>
-            </div>
-          </PageDataProvider>
-        </Library3dDataProvider>
-      </Library2dDataProvider>
+          </div>
+        </PageDataProvider>
     </Theme>
   );
 };

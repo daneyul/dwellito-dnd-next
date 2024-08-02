@@ -1,9 +1,9 @@
 import React, { useContext, useMemo, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { PageDataContext } from '@/components/Content/Content';
 import { useInteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 
 export function CsgGeometries({
   doorBoundingBoxes,
@@ -20,7 +20,6 @@ export function CsgGeometries({
   slateGreyPaint,
   beigePaint,
 }) {
-  const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
     exteriorFinish,
     interiorIsPlywood,

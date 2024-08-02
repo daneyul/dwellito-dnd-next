@@ -6,6 +6,10 @@ export const COMPONENT_TYPES = {
   PARTITION: 'partition',
 };
 
+export const EXTERIOR = 'exterior';
+export const INTERIOR = 'interior';
+export const FLOORING = 'flooring';
+
 const CUSTOM_CUBE_COMPONENTS = {
   PERSONNEL_LHR: `LHR Personnel Door`,
   PERSONNEL_LHR_GLASS: `LHR Personnel Door Window Lite Kit for Door 24inx30in Clear Glass`,
@@ -58,7 +62,16 @@ const CUSTOM_CUBE_COMPONENTS = {
 };
 
 const AT_AND_S_COMPONENTS = {
+  STEEL_DOOR_WELDED_FRAME: `Steel Door w. Welded Frame 36x80"`,
+  VISION_LITE_DOOR_WELDED_FRAME: `Vision Lite Door w. Welded Frame 36x80"`,
+  GLASS_GARAGE_DOOR: `Glass Garage Door 10'`,
   GLIDING_PATIO: `Gliding Patio Door 70.5x79.5`,
+  ROLLUP_DOOR_WHITE: `Roll Up Door (White) 7x7'`,
+  HORIZONTAL_SLIDER_WINDOW: "Horizontal Slider Window 46x27",
+  VERTICAL_SLIDER_WINDOW_46_27: "Vertical Slider Window 46x27",
+  VERTICAL_SLIDER_WINDOW_36_53: "Vertical Slider Window 36x53",
+  VERTICAL_SLIDER_WINDOW_30_60: "Vertical Slider Window 30x60",
+  WINDOW_SECURITY_BARS: "Window with Security Bars 36x36",
   SKYLIGHT: `Skylight 22.5x46.5`,
   FLOOD_LIGHT: `Adjustable Swivel Flood Light`,
 }

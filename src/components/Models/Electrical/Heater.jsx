@@ -1,10 +1,9 @@
 import { PageDataContext } from '@/components/Content/Content';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { checkDistance } from '@/utils/2D/utils';
 import { calcPosition } from '@/utils/3D/utils';
-import { elevationData } from '@/utils/constants/elevationData';
-import { COMPONENT_NAMES } from '@/utils/constants/names';
+import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
+import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { useContext, useEffect, useState, useRef } from 'react';
 import * as THREE from 'three';
 
@@ -35,8 +34,6 @@ const Heater = ({ component }) => {
   ) {
     return null;
   }
-
-  const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const { nodes, materials } = useGLTF(`/models/${supplier}/electrical/heater.glb`);
 
@@ -72,7 +69,6 @@ const Heater = ({ component }) => {
   const basePosition = calcPosition(
     selectedElevation,
     distanceObject,
-    elevationData,
     4,
     selectedContainer
   );

@@ -1,10 +1,9 @@
 import { PageDataContext } from '@/components/Content/Content';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { checkDistance } from '@/utils/2D/utils';
-import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
+import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { calcPosition } from '@/utils/3D/utils';
 import { elevationData } from '@/utils/constants/elevationData';
-import { COMPONENT_NAMES } from '@/utils/constants/names';
+import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
 import { useContext, useEffect, useState, useRef } from 'react';
 import * as THREE from 'three';
@@ -36,9 +35,6 @@ const Outlet = ({ component }) => {
   ) {
     return null;
   }
-
-  const { DIMENSIONS } = useContext(Library2dDataContext);
-  const { SCALE_FACTOR_FOR_CALCULATIONS } = useContext(Library3dDataContext);
 
   const { nodes, materials } = useGLTF(`/models/${supplier}/electrical/outlet.glb`);
 
@@ -74,8 +70,7 @@ const Outlet = ({ component }) => {
   const basePosition = calcPosition(
     selectedElevation,
     distanceObject,
-    elevationData,
-    SCALE_FACTOR_FOR_CALCULATIONS,
+    DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
     selectedContainer
   );
 

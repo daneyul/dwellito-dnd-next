@@ -11,7 +11,7 @@ import {
   DROPPABLE_PARTITIONS,
   DROPPABLE_RIGHT,
   ELEVATION_NAMES,
-} from '@/utils/constants/names';
+} from '@/utils/constants/names/names';
 import { Draggable } from './Draggable';
 
 const MultipleDroppables = ({ setHoveredPiece }) => {

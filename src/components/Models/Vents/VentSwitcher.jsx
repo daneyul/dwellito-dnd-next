@@ -1,5 +1,5 @@
 import { Vent12, Vent20, Vent24 } from './SpecificVents';
-import { COMPONENT_NAMES } from '@/utils/constants/names';
+import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 
 export default function Vent({ onBoundingBoxChange, component, supplier }) {
   switch (component.name) {

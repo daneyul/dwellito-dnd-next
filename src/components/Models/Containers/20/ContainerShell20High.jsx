@@ -1,9 +1,9 @@
 import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import { PageDataContext } from '@/components/Content/Content';
-import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
-import { useExteriorGLTFModels, useFlooringGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { useFlooringGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
+import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 
 export default function ContainerShell20High({
   redPaint,
@@ -13,8 +13,6 @@ export default function ContainerShell20High({
   slateGreyPaint,
   beigePaint,
 }) {
-  const { DIMENSIONS } = useContext(Library2dDataContext);
-  const { FLOORING_OPTIONS } = useContext(Library3dDataContext);
 
   const {
     exteriorFinish,

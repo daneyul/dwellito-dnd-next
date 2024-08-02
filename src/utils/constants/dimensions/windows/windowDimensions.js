@@ -1,0 +1,7 @@
+import { AT_AND_S_WINDOW_DIMENSIONS } from "./atAndS";
+import { CUSTOM_CUBE_WINDOW_DIMENSIONS } from "./customCubes";
+
+export const WINDOW_DIMENSIONS = {
+  ...CUSTOM_CUBE_WINDOW_DIMENSIONS,
+  ...AT_AND_S_WINDOW_DIMENSIONS
+}

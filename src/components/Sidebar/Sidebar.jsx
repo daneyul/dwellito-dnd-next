@@ -7,7 +7,6 @@ import style from './sidebar.module.scss';
 import { PageDataContext } from '@/components/Content/Content';
 import SaveOrder from '../SaveOrder/SaveOrder';
 import SingleSelect from '../SingleSelect/SingleSelect';
-import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
 import Layouts from '../Layouts/Layouts';
 import Subtitle from '../Subtitle/Subtitle';
 import {
@@ -17,8 +16,11 @@ import {
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_40,
   CONTAINER_STANDARD,
+  EXTERIOR,
   findSupplierName,
-} from '@/utils/constants/names';
+  FLOORING,
+  INTERIOR,
+} from '@/utils/constants/names/names';
 import Logo from '../Logo';
 import { componentData } from '@/utils/constants/componentData';
 import AddElecOption from '../AddOption/AddElecOption';
@@ -33,7 +35,6 @@ const Sidebar = memo(() => {
     supplier,
     containerSize,
   } = useContext(PageDataContext);
-  const { EXTERIOR, INTERIOR, FLOORING } = useContext(Library3dDataContext);
 
   const canSelectContainerHeight = slug !== CONTAINER_SIZE_10;
   const containerPrice = containerHeightIsStandard

@@ -7,13 +7,12 @@ import {
   checkDistance,
   generateImgSrc,
 } from '../../utils/2D/utils';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { PageDataContext } from '../Content/Content';
 
 const SaveBtn = ({ selectedComponents, orderTotal }) => {
   const [open, setOpen] = useState(false);
   const { selectedContainer, scaleFactor, supplier } = useContext(PageDataContext);
-  const { DIMENSIONS } = useContext(Library2dDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
 

@@ -12,7 +12,7 @@ import {
   DROPPABLE_LEFT,
   DROPPABLE_RIGHT,
   ELEVATION_NAMES,
-} from '../constants/names';
+} from '../constants/names/names';
 import { useState } from 'react';
 
 const useDragHandlers = ({

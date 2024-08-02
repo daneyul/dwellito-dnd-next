@@ -1,4 +1,10 @@
-import { COMPONENT_NAMES, COMPONENT_TYPES, DROPPABLE_BACK, DROPPABLE_LEFT, DROPPABLE_RIGHT, ELEVATION_NAMES, SUPPLIER_SLUGS } from '../names';
+import { DIMENSIONS } from '../dimensions/dimensions';
+import {
+  COMPONENT_NAMES,
+  COMPONENT_TYPES,
+  ELEVATION_NAMES,
+  SUPPLIER_SLUGS,
+} from '../names/names';
 
 const customCubes = [
   {
@@ -20,7 +26,11 @@ const customCubes = [
     model: 'airconditioner',
     fixed: true,
     fixedSide: ELEVATION_NAMES.BACK,
-    alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
+    alwaysShowOn: [
+      ELEVATION_NAMES.BACK,
+      ELEVATION_NAMES.LEFT,
+      ELEVATION_NAMES.RIGHT,
+    ],
   },
   {
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP,
@@ -41,7 +51,11 @@ const customCubes = [
     model: 'electricalpanel',
     fixed: true,
     fixedSide: ELEVATION_NAMES.BACK,
-    alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
+    alwaysShowOn: [
+      ELEVATION_NAMES.BACK,
+      ELEVATION_NAMES.LEFT,
+      ELEVATION_NAMES.RIGHT,
+    ],
   },
   {
     name: COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP,
@@ -62,7 +76,11 @@ const customCubes = [
     model: 'electricalpanel',
     fixed: true,
     fixedSide: ELEVATION_NAMES.BACK,
-    alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
+    alwaysShowOn: [
+      ELEVATION_NAMES.BACK,
+      ELEVATION_NAMES.LEFT,
+      ELEVATION_NAMES.RIGHT,
+    ],
   },
   {
     name: COMPONENT_NAMES.BASEBOARD_HEATER,
@@ -117,7 +135,7 @@ const customCubes = [
     model: 'fan',
     fixed: true,
     fixedSide: ELEVATION_NAMES.RIGHT,
-    alwaysShowOn: [ELEVATION_NAMES.RIGHT]
+    alwaysShowOn: [ELEVATION_NAMES.RIGHT],
   },
   {
     name: COMPONENT_NAMES.WRAP_LIGHT,
@@ -128,14 +146,14 @@ const customCubes = [
     floorPlanImg: {
       TEN: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/10/wrap-light-dash.svg`,
       TWENTY: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/20/wrap-light-dash.svg`,
-      FORTY: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/40/wrap-light-dash.svg`
+      FORTY: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/40/wrap-light-dash.svg`,
     },
     sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/wrap-light.svg`,
-    desc: "P602-1-01",
+    desc: 'P602-1-01',
     objWidth: {
       TEN: 50,
       TWENTY: 170,
-      FORTY: 375
+      FORTY: 375,
     },
     objHeight: 6,
     objType: COMPONENT_TYPES.ELECTRICAL,
@@ -143,10 +161,27 @@ const customCubes = [
     priceSurface: 450,
     model: '',
     fixed: true,
-    ceilingOnly: true
-  }
-].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));
+    ceilingOnly: true,
+  },
+].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));
 
-export const electricalComponents = [
-  ...customCubes
-]
+const atAndS = [
+  {
+    name: COMPONENT_NAMES.SKYLIGHT,
+    position: {
+      x: DIMENSIONS.WINDOW.WINDOW_SECURITY.POSITION.x,
+      y: DIMENSIONS.WINDOW.WINDOW_SECURITY.POSITION.y,
+    },
+    imgName: `${COMPONENT_TYPES.WINDOW}/window.svg`,
+    desc: 'P201-1-01',
+    objWidth: DIMENSIONS.WINDOW.WINDOW_SECURITY.WIDTH,
+    objHeight: DIMENSIONS.WINDOW.WINDOW_SECURITY.HEIGHT,
+    objFpHeight: DIMENSIONS.WINDOW.WINDOW.FP_HEIGHT,
+    objType: COMPONENT_TYPES.WINDOW,
+    price: 1895,
+    model: 'SM_Window 48x36_Hinged_Security_01',
+    floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/window.svg`,
+  },
+].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));
+
+export const electricalComponents = [...customCubes, ...atAndS];

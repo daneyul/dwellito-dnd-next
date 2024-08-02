@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Vector3 } from 'three';
-import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names';
+import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names/names';
 
 export function useBoundingBoxes({ doors, windows, vents }) {
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);

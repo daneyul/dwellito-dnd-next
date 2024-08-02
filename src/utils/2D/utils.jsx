@@ -4,9 +4,9 @@ import {
   COMPONENT_TYPES,
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
-} from '../constants/names';
-import { DIMENSIONS } from '../constants/dimensions';
+} from '../constants/names/names';
 import { ventComponents } from '../constants/components/vents';
+import { DIMENSIONS } from '../constants/dimensions/dimensions';
 
 export const generateImgSrc = (supplier, imgName) =>
   `../../../images/${supplier}/${imgName}`;

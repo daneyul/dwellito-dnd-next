@@ -9,7 +9,7 @@ import {
   getComponentPrice,
   getUniqueElevationObjects,
 } from '@/utils/2D/utils';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
@@ -19,13 +19,12 @@ import {
   CONTAINER_SIZE_40,
   CONTAINER_STANDARD,
   ELEVATION_NAMES,
-} from '@/utils/constants/names';
+} from '@/utils/constants/names/names';
 import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/useSaveSelections';
 import Toast from '../Toast/Toast';
 
 const OrderSummaryModal = () => {
-  const { DIMENSIONS } = useContext(Library2dDataContext);
   const {
     containerHeightIsStandard,
     orderTotal,

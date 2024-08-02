@@ -1,13 +1,11 @@
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
 import AddOption from '../AddOption/AddOption';
 import style from './selector.module.scss';
 import { useContext } from 'react';
-import { COMPONENT_TYPES } from '@/utils/constants/names';
+import { COMPONENT_TYPES } from '@/utils/constants/names/names';
 import { PageDataContext } from '../Content/Content';
-import AddPartition from '../AddOption/AddPartition';
+import { componentData } from '@/utils/constants/componentData';
 
 const Selector = () => {
-  const { componentData } = useContext(Library2dDataContext);
   const { containerHeightIsStandard, supplier } =useContext(PageDataContext);
 
   const doors = componentData.filter(

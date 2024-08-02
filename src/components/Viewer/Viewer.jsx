@@ -7,7 +7,7 @@ import { Models } from '../Models/Models';
 import ToggleCamera from '../ToggleCamera/ToggleCamera';
 import { PageDataContext } from '../Content/Content';
 import ElevationToggle from '../ElevationToggle/ElevationToggle';
-import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names';
+import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names/names';
 import MultipleDroppables from '../MultipleDroppables';
 import DragToMove from '../DragToMove/DragToMove';
 import OutsideDroppable from '../Collision/OutsideDroppable';

@@ -1,5 +1,5 @@
-import { DIMENSIONS } from '../dimensions';
-import { COMPONENT_NAMES, COMPONENT_TYPES, SUPPLIER_SLUGS } from '../names';
+import { DIMENSIONS } from '../dimensions/dimensions';
+import { COMPONENT_NAMES, COMPONENT_TYPES, SUPPLIER_SLUGS } from '../names/names';
 
 const customCubes = [
   {
@@ -38,13 +38,13 @@ const customCubes = [
 
 const atAndS = [
   {
-    name: COMPONENT_NAMES.SKYLIGHT,
+    name: COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW,
     position: {
       x: DIMENSIONS.WINDOW.WINDOW_SECURITY.POSITION.x,
       y: DIMENSIONS.WINDOW.WINDOW_SECURITY.POSITION.y,
     },
     imgName: `${COMPONENT_TYPES.WINDOW}/window.svg`,
-    desc: 'P201-1-01',
+    desc: '',
     objWidth: DIMENSIONS.WINDOW.WINDOW_SECURITY.WIDTH,
     objHeight: DIMENSIONS.WINDOW.WINDOW_SECURITY.HEIGHT,
     objFpHeight: DIMENSIONS.WINDOW.WINDOW.FP_HEIGHT,

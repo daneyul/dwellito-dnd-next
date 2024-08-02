@@ -7,7 +7,7 @@ import * as HoverCard from '@radix-ui/react-hover-card';
 import {
   COMPONENT_NAMES,
   INTERIOR_FINISH_NAMES,
-} from '@/utils/constants/names';
+} from '@/utils/constants/names/names';
 
 const AddPartition = ({ options }) => {
   const {

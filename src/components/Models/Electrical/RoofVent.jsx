@@ -4,10 +4,10 @@ import {
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40
-} from '@/utils/constants/names';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+} from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
 import { useContext } from 'react';
+import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 
 const RoofVent = () => {
   const { containerHeightIsStandard, slug, selectedComponents, supplier } =
@@ -20,8 +20,6 @@ const RoofVent = () => {
   ) {
     return null;
   }
-
-  const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const fileName = containerHeightIsStandard
     ? 'roofvent-st.glb'

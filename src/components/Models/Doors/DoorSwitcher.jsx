@@ -26,7 +26,7 @@ import {
   RhrSecurityGlass,
   Sliding6,
 } from './SpecificDoors';
-import { COMPONENT_NAMES } from '@/utils/constants/names';
+import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 
 export default function Door({ onBoundingBoxChange, component, supplier }) {
   switch (component.name) {

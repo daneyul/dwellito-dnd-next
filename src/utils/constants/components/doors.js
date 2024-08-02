@@ -1,5 +1,5 @@
-import { DIMENSIONS } from '../dimensions';
-import { COMPONENT_NAMES, COMPONENT_TYPES, SUPPLIER_SLUGS } from '../names';
+import { DIMENSIONS } from '../dimensions/dimensions';
+import { COMPONENT_NAMES, COMPONENT_TYPES, SUPPLIER_SLUGS } from '../names/names';
 
 const customCubes = [
   {

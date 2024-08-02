@@ -4,7 +4,7 @@ import {
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40,
-} from '@/utils/constants/names';
+} from '@/utils/constants/names/names';
 import { getComponentPrice } from '../2D/utils';
 
 const useOrderTotal = ({

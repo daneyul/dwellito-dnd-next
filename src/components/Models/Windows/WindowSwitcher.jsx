@@ -1,5 +1,5 @@
 import { WSecurity, WoSecurity } from './SpecificWindows';
-import { COMPONENT_NAMES } from '@/utils/constants/names';
+import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 
 export default function Window({ onBoundingBoxChange, component, supplier }) {
   switch (component.name) {

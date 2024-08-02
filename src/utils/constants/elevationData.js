@@ -1,10 +1,10 @@
-import { DIMENSIONS } from './dimensions';
+import { DIMENSIONS } from './dimensions/dimensions';
 import {
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40,
   ELEVATION_NAMES,
-} from './names';
+} from './names/names';
 
 export const elevationData = [
   {

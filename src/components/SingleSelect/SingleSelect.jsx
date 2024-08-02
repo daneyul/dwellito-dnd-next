@@ -2,8 +2,17 @@ import { useContext } from 'react';
 import Subtitle from '../Subtitle/Subtitle';
 import style from './singleSelect.module.scss';
 import { PageDataContext } from '@/components/Content/Content';
-import { Library3dDataContext } from '@/utils/3D/3dLibraryContext';
-import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40 } from '@/utils/constants/names';
+import {
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
+  EXTERIOR,
+  FLOORING,
+  INTERIOR,
+} from '@/utils/constants/names/names';
+import { INTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/interiorData';
+import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
+import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 
 /* eslint-disable @next/next/no-img-element */
 const SingleSelect = ({ type }) => {
@@ -20,16 +29,8 @@ const SingleSelect = ({ type }) => {
     slug,
     setCameraReady,
     interiorFinishPrice,
-    supplier
+    supplier,
   } = useContext(PageDataContext);
-  const {
-    EXTERIOR,
-    INTERIOR,
-    FLOORING,
-    INTERIOR_FINISH_OPTIONS,
-    EXTERIOR_FINISH_OPTIONS,
-    FLOORING_OPTIONS,
-  } = useContext(Library3dDataContext);
 
   const isExterior = type === EXTERIOR;
   const isInterior = type === INTERIOR;

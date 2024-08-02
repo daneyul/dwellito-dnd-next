@@ -1,6 +1,6 @@
 import { PageDataContext } from '@/components/Content/Content';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
-import { COMPONENT_NAMES, CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40 } from '@/utils/constants/names';
+import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
+import { COMPONENT_NAMES, CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40 } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
 import { useContext } from 'react';
 
@@ -15,8 +15,6 @@ const AirConditioner = () => {
   ) {
     return null;
   }
-
-  const { DIMENSIONS } = useContext(Library2dDataContext);
 
   const { nodes, materials } = useGLTF(
     `/models/${supplier}/electrical/${containerSize()}/airconditioner.glb`

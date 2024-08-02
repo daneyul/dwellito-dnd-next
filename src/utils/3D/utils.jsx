@@ -1,5 +1,6 @@
-import { DIMENSIONS } from '../constants/dimensions';
-import { ELEVATION_NAMES } from '../constants/names';
+import { ELEVATION_NAMES } from '../constants/names/names';
+import { DIMENSIONS } from '../constants/dimensions/dimensions';
+import { elevationData } from '../constants/elevationData';
 
 const degrees = {
   90: Math.PI / 2,
@@ -7,7 +8,7 @@ const degrees = {
   270: Math.PI + Math.PI / 2,
 };
 
-const calcRotation = (elevation, elevationData, selectedContainer) => {
+const calcRotation = (elevation, selectedContainer) => {
   const matchingElevation = elevationData.find(
     (item) => item.homePlan === selectedContainer.slug && item.name === elevation.name
   );
@@ -305,7 +306,6 @@ const electricalCoordinates = (
 const calcPosition = (
   elevation,
   distanceObject,
-  elevationData,
   SCALE_FACTOR_FOR_CALCULATIONS,
   selectedContainer
 ) => {

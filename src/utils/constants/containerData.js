@@ -2,7 +2,7 @@ import {
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40,
-} from './names';
+} from './names/names';
 
 export const containerData = [
   {

@@ -4,7 +4,7 @@ import { PageDataContext } from '../Content/Content';
 import HighlightIcon from '../svgs/HighlightIcon';
 import ViewerIcon from '../svgs/ViewerIcon';
 import { Spinner } from '@radix-ui/themes';
-import { ELEVATION_NAMES } from '@/utils/constants/names';
+import { ELEVATION_NAMES } from '@/utils/constants/names/names';
 
 const ToggleView = () => {
   const {

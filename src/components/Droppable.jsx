@@ -3,12 +3,11 @@ import { useDroppable } from '@dnd-kit/core';
 import { generateImgSrc, toScale } from '../utils/2D/utils';
 import Image from 'next/image';
 import { PageDataContext } from './Content/Content';
-import { Library2dDataContext } from '@/utils/2D/2dLibraryContext';
+import { elevationData } from '@/utils/constants/elevationData';
 
 export function Droppable({ children }) {
   const { scaleFactor, selectedElevation, containerHeightIsStandard, supplier } =
     useContext(PageDataContext);
-  const { elevationData } = useContext(Library2dDataContext);
   const { setNodeRef } = useDroppable({
     id: 'droppable',
   });

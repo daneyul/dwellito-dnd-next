@@ -1,5 +1,5 @@
-import { DIMENSIONS } from '../dimensions';
-import { COMPONENT_NAMES, COMPONENT_TYPES } from '../names';
+import { DIMENSIONS } from '../dimensions/dimensions';
+import { COMPONENT_NAMES, COMPONENT_TYPES } from '../names/names';
 //only works with sheeting package - no door
 //only works with plywood and drywall - door
 export const partitionComponents = [
