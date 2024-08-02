@@ -4,6 +4,7 @@ import {
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40,
+  COMPONENT_TYPES,
 } from '@/utils/constants/names/names';
 import { getComponentPrice } from '../2D/utils';
 
@@ -61,7 +62,7 @@ const useOrderTotal = ({
     const flooringPrice = getContainerSpecificPrice(flooring);
 
     const componentsTotal = selectedComponents.reduce((acc, component) => {
-      return acc + getComponentPrice(component, interiorFinish);
+      return acc + getComponentPrice(component, interiorFinish, component.objType === COMPONENT_TYPES.ELECTRICAL);
     }, 0);
 
     const total =
