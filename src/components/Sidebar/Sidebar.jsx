@@ -93,7 +93,7 @@ const Sidebar = memo(() => {
     return (
       <>
         <div className={style.logo}>
-          <Logo />
+          <Logo type={supplier} />
         </div>
         <div className={style.header}>{findSupplierName(supplier)}</div>
         <div className={style.supplier}>By {findSupplierName(supplier)}</div>

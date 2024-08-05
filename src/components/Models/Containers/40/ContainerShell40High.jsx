@@ -30,7 +30,7 @@ export default function ContainerShell40High({
 
   // Load all 3d objects
   const { nodes, materials } = useGLTF(
-    `/models/${supplier}/container/${containerSize()}/${selectedContainerHeight}/container-shell.glb`
+    `/models/container/${containerSize()}/${selectedContainerHeight}/container-shell.glb`
   );
 
   const exteriorPaint = useMemo(() => {
@@ -85,7 +85,7 @@ export default function ContainerShell40High({
     if (interiorIsPlywood) {
       const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
         useGLTF(
-          `/models/${supplier}/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
+          `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
         );
       return (
         <>
@@ -262,7 +262,7 @@ export default function ContainerShell40High({
     if (interiorIsDrywall) {
       const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
         useGLTF(
-          `/models/${supplier}/container/${containerSize()}/${selectedContainerHeight}/rear-top-drywall.glb`
+          `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-drywall.glb`
         );
       return (
         <>
@@ -470,7 +470,7 @@ export default function ContainerShell40High({
     if (flooring.name !== FLOORING_OPTIONS[0].name) {
       const { echoFloor, timberFloor } = useFlooringGLTFModels(supplier);
       const { nodes: flooringNodes } = useGLTF(
-        `/models/${supplier}/container/${containerSize()}/${selectedContainerHeight}/flooring.glb`
+        `/models/container/${containerSize()}/${selectedContainerHeight}/flooring.glb`
       );
 
       const flooringMaterial = () => {
@@ -507,7 +507,7 @@ export default function ContainerShell40High({
         nodes: ceilingSprayFoamNodes,
         materials: ceilingSprayFoamMaterials,
       } = useGLTF(
-        `/models/${supplier}/container/${containerSize()}/${selectedContainerHeight}/ceiling-sprayfoam.glb`
+        `/models/container/${containerSize()}/${selectedContainerHeight}/ceiling-sprayfoam.glb`
       );
       return (
         <mesh
@@ -531,7 +531,7 @@ export default function ContainerShell40High({
         nodes: rearTopSprayFoamNodes,
         materials: rearTopSprayFoamMaterials,
       } = useGLTF(
-        `/models/${supplier}/container/${containerSize()}/${selectedContainerHeight}/rear-top-sprayfoam.glb`
+        `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-sprayfoam.glb`
       );
       return (
         <>

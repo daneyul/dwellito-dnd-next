@@ -1,10 +1,12 @@
-import CustomCubes from '../../public/logos/custom-cubes.svg';
+import CustomCubes from '../../public/logos/customCubes/logo.svg';
+import AtAndS from '../../public/logos/atAndS/logo.svg';
 
 const logos = {
-  customCubes: CustomCubes
+  "custom-cubes": CustomCubes,
+  "at-and-s": AtAndS,
 };
 
-const Logo = ({ type = 'customCubes' }) => {
+const Logo = ({ type = 'custom-cubes' }) => {
   const SelectedLogo = logos[type];
 
   return (

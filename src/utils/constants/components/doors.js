@@ -486,9 +486,11 @@ const atAndS = [
     },
     imgName: `${COMPONENT_TYPES.DOOR}/gliding-patio.svg`,
     desc: COMPONENT_NAMES.GLIDING_PATIO,
+    objWidth: DIMENSIONS.DOOR.GLIDING_PATIO.WIDTH,
+    objHeight: DIMENSIONS.DOOR.GLIDING_PATIO.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 0,
-    model: 'andersen-patio-door',
+    model: 'gliding-patio-door',
     isRollUp: false,
     isHeavyDuty: false
   }

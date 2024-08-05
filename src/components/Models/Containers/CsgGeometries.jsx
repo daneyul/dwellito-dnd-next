@@ -55,13 +55,13 @@ export function CsgGeometries({
   }, [selectedContainer.name, DIMENSIONS]);
 
   const cRightNodes = useGLTF(
-    `/models/${supplier}/container/${size}/${selectedContainerHeight}/exterior-right.glb`
+    `/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`
   ).nodes;
   const cBackNodes = useGLTF(
-    `/models/${supplier}/container/${size}/${selectedContainerHeight}/exterior-back.glb`
+    `/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`
   ).nodes;
   const cLeftNodes = useGLTF(
-    `/models/${supplier}/container/${size}/${selectedContainerHeight}/exterior-left.glb`
+    `/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`
   ).nodes;
 
   const csg = useRef();
@@ -315,7 +315,7 @@ export function CsgGeometries({
       return null;
     } else if (interiorIsDrywall || interiorIsPlywood) {
       const baseboard = useGLTF(
-        `/models/${supplier}/container/${size}/${selectedContainerHeight}/baseboard.glb`
+        `/models/container/${size}/${selectedContainerHeight}/baseboard.glb`
       ).nodes;
       return (
         <Base

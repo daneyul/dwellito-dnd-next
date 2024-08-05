@@ -15,13 +15,13 @@ export function preloadContainerModels(size, selectedContainerHeight, supplier) 
   useGLTF.preload(`/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-right.glb`);
   useGLTF.preload(`/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-left.glb`);
   useGLTF.preload(`/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-back.glb`);
-  useGLTF.preload(`/models/${supplier}/container/${size}/${selectedContainerHeight}/rear-top-plywood.glb`);
-  useGLTF.preload(`/models/${supplier}/container/${size}/${selectedContainerHeight}/rear-top-drywall.glb`);
-  useGLTF.preload(`/models/${supplier}/container/${size}/${selectedContainerHeight}/rear-top-sprayfoam.glb`);
+  useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/rear-top-plywood.glb`);
+  useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/rear-top-drywall.glb`);
+  useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/rear-top-sprayfoam.glb`);
   useGLTF.preload(
-    `/models/${supplier}/container/${size}/${selectedContainerHeight}/ceiling-sprayfoam.glb`
+    `/models/container/${size}/${selectedContainerHeight}/ceiling-sprayfoam.glb`
   );
-  useGLTF.preload(`/models/${supplier}/container/${size}/${selectedContainerHeight}/flooring.glb`);
+  useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/flooring.glb`);
   useGLTF.preload(`/models/${supplier}/materials/exterior/red-paint.glb`);
   useGLTF.preload(`/models/${supplier}/materials/exterior/white-paint.glb`);
   useGLTF.preload(`/models/${supplier}/materials/exterior/green-paint.glb`);
