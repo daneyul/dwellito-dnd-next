@@ -1,4 +1,4 @@
-import { INTERIOR_FINISH_NAMES } from "../names/names";
+import { INTERIOR_FINISH_NAMES, SUPPLIER_SLUGS } from "../names/names";
 
 const customCubes = [
   {
@@ -45,10 +45,54 @@ const customCubes = [
     price40H: 13805,
     img: 'drywall.png',
   },
-]
+].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));
+
+const atAndS = [
+  {
+    name: INTERIOR_FINISH_NAMES.CHARRED_WOOD,
+    hex: '',
+    price10: 4850,
+    price20S: 7110,
+    price20H: 8020,
+    price40S: 12450,
+    price40H: 13805,
+    img: '',
+  },
+  {
+    name: INTERIOR_FINISH_NAMES.BARN_WOOD,
+    hex: '',
+    price10: 4850,
+    price20S: 7110,
+    price20H: 8020,
+    price40S: 12450,
+    price40H: 13805,
+    img: '',
+  },
+  {
+    name: INTERIOR_FINISH_NAMES.MDF_PANEL,
+    hex: '',
+    price10: 4850,
+    price20S: 7110,
+    price20H: 8020,
+    price40S: 12450,
+    price40H: 13805,
+    img: '',
+  },
+  {
+    name: INTERIOR_FINISH_NAMES.LUAN_WALL,
+    hex: '',
+    price10: 4850,
+    price20S: 7110,
+    price20H: 8020,
+    price40S: 12450,
+    price40H: 13805,
+    img: '',
+  },
+].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));
 
 export const INTERIOR_FINISH_OPTIONS = [
-  ...customCubes
+  ...customCubes,
+  ...atAndS
 ];
 
 export const plywoodInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.PLYWOOD);

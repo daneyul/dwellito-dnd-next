@@ -8,6 +8,7 @@ export const COMPONENT_TYPES = {
 
 export const EXTERIOR = 'exterior';
 export const INTERIOR = 'interior';
+export const INTERIOR_TRIM = 'interior-trim'
 export const FLOORING = 'flooring';
 
 const CUSTOM_CUBE_COMPONENTS = {
@@ -73,7 +74,14 @@ const AT_AND_S_COMPONENTS = {
   VERTICAL_SLIDER_WINDOW_30_60: "Vertical Slider Window 30x60",
   WINDOW_SECURITY_BARS: "Window with Security Bars 36x36",
   SKYLIGHT: `Skylight 22.5x46.5`,
+  LOUVER_VENT: 'Louver Vent',
+  ALUMINUM_EXHAUST_SHUTTER: 'Aluminum Exhaust Shutter',
+  WHITE_STRIP_LIGHT_FIXTURE: `T8 LED White Strip Light Fixture`,
+  EMERGENCY_LIGHT: 'Emergency Light',
+  INDOOR_OUTDOOR_FAN: 'Indoor/Outdoor Fan',
+  MODERN_FARMHOUSE_OUTDOOR_WALL_SCONCE: 'Modern Farmhouse Outdoor Wall Sconce',
   ADJUSTABLE_SWIVEL_FLOOD_LIGHT: `Adjustable Swivel Flood Light`,
+  SECURITY_FLOOD_LIGHT: 'Security Flood Light',
 }
 
 export const COMPONENT_NAMES = {
@@ -107,7 +115,17 @@ export const INTERIOR_FINISH_NAMES = {
     '½” Pre- Finished Drywall, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
   SPRAY_FOAM_CEILING: '1” Spray Foam (Ceiling Only)',
   SPRAY_FOAM_CEILING_WALLS: '1” Spray Foam (Ceiling & Walls)',
+  CHARRED_WOOD: 'Charred Wood Ash Gray Pine Shiplap Board',
+  MDF_PANEL: 'Authentic Pallet MDF Panel',
+  BARN_WOOD: 'Barn Wood Wall Panels',
+  LUAN_WALL: 'Luan Wall Panels'
 };
+
+export const INTERIOR_TRIM_NAMES= {
+  BATTEN_ADOBE_WHITE: `Batten - Adobe White 1x96"`,
+  LUAN_BATTEN_OAK: `Luan Batten - Oak 1-½"x8'`,
+  LUAN_BATTEN_WHITE: `Luan Batten - White 1-½"x8'`,
+}
 
 export const DROPPABLE_LEFT = 'droppable-left';
 export const DROPPABLE_RIGHT = 'droppable-right';

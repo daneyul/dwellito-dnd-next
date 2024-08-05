@@ -25,6 +25,7 @@ import {
   getExteriorFinishFromUrl,
   getFlooringFromUrl,
   getInteriorFinishFromUrl,
+  getInteriorTrimFromUrl,
   getSelectionsFromUrl,
 } from '@/utils/2D/utils';
 import {
@@ -41,6 +42,7 @@ import { elevationData } from '@/utils/constants/elevationData';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
+import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
 
 export const PageDataContext = createContext();
 
@@ -51,6 +53,7 @@ const PageDataProvider = ({ children, data }) => {
   const queryInterior = getInteriorFinishFromUrl(data.querySelectionData);
   const queryExterior = getExteriorFinishFromUrl(data.querySelectionData);
   const queryFlooring = getFlooringFromUrl(data.querySelectionData);
+  const queryInteriorTrim = getInteriorTrimFromUrl(data.querySelectionData);
 
   // State
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
@@ -77,6 +80,9 @@ const PageDataProvider = ({ children, data }) => {
   );
   const [interiorFinish, setInteriorFinish] = useState(
     queryInterior || INTERIOR_FINISH_OPTIONS[0]
+  );
+  const [interiorTrim, setInteriorTrim] = useState(
+    queryInteriorTrim || INTERIOR_TRIM_OPTIONS[0]
   );
   const [flooring, setFlooring] = useState(
     queryFlooring || FLOORING_OPTIONS[0]
@@ -269,6 +275,8 @@ const PageDataProvider = ({ children, data }) => {
         setExteriorFinish,
         interiorFinish,
         setInteriorFinish,
+        interiorTrim,
+        setInteriorTrim,
         interiorFinishPrice,
         showExterior,
         setShowExterior,

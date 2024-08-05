@@ -6,47 +6,59 @@ import { PageDataContext } from '../Content/Content';
 import { componentData } from '@/utils/constants/componentData';
 
 const Selector = () => {
-  const { containerHeightIsStandard, supplier } =useContext(PageDataContext);
+  const { containerHeightIsStandard, supplier } = useContext(PageDataContext);
 
   const doors = componentData.filter(
     (item) =>
-      item.objType === COMPONENT_TYPES.DOOR && !item.isRollUp && item.supplier === supplier
+      item.objType === COMPONENT_TYPES.DOOR &&
+      !item.isRollUp &&
+      item.supplier === supplier
   );
-  const economyDoors = componentData.filter(
-    (item) => {
-      if (containerHeightIsStandard) {
-        return (
-          item.objType === COMPONENT_TYPES.DOOR &&
-          item.isRollUp && !item.isHeavyDuty && !item.highContainerOnly && item.supplier === supplier
-        );
-      } else {
-        return (
-          item.objType === COMPONENT_TYPES.DOOR &&
-          item.isRollUp && !item.isHeavyDuty && item.highContainerOnly && item.supplier === supplier
-        )
-      }
+  const economyDoors = componentData.filter((item) => {
+    if (containerHeightIsStandard) {
+      return (
+        item.objType === COMPONENT_TYPES.DOOR &&
+        item.isRollUp &&
+        !item.isHeavyDuty &&
+        !item.highContainerOnly &&
+        item.supplier === supplier
+      );
+    } else {
+      return (
+        item.objType === COMPONENT_TYPES.DOOR &&
+        item.isRollUp &&
+        !item.isHeavyDuty &&
+        item.highContainerOnly &&
+        item.supplier === supplier
+      );
     }
-  );
-  const heavyDutyDoors = componentData.filter(
-    (item) => {
-      if (containerHeightIsStandard) {
-        return (
-          item.objType === COMPONENT_TYPES.DOOR &&
-          item.isRollUp && item.isHeavyDuty && !item.highContainerOnly && item.supplier === supplier
-        );
-      } else {
-        return (
-          item.objType === COMPONENT_TYPES.DOOR &&
-          item.isRollUp && item.isHeavyDuty && item.highContainerOnly && item.supplier === supplier
-        )
-      }
+  });
+  const heavyDutyDoors = componentData.filter((item) => {
+    if (containerHeightIsStandard) {
+      return (
+        item.objType === COMPONENT_TYPES.DOOR &&
+        item.isRollUp &&
+        item.isHeavyDuty &&
+        !item.highContainerOnly &&
+        item.supplier === supplier
+      );
+    } else {
+      return (
+        item.objType === COMPONENT_TYPES.DOOR &&
+        item.isRollUp &&
+        item.isHeavyDuty &&
+        item.highContainerOnly &&
+        item.supplier === supplier
+      );
     }
-  );
+  });
   const windows = componentData.filter(
-    (item) => item.objType === COMPONENT_TYPES.WINDOW && item.supplier === supplier
+    (item) =>
+      item.objType === COMPONENT_TYPES.WINDOW && item.supplier === supplier
   );
   const vents = componentData.filter(
-    (item) => item.objType === COMPONENT_TYPES.VENT && item.supplier === supplier
+    (item) =>
+      item.objType === COMPONENT_TYPES.VENT && item.supplier === supplier
   );
 
   return (
@@ -60,14 +72,22 @@ const Selector = () => {
         <div className={style.objectContainer}>
           <AddOption options={doors} />
         </div>
-        <div className={style.subTitle}>Economy Roll Up Doors</div>
-        <div className={style.objectContainer}>
-          <AddOption options={economyDoors} />
-        </div>
-        <div className={style.subTitle}>Heavy Duty Roll Up Doors</div>
-        <div className={style.objectContainer}>
-          <AddOption options={heavyDutyDoors} />
-        </div>
+        {economyDoors.length > 0 && (
+          <>
+            <div className={style.subTitle}>Economy Roll Up Doors</div>
+            <div className={style.objectContainer}>
+              <AddOption options={economyDoors} />
+            </div>
+          </>
+        )}
+        {heavyDutyDoors.length > 0 && (
+          <>
+            <div className={style.subTitle}>Heavy Duty Roll Up Doors</div>
+            <div className={style.objectContainer}>
+              <AddOption options={heavyDutyDoors} />
+            </div>
+          </>
+        )}
         <div className={style.subTitle}>Windows</div>
         <div className={style.objectContainer}>
           <AddOption options={windows} />

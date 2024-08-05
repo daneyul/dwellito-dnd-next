@@ -9,10 +9,12 @@ import {
   EXTERIOR,
   FLOORING,
   INTERIOR,
+  INTERIOR_TRIM,
 } from '@/utils/constants/names/names';
 import { INTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/interiorData';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
+import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
 
 /* eslint-disable @next/next/no-img-element */
 const SingleSelect = ({ type }) => {
@@ -30,14 +32,17 @@ const SingleSelect = ({ type }) => {
     setCameraReady,
     interiorFinishPrice,
     supplier,
+    interiorTrim,
+    setInteriorTrim
   } = useContext(PageDataContext);
 
   const isExterior = type === EXTERIOR;
   const isInterior = type === INTERIOR;
+  const isInteriorTrim = type === INTERIOR_TRIM;
   const isFlooring = type === FLOORING;
 
   const exteriorSelections = () => {
-    return EXTERIOR_FINISH_OPTIONS.map((selection) => {
+    return EXTERIOR_FINISH_OPTIONS.filter((option) => option.supplier === supplier).map((selection) => {
       const isSelected = exteriorFinish.hex === selection.hex;
 
       return (
@@ -82,7 +87,7 @@ const SingleSelect = ({ type }) => {
   };
 
   const interiorSelections = () => {
-    return INTERIOR_FINISH_OPTIONS.map((selection) => {
+    return INTERIOR_FINISH_OPTIONS.filter((option) => option.supplier === supplier).map((selection) => {
       const isSelected = interiorFinish === selection;
 
       return (
@@ -109,6 +114,46 @@ const SingleSelect = ({ type }) => {
   const interiorDesc = () => {
     return INTERIOR_FINISH_OPTIONS.map((selection, index) => {
       const isSelected = interiorFinish === selection;
+
+      return (
+        isSelected && (
+          <div className={style.singleSelDescriptionContainer} key={index}>
+            <Subtitle text={selection.name} />
+            <Subtitle text={`+ $${interiorFinishPrice.toLocaleString()}`} />
+          </div>
+        )
+      );
+    });
+  };
+
+  const interiorTrimSelections = () => {
+    return INTERIOR_TRIM_OPTIONS.filter((option) => option.supplier === supplier).map((selection) => {
+      const isSelected = interiorTrim === selection;
+
+      return (
+        <div
+          key={selection.hex}
+          className={isSelected ? style.thumbnailSelected : style.thumbnail}
+          onClick={() => {
+            setInteriorTrim(selection);
+            setShow3d(true);
+            setShowExterior(false);
+            setCameraReady(false);
+          }}
+        >
+          <img
+            className={style.img}
+            src={`/images/${supplier}/interior-finishes/${selection.img}`}
+            alt='thumbnail'
+          />
+        </div>
+      );
+    });
+  };
+
+  const interiorTrimDesc = () => {
+    return INTERIOR_TRIM_OPTIONS.map((selection, index) => {
+      const isSelected = interiorTrim === selection;
 
       return (
         isSelected && (
@@ -173,12 +218,14 @@ const SingleSelect = ({ type }) => {
   const Selections = () => {
     if (isExterior) return exteriorSelections();
     if (isInterior) return interiorSelections();
+    if (isInteriorTrim) return interiorTrimSelections();
     if (isFlooring) return flooringSelections();
   };
 
   const Descriptions = () => {
     if (isExterior) return exteriorDesc();
     if (isInterior) return interiorDesc();
+    if (isInteriorTrim) return interiorTrimDesc();
     if (isFlooring) return flooringDesc();
   };
 

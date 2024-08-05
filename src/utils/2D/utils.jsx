@@ -550,6 +550,15 @@ export const getFlooringFromUrl = (querySelectionData) => {
   return null;
 };
 
+export const getInteriorTrimFromUrl = (querySelectionData) => {
+  if (querySelectionData) {
+    const jsonSelections = base64ToJson(querySelectionData);
+    if (jsonSelections && jsonSelections.interiorTrim) {
+      return jsonSelections.interiorTrim;
+    }
+  }
+}
+
 export const getComponentPrice = (component, interiorFinish, isElectrical) => {
   if (isElectrical) {
     if (!interiorFinish || !interiorFinish.name) {

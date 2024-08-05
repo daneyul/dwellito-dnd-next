@@ -20,11 +20,13 @@ import {
   findSupplierName,
   FLOORING,
   INTERIOR,
+  INTERIOR_TRIM,
 } from '@/utils/constants/names/names';
 import Logo from '../Logo';
 import { componentData } from '@/utils/constants/componentData';
 import AddElecOption from '../AddOption/AddElecOption';
 import AddPartition from '../AddOption/AddPartition';
+import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
 
 const Sidebar = memo(() => {
   const {
@@ -46,13 +48,15 @@ const Sidebar = memo(() => {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
         item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP &&
-        item.fixed && item.supplier === supplier
+        item.fixed &&
+        item.supplier === supplier
       );
     } else {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
         item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP &&
-        item.fixed && item.supplier === supplier
+        item.fixed &&
+        item.supplier === supplier
       );
     }
   });
@@ -62,32 +66,38 @@ const Sidebar = memo(() => {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
         item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_60_AMP &&
-        !item.fixed && item.supplier === supplier
+        !item.fixed &&
+        item.supplier === supplier
       );
     } else {
       return (
         item.objType === COMPONENT_TYPES.ELECTRICAL &&
         item.name !== COMPONENT_NAMES.ELECTRICAL_PANEL_100_AMP &&
-        !item.fixed && item.supplier === supplier
+        !item.fixed &&
+        item.supplier === supplier
       );
     }
   });
 
-  const partitions = componentData.filter(
-    (item) => {
-      if (containerHeightIsStandard) {
-        return (
-          item.objType === COMPONENT_TYPES.PARTITION &&
-          !item.highContainerOnly
-        );
-      } else {
-        return (
-          item.objType === COMPONENT_TYPES.PARTITION &&
-          item.highContainerOnly
-        )
-      }
+  const partitions = componentData.filter((item) => {
+    if (containerHeightIsStandard) {
+      return (
+        item.objType === COMPONENT_TYPES.PARTITION &&
+        !item.highContainerOnly &&
+        item.supplier === supplier
+      );
+    } else {
+      return (
+        item.objType === COMPONENT_TYPES.PARTITION &&
+        item.highContainerOnly &&
+        item.supplier === supplier
+      );
     }
-  );
+  });
+
+  const interiorTrims = INTERIOR_TRIM_OPTIONS.filter((item) => {
+    return item.supplier === supplier;
+  });
 
   const NotYourOrder = () => {
     return (
@@ -98,8 +108,9 @@ const Sidebar = memo(() => {
         <div className={style.header}>{findSupplierName(supplier)}</div>
         <div className={style.supplier}>By {findSupplierName(supplier)}</div>
         <div className={style.description}>
-          {findSupplierName(supplier)} offers shipping containers for sale and modifications.
-          Whether its for storage purposes or mobile office space we got it!
+          {findSupplierName(supplier)} offers shipping containers for sale and
+          modifications. Whether its for storage purposes or mobile office space
+          we got it!
         </div>
         <Badges />
         <BasePriceDesc price={containerPrice} />
@@ -157,11 +168,25 @@ const Sidebar = memo(() => {
           css={{ fontWeight: 400, marginBottom: '1rem' }}
         />
         <SingleSelect type={INTERIOR} />
-        <Subtitle
-          text='Select your partition walls'
-          css={{ fontWeight: 400, marginBottom: '1rem' }}
-        />
-        <AddPartition options={partitions} />
+        {interiorTrims.length > 0 && (
+          <>
+            <div className={style.selectionTagName}>Interior Trims</div>
+            <Subtitle
+              text='Select your interior trim'
+              css={{ fontWeight: 400, marginBottom: '1rem' }}
+            />
+            <SingleSelect type={INTERIOR_TRIM} />
+          </>
+        )}
+        {partitions.length > 0 && (
+          <>
+            <Subtitle
+              text='Select your partition walls'
+              css={{ fontWeight: 400, marginBottom: '1rem' }}
+            />
+            <AddPartition options={partitions} />
+          </>
+        )}
         <Subtitle
           text='Select your electrical add-ons'
           css={{ fontWeight: 400, margin: '2rem 0 1rem 0' }}

@@ -19,6 +19,70 @@ export const atAndS = [
     isHeavyDuty: false
   },
   {
+    name: COMPONENT_NAMES.STEEL_DOOR_WELDED_FRAME,
+    position: {
+      x: DIMENSIONS.DOOR.STEEL_DOOR_WELDED_FRAME.POSITION.x,
+      y: DIMENSIONS.DOOR.STEEL_DOOR_WELDED_FRAME.POSITION.y,
+    },
+    imgName: `${COMPONENT_TYPES.DOOR}/gliding-patio.svg`,
+    desc: COMPONENT_NAMES.STEEL_DOOR_WELDED_FRAME,
+    objWidth: DIMENSIONS.DOOR.STEEL_DOOR_WELDED_FRAME.WIDTH,
+    objHeight: DIMENSIONS.DOOR.STEEL_DOOR_WELDED_FRAME.HEIGHT,
+    objType: COMPONENT_TYPES.DOOR,
+    price: 0,
+    model: '',
+    isRollUp: false,
+    isHeavyDuty: false
+  },
+  {
+    name: COMPONENT_NAMES.VISION_LITE_DOOR_WELDED_FRAME,
+    position: {
+      x: DIMENSIONS.DOOR.VISION_LITE_DOOR_WELDED_FRAME.POSITION.x,
+      y: DIMENSIONS.DOOR.VISION_LITE_DOOR_WELDED_FRAME.POSITION.y,
+    },
+    imgName: `${COMPONENT_TYPES.DOOR}/gliding-patio.svg`,
+    desc: COMPONENT_NAMES.VISION_LITE_DOOR_WELDED_FRAME,
+    objWidth: DIMENSIONS.DOOR.VISION_LITE_DOOR_WELDED_FRAME.WIDTH,
+    objHeight: DIMENSIONS.DOOR.VISION_LITE_DOOR_WELDED_FRAME.HEIGHT,
+    objType: COMPONENT_TYPES.DOOR,
+    price: 0,
+    model: '',
+    isRollUp: false,
+    isHeavyDuty: false
+  },
+  {
+    name: COMPONENT_NAMES.ROLLUP_DOOR_WHITE,
+    position: {
+      x: DIMENSIONS.DOOR.ROLLUP_DOOR_WHITE.POSITION.x,
+      y: DIMENSIONS.DOOR.ROLLUP_DOOR_WHITE.POSITION.y,
+    },
+    imgName: `${COMPONENT_TYPES.DOOR}/gliding-patio.svg`,
+    desc: COMPONENT_NAMES.ROLLUP_DOOR_WHITE,
+    objWidth: DIMENSIONS.DOOR.ROLLUP_DOOR_WHITE.WIDTH,
+    objHeight: DIMENSIONS.DOOR.ROLLUP_DOOR_WHITE.HEIGHT,
+    objType: COMPONENT_TYPES.DOOR,
+    price: 0,
+    model: '',
+    isRollUp: true,
+    isHeavyDuty: false
+  },
+  {
+    name: COMPONENT_NAMES.GLASS_GARAGE_DOOR,
+    position: {
+      x: DIMENSIONS.DOOR.GLASS_GARAGE_DOOR.POSITION.x,
+      y: DIMENSIONS.DOOR.GLASS_GARAGE_DOOR.POSITION.y,
+    },
+    imgName: `${COMPONENT_TYPES.DOOR}/gliding-patio.svg`,
+    desc: COMPONENT_NAMES.GLASS_GARAGE_DOOR,
+    objWidth: DIMENSIONS.DOOR.GLASS_GARAGE_DOOR.WIDTH,
+    objHeight: DIMENSIONS.DOOR.GLASS_GARAGE_DOOR.HEIGHT,
+    objType: COMPONENT_TYPES.DOOR,
+    price: 0,
+    model: '',
+    isRollUp: true,
+    isHeavyDuty: false
+  },
+  {
     name: COMPONENT_NAMES.PERSONNEL_LHR_SECURITY,
     position: {
       x: DIMENSIONS.DOOR.PERSONNEL_SECURITY.POSITION.x,
