@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { generateImgSrc, getComponentPrice, handleAddComponent } from '../../utils/2D/utils';
 import style from './addOption.module.css';
 import { PageDataContext } from '../Content/Content';
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 
 const AddElecOption = ({ options }) => {
   const {
@@ -22,8 +23,7 @@ const AddElecOption = ({ options }) => {
     const alreadySelected = selectedComponents.some(
       (component) => component.name === item.name
     );
-
-    const itemPrice = getComponentPrice(item, interiorFinish, true);
+    const itemPrice = supplier === SUPPLIER_SLUGS.AT_AND_S ? item.price : getComponentPrice(item, interiorFinish, true);
 
     return (
       <div

@@ -1,7 +1,7 @@
-import { DIMENSIONS } from '../dimensions/dimensions';
-import { COMPONENT_NAMES, COMPONENT_TYPES, SUPPLIER_SLUGS } from '../names/names';
+import { DIMENSIONS } from '../../dimensions/dimensions';
+import { COMPONENT_NAMES, COMPONENT_TYPES, SUPPLIER_SLUGS } from '../../names/names';
 
-const customCubes = [
+export const customCubes = [
   {
     name: COMPONENT_NAMES.PERSONNEL_LHR_SECURITY,
     position: {
@@ -476,27 +476,3 @@ const customCubes = [
     isHeavyDuty: false
   }
 ].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));
-
-const atAndS = [
-  {
-    name: COMPONENT_NAMES.GLIDING_PATIO,
-    position: {
-      x: DIMENSIONS.DOOR.GLIDING_PATIO.POSITION.x,
-      y: DIMENSIONS.DOOR.GLIDING_PATIO.POSITION.y,
-    },
-    imgName: `${COMPONENT_TYPES.DOOR}/gliding-patio.svg`,
-    desc: COMPONENT_NAMES.GLIDING_PATIO,
-    objWidth: DIMENSIONS.DOOR.GLIDING_PATIO.WIDTH,
-    objHeight: DIMENSIONS.DOOR.GLIDING_PATIO.HEIGHT,
-    objType: COMPONENT_TYPES.DOOR,
-    price: 0,
-    model: 'gliding-patio-door',
-    isRollUp: false,
-    isHeavyDuty: false
-  }
-].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));
-
-export const doorComponents = [
-  ...customCubes,
-  ...atAndS
-];

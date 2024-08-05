@@ -1,7 +1,7 @@
-import { DIMENSIONS } from '../dimensions/dimensions';
-import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES, SUPPLIER_SLUGS } from '../names/names';
+import { DIMENSIONS } from '../../dimensions/dimensions';
+import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES, SUPPLIER_SLUGS } from '../../names/names';
 
-const customCubes = [
+export const customCubes = [
   {
     name: COMPONENT_NAMES.VENT_12,
     position: {
@@ -70,8 +70,3 @@ const customCubes = [
     alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
   },
 ].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));
-
-
-export const ventComponents = [
-  ...customCubes
-]

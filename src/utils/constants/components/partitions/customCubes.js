@@ -1,8 +1,8 @@
-import { DIMENSIONS } from '../dimensions/dimensions';
-import { COMPONENT_NAMES, COMPONENT_TYPES } from '../names/names';
+import { DIMENSIONS } from '../../dimensions/dimensions';
+import { COMPONENT_NAMES, COMPONENT_TYPES, SUPPLIER_SLUGS } from '../../names/names';
 //only works with sheeting package - no door
 //only works with plywood and drywall - door
-export const partitionComponents = [
+export const customCubes = [
   {
     name: COMPONENT_NAMES.PARTITION_ST,
     position: {
@@ -54,4 +54,4 @@ export const partitionComponents = [
     imgName: `${COMPONENT_TYPES.PARTITION}/partition-door.svg`,
     floorPlanImg: `${COMPONENT_TYPES.PARTITION}/partition-door.svg`,
   }
-];
+].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));

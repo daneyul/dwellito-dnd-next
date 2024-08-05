@@ -73,7 +73,7 @@ const AT_AND_S_COMPONENTS = {
   VERTICAL_SLIDER_WINDOW_30_60: "Vertical Slider Window 30x60",
   WINDOW_SECURITY_BARS: "Window with Security Bars 36x36",
   SKYLIGHT: `Skylight 22.5x46.5`,
-  FLOOD_LIGHT: `Adjustable Swivel Flood Light`,
+  ADJUSTABLE_SWIVEL_FLOOD_LIGHT: `Adjustable Swivel Flood Light`,
 }
 
 export const COMPONENT_NAMES = {

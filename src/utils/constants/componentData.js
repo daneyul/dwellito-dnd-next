@@ -1,9 +1,10 @@
-import { doorComponents } from './components/doors';
-import { electricalComponents } from './components/electrical';
-import { partitionComponents } from './components/partitions';
-import { ventComponents } from './components/vents';
-import { windowComponents } from './components/windows';
+
 import { v4 as uuid } from 'uuid';
+import { doorComponents } from './components/doors/doors';
+import { windowComponents } from './components/windows/windows';
+import { ventComponents } from './components/vents/vents';
+import { partitionComponents } from './components/partitions/partitions';
+import { electricalComponents } from './components/electrical/electrical';
 
 export const componentData = [
   ...doorComponents,

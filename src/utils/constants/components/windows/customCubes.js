@@ -1,7 +1,7 @@
-import { DIMENSIONS } from '../dimensions/dimensions';
-import { COMPONENT_NAMES, COMPONENT_TYPES, SUPPLIER_SLUGS } from '../names/names';
+import { DIMENSIONS } from '../../dimensions/dimensions';
+import { COMPONENT_NAMES, COMPONENT_TYPES, SUPPLIER_SLUGS } from '../../names/names';
 
-const customCubes = [
+export const customCubes = [
   {
     name: COMPONENT_NAMES.WINDOW_SECURITY,
     position: {
@@ -35,27 +35,3 @@ const customCubes = [
     floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/window-security.svg`,
   },
 ].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));
-
-const atAndS = [
-  {
-    name: COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW,
-    position: {
-      x: DIMENSIONS.WINDOW.WINDOW_SECURITY.POSITION.x,
-      y: DIMENSIONS.WINDOW.WINDOW_SECURITY.POSITION.y,
-    },
-    imgName: `${COMPONENT_TYPES.WINDOW}/window.svg`,
-    desc: '',
-    objWidth: DIMENSIONS.WINDOW.WINDOW_SECURITY.WIDTH,
-    objHeight: DIMENSIONS.WINDOW.WINDOW_SECURITY.HEIGHT,
-    objFpHeight: DIMENSIONS.WINDOW.WINDOW.FP_HEIGHT,
-    objType: COMPONENT_TYPES.WINDOW,
-    price: 1895,
-    model: 'SM_Window 48x36_Hinged_Security_01',
-    floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/window.svg`,
-  },
-].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));
-
-export const windowComponents = [
-  ...customCubes,
-  ...atAndS
-]
