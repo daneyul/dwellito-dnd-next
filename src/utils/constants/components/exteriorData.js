@@ -77,7 +77,7 @@ const atAndS = [
     price: 0,
   },
   {
-    name: 'SAF Red',
+    name: 'SAF Red (Corners Only)',
     glbObject: 'Red',
     hex: '',
     fileName: 'red-paint',

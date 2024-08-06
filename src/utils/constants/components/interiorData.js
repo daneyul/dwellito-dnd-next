@@ -56,7 +56,7 @@ const atAndS = [
     price20H: 8020,
     price40S: 12450,
     price40H: 13805,
-    img: '',
+    img: 'charred-wood.png',
   },
   {
     name: INTERIOR_FINISH_NAMES.BARN_WOOD,
@@ -66,7 +66,7 @@ const atAndS = [
     price20H: 8020,
     price40S: 12450,
     price40H: 13805,
-    img: '',
+    img: 'barn-wood.png',
   },
   {
     name: INTERIOR_FINISH_NAMES.MDF_PANEL,
@@ -76,7 +76,7 @@ const atAndS = [
     price20H: 8020,
     price40S: 12450,
     price40H: 13805,
-    img: '',
+    img: 'mdf.png',
   },
   {
     name: INTERIOR_FINISH_NAMES.LUAN_WALL,
@@ -86,7 +86,7 @@ const atAndS = [
     price20H: 8020,
     price40S: 12450,
     price40H: 13805,
-    img: '',
+    img: 'luan.png',
   },
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));
 

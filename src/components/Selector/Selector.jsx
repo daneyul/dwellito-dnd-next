@@ -1,7 +1,7 @@
 import AddOption from '../AddOption/AddOption';
 import style from './selector.module.scss';
 import { useContext } from 'react';
-import { COMPONENT_TYPES } from '@/utils/constants/names/names';
+import { COMPONENT_TYPES, SUPPLIER_NAMES } from '@/utils/constants/names/names';
 import { PageDataContext } from '../Content/Content';
 import { componentData } from '@/utils/constants/componentData';
 
@@ -61,6 +61,8 @@ const Selector = () => {
       item.objType === COMPONENT_TYPES.VENT && item.supplier === supplier
   );
 
+  const rollUpDoorsTitle = supplier === SUPPLIER_NAMES.CUSTOM_CUBES ? 'Economy Roll Up Doors' : 'Roll Up Doors';
+
   return (
     <div className={style.container}>
       <div className={style.titleTop}>Doors, Windows & Vents</div>
@@ -74,7 +76,7 @@ const Selector = () => {
         </div>
         {economyDoors.length > 0 && (
           <>
-            <div className={style.subTitle}>Economy Roll Up Doors</div>
+            <div className={style.subTitle}>{rollUpDoorsTitle}</div>
             <div className={style.objectContainer}>
               <AddOption options={economyDoors} />
             </div>

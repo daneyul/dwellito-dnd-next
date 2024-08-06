@@ -21,6 +21,7 @@ import {
   FLOORING,
   INTERIOR,
   INTERIOR_TRIM,
+  SUPPLIER_NAMES,
 } from '@/utils/constants/names/names';
 import Logo from '../Logo';
 import { componentData } from '@/utils/constants/componentData';
@@ -156,10 +157,12 @@ const Sidebar = memo(() => {
         <div className={style.selectionTagName} style={{ marginTop: '2rem' }}>
           Choose Exterior Paint
         </div>
-        <Subtitle
-          text='Beige is our stock colour, we do often stock white and grey at no extra cost, your sales representative can confirm'
-          css={{ fontWeight: 400, marginBottom: '1rem' }}
-        />
+        {supplier === SUPPLIER_NAMES.CUSTOM_CUBES && (
+          <Subtitle
+            text='Beige is our stock colour, we do often stock white and grey at no extra cost, your sales representative can confirm'
+            css={{ fontWeight: 400, marginBottom: '1rem' }}
+          />
+        )}
         <SingleSelect type={EXTERIOR} />
         <Selector />
         <div className={style.selectionTagName}>Interior Finishes</div>
