@@ -49,6 +49,12 @@ const customCubes = [
 
 const atAndS = [
   {
+    name: INTERIOR_FINISH_NAMES.NONE,
+    price: 0,
+    hex: '#FFFFFF',
+    img: 'none.png'
+  },
+  {
     name: INTERIOR_FINISH_NAMES.CHARRED_WOOD,
     hex: '',
     price10: 4850,
