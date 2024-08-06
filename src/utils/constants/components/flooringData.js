@@ -1,3 +1,5 @@
+import { SUPPLIER_SLUGS } from "../names/names";
+
 const customCubes = [
   {
     name: 'None',
@@ -32,7 +34,7 @@ const customCubes = [
     price20: 950,
     price40: 1845,
   },
-]
+].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));
 
 export const FLOORING_OPTIONS = [
   ...customCubes

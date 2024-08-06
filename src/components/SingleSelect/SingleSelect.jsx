@@ -33,7 +33,7 @@ const SingleSelect = ({ type }) => {
     interiorFinishPrice,
     supplier,
     interiorTrim,
-    setInteriorTrim
+    setInteriorTrim,
   } = useContext(PageDataContext);
 
   const isExterior = type === EXTERIOR;
@@ -42,9 +42,19 @@ const SingleSelect = ({ type }) => {
   const isFlooring = type === FLOORING;
 
   const exteriorSelections = () => {
-    return EXTERIOR_FINISH_OPTIONS.filter((option) => option.supplier === supplier).map((selection) => {
-      const isSelected = exteriorFinish.hex === selection.hex;
-
+    return EXTERIOR_FINISH_OPTIONS.filter(
+      (option) => option.supplier === supplier
+    ).map((selection) => {
+      const isSelected = exteriorFinish.name === selection.name;
+      const img = selection.hex ? (
+        <div className={style.img} style={{ backgroundColor: selection.hex }} />
+      ) : (
+        <img
+          className={style.img}
+          src={`/images/${supplier}/exterior-finishes/${selection.img}`}
+          alt='thumbnail'
+        />
+      );
       return (
         <div
           key={selection.hex}
@@ -61,38 +71,38 @@ const SingleSelect = ({ type }) => {
             }
           }}
         >
-          <img
-            className={style.img}
-            src={`/images/${supplier}/exterior-finishes/${selection.img}`}
-            alt='thumbnail'
-          />
+          {img}
         </div>
       );
     });
   };
 
   const exteriorDesc = () => {
-    return EXTERIOR_FINISH_OPTIONS.map((selection, index) => {
-      const isSelected = exteriorFinish.hex === selection.hex;
+    return EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier).map(
+      (selection, index) => {
+        const isSelected = exteriorFinish.name === selection.name;
 
-      return (
-        isSelected && (
-          <div className={style.singleSelDescriptionContainer} key={index}>
-            <Subtitle text={selection.name} />
-            <Subtitle text={`+ $${selection.price.toLocaleString()}`} />
-          </div>
-        )
-      );
-    });
+        return (
+          isSelected && (
+            <div className={style.singleSelDescriptionContainer} key={index}>
+              <Subtitle text={selection.name} />
+              <Subtitle text={`+ $${selection.price.toLocaleString()}`} />
+            </div>
+          )
+        );
+      }
+    );
   };
 
   const interiorSelections = () => {
-    return INTERIOR_FINISH_OPTIONS.filter((option) => option.supplier === supplier).map((selection) => {
+    return INTERIOR_FINISH_OPTIONS.filter(
+      (option) => option.supplier === supplier
+    ).map((selection) => {
       const isSelected = interiorFinish === selection;
 
       return (
         <div
-          key={selection.hex}
+          key={selection.name}
           className={isSelected ? style.thumbnailSelected : style.thumbnail}
           onClick={() => {
             setInteriorFinish(selection);
@@ -127,7 +137,9 @@ const SingleSelect = ({ type }) => {
   };
 
   const interiorTrimSelections = () => {
-    return INTERIOR_TRIM_OPTIONS.filter((option) => option.supplier === supplier).map((selection) => {
+    return INTERIOR_TRIM_OPTIONS.filter(
+      (option) => option.supplier === supplier
+    ).map((selection) => {
       const isSelected = interiorTrim === selection;
 
       return (
@@ -167,52 +179,56 @@ const SingleSelect = ({ type }) => {
   };
 
   const flooringSelections = () => {
-    return FLOORING_OPTIONS.map((selection, index) => {
-      const isSelected = flooring === selection;
+    return FLOORING_OPTIONS.filter((i) => i.supplier === supplier).map(
+      (selection, index) => {
+        const isSelected = flooring === selection;
 
-      return (
-        <div
-          key={index}
-          className={isSelected ? style.thumbnailSelected : style.thumbnail}
-          onClick={() => {
-            setFlooring(selection);
-            setShow3d(true);
-            setShowExterior(false);
-            setCameraReady(false);
-          }}
-        >
-          <img
-            className={style.img}
-            src={`/images/${supplier}/flooring/${selection.img}`}
-            alt='thumbnail'
-          />
-        </div>
-      );
-    });
+        return (
+          <div
+            key={index}
+            className={isSelected ? style.thumbnailSelected : style.thumbnail}
+            onClick={() => {
+              setFlooring(selection);
+              setShow3d(true);
+              setShowExterior(false);
+              setCameraReady(false);
+            }}
+          >
+            <img
+              className={style.img}
+              src={`/images/${supplier}/flooring/${selection.img}`}
+              alt='thumbnail'
+            />
+          </div>
+        );
+      }
+    );
   };
 
   const flooringDesc = () => {
-    return FLOORING_OPTIONS.map((selection, index) => {
-      const flooringPrice = () => {
-        if (slug === CONTAINER_SIZE_10) {
-          return selection.price10;
-        } else if (slug === CONTAINER_SIZE_20) {
-          return selection.price20;
-        } else if (slug === CONTAINER_SIZE_40) {
-          return selection.price40;
-        }
-      };
-      const isSelected = flooring.hex === selection.hex;
+    return FLOORING_OPTIONS.filter((i) => i.supplier === supplier).map(
+      (selection, index) => {
+        const flooringPrice = () => {
+          if (slug === CONTAINER_SIZE_10) {
+            return selection.price10;
+          } else if (slug === CONTAINER_SIZE_20) {
+            return selection.price20;
+          } else if (slug === CONTAINER_SIZE_40) {
+            return selection.price40;
+          }
+        };
+        const isSelected = flooring.name === selection.name;
 
-      return (
-        isSelected && (
-          <div className={style.singleSelDescriptionContainer} key={index}>
-            <Subtitle text={selection.name} />
-            <Subtitle text={`+ $${flooringPrice().toLocaleString()}`} />
-          </div>
-        )
-      );
-    });
+        return (
+          isSelected && (
+            <div className={style.singleSelDescriptionContainer} key={index}>
+              <Subtitle text={selection.name} />
+              <Subtitle text={`+ $${flooringPrice().toLocaleString()}`} />
+            </div>
+          )
+        );
+      }
+    );
   };
 
   const Selections = () => {

@@ -4,7 +4,7 @@ const customCubes = [
   {
     name: 'Beige',
     glbObject: 'Beige',
-    hex: '#E6D3B5',
+    hex: null,
     fileName: 'beige-paint',
     img: 'beige.png',
     price: 0,
@@ -12,7 +12,7 @@ const customCubes = [
   {
     name: 'White',
     glbObject: 'White',
-    hex: '#F2F2F2',
+    hex: null,
     fileName: 'white-paint',
     img: 'white.png',
     price: 1640,
@@ -20,7 +20,7 @@ const customCubes = [
   {
     name: 'Blue',
     glbObject: 'Blue',
-    hex: '#003366',
+    hex: null,
     fileName: 'blue-paint',
     img: 'blue.png',
     price: 1640,
@@ -28,7 +28,7 @@ const customCubes = [
   {
     name: 'Green',
     glbObject: 'Green',
-    hex: '#2E8B57',
+    hex: null,
     fileName: 'green-paint',
     img: 'green.png',
     price: 1640,
@@ -36,7 +36,7 @@ const customCubes = [
   {
     name: 'Slate Grey',
     glbObject: 'SlateGrey',
-    hex: '#6C7B8B',
+    hex: null,
     fileName: 'slate-grey-paint',
     img: 'slate-grey.png',
     price: 1640,
@@ -44,7 +44,7 @@ const customCubes = [
   {
     name: 'Red',
     glbObject: 'Red',
-    hex: '#800000',
+    hex: null,
     fileName: 'red-paint',
     img: 'red.png',
     price: 1640,
@@ -55,7 +55,7 @@ const atAndS = [
   {
     name: 'Nucor Green',
     glbObject: 'Beige',
-    hex: '',
+    hex: '#1B6433',
     fileName: 'green-paint',
     img: 'green.png',
     price: 0,
@@ -63,7 +63,7 @@ const atAndS = [
   {
     name: 'Keiwit Yellow',
     glbObject: 'Yellow',
-    hex: '',
+    hex: '#FACD23',
     fileName: 'yellow-paint',
     img: 'yellow.png',
     price: 0,
@@ -71,7 +71,7 @@ const atAndS = [
   {
     name: 'Slate Grey',
     glbObject: 'SlateGrey',
-    hex: '#6C7B8B',
+    hex: '#99A2A4',
     fileName: 'slate-grey-paint',
     img: 'slate-grey.png',
     price: 0,
@@ -79,7 +79,7 @@ const atAndS = [
   {
     name: 'SAF Red (Corners Only)',
     glbObject: 'Red',
-    hex: '',
+    hex: '#A1280F',
     fileName: 'red-paint',
     img: 'red.png',
     price: 0,

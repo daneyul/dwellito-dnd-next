@@ -21,6 +21,7 @@ const useOrderTotal = ({
 
   const getContainerSpecificPrice = useMemo(
     () => (item) => {
+      if (!item) return 0;
       const sizeSuffix = containerHeightIsStandard ? 'S' : 'H';
       switch (slug) {
         case CONTAINER_SIZE_10:
@@ -37,21 +38,9 @@ const useOrderTotal = ({
   );
 
   const interiorFinishPrice = useMemo(() => {
-    if (interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING) {
-      return getContainerSpecificPrice(interiorFinish);
-    }
-
-    const specialFinishes = [
-      INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS,
-      INTERIOR_FINISH_NAMES.PLYWOOD,
-      INTERIOR_FINISH_NAMES.DRYWALL,
-    ];
-
-    if (specialFinishes.includes(interiorFinish.name)) {
-      return getContainerSpecificPrice(interiorFinish);
-    }
-
-    return interiorFinish.price;
+    return interiorFinish.name !== INTERIOR_FINISH_NAMES.NONE
+      ? getContainerSpecificPrice(interiorFinish)
+      : interiorFinish.price;
   }, [interiorFinish, getContainerSpecificPrice]);
 
   useEffect(() => {

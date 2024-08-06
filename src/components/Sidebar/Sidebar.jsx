@@ -28,6 +28,7 @@ import { componentData } from '@/utils/constants/componentData';
 import AddElecOption from '../AddOption/AddElecOption';
 import AddPartition from '../AddOption/AddPartition';
 import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
+import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 
 const Sidebar = memo(() => {
   const {
@@ -198,12 +199,16 @@ const Sidebar = memo(() => {
           <AddElecOption options={fixedElectricals} />
           <AddElecOption options={nonFixedElectricals} />
         </div>
-        <div className={style.selectionTagName}>Flooring Options</div>
-        <Subtitle
-          text='Select your flooring'
-          css={{ fontWeight: 400, marginBottom: '1rem' }}
-        />
-        <SingleSelect type={FLOORING} />
+        {FLOORING_OPTIONS.filter((i) => i.supplier === supplier).length > 0 && (
+          <>
+            <div className={style.selectionTagName}>Flooring Options</div>
+            <Subtitle
+              text='Select your flooring'
+              css={{ fontWeight: 400, marginBottom: '1rem' }}
+            />
+            <SingleSelect type={FLOORING} />
+          </>
+        )}
         <SaveOrder />
       </>
     );

@@ -76,16 +76,16 @@ const PageDataProvider = ({ children, data }) => {
       }))
   );
   const [exteriorFinish, setExteriorFinish] = useState(
-    queryExterior || EXTERIOR_FINISH_OPTIONS[0]
+    queryExterior || EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
   );
   const [interiorFinish, setInteriorFinish] = useState(
-    queryInterior || INTERIOR_FINISH_OPTIONS[0]
+    queryInterior || INTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
   );
   const [interiorTrim, setInteriorTrim] = useState(
-    queryInteriorTrim || INTERIOR_TRIM_OPTIONS[0]
+    queryInteriorTrim || INTERIOR_TRIM_OPTIONS.filter((i) => i.supplier === supplier)[0]
   );
   const [flooring, setFlooring] = useState(
-    queryFlooring || FLOORING_OPTIONS[0]
+    queryFlooring || FLOORING_OPTIONS.filter((i) => i.supplier === supplier)[0] || FLOORING_OPTIONS[0]
   );
   const interiorIsPlywood = interiorFinish === plywoodInterior;
   const interiorIsDrywall = interiorFinish === drywallInterior;
