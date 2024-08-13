@@ -8,7 +8,7 @@ export const atAndS = [
       x: DIMENSIONS.VENT.SQ_12.POSITION.x,
       y: DIMENSIONS.VENT.SQ_12.POSITION.y,
     },
-    imgName: `${COMPONENT_TYPES.VENT}/12x12.svg`,
+    imgName: `${COMPONENT_TYPES.VENT}/louver-vent.svg`,
     desc: '',
     objWidth: DIMENSIONS.VENT.SQ_12.WIDTH,
     objHeight: DIMENSIONS.VENT.SQ_12.HEIGHT,
@@ -16,10 +16,10 @@ export const atAndS = [
     objType: COMPONENT_TYPES.VENT,
     price: 0,
     model: '',
-    floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/12x12.svg`,
+    floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/louver-vent.svg`,
   },
   {
-    name: COMPONENT_NAMES.ALUMNIUM_EXHAUST_SHUTTER,
+    name: COMPONENT_NAMES.ALUMINUM_EXHAUST_SHUTTER,
     position: {
       x: DIMENSIONS.VENT.SQ_24.POSITION.x,
       y: DIMENSIONS.VENT.SQ_24.POSITION.y,

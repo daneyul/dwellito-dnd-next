@@ -1,5 +1,5 @@
 import { DIMENSIONS } from '../../dimensions/dimensions';
-import { COMPONENT_NAMES, COMPONENT_TYPES, SUPPLIER_SLUGS } from '../../names/names';
+import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES, SUPPLIER_SLUGS } from '../../names/names';
 
 export const atAndS = [
   {
@@ -96,6 +96,11 @@ export const atAndS = [
     objType: COMPONENT_TYPES.WINDOW,
     price: 0,
     model: '',
-    floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/window.svg`,
+    floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/skylight-dash.svg`,
+    sideImg: `${COMPONENT_TYPES.WINDOW}/side-view/skylight.svg`,
+    frontImg: `${COMPONENT_TYPES.WINDOW}/front-view/skylight.svg`,
+    sidebarImg: `${COMPONENT_TYPES.WINDOW}/front-view/skylight.svg`,
+    ceilingOnly: true,
+    alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
   },
 ].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));

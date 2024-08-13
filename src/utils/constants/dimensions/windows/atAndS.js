@@ -45,9 +45,10 @@ export const AT_AND_S_WINDOW_DIMENSIONS = {
     },
   },
   SKYLIGHT: {
-    WIDTH: 22.5,
-    HEIGHT: 46.5,
-    FP_HEIGHT: 6,
+    WIDTH: 28,
+    HEIGHT: 52,
+    FP_HEIGHT: 28,
+    THICKNESS: 5,
     POSITION: {
       x: 0,
       y: 40,

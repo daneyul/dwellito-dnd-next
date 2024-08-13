@@ -24,15 +24,16 @@ export const atAndS = [
       x: DIMENSIONS.DOOR.STEEL_DOOR_WELDED_FRAME.POSITION.x,
       y: DIMENSIONS.DOOR.STEEL_DOOR_WELDED_FRAME.POSITION.y,
     },
-    imgName: `${COMPONENT_TYPES.DOOR}/gliding-patio.svg`,
+    imgName: `${COMPONENT_TYPES.DOOR}/steel-door.svg`,
     desc: COMPONENT_NAMES.STEEL_DOOR_WELDED_FRAME,
     objWidth: DIMENSIONS.DOOR.STEEL_DOOR_WELDED_FRAME.WIDTH,
     objHeight: DIMENSIONS.DOOR.STEEL_DOOR_WELDED_FRAME.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 0,
-    model: '',
+    model: 'steel-door',
     isRollUp: false,
-    isHeavyDuty: false
+    isHeavyDuty: false,
+    floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/steel-door.svg`,
   },
   {
     name: COMPONENT_NAMES.VISION_LITE_DOOR_WELDED_FRAME,
@@ -40,7 +41,7 @@ export const atAndS = [
       x: DIMENSIONS.DOOR.VISION_LITE_DOOR_WELDED_FRAME.POSITION.x,
       y: DIMENSIONS.DOOR.VISION_LITE_DOOR_WELDED_FRAME.POSITION.y,
     },
-    imgName: `${COMPONENT_TYPES.DOOR}/gliding-patio.svg`,
+    imgName: `${COMPONENT_TYPES.DOOR}/vision-lite.svg`,
     desc: COMPONENT_NAMES.VISION_LITE_DOOR_WELDED_FRAME,
     objWidth: DIMENSIONS.DOOR.VISION_LITE_DOOR_WELDED_FRAME.WIDTH,
     objHeight: DIMENSIONS.DOOR.VISION_LITE_DOOR_WELDED_FRAME.HEIGHT,
@@ -48,7 +49,8 @@ export const atAndS = [
     price: 0,
     model: '',
     isRollUp: false,
-    isHeavyDuty: false
+    isHeavyDuty: false,
+    floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/vision-lite.svg`,
   },
   {
     name: COMPONENT_NAMES.ROLLUP_DOOR_WHITE,

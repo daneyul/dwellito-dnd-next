@@ -25,5 +25,14 @@ export const VENT_DIMENSIONS = {
       x: 0,
       y: 24,
     },
-  }
+  },
+  LOUVER_VENT: {
+    WIDTH: 15,
+    HEIGHT: 15,
+    FP_HEIGHT: 2,
+    POSITION: {
+      x: 0,
+      y: 24,
+    },
+  },
 }

@@ -9,21 +9,21 @@ export const AT_AND_S_DOOR_DIMENSIONS = {
     },
   },
   STEEL_DOOR_WELDED_FRAME: {
-    WIDTH: 36,
-    HEIGHT: 80,
-    FP_HEIGHT: 8,
+    WIDTH: 41,
+    HEIGHT: 83,
+    FP_HEIGHT: 29 ,
     POSITION: {
       x: 0,
-      y: 45,
+      y: 42,
     },
   },
   VISION_LITE_DOOR_WELDED_FRAME: {
-    WIDTH: 36,
-    HEIGHT: 80,
-    FP_HEIGHT: 8,
+    WIDTH: 41,
+    HEIGHT: 83,
+    FP_HEIGHT: 29,
     POSITION: {
       x: 0,
-      y: 45,
+      y: 42,
     },
   },
   ROLLUP_DOOR_WHITE: {
