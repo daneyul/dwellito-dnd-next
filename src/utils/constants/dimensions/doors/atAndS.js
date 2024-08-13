@@ -8,7 +8,7 @@ export const AT_AND_S_DOOR_DIMENSIONS = {
       y: 45,
     },
   },
-  STEEL_DOOR_WELDED_FRAME: {
+  STEEL_DOOR: {
     WIDTH: 41,
     HEIGHT: 83,
     FP_HEIGHT: 29 ,
@@ -17,7 +17,7 @@ export const AT_AND_S_DOOR_DIMENSIONS = {
       y: 42,
     },
   },
-  VISION_LITE_DOOR_WELDED_FRAME: {
+  VISION_LITE: {
     WIDTH: 41,
     HEIGHT: 83,
     FP_HEIGHT: 29,

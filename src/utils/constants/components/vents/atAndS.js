@@ -15,7 +15,7 @@ export const atAndS = [
     objFpHeight: DIMENSIONS.VENT.SQ_12.FP_HEIGHT,
     objType: COMPONENT_TYPES.VENT,
     price: 0,
-    model: '',
+    model: 'louver-vent',
     floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/louver-vent.svg`,
   },
   {

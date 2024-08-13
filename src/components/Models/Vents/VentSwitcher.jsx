@@ -1,4 +1,4 @@
-import { Vent12, Vent20, Vent24 } from './SpecificVents';
+import { LouverVent, Vent12, Vent20, Vent24 } from './SpecificVents';
 import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 
 export default function Vent({ onBoundingBoxChange, component, supplier }) {
@@ -27,6 +27,14 @@ export default function Vent({ onBoundingBoxChange, component, supplier }) {
           supplier={supplier}
         />
       );
+    case COMPONENT_NAMES.LOUVER_VENT:
+      return (
+        <LouverVent
+          component={component}
+          onBoundingBoxChange={onBoundingBoxChange}
+          supplier={supplier}
+        />
+      )
     default:
       return null;
   }

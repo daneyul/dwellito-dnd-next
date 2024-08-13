@@ -6,7 +6,6 @@ import { useGLTF } from '@react-three/drei';
 import React, { useContext, useEffect, useMemo, useRef } from 'react';
 import { Box3, Vector3 } from 'three';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import { elevationData } from '@/utils/constants/elevationData';
 
 const GenericVent = React.memo(
   ({
@@ -15,6 +14,7 @@ const GenericVent = React.memo(
     modelPath,
     customPosition,
     customRotation,
+    customScale
   }) => {
     const { nodes, materials } = useGLTF(modelPath);
     const { selectedComponents, selectedContainer, scaleFactor } =
@@ -30,11 +30,7 @@ const GenericVent = React.memo(
     const ref = useRef();
 
     const rotation = useMemo(
-      () => [
-        0,
-        calcRotation(selectedElevation, selectedContainer),
-        0,
-      ],
+      () => [0, calcRotation(selectedElevation, selectedContainer), 0],
       [selectedElevation]
     );
 
@@ -62,7 +58,11 @@ const GenericVent = React.memo(
         )}
         rotation={rotation}
       >
-        <group position={customPosition} rotation={customRotation}>
+        <group
+          position={customPosition}
+          rotation={customRotation}
+          scale={customScale}
+        >
           {Object.keys(nodes).map((nodeKey) => {
             const node = nodes[nodeKey];
             if (node.isMesh) {

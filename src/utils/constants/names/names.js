@@ -63,8 +63,8 @@ const CUSTOM_CUBE_COMPONENTS = {
 };
 
 const AT_AND_S_COMPONENTS = {
-  STEEL_DOOR_WELDED_FRAME: `Steel Door w. Welded Frame 36x80"`,
-  VISION_LITE_DOOR_WELDED_FRAME: `Vision Lite Door w. Welded Frame 36x80"`,
+  STEEL_DOOR: `Steel Door w. Welded Frame 36x80"`,
+  VISION_LITE: `Vision Lite Door w. Welded Frame 36x80"`,
   GLASS_GARAGE_DOOR: `Glass Garage Door 10'`,
   GLIDING_PATIO: `Gliding Patio Door 70.5x79.5`,
   ROLLUP_DOOR_WHITE: `Roll Up Door (White) 7x7'`,
@@ -122,6 +122,7 @@ export const INTERIOR_FINISH_NAMES = {
 };
 
 export const INTERIOR_TRIM_NAMES= {
+  NONE: "None",
   BATTEN_ADOBE_WHITE: `Batten - Adobe White 1x96"`,
   LUAN_BATTEN_OAK: `Luan Batten - Oak 1-½"x8'`,
   LUAN_BATTEN_WHITE: `Luan Batten - White 1-½"x8'`,
