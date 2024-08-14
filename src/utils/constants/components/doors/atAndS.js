@@ -33,7 +33,7 @@ export const atAndS = [
     model: 'steel-door',
     isRollUp: false,
     isHeavyDuty: false,
-    floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/steel-door.svg`,
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/steel-door.svg`,
   },
   {
     name: COMPONENT_NAMES.VISION_LITE,
@@ -50,7 +50,7 @@ export const atAndS = [
     model: 'vision-lite',
     isRollUp: false,
     isHeavyDuty: false,
-    floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/vision-lite.svg`,
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/vision-lite.svg`,
   },
   {
     name: COMPONENT_NAMES.ROLLUP_DOOR_WHITE,
