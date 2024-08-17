@@ -22,6 +22,7 @@ export const DraggableContainer = ({
         position: 'absolute',
         left: '50%',
         transform: 'translateX(-50%)',
+        border: '1px solid rgba(0,0,0,0)'
       }}
     >
       {selectedComponents.map((piece) => (

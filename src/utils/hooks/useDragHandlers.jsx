@@ -42,9 +42,12 @@ const useDragHandlers = ({
 
     if (!draggedItem) return null;
 
-    const isOnElevationRight = draggedItem.elevation[0].name === ELEVATION_NAMES.RIGHT;
-    const isOnElevationLeft = draggedItem.elevation[0].name === ELEVATION_NAMES.LEFT;
-    const isOnElevationBack = draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
+    const isOnElevationRight =
+      draggedItem.elevation[0].name === ELEVATION_NAMES.RIGHT;
+    const isOnElevationLeft =
+      draggedItem.elevation[0].name === ELEVATION_NAMES.LEFT;
+    const isOnElevationBack =
+      draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
 
     const isDoor = draggedItem.objType === COMPONENT_TYPES.DOOR;
     const isWindow = draggedItem.objType === COMPONENT_TYPES.WINDOW;
@@ -71,17 +74,33 @@ const useDragHandlers = ({
         setModifiers([...fixedModifiers]);
       } else if (isOnElevationRight || isOnElevationLeft) {
         if (isDoor) {
-          setModifiers([...defaultModifiers, restrictToHorizontalAxis, snapToIncrement(11 * scaleFactor)]);
+          setModifiers([
+            ...defaultModifiers,
+            restrictToHorizontalAxis,
+            snapToIncrement(10.9 * scaleFactor),
+          ]);
         } else if (isWindow) {
-          setModifiers([...defaultModifiers, restrictToHorizontalAxis, snapToIncrement(6 * scaleFactor)]);
+          setModifiers([
+            ...defaultModifiers,
+            restrictToHorizontalAxis,
+            snapToIncrement(5.45 * scaleFactor),
+          ]);
         } else {
           setModifiers([...defaultModifiers, restrictToHorizontalAxis]);
         }
       } else if (isOnElevationBack) {
         if (isDoor) {
-          setModifiers([...defaultModifiers, restrictToVerticalAxis, snapToIncrement(11 * scaleFactor)]);
+          setModifiers([
+            ...defaultModifiers,
+            restrictToVerticalAxis,
+            snapToIncrement(10.9 * scaleFactor),
+          ]);
         } else if (isWindow) {
-          setModifiers([...defaultModifiers, restrictToVerticalAxis, snapToIncrement(6 * scaleFactor)]);
+          setModifiers([
+            ...defaultModifiers,
+            restrictToVerticalAxis,
+            snapToIncrement(5.45 * scaleFactor),
+          ]);
         } else {
           setModifiers([...defaultModifiers, restrictToVerticalAxis]);
         }
@@ -91,9 +110,15 @@ const useDragHandlers = ({
         setModifiers([]);
       }
     } else if (isDoor) {
-      setModifiers([...doorWindowModifiers, snapToIncrement(11 * scaleFactor)]);
+      setModifiers([
+        ...doorWindowModifiers,
+        snapToIncrement(10.9 * scaleFactor),
+      ]);
     } else if (isWindow) {
-      setModifiers([...doorWindowModifiers, snapToIncrement(6 * scaleFactor)]);
+      setModifiers([
+        ...doorWindowModifiers,
+        snapToIncrement(5.45 * scaleFactor),
+      ]);
     } else if (isFixed) {
       setModifiers([...fixedModifiers]);
     } else if (isHeaterOrOutlet) {
@@ -112,9 +137,12 @@ const useDragHandlers = ({
 
     if (!draggedItem) return null;
 
-    const isOnElevationRight = draggedItem.elevation[0].name === ELEVATION_NAMES.RIGHT;
-    const isOnElevationLeft = draggedItem.elevation[0].name === ELEVATION_NAMES.LEFT;
-    const isOnElevationBack = draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
+    const isOnElevationRight =
+      draggedItem.elevation[0].name === ELEVATION_NAMES.RIGHT;
+    const isOnElevationLeft =
+      draggedItem.elevation[0].name === ELEVATION_NAMES.LEFT;
+    const isOnElevationBack =
+      draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
 
     const isHeaterOrOutlet =
       draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
@@ -124,7 +152,6 @@ const useDragHandlers = ({
       !over ||
       ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(over.id);
 
-    
     if (isHeaterOrOutlet && isOutsideBounds) {
       // Reset position of heater or outlet if outside droppable area
       setSelectedComponents((prevComponents) =>
@@ -166,7 +193,7 @@ const useDragHandlers = ({
                   y: piece.position.y + event.delta.y,
                 },
                 lastValidPosition: {
-                  x: piece.position.x -event.delta.x,
+                  x: piece.position.x - event.delta.x,
                   y: piece.position.y + event.delta.y,
                 },
               };
@@ -176,11 +203,11 @@ const useDragHandlers = ({
                 ...piece,
                 position: {
                   x: piece.position.x - event.delta.y,
-                  y: piece.position.y
+                  y: piece.position.y,
                 },
                 lastValidPosition: {
                   x: piece.position.x - event.delta.y,
-                  y: piece.position.y
+                  y: piece.position.y,
                 },
               };
             } else {
@@ -197,17 +224,32 @@ const useDragHandlers = ({
               };
             }
           } else {
-            return {
-              ...piece,
-              position: {
-                x: piece.position.x + event.delta.x,
-                y: piece.position.y + event.delta.y,
-              },
-              lastValidPosition: {
-                x: piece.position.x + event.delta.x,
-                y: piece.position.y + event.delta.y,
-              },
-            };
+            if (isOnElevationLeft) {
+              // If elevation is left, update the x position in reverse
+              return {
+                ...piece,
+                position: {
+                  x: piece.position.x - event.delta.x,
+                  y: piece.position.y + event.delta.y,
+                },
+                lastValidPosition: {
+                  x: piece.position.x - event.delta.x,
+                  y: piece.position.y + event.delta.y,
+                },
+              };
+            } else {
+              return {
+                ...piece,
+                position: {
+                  x: piece.position.x + event.delta.x,
+                  y: piece.position.y + event.delta.y,
+                },
+                lastValidPosition: {
+                  x: piece.position.x + event.delta.x,
+                  y: piece.position.y + event.delta.y,
+                },
+              };
+            }
           }
         }
         return piece;
@@ -228,7 +270,12 @@ const useDragHandlers = ({
 
           if (piece.objType !== COMPONENT_TYPES.PARTITION) {
             if (
-              checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
+              checkCloseness(
+                draggedPiece,
+                piece,
+                selectedElevation,
+                scaleFactor
+              )
             ) {
               updatedPieces[index].isColliding = true;
               const draggedPieceIndex = updatedPieces.findIndex(
@@ -236,9 +283,14 @@ const useDragHandlers = ({
               );
               updatedPieces[draggedPieceIndex].isColliding = true;
             }
-  
+
             if (
-              checkCloseness(draggedPiece, piece, selectedElevation, scaleFactor)
+              checkCloseness(
+                draggedPiece,
+                piece,
+                selectedElevation,
+                scaleFactor
+              )
             ) {
               updatedPieces[index].isTooClose = true;
               const draggedPieceIndex = updatedPieces.findIndex(

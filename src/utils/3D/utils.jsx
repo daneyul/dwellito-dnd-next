@@ -108,19 +108,19 @@ const leftSideCoordinates = ({
   let xPosition = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
       return (
-        (DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - distanceObject.left) /
+        (DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - distanceObject.right) /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX()
       );
     } else if (selectedContainer.name === `20' Custom Cube`) {
       return (
-        (DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - distanceObject.left) /
+        (DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - distanceObject.right) /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX()
       );
     } else if (selectedContainer.name === `40' Custom Cube`) {
       return (
-        (DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - distanceObject.left) /
+        (DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - distanceObject.right) /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX()
       );

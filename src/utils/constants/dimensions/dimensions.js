@@ -13,7 +13,7 @@ export const DIMENSIONS = {
   SCALE_FACTOR: 2.5,
   GRID_SIZE: 1,
   BOUNDARIES: {
-    x: 18,
+    x: 17,
   },
   SCALE_FACTOR_FOR_CALCULATIONS: 3.93
 };

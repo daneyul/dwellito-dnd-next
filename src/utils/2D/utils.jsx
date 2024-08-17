@@ -457,10 +457,16 @@ export const calculateCSSPos = ({
       };
     }
   } else {
-    positionStyles = {
-      left: `${piece.position.x}px`,
-      top: `${adjForContainerHeight(piece.position.y)}px`,
-    };
+    if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
+      positionStyles = {
+        right: `${piece.position.x}px`,
+        top: `${adjForContainerHeight(piece.position.y)}px`,
+      };
+    } else
+      positionStyles = {
+        left: `${piece.position.x}px`,
+        top: `${adjForContainerHeight(piece.position.y)}px`,
+      };
   }
 
   return {
@@ -557,7 +563,7 @@ export const getInteriorTrimFromUrl = (querySelectionData) => {
       return jsonSelections.interiorTrim;
     }
   }
-}
+};
 
 export const getComponentPrice = (component, interiorFinish, isElectrical) => {
   if (isElectrical) {
