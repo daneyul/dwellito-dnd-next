@@ -110,19 +110,19 @@ const leftSideCoordinates = ({
       return (
         (DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - distanceObject.right) /
           SCALE_FACTOR_FOR_CALCULATIONS +
-        adjustForX()
+        adjustForX() - 0.4
       );
     } else if (selectedContainer.name === `20' Custom Cube`) {
       return (
         (DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - distanceObject.right) /
           SCALE_FACTOR_FOR_CALCULATIONS +
-        adjustForX()
+        adjustForX() - 0.4
       );
     } else if (selectedContainer.name === `40' Custom Cube`) {
       return (
         (DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - distanceObject.right) /
           SCALE_FACTOR_FOR_CALCULATIONS +
-        adjustForX()
+        adjustForX() - 0.4
       );
     }
   };
@@ -130,22 +130,19 @@ const leftSideCoordinates = ({
     if (selectedContainer.name === `10' Custom Cube`) {
       return (
         -DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
-        adjustForY() +
-        0.2
+        adjustForY() - 0.2
       );
     } else if (selectedContainer.name === `20' Custom Cube`) {
       return (
         -DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH /
           SCALE_FACTOR_FOR_CALCULATIONS +
-        adjustForY() +
-        0.2
+        adjustForY() - 0.2
       );
     } else if (selectedContainer.name === `40' Custom Cube`) {
       return (
         -DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH /
           SCALE_FACTOR_FOR_CALCULATIONS +
-        adjustForY() +
-        0.2
+        adjustForY() - 0.2
       );
     }
   };
