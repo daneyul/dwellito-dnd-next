@@ -194,13 +194,13 @@ export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (
   selectedContainer
 ) => {
   if (selectedContainer.name === `10' Custom Cube`) {
-    return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+    return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2.7;
   } else if (selectedContainer.name === `20' Custom Cube`) {
     return (
-      DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2
+      DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2.7
     );
   } else if (selectedContainer.name === `40' Custom Cube`) {
-    return DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+    return DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2.7;
   }
 };
 

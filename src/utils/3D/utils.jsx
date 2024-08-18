@@ -211,11 +211,11 @@ const backSideCoordinates = ({
 }) => {
   const adjustForX = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2) - 0.2;
+      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
     } else if (selectedContainer.name === `20' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2) - 0.2;
+      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
     } else if (selectedContainer.name === `40' Custom Cube`) {
-      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2) - 0.2;
+      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
@@ -232,22 +232,22 @@ const backSideCoordinates = ({
     if (selectedContainer.name === `10' Custom Cube`) {
       return (
         DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
-        adjustForX()
+        adjustForX() + 0.2
       );
     } else if (selectedContainer.name === `20' Custom Cube`) {
       return (
         DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
-        adjustForX()
+        adjustForX() + 0.5
       );
     } else if (selectedContainer.name === `40' Custom Cube`) {
       return (
         DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
-        adjustForX()
+        adjustForX() + 1.2
       );
     }
   };
   let yPosition =
-    -distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY();
+    -distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY() - 0.9;
   let zPosition =
     -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
   return [xPosition(), zPosition, yPosition];
