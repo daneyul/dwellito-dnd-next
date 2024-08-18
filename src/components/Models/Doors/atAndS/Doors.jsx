@@ -34,19 +34,8 @@ const VisionLite = ({ component, onBoundingBoxChange, supplier }) => (
   />
 );
 
-const LhrSecurity = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
-    component={component}
-    onBoundingBoxChange={onBoundingBoxChange}
-    modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[0.99, 1.6, -0.015]}
-    isRollUp={false}
-  />
-);
-
 export {
   GlidingPatio,
   SteelDoor,
   VisionLite,
-  LhrSecurity
 };

@@ -161,6 +161,7 @@ const PageDataProvider = ({ children, data }) => {
     scaleFactor,
     isFloorPlanView,
     setShowOutsideDroppableWarning,
+    selectedContainer
   });
 
   const { orderTotal, setOrderTotal, interiorFinishPrice } = useOrderTotal({

@@ -9,7 +9,7 @@ export const CUSTOM_CUBE_DOOR_DIMENSIONS = {
     },
   },
   PERSONNEL_SECURITY: {
-    WIDTH: 46,
+    WIDTH: 44,
     HEIGHT: 95,
     FP_HEIGHT: 36,
     POSITION: {

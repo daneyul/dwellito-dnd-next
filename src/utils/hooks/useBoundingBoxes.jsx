@@ -21,10 +21,6 @@ export function useBoundingBoxes({ doors, windows, vents }) {
         const doorName = doors[index]?.name;
 
         if (
-          doorName === COMPONENT_NAMES.PERSONNEL_LHR ||
-          doorName === COMPONENT_NAMES.PERSONNEL_RHR ||
-          doorName === COMPONENT_NAMES.PERSONNEL_LHR_GLASS ||
-          doorName === COMPONENT_NAMES.PERSONNEL_RHR_GLASS ||
           doorName === COMPONENT_NAMES.PERSONNEL_LHR_SECURITY ||
           doorName === COMPONENT_NAMES.PERSONNEL_RHR_SECURITY ||
           doorName === COMPONENT_NAMES.PERSONNEL_LHR_SECURITY_GLASS ||

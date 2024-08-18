@@ -43,14 +43,5 @@ export const AT_AND_S_DOOR_DIMENSIONS = {
       x: 0,
       y: 45,
     },
-  },
-  PERSONNEL_SECURITY: {
-    WIDTH: 46,
-    HEIGHT: 95,
-    FP_HEIGHT: 36,
-    POSITION: {
-      x: 0,
-      y: 7,
-    },
-  },
+  }
 }

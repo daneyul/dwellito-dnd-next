@@ -16,7 +16,7 @@ const WSecurity = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}
-    customPosition={[1.322, 2.0, -0.01]}
+    customPosition={[1.35, 2.0, -0.01]}
     customRotation={[0, 0, Math.PI / 2]}
   />
 );

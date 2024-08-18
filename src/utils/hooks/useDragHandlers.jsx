@@ -77,13 +77,13 @@ const useDragHandlers = ({
           setModifiers([
             ...defaultModifiers,
             restrictToHorizontalAxis,
-            snapToIncrement(10.9 * scaleFactor),
+            snapToIncrement({ increment: 10.9, scaleFactor }),
           ]);
         } else if (isWindow) {
           setModifiers([
             ...defaultModifiers,
             restrictToHorizontalAxis,
-            snapToIncrement(5.45 * scaleFactor),
+            snapToIncrement({ increment: 5.45, scaleFactor }),
           ]);
         } else {
           setModifiers([...defaultModifiers, restrictToHorizontalAxis]);
@@ -93,13 +93,13 @@ const useDragHandlers = ({
           setModifiers([
             ...defaultModifiers,
             restrictToVerticalAxis,
-            snapToIncrement(10.9 * scaleFactor),
+            snapToIncrement({ increment: 10.9, scaleFactor }),
           ]);
         } else if (isWindow) {
           setModifiers([
             ...defaultModifiers,
             restrictToVerticalAxis,
-            snapToIncrement(5.45 * scaleFactor),
+            snapToIncrement({ increment: 5.45, scaleFactor }),
           ]);
         } else {
           setModifiers([...defaultModifiers, restrictToVerticalAxis]);
@@ -112,12 +112,12 @@ const useDragHandlers = ({
     } else if (isDoor) {
       setModifiers([
         ...doorWindowModifiers,
-        snapToIncrement(10.9 * scaleFactor),
+        snapToIncrement({ increment: 10.9, scaleFactor }),
       ]);
     } else if (isWindow) {
       setModifiers([
         ...doorWindowModifiers,
-        snapToIncrement(5.45 * scaleFactor),
+        snapToIncrement({ increment: 5.45, scaleFactor }),
       ]);
     } else if (isFixed) {
       setModifiers([...fixedModifiers]);

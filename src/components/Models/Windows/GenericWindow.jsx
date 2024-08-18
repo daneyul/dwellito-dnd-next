@@ -3,12 +3,12 @@ import { PageDataContext } from '@/components/Content/Content';
 import { checkDistance } from '@/utils/2D/utils';
 import { calcPosition, calcRotation } from '@/utils/3D/utils';
 import { useGLTF } from '@react-three/drei';
-import React, { useContext, useEffect, useMemo, useRef } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Box3, Vector3 } from 'three';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import { elevationData } from '@/utils/constants/elevationData';
+import { ELEVATION_NAMES } from '@/utils/constants/names/names';
 
-const GenericWindow = React.memo(
+const GenericWindow =
   ({
     component,
     onBoundingBoxChange,
@@ -20,6 +20,7 @@ const GenericWindow = React.memo(
     const { selectedComponents, selectedContainer, scaleFactor } =
       useContext(PageDataContext);
     const selectedElevation = component.elevation[0];
+    const [width, setWidth] = useState(0);
     const distanceObject = checkDistance({
       component,
       selectedElevation,
@@ -40,14 +41,23 @@ const GenericWindow = React.memo(
 
     useEffect(() => {
       if (ref.current) {
+        // Recalculate the bounding box
         const bbox = new Box3().setFromObject(ref.current);
         const size = new Vector3();
         const center = new Vector3();
         bbox.getSize(size);
         bbox.getCenter(center);
-        onBoundingBoxChange({ size, center, selectedElevation });
+    
+        // Update state and notify about bounding box change
+        setWidth(size.x);
+        onBoundingBoxChange({
+          size,
+          center: new Vector3(center.x, center.y, center.z),
+          selectedElevation,
+        });
       }
-    }, [selectedComponents]);
+    }, [selectedComponents, selectedElevation.name, ref.current]);
+    
 
     useEffect(() => {
       if (materials.Glass) {
@@ -67,7 +77,8 @@ const GenericWindow = React.memo(
           selectedElevation,
           distanceObject,
           DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
-          selectedContainer
+          selectedContainer,
+          width
         )}
         rotation={rotation}
       >
@@ -94,6 +105,5 @@ const GenericWindow = React.memo(
       </group>
     );
   }
-);
 
 export default GenericWindow;

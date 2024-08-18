@@ -81,6 +81,7 @@ export const checkDistance = ({
   }
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
+  const isLeft = selectedElevation.name === ELEVATION_NAMES.LEFT;
 
   // Use the function to get dynamic width
   const droppableWidthValue = droppableWidth(
@@ -99,8 +100,8 @@ export const checkDistance = ({
   const top = deScale(component?.position.y, scaleFactor);
 
   return {
-    left: Math.round(left * 100) / 100,
-    right: Math.round(right * 100) / 100,
+    left: isLeft ? Math.round(right * 100) / 100 : Math.round(left * 100) / 100,
+    right: isLeft ? Math.round(left * 100) / 100: Math.round(right * 100) / 100,
     top: Math.round(top * 100) / 100,
   };
 };
@@ -278,7 +279,7 @@ export const checkCloseness = (
 };
 
 export const snapToIncrement =
-  (increment, scaleFactor) =>
+  ({ increment, scaleFactor }) =>
   ({ transform }) => {
     if (transform && typeof transform.x === 'number') {
       return {
