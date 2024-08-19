@@ -1,41 +1,25 @@
-import { LouverVent, Vent12, Vent20, Vent24 } from './SpecificVents';
 import { COMPONENT_NAMES } from '@/utils/constants/names/names';
+import { ExhaustShutter, LouverVent } from './atAndS/Vents';
+import { Vent12, Vent20, Vent24 } from './customCubes/Vents';
 
-export default function Vent({ onBoundingBoxChange, component, supplier }) {
-  switch (component.name) {
-    case COMPONENT_NAMES.VENT_12:
-      return (
-        <Vent12
-          component={component}
-          onBoundingBoxChange={onBoundingBoxChange}
-          supplier={supplier}
-        />
-      );
-    case COMPONENT_NAMES.VENT_20:
-      return (
-        <Vent20
-          component={component}
-          onBoundingBoxChange={onBoundingBoxChange}
-          supplier={supplier}
-        />
-      );
-    case COMPONENT_NAMES.VENT_24:
-      return (
-        <Vent24
-          component={component}
-          onBoundingBoxChange={onBoundingBoxChange}
-          supplier={supplier}
-        />
-      );
-    case COMPONENT_NAMES.LOUVER_VENT:
-      return (
-        <LouverVent
-          component={component}
-          onBoundingBoxChange={onBoundingBoxChange}
-          supplier={supplier}
-        />
-      )
-    default:
-      return null;
-  }
-}
+const Vent = ({ onBoundingBoxChange, component, supplier }) => {
+  const componentMap = {
+    [COMPONENT_NAMES.LOUVER_VENT]: LouverVent,
+    [COMPONENT_NAMES.EXHAUST_SHUTTER]: ExhaustShutter,
+    [COMPONENT_NAMES.VENT_12]: Vent12,
+    [COMPONENT_NAMES.VENT_20]: Vent20,
+    [COMPONENT_NAMES.VENT_24]: Vent24,
+  };
+
+  const VentComponent = componentMap[component.name];
+
+  return VentComponent ? (
+    <VentComponent
+      component={component}
+      onBoundingBoxChange={onBoundingBoxChange}
+      supplier={supplier}
+    />
+  ) : null;
+};
+
+export default Vent;
