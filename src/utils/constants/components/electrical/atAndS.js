@@ -23,12 +23,12 @@ export const atAndS = [
     price: 0,
     model: 'swivel-floodlight',
     fixed: false,
-    // fixedSide: ELEVATION_NAMES.BACK,
-    // alwaysShowOn: [
-    //   ELEVATION_NAMES.BACK,
-    //   ELEVATION_NAMES.LEFT,
-    //   ELEVATION_NAMES.RIGHT,
-    // ],
+    fixedSide: ELEVATION_NAMES.BACK,
+    alwaysShowOn: [
+      ELEVATION_NAMES.BACK,
+      ELEVATION_NAMES.LEFT,
+      ELEVATION_NAMES.RIGHT,
+    ],
   },
   {
     name: COMPONENT_NAMES.AIR_CONDITIONER,
