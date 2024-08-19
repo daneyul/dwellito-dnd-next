@@ -21,17 +21,17 @@ export const atAndS = [
   {
     name: COMPONENT_NAMES.ALUMINUM_EXHAUST_SHUTTER,
     position: {
-      x: DIMENSIONS.VENT.SQ_24.POSITION.x,
-      y: DIMENSIONS.VENT.SQ_24.POSITION.y,
+      x: DIMENSIONS.VENT.ALUMINUM_EXHAUST_SHUTTER.POSITION.x,
+      y: DIMENSIONS.VENT.ALUMINUM_EXHAUST_SHUTTER.POSITION.y,
     },
-    imgName: `${COMPONENT_TYPES.VENT}/24X24.svg`,
+    imgName: `${COMPONENT_TYPES.VENT}/exhaust-shutter.svg`,
     desc: '',
-    objWidth: DIMENSIONS.VENT.SQ_24.WIDTH,
-    objHeight: DIMENSIONS.VENT.SQ_24.HEIGHT,
-    objFpHeight: DIMENSIONS.VENT.SQ_24.FP_HEIGHT,
+    objWidth: DIMENSIONS.VENT.ALUMINUM_EXHAUST_SHUTTER.WIDTH,
+    objHeight: DIMENSIONS.VENT.ALUMINUM_EXHAUST_SHUTTER.HEIGHT,
+    objFpHeight: DIMENSIONS.VENT.ALUMINUM_EXHAUST_SHUTTER.FP_HEIGHT,
     objType: COMPONENT_TYPES.VENT,
     price: 0,
-    model: '',
-    floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/24X24.svg`,
+    model: 'exhaust-shutter',
+    floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/exhaust-shutter.svg`,
   }
 ].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));

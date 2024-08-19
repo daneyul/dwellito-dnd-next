@@ -35,4 +35,13 @@ export const VENT_DIMENSIONS = {
       y: 24,
     },
   },
+  ALUMINUM_EXHAUST_SHUTTER: {
+    WIDTH: 38,
+    HEIGHT: 38,
+    FP_HEIGHT: 3,
+    POSITION: {
+      x: 0,
+      y: 24,
+    },
+  }
 }

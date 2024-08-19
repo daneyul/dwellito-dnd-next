@@ -59,6 +59,7 @@ export const customCubes = [
     frontImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/roof-vent.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/roof-vent-dash.svg`,
     sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/roof-vent.svg`,
+    imgName: `${COMPONENT_TYPES.ELECTRICAL}/front-view/roof-vent.svg`,
     desc: 'P203-1-309',
     objWidth: 12,
     objHeight: 12,

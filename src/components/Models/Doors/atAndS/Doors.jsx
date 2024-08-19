@@ -6,7 +6,7 @@ const GlidingPatio = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[0, 0.735, 0]}
+    customPosition={[0.04, 0.735, 0]}
     customScale={2.5}
     isRollUp={false}
   />
@@ -17,7 +17,7 @@ const SteelDoor = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[0, 0.7, 0.04]}
+    customPosition={[0.04, 0.7, 0.04]}
     customScale={2.5}
     isRollUp={false}
   />
@@ -28,7 +28,7 @@ const VisionLite = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[0, 0.7, 0.04]}
+    customPosition={[0.04, 0.7, 0.04]}
     customScale={2.5}
     isRollUp={false}
   />

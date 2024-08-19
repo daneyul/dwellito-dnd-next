@@ -44,14 +44,6 @@ const AddOption = ({ options }) => {
       });
     }
   };
-
-  const imgSrc = (item) => {
-    if (item.name === COMPONENT_NAMES.ROOF_VENT) {
-      return item.sidebarImg
-    } else {
-      return item.imgName
-    }
-  }
   
   return options.map((item) => {
     if (isFloorPlanView && item.name !== COMPONENT_NAMES.ROOF_VENT) {
@@ -60,7 +52,7 @@ const AddOption = ({ options }) => {
           <HoverCard.Trigger>
             <img
               style={{ opacity: '0.25' }}
-              src={generateImgSrc(supplier, imgSrc(item))}
+              src={generateImgSrc(supplier, item.imgName)}
               alt={item.name}
               className={style.objImg}
             />
@@ -78,7 +70,7 @@ const AddOption = ({ options }) => {
           <HoverCard.Trigger>
             <img
               style={{ opacity: '0.25' }}
-              src={generateImgSrc(supplier, imgSrc(item))}
+              src={generateImgSrc(supplier, item.imgName)}
               alt={item.name}
               className={style.objImg}
             />
@@ -95,7 +87,7 @@ const AddOption = ({ options }) => {
         <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
           <HoverCard.Trigger>
             <img
-              src={generateImgSrc(supplier, imgSrc(item))}
+              src={generateImgSrc(supplier, item.imgName)}
               alt={item.name}
               onClick={() => handleSelect(item)}
               className={style.objImg}
