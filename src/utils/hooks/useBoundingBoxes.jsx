@@ -74,12 +74,12 @@ export function useBoundingBoxes({ doors, windows, vents }) {
                 ...updatedData,
                 size: new Vector3(
                   data.size.x - 2.3,
-                  data.size.y - 1.5,
+                  data.size.y - 2.7,
                   data.size.z
                 ),
                 center: new Vector3(
                   data.center.x,
-                  data.center.y - 0.8,
+                  data.center.y - 1.5,
                   data.center.z
                 ),
               };

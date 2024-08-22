@@ -75,7 +75,7 @@ const HdHcRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.628, 1.6, 3.235]}
+    customPosition={[4.628, 1.67, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
