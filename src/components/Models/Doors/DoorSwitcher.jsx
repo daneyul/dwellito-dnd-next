@@ -33,6 +33,8 @@ const Door = ({ onBoundingBoxChange, component, supplier }) => {
     [COMPONENT_NAMES.GLIDING_PATIO]: specificDoors.GlidingPatio,
     [COMPONENT_NAMES.STEEL_DOOR]: specificDoors.SteelDoor,
     [COMPONENT_NAMES.VISION_LITE]: specificDoors.VisionLite,
+    [COMPONENT_NAMES.ROLLUP_DOOR_WHITE]: specificDoors.Rollup,
+    [COMPONENT_NAMES.GLASS_GARAGE_DOOR]: specificDoors.GlassGarage
   };
 
   const DoorComponent = componentMap[component.name];

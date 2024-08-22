@@ -63,6 +63,53 @@ const Selector = () => {
 
   const rollUpDoorsTitle = supplier === SUPPLIER_NAMES.CUSTOM_CUBES ? 'Economy Roll Up Doors' : 'Roll Up Doors';
 
+  const rollUpDoors = componentData.filter((item) => {
+    if (containerHeightIsStandard) {
+      return (
+        item.objType === COMPONENT_TYPES.DOOR &&
+        item.isRollUp &&
+        item.supplier === supplier &&
+        (!item.highContainerOnly || item.highContainerOnly === undefined)
+      );
+    } else {
+      return (
+        item.objType === COMPONENT_TYPES.DOOR &&
+        item.isRollUp &&
+        item.supplier === supplier &&
+        (item.highContainerOnly || item.highContainerOnly === undefined)
+      );
+    }
+  });
+
+  const RollupSection = () => (
+    <>
+      {supplier !== SUPPLIER_NAMES.CUSTOM_CUBES && rollUpDoors.length > 0 && (
+        <>
+          <div className={style.subTitle}>Roll Up Doors</div>
+          <div className={style.objectContainer}>
+            <AddOption options={rollUpDoors} />
+          </div>
+        </>
+      )}
+      {supplier === SUPPLIER_NAMES.CUSTOM_CUBES && economyDoors.length > 0 && (
+        <>
+          <div className={style.subTitle}>Economy Roll Up Doors</div>
+          <div className={style.objectContainer}>
+            <AddOption options={economyDoors} />
+          </div>
+        </>
+      )}
+      {supplier === SUPPLIER_NAMES.CUSTOM_CUBES && heavyDutyDoors.length > 0 && (
+        <>
+          <div className={style.subTitle}>Heavy Duty Roll Up Doors</div>
+          <div className={style.objectContainer}>
+            <AddOption options={heavyDutyDoors} />
+          </div>
+        </>
+      )}
+    </>
+  );
+
   return (
     <div className={style.container}>
       <div className={style.titleTop}>Doors, Windows & Vents</div>
@@ -74,22 +121,7 @@ const Selector = () => {
         <div className={style.objectContainer}>
           <AddOption options={doors} />
         </div>
-        {economyDoors.length > 0 && (
-          <>
-            <div className={style.subTitle}>{rollUpDoorsTitle}</div>
-            <div className={style.objectContainer}>
-              <AddOption options={economyDoors} />
-            </div>
-          </>
-        )}
-        {heavyDutyDoors.length > 0 && (
-          <>
-            <div className={style.subTitle}>Heavy Duty Roll Up Doors</div>
-            <div className={style.objectContainer}>
-              <AddOption options={heavyDutyDoors} />
-            </div>
-          </>
-        )}
+        <RollupSection />
         <div className={style.subTitle}>Windows</div>
         <div className={style.objectContainer}>
           <AddOption options={windows} />

@@ -27,21 +27,21 @@ export const AT_AND_S_DOOR_DIMENSIONS = {
     },
   },
   ROLLUP_DOOR_WHITE: {
-    WIDTH: 84,
-    HEIGHT: 84,
+    WIDTH: 88,
+    HEIGHT: 92,
     FP_HEIGHT: 8,
     POSITION: {
       x: 0,
-      y: 45,
+      y: 33,
     },
   },
   GLASS_GARAGE_DOOR: {
     WIDTH: 120,
-    HEIGHT: 84,
-    FP_HEIGHT: 8,
+    HEIGHT: 123,
+    FP_HEIGHT: 5,
     POSITION: {
       x: 0,
-      y: 45,
+      y: -30,
     },
   }
 }
