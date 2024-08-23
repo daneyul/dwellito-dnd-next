@@ -11,6 +11,7 @@ import {
   DROPPABLE_PARTITIONS,
   DROPPABLE_RIGHT,
   ELEVATION_NAMES,
+  SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
 import { Draggable } from './Draggable';
 
@@ -60,7 +61,8 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
           piece.elevation.some(
             (elevation) => elevation.name === elevationName
           ) ||
-          (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
+          (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES &&
+            piece.objType === COMPONENT_TYPES.ELECTRICAL &&
             !piece.ceilingOnly &&
             (piece.fixedSide === elevationName ||
               !piece.fixedSide ||
@@ -72,7 +74,8 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
           piece.elevation.some(
             (elevation) => elevation.name === elevationName
           ) ||
-          (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
+          (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES &&
+            piece.objType === COMPONENT_TYPES.ELECTRICAL &&
             piece.fixedSide === elevationName)
       );
     }
@@ -81,7 +84,9 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
   const filterFixedCeilingComponents = () => {
     return selectedComponents.filter(
       (piece) =>
-        piece.objType === COMPONENT_TYPES.ELECTRICAL && piece.fixed && !piece.fixedSide ||
+        (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
+          piece.fixed &&
+          !piece.fixedSide) ||
         (piece.name === COMPONENT_NAMES.ROOF_VENT &&
           piece.fixed &&
           !piece.fixedSide)
@@ -90,10 +95,16 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
 
   const filterPartitions = () => {
     return selectedComponents.filter(
-      (piece) =>
-        piece.objType === COMPONENT_TYPES.PARTITION
+      (piece) => piece.objType === COMPONENT_TYPES.PARTITION
     );
   };
+
+  console.log(
+    filterComponents({
+      elevationName: ELEVATION_NAMES.LEFT,
+      isLeft: true,
+    })
+  );
 
   return (
     <section
@@ -122,17 +133,20 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
         {filterComponents({
           elevationName: ELEVATION_NAMES.LEFT,
           isLeft: true,
-        }).map((piece) => (
-          <Draggable
-            piece={piece}
-            key={piece.id}
-            id={piece.id}
-            onSelect={() => handleSelect(piece.id)}
-            ref={draggableRefs[piece.id]}
-            onHover={() => setHoveredPiece(piece)}
-            onLeave={() => setHoveredPiece(null)}
-          />
-        ))}
+        }).map((piece) => {
+          console.log('piece-left', piece);
+          return (
+            <Draggable
+              piece={piece}
+              key={piece.id}
+              id={piece.id}
+              onSelect={() => handleSelect(piece.id)}
+              ref={draggableRefs[piece.id]}
+              onHover={() => setHoveredPiece(piece)}
+              onLeave={() => setHoveredPiece(null)}
+            />
+          );
+        })}
       </div>
       <div
         ref={setRightDroppableRef}
@@ -145,17 +159,20 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
         }}
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.RIGHT }).map(
-          (piece) => (
-            <Draggable
-              piece={piece}
-              key={piece.id}
-              id={piece.id}
-              onSelect={() => handleSelect(piece.id)}
-              ref={draggableRefs[piece.id]}
-              onHover={() => setHoveredPiece(piece)}
-              onLeave={() => setHoveredPiece(null)}
-            />
-          )
+          (piece) => {
+            console.log('piece-right', piece);
+            return (
+              <Draggable
+                piece={piece}
+                key={piece.id}
+                id={piece.id}
+                onSelect={() => handleSelect(piece.id)}
+                ref={draggableRefs[piece.id]}
+                onHover={() => setHoveredPiece(piece)}
+                onLeave={() => setHoveredPiece(null)}
+              />
+            );
+          }
         )}
       </div>
       <div
@@ -213,7 +230,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
           width: `${toScale(floorPlan.objWidth, scaleFactor)}px`,
           height: `${toScale(floorPlan.objScHeight, scaleFactor)}px`,
           top: '50%',
-          transform: 'translateY(-50%)'
+          transform: 'translateY(-50%)',
         }}
       >
         {filterPartitions().map((piece) => (

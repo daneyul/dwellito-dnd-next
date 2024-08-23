@@ -24,12 +24,11 @@ export const atAndS = [
     price: 0,
     model: 'swivel-floodlight',
     fixed: false,
-    fixedSide: ELEVATION_NAMES.BACK,
-    alwaysShowOn: [
-      ELEVATION_NAMES.BACK,
-      ELEVATION_NAMES.LEFT,
-      ELEVATION_NAMES.RIGHT,
-    ],
+    // alwaysShowOn: [
+    //   ELEVATION_NAMES.BACK,
+    //   ELEVATION_NAMES.LEFT,
+    //   ELEVATION_NAMES.RIGHT,
+    // ],
   },
   {
     name: COMPONENT_NAMES.AIR_CONDITIONER,
@@ -42,14 +41,12 @@ export const atAndS = [
     sideImg: `${COMPONENT_TYPES.ELECTRICAL}/side-view/ac.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/ac.svg`,
     desc: '',
-    objWidth: 16,
-    objHeight: 23,
-    objThickness: 8,
+    objWidth: 23,
+    objHeight: 16,
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 1075,
     model: 'airconditioner',
     fixed: false,
-    // fixedSide: ELEVATION_NAMES.BACK,
     // alwaysShowOn: [
     //   ELEVATION_NAMES.BACK,
     //   ELEVATION_NAMES.LEFT,
@@ -96,7 +93,7 @@ export const atAndS = [
     objThickness: 8,
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 1075,
-    model: '',
+    model: 'indoor-outdoor-fan',
     fixed: true,
     // fixedSide: ELEVATION_NAMES.BACK,
     // alwaysShowOn: [
@@ -120,9 +117,8 @@ export const atAndS = [
     objThickness: 8,
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 1075,
-    model: '',
+    model: 'emergency-light',
     fixed: false,
-    // fixedSide: ELEVATION_NAMES.BACK,
     // alwaysShowOn: [
     //   ELEVATION_NAMES.BACK,
     //   ELEVATION_NAMES.LEFT,
@@ -146,7 +142,6 @@ export const atAndS = [
     price: 1075,
     model: 'farmhouse-sconce',
     fixed: false,
-    // fixedSide: ELEVATION_NAMES.BACK,
     // alwaysShowOn: [
     //   ELEVATION_NAMES.BACK,
     //   ELEVATION_NAMES.LEFT,
@@ -168,9 +163,8 @@ export const atAndS = [
     objThickness: 6,
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 1075,
-    model: '',
+    model: 'security-floodlight',
     fixed: false,
-    // fixedSide: ELEVATION_NAMES.BACK,
     // alwaysShowOn: [
     //   ELEVATION_NAMES.BACK,
     //   ELEVATION_NAMES.LEFT,

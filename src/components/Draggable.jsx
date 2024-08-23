@@ -1,11 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useContext, useEffect, useState } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
-import {
-  toScale,
-  generateImgSrc,
-  calculateCSSPos,
-} from '../utils/2D/utils';
+import { toScale, generateImgSrc, calculateCSSPos } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
 import {
   COMPONENT_NAMES,
@@ -78,7 +74,7 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     DROPPABLE_RIGHT,
     DROPPABLE_BACK,
     DROPPABLE_MIDDLE,
-    DROPPABLE_PARTITIONS
+    DROPPABLE_PARTITIONS,
   ];
 
   // Filter out the droppable element from collisions
@@ -121,7 +117,10 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
   const imgSrc = () => {
     if (piece.objType === COMPONENT_TYPES.ELECTRICAL) {
       if (isFloorPlanView) {
-        if (piece.name === COMPONENT_NAMES.WRAP_LIGHT || piece.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE) {
+        if (
+          piece.name === COMPONENT_NAMES.WRAP_LIGHT ||
+          piece.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE
+        ) {
           if (slug === CONTAINER_SIZE_10) {
             return piece.floorPlanImg.TEN;
           } else if (slug === CONTAINER_SIZE_20) {
@@ -132,7 +131,10 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
         } else {
           return piece.floorPlanImg;
         }
-      } else if (piece.alwaysShowOn.includes(selectedElevation.name)) {
+      } else if (
+        piece.alwaysShowOn &&
+        piece.alwaysShowOn.includes(selectedElevation.name)
+      ) {
         if (!!piece.fixedSide && selectedElevation.name !== piece.fixedSide) {
           return piece.sideImg;
         } else {
@@ -144,7 +146,10 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     } else if (piece.name === COMPONENT_NAMES.ROOF_VENT) {
       if (isFloorPlanView) {
         return piece.floorPlanImg;
-      } else if (!!piece.fixedSide && selectedElevation.name !== piece.fixedSide) {
+      } else if (
+        !!piece.fixedSide &&
+        selectedElevation.name !== piece.fixedSide
+      ) {
         return piece.sideImg;
       } else {
         return piece.frontImg;
@@ -155,7 +160,6 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
       return piece.imgName;
     }
   };
-  
 
   const isFixed = piece.fixed;
 
@@ -178,7 +182,10 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     ) {
       return toScale(piece.objThickness, scaleFactor);
     } else {
-      if (piece.name === COMPONENT_NAMES.WRAP_LIGHT || piece.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE) {
+      if (
+        piece.name === COMPONENT_NAMES.WRAP_LIGHT ||
+        piece.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE
+      ) {
         if (slug === CONTAINER_SIZE_10) {
           return toScale(piece.objWidth.TEN, scaleFactor);
         } else if (slug === CONTAINER_SIZE_20) {

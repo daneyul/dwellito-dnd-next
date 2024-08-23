@@ -4,7 +4,7 @@ import { COMPONENT_NAMES, CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_4
 import { useGLTF } from '@react-three/drei';
 import { useContext } from 'react';
 
-const AirConditioner = () => {
+const CustomCubesAirConditioner = () => {
   const { containerSize, slug, selectedComponents, supplier } =
     useContext(PageDataContext);
 
@@ -71,4 +71,4 @@ const AirConditioner = () => {
   );
 };
 
-export default AirConditioner;
+export default CustomCubesAirConditioner;

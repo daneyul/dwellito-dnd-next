@@ -30,16 +30,11 @@ import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
 import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
 import ContainerShell20High from './Containers/20/ContainerShell20High';
 import ContainerShell40High from './Containers/40/ContainerShell40High';
-import Amp from './Electrical/Amp';
-import RoofVent from './Electrical/RoofVent';
-import AirConditioner from './Electrical/AirConditioner';
-import ExhaustFan from './Electrical/ExhaustFan';
-import Heater from './Electrical/Heater';
-import Outlet from './Electrical/Outlet';
 import { useBoundingBoxes } from '@/utils/hooks/useBoundingBoxes';
 import { useExteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
 import { containerData } from '@/utils/constants/containerData';
 import { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } from '@/utils/constants/camera/camPos';
+import Electrical from './Electrical/Electrical';
 
 export function Models() {
   const {
@@ -250,12 +245,12 @@ export function Models() {
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />
-        <Outlet component={outlet} />
-        <Heater component={heater} />
-        <Amp />
-        <RoofVent />
-        <AirConditioner />
-        <ExhaustFan onBoundingBoxChange={handleExhaustFanBoundingBox} />
+        <Electrical
+          supplierSlug={supplier}
+          outlet={outlet}
+          heater={heater}
+          handleExhaustFanBoundingBox={handleExhaustFanBoundingBox}
+        />
         <ContainerShell />
         <CsgGeometries
           doors={doors}

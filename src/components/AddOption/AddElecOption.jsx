@@ -14,6 +14,7 @@ const AddElecOption = ({ options }) => {
     setSelectedComponents,
     floorPlan,
     setShow3d,
+    selectedElevation,
     setSelectedElevation,
     setSelectedElevationIndex,
     mappedElevations,
@@ -40,16 +41,26 @@ const AddElecOption = ({ options }) => {
             : style.objImgContainer
         }
         onClick={() => {
-          setShow3d(false);
-          setSelectedElevation(mappedElevations[3]);
-          setSelectedElevationIndex(3);
-          handleAddComponent({
-            item,
-            selectedComponents,
-            setSelectedComponents,
-            selectedElevation: mappedElevations[3],
-            floorPlan,
-          });
+          if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
+            setShow3d(false);
+            setSelectedElevation(mappedElevations[3]);
+            setSelectedElevationIndex(3);
+            handleAddComponent({
+              item,
+              selectedComponents,
+              setSelectedComponents,
+              selectedElevation: mappedElevations[3],
+              floorPlan,
+            });
+          } else {
+            setShow3d(false);
+            handleAddComponent({
+              item,
+              setSelectedComponents,
+              selectedElevation,
+              floorPlan,
+            });
+          }
         }}
       >
         <img
