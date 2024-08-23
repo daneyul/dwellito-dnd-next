@@ -60,7 +60,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
         (piece) =>
           piece.elevation.some(
             (elevation) => elevation.name === elevationName
-          ) ||
+          ) && !piece.ceilingOnly ||
           (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES &&
             piece.objType === COMPONENT_TYPES.ELECTRICAL &&
             !piece.ceilingOnly &&
@@ -73,7 +73,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
         (piece) =>
           piece.elevation.some(
             (elevation) => elevation.name === elevationName
-          ) ||
+          ) && !piece.ceilingOnly ||
           (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES &&
             piece.objType === COMPONENT_TYPES.ELECTRICAL &&
             piece.fixedSide === elevationName)
