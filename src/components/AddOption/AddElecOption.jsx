@@ -41,7 +41,7 @@ const AddElecOption = ({ options }) => {
             : style.objImgContainer
         }
         onClick={() => {
-          if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
+          if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES || item.ceilingOnly) {
             setShow3d(false);
             setSelectedElevation(mappedElevations[3]);
             setSelectedElevationIndex(3);
