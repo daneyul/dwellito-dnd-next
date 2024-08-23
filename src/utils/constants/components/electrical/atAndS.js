@@ -95,7 +95,7 @@ export const atAndS = [
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 1075,
     model: '',
-    fixed: false,
+    fixed: true,
     // fixedSide: ELEVATION_NAMES.BACK,
     // alwaysShowOn: [
     //   ELEVATION_NAMES.BACK,

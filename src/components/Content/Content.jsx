@@ -184,7 +184,7 @@ const PageDataProvider = ({ children, data }) => {
 
   useEffect(() => {
     const includesLighting = selectedComponents.some(
-      (component) => component.name === COMPONENT_NAMES.WRAP_LIGHT
+      (component) => component.name === COMPONENT_NAMES.WRAP_LIGHT || component.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE
     );
     setHasLighting(includesLighting);
   }, [selectedComponents]);

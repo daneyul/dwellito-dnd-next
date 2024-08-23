@@ -121,7 +121,7 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
   const imgSrc = () => {
     if (piece.objType === COMPONENT_TYPES.ELECTRICAL) {
       if (isFloorPlanView) {
-        if (piece.name === COMPONENT_NAMES.WRAP_LIGHT) {
+        if (piece.name === COMPONENT_NAMES.WRAP_LIGHT || piece.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE) {
           if (slug === CONTAINER_SIZE_10) {
             return piece.floorPlanImg.TEN;
           } else if (slug === CONTAINER_SIZE_20) {
@@ -178,7 +178,7 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     ) {
       return toScale(piece.objThickness, scaleFactor);
     } else {
-      if (piece.name === COMPONENT_NAMES.WRAP_LIGHT) {
+      if (piece.name === COMPONENT_NAMES.WRAP_LIGHT || piece.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE) {
         if (slug === CONTAINER_SIZE_10) {
           return toScale(piece.objWidth.TEN, scaleFactor);
         } else if (slug === CONTAINER_SIZE_20) {

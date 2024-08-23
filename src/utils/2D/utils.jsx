@@ -363,7 +363,7 @@ export const calculateCSSPos = ({
           }px`,
           top: '50%',
         };
-      } else if (piece.name === COMPONENT_NAMES.WRAP_LIGHT) {
+      } else if (piece.name === COMPONENT_NAMES.WRAP_LIGHT || piece.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE) {
         transform = 'translateY(-50%) translateX(-50%)';
         positionStyles = {
           left: `50%`,
