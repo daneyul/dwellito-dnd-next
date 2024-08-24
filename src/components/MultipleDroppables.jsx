@@ -99,12 +99,12 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
     );
   };
 
-  console.log(
-    filterComponents({
-      elevationName: ELEVATION_NAMES.LEFT,
-      isLeft: true,
-    })
-  );
+  // console.log(
+  //   filterComponents({
+  //     elevationName: ELEVATION_NAMES.LEFT,
+  //     isLeft: true,
+  //   })
+  // );
 
   return (
     <section
@@ -134,7 +134,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
           elevationName: ELEVATION_NAMES.LEFT,
           isLeft: true,
         }).map((piece) => {
-          console.log('piece-left', piece);
+          // console.log('piece-left', piece);
           return (
             <Draggable
               piece={piece}
@@ -160,7 +160,7 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.RIGHT }).map(
           (piece) => {
-            console.log('piece-right', piece);
+            // console.log('piece-right', piece);
             return (
               <Draggable
                 piece={piece}

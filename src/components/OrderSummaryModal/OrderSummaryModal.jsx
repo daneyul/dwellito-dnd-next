@@ -39,7 +39,7 @@ const OrderSummaryModal = () => {
     dialogOpen,
     setDialogOpen,
     supplier,
-    containerSizeStr
+    containerSizeStr,
   } = useContext(PageDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const [zipCode, setZipCode] = useState('');
@@ -150,7 +150,11 @@ const OrderSummaryModal = () => {
           name: i.name,
           position: `${distance.left}' from left & ${distance.top}' from top (on floor plan view)`,
           sku: i.desc,
-          price: getComponentPrice(i, interiorFinish, i.objType === COMPONENT_TYPES.ELECTRICAL),
+          price: getComponentPrice(
+            i,
+            interiorFinish,
+            i.objType === COMPONENT_TYPES.ELECTRICAL
+          ),
           surface: ELEVATION_NAMES.FLOOR_PLAN,
         };
       });
@@ -259,7 +263,10 @@ const OrderSummaryModal = () => {
         <div className={style.lineItem}>
           <div className={style.thumbnailContainer}>
             <img
-              src={generateImgSrc(supplier, `exterior-finishes/${exteriorFinish.img}`)}
+              src={generateImgSrc(
+                supplier,
+                `exterior-finishes/${exteriorFinish.img}`
+              )}
               alt={exteriorFinish.name}
               className={style.thumbnailImg}
             />
@@ -280,7 +287,10 @@ const OrderSummaryModal = () => {
         <div className={style.lineItem}>
           <div className={style.thumbnailContainer}>
             <img
-              src={generateImgSrc(supplier, `interior-finishes/${interiorFinish.img}`)}
+              src={generateImgSrc(
+                supplier,
+                `interior-finishes/${interiorFinish.img}`
+              )}
               alt={interiorFinish.name}
               className={style.thumbnailImg}
             />
@@ -313,26 +323,130 @@ const OrderSummaryModal = () => {
     </div>
   );
 
-  const Section = ({ elevation }) => {
-    const componentsForElevation = selectedComponents.filter((component) =>
-      component.elevation.some((i) => i.name === elevation.name)
+  const ElectricalSection = () => {
+    const componentsForElevation = selectedComponents.filter(
+      (component) => component.objType === COMPONENT_TYPES.ELECTRICAL
     );
 
-    const isElectrical = elevation.name === ELEVATION_NAMES.FLOOR_PLAN && componentsForElevation[0].objType === COMPONENT_TYPES.ELECTRICAL;
-    const isPartition = componentsForElevation[0].objType === COMPONENT_TYPES.PARTITION;
-    const elevationName = () => {
-      if (isElectrical) {
-        return 'Electrical';
-      } else if (isPartition) {
-        return 'Partition Walls';
-      } else {
-        return `${elevation.name} Wall`;
-      }
-    }
+    if (componentsForElevation.length === 0) return null;
 
     return (
       <div className={style.section}>
-        <div className={style.elevationName}>{elevationName()}</div>
+        <div className={style.elevationName}>Electrical</div>
+        <ul style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
+          {componentsForElevation.map((component) => {
+            const distance = checkDistance({
+              component: component,
+              selectedElevation: component.elevation[0],
+              DIMENSIONS,
+              selectedContainer,
+              scaleFactor,
+            });
+
+            const imgSrc =
+              component.name === COMPONENT_NAMES.WRAP_LIGHT
+                ? component.floorPlanImg[containerSizeStr()]
+                : component.floorPlanImg;
+
+            const itemPrice = getComponentPrice(
+              component,
+              interiorFinish,
+              true
+            );
+
+            return (
+              <li key={component.id} className={style.lineItem}>
+                <div className={style.thumbnailContainer}>
+                  <img
+                    src={generateImgSrc(supplier, imgSrc)}
+                    alt={component.desc}
+                    className={style.thumbnailImg}
+                  />
+                </div>
+                <div className={style.description}>
+                  <div className={style.partNumber}>{component.desc}</div>
+                  <div className={style.desc}>{component.name}</div>
+                  <div className={style.distance}>
+                    {distance.left}&quot; from left, {distance.top}&quot; from
+                    top (on floor plan view)
+                  </div>
+                </div>
+                <div className={style.price}>${itemPrice.toLocaleString()}</div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  };
+
+  const PartitionSection = () => {
+    const componentsForElevation = selectedComponents.filter(
+      (component) => component.objType === COMPONENT_TYPES.PARTITION
+    );
+
+    if (componentsForElevation.length === 0) return null;
+
+    return (
+      <div className={style.section}>
+        <div className={style.elevationName}>Partition Walls</div>
+        <ul style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
+          {componentsForElevation.map((component) => {
+            const distance = checkDistance({
+              component: component,
+              selectedElevation: component.elevation[0],
+              DIMENSIONS,
+              selectedContainer,
+              scaleFactor,
+            });
+
+            const imgSrc = component.frontImg || component.imgName;
+
+            const itemPrice = getComponentPrice(
+              component,
+              interiorFinish,
+              false
+            );
+
+            return (
+              <li key={component.id} className={style.lineItem}>
+                <div className={style.thumbnailContainer}>
+                  <img
+                    src={generateImgSrc(supplier, imgSrc)}
+                    alt={component.desc}
+                    className={style.thumbnailImg}
+                  />
+                </div>
+                <div className={style.description}>
+                  <div className={style.partNumber}>{component.desc}</div>
+                  <div className={style.desc}>{component.name}</div>
+                  <div className={style.distance}>
+                    {distance.left}&quot; from left, {distance.right}&quot; from
+                    right
+                  </div>
+                </div>
+                <div className={style.price}>${itemPrice.toLocaleString()}</div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  };
+
+  const Section = ({ elevation }) => {
+    const componentsForElevation = selectedComponents.filter(
+      (component) =>
+        component.elevation.some((i) => i.name === elevation.name) &&
+        component.objType !== COMPONENT_TYPES.PARTITION &&
+        component.objType !== COMPONENT_TYPES.ELECTRICAL
+    );
+
+    const elevationName = `${elevation.name} Wall`
+
+    return (
+      <div className={style.section}>
+        <div className={style.elevationName}>{elevationName}</div>
         <ul style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
           {componentsForElevation.map((component) => {
             const distance = checkDistance({
@@ -343,24 +457,19 @@ const OrderSummaryModal = () => {
               scaleFactor,
             });
 
-            const imgSrc = () => {
-              if (isElectrical) {
-                if (component.name === COMPONENT_NAMES.WRAP_LIGHT) {
-                  return component.floorPlanImg[containerSizeStr()]
-                }
-                return component.floorPlanImg
-              } else {
-                return component.frontImg || component.imgName
-              }
-            }
+            const imgSrc = component.frontImg || component.imgName;
 
-            const itemPrice = getComponentPrice(component, interiorFinish, isElectrical);
+            const itemPrice = getComponentPrice(
+              component,
+              interiorFinish,
+              false
+            );
 
             return (
               <li key={component.id} className={style.lineItem}>
                 <div className={style.thumbnailContainer}>
                   <img
-                    src={generateImgSrc(supplier, imgSrc())}
+                    src={generateImgSrc(supplier, imgSrc)}
                     alt={component.desc}
                     className={style.thumbnailImg}
                   />
@@ -368,18 +477,10 @@ const OrderSummaryModal = () => {
                 <div className={style.description}>
                   <div className={style.partNumber}>{component.desc}</div>
                   <div className={style.desc}>{component.name}</div>
-                  {!isElectrical && (
-                    <div className={style.distance}>
+                  <div className={style.distance}>
                       {distance.left}&quot; from left, {distance.right}&quot;
                       from right
                     </div>
-                  )}
-                  {isElectrical && (
-                    <div className={style.distance}>
-                      {distance.left}&quot; from left, {distance.top}&quot; from
-                      top (on floor plan view)
-                    </div>
-                  )}
                 </div>
                 <div className={style.price}>${itemPrice.toLocaleString()}</div>
               </li>
@@ -425,6 +526,8 @@ const OrderSummaryModal = () => {
               {uniqueElevationNames.map((elevation, index) => (
                 <Section key={index} elevation={elevation} />
               ))}
+              <PartitionSection />
+              <ElectricalSection />
               <ExteriorSection />
               <InteriorSection />
               <FlooringSection />
@@ -437,7 +540,7 @@ const OrderSummaryModal = () => {
                 value={`$${parseInt(orderTotal).toLocaleString()}`}
               />
               <Form.Root onSubmit={(e) => handleSubmit(e)}>
-              <div className={style.formTitle}>Project Details</div>
+                <div className={style.formTitle}>Project Details</div>
                 <div className={style.addressWrapper}>
                   <Form.Field className='FormField' name='address'>
                     <div className={style.messageWrapper}>

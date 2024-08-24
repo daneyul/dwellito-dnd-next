@@ -156,7 +156,11 @@ export const getUniqueElevationObjects = (selectedComponents) => {
 
   const uniqueElevationObjects = allElevations.reduce(
     (acc, currentElevation) => {
-      if (!acc.some((elevation) => elevation.name === currentElevation.name)) {
+      // Filter out the floor plan elevation
+      if (
+        currentElevation.name !== ELEVATION_NAMES.FLOOR_PLAN &&
+        !acc.some((elevation) => elevation.name === currentElevation.name)
+      ) {
         acc.push(currentElevation);
       }
       return acc;
@@ -166,6 +170,7 @@ export const getUniqueElevationObjects = (selectedComponents) => {
 
   return uniqueElevationObjects;
 };
+
 
 export const DROPPABLE_FLOOR_PLAN_WIDTH = (DIMENSIONS, selectedContainer) => {
   if (selectedContainer.name === `10' Custom Cube`) {
