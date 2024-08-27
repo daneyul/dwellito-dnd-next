@@ -106,6 +106,15 @@ const leftSideCoordinates = ({
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
+  const adjustForZ = () => {
+    if (selectedContainer.name === `10' Custom Cube`) {
+      return -(parseFloat(distanceObject.top) + 4);
+    } else if (selectedContainer.name === `20' Custom Cube`) {
+      return -(parseFloat(distanceObject.top) + 4);
+    } else if (selectedContainer.name === `40' Custom Cube`) {
+      return -(parseFloat(distanceObject.top / 1.4) + 4);
+    }
+  };
 
   let xPosition = () => {
     if (selectedContainer.name === `10' Custom Cube`) {
@@ -151,8 +160,7 @@ const leftSideCoordinates = ({
       );
     }
   };
-  let zPosition =
-    -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
+  let zPosition = adjustForZ() / SCALE_FACTOR_FOR_CALCULATIONS;
   return [xPosition(), zPosition, yPosition()];
 };
 const frontSideCoordinates = ({
