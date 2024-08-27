@@ -1,5 +1,4 @@
 import Collision from '@/components/Collision/Collision';
-import { Droppable } from '@/components/Droppable';
 import { DndContext } from '@dnd-kit/core';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import ToggleView from '../ToggleView/ToggleView';
@@ -14,6 +13,7 @@ import OutsideDroppable from '../Collision/OutsideDroppable';
 import { LeftArrow, RightArrow } from '../Arrows/Arrows';
 import { DraggableContainer } from '../DraggableContainer';
 import { ConditionalButtons } from '../ConditionalButtons';
+import Droppable from '../Droppable';
 
 const Viewer = () => {
   const {

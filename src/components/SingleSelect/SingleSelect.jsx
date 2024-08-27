@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { memo, useContext, useMemo } from 'react';
 import Subtitle from '../Subtitle/Subtitle';
 import style from './singleSelect.module.scss';
 import { PageDataContext } from '@/components/Content/Content';
@@ -17,7 +17,7 @@ import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
 
 /* eslint-disable @next/next/no-img-element */
-const SingleSelect = ({ type }) => {
+const SingleSelect = memo(({ type }) => {
   const {
     exteriorFinish,
     setExteriorFinish,
@@ -41,7 +41,7 @@ const SingleSelect = ({ type }) => {
   const isInteriorTrim = type === INTERIOR_TRIM;
   const isFlooring = type === FLOORING;
 
-  const exteriorSelections = () => {
+  const exteriorSelections = useMemo(() => {
     return EXTERIOR_FINISH_OPTIONS.filter(
       (option) => option.supplier === supplier
     ).map((selection) => {
@@ -75,9 +75,9 @@ const SingleSelect = ({ type }) => {
         </div>
       );
     });
-  };
+  }, [exteriorFinish, supplier, showExterior]);
 
-  const exteriorDesc = () => {
+  const exteriorDesc = useMemo(() => {
     return EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier).map(
       (selection, index) => {
         const isSelected = exteriorFinish.name === selection.name;
@@ -92,9 +92,9 @@ const SingleSelect = ({ type }) => {
         );
       }
     );
-  };
+  }, [exteriorFinish, supplier]);
 
-  const interiorSelections = () => {
+  const interiorSelections = useMemo(() => {
     return INTERIOR_FINISH_OPTIONS.filter(
       (option) => option.supplier === supplier
     ).map((selection) => {
@@ -119,9 +119,9 @@ const SingleSelect = ({ type }) => {
         </div>
       );
     });
-  };
+  }, [interiorFinish, supplier]);
 
-  const interiorDesc = () => {
+  const interiorDesc = useMemo(() => {
     return INTERIOR_FINISH_OPTIONS.map((selection, index) => {
       const isSelected = interiorFinish === selection;
 
@@ -134,9 +134,9 @@ const SingleSelect = ({ type }) => {
         )
       );
     });
-  };
+  }, [interiorFinish, supplier, interiorFinishPrice]);
 
-  const interiorTrimSelections = () => {
+  const interiorTrimSelections = useMemo(() => {
     return INTERIOR_TRIM_OPTIONS.filter(
       (option) => option.supplier === supplier
     ).map((selection) => {
@@ -161,9 +161,9 @@ const SingleSelect = ({ type }) => {
         </div>
       );
     });
-  };
+  }, [interiorTrim, supplier]);
 
-  const interiorTrimDesc = () => {
+  const interiorTrimDesc = useMemo(() => {
     return INTERIOR_TRIM_OPTIONS.map((selection, index) => {
       const isSelected = interiorTrim === selection;
 
@@ -176,9 +176,9 @@ const SingleSelect = ({ type }) => {
         )
       );
     });
-  };
+  }, [interiorTrim, supplier, interiorFinishPrice]);
 
-  const flooringSelections = () => {
+  const flooringSelections = useMemo(() => {
     return FLOORING_OPTIONS.filter((i) => i.supplier === supplier).map(
       (selection, index) => {
         const isSelected = flooring === selection;
@@ -203,9 +203,9 @@ const SingleSelect = ({ type }) => {
         );
       }
     );
-  };
+  }, [flooring, supplier]);
 
-  const flooringDesc = () => {
+  const flooringDesc = useMemo(() => {
     return FLOORING_OPTIONS.filter((i) => i.supplier === supplier).map(
       (selection, index) => {
         const flooringPrice = () => {
@@ -229,20 +229,20 @@ const SingleSelect = ({ type }) => {
         );
       }
     );
-  };
+  }, [flooring, supplier, slug]);
 
   const Selections = () => {
-    if (isExterior) return exteriorSelections();
-    if (isInterior) return interiorSelections();
-    if (isInteriorTrim) return interiorTrimSelections();
-    if (isFlooring) return flooringSelections();
+    if (isExterior) return exteriorSelections;
+    if (isInterior) return interiorSelections;
+    if (isInteriorTrim) return interiorTrimSelections;
+    if (isFlooring) return flooringSelections;
   };
 
   const Descriptions = () => {
-    if (isExterior) return exteriorDesc();
-    if (isInterior) return interiorDesc();
-    if (isInteriorTrim) return interiorTrimDesc();
-    if (isFlooring) return flooringDesc();
+    if (isExterior) return exteriorDesc;
+    if (isInterior) return interiorDesc;
+    if (isInteriorTrim) return interiorTrimDesc;
+    if (isFlooring) return flooringDesc;
   };
 
   return (
@@ -259,6 +259,6 @@ const SingleSelect = ({ type }) => {
       </div>
     </div>
   );
-};
+});
 
 export default SingleSelect;

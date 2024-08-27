@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { generateImgSrc, toScale } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
@@ -13,9 +13,9 @@ import {
   ELEVATION_NAMES,
   SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
-import { Draggable } from './Draggable';
+import Draggable from './Draggable';
 
-const MultipleDroppables = ({ setHoveredPiece }) => {
+const MultipleDroppables = memo(({ setHoveredPiece }) => {
   const {
     scaleFactor,
     selectedElevation,
@@ -247,6 +247,6 @@ const MultipleDroppables = ({ setHoveredPiece }) => {
       </div>
     </section>
   );
-};
+});
 
 export default MultipleDroppables;

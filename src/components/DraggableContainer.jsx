@@ -1,8 +1,8 @@
 import { droppableWidth, toScale } from '@/utils/2D/utils';
-import { Draggable } from './Draggable';
 import { useContext } from 'react';
 import { PageDataContext } from './Content/Content';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
+import Draggable from './Draggable';
 
 export const DraggableContainer = ({
   selectedComponents,

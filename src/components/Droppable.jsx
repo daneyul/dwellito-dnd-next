@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { generateImgSrc, toScale } from '../utils/2D/utils';
 import Image from 'next/image';
 import { PageDataContext } from './Content/Content';
 import { elevationData } from '@/utils/constants/elevationData';
 
-export function Droppable({ children }) {
+const Droppable = memo(({ children }) => {
   const { scaleFactor, selectedElevation, containerHeightIsStandard, supplier } =
     useContext(PageDataContext);
   const { setNodeRef } = useDroppable({
@@ -46,4 +46,6 @@ export function Droppable({ children }) {
       {children}
     </div>
   );
-}
+});
+
+export default Droppable;

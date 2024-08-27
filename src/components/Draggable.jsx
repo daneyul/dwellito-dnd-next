@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { memo, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
 import { toScale, generateImgSrc, calculateCSSPos } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
@@ -45,7 +45,7 @@ function useCollidableDraggable({ id, data: customData }) {
   };
 }
 
-export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
+const Draggable = memo(({ id, styles, piece, onSelect, onHover, onLeave }) => {
   const {
     scaleFactor,
     containerHeightIsStandard,
@@ -92,10 +92,10 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
 
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = useCallback((e) => {
     e.stopPropagation();
     onSelect();
-  };
+  }, [onSelect]);
 
   // This is for adjusting the top value based on the container height
   const adjForContainerHeight = (value) => {
@@ -114,7 +114,7 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     }
   };
 
-  const imgSrc = () => {
+  const imgSrc = useMemo(() => {
     if (piece.objType === COMPONENT_TYPES.ELECTRICAL) {
       if (isFloorPlanView) {
         if (
@@ -159,7 +159,7 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
     } else {
       return piece.imgName;
     }
-  };
+  }, [piece, selectedElevation, isFloorPlanView, slug]);
 
   const isFixed = piece.fixed;
 
@@ -282,7 +282,7 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
         onMouseDown={handleMouseDown}
       >
         <img
-          src={generateImgSrc(supplier, imgSrc())}
+          src={generateImgSrc(supplier, imgSrc)}
           alt={piece.name}
           style={{
             width: `${imgWidth()}px`,
@@ -303,4 +303,6 @@ export function Draggable({ id, styles, piece, onSelect, onHover, onLeave }) {
       </div>
     </>
   );
-}
+});
+
+export default Draggable;
