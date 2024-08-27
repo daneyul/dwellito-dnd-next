@@ -86,7 +86,7 @@ const SingleSelect = memo(({ type }) => {
           isSelected && (
             <div className={style.singleSelDescriptionContainer} key={index}>
               <Subtitle text={selection.name} />
-              {price && <Subtitle text={`+ $${price.toLocaleString()}`} />}
+              {price ? <Subtitle text={`+ $${price.toLocaleString()}`} /> :  <Subtitle text={`+ $0`} />}
             </div>
           )
         );
