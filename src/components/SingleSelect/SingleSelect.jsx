@@ -1,4 +1,4 @@
-import { memo, useContext, useMemo } from 'react';
+import { memo, useContext, useMemo, useCallback } from 'react';
 import Subtitle from '../Subtitle/Subtitle';
 import style from './singleSelect.module.scss';
 import { PageDataContext } from '@/components/Content/Content';
@@ -41,195 +41,104 @@ const SingleSelect = memo(({ type }) => {
   const isInteriorTrim = type === INTERIOR_TRIM;
   const isFlooring = type === FLOORING;
 
-  const exteriorSelections = useMemo(() => {
-    return EXTERIOR_FINISH_OPTIONS.filter(
-      (option) => option.supplier === supplier
-    ).map((selection) => {
-      const isSelected = exteriorFinish.name === selection.name;
-      const img = selection.hex ? (
-        <div className={style.img} style={{ backgroundColor: selection.hex }} />
-      ) : (
-        <img
-          className={style.img}
-          src={`/images/${supplier}/exterior-finishes/${selection.img}`}
-          alt='thumbnail'
-        />
-      );
-      return (
-        <div
-          key={selection.hex}
-          className={isSelected ? style.thumbnailSelected : style.thumbnail}
-          onClick={() => {
-            if (showExterior) {
-              setExteriorFinish(selection);
-              setShow3d(true);
-            } else {
-              setExteriorFinish(selection);
-              setShow3d(true);
-              setShowExterior(true);
-              setCameraReady(false);
-            }
-          }}
-        >
-          {img}
-        </div>
-      );
-    });
-  }, [exteriorFinish, supplier, showExterior]);
+  const handleSelectionClick = useCallback(
+    (selection, setState, additionalActions = () => {}) => {
+      setState(selection);
+      setShow3d(true);
+      setShowExterior(isExterior);
+      setCameraReady(false);
+      additionalActions();
+    },
+    [setShow3d, setShowExterior, setCameraReady, isExterior]
+  );
 
-  const exteriorDesc = useMemo(() => {
-    return EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier).map(
-      (selection, index) => {
-        const isSelected = exteriorFinish.name === selection.name;
+  const getSelections = useCallback(
+    (options, selectedOption, setState, imgPath) => {
+      return options
+        .filter((option) => option.supplier === supplier)
+        .map((selection) => {
+          const isSelected = selectedOption === selection;
+          return (
+            <div
+              key={selection.name}
+              className={isSelected ? style.thumbnailSelected : style.thumbnail}
+              onClick={() => handleSelectionClick(selection, setState)}
+            >
+              <img
+                className={style.img}
+                src={`/images/${supplier}/${imgPath}/${selection.img}`}
+                alt='thumbnail'
+              />
+            </div>
+          );
+        });
+    },
+    [supplier, handleSelectionClick]
+  );
+
+  const getDescription = useCallback(
+    (options, selectedOption, priceCallback) => {
+      return options.map((selection, index) => {
+        const isSelected = selectedOption === selection;
+        const price = priceCallback ? priceCallback(selection) : null;
 
         return (
           isSelected && (
             <div className={style.singleSelDescriptionContainer} key={index}>
               <Subtitle text={selection.name} />
-              <Subtitle text={`+ $${selection.price.toLocaleString()}`} />
+              {price && <Subtitle text={`+ $${price.toLocaleString()}`} />}
             </div>
           )
         );
-      }
-    );
-  }, [exteriorFinish, supplier]);
+      });
+    },
+    []
+  );
 
-  const interiorSelections = useMemo(() => {
-    return INTERIOR_FINISH_OPTIONS.filter(
-      (option) => option.supplier === supplier
-    ).map((selection) => {
-      const isSelected = interiorFinish === selection;
+  const exteriorSelections = useMemo(
+    () => getSelections(EXTERIOR_FINISH_OPTIONS, exteriorFinish, setExteriorFinish, 'exterior-finishes'),
+    [exteriorFinish, getSelections]
+  );
 
-      return (
-        <div
-          key={selection.name}
-          className={isSelected ? style.thumbnailSelected : style.thumbnail}
-          onClick={() => {
-            setInteriorFinish(selection);
-            setShow3d(true);
-            setShowExterior(false);
-            setCameraReady(false);
-          }}
-        >
-          <img
-            className={style.img}
-            src={`/images/${supplier}/interior-finishes/${selection.img}`}
-            alt='thumbnail'
-          />
-        </div>
-      );
-    });
-  }, [interiorFinish, supplier]);
+  const exteriorDesc = useMemo(
+    () => getDescription(EXTERIOR_FINISH_OPTIONS, exteriorFinish, (selection) => selection.price),
+    [exteriorFinish, getDescription]
+  );
 
-  const interiorDesc = useMemo(() => {
-    return INTERIOR_FINISH_OPTIONS.map((selection, index) => {
-      const isSelected = interiorFinish === selection;
+  const interiorSelections = useMemo(
+    () => getSelections(INTERIOR_FINISH_OPTIONS, interiorFinish, setInteriorFinish, 'interior-finishes'),
+    [interiorFinish, getSelections]
+  );
 
-      return (
-        isSelected && (
-          <div className={style.singleSelDescriptionContainer} key={index}>
-            <Subtitle text={selection.name} />
-            <Subtitle text={`+ $${interiorFinishPrice.toLocaleString()}`} />
-          </div>
-        )
-      );
-    });
-  }, [interiorFinish, supplier, interiorFinishPrice]);
+  const interiorDesc = useMemo(
+    () => getDescription(INTERIOR_FINISH_OPTIONS, interiorFinish, () => interiorFinishPrice),
+    [interiorFinish, interiorFinishPrice, getDescription]
+  );
 
-  const interiorTrimSelections = useMemo(() => {
-    return INTERIOR_TRIM_OPTIONS.filter(
-      (option) => option.supplier === supplier
-    ).map((selection) => {
-      const isSelected = interiorTrim === selection;
+  const interiorTrimSelections = useMemo(
+    () => getSelections(INTERIOR_TRIM_OPTIONS, interiorTrim, setInteriorTrim, 'interior-finishes'),
+    [interiorTrim, getSelections]
+  );
 
-      return (
-        <div
-          key={selection.hex}
-          className={isSelected ? style.thumbnailSelected : style.thumbnail}
-          onClick={() => {
-            setInteriorTrim(selection);
-            setShow3d(true);
-            setShowExterior(false);
-            setCameraReady(false);
-          }}
-        >
-          <img
-            className={style.img}
-            src={`/images/${supplier}/interior-finishes/${selection.img}`}
-            alt='thumbnail'
-          />
-        </div>
-      );
-    });
-  }, [interiorTrim, supplier]);
+  const interiorTrimDesc = useMemo(
+    () => getDescription(INTERIOR_TRIM_OPTIONS, interiorTrim, () => interiorFinishPrice),
+    [interiorTrim, interiorFinishPrice, getDescription]
+  );
 
-  const interiorTrimDesc = useMemo(() => {
-    return INTERIOR_TRIM_OPTIONS.map((selection, index) => {
-      const isSelected = interiorTrim === selection;
+  const flooringSelections = useMemo(
+    () => getSelections(FLOORING_OPTIONS, flooring, setFlooring, 'flooring'),
+    [flooring, getSelections]
+  );
 
-      return (
-        isSelected && (
-          <div className={style.singleSelDescriptionContainer} key={index}>
-            <Subtitle text={selection.name} />
-            <Subtitle text={`+ $${interiorFinishPrice.toLocaleString()}`} />
-          </div>
-        )
-      );
-    });
-  }, [interiorTrim, supplier, interiorFinishPrice]);
-
-  const flooringSelections = useMemo(() => {
-    return FLOORING_OPTIONS.filter((i) => i.supplier === supplier).map(
-      (selection, index) => {
-        const isSelected = flooring === selection;
-
-        return (
-          <div
-            key={index}
-            className={isSelected ? style.thumbnailSelected : style.thumbnail}
-            onClick={() => {
-              setFlooring(selection);
-              setShow3d(true);
-              setShowExterior(false);
-              setCameraReady(false);
-            }}
-          >
-            <img
-              className={style.img}
-              src={`/images/${supplier}/flooring/${selection.img}`}
-              alt='thumbnail'
-            />
-          </div>
-        );
-      }
-    );
-  }, [flooring, supplier]);
-
-  const flooringDesc = useMemo(() => {
-    return FLOORING_OPTIONS.filter((i) => i.supplier === supplier).map(
-      (selection, index) => {
-        const flooringPrice = () => {
-          if (slug === CONTAINER_SIZE_10) {
-            return selection.price10;
-          } else if (slug === CONTAINER_SIZE_20) {
-            return selection.price20;
-          } else if (slug === CONTAINER_SIZE_40) {
-            return selection.price40;
-          }
-        };
-        const isSelected = flooring.name === selection.name;
-
-        return (
-          isSelected && (
-            <div className={style.singleSelDescriptionContainer} key={index}>
-              <Subtitle text={selection.name} />
-              <Subtitle text={`+ $${flooringPrice().toLocaleString()}`} />
-            </div>
-          )
-        );
-      }
-    );
-  }, [flooring, supplier, slug]);
+  const flooringDesc = useMemo(
+    () =>
+      getDescription(FLOORING_OPTIONS, flooring, (selection) => {
+        if (slug === CONTAINER_SIZE_10) return selection.price10;
+        if (slug === CONTAINER_SIZE_20) return selection.price20;
+        if (slug === CONTAINER_SIZE_40) return selection.price40;
+      }),
+    [flooring, slug, getDescription]
+  );
 
   const Selections = () => {
     if (isExterior) return exteriorSelections;
