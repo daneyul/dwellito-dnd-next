@@ -55,7 +55,7 @@ export function useBoundingBoxes({ doors, windows, vents }) {
             data.selectedElevation.name === ELEVATION_NAMES.RIGHT ||
             data.selectedElevation.name === ELEVATION_NAMES.LEFT
           ) {
-            if (doors[index].isHeavyDuty && !doors[index].highContainerOnly) {
+            if (doors[index].isHeavyDuty) {
               updatedData = {
                 ...updatedData,
                 size: new Vector3(
@@ -74,7 +74,7 @@ export function useBoundingBoxes({ doors, windows, vents }) {
                 ...updatedData,
                 size: new Vector3(
                   data.size.x - 2.3,
-                  data.size.y - 2.7,
+                  data.size.y - 1,
                   data.size.z
                 ),
                 center: new Vector3(
