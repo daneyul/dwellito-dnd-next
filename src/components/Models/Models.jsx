@@ -35,7 +35,6 @@ import { useExteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
 import { containerData } from '@/utils/constants/containerData';
 import { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } from '@/utils/constants/camera/camPos';
 import Electrical from './Electrical/Electrical';
-import style from './models.module.scss';
 
 export function Models() {
   const {
@@ -242,7 +241,7 @@ export function Models() {
   return (
     <div
       id='canvas-container'
-      className={style.models}
+      style={{ width: 'auto', height: '100vh', position: 'relative' }}
     >
       <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
         <color attach='background' args={['#fdfdf7']} />

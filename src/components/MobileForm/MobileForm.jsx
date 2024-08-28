@@ -11,7 +11,7 @@ const MobileForm = () => {
     e.preventDefault();
 
     const data = Object.fromEntries(new FormData(e.currentTarget));
-    console.log(data);
+    // console.log(data);
 
     triggerZapier({ data });
   };
