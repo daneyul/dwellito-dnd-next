@@ -16,6 +16,8 @@ import { PageDataContext } from '../Content/Content';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
   ELEVATION_NAMES,
 } from '@/utils/constants/names/names';
 import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
@@ -24,6 +26,11 @@ import { useExteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
 import { MOBILE_CAM_POS } from '@/utils/constants/camera/camPos';
 import { handleAddComponent } from '@/utils/2D/utils';
 import { componentData } from '@/utils/constants/componentData';
+import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
+import ContainerShell20High from './Containers/20/ContainerShell20High';
+import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
+import ContainerShell40High from './Containers/40/ContainerShell40High';
+import { containerData } from '@/utils/constants/containerData';
 
 export function MobileModels() {
   const {
@@ -34,6 +41,8 @@ export function MobileModels() {
     mappedElevations,
     floorPlan,
     setSelectedComponents,
+    selectedContainer,
+    containerHeightIsStandard,
   } = useContext(PageDataContext);
 
   useEffect(() => {
@@ -65,24 +74,33 @@ export function MobileModels() {
           x: 300,
         },
       };
-      handleAddComponent({
-        item: door,
-        setSelectedComponents,
-        selectedElevation: rightElevation,
-        floorPlan,
-      });
-      handleAddComponent({
-        item: modifiedWindow,
-        setSelectedComponents,
-        selectedElevation: rightElevation,
-        floorPlan,
-      });
-      handleAddComponent({
-        item: modifiedWindow2,
-        setSelectedComponents,
-        selectedElevation: leftElevation,
-        floorPlan,
-      });
+      if (selectedContainer.size === CONTAINER_SIZE_10) {
+        handleAddComponent({
+          item: door,
+          setSelectedComponents,
+          selectedElevation: rightElevation,
+          floorPlan,
+        });
+      } else {
+        handleAddComponent({
+          item: door,
+          setSelectedComponents,
+          selectedElevation: rightElevation,
+          floorPlan,
+        });
+        handleAddComponent({
+          item: modifiedWindow,
+          setSelectedComponents,
+          selectedElevation: rightElevation,
+          floorPlan,
+        });
+        handleAddComponent({
+          item: modifiedWindow2,
+          setSelectedComponents,
+          selectedElevation: leftElevation,
+          floorPlan,
+        });
+      }
     }
   }, []);
 
@@ -148,6 +166,73 @@ export function MobileModels() {
     beigePaint,
   } = useExteriorGLTFModels(supplier);
 
+  const ContainerShell = () => {
+    if (selectedContainer.size === CONTAINER_SIZE_10) {
+      if (containerHeightIsStandard) {
+        return (
+          <ContainerShell10Standard
+            redPaint={redPaint}
+            whitePaint={whitePaint}
+            greenPaint={greenPaint}
+            bluePaint={bluePaint}
+            slateGreyPaint={slateGreyPaint}
+            beigePaint={beigePaint}
+          />
+        );
+      } else {
+        return null;
+      }
+    } else if (selectedContainer.size === CONTAINER_SIZE_20) {
+      if (containerHeightIsStandard) {
+        return (
+          <ContainerShell20Standard
+            redPaint={redPaint}
+            whitePaint={whitePaint}
+            greenPaint={greenPaint}
+            bluePaint={bluePaint}
+            slateGreyPaint={slateGreyPaint}
+            beigePaint={beigePaint}
+          />
+        );
+      } else {
+        return (
+          <ContainerShell20High
+            redPaint={redPaint}
+            whitePaint={whitePaint}
+            greenPaint={greenPaint}
+            bluePaint={bluePaint}
+            slateGreyPaint={slateGreyPaint}
+            beigePaint={beigePaint}
+          />
+        );
+      }
+    } else if (selectedContainer === containerData[2]) {
+      if (containerHeightIsStandard) {
+        return (
+          <ContainerShell40Standard
+            redPaint={redPaint}
+            whitePaint={whitePaint}
+            greenPaint={greenPaint}
+            bluePaint={bluePaint}
+            slateGreyPaint={slateGreyPaint}
+            beigePaint={beigePaint}
+          />
+        );
+      } else {
+        return (
+          <ContainerShell40High
+            redPaint={redPaint}
+            whitePaint={whitePaint}
+            greenPaint={greenPaint}
+            bluePaint={bluePaint}
+            slateGreyPaint={slateGreyPaint}
+            beigePaint={beigePaint}
+          />
+        );
+      }
+    }
+  };
+
   return (
     <div id='canvas-container' className={style.container}>
       <Canvas
@@ -156,14 +241,7 @@ export function MobileModels() {
         style={{ borderRadius: '11px' }}
       >
         <color attach='background' args={['#fdfdf7']} />
-        <ContainerShell20Standard
-          redPaint={redPaint}
-          whitePaint={whitePaint}
-          greenPaint={greenPaint}
-          bluePaint={bluePaint}
-          slateGreyPaint={slateGreyPaint}
-          beigePaint={beigePaint}
-        />
+        <ContainerShell />
         <CsgGeometries
           doors={doors}
           windows={windows}
