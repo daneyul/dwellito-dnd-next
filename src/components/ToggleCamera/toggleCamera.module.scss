@@ -1,17 +1,21 @@
 .container {
-  border-radius: 12px;
-  position: absolute;
-  bottom: calc(3rem + 58px);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.25rem;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: color(white);
-  padding: space(1);
-  justify-content: space-between;
+  display: none;
+  @include respond-to(md) {
+    display: block;
+    border-radius: 12px;
+    position: absolute;
+    bottom: calc(3rem + 58px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: color(white);
+    padding: space(1);
+    justify-content: space-between;
+  }
 }
 
 .button {

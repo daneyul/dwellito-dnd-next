@@ -6,14 +6,19 @@ import { Models } from '../Models/Models';
 import ToggleCamera from '../ToggleCamera/ToggleCamera';
 import { PageDataContext } from '../Content/Content';
 import ElevationToggle from '../ElevationToggle/ElevationToggle';
-import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names/names';
+import {
+  COMPONENT_NAMES,
+  ELEVATION_NAMES,
+} from '@/utils/constants/names/names';
+import style from './viewer.module.scss';
 import MultipleDroppables from '../MultipleDroppables';
 import DragToMove from '../DragToMove/DragToMove';
 import OutsideDroppable from '../Collision/OutsideDroppable';
 import { LeftArrow, RightArrow } from '../Arrows/Arrows';
 import { DraggableContainer } from '../DraggableContainer';
-import { ConditionalButtons } from '../ConditionalButtons';
+import { ConditionalButtons } from '../ConditionalButtons/ConditionalButtons';
 import Droppable from '../Droppable';
+import { MobileModels } from '../Models/MobileModels';
 
 const Viewer = () => {
   const {
@@ -111,15 +116,8 @@ const Viewer = () => {
 
   return (
     <>
-      <div
-        style={{
-          width: 'calc(100vw - 430px)',
-          position: 'sticky',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}
-      >
+      <MobileModels />
+      <div className={style.viewer}>
         <div
           style={{
             visibility: show3d ? 'visible' : 'hidden',
@@ -135,6 +133,7 @@ const Viewer = () => {
             position: 'absolute',
             width: '100%',
           }}
+          className={style.drawings}
         >
           <OutsideDroppable showWarning={showOutsideDroppableWarning} />
           <Collision showCollision={showCollision} />
@@ -148,7 +147,7 @@ const Viewer = () => {
               <MultipleDroppables setHoveredPiece={setHoveredPiece} />
             ) : (
               <Droppable>
-                 <DraggableContainer
+                <DraggableContainer
                   selectedComponents={selectedComponents}
                   handleSelect={handleSelect}
                   draggableRefs={draggableRefs}

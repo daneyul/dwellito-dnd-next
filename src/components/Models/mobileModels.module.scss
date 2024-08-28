@@ -1,0 +1,11 @@
+.container {
+  border-radius: 11px;
+  border: 1px solid color(grey);
+  width: 100%;
+  height: auto;
+  position: relative;
+  flex: 1;
+  @include respond-to(md) {
+    display: none;
+  }
+}

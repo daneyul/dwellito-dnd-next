@@ -1,0 +1,9 @@
+.models {
+  @include respond-to(md) {
+    display: none;
+  }
+  display: block;
+  width: auto;
+  height: 100vh;
+  position: relative;
+}

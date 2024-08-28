@@ -1,15 +1,19 @@
 .container {
-  border: 1px solid color(lightIndigo);
-  position: absolute;
-  bottom: 2rem;
-  right: 50%;
-  transform: translateX(50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: color(white);
-  border-radius: 32px;
-  padding: space(2);
+  display: none;
+  @include respond-to(md) {
+    display: block;
+    border: 1px solid color(lightIndigo);
+    position: absolute;
+    bottom: 2rem;
+    right: 50%;
+    transform: translateX(50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: color(white);
+    border-radius: 32px;
+    padding: space(2);
+  }
 }
 
 .editor,

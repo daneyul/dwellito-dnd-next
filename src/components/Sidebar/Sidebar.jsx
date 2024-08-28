@@ -28,6 +28,7 @@ import SingleSelect from '../SingleSelect/SingleSelect';
 import AddElecOption from '../AddOption/AddElecOption';
 import AddPartition from '../AddOption/AddPartition';
 import SaveOrder from '../SaveOrder/SaveOrder';
+import MobileForm from '../MobileForm/MobileForm';
 
 const LogoSection = memo(({ supplier }) => (
   <>
@@ -223,41 +224,46 @@ const Sidebar = memo(() => {
   });
 
   return (
-    <div className={style.container}>
-      <LogoSection supplier={supplier} />
-      <Badges />
-      <PriceSection containerPrice={containerPrice} />
-      <Layouts />
-      <HeightSelector
-        canSelectContainerHeight={canSelectContainerHeight}
-        containerHeightIsStandard={containerHeightIsStandard}
-        setSelectedContainerHeight={setSelectedContainerHeight}
-      />
-      <ExteriorSelector supplier={supplier} />
-      <Selector />
-      <InteriorSelector />
-      <InteriorTrimsSelector interiorTrims={interiorTrims} />
-      <PartitionsSelector partitions={partitions} />
-      <Subtitle
-        text='Select your electrical add-ons'
-        css={{ fontWeight: 400, margin: '2rem 0 1rem 0' }}
-      />
-      <div className={style.fixedObjectContainer}>
-        <AddElecOption options={fixedElectricals} />
-        <AddElecOption options={nonFixedElectricals} />
+    <>
+      <div className={style.mobileContainer}>
+        <MobileForm />
       </div>
-      {FLOORING_OPTIONS.filter((i) => i.supplier === supplier).length > 0 && (
-        <>
-          <div className={style.selectionTagName}>Flooring Options</div>
-          <Subtitle
-            text='Select your flooring'
-            css={{ fontWeight: 400, marginBottom: '1rem' }}
-          />
-          <SingleSelect type={FLOORING} />
-        </>
-      )}
-      <SaveOrder />
-    </div>
+      <div className={style.desktopContainer}>
+        <LogoSection supplier={supplier} />
+        <Badges />
+        <PriceSection containerPrice={containerPrice} />
+        <Layouts />
+        <HeightSelector
+          canSelectContainerHeight={canSelectContainerHeight}
+          containerHeightIsStandard={containerHeightIsStandard}
+          setSelectedContainerHeight={setSelectedContainerHeight}
+        />
+        <ExteriorSelector supplier={supplier} />
+        <Selector />
+        <InteriorSelector />
+        <InteriorTrimsSelector interiorTrims={interiorTrims} />
+        <PartitionsSelector partitions={partitions} />
+        <Subtitle
+          text='Select your electrical add-ons'
+          css={{ fontWeight: 400, margin: '2rem 0 1rem 0' }}
+        />
+        <div className={style.fixedObjectContainer}>
+          <AddElecOption options={fixedElectricals} />
+          <AddElecOption options={nonFixedElectricals} />
+        </div>
+        {FLOORING_OPTIONS.filter((i) => i.supplier === supplier).length > 0 && (
+          <>
+            <div className={style.selectionTagName}>Flooring Options</div>
+            <Subtitle
+              text='Select your flooring'
+              css={{ fontWeight: 400, marginBottom: '1rem' }}
+            />
+            <SingleSelect type={FLOORING} />
+          </>
+        )}
+        <SaveOrder />
+      </div>
+    </>
   );
 });
 

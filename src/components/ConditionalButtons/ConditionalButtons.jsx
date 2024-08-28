@@ -1,5 +1,6 @@
-import DeleteBtn from "./DeleteBtn/DeleteBtn";
-import RotateBtn from "./DeleteBtn/Rotate";
+import DeleteBtn from "../DeleteBtn/DeleteBtn";
+import RotateBtn from "../DeleteBtn/Rotate";
+import style from "./conditionalBtns.module.scss";
 
 export const ConditionalButtons = ({
   isAnyItemSelected,
@@ -21,6 +22,7 @@ export const ConditionalButtons = ({
         zIndex: 100,
         gap: '1rem',
       }}
+      className={style.container}
     >
       {isAnyItemSelected && !show3d && <DeleteBtn onDeleteSelected={handleDeleteSelected} />}
       {isHeaterOrOutlet && !show3d && isFloorPlanView && (

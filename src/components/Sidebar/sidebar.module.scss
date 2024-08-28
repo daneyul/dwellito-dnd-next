@@ -1,14 +1,27 @@
-.container {
-  // min-width: 430px;
-  width: 430px;
-  background-color: #f8f8f7;
-  border-left: 1px solid #e3e4e7;
-  font-weight: 300;
-  padding: 8rem 2rem;
-  right: 0;
-  overflow-y: auto;
-  height: 100vh;
-  font-family: 'Chromatica', serif;
+.desktopContainer {
+  display: none;
+  @include respond-to(md) {
+    display: block;
+    width: 430px;
+    background-color: #f8f8f7;
+    border-left: 1px solid #e3e4e7;
+    font-weight: 300;
+    padding: 8rem 2rem;
+    right: 0;
+    overflow-y: auto;
+    height: 100vh;
+    font-family: 'Chromatica', serif;
+  }
+}
+
+.mobileContainer {
+  background-color: color(white);
+  border-radius: 11px;
+  border: 1px solid color(grey);
+  padding: space(6);
+  @include respond-to(md) {
+    display: none;
+  }
 }
 
 .subTitle {

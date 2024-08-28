@@ -1,0 +1,19 @@
+.viewer {
+  display: none;
+  @include respond-to(md) {
+    border: none;
+    display: block;
+    width: calc(100vw - 430px);
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.drawings {
+  display: none;
+  @include respond-to(md) {
+    display: block;
+  }
+}

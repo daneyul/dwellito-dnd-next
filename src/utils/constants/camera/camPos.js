@@ -13,3 +13,5 @@ export const INTERIOR_CAM_ROT = {
   TWENTY: [2.15, 12, 5.65],
   FORTY: [2.15, 12, 5.65],
 };
+
+export const MOBILE_CAM_POS = [-50, 30, 80];

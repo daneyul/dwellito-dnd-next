@@ -127,6 +127,8 @@ export function CsgGeometries({
   }, [windows, windowBoundingBoxes]);
 
   const ventBoundingBoxGeometries = useMemo(() => {
+    if (!ventBoundingBoxes || !vents) return null;
+    
     return vents.map((vent, index) => {
       const bbox = ventBoundingBoxes[index];
       if (!bbox) return null; // Ensure bbox is defined

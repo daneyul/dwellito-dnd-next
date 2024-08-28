@@ -1,17 +1,21 @@
 .pageWrapper {
-  display: none;
+  background-color: color(lightGrey);
+  padding: space(6);
+  font-family: 'Chromatica', sans-serif;
+  height: 100vh;
   @include respond-to(md) {
-    display: block;
+    padding: 0;
+    background-color: color(white);
   }
 }
 
-.mobileContent {
+.content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  height: 100vh;
+  position: relative;
+  gap: space(4);
+  height: 100%;
   @include respond-to(md) {
-    display: none;
+    flex-direction: row;
   }
 }

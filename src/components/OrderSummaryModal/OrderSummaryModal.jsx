@@ -207,6 +207,7 @@ const OrderSummaryModal = () => {
         price: exteriorFinish.price,
       },
       surface: surfaceData,
+      mobileVisitor: false
     };
 
     const JSONdata = JSON.stringify(responseData);

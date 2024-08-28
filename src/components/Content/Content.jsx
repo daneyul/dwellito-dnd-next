@@ -76,16 +76,21 @@ const PageDataProvider = ({ children, data }) => {
       }))
   );
   const [exteriorFinish, setExteriorFinish] = useState(
-    queryExterior || EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
+    queryExterior ||
+      EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
   );
   const [interiorFinish, setInteriorFinish] = useState(
-    queryInterior || INTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
+    queryInterior ||
+      INTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
   );
   const [interiorTrim, setInteriorTrim] = useState(
-    queryInteriorTrim || INTERIOR_TRIM_OPTIONS.filter((i) => i.supplier === supplier)[0]
+    queryInteriorTrim ||
+      INTERIOR_TRIM_OPTIONS.filter((i) => i.supplier === supplier)[0]
   );
   const [flooring, setFlooring] = useState(
-    queryFlooring || FLOORING_OPTIONS.filter((i) => i.supplier === supplier)[0] || FLOORING_OPTIONS[0]
+    queryFlooring ||
+      FLOORING_OPTIONS.filter((i) => i.supplier === supplier)[0] ||
+      FLOORING_OPTIONS[0]
   );
   const interiorIsPlywood = interiorFinish === plywoodInterior;
   const interiorIsDrywall = interiorFinish === drywallInterior;
@@ -161,7 +166,7 @@ const PageDataProvider = ({ children, data }) => {
     scaleFactor,
     isFloorPlanView,
     setShowOutsideDroppableWarning,
-    selectedContainer
+    selectedContainer,
   });
 
   const { orderTotal, setOrderTotal, interiorFinishPrice } = useOrderTotal({
@@ -184,7 +189,9 @@ const PageDataProvider = ({ children, data }) => {
 
   useEffect(() => {
     const includesLighting = selectedComponents.some(
-      (component) => component.name === COMPONENT_NAMES.WRAP_LIGHT || component.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE
+      (component) =>
+        component.name === COMPONENT_NAMES.WRAP_LIGHT ||
+        component.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE
     );
     setHasLighting(includesLighting);
   }, [selectedComponents]);
@@ -331,28 +338,16 @@ const Content = ({ data }) => {
   return (
     <Theme>
       <GoogleTagManager gtmId='GTM-NVCQ2ZW3' />
-        <PageDataProvider data={data}>
-          <div className={style.mobileContent}>
-            <p>Configure on your desktop for the best experience</p>
-            <p>
-              For full functionality and a better experience, please visit this
-              page on a desktop computer.
-            </p>
+      <PageDataProvider data={data}>
+        <div className={style.pageWrapper}>
+          <div className={style.content}>
+            <Viewer />
+            <Sidebar />
+            <PriceTotal />
+            <OrderSummaryModal />
           </div>
-          <div className={style.pageWrapper}>
-            <div
-              style={{
-                display: 'flex',
-                position: 'relative',
-              }}
-            >
-              <Viewer />
-              <Sidebar />
-              <PriceTotal />
-              <OrderSummaryModal />
-            </div>
-          </div>
-        </PageDataProvider>
+        </div>
+      </PageDataProvider>
     </Theme>
   );
 };

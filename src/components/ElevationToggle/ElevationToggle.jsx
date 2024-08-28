@@ -8,8 +8,7 @@ const ElevationToggle = () => {
     selectedElevation,
     setSelectedElevation,
     show3d,
-    setSelectedElevationIndex,
-    selectedContainer,
+    setSelectedElevationIndex
   } = useContext(PageDataContext);
 
   if (!show3d) {
