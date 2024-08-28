@@ -19,3 +19,13 @@
     flex-direction: row;
   }
 }
+
+.mobileContainer {
+  background-color: color(white);
+  border-radius: 11px;
+  border: 1px solid color(grey);
+  padding: space(6);
+  @include respond-to(md) {
+    display: none;
+  }
+}

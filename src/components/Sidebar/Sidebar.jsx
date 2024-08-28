@@ -225,9 +225,6 @@ const Sidebar = memo(() => {
 
   return (
     <>
-      <div className={style.mobileContainer}>
-        <MobileForm />
-      </div>
       <div className={style.desktopContainer}>
         <LogoSection supplier={supplier} />
         <Badges />

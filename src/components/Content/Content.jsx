@@ -43,6 +43,9 @@ import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorDa
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
+import { MobileModels } from '../Models/MobileModels';
+import MobileForm from '../MobileForm/MobileForm';
+import { useMediaQuery } from 'react-responsive';
 
 export const PageDataContext = createContext();
 
@@ -335,12 +338,21 @@ const PageDataProvider = ({ children, data }) => {
 };
 
 const Content = ({ data }) => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
   return (
     <Theme>
       <GoogleTagManager gtmId='GTM-NVCQ2ZW3' />
       <PageDataProvider data={data}>
         <div className={style.pageWrapper}>
           <div className={style.content}>
+            {isMobile && (
+              <>
+                <MobileModels />
+                <div className={style.mobileContainer}>
+                  <MobileForm />
+                </div>
+              </>
+            )}
             <Viewer />
             <Sidebar />
             <PriceTotal />

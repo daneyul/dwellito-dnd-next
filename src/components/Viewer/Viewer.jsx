@@ -18,7 +18,6 @@ import { LeftArrow, RightArrow } from '../Arrows/Arrows';
 import { DraggableContainer } from '../DraggableContainer';
 import { ConditionalButtons } from '../ConditionalButtons/ConditionalButtons';
 import Droppable from '../Droppable';
-import { MobileModels } from '../Models/MobileModels';
 
 const Viewer = () => {
   const {
@@ -116,7 +115,6 @@ const Viewer = () => {
 
   return (
     <>
-      <MobileModels />
       <div className={style.viewer}>
         <div
           style={{
