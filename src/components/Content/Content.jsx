@@ -345,18 +345,21 @@ const Content = ({ data }) => {
       <PageDataProvider data={data}>
         <div className={style.pageWrapper}>
           <div className={style.content}>
-            {isMobile && (
+            {isMobile ? (
               <>
                 <MobileModels />
                 <div className={style.mobileContainer}>
                   <MobileForm />
                 </div>
               </>
+            ) : (
+              <>
+                <Viewer />
+                <Sidebar />
+                <PriceTotal />
+                <OrderSummaryModal />
+              </>
             )}
-            <Viewer />
-            <Sidebar />
-            <PriceTotal />
-            <OrderSummaryModal />
           </div>
         </div>
       </PageDataProvider>
