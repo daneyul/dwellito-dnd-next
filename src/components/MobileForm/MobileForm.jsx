@@ -23,7 +23,7 @@ const MobileForm = () => {
       mobileVisitor: true,
     };
     const JSONdata = JSON.stringify(responseData);
-    const endpoint = 'https://hooks.zapier.com/hooks/catch/18577479/3n5hb9h/';
+    const endpoint = 'https://hooks.zapier.com/hooks/catch/18577479/2yjklei/';
 
     try {
       const options = {
