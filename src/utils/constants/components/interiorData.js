@@ -4,7 +4,6 @@ const customCubes = [
   {
     name: INTERIOR_FINISH_NAMES.NONE,
     price: 0,
-    hex: '#FFFFFF',
     img: 'none.png'
   },
   {
@@ -17,7 +16,6 @@ const customCubes = [
   },
   {
     name: INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS,
-    hex: '',
     price10: 1360,
     price20S: 2175,
     price20H: 2360,
@@ -27,7 +25,6 @@ const customCubes = [
   },
   {
     name: INTERIOR_FINISH_NAMES.PLYWOOD,
-    hex: '#C19A6B',
     price10: 4060,
     price20S: 6200,
     price20H: 6945,
@@ -37,7 +34,6 @@ const customCubes = [
   },
   {
     name: INTERIOR_FINISH_NAMES.DRYWALL,
-    hex: '#F2F2F2',
     price10: 4850,
     price20S: 7110,
     price20H: 8020,

@@ -87,6 +87,7 @@ export const getExteriorPaint = (supplier, exteriorFinish, paint) => {
 };
 
 export const useInteriorGLTFModels = (supplier) => {
+  if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
   const { materials: plywoodMaterial } = useGLTF(
     `/models/${supplier}/materials/interior/plywood.glb`
   );
@@ -102,6 +103,26 @@ export const useInteriorGLTFModels = (supplier) => {
     drywallMaterial,
     sprayFoamMaterial,
   };
+  } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+    const { materials: barnWoodMaterial } = useGLTF(
+      `/models/${supplier}/materials/interior/barn-wood.glb`
+    );
+    const { materials: mdfPanelMaterial } = useGLTF(
+      `/models/${supplier}/materials/interior/mdf-panel.glb`
+    );
+    const { materials: luanWallMaterial } = useGLTF(
+      `/models/${supplier}/materials/interior/luan-wall.glb`
+    );
+    const { materials: charredWoodMaterial } = useGLTF(
+      `/models/${supplier}/materials/interior/charred-wood.glb`
+    );
+    return {
+      barnWoodMaterial,
+      mdfPanelMaterial,
+      luanWallMaterial,
+      charredWoodMaterial,
+    };
+  }
 };
 
 export const useFlooringGLTFModels = (supplier) => {
