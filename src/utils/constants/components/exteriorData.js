@@ -57,7 +57,7 @@ const atAndS = [
     glbObject: 'Nucor Green',
     hex: '#1B6433',
     fileName: 'nucor-green',
-    img: 'green.png',
+    img: 'nucor-green.png',
     price: 0,
   },
   {
@@ -65,7 +65,7 @@ const atAndS = [
     glbObject: 'Keiwit Yellow',
     hex: '#FACD23',
     fileName: 'keiwit-yellow',
-    img: 'yellow.png',
+    img: 'keiwit-yellow.png',
     price: 0,
   },
   {
@@ -81,7 +81,7 @@ const atAndS = [
     glbObject: 'SAF Red',
     hex: '#A1280F',
     fileName: 'saf-red',
-    img: 'red.png',
+    img: 'saf-red.png',
     price: 0,
     cornerOnly: true
   },
