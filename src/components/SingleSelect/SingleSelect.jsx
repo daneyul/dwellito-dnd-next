@@ -58,17 +58,22 @@ const SingleSelect = memo(({ type }) => {
         .filter((option) => option.supplier === supplier)
         .map((selection) => {
           const isSelected = selectedOption === selection;
+          const img = selection.hex ? (
+            <div className={style.img} style={{ backgroundColor: selection.hex }} />
+          ) : (
+            <img
+              className={style.img}
+              src={`/images/${supplier}/exterior-finishes/${selection.img}`}
+              alt='thumbnail'
+            />
+          );
           return (
             <div
               key={selection.name}
               className={isSelected ? style.thumbnailSelected : style.thumbnail}
               onClick={() => handleSelectionClick(selection, setState)}
             >
-              <img
-                className={style.img}
-                src={`/images/${supplier}/${imgPath}/${selection.img}`}
-                alt='thumbnail'
-              />
+              {img}
             </div>
           );
         });

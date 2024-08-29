@@ -2,7 +2,7 @@ import React, { useContext, useMemo, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
 import { PageDataContext } from '@/components/Content/Content';
-import { useInteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { getExteriorPaint, useInteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 
 export function CsgGeometries({
@@ -13,12 +13,7 @@ export function CsgGeometries({
   doors,
   windows,
   vents,
-  redPaint,
-  whitePaint,
-  greenPaint,
-  bluePaint,
-  slateGreyPaint,
-  beigePaint,
+  paint
 }) {
   const {
     exteriorFinish,
@@ -67,30 +62,8 @@ export function CsgGeometries({
   const csg = useRef();
 
   const exteriorPaint = useMemo(() => {
-    switch (exteriorFinish.name) {
-      case 'Red':
-        return redPaint[exteriorFinish.glbObject];
-      case 'White':
-        return whitePaint[exteriorFinish.glbObject];
-      case 'Green':
-        return greenPaint[exteriorFinish.glbObject];
-      case 'Blue':
-        return bluePaint[exteriorFinish.glbObject];
-      case 'Slate Grey':
-        return slateGreyPaint[exteriorFinish.glbObject];
-      case 'Beige':
-        return beigePaint[exteriorFinish.glbObject];
-      default:
-        return null;
-    }
-  }, [
-    exteriorFinish,
-    redPaint,
-    whitePaint,
-    greenPaint,
-    bluePaint,
-    slateGreyPaint,
-  ]);
+    return getExteriorPaint(supplier, exteriorFinish, paint);
+  }, [supplier, exteriorFinish, paint]);
 
   const doorBoundingBoxGeometries = useMemo(() => {
     return doors.map((door, index) => {

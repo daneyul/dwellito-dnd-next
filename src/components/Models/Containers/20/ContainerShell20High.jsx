@@ -1,17 +1,12 @@
 import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
 import { PageDataContext } from '@/components/Content/Content';
-import { useFlooringGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { getExteriorPaint, useFlooringGLTFModels } from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 
 export default function ContainerShell20High({
-  redPaint,
-  whitePaint,
-  greenPaint,
-  bluePaint,
-  slateGreyPaint,
-  beigePaint,
+  paint
 }) {
 
   const {
@@ -33,30 +28,8 @@ export default function ContainerShell20High({
   );
 
   const exteriorPaint = useMemo(() => {
-    switch (exteriorFinish.name) {
-      case 'Red':
-        return redPaint[exteriorFinish.glbObject];
-      case 'White':
-        return whitePaint[exteriorFinish.glbObject];
-      case 'Green':
-        return greenPaint[exteriorFinish.glbObject];
-      case 'Blue':
-        return bluePaint[exteriorFinish.glbObject];
-      case 'Slate Grey':
-        return slateGreyPaint[exteriorFinish.glbObject];
-      case 'Beige':
-        return beigePaint[exteriorFinish.glbObject];
-      default:
-        return null;
-    }
-  }, [
-    exteriorFinish,
-    redPaint,
-    whitePaint,
-    greenPaint,
-    bluePaint,
-    slateGreyPaint,
-  ]);
+    return getExteriorPaint(supplier, exteriorFinish, paint);
+  }, [supplier, exteriorFinish, paint]);
 
   const ref = useRef();
 

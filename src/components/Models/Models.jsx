@@ -162,27 +162,13 @@ export function Models() {
     handleVentBoundingBox,
   } = useBoundingBoxes({ doors, windows, vents });
 
-  const {
-    redPaint,
-    whitePaint,
-    greenPaint,
-    bluePaint,
-    slateGreyPaint,
-    beigePaint,
-  } = useExteriorGLTFModels(supplier);
+  const paint = useExteriorGLTFModels(supplier);
 
   const ContainerShell = () => {
     if (selectedContainer.size === CONTAINER_SIZE_10) {
       if (containerHeightIsStandard) {
         return (
-          <ContainerShell10Standard
-            redPaint={redPaint}
-            whitePaint={whitePaint}
-            greenPaint={greenPaint}
-            bluePaint={bluePaint}
-            slateGreyPaint={slateGreyPaint}
-            beigePaint={beigePaint}
-          />
+          <ContainerShell10Standard paint={paint}/>
         );
       } else {
         return null;
@@ -190,49 +176,21 @@ export function Models() {
     } else if (selectedContainer.size === CONTAINER_SIZE_20) {
       if (containerHeightIsStandard) {
         return (
-          <ContainerShell20Standard
-            redPaint={redPaint}
-            whitePaint={whitePaint}
-            greenPaint={greenPaint}
-            bluePaint={bluePaint}
-            slateGreyPaint={slateGreyPaint}
-            beigePaint={beigePaint}
-          />
+          <ContainerShell20Standard paint={paint}/>
         );
       } else {
         return (
-          <ContainerShell20High
-            redPaint={redPaint}
-            whitePaint={whitePaint}
-            greenPaint={greenPaint}
-            bluePaint={bluePaint}
-            slateGreyPaint={slateGreyPaint}
-            beigePaint={beigePaint}
-          />
+          <ContainerShell20High paint={paint}/>
         );
       }
     } else if (selectedContainer === containerData[2]) {
       if (containerHeightIsStandard) {
         return (
-          <ContainerShell40Standard
-            redPaint={redPaint}
-            whitePaint={whitePaint}
-            greenPaint={greenPaint}
-            bluePaint={bluePaint}
-            slateGreyPaint={slateGreyPaint}
-            beigePaint={beigePaint}
-          />
+          <ContainerShell40Standard paint={paint}/>
         );
       } else {
         return (
-          <ContainerShell40High
-            redPaint={redPaint}
-            whitePaint={whitePaint}
-            greenPaint={greenPaint}
-            bluePaint={bluePaint}
-            slateGreyPaint={slateGreyPaint}
-            beigePaint={beigePaint}
-          />
+          <ContainerShell40High paint={paint}/>
         );
       }
     }
@@ -260,12 +218,7 @@ export function Models() {
           windowBoundingBoxes={windowBoundingBoxes}
           ventBoundingBoxes={ventBoundingBoxes}
           exhaustFanBoundingBox={exhaustFanBoundingBox}
-          redPaint={redPaint}
-          whitePaint={whitePaint}
-          greenPaint={greenPaint}
-          bluePaint={bluePaint}
-          slateGreyPaint={slateGreyPaint}
-          beigePaint={beigePaint}
+          paint={paint}
         />
         {doors.map((door, index) => (
           <Door
