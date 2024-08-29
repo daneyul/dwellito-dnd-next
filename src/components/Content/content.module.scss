@@ -16,6 +16,7 @@
   gap: space(4);
   height: 100%;
   @include respond-to(md) {
+    gap: 0;
     flex-direction: row;
   }
 }

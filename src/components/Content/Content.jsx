@@ -29,8 +29,12 @@ import {
   getSelectionsFromUrl,
 } from '@/utils/2D/utils';
 import {
+  barnWoodInterior,
+  charredWoodInterior,
   drywallInterior,
   INTERIOR_FINISH_OPTIONS,
+  luanWallInterior,
+  mdfPanelInterior,
   plywoodInterior,
   sprayfoamCeilingInterior,
   sprayfoamCeilingWallsInterior,
@@ -46,6 +50,7 @@ import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrim
 import { MobileModels } from '../Models/MobileModels';
 import MobileForm from '../MobileForm/MobileForm';
 import { useMediaQuery } from 'react-responsive';
+import useInteriorFinishes from '@/utils/hooks/useInteriorFInishes';
 
 export const PageDataContext = createContext();
 
@@ -95,12 +100,8 @@ const PageDataProvider = ({ children, data }) => {
       FLOORING_OPTIONS.filter((i) => i.supplier === supplier)[0] ||
       FLOORING_OPTIONS[0]
   );
-  const interiorIsPlywood = interiorFinish === plywoodInterior;
-  const interiorIsDrywall = interiorFinish === drywallInterior;
-  const interiorIsSprayFoamCeiling =
-    interiorFinish === sprayfoamCeilingInterior;
-  const interiorIsSprayFoamCeilingWalls =
-    interiorFinish === sprayfoamCeilingWallsInterior;
+
+  const interiorFinishes = useInteriorFinishes({ interiorFinish });
 
   // Elevation
   const DEFAULT_ELEVATION = elevationData.find(
@@ -324,10 +325,7 @@ const PageDataProvider = ({ children, data }) => {
         handleSelect,
         handleDeleteSelected,
         modifiers,
-        interiorIsPlywood,
-        interiorIsDrywall,
-        interiorIsSprayFoamCeiling,
-        interiorIsSprayFoamCeilingWalls,
+        interiorFinishes,
         containerHeightIsStandard,
         containerSizeStr,
       }}

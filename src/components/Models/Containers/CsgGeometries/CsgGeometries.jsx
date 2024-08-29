@@ -2,9 +2,14 @@ import React, { useContext, useMemo, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
 import { PageDataContext } from '@/components/Content/Content';
-import { getExteriorPaint, useInteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
+import {
+  getExteriorPaint,
+  useInteriorGLTFModels,
+} from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/CustomCubes';
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import AtAndS from './Interiors/AtAndS';
 
 export function CsgGeometries({
   doorBoundingBoxes,
@@ -14,18 +19,15 @@ export function CsgGeometries({
   doors,
   windows,
   vents,
-  paint
+  paint,
 }) {
   const {
     exteriorFinish,
-    interiorIsPlywood,
-    interiorIsDrywall,
-    interiorIsSprayFoamCeiling,
-    interiorIsSprayFoamCeilingWalls,
+    interiorFinishes,
     selectedContainer,
     selectedContainerHeight,
     containerSize,
-    supplier
+    supplier,
   } = useContext(PageDataContext);
 
   const size = containerSize();
@@ -102,7 +104,7 @@ export function CsgGeometries({
 
   const ventBoundingBoxGeometries = useMemo(() => {
     if (!ventBoundingBoxes || !vents) return null;
-    
+
     return vents.map((vent, index) => {
       const bbox = ventBoundingBoxes[index];
       if (!bbox) return null; // Ensure bbox is defined
@@ -142,22 +144,39 @@ export function CsgGeometries({
     );
   }, [exhaustFanBoundingBox]);
 
-
+  const CsgInteriors = () => {
+    switch (supplier) {
+      case SUPPLIER_SLUGS.CUSTOM_CUBES:
+        return (
+          <CustomCubes
+            interiorFinishes={interiorFinishes}
+            supplier={supplier}
+            size={size}
+            selectedContainerHeight={selectedContainerHeight}
+            adjustForX={adjustForX}
+            adjustForY={adjustForY}
+          />
+        );
+      case SUPPLIER_SLUGS.AT_AND_S:
+        return (
+          <AtAndS
+            interiorFinishes={interiorFinishes}
+            supplier={supplier}
+            size={size}
+            selectedContainerHeight={selectedContainerHeight}
+            adjustForX={adjustForX}
+            adjustForY={adjustForY}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <mesh receiveShadow castShadow>
       <Geometry ref={csg} useGroups>
-        <CustomCubes
-          interiorIsSprayFoamCeiling={interiorIsSprayFoamCeiling}
-          interiorIsSprayFoamCeilingWalls={interiorIsSprayFoamCeilingWalls}
-          interiorIsDrywall={interiorIsDrywall}
-          interiorIsPlywood={interiorIsPlywood}
-          supplier={supplier}
-          size={size}
-          selectedContainerHeight={selectedContainerHeight}
-          adjustForX={adjustForX}
-          adjustForY={adjustForY}
-        />
+        <CsgInteriors />
         <Base
           geometry={cRightNodes.mesh_0.geometry}
           material={exteriorPaint}

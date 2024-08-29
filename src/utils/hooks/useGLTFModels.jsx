@@ -83,7 +83,7 @@ export const getExteriorPaint = (supplier, exteriorFinish, paint) => {
         return null;
     }
   }
-  return null; // Default return if no match
+  return null;
 };
 
 export const useInteriorGLTFModels = (supplier) => {
@@ -108,7 +108,7 @@ export const useInteriorGLTFModels = (supplier) => {
       `/models/${supplier}/materials/interior/barn-wood.glb`
     );
     const { materials: mdfPanelMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior/mdf-panel.glb`
+      `/models/${supplier}/materials/interior/mdf.glb`
     );
     const { materials: luanWallMaterial } = useGLTF(
       `/models/${supplier}/materials/interior/luan-wall.glb`

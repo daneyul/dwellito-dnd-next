@@ -1,16 +1,16 @@
-import { useInteriorGLTFModels } from "@/utils/hooks/useGLTFModels";
-import { Base } from "@react-three/csg";
-import { useGLTF } from "@react-three/drei";
+import { useInteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { Base } from '@react-three/csg';
+import { useGLTF } from '@react-three/drei';
 
 const Drywall = ({
-  interiorIsDrywall,
+  interiorFinishes,
   supplier,
   size,
   selectedContainerHeight,
   adjustForX,
   adjustForY,
 }) => {
-  if (interiorIsDrywall) {
+  if (interiorFinishes.interiorIsDrywall) {
     const { drywallMaterial } = useInteriorGLTFModels(supplier);
     const dRightNodes = useGLTF(
       `/models/${supplier}/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`
@@ -58,14 +58,14 @@ const Drywall = ({
 };
 
 const Plywood = ({
-  interiorIsPlywood,
+  interiorFinishes,
   supplier,
   size,
   selectedContainerHeight,
   adjustForX,
   adjustForY,
 }) => {
-  if (interiorIsPlywood) {
+  if (interiorFinishes.interiorIsPlywood) {
     const { plywoodMaterial } = useInteriorGLTFModels(supplier);
     const pRightNodes = useGLTF(
       `/models/${supplier}/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`
@@ -113,14 +113,14 @@ const Plywood = ({
 };
 
 const Sprayfoam = ({
-  interiorIsSprayFoamCeilingWalls,
+  interiorFinishes,
   supplier,
   size,
   selectedContainerHeight,
   adjustForX,
   adjustForY,
 }) => {
-  if (interiorIsSprayFoamCeilingWalls) {
+  if (interiorFinishes.interiorIsSprayFoamCeilingWalls) {
     const { sprayFoamMaterial } = useInteriorGLTFModels(supplier);
     const sRightNodes = useGLTF(
       `/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-right.glb`
@@ -168,24 +168,31 @@ const Sprayfoam = ({
 };
 
 const BaseBoard = ({
-  interiorIsSprayFoamCeiling,
-  interiorIsSprayFoamCeilingWalls,
-  interiorIsDrywall,
-  interiorIsPlywood,
+  interiorFinishes,
   size,
   selectedContainerHeight,
   adjustForX,
   adjustForY,
 }) => {
-  if (interiorIsSprayFoamCeiling || interiorIsSprayFoamCeilingWalls) {
+  if (
+    interiorFinishes.interiorIsSprayFoamCeiling ||
+    interiorFinishes.interiorIsSprayFoamCeilingWalls
+  ) {
     return null;
-  } else if (interiorIsDrywall || interiorIsPlywood) {
+  } else if (
+    interiorFinishes.interiorIsDrywall ||
+    interiorFinishes.interiorIsPlywood
+  ) {
     const baseboard = useGLTF(
       `/models/container/${size}/${selectedContainerHeight}/baseboard.glb`
     ).nodes;
+    const baseboardMaterial = useGLTF(
+      `/models/container/${size}/${selectedContainerHeight}/rear-top-plywood.glb`
+    ).materials;
     return (
       <Base
         geometry={baseboard.mesh_0.geometry}
+        material={baseboardMaterial.Black_Rubber_01}
         scale={10}
         position={[adjustForX, 0, adjustForY]}
       />
@@ -196,10 +203,7 @@ const BaseBoard = ({
 };
 
 const CustomCubes = ({
-  interiorIsSprayFoamCeiling,
-  interiorIsSprayFoamCeilingWalls,
-  interiorIsDrywall,
-  interiorIsPlywood,
+  interiorFinishes,
   supplier,
   size,
   selectedContainerHeight,
@@ -209,8 +213,7 @@ const CustomCubes = ({
   return (
     <>
       <BaseBoard
-        interiorIsSprayFoamCeiling={interiorIsSprayFoamCeiling}
-        interiorIsSprayFoamCeilingWalls={interiorIsSprayFoamCeilingWalls}
+        interiorFinishes={interiorFinishes}
         supplier={supplier}
         size={size}
         selectedContainerHeight={selectedContainerHeight}
@@ -218,7 +221,7 @@ const CustomCubes = ({
         adjustForY={adjustForY}
       />
       <Drywall
-        interiorIsDrywall={interiorIsDrywall}
+        interiorFinishes={interiorFinishes}
         supplier={supplier}
         size={size}
         selectedContainerHeight={selectedContainerHeight}
@@ -226,7 +229,7 @@ const CustomCubes = ({
         adjustForY={adjustForY}
       />
       <Plywood
-        interiorIsPlywood={interiorIsPlywood}
+        interiorFinishes={interiorFinishes}
         supplier={supplier}
         size={size}
         selectedContainerHeight={selectedContainerHeight}
@@ -234,7 +237,7 @@ const CustomCubes = ({
         adjustForY={adjustForY}
       />
       <Sprayfoam
-        interiorIsSprayFoamCeilingWalls={interiorIsSprayFoamCeilingWalls}
+        interiorFinishes={interiorFinishes}
         supplier={supplier}
         size={size}
         selectedContainerHeight={selectedContainerHeight}

@@ -47,12 +47,10 @@ const atAndS = [
   {
     name: INTERIOR_FINISH_NAMES.NONE,
     price: 0,
-    hex: '#FFFFFF',
     img: 'none.png'
   },
   {
     name: INTERIOR_FINISH_NAMES.CHARRED_WOOD,
-    hex: '',
     price10: 4850,
     price20S: 7110,
     price20H: 8020,
@@ -62,7 +60,6 @@ const atAndS = [
   },
   {
     name: INTERIOR_FINISH_NAMES.BARN_WOOD,
-    hex: '',
     price10: 4850,
     price20S: 7110,
     price20H: 8020,
@@ -72,7 +69,6 @@ const atAndS = [
   },
   {
     name: INTERIOR_FINISH_NAMES.MDF_PANEL,
-    hex: '',
     price10: 4850,
     price20S: 7110,
     price20H: 8020,
@@ -82,7 +78,6 @@ const atAndS = [
   },
   {
     name: INTERIOR_FINISH_NAMES.LUAN_WALL,
-    hex: '',
     price10: 4850,
     price20S: 7110,
     price20H: 8020,
@@ -96,8 +91,3 @@ export const INTERIOR_FINISH_OPTIONS = [
   ...customCubes,
   ...atAndS
 ];
-
-export const plywoodInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.PLYWOOD);
-export const drywallInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.DRYWALL);
-export const sprayfoamCeilingInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING);
-export const sprayfoamCeilingWallsInterior = INTERIOR_FINISH_OPTIONS.find((option) => option.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS);
