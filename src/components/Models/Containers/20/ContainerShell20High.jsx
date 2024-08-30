@@ -4,6 +4,8 @@ import { PageDataContext } from '@/components/Content/Content';
 import { getExteriorPaint } from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/High/CustomCubes';
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import AtAndS from './Interiors/High/AtAndS';
 
 export default function ContainerShell20High({
   paint
@@ -82,6 +84,30 @@ export default function ContainerShell20High({
     );
   };
 
+  const Interiors = () => {
+    if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
+      return (
+        <CustomCubes
+        interiorFinishes={interiorFinishes}
+        containerSize={containerSize}
+        selectedContainerHeight={selectedContainerHeight}
+        flooring={flooring}
+        supplier={supplier}
+      />
+      )
+    } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+      return (
+        <AtAndS
+        interiorFinishes={interiorFinishes}
+        containerSize={containerSize}
+        selectedContainerHeight={selectedContainerHeight}
+        flooring={flooring}
+        supplier={supplier}
+      />
+      )
+    }
+  }
+
   const containerMesh = (
     <group
       dispose={null}
@@ -119,13 +145,7 @@ export default function ContainerShell20High({
         />
       </group>
       {hasLighting ? <Lighting /> : null}
-      <CustomCubes
-        interiorFinishes={interiorFinishes}
-        containerSize={containerSize}
-        selectedContainerHeight={selectedContainerHeight}
-        flooring={flooring}
-        supplier={supplier}
-      />
+      <Interiors />
     </group>
   );
 

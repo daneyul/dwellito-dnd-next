@@ -1,20 +1,19 @@
 import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
 import { PageDataContext } from '@/components/Content/Content';
-import { getExteriorPaint, useFlooringGLTFModels } from '@/utils/hooks/useGLTFModels';
+import {
+  getExteriorPaint,
+} from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import { CustomCubes } from './Interiors/High/CustomCubes';
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import AtAndS from './Interiors/High/AtAndS';
 
-export default function ContainerShell40High({
-  paint
-}) {
-
+export default function ContainerShell40High({ paint }) {
   const {
     exteriorFinish,
     interiorFinishes,
     selectedContainer,
-    flooring,
     selectedContainerHeight,
     hasLighting,
     containerSize,
@@ -83,6 +82,28 @@ export default function ContainerShell40High({
     );
   };
 
+  const Interiors = () => {
+    if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
+      return (
+        <CustomCubes
+          interiorFinishes={interiorFinishes}
+          containerSize={containerSize}
+          selectedContainerHeight={selectedContainerHeight}
+          supplier={supplier}
+        />
+      );
+    } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+      return (
+        <AtAndS
+          interiorFinishes={interiorFinishes}
+          containerSize={containerSize}
+          selectedContainerHeight={selectedContainerHeight}
+          supplier={supplier}
+        />
+      );
+    }
+  };
+
   const containerMesh = (
     <group
       dispose={null}
@@ -136,13 +157,7 @@ export default function ContainerShell40High({
         />
       </group>
       {hasLighting ? <Lighting /> : null}
-      <CustomCubes
-        interiorFinishes={interiorFinishes}
-        containerSize={containerSize}
-        selectedContainerHeight={selectedContainerHeight}
-        flooring={flooring}
-        supplier={supplier}
-      />
+      <Interiors />
     </group>
   );
 

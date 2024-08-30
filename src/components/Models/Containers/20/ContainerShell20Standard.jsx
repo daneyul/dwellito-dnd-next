@@ -5,6 +5,8 @@ import { getExteriorPaint, useFlooringGLTFModels } from '@/utils/hooks/useGLTFMo
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import CustomCubes from './Interiors/Standard/CustomCubes';
+import AtAndS from './Interiors/Standard/AtAndS';
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 
 export default function ContainerShell20Standard({
   paint
@@ -79,6 +81,30 @@ export default function ContainerShell20Standard({
     );
   };
 
+  const Interiors = () => {
+    if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
+      return (
+        <CustomCubes
+          interiorFinishes={interiorFinishes}
+          flooring={flooring}
+          supplier={supplier}
+          containerSize={containerSize}
+          selectedContainerHeight={selectedContainerHeight}
+        />
+      );
+    } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+      return (
+        <AtAndS
+          interiorFinishes={interiorFinishes}
+          flooring={flooring}
+          supplier={supplier}
+          containerSize={containerSize}
+          selectedContainerHeight={selectedContainerHeight}
+        />
+      );
+    }
+  };
+
   const containerMesh = (
     <group
       dispose={null}
@@ -114,13 +140,7 @@ export default function ContainerShell20Standard({
         />
       </group>
       {hasLighting ? <Lighting /> : null}
-      <CustomCubes
-        interiorFinishes={interiorFinishes}
-        containerSize={containerSize}
-        selectedContainerHeight={selectedContainerHeight}
-        flooring={flooring}
-        supplier={supplier}
-      />
+      <Interiors />
     </group>
   );
 

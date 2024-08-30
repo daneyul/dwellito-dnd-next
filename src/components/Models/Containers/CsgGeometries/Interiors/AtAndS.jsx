@@ -170,7 +170,7 @@ const LuanWall = ({
   adjustForX,
   adjustForY,
 }) => {
-  if (interiorFinishes.interiorIsMdfPanel) {
+  if (interiorFinishes.interiorIsLuanWall) {
     const { luanWallMaterial } = useInteriorGLTFModels(supplier);
     const rightNodes = useGLTF(
       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/right.glb`
