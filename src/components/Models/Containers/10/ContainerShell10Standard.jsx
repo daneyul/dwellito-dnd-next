@@ -4,10 +4,10 @@ import { PageDataContext } from '@/components/Content/Content';
 import { getExteriorPaint } from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/CustomCubes';
+import AtAndS from './Interiors/AtAndS';
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 
-export default function ContainerShell10Standard({
-  paint
-}) {
+export default function ContainerShell10Standard({ paint }) {
   const {
     exteriorFinish,
     selectedContainer,
@@ -16,7 +16,7 @@ export default function ContainerShell10Standard({
     hasLighting,
     interiorFinishes,
     containerSize,
-    supplier
+    supplier,
   } = useContext(PageDataContext);
 
   // Load all 3d objects
@@ -77,6 +77,30 @@ export default function ContainerShell10Standard({
     );
   };
 
+  const Interiors = () => {
+    if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
+      return (
+        <CustomCubes
+          interiorFinishes={interiorFinishes}
+          flooring={flooring}
+          supplier={supplier}
+          containerSize={containerSize}
+          selectedContainerHeight={selectedContainerHeight}
+        />
+      );
+    } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+      return (
+        <AtAndS
+          interiorFinishes={interiorFinishes}
+          flooring={flooring}
+          supplier={supplier}
+          containerSize={containerSize}
+          selectedContainerHeight={selectedContainerHeight}
+        />
+      );
+    }
+  };
+
   const containerMesh = (
     <group
       dispose={null}
@@ -112,13 +136,7 @@ export default function ContainerShell10Standard({
         />
       </group>
       {hasLighting ? <Lighting /> : null}
-      <CustomCubes
-        interiorFinishes={interiorFinishes}
-        flooring={flooring}
-        supplier={supplier}
-        containerSize={containerSize}
-        selectedContainerHeight={selectedContainerHeight}
-      />
+      <Interiors />
     </group>
   );
 

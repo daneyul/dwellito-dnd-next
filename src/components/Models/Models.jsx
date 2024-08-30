@@ -163,7 +163,6 @@ export function Models() {
   } = useBoundingBoxes({ doors, windows, vents });
 
   const paint = useExteriorGLTFModels(supplier);
-
   const ContainerShell = () => {
     if (selectedContainer.size === CONTAINER_SIZE_10) {
       if (containerHeightIsStandard) {
