@@ -1,9 +1,8 @@
 import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
 import { PageDataContext } from '@/components/Content/Content';
-import { getExteriorPaint, useFlooringGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { getExteriorPaint } from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import CustomCubes from './Interiors/High/CustomCubes';
 
 export default function ContainerShell20High({
@@ -125,6 +124,7 @@ export default function ContainerShell20High({
         containerSize={containerSize}
         selectedContainerHeight={selectedContainerHeight}
         flooring={flooring}
+        supplier={supplier}
       />
     </group>
   );

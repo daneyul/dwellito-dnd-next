@@ -29,15 +29,7 @@ import {
   getSelectionsFromUrl,
 } from '@/utils/2D/utils';
 import {
-  barnWoodInterior,
-  charredWoodInterior,
-  drywallInterior,
   INTERIOR_FINISH_OPTIONS,
-  luanWallInterior,
-  mdfPanelInterior,
-  plywoodInterior,
-  sprayfoamCeilingInterior,
-  sprayfoamCeilingWallsInterior,
 } from '@/utils/constants/components/interiorData';
 import { createSnapModifier } from '@dnd-kit/modifiers';
 import { containerData } from '@/utils/constants/containerData';

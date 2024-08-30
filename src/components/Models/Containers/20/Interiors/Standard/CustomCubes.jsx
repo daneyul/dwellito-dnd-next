@@ -2,7 +2,7 @@ const { FLOORING_OPTIONS } = require("@/utils/constants/components/flooringData"
 const { useFlooringGLTFModels } = require("@/utils/hooks/useGLTFModels");
 const { useGLTF } = require("@react-three/drei");
 
-const Flooring = ({ flooring, containerSize, selectedContainerHeight }) => {
+const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }) => {
   if (flooring.name !== FLOORING_OPTIONS[0].name) {
     const { echoFloor, timberFloor } = useFlooringGLTFModels(supplier);
     const { nodes: flooringNodes } = useGLTF(
@@ -333,7 +333,7 @@ const SprayFoamCw = ({ interiorFinishes, containerSize, selectedContainerHeight 
   }
 };
 
-const CustomCubes = ({ interiorFinishes, containerSize, selectedContainerHeight, flooring }) => {
+const CustomCubes = ({ interiorFinishes, containerSize, selectedContainerHeight, flooring, supplier }) => {
   return (
     <>
       <Plywood
@@ -358,6 +358,7 @@ const CustomCubes = ({ interiorFinishes, containerSize, selectedContainerHeight,
       />
       <Flooring
         flooring={flooring}
+        supplier={supplier}
         containerSize={containerSize}
         selectedContainerHeight={selectedContainerHeight}
       />

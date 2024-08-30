@@ -4,14 +4,10 @@ import {
   Environment,
   RandomizedLight,
   useProgress,
+  PointerLockControls,
 } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import {
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-} from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import Door from './Doors/DoorSwitcher';
 import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
@@ -33,7 +29,11 @@ import ContainerShell40High from './Containers/40/ContainerShell40High';
 import { useBoundingBoxes } from '@/utils/hooks/useBoundingBoxes';
 import { useExteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
 import { containerData } from '@/utils/constants/containerData';
-import { EXTERIOR_CAM_POS, INTERIOR_CAM_POS, INTERIOR_CAM_ROT } from '@/utils/constants/camera/camPos';
+import {
+  EXTERIOR_CAM_POS,
+  INTERIOR_CAM_POS,
+  INTERIOR_CAM_ROT,
+} from '@/utils/constants/camera/camPos';
 import Electrical from './Electrical/Electrical';
 
 export function Models() {
@@ -45,7 +45,7 @@ export function Models() {
     containerHeightIsStandard,
     cameraReady,
     setCameraReady,
-    supplier
+    supplier,
   } = useContext(PageDataContext);
 
   const { active, progress, item, loaded, total } = useProgress();
@@ -122,6 +122,39 @@ export function Models() {
   const cameraRot = showExterior ? [0, 0, 0] : interiorCamRot();
 
   const orbitRef = useRef();
+  const controlsRef = useRef();
+
+  const [isLocked, setIsLocked] = useState(false);
+
+  // useEffect(() => {
+  //   const handleClick = () => {
+  //     if (!showExterior) {
+  //       if (isLocked) {
+  //         document.exitPointerLock();
+  //       } else {
+  //         controlsRef.current?.lock();
+  //       }
+  //     }
+  //   };
+
+  //   const handleLockChange = () => {
+  //     setIsLocked(document.pointerLockElement !== null);
+  //   };
+
+  //   document.addEventListener('click', handleClick);
+  //   document.addEventListener('pointerlockchange', handleLockChange);
+
+  //   return () => {
+  //     document.removeEventListener('click', handleClick);
+  //     document.removeEventListener('pointerlockchange', handleLockChange);
+  //   };
+  // }, [showExterior, isLocked]);
+
+  // useEffect(() => {
+  //   if (showExterior && isLocked) {
+  //     document.exitPointerLock();
+  //   }
+  // }, [showExterior, isLocked]);
 
   function CameraRig() {
     const { camera } = useThree();
@@ -142,13 +175,13 @@ export function Models() {
           setCameraReady(true); // Set the camera as ready
         }
       }
-    });
 
-    // Make sure OrbitControls is enabled/disabled based on the camera readiness
-    const controls = orbitRef.current;
-    if (controls) {
-      controls.enabled = cameraReady && showExterior;
-    }
+      // Make sure OrbitControls is enabled/disabled based on the camera readiness
+      const controls = orbitRef.current;
+      if (controls) {
+        controls.enabled = cameraReady && showExterior;
+      }
+    });
   }
 
   const {
@@ -166,31 +199,21 @@ export function Models() {
   const ContainerShell = () => {
     if (selectedContainer.size === CONTAINER_SIZE_10) {
       if (containerHeightIsStandard) {
-        return (
-          <ContainerShell10Standard paint={paint}/>
-        );
+        return <ContainerShell10Standard paint={paint} />;
       } else {
         return null;
       }
     } else if (selectedContainer.size === CONTAINER_SIZE_20) {
       if (containerHeightIsStandard) {
-        return (
-          <ContainerShell20Standard paint={paint}/>
-        );
+        return <ContainerShell20Standard paint={paint} />;
       } else {
-        return (
-          <ContainerShell20High paint={paint}/>
-        );
+        return <ContainerShell20High paint={paint} />;
       }
     } else if (selectedContainer === containerData[2]) {
       if (containerHeightIsStandard) {
-        return (
-          <ContainerShell40Standard paint={paint}/>
-        );
+        return <ContainerShell40Standard paint={paint} />;
       } else {
-        return (
-          <ContainerShell40High paint={paint}/>
-        );
+        return <ContainerShell40High paint={paint} />;
       }
     }
   };
@@ -289,13 +312,26 @@ export function Models() {
           <SMAA />
         </EffectComposer>
         <CameraRig />
+        {/* {!showExterior ? (
+          <PointerLockControls ref={controlsRef} enabled={!showExterior} />
+        ) : (
+          <OrbitControls
+            makeDefault
+            ref={orbitRef}
+            minPolarAngle={0}
+            maxPolarAngle={Math.PI / 2}
+            enablePan={false}
+            enableRotate={showExterior}
+            dampingFactor={0.15}
+          />
+        )} */}
         <OrbitControls
           makeDefault
           ref={orbitRef}
           minPolarAngle={0}
           maxPolarAngle={Math.PI / 2}
           enablePan={false}
-          enableRotate={showExterior}
+          enableRotate={true}
           dampingFactor={0.15}
         />
       </Canvas>

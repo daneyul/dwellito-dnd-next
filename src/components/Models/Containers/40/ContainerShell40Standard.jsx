@@ -120,6 +120,7 @@ export default function ContainerShell40Standard({
         containerSize={containerSize}
         selectedContainerHeight={selectedContainerHeight}
         flooring={flooring}
+        supplier={supplier}
       />
     </group>
   );

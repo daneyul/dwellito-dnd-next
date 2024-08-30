@@ -234,7 +234,7 @@ const Drywall = ({ interiorFinishes, containerSize, selectedContainerHeight }) =
   }
 };
 
-const Flooring = ({ flooring, containerSize, selectedContainerHeight }) => {
+const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }) => {
   if (flooring.name !== FLOORING_OPTIONS[0].name) {
     const { echoFloor, timberFloor } = useFlooringGLTFModels(supplier);
     const { nodes: flooringNodes } = useGLTF(
@@ -358,6 +358,7 @@ const CustomCubes = ({ interiorFinishes, containerSize, selectedContainerHeight,
       />
       <Flooring
         flooring={flooring}
+        supplier={supplier}
         containerSize={containerSize}
         selectedContainerHeight={selectedContainerHeight}
       />
