@@ -1,9 +1,7 @@
 import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
 import { PageDataContext } from '@/components/Content/Content';
-import {
-  getExteriorPaint,
-} from '@/utils/hooks/useGLTFModels';
+import { getExteriorPaint } from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { CustomCubes } from './Interiors/High/CustomCubes';
 import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
@@ -18,6 +16,7 @@ export default function ContainerShell40High({ paint }) {
     hasLighting,
     containerSize,
     supplier,
+    flooring,
   } = useContext(PageDataContext);
 
   // Load all 3d objects
@@ -90,6 +89,7 @@ export default function ContainerShell40High({ paint }) {
           containerSize={containerSize}
           selectedContainerHeight={selectedContainerHeight}
           supplier={supplier}
+          flooring={flooring}
         />
       );
     } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
@@ -99,6 +99,7 @@ export default function ContainerShell40High({ paint }) {
           containerSize={containerSize}
           selectedContainerHeight={selectedContainerHeight}
           supplier={supplier}
+          flooring={flooring}
         />
       );
     }

@@ -1,4 +1,5 @@
-import { useInteriorGLTFModels } from "@/utils/hooks/useGLTFModels";
+import { FLOORING_OPTIONS } from "@/utils/constants/components/flooringData";
+import { useFlooringGLTFModels, useInteriorGLTFModels } from "@/utils/hooks/useGLTFModels";
 import { useGLTF } from "@react-three/drei";
 
 const CharredWood = ({ interiorFinishes, containerSize, selectedContainerHeight, supplier }) => {
@@ -657,7 +658,42 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
   }
 };
 
-const AtAndS = ({ interiorFinishes, containerSize, selectedContainerHeight, supplier }) => {
+const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }) => {
+  if (flooring.name !== FLOORING_OPTIONS[0].name) {
+    const { echoFloor, timberFloor } = useFlooringGLTFModels(supplier);
+    const { nodes: flooringNodes } = useGLTF(
+      `/models/container/${containerSize()}/${selectedContainerHeight}/flooring.glb`
+    );
+
+    const flooringMaterial = () => {
+      switch (flooring.type) {
+        case 'Echo':
+          return echoFloor[flooring.glbObject];
+        case 'Timber':
+          return timberFloor[flooring.glbObject];
+        default:
+          return null;
+      }
+    };
+    return (
+      <>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={flooringNodes['40FT_Interior_Blank_Floor_001'].geometry}
+          material={flooringMaterial()}
+          position={[3.089, 0.173, -1.22]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={0.01}
+        />
+      </>
+    );
+  } else {
+    return null;
+  }
+};
+
+const AtAndS = ({ interiorFinishes, containerSize, selectedContainerHeight, supplier, flooring }) => {
   return (
     <>
       <CharredWood
@@ -680,6 +716,12 @@ const AtAndS = ({ interiorFinishes, containerSize, selectedContainerHeight, supp
       />
       <LuanWall
         interiorFinishes={interiorFinishes}
+        containerSize={containerSize}
+        selectedContainerHeight={selectedContainerHeight}
+        supplier={supplier}
+      />
+      <Flooring
+        flooring={flooring}
         containerSize={containerSize}
         selectedContainerHeight={selectedContainerHeight}
         supplier={supplier}
