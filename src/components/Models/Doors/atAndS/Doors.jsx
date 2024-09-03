@@ -50,7 +50,7 @@ const GlassGarage = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[0.04, -0.02, 0.04]}
+    customPosition={[0.02, 0.48, -0.009]}
     customScale={2.5}
     isRollUp={true}
   />

@@ -1,74 +1,28 @@
-<svg width="124" height="78" viewBox="0 0 124 78" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_1396_271)">
-<path d="M123.12 0.120117H0.119995V76.9201H123.12V0.120117Z" fill="white"/>
-<path d="M123.12 0.120117H0.119995" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M40.13 17.8401H3.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M43.13 1.62012H80.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M83.12 17.8401V1.62012" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M83.12 1.62012H120.12" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M3.13 75.4302V59.2302" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M3.13 59.2202H40.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M80.13 59.2202V75.4202" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M80.13 75.4302H43.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M83.12 75.4302V59.2302" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M120.13 75.4302H83.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M3.13 56.23V40.03" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M120.13 56.2302H83.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M3.13 20.8401H40.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M40.13 20.8401V37.0301" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M43.13 37.0201V20.8301" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M43.13 20.8401H80.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M80.13 37.02H43.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M83.12 20.8401H120.12" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M0.119995 76.9202H123.12" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M0.119995 57.9402V76.9302" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M0.119995 38.7402V57.8902" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M123.12 19.4901V0.120117" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M123.12 38.69V19.54" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M0.119995 19.54V38.69" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M3.13 1.62012H40.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M40.13 1.62012V17.8301" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M43.13 17.8401V1.62012" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M80.13 1.62012V17.8301" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M80.13 17.8401H43.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M120.13 17.8401H83.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M123.12 19.4902H0.119995" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M120.13 1.62012V17.8301" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M40.13 59.2202V75.4202" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M40.13 75.4302H3.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M43.13 75.4302V59.2302" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M43.13 59.2202H80.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M83.12 59.2202H120.12" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M120.13 59.2202V75.4202" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M0.119995 57.9402H123.12" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M3.13 40.03H40.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M40.13 40.03V56.23" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M40.13 56.2302H3.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M43.13 56.23V40.03" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M43.13 40.03H80.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M80.13 40.03V56.23" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M80.13 56.2302H43.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M83.12 56.23V40.03" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M83.12 40.03H120.12" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M120.13 40.03V56.23" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M123.12 57.8901H0.119995" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M3.13 37.0201V20.8301" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M40.13 37.02H3.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M80.13 20.8401V37.0301" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M83.12 37.0201V20.8301" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M120.13 20.8401V37.0301" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M120.13 37.02H83.13" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M0.119995 19.54H123.12" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M3.13 17.8401V1.62012" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M123.12 76.9202V57.9302" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M0.119995 38.7402H123.12" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M123.12 38.6902H0.119995" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M0.119995 0.120117V19.4901" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
-<path d="M123.12 57.8902V38.7402" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<svg width="124" height="90" viewBox="0 0 124 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1398_271)">
+<path d="M123.12 0.120117H0.119995V89.1201H123.12V0.120117Z" fill="white"/>
+<path d="M0.119995 0.120117H123.12V22.5301H0.119995V67.0301V44.8301H123.12V67.0301V22.5401" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M0.119995 22.5401V0.120117V22.5301V22.5401Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M83.12 46.1201H120.12V65.3701H83.12V46.1201Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M43.13 46.1201H80.13V65.3701H43.13V46.1201Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M3.13 46.1201H40.13V65.3701H3.13V46.1201Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M123.12 67.09H0.119995V89.13H123.12V67.05H0.119995V67.1" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M83.12 68.3701H120.12V87.6201H83.12V68.3701Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M43.13 68.3701H80.13V87.6201H43.13V68.3701Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M3.13 68.3701H40.13V87.6201H3.13V68.3701Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M83.12 1.62012H120.12V20.8701H83.12V1.62012Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M43.13 1.62012H80.13V20.8701H43.13V1.62012Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M40.13 1.62012V20.8701H3.13V1.62012H40.13Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M83.12 23.8801H120.12V43.1301H83.12V23.8801Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M43.13 23.8801H80.13V43.1301H43.13V23.8801Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M3.13 23.8801H40.13V43.1301H3.13V23.8801Z" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M0.119995 22.5901H123.12" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M123.12 44.79H0.119995" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
+<path d="M0.119995 89.1201H123.12" stroke="#010101" stroke-width="0.25" stroke-miterlimit="10"/>
 </g>
 <defs>
-<clipPath id="clip0_1396_271">
-<rect width="123.25" height="77.05" fill="white"/>
+<clipPath id="clip0_1398_271">
+<rect width="123.25" height="89.25" fill="white"/>
 </clipPath>
 </defs>
 </svg>

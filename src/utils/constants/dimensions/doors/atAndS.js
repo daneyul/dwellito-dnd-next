@@ -37,11 +37,11 @@ export const AT_AND_S_DOOR_DIMENSIONS = {
   },
   GLASS_GARAGE_DOOR: {
     WIDTH: 123,
-    HEIGHT: 77,
+    HEIGHT: 89,
     FP_HEIGHT: 4,
     POSITION: {
       x: 0,
-      y: -30,
+      y: 20,
     },
   }
 }

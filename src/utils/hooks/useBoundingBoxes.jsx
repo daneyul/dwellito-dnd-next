@@ -69,6 +69,34 @@ export function useBoundingBoxes({ doors, windows, vents }) {
                   data.center.z
                 ),
               };
+            } else if (doorName === COMPONENT_NAMES.ROLLUP_DOOR_WHITE) {
+              updatedData = {
+                ...updatedData,
+                size: new Vector3(
+                  data.size.x - 2.3,
+                  data.size.y - 1.5,
+                  data.size.z
+                ),
+                center: new Vector3(
+                  data.center.x,
+                  data.center.y - 0.8,
+                  data.center.z
+                ),
+              };
+            } else if (doorName === COMPONENT_NAMES.GLASS_GARAGE_DOOR) {
+              updatedData = {
+                ...updatedData,
+                size: new Vector3(
+                  data.size.x - 2.3,
+                  data.size.y - 3.5,
+                  data.size.z
+                ),
+                center: new Vector3(
+                  data.center.x,
+                  data.center.y - 1.5,
+                  data.center.z
+                ),
+              };
             } else {
               updatedData = {
                 ...updatedData,
@@ -84,20 +112,6 @@ export function useBoundingBoxes({ doors, windows, vents }) {
                 ),
               };
             }
-          } else if (doorName === COMPONENT_NAMES.ROLLUP_DOOR_WHITE) {
-            updatedData = {
-              ...updatedData,
-              size: new Vector3(
-                data.size.x - 2.3,
-                data.size.y - 1.5,
-                data.size.z
-              ),
-              center: new Vector3(
-                data.center.x,
-                data.center.y - 0.8,
-                data.center.z
-              ),
-            };
           } else {
             if (doors[index].isHeavyDuty && !doors[index].highContainerOnly) {
               updatedData = {
