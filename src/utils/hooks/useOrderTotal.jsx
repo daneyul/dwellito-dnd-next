@@ -46,6 +46,7 @@ const useOrderTotal = ({
   }, [interiorFinish, getContainerSpecificPrice]);
 
   const interiorTrimPrice = useMemo(() => {
+    if (!interiorTrim) return 0;
     return interiorTrim.name !== INTERIOR_TRIM_NAMES.NONE
       ? getContainerSpecificPrice(interiorTrim)
       : interiorTrim.price;

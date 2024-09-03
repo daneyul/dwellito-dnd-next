@@ -6,7 +6,6 @@ import { useGLTF } from '@react-three/drei';
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Box3, Vector3 } from 'three';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import { ELEVATION_NAMES } from '@/utils/constants/names/names';
 
 const GenericWindow =
   ({
@@ -15,6 +14,7 @@ const GenericWindow =
     modelPath,
     customPosition,
     customRotation,
+    customScale
   }) => {
     const { nodes, materials } = useGLTF(modelPath);
     const { selectedComponents, selectedContainer, scaleFactor } =
@@ -62,9 +62,14 @@ const GenericWindow =
     useEffect(() => {
       if (materials.Glass) {
         materials.Glass.transparent = true;
-        materials.Glass.opacity = 0.6; // Adjust opacity as needed
-        materials.Glass.roughness = 0.1; // Glass is generally smooth
-        materials.Glass.metalness = 0.0; // Glass isn't metallic
+        materials.Glass.opacity = 0.6;
+        materials.Glass.roughness = 0.1;
+        materials.Glass.metalness = 0.0;
+      } else if (materials['Frosted Clear Glass']) {
+        materials['Frosted Clear Glass'].transparent = true;
+        materials['Frosted Clear Glass'].opacity = 0.6;
+        materials['Frosted Clear Glass'].roughness = 0.1;
+        materials['Frosted Clear Glass'].metalness = 0.0;
       }
     }, [materials]);
 
@@ -82,7 +87,7 @@ const GenericWindow =
         )}
         rotation={rotation}
       >
-        <group position={customPosition} rotation={customRotation}>
+        <group position={customPosition} rotation={customRotation} scale={customScale}>
           <group scale={0.01}>
             {Object.keys(nodes).map((nodeKey) => {
               const node = nodes[nodeKey];

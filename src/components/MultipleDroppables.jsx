@@ -81,7 +81,7 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
     }
   };
 
-  const filterFixedCeilingComponents = () => {
+  const filterCeilingComponents = () => {
     return selectedComponents.filter(
       (piece) =>
         (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
@@ -98,13 +98,6 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
       (piece) => piece.objType === COMPONENT_TYPES.PARTITION
     );
   };
-
-  // console.log(
-  //   filterComponents({
-  //     elevationName: ELEVATION_NAMES.LEFT,
-  //     isLeft: true,
-  //   })
-  // );
 
   return (
     <section
@@ -134,7 +127,6 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
           elevationName: ELEVATION_NAMES.LEFT,
           isLeft: true,
         }).map((piece) => {
-          // console.log('piece-left', piece);
           return (
             <Draggable
               piece={piece}
@@ -160,7 +152,6 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.RIGHT }).map(
           (piece) => {
-            // console.log('piece-right', piece);
             return (
               <Draggable
                 piece={piece}
@@ -210,7 +201,7 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
           transform: 'translateY(-50%)',
         }}
       >
-        {filterFixedCeilingComponents().map((piece) => (
+        {filterCeilingComponents().map((piece) => (
           <Draggable
             piece={piece}
             key={piece.id}

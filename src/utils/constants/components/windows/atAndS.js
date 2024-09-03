@@ -31,7 +31,7 @@ export const atAndS = [
     objFpHeight: DIMENSIONS.WINDOW.VERTICAL_SLIDER_WINDOW_46_27.FP_HEIGHT,
     objType: COMPONENT_TYPES.WINDOW,
     price: 0,
-    model: '',
+    model: 'vertical-slider-46x27',
     floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/vertical-slider-46x27.svg`,
   },
   {
@@ -47,7 +47,7 @@ export const atAndS = [
     objFpHeight: DIMENSIONS.WINDOW.VERTICAL_SLIDER_WINDOW_36_53.FP_HEIGHT,
     objType: COMPONENT_TYPES.WINDOW,
     price: 0,
-    model: '',
+    model: 'vertical-slider-36x53',
     floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/vertical-slider-36x53.svg`,
   },
   {
@@ -92,7 +92,6 @@ export const atAndS = [
     desc: '',
     objWidth: DIMENSIONS.WINDOW.SKYLIGHT.WIDTH,
     objHeight: DIMENSIONS.WINDOW.SKYLIGHT.HEIGHT,
-    objFpHeight: DIMENSIONS.WINDOW.SKYLIGHT.FP_HEIGHT,
     objType: COMPONENT_TYPES.WINDOW,
     price: 0,
     model: 'skylight',
@@ -100,7 +99,8 @@ export const atAndS = [
     sideImg: `${COMPONENT_TYPES.WINDOW}/side-view/skylight.svg`,
     frontImg: `${COMPONENT_TYPES.WINDOW}/front-view/skylight.svg`,
     sidebarImg: `${COMPONENT_TYPES.WINDOW}/front-view/skylight.svg`,
+    alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT],
+    fixed: true,
     ceilingOnly: true,
-    alwaysShowOn: [ELEVATION_NAMES.BACK, ELEVATION_NAMES.LEFT, ELEVATION_NAMES.RIGHT]
   },
 ].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));

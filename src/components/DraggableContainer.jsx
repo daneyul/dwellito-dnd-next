@@ -24,7 +24,7 @@ export const DraggableContainer = ({
         transform: 'translateX(-50%)'
       }}
     >
-      {selectedComponents.filter(piece => !piece.ceilingOnly).map((piece) => (
+      {selectedComponents.map((piece) => (
         <Draggable
           piece={piece}
           key={piece.id}

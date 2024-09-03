@@ -9,6 +9,8 @@ import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names/names'
 const AddOption = ({ options }) => {
   const {
     setSelectedComponents,
+    setSelectedElevationIndex,
+    selectedComponents,
     selectedElevation,
     setShow3d,
     isFloorPlanView,
@@ -27,7 +29,16 @@ const AddOption = ({ options }) => {
 
   const handleSelect = (item) => {
     setShow3d(false);
-    if (isFloorPlanView) {
+    if (item.name === COMPONENT_NAMES.SKYLIGHT) {
+      setShow3d(false);
+      handleAddComponent({
+        item,
+        selectedComponents,
+        setSelectedComponents,
+        selectedElevation,
+        floorPlan,
+      });
+    } else if (isFloorPlanView) {
       setSelectedElevation(rightElevation);
       handleAddComponent({
         item,

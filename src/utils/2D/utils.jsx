@@ -7,6 +7,7 @@ import {
 } from '../constants/names/names';
 import { ventComponents } from '../constants/components/vents/vents';
 import { DIMENSIONS } from '../constants/dimensions/dimensions';
+import { windowComponents } from '../constants/components/windows/windows';
 
 export const generateImgSrc = (supplier, imgName) =>
   `../../../images/${supplier}/${imgName}`;
@@ -90,13 +91,23 @@ export const checkDistance = ({
     selectedContainer
   );
 
-  const boundaries = isFloorPlanView ? 0 : DIMENSIONS.BOUNDARIES.x;
+  const boundaries = () => {
+    if (isFloorPlanView) {
+      if (component.name === COMPONENT_NAMES.SKYLIGHT) {
+        return DIMENSIONS.BOUNDARIES.x;
+      } else {
+        return 0;
+      }
+    } else {
+      return DIMENSIONS.BOUNDARIES.x;
+    };
+  };
 
-  const left = deScale(component?.position.x, scaleFactor) + boundaries;
+  const left = deScale(component?.position.x, scaleFactor) + boundaries();
   const right =
     droppableWidthValue -
     (deScale(component?.position.x, scaleFactor) + component.objWidth) +
-    boundaries;
+    boundaries();
   const top = deScale(component?.position.y, scaleFactor);
 
   return {
@@ -132,6 +143,11 @@ export const handleAddComponent = ({
       (component) => component.name === COMPONENT_NAMES.ROOF_VENT
     );
 
+    const isSkylight = item.name === COMPONENT_NAMES.SKYLIGHT;
+    const skylightObjData = windowComponents.find(
+      (component) => component.name === COMPONENT_NAMES.SKYLIGHT
+    );
+
     const roofVent = {
       ...roofVentObjData,
       id: uuid(),
@@ -139,9 +155,18 @@ export const handleAddComponent = ({
       elevation: [floorPlan],
     };
 
+    const skylight = {
+      ...skylightObjData,
+      id: uuid(),
+      position: { ...skylightObjData.position },
+      elevation: [floorPlan],
+    };
+
     setSelectedComponents((prevSelectedComponents) => {
       if (isRoofVent) {
         return [...prevSelectedComponents, roofVent];
+      } else if (isSkylight) {
+        return [...prevSelectedComponents, skylight];
       } else {
         return [...prevSelectedComponents, newItem];
       }

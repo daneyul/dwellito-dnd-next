@@ -1,6 +1,7 @@
 import {
   HorizontalSlider,
   SecurityBars,
+  Skylight,
   VerticalSlider30x60,
   VerticalSlider36x53,
   VerticalSlider46x27,
@@ -8,7 +9,12 @@ import {
 import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 import { WoSecurity, WSecurity } from './customCubes/Windows';
 
-const Window = ({ onBoundingBoxChange, component, supplier }) => {
+const Window = ({
+  onBoundingBoxChange,
+  component,
+  supplier,
+  containerHeightIsStandard,
+}) => {
   const componentMap = {
     [COMPONENT_NAMES.WINDOW_SECURITY]: WSecurity,
     [COMPONENT_NAMES.WINDOW]: WoSecurity,
@@ -17,6 +23,7 @@ const Window = ({ onBoundingBoxChange, component, supplier }) => {
     [COMPONENT_NAMES.VERTICAL_SLIDER_WINDOW_36_53]: VerticalSlider36x53,
     [COMPONENT_NAMES.VERTICAL_SLIDER_WINDOW_30_60]: VerticalSlider30x60,
     [COMPONENT_NAMES.WINDOW_SECURITY_BARS]: SecurityBars,
+    [COMPONENT_NAMES.SKYLIGHT]: Skylight,
   };
 
   const WindowComponent = componentMap[component.name];
@@ -26,6 +33,7 @@ const Window = ({ onBoundingBoxChange, component, supplier }) => {
       component={component}
       onBoundingBoxChange={onBoundingBoxChange}
       supplier={supplier}
+      containerHeightIsStandard={containerHeightIsStandard}
     />
   ) : null;
 };

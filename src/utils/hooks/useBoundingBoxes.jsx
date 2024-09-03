@@ -1,6 +1,9 @@
 import { useState, useCallback } from 'react';
 import { Vector3 } from 'three';
-import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names/names';
+import {
+  COMPONENT_NAMES,
+  ELEVATION_NAMES,
+} from '@/utils/constants/names/names';
 
 export function useBoundingBoxes({ doors, windows, vents }) {
   const [doorBoundingBoxes, setDoorBoundingBoxes] = useState([]);
@@ -154,30 +157,51 @@ export function useBoundingBoxes({ doors, windows, vents }) {
   const handleWindowBoundingBox = useCallback(
     (index, data) => {
       let updatedData = { ...data };
+      const windowName = windows[index]?.name;
 
       if (
         data.selectedElevation.name === ELEVATION_NAMES.RIGHT ||
         data.selectedElevation.name === ELEVATION_NAMES.LEFT
       ) {
-        updatedData = {
-          ...updatedData,
-          size: new Vector3(data.size.x - 2, data.size.y - 1.7, data.size.z),
-          center: new Vector3(
-            data.center.x - 0.1,
-            data.center.y - 0.1,
-            data.center.z
-          ),
-        };
+        if (windowName === COMPONENT_NAMES.WINDOW_SECURITY_BARS) {
+          updatedData = {
+            ...updatedData,
+            size: new Vector3(data.size.x, data.size.y, data.size.z),
+            center: new Vector3(data.center.x, data.center.y, data.center.z),
+          };
+        } else {
+          updatedData = {
+            ...updatedData,
+            size: new Vector3(data.size.x - 2, data.size.y - 1.7, data.size.z),
+            center: new Vector3(
+              data.center.x - 0.1,
+              data.center.y - 0.1,
+              data.center.z
+            ),
+          };
+        }
       } else {
-        updatedData = {
-          ...updatedData,
-          size: new Vector3(data.size.x, data.size.y - 1.7, data.size.z - 1.7),
-          center: new Vector3(
-            data.center.x,
-            data.center.y - 0.1,
-            data.center.z
-          ),
-        };
+        if (windowName === COMPONENT_NAMES.WINDOW_SECURITY_BARS) {
+          updatedData = {
+            ...updatedData,
+            size: new Vector3(data.size.x, data.size.y, data.size.z),
+            center: new Vector3(data.center.x, data.center.y, data.center.z),
+          };
+        } else {
+          updatedData = {
+            ...updatedData,
+            size: new Vector3(
+              data.size.x,
+              data.size.y - 1.7,
+              data.size.z - 1.7
+            ),
+            center: new Vector3(
+              data.center.x,
+              data.center.y - 0.1,
+              data.center.z
+            ),
+          };
+        }
       }
 
       setWindowBoundingBoxes((prev) => ({ ...prev, [index]: updatedData }));

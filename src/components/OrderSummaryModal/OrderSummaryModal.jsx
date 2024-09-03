@@ -33,6 +33,7 @@ const OrderSummaryModal = () => {
     scaleFactor,
     interiorFinish,
     interiorFinishPrice,
+    interiorTrimPrice,
     exteriorFinish,
     flooring,
     slug,
@@ -40,6 +41,7 @@ const OrderSummaryModal = () => {
     setDialogOpen,
     supplier,
     containerSizeStr,
+    interiorTrim,
   } = useContext(PageDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const [zipCode, setZipCode] = useState('');
@@ -207,7 +209,7 @@ const OrderSummaryModal = () => {
         price: exteriorFinish.price,
       },
       surface: surfaceData,
-      mobileVisitor: false
+      mobileVisitor: false,
     };
 
     const JSONdata = JSON.stringify(responseData);
@@ -299,6 +301,30 @@ const OrderSummaryModal = () => {
           <div className={style.description}>{interiorFinish.name}</div>
           <div className={style.price}>
             ${interiorFinishPrice.toLocaleString()}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const TrimSection = () => (
+    <div className={style.section}>
+      <div className={style.elevationName}>Interior Trim</div>
+      <div style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
+        <div className={style.lineItem}>
+          <div className={style.thumbnailContainer}>
+            <img
+              src={generateImgSrc(
+                supplier,
+                `interior-trims/${interiorTrim.img}`
+              )}
+              alt={interiorTrim.name}
+              className={style.thumbnailImg}
+            />
+          </div>
+          <div className={style.description}>{interiorTrim.name}</div>
+          <div className={style.price}>
+            ${interiorTrimPrice.toLocaleString()}
           </div>
         </div>
       </div>
@@ -435,6 +461,60 @@ const OrderSummaryModal = () => {
     );
   };
 
+  const MiscSection = () => {
+    const components = selectedComponents.filter(
+      (component) => component.name === COMPONENT_NAMES.SKYLIGHT
+    );
+
+    if (components.length === 0) return null;
+
+    return (
+      <div className={style.section}>
+        <div className={style.elevationName}>Misc</div>
+        <ul style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
+          {components.map((component) => {
+            const distance = checkDistance({
+              component: component,
+              selectedElevation: component.elevation[0],
+              DIMENSIONS,
+              selectedContainer,
+              scaleFactor,
+            });
+
+            const imgSrc = component.frontImg || component.imgName;
+
+            const itemPrice = getComponentPrice(
+              component,
+              interiorFinish,
+              false
+            );
+
+            return (
+              <li key={component.id} className={style.lineItem}>
+                <div className={style.thumbnailContainer}>
+                  <img
+                    src={generateImgSrc(supplier, imgSrc)}
+                    alt={component.desc}
+                    className={style.thumbnailImg}
+                  />
+                </div>
+                <div className={style.description}>
+                  <div className={style.partNumber}>{component.desc}</div>
+                  <div className={style.desc}>{component.name}</div>
+                  <div className={style.distance}>
+                    {distance.left}&quot; from left, {distance.right}&quot; from
+                    right
+                  </div>
+                </div>
+                <div className={style.price}>${itemPrice.toLocaleString()}</div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  };
+
   const Section = ({ elevation }) => {
     const componentsForElevation = selectedComponents.filter(
       (component) =>
@@ -443,7 +523,7 @@ const OrderSummaryModal = () => {
         component.objType !== COMPONENT_TYPES.ELECTRICAL
     );
 
-    const elevationName = `${elevation.name} Wall`
+    const elevationName = `${elevation.name} Wall`;
 
     return (
       <div className={style.section}>
@@ -479,9 +559,9 @@ const OrderSummaryModal = () => {
                   <div className={style.partNumber}>{component.desc}</div>
                   <div className={style.desc}>{component.name}</div>
                   <div className={style.distance}>
-                      {distance.left}&quot; from left, {distance.right}&quot;
-                      from right
-                    </div>
+                    {distance.left}&quot; from left, {distance.right}&quot; from
+                    right
+                  </div>
                 </div>
                 <div className={style.price}>${itemPrice.toLocaleString()}</div>
               </li>
@@ -531,7 +611,9 @@ const OrderSummaryModal = () => {
               <ElectricalSection />
               <ExteriorSection />
               <InteriorSection />
+              {interiorTrim && <TrimSection />}
               <FlooringSection />
+              <MiscSection />
               <Total
                 text='Sub Total'
                 value={`$${orderTotal.toLocaleString()}`}

@@ -1,5 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { memo, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, {
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
 import { toScale, generateImgSrc, calculateCSSPos } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
@@ -92,10 +99,13 @@ const Draggable = memo(({ id, styles, piece, onSelect, onHover, onLeave }) => {
 
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleMouseDown = useCallback((e) => {
-    e.stopPropagation();
-    onSelect();
-  }, [onSelect]);
+  const handleMouseDown = useCallback(
+    (e) => {
+      e.stopPropagation();
+      onSelect();
+    },
+    [onSelect]
+  );
 
   // This is for adjusting the top value based on the container height
   const adjForContainerHeight = (value) => {
@@ -153,6 +163,15 @@ const Draggable = memo(({ id, styles, piece, onSelect, onHover, onLeave }) => {
         return piece.sideImg;
       } else {
         return piece.frontImg;
+      }
+    } else if (piece.name === COMPONENT_NAMES.SKYLIGHT) {
+      if (selectedElevation.name === ELEVATION_NAMES.BACK) {
+        return piece.frontImg;
+      } else if (
+        selectedElevation.name === ELEVATION_NAMES.RIGHT ||
+        selectedElevation.name === ELEVATION_NAMES.LEFT
+      ) {
+        return piece.sideImg;
       }
     } else if (selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN) {
       return piece.floorPlanImg;
