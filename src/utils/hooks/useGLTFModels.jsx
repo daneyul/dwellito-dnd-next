@@ -125,6 +125,26 @@ export const useInteriorGLTFModels = (supplier) => {
   }
 };
 
+export const useInteriorTrimGLTFModels = (supplier) => {
+  if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+    const { materials: battenAdobeWhiteMaterial } = useGLTF(
+      `/models/${supplier}/materials/interior-trims/batten-white.glb`
+    );
+    const { materials: luanBattenOakMaterial } = useGLTF(
+      `/models/${supplier}/materials/interior-trims/batten-oak.glb`
+    );
+    const { materials: luanBattenWhiteMaterial } = useGLTF(
+      `/models/${supplier}/materials/interior-trims/batten-white.glb`
+    );
+
+    return {
+      battenAdobeWhiteMaterial,
+      luanBattenOakMaterial,
+      luanBattenWhiteMaterial,
+    };
+  }
+};
+
 export const useFlooringGLTFModels = (supplier) => {
   const { materials: echoFloor } = useGLTF(
     `/models/${supplier}/materials/flooring/echo.glb`

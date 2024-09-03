@@ -4,7 +4,6 @@ import { Base, Geometry, Subtraction } from '@react-three/csg';
 import { PageDataContext } from '@/components/Content/Content';
 import {
   getExteriorPaint,
-  useInteriorGLTFModels,
 } from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/CustomCubes';
@@ -28,6 +27,7 @@ export function CsgGeometries({
     selectedContainerHeight,
     containerSize,
     supplier,
+    interiorTrim
   } = useContext(PageDataContext);
 
   const size = containerSize();
@@ -71,7 +71,7 @@ export function CsgGeometries({
   const doorBoundingBoxGeometries = useMemo(() => {
     return doors.map((door, index) => {
       const bbox = doorBoundingBoxes[index];
-      if (!bbox) return null; // Ensure bbox is defined
+      if (!bbox) return null;
       return (
         <group
           key={door.id}
@@ -88,7 +88,7 @@ export function CsgGeometries({
   const windowBoundingBoxGeometries = useMemo(() => {
     return windows.map((window, index) => {
       const bbox = windowBoundingBoxes[index];
-      if (!bbox) return null; // Ensure bbox is defined
+      if (!bbox) return null;
       return (
         <group
           key={window.id}
@@ -107,7 +107,7 @@ export function CsgGeometries({
 
     return vents.map((vent, index) => {
       const bbox = ventBoundingBoxes[index];
-      if (!bbox) return null; // Ensure bbox is defined
+      if (!bbox) return null;
       return (
         <group
           key={vent.id}
@@ -122,7 +122,7 @@ export function CsgGeometries({
   }, [vents, ventBoundingBoxes]);
 
   const exhaustFanBoundingBoxGeometry = useMemo(() => {
-    if (!exhaustFanBoundingBox) return null; // Ensure bbox is defined
+    if (!exhaustFanBoundingBox) return null;
     return (
       <group
         position={[
@@ -161,6 +161,7 @@ export function CsgGeometries({
         return (
           <AtAndS
             interiorFinishes={interiorFinishes}
+            interiorTrim={interiorTrim}
             supplier={supplier}
             size={size}
             selectedContainerHeight={selectedContainerHeight}

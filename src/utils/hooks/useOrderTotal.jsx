@@ -5,6 +5,7 @@ import {
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40,
   COMPONENT_TYPES,
+  INTERIOR_TRIM_NAMES,
 } from '@/utils/constants/names/names';
 import { getComponentPrice } from '../2D/utils';
 
@@ -14,6 +15,7 @@ const useOrderTotal = ({
   slug,
   selectedComponents,
   interiorFinish,
+  interiorTrim,
   exteriorFinish,
   flooring,
 }) => {
@@ -42,6 +44,12 @@ const useOrderTotal = ({
       ? getContainerSpecificPrice(interiorFinish)
       : interiorFinish.price;
   }, [interiorFinish, getContainerSpecificPrice]);
+
+  const interiorTrimPrice = useMemo(() => {
+    return interiorTrim.name !== INTERIOR_TRIM_NAMES.NONE
+      ? getContainerSpecificPrice(interiorTrim)
+      : interiorTrim.price;
+  }, [interiorTrim, getContainerSpecificPrice]);
 
   useEffect(() => {
     const containerPrice = containerHeightIsStandard
@@ -73,7 +81,7 @@ const useOrderTotal = ({
     flooring,
   ]);
 
-  return { orderTotal, setOrderTotal, interiorFinishPrice };
+  return { orderTotal, setOrderTotal, interiorFinishPrice, interiorTrimPrice };
 };
 
 export default useOrderTotal;

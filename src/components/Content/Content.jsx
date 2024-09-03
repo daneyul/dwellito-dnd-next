@@ -28,9 +28,7 @@ import {
   getInteriorTrimFromUrl,
   getSelectionsFromUrl,
 } from '@/utils/2D/utils';
-import {
-  INTERIOR_FINISH_OPTIONS,
-} from '@/utils/constants/components/interiorData';
+import { INTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/interiorData';
 import { createSnapModifier } from '@dnd-kit/modifiers';
 import { containerData } from '@/utils/constants/containerData';
 import { DEFAULT_COMPONENTS } from '@/utils/constants/componentData';
@@ -165,15 +163,17 @@ const PageDataProvider = ({ children, data }) => {
     selectedContainer,
   });
 
-  const { orderTotal, setOrderTotal, interiorFinishPrice } = useOrderTotal({
-    containerHeightIsStandard,
-    selectedContainer,
-    slug,
-    selectedComponents,
-    interiorFinish,
-    exteriorFinish,
-    flooring,
-  });
+  const { orderTotal, setOrderTotal, interiorFinishPrice, interiorTrimPrice } =
+    useOrderTotal({
+      containerHeightIsStandard,
+      selectedContainer,
+      slug,
+      selectedComponents,
+      interiorFinish,
+      interiorTrim,
+      exteriorFinish,
+      flooring,
+    });
 
   const [mappedElevations, setMappedElevations] = useState(
     elevationData.filter((elevation) => {
@@ -320,6 +320,7 @@ const PageDataProvider = ({ children, data }) => {
         interiorFinishes,
         containerHeightIsStandard,
         containerSizeStr,
+        interiorTrimPrice,
       }}
     >
       {children}

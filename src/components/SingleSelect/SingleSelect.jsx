@@ -26,7 +26,6 @@ const SingleSelect = memo(({ type }) => {
     flooring,
     setFlooring,
     setShow3d,
-    showExterior,
     setShowExterior,
     slug,
     setCameraReady,
@@ -34,6 +33,7 @@ const SingleSelect = memo(({ type }) => {
     supplier,
     interiorTrim,
     setInteriorTrim,
+    interiorTrimPrice
   } = useContext(PageDataContext);
 
   const isExterior = type === EXTERIOR;
@@ -116,13 +116,13 @@ const SingleSelect = memo(({ type }) => {
   );
 
   const interiorTrimSelections = useMemo(
-    () => getSelections(INTERIOR_TRIM_OPTIONS, interiorTrim, setInteriorTrim, 'interior-finishes'),
+    () => getSelections(INTERIOR_TRIM_OPTIONS, interiorTrim, setInteriorTrim, 'interior-trims'),
     [interiorTrim, getSelections]
   );
 
   const interiorTrimDesc = useMemo(
-    () => getDescription(INTERIOR_TRIM_OPTIONS, interiorTrim, () => interiorFinishPrice),
-    [interiorTrim, interiorFinishPrice, getDescription]
+    () => getDescription(INTERIOR_TRIM_OPTIONS, interiorTrim, () => interiorTrimPrice),
+    [interiorTrim, interiorTrimPrice, getDescription]
   );
 
   const flooringSelections = useMemo(
