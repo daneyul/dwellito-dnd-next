@@ -19,6 +19,7 @@ import {
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
   ELEVATION_NAMES,
+  SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
 import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
 import { useBoundingBoxes } from '@/utils/hooks/useBoundingBoxes';
@@ -45,62 +46,72 @@ export function MobileModels() {
     containerHeightIsStandard,
   } = useContext(PageDataContext);
 
+  const doorName = () => {
+    if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
+      return COMPONENT_NAMES.PERSONNEL_LHR_SECURITY;
+    } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+      return COMPONENT_NAMES.STEEL_DOOR;
+    }
+  };
+
+  const windowName = () => {
+    if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
+      return COMPONENT_NAMES.WINDOW;
+    } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+      return COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW;
+    }
+  };
+
+  const rightElevation = mappedElevations.find(
+    (elevation) => elevation.name === ELEVATION_NAMES.RIGHT
+  );
+  const leftElevation = mappedElevations.find(
+    (elevation) => elevation.name === ELEVATION_NAMES.LEFT
+  );
+  const door = componentData.find((door) => door.name === doorName());
+  const window = componentData.find((window) => window.name === windowName());
+  const modifiedWindow = {
+    ...window,
+    position: {
+      ...window.position,
+      x: 300,
+    },
+  };
+  const modifiedWindow2 = {
+    ...window,
+    position: {
+      ...window.position,
+      x: 300,
+    },
+  };
+  
   useEffect(() => {
-    const isMobile = window.innerWidth <= 768;
-    if (isMobile) {
-      const rightElevation = mappedElevations.find(
-        (elevation) => elevation.name === ELEVATION_NAMES.RIGHT
-      );
-      const leftElevation = mappedElevations.find(
-        (elevation) => elevation.name === ELEVATION_NAMES.LEFT
-      );
-      const door = componentData.find(
-        (door) => door.name === COMPONENT_NAMES.PERSONNEL_LHR_SECURITY
-      );
-      const window = componentData.find(
-        (window) => window.name === COMPONENT_NAMES.WINDOW_SECURITY
-      );
-      const modifiedWindow = {
-        ...window,
-        position: {
-          ...window.position,
-          x: 300,
-        },
-      };
-      const modifiedWindow2 = {
-        ...window,
-        position: {
-          ...window.position,
-          x: 300,
-        },
-      };
-      if (selectedContainer.size === CONTAINER_SIZE_10) {
-        handleAddComponent({
-          item: door,
-          setSelectedComponents,
-          selectedElevation: rightElevation,
-          floorPlan,
-        });
-      } else {
-        handleAddComponent({
-          item: door,
-          setSelectedComponents,
-          selectedElevation: rightElevation,
-          floorPlan,
-        });
-        handleAddComponent({
-          item: modifiedWindow,
-          setSelectedComponents,
-          selectedElevation: rightElevation,
-          floorPlan,
-        });
-        handleAddComponent({
-          item: modifiedWindow2,
-          setSelectedComponents,
-          selectedElevation: leftElevation,
-          floorPlan,
-        });
-      }
+    if (selectedContainer.size === CONTAINER_SIZE_10) {
+      handleAddComponent({
+        item: door,
+        setSelectedComponents,
+        selectedElevation: rightElevation,
+        floorPlan,
+      });
+    } else {
+      handleAddComponent({
+        item: door,
+        setSelectedComponents,
+        selectedElevation: rightElevation,
+        floorPlan,
+      });
+      handleAddComponent({
+        item: modifiedWindow,
+        setSelectedComponents,
+        selectedElevation: rightElevation,
+        floorPlan,
+      });
+      handleAddComponent({
+        item: modifiedWindow2,
+        setSelectedComponents,
+        selectedElevation: leftElevation,
+        floorPlan,
+      });
     }
   }, []);
 
@@ -162,31 +173,21 @@ export function MobileModels() {
   const ContainerShell = () => {
     if (selectedContainer.size === CONTAINER_SIZE_10) {
       if (containerHeightIsStandard) {
-        return (
-          <ContainerShell10Standard paint={paint}/>
-        );
+        return <ContainerShell10Standard paint={paint} />;
       } else {
         return null;
       }
     } else if (selectedContainer.size === CONTAINER_SIZE_20) {
       if (containerHeightIsStandard) {
-        return (
-          <ContainerShell20Standard paint={paint}/>
-        );
+        return <ContainerShell20Standard paint={paint} />;
       } else {
-        return (
-          <ContainerShell20High paint={paint}/>
-        );
+        return <ContainerShell20High paint={paint} />;
       }
     } else if (selectedContainer === containerData[2]) {
       if (containerHeightIsStandard) {
-        return (
-          <ContainerShell40Standard paint={paint}/>
-        );
+        return <ContainerShell40Standard paint={paint} />;
       } else {
-        return (
-          <ContainerShell40High paint={paint}/>
-        );
+        return <ContainerShell40High paint={paint} />;
       }
     }
   };
