@@ -149,6 +149,7 @@ export const atAndS = [
     objWidth: 4,
     objHeight: 8,
     objType: COMPONENT_TYPES.ELECTRICAL,
+    priceSurface: 325,
     price: 325,
     model: 'outlet',
     fixed: false,
