@@ -137,4 +137,21 @@ export const atAndS = [
     model: 'security-floodlight',
     fixed: false,
   },
+  {
+    name: COMPONENT_NAMES.OUTLET,
+    position: {
+      x: 30,
+      y: 30,
+    },
+    frontImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/outlet.svg`,
+    floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/outlet.svg`,
+    desc: 'P604-1-1501',
+    objWidth: 4,
+    objHeight: 8,
+    objType: COMPONENT_TYPES.ELECTRICAL,
+    price: 325,
+    model: 'outlet',
+    fixed: false,
+    rotate: 0,
+  },
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));

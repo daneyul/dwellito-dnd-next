@@ -17,39 +17,17 @@ const Electrical = ({
   handleExhaustFanBoundingBox,
   selectedComponents,
 }) => {
-  const outlet = useMemo(() =>
-    selectedComponents.find(
-      (component) => component.name === COMPONENT_NAMES.OUTLET
-    )
-  );
-  const heater = useMemo(() =>
-    selectedComponents.find(
-      (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
-    )
-  );
-  const floodLights = useMemo(() =>
-    selectedComponents.filter(
-      (component) =>
-        component.name === COMPONENT_NAMES.ADJUSTABLE_SWIVEL_FLOOD_LIGHT
-    ),
-  [selectedComponents]);
-  const sconceLights = useMemo(() =>
-    selectedComponents.filter(
-      (component) => component.name === COMPONENT_NAMES.MODERN_FARMHOUSE_OUTDOOR_WALL_SCONCE
-    ),
-  [selectedComponents]);
-  const emergencyLights = useMemo(() =>
-    selectedComponents.filter(
-      (component) => component.name === COMPONENT_NAMES.EMERGENCY_LIGHT
-    ),
-  [selectedComponents]);
-  const securityLights = useMemo(() =>
-    selectedComponents.filter(
-      (component) => component.name === COMPONENT_NAMES.SECURITY_FLOOD_LIGHT
-    ),
-  [selectedComponents]);
-
   if (supplierSlug === SUPPLIER_SLUGS.CUSTOM_CUBES) {
+    const outlet = useMemo(() =>
+      selectedComponents.find(
+        (component) => component.name === COMPONENT_NAMES.OUTLET
+      )
+    );
+    const heater = useMemo(() =>
+      selectedComponents.find(
+        (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
+      )
+    );
     return (
       <>
         <Outlet component={outlet} />
@@ -61,21 +39,62 @@ const Electrical = ({
       </>
     );
   } else if (supplierSlug === SUPPLIER_SLUGS.AT_AND_S) {
+    const outlet = useMemo(() =>
+      selectedComponents.find(
+        (component) => component.name === COMPONENT_NAMES.OUTLET
+      )
+    );
+    const floodLights = useMemo(
+      () =>
+        selectedComponents.filter(
+          (component) =>
+            component.name === COMPONENT_NAMES.ADJUSTABLE_SWIVEL_FLOOD_LIGHT
+        ),
+      [selectedComponents]
+    );
+    const sconceLights = useMemo(
+      () =>
+        selectedComponents.filter(
+          (component) =>
+            component.name ===
+            COMPONENT_NAMES.MODERN_FARMHOUSE_OUTDOOR_WALL_SCONCE
+        ),
+      [selectedComponents]
+    );
+    const emergencyLights = useMemo(
+      () =>
+        selectedComponents.filter(
+          (component) => component.name === COMPONENT_NAMES.EMERGENCY_LIGHT
+        ),
+      [selectedComponents]
+    );
+    const securityLights = useMemo(
+      () =>
+        selectedComponents.filter(
+          (component) => component.name === COMPONENT_NAMES.SECURITY_FLOOD_LIGHT
+        ),
+      [selectedComponents]
+    );
     return (
       <>
         <AtAndSAirConditioner />
-        {floodLights.length > 0 && floodLights.map((component) => (
-          <SwivelFloodLight key={component.id} component={component} />
-        ))}
-        {sconceLights.length > 0 && sconceLights.map((component) => (
-          <SconceWallLight key={component.id} component={component} />
-        ))}
-        {emergencyLights.length > 0 && emergencyLights.map((component) => (
-          <EmergencyLight key={component.id} component={component} />
-        ))}
-        {securityLights.length > 0 && securityLights.map((component) => (
-          <SecurityFloodLight key={component.id} component={component} />
-        ))}
+        <Outlet component={outlet} />
+        {floodLights.length > 0 &&
+          floodLights.map((component) => (
+            <SwivelFloodLight key={component.id} component={component} />
+          ))}
+        {sconceLights.length > 0 &&
+          sconceLights.map((component) => (
+            <SconceWallLight key={component.id} component={component} />
+          ))}
+        {emergencyLights.length > 0 &&
+          emergencyLights.map((component) => (
+            <EmergencyLight key={component.id} component={component} />
+          ))}
+        {securityLights.length > 0 &&
+          securityLights.map((component) => (
+            <SecurityFloodLight key={component.id} component={component} />
+          ))}
       </>
     );
   }

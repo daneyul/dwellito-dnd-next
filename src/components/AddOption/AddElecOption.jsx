@@ -7,7 +7,7 @@ import {
 } from '../../utils/2D/utils';
 import style from './addOption.module.css';
 import { PageDataContext } from '../Content/Content';
-import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { COMPONENT_NAMES, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 
 const AddElecOption = ({ options }) => {
   const {
@@ -41,7 +41,11 @@ const AddElecOption = ({ options }) => {
             : style.objImgContainer
         }
         onClick={() => {
-          if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES || item.ceilingOnly) {
+          if (
+            supplier === SUPPLIER_SLUGS.CUSTOM_CUBES ||
+            item.ceilingOnly ||
+            item.name === COMPONENT_NAMES.OUTLET
+          ) {
             setShow3d(false);
             setSelectedElevation(mappedElevations[3]);
             setSelectedElevationIndex(3);

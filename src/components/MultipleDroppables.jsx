@@ -60,7 +60,7 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
         (piece) =>
           piece.elevation.some(
             (elevation) => elevation.name === elevationName
-          ) && !piece.ceilingOnly ||
+          ) && !piece.ceilingOnly || (piece.name === COMPONENT_NAMES.OUTLET) || 
           (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES &&
             piece.objType === COMPONENT_TYPES.ELECTRICAL &&
             !piece.ceilingOnly &&
