@@ -19,20 +19,26 @@ const Electrical = ({
   selectedComponents,
 }) => {
   if (supplierSlug === SUPPLIER_SLUGS.CUSTOM_CUBES) {
-    const outlet = useMemo(() =>
-      selectedComponents.find(
+    const outlets = useMemo(() =>
+      selectedComponents.filter(
         (component) => component.name === COMPONENT_NAMES.OUTLET
       )
     );
-    const heater = useMemo(() =>
-      selectedComponents.find(
+    const heaters = useMemo(() =>
+      selectedComponents.filter(
         (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
       )
     );
     return (
       <>
-        <Outlet component={outlet} />
-        <Heater component={heater} />
+        {outlets.length > 0 &&
+          outlets.map((component) => (
+            <Outlet key={component.id} component={component} />
+          ))}
+        {heaters.length > 0 &&
+          heaters.map((component) => (
+            <Heater key={component.id} component={component} />
+          ))}
         <Amp />
         <RoofVent />
         <CustomCubesAirConditioner />
@@ -40,13 +46,13 @@ const Electrical = ({
       </>
     );
   } else if (supplierSlug === SUPPLIER_SLUGS.AT_AND_S) {
-    const outlet = useMemo(() =>
-      selectedComponents.find(
+    const outlets = useMemo(() =>
+      selectedComponents.filter(
         (component) => component.name === COMPONENT_NAMES.OUTLET
       )
     );
-    const indoorOutdoorFan = useMemo(() =>
-      selectedComponents.find(
+    const indoorOutdoorFans = useMemo(() =>
+      selectedComponents.filter(
         (component) => component.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN
       )
     );
@@ -84,8 +90,15 @@ const Electrical = ({
     return (
       <>
         <AtAndSAirConditioner />
-        <IndoorOutdoorFan component={indoorOutdoorFan} />
-        <Outlet component={outlet} />
+        {indoorOutdoorFans.length > 0 &&
+          indoorOutdoorFans.map((component) => (
+            <IndoorOutdoorFan key={component.id} component={component} />
+          ))
+        }
+        {outlets.length > 0 &&
+          outlets.map((component) => (
+            <Outlet key={component.id} component={component} />
+          ))}
         {floodLights.length > 0 &&
           floodLights.map((component) => (
             <SwivelFloodLight key={component.id} component={component} />
