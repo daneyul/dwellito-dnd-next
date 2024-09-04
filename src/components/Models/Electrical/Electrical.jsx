@@ -10,6 +10,7 @@ import SwivelFloodLight from './atAndS/SwivelFloodLight';
 import { useMemo } from 'react';
 import SconceWallLight from './atAndS/SconceWallLight';
 import EmergencyLight from './atAndS/EmergencyLight';
+import SecurityFloodLight from './atAndS/SecurityFloodLight';
 
 const Electrical = ({
   supplierSlug,
@@ -42,6 +43,11 @@ const Electrical = ({
       (component) => component.name === COMPONENT_NAMES.EMERGENCY_LIGHT
     ),
   [selectedComponents]);
+  const securityLights = useMemo(() =>
+    selectedComponents.filter(
+      (component) => component.name === COMPONENT_NAMES.SECURITY_FLOOD_LIGHT
+    ),
+  [selectedComponents]);
 
   if (supplierSlug === SUPPLIER_SLUGS.CUSTOM_CUBES) {
     return (
@@ -66,6 +72,9 @@ const Electrical = ({
         ))}
         {emergencyLights.length > 0 && emergencyLights.map((component) => (
           <EmergencyLight key={component.id} component={component} />
+        ))}
+        {securityLights.length > 0 && securityLights.map((component) => (
+          <SecurityFloodLight key={component.id} component={component} />
         ))}
       </>
     );
