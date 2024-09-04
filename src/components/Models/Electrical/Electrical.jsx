@@ -8,6 +8,8 @@ import RoofVent from './customCubes/RoofVent';
 import AtAndSAirConditioner from './atAndS/AirConditioner';
 import SwivelFloodLight from './atAndS/SwivelFloodLight';
 import { useMemo } from 'react';
+import SconceWallLight from './atAndS/SconceWallLight';
+import EmergencyLight from './atAndS/EmergencyLight';
 
 const Electrical = ({
   supplierSlug,
@@ -30,6 +32,16 @@ const Electrical = ({
         component.name === COMPONENT_NAMES.ADJUSTABLE_SWIVEL_FLOOD_LIGHT
     ),
   [selectedComponents]);
+  const sconceLights = useMemo(() =>
+    selectedComponents.filter(
+      (component) => component.name === COMPONENT_NAMES.MODERN_FARMHOUSE_OUTDOOR_WALL_SCONCE
+    ),
+  [selectedComponents]);
+  const emergencyLights = useMemo(() =>
+    selectedComponents.filter(
+      (component) => component.name === COMPONENT_NAMES.EMERGENCY_LIGHT
+    ),
+  [selectedComponents]);
 
   if (supplierSlug === SUPPLIER_SLUGS.CUSTOM_CUBES) {
     return (
@@ -48,6 +60,12 @@ const Electrical = ({
         <AtAndSAirConditioner />
         {floodLights.length > 0 && floodLights.map((component) => (
           <SwivelFloodLight key={component.id} component={component} />
+        ))}
+        {sconceLights.length > 0 && sconceLights.map((component) => (
+          <SconceWallLight key={component.id} component={component} />
+        ))}
+        {emergencyLights.length > 0 && emergencyLights.map((component) => (
+          <EmergencyLight key={component.id} component={component} />
         ))}
       </>
     );
