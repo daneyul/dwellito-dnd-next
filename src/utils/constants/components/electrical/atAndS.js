@@ -70,18 +70,21 @@ export const atAndS = [
   {
     name: COMPONENT_NAMES.INDOOR_OUTDOOR_FAN,
     position: {
-      x: 105,
-      y: 40,
+      x: 30,
+      y: 30,
     },
     sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/indoor-outdoor-fan.svg`,
+    floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/indoor-outdoor-fan.svg`,
     desc: '',
     objWidth: 16,
     objHeight: 23,
     objThickness: 8,
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 1075,
+    priceSurface: 1075,
     model: 'indoor-outdoor-fan',
     fixed: false,
+    rotate: 0,
   },
   {
     name: COMPONENT_NAMES.EMERGENCY_LIGHT,

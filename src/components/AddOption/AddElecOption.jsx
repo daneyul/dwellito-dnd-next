@@ -44,7 +44,8 @@ const AddElecOption = ({ options }) => {
           if (
             supplier === SUPPLIER_SLUGS.CUSTOM_CUBES ||
             item.ceilingOnly ||
-            item.name === COMPONENT_NAMES.OUTLET
+            item.name === COMPONENT_NAMES.OUTLET ||
+            item.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN
           ) {
             setShow3d(false);
             setSelectedElevation(mappedElevations[3]);

@@ -11,6 +11,7 @@ import { useMemo } from 'react';
 import SconceWallLight from './atAndS/SconceWallLight';
 import EmergencyLight from './atAndS/EmergencyLight';
 import SecurityFloodLight from './atAndS/SecurityFloodLight';
+import IndoorOutdoorFan from './atAndS/IndoorOutdoorFan';
 
 const Electrical = ({
   supplierSlug,
@@ -42,6 +43,11 @@ const Electrical = ({
     const outlet = useMemo(() =>
       selectedComponents.find(
         (component) => component.name === COMPONENT_NAMES.OUTLET
+      )
+    );
+    const indoorOutdoorFan = useMemo(() =>
+      selectedComponents.find(
+        (component) => component.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN
       )
     );
     const floodLights = useMemo(
@@ -78,6 +84,7 @@ const Electrical = ({
     return (
       <>
         <AtAndSAirConditioner />
+        <IndoorOutdoorFan component={indoorOutdoorFan} />
         <Outlet component={outlet} />
         {floodLights.length > 0 &&
           floodLights.map((component) => (

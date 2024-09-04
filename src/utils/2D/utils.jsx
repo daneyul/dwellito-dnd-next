@@ -404,6 +404,7 @@ export const calculateCSSPos = ({
       if (
         piece.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
         piece.name === COMPONENT_NAMES.OUTLET ||
+        piece.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN ||
         piece.objType === COMPONENT_TYPES.PARTITION
       ) {
         positionStyles = {

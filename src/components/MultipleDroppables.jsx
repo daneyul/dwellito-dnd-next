@@ -58,9 +58,12 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
     if (isLeft) {
       return selectedComponents.filter(
         (piece) =>
-          piece.elevation.some(
+          (piece.elevation.some(
             (elevation) => elevation.name === elevationName
-          ) && !piece.ceilingOnly || (piece.name === COMPONENT_NAMES.OUTLET) || 
+          ) &&
+            !piece.ceilingOnly) ||
+          piece.name === COMPONENT_NAMES.OUTLET ||
+          piece.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN ||
           (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES &&
             piece.objType === COMPONENT_TYPES.ELECTRICAL &&
             !piece.ceilingOnly &&
@@ -71,9 +74,10 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
     } else {
       return selectedComponents.filter(
         (piece) =>
-          piece.elevation.some(
+          (piece.elevation.some(
             (elevation) => elevation.name === elevationName
-          ) && !piece.ceilingOnly ||
+          ) &&
+            !piece.ceilingOnly) ||
           (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES &&
             piece.objType === COMPONENT_TYPES.ELECTRICAL &&
             piece.fixedSide === elevationName)

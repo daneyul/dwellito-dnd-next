@@ -74,7 +74,8 @@ const Viewer = () => {
 
       const additionalConditions =
         hoveredPiece?.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-        hoveredPiece?.name === COMPONENT_NAMES.OUTLET;
+        hoveredPiece?.name === COMPONENT_NAMES.OUTLET ||
+        hoveredPiece?.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN;
 
       return baseConditions && additionalConditions;
     };
@@ -95,7 +96,8 @@ const Viewer = () => {
     () =>
       selectedComponent &&
       (selectedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-        selectedComponent.name === COMPONENT_NAMES.OUTLET),
+        selectedComponent.name === COMPONENT_NAMES.OUTLET ||
+        selectedComponent.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN),
     [selectedComponent]
   );
 
