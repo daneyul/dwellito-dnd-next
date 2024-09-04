@@ -92,7 +92,7 @@ const Viewer = () => {
     [selectedComponents]
   );
 
-  const isHeaterOrOutlet = useMemo(
+  const isDraggableOnFloorPlan = useMemo(
     () =>
       selectedComponent &&
       (selectedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
@@ -163,7 +163,7 @@ const Viewer = () => {
           isAnyItemSelected={isAnyItemSelected}
           show3d={show3d}
           handleDeleteSelected={handleDeleteSelected}
-          isHeaterOrOutlet={isHeaterOrOutlet}
+          isDraggableOnFloorPlan={isDraggableOnFloorPlan}
           isFloorPlanView={isFloorPlanView}
           handleRotate={handleRotate}
           selectedComponent={selectedComponent}

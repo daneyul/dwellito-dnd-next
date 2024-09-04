@@ -6,7 +6,7 @@ export const ConditionalButtons = ({
   isAnyItemSelected,
   show3d,
   handleDeleteSelected,
-  isHeaterOrOutlet,
+  isDraggableOnFloorPlan,
   isFloorPlanView,
   handleRotate,
   selectedComponent,
@@ -25,7 +25,7 @@ export const ConditionalButtons = ({
       className={style.container}
     >
       {isAnyItemSelected && !show3d && <DeleteBtn onDeleteSelected={handleDeleteSelected} />}
-      {isHeaterOrOutlet && !show3d && isFloorPlanView && (
+      {isDraggableOnFloorPlan && !show3d && isFloorPlanView && (
         <RotateBtn handleRotate={handleRotate} component={selectedComponent} />
       )}
     </div>

@@ -53,9 +53,10 @@ const useDragHandlers = ({
     const isWindow = draggedItem.objType === COMPONENT_TYPES.WINDOW;
     const isPartition = draggedItem.objType === COMPONENT_TYPES.PARTITION;
     const isFixed = draggedItem.fixed;
-    const isHeaterOrOutlet =
+    const isDraggableOnFloorPlan =
       draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-      draggedItem.name === COMPONENT_NAMES.OUTLET;
+      draggedItem.name === COMPONENT_NAMES.OUTLET ||
+      draggedItem.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN;
 
     setSelectedComponents((prevComponents) =>
       prevComponents.map((component) =>
@@ -121,7 +122,7 @@ const useDragHandlers = ({
       ]);
     } else if (isFixed) {
       setModifiers([...fixedModifiers]);
-    } else if (isHeaterOrOutlet) {
+    } else if (isDraggableOnFloorPlan) {
       setModifiers([]);
     } else {
       setModifiers([...defaultModifiers]);
@@ -144,15 +145,16 @@ const useDragHandlers = ({
     const isOnElevationBack =
       draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
 
-    const isHeaterOrOutlet =
+    const isDraggableOnFloorPlan =
       draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-      draggedItem.name === COMPONENT_NAMES.OUTLET;
+      draggedItem.name === COMPONENT_NAMES.OUTLET ||
+      draggedItem.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN;
 
     const isOutsideBounds =
       !over ||
       ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(over.id);
 
-    if (isHeaterOrOutlet && isOutsideBounds) {
+    if (isDraggableOnFloorPlan && isOutsideBounds) {
       // Reset position of heater or outlet if outside droppable area
       setSelectedComponents((prevComponents) =>
         prevComponents.map((component) =>
@@ -322,7 +324,8 @@ const useDragHandlers = ({
 
     if (
       draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-      draggedComponent.name === COMPONENT_NAMES.OUTLET
+      draggedComponent.name === COMPONENT_NAMES.OUTLET ||
+      draggedComponent.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN
     ) {
       const isOutsideDroppable = ![
         DROPPABLE_LEFT,
