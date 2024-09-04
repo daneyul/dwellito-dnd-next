@@ -80,47 +80,49 @@ const AtAndSAirConditioner = () => {
       position={position}
       rotation={rotation}
     >
-      <group position={[0.433, 0.275, 0.024]} rotation={[0, Math.PI / 2, 0]}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={
-            nodes['P203-1-101_-_6K_BTU_Air_Conditioner_Assembly_v02'].geometry
-          }
-          material={materials.Zinc}
-          scale={0.01}
-        />
-      </group>
-      <group
-        position={[0.221, 0.278, 0.154]}
-        rotation={[Math.PI, 0, -Math.PI]}
-        scale={[0.807, 0.807, 1]}
-      >
-        <group scale={0.01}>
+      <group position={[0, 2.26, 0]}>
+        <group position={[0.433, 0.275, 0.024]} rotation={[0, Math.PI / 2, 0]}>
           <mesh
             castShadow
             receiveShadow
             geometry={
-              nodes['P203-1-101_-_6K_BTU_Air_Conditioner_v02_1'].geometry
+              nodes['P203-1-101_-_6K_BTU_Air_Conditioner_Assembly_v02'].geometry
             }
-            material={materials.Black_PVC}
+            material={materials.Zinc}
+            scale={0.01}
           />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              nodes['P203-1-101_-_6K_BTU_Air_Conditioner_v02_2'].geometry
-            }
-            material={materials.Inside_Color}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              nodes['P203-1-101_-_6K_BTU_Air_Conditioner_v02_3'].geometry
-            }
-            material={materials.White_PVC}
-          />
+        </group>
+        <group
+          position={[0.221, 0.278, 0.154]}
+          rotation={[Math.PI, 0, -Math.PI]}
+          scale={[0.807, 0.807, 1]}
+        >
+          <group scale={0.01}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                nodes['P203-1-101_-_6K_BTU_Air_Conditioner_v02_1'].geometry
+              }
+              material={materials.Black_PVC}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                nodes['P203-1-101_-_6K_BTU_Air_Conditioner_v02_2'].geometry
+              }
+              material={materials.Inside_Color}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                nodes['P203-1-101_-_6K_BTU_Air_Conditioner_v02_3'].geometry
+              }
+              material={materials.White_PVC}
+            />
+          </group>
         </group>
       </group>
     </group>

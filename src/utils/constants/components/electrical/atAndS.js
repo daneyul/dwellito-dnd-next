@@ -1,7 +1,6 @@
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
-  ELEVATION_NAMES,
   SUPPLIER_SLUGS,
 } from '../../names/names';
 
@@ -24,11 +23,6 @@ export const atAndS = [
     price: 0,
     model: 'swivel-floodlight',
     fixed: false,
-    // alwaysShowOn: [
-    //   ELEVATION_NAMES.BACK,
-    //   ELEVATION_NAMES.LEFT,
-    //   ELEVATION_NAMES.RIGHT,
-    // ],
   },
   {
     name: COMPONENT_NAMES.AIR_CONDITIONER,
@@ -47,11 +41,6 @@ export const atAndS = [
     price: 1075,
     model: 'airconditioner',
     fixed: false,
-    // alwaysShowOn: [
-    //   ELEVATION_NAMES.BACK,
-    //   ELEVATION_NAMES.LEFT,
-    //   ELEVATION_NAMES.RIGHT,
-    // ],
   },
   {
     name: COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE,
@@ -85,8 +74,6 @@ export const atAndS = [
       y: 40,
     },
     sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/indoor-outdoor-fan.svg`,
-    // sideImg: `${COMPONENT_TYPES.ELECTRICAL}/side-view/indoor-outdoor-fan.svg`,
-    // floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/indoor-outdoor-fan.svg`,
     desc: '',
     objWidth: 16,
     objHeight: 23,
@@ -94,13 +81,7 @@ export const atAndS = [
     objType: COMPONENT_TYPES.ELECTRICAL,
     price: 1075,
     model: 'indoor-outdoor-fan',
-    fixed: true,
-    // fixedSide: ELEVATION_NAMES.BACK,
-    // alwaysShowOn: [
-    //   ELEVATION_NAMES.BACK,
-    //   ELEVATION_NAMES.LEFT,
-    //   ELEVATION_NAMES.RIGHT,
-    // ],
+    fixed: false,
   },
   {
     name: COMPONENT_NAMES.EMERGENCY_LIGHT,
@@ -119,11 +100,6 @@ export const atAndS = [
     price: 1075,
     model: 'emergency-light',
     fixed: false,
-    // alwaysShowOn: [
-    //   ELEVATION_NAMES.BACK,
-    //   ELEVATION_NAMES.LEFT,
-    //   ELEVATION_NAMES.RIGHT,
-    // ],
   },
   {
     name: COMPONENT_NAMES.MODERN_FARMHOUSE_OUTDOOR_WALL_SCONCE,
@@ -142,11 +118,6 @@ export const atAndS = [
     price: 1075,
     model: 'farmhouse-sconce',
     fixed: false,
-    // alwaysShowOn: [
-    //   ELEVATION_NAMES.BACK,
-    //   ELEVATION_NAMES.LEFT,
-    //   ELEVATION_NAMES.RIGHT,
-    // ],
   },
   {
     name: COMPONENT_NAMES.SECURITY_FLOOD_LIGHT,
@@ -165,10 +136,5 @@ export const atAndS = [
     price: 1075,
     model: 'security-floodlight',
     fixed: false,
-    // alwaysShowOn: [
-    //   ELEVATION_NAMES.BACK,
-    //   ELEVATION_NAMES.LEFT,
-    //   ELEVATION_NAMES.RIGHT,
-    // ],
   },
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));

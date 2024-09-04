@@ -75,16 +75,6 @@ export function Models() {
       ),
     [selectedComponents, COMPONENT_TYPES]
   );
-  const heater = useMemo(() =>
-    selectedComponents.find(
-      (component) => component.name === COMPONENT_NAMES.BASEBOARD_HEATER
-    )
-  );
-  const outlet = useMemo(() =>
-    selectedComponents.find(
-      (component) => component.name === COMPONENT_NAMES.OUTLET
-    )
-  );
 
   const exteriorCamPos = () => {
     if (selectedContainer === containerData[0]) {
@@ -226,9 +216,8 @@ export function Models() {
         <color attach='background' args={['#fdfdf7']} />
         <Electrical
           supplierSlug={supplier}
-          outlet={outlet}
-          heater={heater}
           handleExhaustFanBoundingBox={handleExhaustFanBoundingBox}
+          selectedComponents={selectedComponents}
         />
         <ContainerShell />
         <CsgGeometries
