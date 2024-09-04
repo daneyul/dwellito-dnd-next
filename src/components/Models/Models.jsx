@@ -115,35 +115,38 @@ export function Models() {
 
   const [isLocked, setIsLocked] = useState(false);
 
-  // useEffect(() => {
-  //   const handleClick = () => {
-  //     if (!showExterior) {
-  //       if (isLocked) {
-  //         document.exitPointerLock();
-  //       } else {
-  //         controlsRef.current?.lock();
-  //       }
-  //     }
-  //   };
+  useEffect(() => {
+    const handleClick = (event) => {
+      const canvasContainer = document.getElementById('canvas-container');
 
-  //   const handleLockChange = () => {
-  //     setIsLocked(document.pointerLockElement !== null);
-  //   };
+      // Check if the clicked element is inside the canvas container
+      if (!showExterior && canvasContainer && canvasContainer.contains(event.target)) {
+        if (isLocked) {
+          document.exitPointerLock();
+        } else {
+          controlsRef.current?.lock(); // Lock only if clicked inside canvas-container
+        }
+      }
+    };
 
-  //   document.addEventListener('click', handleClick);
-  //   document.addEventListener('pointerlockchange', handleLockChange);
+    const handleLockChange = () => {
+      setIsLocked(document.pointerLockElement !== null);
+    };
 
-  //   return () => {
-  //     document.removeEventListener('click', handleClick);
-  //     document.removeEventListener('pointerlockchange', handleLockChange);
-  //   };
-  // }, [showExterior, isLocked]);
+    document.addEventListener('click', handleClick);
+    document.addEventListener('pointerlockchange', handleLockChange);
 
-  // useEffect(() => {
-  //   if (showExterior && isLocked) {
-  //     document.exitPointerLock();
-  //   }
-  // }, [showExterior, isLocked]);
+    return () => {
+      document.removeEventListener('click', handleClick);
+      document.removeEventListener('pointerlockchange', handleLockChange);
+    };
+  }, [showExterior, isLocked]);
+
+  useEffect(() => {
+    if (showExterior && isLocked) {
+      document.exitPointerLock();
+    }
+  }, [showExterior, isLocked]);
 
   function CameraRig() {
     const { camera } = useThree();
@@ -301,8 +304,12 @@ export function Models() {
           <SMAA />
         </EffectComposer>
         <CameraRig />
-        {/* {!showExterior ? (
-          <PointerLockControls ref={controlsRef} enabled={!showExterior} />
+        {!showExterior ? (
+          <PointerLockControls
+            ref={controlsRef}
+            enabled={!showExterior}
+            selector='#canvas-container'
+          />
         ) : (
           <OrbitControls
             makeDefault
@@ -313,8 +320,8 @@ export function Models() {
             enableRotate={showExterior}
             dampingFactor={0.15}
           />
-        )} */}
-        <OrbitControls
+        )}
+        {/* <OrbitControls
           makeDefault
           ref={orbitRef}
           minPolarAngle={0}
@@ -322,7 +329,7 @@ export function Models() {
           enablePan={false}
           enableRotate={true}
           dampingFactor={0.15}
-        />
+        /> */}
       </Canvas>
     </div>
   );
