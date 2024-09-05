@@ -188,6 +188,7 @@ const OrderSummaryModal = () => {
 
     const responseData = {
       containerType: slug,
+      supplier: supplier,
       containerHeight: containerHeightIsStandard
         ? CONTAINER_STANDARD
         : CONTAINER_HIGH,
