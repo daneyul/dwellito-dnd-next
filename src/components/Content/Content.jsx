@@ -175,6 +175,7 @@ const PageDataProvider = ({ children, data }) => {
       interiorTrim,
       exteriorFinish,
       flooring,
+      hasRedCorners
     });
 
   const [mappedElevations, setMappedElevations] = useState(

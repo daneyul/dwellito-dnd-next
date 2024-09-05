@@ -19,10 +19,12 @@ import {
   CONTAINER_SIZE_40,
   CONTAINER_STANDARD,
   ELEVATION_NAMES,
+  EXTERIORS,
 } from '@/utils/constants/names/names';
 import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/useSaveSelections';
 import Toast from '../Toast/Toast';
+import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
 
 const OrderSummaryModal = () => {
   const {
@@ -42,6 +44,7 @@ const OrderSummaryModal = () => {
     supplier,
     containerSizeStr,
     interiorTrim,
+    hasRedCorners,
   } = useContext(PageDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const [zipCode, setZipCode] = useState('');
@@ -280,6 +283,24 @@ const OrderSummaryModal = () => {
             ${exteriorFinish.price.toLocaleString()}
           </div>
         </div>
+        {hasRedCorners && (
+          <div className={style.lineItem}>
+            <div className={style.thumbnailContainer}>
+              <img
+                src={generateImgSrc(
+                  supplier,
+                  `exterior-finishes/saf-red.png`
+                )}
+                alt={EXTERIORS.SAF_RED}
+                className={style.thumbnailImg}
+              />
+            </div>
+            <div className={style.description}>{EXTERIORS.SAF_RED}</div>
+            <div className={style.price}>
+              ${EXTERIOR_FINISH_OPTIONS.find((item) => item.name === EXTERIORS.SAF_RED).price.toLocaleString()}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

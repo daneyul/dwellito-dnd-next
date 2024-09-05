@@ -58,7 +58,7 @@ const atAndS = [
     hex: '#1B6433',
     fileName: 'nucor-green',
     img: 'nucor-green.png',
-    price: 0,
+    price: 10,
   },
   {
     name: EXTERIORS.KEIWIT_YELLOW,
@@ -82,7 +82,7 @@ const atAndS = [
     hex: '#A1280F',
     fileName: 'saf-red',
     img: 'saf-red.png',
-    price: 0,
+    price: 100,
     cornerOnly: true
   },
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));

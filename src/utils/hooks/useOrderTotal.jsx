@@ -6,8 +6,10 @@ import {
   CONTAINER_SIZE_40,
   COMPONENT_TYPES,
   INTERIOR_TRIM_NAMES,
+  EXTERIORS,
 } from '@/utils/constants/names/names';
 import { getComponentPrice } from '../2D/utils';
+import { EXTERIOR_FINISH_OPTIONS } from '../constants/components/exteriorData';
 
 const useOrderTotal = ({
   containerHeightIsStandard,
@@ -18,6 +20,7 @@ const useOrderTotal = ({
   interiorTrim,
   exteriorFinish,
   flooring,
+  hasRedCorners
 }) => {
   const [orderTotal, setOrderTotal] = useState(0);
 
@@ -52,6 +55,8 @@ const useOrderTotal = ({
       : interiorTrim.price;
   }, [interiorTrim, getContainerSpecificPrice]);
 
+  const redCornersPrice = hasRedCorners ? EXTERIOR_FINISH_OPTIONS.find((item) => item.name === EXTERIORS.SAF_RED).price : 0;
+
   useEffect(() => {
     const containerPrice = containerHeightIsStandard
       ? selectedContainer.priceSc
@@ -68,7 +73,8 @@ const useOrderTotal = ({
       interiorFinishPrice +
       exteriorFinish.price +
       flooringPrice +
-      containerPrice;
+      containerPrice +
+      redCornersPrice;
 
     setOrderTotal(total);
   }, [
@@ -80,6 +86,7 @@ const useOrderTotal = ({
     interiorFinish,
     exteriorFinish,
     flooring,
+    hasRedCorners
   ]);
 
   return { orderTotal, setOrderTotal, interiorFinishPrice, interiorTrimPrice };
