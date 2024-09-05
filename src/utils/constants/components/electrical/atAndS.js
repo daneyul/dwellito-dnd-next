@@ -158,4 +158,14 @@ export const atAndS = [
     fixed: false,
     rotate: 0,
   },
+  {
+    name: COMPONENT_NAMES.BUTYL_TAPE,
+    objType: COMPONENT_TYPES.ELECTRICAL,
+    sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/butyl-tape.png`,
+    frontImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/butyl-tape.png`,
+    priceSurface: 10,
+    fixed: true,
+    price: 10,
+    notRendered: true
+  },
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));

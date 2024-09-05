@@ -352,7 +352,9 @@ const OrderSummaryModal = () => {
 
   const ElectricalSection = () => {
     const componentsForElevation = selectedComponents.filter(
-      (component) => component.objType === COMPONENT_TYPES.ELECTRICAL
+      (component) =>
+        component.objType === COMPONENT_TYPES.ELECTRICAL &&
+        component.name !== COMPONENT_NAMES.BUTYL_TAPE
     );
 
     if (componentsForElevation.length === 0) return null;
@@ -463,7 +465,9 @@ const OrderSummaryModal = () => {
 
   const MiscSection = () => {
     const components = selectedComponents.filter(
-      (component) => component.name === COMPONENT_NAMES.SKYLIGHT
+      (component) =>
+        component.name === COMPONENT_NAMES.SKYLIGHT ||
+        component.name === COMPONENT_NAMES.BUTYL_TAPE
     );
 
     if (components.length === 0) return null;
@@ -473,6 +477,8 @@ const OrderSummaryModal = () => {
         <div className={style.elevationName}>Misc</div>
         <ul style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
           {components.map((component) => {
+            const isTape = component.name === COMPONENT_NAMES.BUTYL_TAPE;
+
             const distance = checkDistance({
               component: component,
               selectedElevation: component.elevation[0],
@@ -501,10 +507,12 @@ const OrderSummaryModal = () => {
                 <div className={style.description}>
                   <div className={style.partNumber}>{component.desc}</div>
                   <div className={style.desc}>{component.name}</div>
-                  <div className={style.distance}>
-                    {distance.left}&quot; from left, {distance.right}&quot; from
-                    right
-                  </div>
+                  {isTape ? null : (
+                    <div className={style.distance}>
+                      {distance.left}&quot; from left, {distance.right}&quot;
+                      from right
+                    </div>
+                  )}
                 </div>
                 <div className={style.price}>${itemPrice.toLocaleString()}</div>
               </li>

@@ -82,6 +82,7 @@ const AT_AND_S_COMPONENTS = {
   MODERN_FARMHOUSE_OUTDOOR_WALL_SCONCE: 'Modern Farmhouse Outdoor Wall Sconce',
   ADJUSTABLE_SWIVEL_FLOOD_LIGHT: `Adjustable Swivel Flood Light`,
   SECURITY_FLOOD_LIGHT: 'Security Flood Light',
+  BUTYL_TAPE: 'Butyl Tape - Gray',
 }
 
 export const COMPONENT_NAMES = {

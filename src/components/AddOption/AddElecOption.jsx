@@ -57,6 +57,15 @@ const AddElecOption = ({ options }) => {
               selectedElevation: mappedElevations[3],
               floorPlan,
             });
+          } else if (item.name === COMPONENT_NAMES.BUTYL_TAPE) {
+            setShow3d(false);
+            handleAddComponent({
+              item,
+              selectedComponents,
+              setSelectedComponents,
+              selectedElevation: mappedElevations[3],
+              floorPlan,
+            });
           } else {
             setShow3d(false);
             handleAddComponent({

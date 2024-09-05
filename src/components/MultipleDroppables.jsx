@@ -67,6 +67,7 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
           (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES &&
             piece.objType === COMPONENT_TYPES.ELECTRICAL &&
             !piece.ceilingOnly &&
+            !piece.notRendered &&
             (piece.fixedSide === elevationName ||
               !piece.fixedSide ||
               !piece.alwaysShowOn))
@@ -77,7 +78,8 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
           (piece.elevation.some(
             (elevation) => elevation.name === elevationName
           ) &&
-            !piece.ceilingOnly) ||
+            !piece.ceilingOnly &&
+            !piece.notRendered) ||
           (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES &&
             piece.objType === COMPONENT_TYPES.ELECTRICAL &&
             piece.fixedSide === elevationName)
@@ -90,6 +92,7 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
       (piece) =>
         (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
           piece.fixed &&
+          !piece.notRendered &&
           !piece.fixedSide) ||
         (piece.name === COMPONENT_NAMES.ROOF_VENT &&
           piece.fixed &&
