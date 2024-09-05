@@ -146,6 +146,18 @@ export const SUPPLIER_NAMES = {
   AT_AND_S: 'AT&S',
 }
 
+export const EXTERIORS = {
+  BEIGE: 'Beige',
+  WHITE: 'White',
+  BLUE: 'Blue',
+  GREEN: 'Green',
+  SLATE_GREY: 'Slate Grey',
+  RED: 'Red',
+  NUCOR_GREEN: 'Nucor Green',
+  KEIWIT_YELLOW: 'Keiwit Yellow',
+  SAF_RED: 'SAF Red (Corners Only)',
+}
+
 export const findSupplierName = (supplierSlug) => {
   switch (supplierSlug) {
     case SUPPLIER_SLUGS.CUSTOM_CUBES:

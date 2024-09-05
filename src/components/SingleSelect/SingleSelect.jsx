@@ -7,6 +7,7 @@ import {
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40,
   EXTERIOR,
+  EXTERIORS,
   FLOORING,
   INTERIOR,
   INTERIOR_TRIM,
@@ -33,7 +34,9 @@ const SingleSelect = memo(({ type }) => {
     supplier,
     interiorTrim,
     setInteriorTrim,
-    interiorTrimPrice
+    interiorTrimPrice,
+    hasRedCorners,
+    setHasRedCorners,
   } = useContext(PageDataContext);
 
   const isExterior = type === EXTERIOR;
@@ -43,13 +46,17 @@ const SingleSelect = memo(({ type }) => {
 
   const handleSelectionClick = useCallback(
     (selection, setState, additionalActions = () => {}) => {
-      setState(selection);
+      if (isExterior && selection.name === EXTERIORS.SAF_RED) {
+        setHasRedCorners(!hasRedCorners);
+      } else {
+        setState(selection);
+      }
       setShow3d(true);
       setShowExterior(isExterior);
       setCameraReady(false);
       additionalActions();
     },
-    [setShow3d, setShowExterior, setCameraReady, isExterior]
+    [setShow3d, setShowExterior, setCameraReady, isExterior, hasRedCorners, setHasRedCorners]
   );
 
   const getSelections = useCallback(
@@ -57,7 +64,7 @@ const SingleSelect = memo(({ type }) => {
       return options
         .filter((option) => option.supplier === supplier)
         .map((selection) => {
-          const isSelected = selectedOption === selection;
+          const isSelected = (selection.name === EXTERIORS.SAF_RED && hasRedCorners) || selectedOption === selection;
           return (
             <div
               key={selection.name}

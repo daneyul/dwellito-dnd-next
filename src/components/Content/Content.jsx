@@ -93,6 +93,8 @@ const PageDataProvider = ({ children, data }) => {
 
   const interiorFinishes = useInteriorFinishes({ interiorFinish });
 
+  const [hasRedCorners, setHasRedCorners] = useState(false);
+
   // Elevation
   const DEFAULT_ELEVATION = elevationData.find(
     (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug
@@ -321,6 +323,8 @@ const PageDataProvider = ({ children, data }) => {
         containerHeightIsStandard,
         containerSizeStr,
         interiorTrimPrice,
+        hasRedCorners,
+        setHasRedCorners
       }}
     >
       {children}

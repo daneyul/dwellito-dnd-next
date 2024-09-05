@@ -16,7 +16,6 @@ import Vent from './Vents/VentSwitcher';
 import { CsgGeometries } from './Containers/CsgGeometries/CsgGeometries';
 import { PageDataContext } from '../Content/Content';
 import {
-  COMPONENT_NAMES,
   COMPONENT_TYPES,
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
@@ -49,6 +48,7 @@ export function Models() {
   } = useContext(PageDataContext);
 
   const { active, progress, item, loaded, total } = useProgress();
+  // console.log(active, progress, item, loaded, total)
 
   useEffect(() => {
     setThreeDModelLoaded(progress === 100);

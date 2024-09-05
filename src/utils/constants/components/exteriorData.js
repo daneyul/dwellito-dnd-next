@@ -1,8 +1,8 @@
-import { SUPPLIER_SLUGS } from "../names/names";
+import { EXTERIORS, SUPPLIER_SLUGS } from "../names/names";
 
 const customCubes = [
   {
-    name: 'Beige',
+    name: EXTERIORS.BEIGE,
     glbObject: 'Beige',
     hex: null,
     fileName: 'beige-paint',
@@ -10,7 +10,7 @@ const customCubes = [
     price: 0,
   },
   {
-    name: 'White',
+    name: EXTERIORS.WHITE,
     glbObject: 'White',
     hex: null,
     fileName: 'white-paint',
@@ -18,7 +18,7 @@ const customCubes = [
     price: 1640,
   },
   {
-    name: 'Blue',
+    name: EXTERIORS.BLUE,
     glbObject: 'Blue',
     hex: null,
     fileName: 'blue-paint',
@@ -26,7 +26,7 @@ const customCubes = [
     price: 1640,
   },
   {
-    name: 'Green',
+    name: EXTERIORS.GREEN,
     glbObject: 'Green',
     hex: null,
     fileName: 'green-paint',
@@ -34,7 +34,7 @@ const customCubes = [
     price: 1640,
   },
   {
-    name: 'Slate Grey',
+    name: EXTERIORS.SLATE_GREY,
     glbObject: 'SlateGrey',
     hex: null,
     fileName: 'slate-grey-paint',
@@ -42,7 +42,7 @@ const customCubes = [
     price: 1640,
   },
   {
-    name: 'Red',
+    name: EXTERIORS.RED,
     glbObject: 'Red',
     hex: null,
     fileName: 'red-paint',
@@ -53,7 +53,7 @@ const customCubes = [
 
 const atAndS = [
   {
-    name: 'Nucor Green',
+    name: EXTERIORS.NUCOR_GREEN,
     glbObject: 'Nucor Green',
     hex: '#1B6433',
     fileName: 'nucor-green',
@@ -61,7 +61,7 @@ const atAndS = [
     price: 0,
   },
   {
-    name: 'Keiwit Yellow',
+    name: EXTERIORS.KEIWIT_YELLOW,
     glbObject: 'Keiwit Yellow',
     hex: '#FACD23',
     fileName: 'keiwit-yellow',
@@ -69,7 +69,7 @@ const atAndS = [
     price: 0,
   },
   {
-    name: 'Slate Grey',
+    name: EXTERIORS.SLATE_GREY,
     glbObject: 'Slate Grey',
     hex: '#99A2A4',
     fileName: 'slate-grey',
@@ -77,7 +77,7 @@ const atAndS = [
     price: 0,
   },
   {
-    name: 'SAF Red (Corners Only)',
+    name: EXTERIORS.SAF_RED,
     glbObject: 'SAF Red',
     hex: '#A1280F',
     fileName: 'saf-red',

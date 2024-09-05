@@ -4,8 +4,9 @@ import { PageDataContext } from '@/components/Content/Content';
 import { getExteriorPaint } from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/High/CustomCubes';
-import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { EXTERIORS, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import AtAndS from './Interiors/High/AtAndS';
+import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
 
 export default function ContainerShell20High({
   paint
@@ -19,7 +20,8 @@ export default function ContainerShell20High({
     selectedContainerHeight,
     hasLighting,
     supplier,
-    containerSize
+    containerSize,
+    hasRedCorners
   } = useContext(PageDataContext);
 
   // Load all 3d objects
@@ -27,9 +29,19 @@ export default function ContainerShell20High({
     `/models/container/20/${selectedContainerHeight}/container-shell.glb`
   );
 
+  const { nodes: cornerNodes } = useGLTF(
+    `/models/container/${containerSize()}/${selectedContainerHeight}/corners.glb`
+  );
+
   const exteriorPaint = useMemo(() => {
     return getExteriorPaint(supplier, exteriorFinish, paint);
   }, [supplier, exteriorFinish, paint]);
+
+  const redPaint = EXTERIOR_FINISH_OPTIONS.find(
+    (item) => item.name === EXTERIORS.SAF_RED
+  );
+
+  const cornerPaint = getExteriorPaint(supplier, redPaint, paint);
 
   const ref = useRef();
 
@@ -81,6 +93,28 @@ export default function ContainerShell20High({
           </group>
         </group>
       </>
+    );
+  };
+
+  const Corners = () => {
+    return (
+      <group scale={0.001}>
+        {Object.keys(cornerNodes).map((nodeKey) => {
+          const node = cornerNodes[nodeKey];
+          if (node.isMesh) {
+            return (
+              <mesh
+                key={nodeKey}
+                castShadow
+                receiveShadow
+                geometry={node.geometry}
+                material={cornerPaint}
+              />
+            );
+          }
+          return null;
+        })}
+      </group>
     );
   };
 
@@ -145,6 +179,7 @@ export default function ContainerShell20High({
         />
       </group>
       {hasLighting ? <Lighting /> : null}
+      {hasRedCorners ? <Corners /> : null}
       <Interiors />
     </group>
   );
