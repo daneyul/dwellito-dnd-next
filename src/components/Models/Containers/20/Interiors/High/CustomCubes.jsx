@@ -1,8 +1,14 @@
-const { FLOORING_OPTIONS } = require("@/utils/constants/components/flooringData");
-const { useFlooringGLTFModels } = require("@/utils/hooks/useGLTFModels");
-const { useGLTF } = require("@react-three/drei");
+const {
+  FLOORING_OPTIONS,
+} = require('@/utils/constants/components/flooringData');
+const { useFlooringGLTFModels } = require('@/utils/hooks/useGLTFModels');
+const { useGLTF } = require('@react-three/drei');
 
-const Plywood = ({ interiorFinishes, containerSize, selectedContainerHeight }) => {
+const Plywood = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+}) => {
   if (interiorFinishes.interiorIsPlywood) {
     const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
       useGLTF(
@@ -119,7 +125,11 @@ const Plywood = ({ interiorFinishes, containerSize, selectedContainerHeight }) =
   }
 };
 
-const Drywall = ({ interiorFinishes, containerSize, selectedContainerHeight }) => {
+const Drywall = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+}) => {
   if (interiorFinishes.interiorIsDrywall) {
     const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
       useGLTF(
@@ -234,7 +244,12 @@ const Drywall = ({ interiorFinishes, containerSize, selectedContainerHeight }) =
   }
 };
 
-const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }) => {
+const Flooring = ({
+  flooring,
+  containerSize,
+  selectedContainerHeight,
+  supplier,
+}) => {
   if (flooring.name !== FLOORING_OPTIONS[0].name) {
     const { echoFloor, timberFloor } = useFlooringGLTFModels(supplier);
     const { nodes: flooringNodes } = useGLTF(
@@ -251,10 +266,7 @@ const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }
       }
     };
     return (
-      <group
-        position={[3.059, 0.173, -1.219]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      >
+      <group position={[3.059, 0.173, -1.219]} rotation={[-Math.PI / 2, 0, 0]}>
         <mesh
           castShadow
           receiveShadow
@@ -271,7 +283,11 @@ const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }
   }
 };
 
-const SprayFoamCeiling = ({ interiorFinishes, containerSize, selectedContainerHeight }) => {
+const SprayFoamCeiling = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+}) => {
   if (interiorFinishes.interiorIsSprayFoamCeiling) {
     const {
       nodes: ceilingSprayFoamNodes,
@@ -295,7 +311,11 @@ const SprayFoamCeiling = ({ interiorFinishes, containerSize, selectedContainerHe
   }
 };
 
-const SprayFoamCw = ({ interiorFinishes, containerSize, selectedContainerHeight }) => {
+const SprayFoamCw = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+}) => {
   if (interiorFinishes.interiorIsSprayFoamCeilingWalls) {
     const {
       nodes: rearTopSprayFoamNodes,
@@ -308,9 +328,7 @@ const SprayFoamCw = ({ interiorFinishes, containerSize, selectedContainerHeight 
         <mesh
           castShadow
           receiveShadow
-          geometry={
-            rearTopSprayFoamNodes['20FT_HC_Sprayfoam_Ceiling'].geometry
-          }
+          geometry={rearTopSprayFoamNodes['20FT_HC_Sprayfoam_Ceiling'].geometry}
           material={rearTopSprayFoamMaterials.Sprayfoam}
           position={[0, 2.877, 0.139]}
           rotation={[Math.PI, 0, 0]}
@@ -319,9 +337,7 @@ const SprayFoamCw = ({ interiorFinishes, containerSize, selectedContainerHeight 
         <mesh
           castShadow
           receiveShadow
-          geometry={
-            rearTopSprayFoamNodes['20FT_HC_Sprayfoam_RearTop'].geometry
-          }
+          geometry={rearTopSprayFoamNodes['20FT_HC_Sprayfoam_RearTop'].geometry}
           material={rearTopSprayFoamMaterials.Black_Rubber_01}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={0.01}
@@ -333,7 +349,13 @@ const SprayFoamCw = ({ interiorFinishes, containerSize, selectedContainerHeight 
   }
 };
 
-const CustomCubes = ({ interiorFinishes, containerSize, selectedContainerHeight, flooring }) => {
+const CustomCubes = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+  flooring,
+  supplier,
+}) => {
   return (
     <>
       <Plywood

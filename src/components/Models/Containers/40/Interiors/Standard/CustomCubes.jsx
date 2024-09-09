@@ -1,8 +1,13 @@
-import { FLOORING_OPTIONS } from "@/utils/constants/components/flooringData";
-import { useFlooringGLTFModels } from "@/utils/hooks/useGLTFModels";
-import { useGLTF } from "@react-three/drei";
+import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
+import { useFlooringGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { useGLTF } from '@react-three/drei';
 
-const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }) => {
+const Flooring = ({
+  flooring,
+  containerSize,
+  selectedContainerHeight,
+  supplier,
+}) => {
   if (flooring.name !== FLOORING_OPTIONS[0].name) {
     const { echoFloor, timberFloor } = useFlooringGLTFModels(supplier);
     const { nodes: flooringNodes } = useGLTF(
@@ -37,7 +42,11 @@ const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }
   }
 };
 
-const Plywood = ({ interiorFinishes, containerSize, selectedContainerHeight }) => {
+const Plywood = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+}) => {
   if (interiorFinishes.interiorIsPlywood) {
     const { nodes: rearTopPlywoodNodes, materials: rearTopPlywoodMaterials } =
       useGLTF(
@@ -214,7 +223,11 @@ const Plywood = ({ interiorFinishes, containerSize, selectedContainerHeight }) =
   }
 };
 
-const Drywall = ({ interiorFinishes, containerSize, selectedContainerHeight }) => {
+const Drywall = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+}) => {
   if (interiorFinishes.interiorIsDrywall) {
     const { nodes: rearTopDrywallNodes, materials: rearTopDrywallMaterials } =
       useGLTF(
@@ -391,7 +404,11 @@ const Drywall = ({ interiorFinishes, containerSize, selectedContainerHeight }) =
   }
 };
 
-const SprayFoamCeiling = ({ interiorFinishes, containerSize, selectedContainerHeight }) => {
+const SprayFoamCeiling = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+}) => {
   if (interiorFinishes.interiorIsSprayFoamCeiling) {
     const {
       nodes: ceilingSprayFoamNodes,
@@ -414,7 +431,11 @@ const SprayFoamCeiling = ({ interiorFinishes, containerSize, selectedContainerHe
   }
 };
 
-const SprayFoamCw = ({ interiorFinishes, containerSize, selectedContainerHeight }) => {
+const SprayFoamCw = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+}) => {
   if (interiorFinishes.interiorIsSprayFoamCeilingWalls) {
     const {
       nodes: rearTopSprayFoamNodes,
@@ -448,7 +469,13 @@ const SprayFoamCw = ({ interiorFinishes, containerSize, selectedContainerHeight 
   }
 };
 
-const CustomCubes = ({ interiorFinishes, containerSize, selectedContainerHeight, flooring }) => {
+const CustomCubes = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+  flooring,
+  supplier,
+}) => {
   return (
     <>
       <Plywood

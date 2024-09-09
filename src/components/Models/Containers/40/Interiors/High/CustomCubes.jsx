@@ -455,6 +455,7 @@ export const CustomCubes = ({
   containerSize,
   selectedContainerHeight,
   flooring,
+  supplier
 }) => {
   return (
     <>
