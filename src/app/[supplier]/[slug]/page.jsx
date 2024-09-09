@@ -1,11 +1,19 @@
 import Content from '@/components/Content/Content';
-import Script from 'next/script';
+import { findSupplierName, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 
-export async function generateMetadata() {
+export async function generateMetadata({ params }) {
+  const supplierSlug = params.supplier;
+  const supplierName = findSupplierName(supplierSlug);
+
+  const title = `Configurator - ${supplierName}`;
+  const iconPath = supplierSlug === SUPPLIER_SLUGS.CUSTOM_CUBES 
+    ? '/favicon/custom-cubes.png' 
+    : '/favicon/at-and-s.png';
+
   return {
-    title: `Configurator - Custom Cubes`,
+    title,
     icons: {
-      icon: '/favicon/custom-cubes.png',
+      icon: iconPath,
     },
   };
 }

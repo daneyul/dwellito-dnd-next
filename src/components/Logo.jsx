@@ -1,17 +1,22 @@
 import CustomCubes from '../../public/logos/customCubes/logo.svg';
-import AtAndS from '../../public/logos/atAndS/logo.svg';
 
 const logos = {
   "custom-cubes": CustomCubes,
-  "at-and-s": AtAndS,
+  "at-and-s": "/logos/atAndS/logo.png",
 };
 
-const Logo = ({ type = 'custom-cubes' }) => {
+const Logo = ({ type }) => {
   const SelectedLogo = logos[type];
 
   return (
-    <SelectedLogo />
+    <>
+      {type === "custom-cubes" ? (
+        <SelectedLogo />
+      ) : (
+        <img src={SelectedLogo} alt={`${type} logo`} />
+      )}
+    </>
   );
-}
+};
 
 export default Logo;

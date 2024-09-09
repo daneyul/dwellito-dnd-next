@@ -28,7 +28,6 @@ import SingleSelect from '../SingleSelect/SingleSelect';
 import AddElecOption from '../AddOption/AddElecOption';
 import AddPartition from '../AddOption/AddPartition';
 import SaveOrder from '../SaveOrder/SaveOrder';
-import MobileForm from '../MobileForm/MobileForm';
 
 const LogoSection = memo(({ supplier }) => (
   <>
