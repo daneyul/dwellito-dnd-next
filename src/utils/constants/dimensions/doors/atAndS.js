@@ -1,13 +1,4 @@
 export const AT_AND_S_DOOR_DIMENSIONS = {
-  GLIDING_PATIO: {
-    WIDTH: 72,
-    HEIGHT: 79,
-    FP_HEIGHT: 8,
-    POSITION: {
-      x: 0,
-      y: 45,
-    },
-  },
   STEEL_DOOR: {
     WIDTH: 41,
     HEIGHT: 83,

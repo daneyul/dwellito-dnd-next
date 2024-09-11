@@ -30,7 +30,6 @@ const Door = ({ onBoundingBoxChange, component, supplier }) => {
     [COMPONENT_NAMES.EC_ST_ROLLUP_10_64]: specificDoors.EcStRollup10,
     [COMPONENT_NAMES.EC_ST_ROLLUP_12_64]: specificDoors.EcStRollup12,
     [COMPONENT_NAMES.EC_ST_ROLLUP_15_64]: specificDoors.EcStRollup15,
-    [COMPONENT_NAMES.GLIDING_PATIO]: specificDoors.GlidingPatio,
     [COMPONENT_NAMES.STEEL_DOOR]: specificDoors.SteelDoor,
     [COMPONENT_NAMES.VISION_LITE]: specificDoors.VisionLite,
     [COMPONENT_NAMES.ROLLUP_DOOR_WHITE]: specificDoors.Rollup,

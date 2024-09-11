@@ -66,7 +66,6 @@ const AT_AND_S_COMPONENTS = {
   STEEL_DOOR: `Steel Door w. Welded Frame 36x80"`,
   VISION_LITE: `Vision Lite Door w. Welded Frame 36x80"`,
   GLASS_GARAGE_DOOR: `Glass Garage Door 10'`,
-  GLIDING_PATIO: `Gliding Patio Door 70.5x79.5`,
   ROLLUP_DOOR_WHITE: `Roll Up Door (White) 7x7'`,
   HORIZONTAL_SLIDER_WINDOW: "Horizontal Slider Window 46x27",
   VERTICAL_SLIDER_WINDOW_46_27: "Vertical Slider Window 46x27",

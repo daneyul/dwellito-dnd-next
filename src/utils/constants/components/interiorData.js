@@ -50,33 +50,6 @@ const atAndS = [
     img: 'none.png'
   },
   {
-    name: INTERIOR_FINISH_NAMES.CHARRED_WOOD,
-    price10: 4850,
-    price20S: 7110,
-    price20H: 8020,
-    price40S: 12450,
-    price40H: 13805,
-    img: 'charred-wood.png',
-  },
-  {
-    name: INTERIOR_FINISH_NAMES.BARN_WOOD,
-    price10: 4850,
-    price20S: 7110,
-    price20H: 8020,
-    price40S: 12450,
-    price40H: 13805,
-    img: 'barn-wood.png',
-  },
-  {
-    name: INTERIOR_FINISH_NAMES.MDF_PANEL,
-    price10: 4850,
-    price20S: 7110,
-    price20H: 8020,
-    price40S: 12450,
-    price40H: 13805,
-    img: 'mdf.png',
-  },
-  {
     name: INTERIOR_FINISH_NAMES.LUAN_WALL,
     price10: 4850,
     price20S: 7110,

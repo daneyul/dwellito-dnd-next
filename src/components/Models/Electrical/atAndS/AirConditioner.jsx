@@ -7,13 +7,12 @@ import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
 import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 
-const AtAndSAirConditioner = () => {
+const AtAndSAirConditioner = ({ component }) => {
   const {
     supplier,
     selectedComponents,
     selectedContainer,
     scaleFactor,
-    selectedElevation,
   } = useContext(PageDataContext);
 
   if (
@@ -24,10 +23,8 @@ const AtAndSAirConditioner = () => {
     return null;
   }
 
-  const component = selectedComponents.find(
-    (component) => component.name === COMPONENT_NAMES.AIR_CONDITIONER
-  );
-
+  const selectedElevation = component.elevation[0];
+  
   const { nodes, materials } = useGLTF(
     `/models/${supplier}/electrical/airconditioner.glb`
   );
@@ -80,7 +77,7 @@ const AtAndSAirConditioner = () => {
       position={position}
       rotation={rotation}
     >
-      <group position={[0, 2.26, 0]}>
+      <group position={[0.47, 2.26, -0.04]} rotation={[0, -Math.PI, 0]}>
         <group position={[0.433, 0.275, 0.024]} rotation={[0, Math.PI / 2, 0]}>
           <mesh
             castShadow

@@ -46,14 +46,14 @@ const Electrical = ({
       </>
     );
   } else if (supplierSlug === SUPPLIER_SLUGS.AT_AND_S) {
+    const airConditioners = useMemo(() =>
+      selectedComponents.filter(
+        (component) => component.name === COMPONENT_NAMES.AIR_CONDITIONER
+      )
+    );
     const outlets = useMemo(() =>
       selectedComponents.filter(
         (component) => component.name === COMPONENT_NAMES.OUTLET
-      )
-    );
-    const indoorOutdoorFans = useMemo(() =>
-      selectedComponents.filter(
-        (component) => component.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN
       )
     );
     const floodLights = useMemo(
@@ -61,15 +61,6 @@ const Electrical = ({
         selectedComponents.filter(
           (component) =>
             component.name === COMPONENT_NAMES.ADJUSTABLE_SWIVEL_FLOOD_LIGHT
-        ),
-      [selectedComponents]
-    );
-    const sconceLights = useMemo(
-      () =>
-        selectedComponents.filter(
-          (component) =>
-            component.name ===
-            COMPONENT_NAMES.MODERN_FARMHOUSE_OUTDOOR_WALL_SCONCE
         ),
       [selectedComponents]
     );
@@ -87,12 +78,13 @@ const Electrical = ({
         ),
       [selectedComponents]
     );
+
+    console.log(airConditioners)
     return (
       <>
-        <AtAndSAirConditioner />
-        {indoorOutdoorFans.length > 0 &&
-          indoorOutdoorFans.map((component) => (
-            <IndoorOutdoorFan key={component.id} component={component} />
+        {airConditioners.length > 0 &&
+          airConditioners.map((component) => (
+            <AtAndSAirConditioner key={component.id} component={component} />
           ))
         }
         {outlets.length > 0 &&
@@ -102,10 +94,6 @@ const Electrical = ({
         {floodLights.length > 0 &&
           floodLights.map((component) => (
             <SwivelFloodLight key={component.id} component={component} />
-          ))}
-        {sconceLights.length > 0 &&
-          sconceLights.map((component) => (
-            <SconceWallLight key={component.id} component={component} />
           ))}
         {emergencyLights.length > 0 &&
           emergencyLights.map((component) => (

@@ -7,8 +7,8 @@ const Badges = () => {
 
   return (
     <div className={style.container}>
-      <div className={style.badge}>{selectedContainer.width}</div>
       <div className={style.badge}>{selectedContainer.length}</div>
+      <div className={style.badge}>{selectedContainer.width}</div>
       <div className={style.badge}>{selectedContainer.sqFootage}</div>
     </div>
   );

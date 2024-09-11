@@ -11,6 +11,7 @@ import {
   FLOORING,
   INTERIOR,
   INTERIOR_TRIM,
+  SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
 import { INTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/interiorData';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
@@ -85,6 +86,9 @@ const SingleSelect = memo(({ type }) => {
 
   const getDescription = useCallback(
     (options, selectedOption, priceCallback) => {
+
+      if (supplier === SUPPLIER_SLUGS.AT_AND_S) return null;
+
       return options.map((selection, index) => {
         const isSelected = selectedOption === selection;
         const price = priceCallback ? priceCallback(selection) : null;

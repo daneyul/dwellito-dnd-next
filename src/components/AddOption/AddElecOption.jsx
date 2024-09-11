@@ -32,6 +32,16 @@ const AddElecOption = ({ options }) => {
       supplier === SUPPLIER_SLUGS.AT_AND_S
         ? item.price
         : getComponentPrice(item, interiorFinish, true);
+        
+    const Price = () => {
+      if (supplier !== SUPPLIER_SLUGS.AT_AND_S) {
+        return (
+          <div style={{ marginTop: '0.5rem', fontWeight: 700 }}>
+            +${itemPrice.toLocaleString()}
+          </div>
+        );
+      }
+    }
 
     return (
       <div
@@ -84,9 +94,7 @@ const AddElecOption = ({ options }) => {
         />
         <div className={style.objDesc}>
           {item.name}
-          <div style={{ marginTop: '0.5rem', fontWeight: 700 }}>
-            +${itemPrice.toLocaleString()}
-          </div>
+          <Price />
         </div>
       </div>
     );

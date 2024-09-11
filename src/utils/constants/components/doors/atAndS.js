@@ -3,22 +3,6 @@ import { COMPONENT_NAMES, COMPONENT_TYPES, SUPPLIER_SLUGS } from '../../names/na
 
 export const atAndS = [
   {
-    name: COMPONENT_NAMES.GLIDING_PATIO,
-    position: {
-      x: DIMENSIONS.DOOR.GLIDING_PATIO.POSITION.x,
-      y: DIMENSIONS.DOOR.GLIDING_PATIO.POSITION.y,
-    },
-    imgName: `${COMPONENT_TYPES.DOOR}/gliding-patio.svg`,
-    desc: COMPONENT_NAMES.GLIDING_PATIO,
-    objWidth: DIMENSIONS.DOOR.GLIDING_PATIO.WIDTH,
-    objHeight: DIMENSIONS.DOOR.GLIDING_PATIO.HEIGHT,
-    objType: COMPONENT_TYPES.DOOR,
-    price: 0,
-    model: 'gliding-patio-door',
-    isRollUp: false,
-    isHeavyDuty: false
-  },
-  {
     name: COMPONENT_NAMES.STEEL_DOOR,
     position: {
       x: DIMENSIONS.DOOR.STEEL_DOOR.POSITION.x,

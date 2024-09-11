@@ -20,6 +20,7 @@ import {
   CONTAINER_STANDARD,
   ELEVATION_NAMES,
   EXTERIORS,
+  SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
 import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/useSaveSelections';
@@ -35,7 +36,6 @@ const OrderSummaryModal = () => {
     scaleFactor,
     interiorFinish,
     interiorFinishPrice,
-    interiorTrimPrice,
     exteriorFinish,
     flooring,
     slug,
@@ -43,13 +43,13 @@ const OrderSummaryModal = () => {
     setDialogOpen,
     supplier,
     containerSizeStr,
-    interiorTrim,
     hasRedCorners,
   } = useContext(PageDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const [zipCode, setZipCode] = useState('');
   const [openToast, setOpenToast] = useState(false);
   const inputRef = useRef(null);
+  const isAtAndS = supplier === SUPPLIER_SLUGS.AT_AND_S;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -280,24 +280,24 @@ const OrderSummaryModal = () => {
           </div>
           <div className={style.description}>{exteriorFinish.name}</div>
           <div className={style.price}>
-            ${exteriorFinish.price.toLocaleString()}
+            {!isAtAndS && `$${exteriorFinish.price.toLocaleString()}`}
           </div>
         </div>
         {hasRedCorners && (
           <div className={style.lineItem}>
             <div className={style.thumbnailContainer}>
               <img
-                src={generateImgSrc(
-                  supplier,
-                  `exterior-finishes/saf-red.png`
-                )}
+                src={generateImgSrc(supplier, `exterior-finishes/saf-red.png`)}
                 alt={EXTERIORS.SAF_RED}
                 className={style.thumbnailImg}
               />
             </div>
             <div className={style.description}>{EXTERIORS.SAF_RED}</div>
             <div className={style.price}>
-              ${EXTERIOR_FINISH_OPTIONS.find((item) => item.name === EXTERIORS.SAF_RED).price.toLocaleString()}
+              {!isAtAndS &&
+                `$${EXTERIOR_FINISH_OPTIONS.find(
+                  (item) => item.name === EXTERIORS.SAF_RED
+                ).price.toLocaleString()}`}
             </div>
           </div>
         )}
@@ -322,31 +322,7 @@ const OrderSummaryModal = () => {
           </div>
           <div className={style.description}>{interiorFinish.name}</div>
           <div className={style.price}>
-            ${interiorFinishPrice.toLocaleString()}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const TrimSection = () => (
-    <div className={style.section}>
-      <div className={style.elevationName}>Interior Trim</div>
-      <div style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
-        <div className={style.lineItem}>
-          <div className={style.thumbnailContainer}>
-            <img
-              src={generateImgSrc(
-                supplier,
-                `interior-trims/${interiorTrim.img}`
-              )}
-              alt={interiorTrim.name}
-              className={style.thumbnailImg}
-            />
-          </div>
-          <div className={style.description}>{interiorTrim.name}</div>
-          <div className={style.price}>
-            ${interiorTrimPrice.toLocaleString()}
+            {!isAtAndS && `$${interiorFinishPrice.toLocaleString()}`}
           </div>
         </div>
       </div>
@@ -366,7 +342,9 @@ const OrderSummaryModal = () => {
             />
           </div>
           <div className={style.description}>{flooring.name}</div>
-          <div className={style.price}>${flooringPrice().toLocaleString()}</div>
+          <div className={style.price}>
+            {!isAtAndS && `$${flooringPrice().toLocaleString()}`}
+          </div>
         </div>
       </div>
     </div>
@@ -422,7 +400,11 @@ const OrderSummaryModal = () => {
                     top (on floor plan view)
                   </div>
                 </div>
-                <div className={style.price}>${itemPrice.toLocaleString()}</div>
+                {!isAtAndS && (
+                  <div className={style.price}>
+                    ${itemPrice.toLocaleString()}
+                  </div>
+                )}
               </li>
             );
           })}
@@ -536,7 +518,9 @@ const OrderSummaryModal = () => {
                     </div>
                   )}
                 </div>
-                <div className={style.price}>${itemPrice.toLocaleString()}</div>
+                <div className={style.price}>
+                  {!isAtAndS && `$${itemPrice.toLocaleString()}`}
+                </div>
               </li>
             );
           })}
@@ -593,7 +577,7 @@ const OrderSummaryModal = () => {
                     right
                   </div>
                 </div>
-                <div className={style.price}>${itemPrice.toLocaleString()}</div>
+                <div className={style.price}>{!isAtAndS && `$${itemPrice.toLocaleString()}`}</div>
               </li>
             );
           })}
@@ -641,17 +625,20 @@ const OrderSummaryModal = () => {
               <ElectricalSection />
               <ExteriorSection />
               <InteriorSection />
-              {interiorTrim && <TrimSection />}
               <FlooringSection />
               <MiscSection />
-              <Total
-                text='Sub Total'
-                value={`$${orderTotal.toLocaleString()}`}
-              />
-              <Total
-                text='Total'
-                value={`$${parseInt(orderTotal).toLocaleString()}`}
-              />
+              {!isAtAndS && (
+                <>
+                  <Total
+                    text='Sub Total'
+                    value={`$${orderTotal.toLocaleString()}`}
+                  />
+                  <Total
+                    text='Total'
+                    value={`$${parseInt(orderTotal).toLocaleString()}`}
+                  />
+                </>
+              )}
               <Form.Root onSubmit={(e) => handleSubmit(e)}>
                 <div className={style.formTitle}>Project Details</div>
                 <div className={style.addressWrapper}>

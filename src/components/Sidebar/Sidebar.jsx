@@ -14,6 +14,7 @@ import {
   INTERIOR,
   INTERIOR_TRIM,
   SUPPLIER_NAMES,
+  SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
 import { componentData } from '@/utils/constants/componentData';
 import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
@@ -44,9 +45,11 @@ const LogoSection = memo(({ supplier }) => (
   </>
 ));
 
-const PriceSection = memo(({ containerPrice }) => (
-  <BasePriceDesc price={containerPrice} />
-));
+const PriceSection = memo(({ containerPrice, supplier }) => {
+  if (supplier !== SUPPLIER_SLUGS.AT_AND_S) {
+    return <BasePriceDesc price={containerPrice} />;
+  }
+});
 
 const HeightSelector = memo(
   ({
@@ -119,20 +122,6 @@ const InteriorSelector = memo(() => {
         css={{ fontWeight: 400, marginBottom: '1rem' }}
       />
       <SingleSelect type={INTERIOR} />
-    </>
-  );
-});
-
-const InteriorTrimsSelector = memo(({ interiorTrims }) => {
-  if (interiorTrims.length === 0) return null;
-  return (
-    <>
-      <div className={style.selectionTagName}>Interior Trims</div>
-      <Subtitle
-        text='Select your interior trim'
-        css={{ fontWeight: 400, marginBottom: '1rem' }}
-      />
-      <SingleSelect type={INTERIOR_TRIM} />
     </>
   );
 });
@@ -218,26 +207,44 @@ const Sidebar = memo(() => {
     }
   });
 
-  const interiorTrims = INTERIOR_TRIM_OPTIONS.filter((item) => {
-    return item.supplier === supplier;
-  });
+  const ContainerSelection = () => {
+    if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+      return (
+        <>
+          <Badges />
+          <HeightSelector
+            canSelectContainerHeight={canSelectContainerHeight}
+            containerHeightIsStandard={containerHeightIsStandard}
+            setSelectedContainerHeight={setSelectedContainerHeight}
+          />
+          <PriceSection containerPrice={containerPrice} supplier={supplier}/>
+          <Layouts />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Badges />
+          <PriceSection containerPrice={containerPrice} supplier={supplier} />
+          <Layouts />
+          <HeightSelector
+            canSelectContainerHeight={canSelectContainerHeight}
+            containerHeightIsStandard={containerHeightIsStandard}
+            setSelectedContainerHeight={setSelectedContainerHeight}
+          />
+        </>
+      );
+    }
+  };
 
   return (
     <>
       <div className={style.desktopContainer}>
         <LogoSection supplier={supplier} />
-        <Badges />
-        <PriceSection containerPrice={containerPrice} />
-        <Layouts />
-        <HeightSelector
-          canSelectContainerHeight={canSelectContainerHeight}
-          containerHeightIsStandard={containerHeightIsStandard}
-          setSelectedContainerHeight={setSelectedContainerHeight}
-        />
+        <ContainerSelection />
         <ExteriorSelector supplier={supplier} />
         <Selector />
         <InteriorSelector />
-        <InteriorTrimsSelector interiorTrims={interiorTrims} />
         <PartitionsSelector partitions={partitions} />
         <Subtitle
           text='Select your electrical add-ons'

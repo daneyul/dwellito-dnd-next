@@ -3,8 +3,9 @@ import { useContext } from 'react';
 import style from './layout.module.scss';
 import { PageDataContext } from '../Content/Content';
 import { containerData } from '@/utils/constants/containerData';
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 
-const Layout = ({ name, imgSrc, isSelected, price }) => {
+const Layout = ({ name, imgSrc, isSelected, price, supplier }) => {
   return (
     <div
       className={
@@ -13,7 +14,7 @@ const Layout = ({ name, imgSrc, isSelected, price }) => {
     >
       <div>
         <div style={{ fontWeight: '700' }}>{name}</div>
-        <div className={style.price}>${price.toLocaleString()}</div>
+        {supplier === SUPPLIER_SLUGS.AT_AND_S ? null : <div className={style.price}>${price.toLocaleString()}</div>}
       </div>
       <img src={imgSrc} alt='layout' className={style.layoutImg} />
     </div>
@@ -44,6 +45,7 @@ const Layouts = () => {
               imgSrc={containerImage}
               isSelected={isSelected}
               price={containerPrice}
+              supplier={supplier}
             />
           </a>
         );

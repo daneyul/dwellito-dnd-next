@@ -88,59 +88,27 @@ export const getExteriorPaint = (supplier, exteriorFinish, paint) => {
 
 export const useInteriorGLTFModels = (supplier) => {
   if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
-  const { materials: plywoodMaterial } = useGLTF(
-    `/models/${supplier}/materials/interior/plywood.glb`
-  );
-  const { materials: drywallMaterial } = useGLTF(
-    `/models/${supplier}/materials/interior/drywall.glb`
-  );
-  const { materials: sprayFoamMaterial } = useGLTF(
-    `/models/${supplier}/materials/interior/sprayfoam.glb`
-  );
+    const { materials: plywoodMaterial } = useGLTF(
+      `/models/${supplier}/materials/interior/plywood.glb`
+    );
+    const { materials: drywallMaterial } = useGLTF(
+      `/models/${supplier}/materials/interior/drywall.glb`
+    );
+    const { materials: sprayFoamMaterial } = useGLTF(
+      `/models/${supplier}/materials/interior/sprayfoam.glb`
+    );
 
-  return {
-    plywoodMaterial,
-    drywallMaterial,
-    sprayFoamMaterial,
-  };
+    return {
+      plywoodMaterial,
+      drywallMaterial,
+      sprayFoamMaterial,
+    };
   } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
-    const { materials: barnWoodMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior/barn-wood.glb`
-    );
-    const { materials: mdfPanelMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior/mdf.glb`
-    );
     const { materials: luanWallMaterial } = useGLTF(
       `/models/${supplier}/materials/interior/luan-wall.glb`
     );
-    const { materials: charredWoodMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior/charred-wood.glb`
-    );
     return {
-      barnWoodMaterial,
-      mdfPanelMaterial,
       luanWallMaterial,
-      charredWoodMaterial,
-    };
-  }
-};
-
-export const useInteriorTrimGLTFModels = (supplier) => {
-  if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
-    const { materials: battenAdobeWhiteMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior-trims/batten-white.glb`
-    );
-    const { materials: luanBattenOakMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior-trims/batten-oak.glb`
-    );
-    const { materials: luanBattenWhiteMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior-trims/batten-white.glb`
-    );
-
-    return {
-      battenAdobeWhiteMaterial,
-      luanBattenOakMaterial,
-      luanBattenWhiteMaterial,
     };
   }
 };

@@ -9,7 +9,6 @@ import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names/names'
 const AddOption = ({ options }) => {
   const {
     setSelectedComponents,
-    setSelectedElevationIndex,
     selectedComponents,
     selectedElevation,
     setShow3d,

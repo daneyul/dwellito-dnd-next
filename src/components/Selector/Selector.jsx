@@ -61,8 +61,6 @@ const Selector = () => {
       item.objType === COMPONENT_TYPES.VENT && item.supplier === supplier
   );
 
-  const rollUpDoorsTitle = supplier === SUPPLIER_NAMES.CUSTOM_CUBES ? 'Economy Roll Up Doors' : 'Roll Up Doors';
-
   const rollUpDoors = componentData.filter((item) => {
     if (containerHeightIsStandard) {
       return (
