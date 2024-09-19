@@ -1,4 +1,4 @@
-import { memo, useContext, useMemo, useCallback } from 'react';
+import { useContext, useMemo, useCallback } from 'react';
 import Subtitle from '../Subtitle/Subtitle';
 import style from './singleSelect.module.scss';
 import { PageDataContext } from '@/components/Content/Content';
@@ -19,7 +19,7 @@ import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
 
 /* eslint-disable @next/next/no-img-element */
-const SingleSelect = memo(({ type }) => {
+const SingleSelect = ({ type }) => {
   const {
     exteriorFinish,
     setExteriorFinish,
@@ -179,6 +179,6 @@ const SingleSelect = memo(({ type }) => {
       </div>
     </div>
   );
-});
+};
 
 export default SingleSelect;

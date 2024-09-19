@@ -6,11 +6,14 @@ import Draggable from './Draggable';
 
 export const DraggableContainer = ({
   selectedComponents,
+  selectedComponent,
   handleSelect,
   draggableRefs,
   setHoveredPiece,
+  setShowCollision,
 }) => {
-  const { scaleFactor, selectedElevation, selectedContainer } = useContext(PageDataContext);
+  const { scaleFactor, selectedElevation, selectedContainer } =
+    useContext(PageDataContext);
   return (
     <div
       style={{
@@ -21,20 +24,24 @@ export const DraggableContainer = ({
         height: '100%',
         position: 'absolute',
         left: '50%',
-        transform: 'translateX(-50%)'
+        transform: 'translateX(-50%)',
       }}
     >
-      {selectedComponents.filter((item) => !item.notRendered).map((piece) => (
-        <Draggable
-          piece={piece}
-          key={piece.id}
-          id={piece.id}
-          onSelect={() => handleSelect(piece.id)}
-          ref={draggableRefs[piece.id]}
-          onHover={() => setHoveredPiece(piece)}
-          onLeave={() => setHoveredPiece(null)}
-        />
-      ))}
+      {selectedComponents
+        .filter((item) => !item.notRendered)
+        .map((piece) => (
+          <Draggable
+            piece={piece}
+            key={piece.id}
+            id={piece.id}
+            onSelect={() => handleSelect(piece.id)}
+            ref={draggableRefs[piece.id]}
+            onHover={() => setHoveredPiece(piece)}
+            onLeave={() => setHoveredPiece(null)}
+            setShowCollision={setShowCollision}
+            selectedComponent={selectedComponent}
+          />
+        ))}
     </div>
   );
 };

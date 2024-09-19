@@ -1,11 +1,11 @@
 import AddOption from '../AddOption/AddOption';
 import style from './selector.module.scss';
-import { memo, useContext } from 'react';
+import { useContext } from 'react';
 import { COMPONENT_TYPES, SUPPLIER_NAMES } from '@/utils/constants/names/names';
 import { PageDataContext } from '../Content/Content';
 import { componentData } from '@/utils/constants/componentData';
 
-const Selector = memo(() => {
+const Selector = () => {
   const { containerHeightIsStandard, supplier } = useContext(PageDataContext);
 
   const doors = componentData.filter(
@@ -79,7 +79,7 @@ const Selector = memo(() => {
     }
   });
 
-  const RollupSection = memo(() => (
+  const RollupSection = () => (
     <>
       {supplier !== SUPPLIER_NAMES.CUSTOM_CUBES && rollUpDoors.length > 0 && (
         <>
@@ -106,7 +106,7 @@ const Selector = memo(() => {
         </>
       )}
     </>
-  ));
+  );
 
   return (
     <div className={style.container}>
@@ -131,6 +131,6 @@ const Selector = memo(() => {
       </div>
     </div>
   );
-});
+};
 
 export default Selector;

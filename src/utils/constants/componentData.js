@@ -17,7 +17,6 @@ export const componentData = [
   width: '100%',
   height: 'auto',
   isColliding: false,
-  isSelected: false,
   isTooClose: false,
   elevation: [],
   ...item,

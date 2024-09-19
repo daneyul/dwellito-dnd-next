@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react';
+import React, { useContext } from 'react';
 import style from './sidebar.module.scss';
 import { PageDataContext } from '@/components/Content/Content';
 import {
@@ -12,12 +12,10 @@ import {
   EXTERIOR,
   FLOORING,
   INTERIOR,
-  INTERIOR_TRIM,
   SUPPLIER_NAMES,
   SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
 import { componentData } from '@/utils/constants/componentData';
-import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import Logo from '../Logo';
 import Badges from '../Badges/Badges';
@@ -30,7 +28,7 @@ import AddElecOption from '../AddOption/AddElecOption';
 import AddPartition from '../AddOption/AddPartition';
 import SaveOrder from '../SaveOrder/SaveOrder';
 
-const LogoSection = memo(({ supplier }) => (
+const LogoSection = ({ supplier }) => (
   <>
     <div className={style.logo}>
       <Logo type={supplier} />
@@ -43,15 +41,15 @@ const LogoSection = memo(({ supplier }) => (
       got it!
     </div>
   </>
-));
+);
 
-const PriceSection = memo(({ containerPrice, supplier }) => {
+const PriceSection = ({ containerPrice, supplier }) => {
   if (supplier !== SUPPLIER_SLUGS.AT_AND_S) {
     return <BasePriceDesc price={containerPrice} />;
   }
-});
+};
 
-const HeightSelector = memo(
+const HeightSelector = 
   ({
     canSelectContainerHeight,
     containerHeightIsStandard,
@@ -95,10 +93,9 @@ const HeightSelector = memo(
         </button>
       </div>
     </div>
-  )
-);
+  );
 
-const ExteriorSelector = memo(({ supplier }) => (
+const ExteriorSelector = ({ supplier }) => (
   <>
     <div className={style.selectionTagName} style={{ marginTop: '2rem' }}>
       Choose Exterior Paint
@@ -111,9 +108,9 @@ const ExteriorSelector = memo(({ supplier }) => (
     )}
     <SingleSelect type={EXTERIOR} />
   </>
-));
+);
 
-const InteriorSelector = memo(() => {
+const InteriorSelector = () => {
   return (
     <>
       <div className={style.selectionTagName}>Interior Finishes</div>
@@ -124,9 +121,9 @@ const InteriorSelector = memo(() => {
       <SingleSelect type={INTERIOR} />
     </>
   );
-});
+};
 
-const PartitionsSelector = memo(({ partitions }) => {
+const PartitionsSelector = ({ partitions }) => {
   if (partitions.length === 0) return null;
   return (
     <>
@@ -138,9 +135,9 @@ const PartitionsSelector = memo(({ partitions }) => {
       <AddPartition options={partitions} />
     </>
   );
-});
+};
 
-const Sidebar = React.memo(() => {
+const Sidebar = () => {
   const {
     containerHeightIsStandard,
     setSelectedContainerHeight,
@@ -268,6 +265,6 @@ const Sidebar = React.memo(() => {
       </div>
     </>
   );
-});
+};
 
 export default Sidebar;

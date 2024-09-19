@@ -321,15 +321,6 @@ export function Models() {
             dampingFactor={0.15}
           />
         )}
-        {/* <OrbitControls
-          makeDefault
-          ref={orbitRef}
-          minPolarAngle={0}
-          maxPolarAngle={Math.PI / 2}
-          enablePan={false}
-          enableRotate={true}
-          dampingFactor={0.15}
-        /> */}
       </Canvas>
     </div>
   );

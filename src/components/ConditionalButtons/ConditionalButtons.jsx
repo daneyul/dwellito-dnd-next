@@ -18,7 +18,7 @@ export const ConditionalButtons = ({
         position: 'absolute',
         transform: 'translate(-50%, 50%)',
         left: '50%',
-        bottom: 'calc(7.5rem + 58px)',
+        bottom: '-58px',
         zIndex: 100,
         gap: '1rem',
       }}

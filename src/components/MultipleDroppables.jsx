@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { generateImgSrc, toScale } from '../utils/2D/utils';
 import { PageDataContext } from './Content/Content';
@@ -15,12 +15,16 @@ import {
 } from '@/utils/constants/names/names';
 import Draggable from './Draggable';
 
-const MultipleDroppables = memo(({ setHoveredPiece }) => {
+const MultipleDroppables = ({
+  setHoveredPiece,
+  setShowCollision,
+  handleSelect,
+  selectedComponent
+}) => {
   const {
     scaleFactor,
     selectedElevation,
     containerHeightIsStandard,
-    handleSelect,
     selectedComponents,
     draggableRefs,
     supplier,
@@ -143,6 +147,8 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
               ref={draggableRefs[piece.id]}
               onHover={() => setHoveredPiece(piece)}
               onLeave={() => setHoveredPiece(null)}
+              setShowCollision={setShowCollision}
+              selectedComponent={selectedComponent}
             />
           );
         })}
@@ -168,6 +174,8 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
                 ref={draggableRefs[piece.id]}
                 onHover={() => setHoveredPiece(piece)}
                 onLeave={() => setHoveredPiece(null)}
+                setShowCollision={setShowCollision}
+                selectedComponent={selectedComponent}
               />
             );
           }
@@ -193,6 +201,8 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
               ref={draggableRefs[piece.id]}
               onHover={() => setHoveredPiece(piece)}
               onLeave={() => setHoveredPiece(null)}
+              setShowCollision={setShowCollision}
+              selectedComponent={selectedComponent}
             />
           )
         )}
@@ -217,6 +227,8 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
             ref={draggableRefs[piece.id]}
             onHover={() => setHoveredPiece(piece)}
             onLeave={() => setHoveredPiece(null)}
+            setShowCollision={setShowCollision}
+            selectedComponent={selectedComponent}
           />
         ))}
       </div>
@@ -240,11 +252,13 @@ const MultipleDroppables = memo(({ setHoveredPiece }) => {
             ref={draggableRefs[piece.id]}
             onHover={() => setHoveredPiece(piece)}
             onLeave={() => setHoveredPiece(null)}
+            setShowCollision={setShowCollision}
+            selectedComponent={selectedComponent}
           />
         ))}
       </div>
     </section>
   );
-});
+};
 
 export default MultipleDroppables;

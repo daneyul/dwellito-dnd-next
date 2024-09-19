@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, createContext, useMemo, memo } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { GoogleTagManager } from '@next/third-parties/google';
 import Viewer from '@/components/Viewer/Viewer';
 import Sidebar from '@/components/Sidebar/Sidebar';
@@ -18,7 +18,6 @@ import {
   CONTAINER_STANDARD,
   ELEVATION_NAMES,
 } from '@/utils/constants/names/names';
-import useDragHandlers from '@/utils/hooks/useDragHandlers';
 import useOrderTotal from '@/utils/hooks/useOrderTotal';
 import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
 import {
@@ -29,13 +28,11 @@ import {
   getSelectionsFromUrl,
 } from '@/utils/2D/utils';
 import { INTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/interiorData';
-import { createSnapModifier } from '@dnd-kit/modifiers';
 import { containerData } from '@/utils/constants/containerData';
 import { DEFAULT_COMPONENTS } from '@/utils/constants/componentData';
 import { elevationData } from '@/utils/constants/elevationData';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
-import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
 import { MobileModels } from '../Models/MobileModels';
 import MobileForm from '../MobileForm/MobileForm';
@@ -143,27 +140,6 @@ const PageDataProvider = ({ children, data }) => {
   });
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
-  const {
-    handleDragStart,
-    handleDragEnd,
-    handleDragMove,
-    handleSelect,
-    handleDeleteSelected,
-    modifiers,
-    hasCollisions,
-    showCollision,
-    setShowCollision,
-  } = useDragHandlers({
-    selectedComponents,
-    setSelectedComponents,
-    snapToGridModifier: createSnapModifier(DIMENSIONS.GRID_SIZE),
-    selectedElevation,
-    scaleFactor,
-    isFloorPlanView,
-    setShowOutsideDroppableWarning,
-    selectedContainer,
-  });
-
   const { orderTotal, setOrderTotal, interiorFinishPrice, interiorTrimPrice } =
     useOrderTotal({
       containerHeightIsStandard,
@@ -222,55 +198,15 @@ const PageDataProvider = ({ children, data }) => {
     );
   }, [selectedElevation]);
 
-  // Delay showing the Collision component when there are collisions
-  useEffect(() => {
-    let timer;
-    if (hasCollisions) {
-      timer = setTimeout(() => setShowCollision(true), 500);
-    } else {
-      setShowCollision(false);
-    }
-
-    return () => clearTimeout(timer);
-  }, [hasCollisions]);
-
-  // Deselect components when clicking outside the component
-  useEffect(() => {
-    if (show3d) return;
-
-    function handleClickOutside(event) {
-      const isInsideDraggable = Object.values(draggableRefs).some(
-        (ref) => ref.current && ref.current.contains(event.target)
-      );
-
-      if (!isInsideDraggable) {
-        setSelectedComponents((currentComponents) =>
-          currentComponents.map((component) => ({
-            ...component,
-            isSelected: false,
-          }))
-        );
-      }
-    }
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [draggableRefs]);
-
-  const contextValue = useMemo(() => ({
+  const contextValue = {
     selectedComponents,
     setSelectedComponents,
     selectedElevation,
     setSelectedElevation,
     orderTotal,
     setOrderTotal,
-    showCollision,
-    setShowCollision,
     setSelectedElevation,
     draggableRefs,
-    hasCollisions,
     selectedElevationIndex,
     setSelectedElevationIndex,
     show3d,
@@ -308,82 +244,13 @@ const PageDataProvider = ({ children, data }) => {
     setShowOutsideDroppableWarning,
     dialogOpen,
     setDialogOpen,
-    modifiers,
-    handleDragStart,
-    handleDragEnd,
-    handleDragMove,
-    handleSelect,
-    handleDeleteSelected,
-    modifiers,
     interiorFinishes,
     containerHeightIsStandard,
     containerSizeStr,
     interiorTrimPrice,
     hasRedCorners,
     setHasRedCorners,
-  }), [
-    selectedComponents,
-    setSelectedComponents,
-    selectedElevation,
-    setSelectedElevation,
-    orderTotal,
-    setOrderTotal,
-    showCollision,
-    setShowCollision,
-    setSelectedElevation,
-    draggableRefs,
-    hasCollisions,
-    selectedElevationIndex,
-    setSelectedElevationIndex,
-    show3d,
-    setShow3d,
-    exteriorFinish,
-    setExteriorFinish,
-    interiorFinish,
-    setInteriorFinish,
-    interiorTrim,
-    setInteriorTrim,
-    interiorFinishPrice,
-    showExterior,
-    setShowExterior,
-    mappedElevations,
-    setMappedElevations,
-    selectedContainer,
-    containerId,
-    slug,
-    supplier,
-    scaleFactor,
-    setScaleFactor,
-    flooring,
-    setFlooring,
-    threeDModelLoaded,
-    setThreeDModelLoaded,
-    selectedContainerHeight,
-    setSelectedContainerHeight,
-    cameraReady,
-    setCameraReady,
-    containerSize,
-    floorPlan,
-    isFloorPlanView,
-    hasLighting,
-    showOutsideDroppableWarning,
-    setShowOutsideDroppableWarning,
-    dialogOpen,
-    setDialogOpen,
-    modifiers,
-    handleDragStart,
-    handleDragEnd,
-    handleDragMove,
-    handleSelect,
-    handleDeleteSelected,
-    modifiers,
-    interiorFinishes,
-    containerHeightIsStandard,
-    containerSizeStr,
-    interiorTrimPrice,
-    hasRedCorners,
-    setHasRedCorners
-  ]);
+  };
 
   return (
     <PageDataContext.Provider
@@ -394,7 +261,7 @@ const PageDataProvider = ({ children, data }) => {
   );
 };
 
-const Content = React.memo(({ data }) => {
+const Content = ({ data }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   return (
     <Theme>
@@ -422,6 +289,6 @@ const Content = React.memo(({ data }) => {
       </PageDataProvider>
     </Theme>
   );
-});
+};
 
 export default Content;

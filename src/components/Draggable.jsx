@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import React, {
-  memo,
   useCallback,
   useContext,
   useEffect,
@@ -52,14 +51,22 @@ function useCollidableDraggable({ id, data: customData }) {
   };
 }
 
-const Draggable = memo(({ id, styles, piece, onSelect, onHover, onLeave }) => {
+const Draggable = ({
+  id,
+  styles,
+  piece,
+  onSelect,
+  onHover,
+  onLeave,
+  setShowCollision,
+  selectedComponent
+}) => {
   const {
     scaleFactor,
     containerHeightIsStandard,
     slug,
     supplier,
     selectedElevation,
-    setShowCollision,
     isFloorPlanView,
   } = useContext(PageDataContext);
 
@@ -309,11 +316,11 @@ const Draggable = memo(({ id, styles, piece, onSelect, onHover, onLeave }) => {
             objectFit: 'fill',
             transform: `rotate(${piece.rotate}deg)`,
             boxShadow:
-              isHovered || piece.isSelected
+              isHovered || piece.id === selectedComponent?.id
                 ? '0px 4px 30px 0px rgba(128, 129, 238, 0.19)'
                 : 'none',
             border:
-              isHovered || piece.isSelected
+              isHovered || piece.id === selectedComponent?.id
                 ? '1px solid #2A2CB1'
                 : '1px solid transparent',
             boxSizing: 'border-box',
@@ -322,6 +329,6 @@ const Draggable = memo(({ id, styles, piece, onSelect, onHover, onLeave }) => {
       </div>
     </>
   );
-});
+};
 
 export default Draggable;
