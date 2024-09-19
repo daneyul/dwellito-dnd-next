@@ -8,21 +8,28 @@ import MultipleDroppables from '../MultipleDroppables';
 import Droppable from '../Droppable';
 import { DraggableContainer } from '../DraggableContainer';
 import { COMPONENT_NAMES } from '@/utils/constants/names/names';
+import { createSnapModifier } from '@dnd-kit/modifiers';
+import useDragHandlers from '@/utils/hooks/useDragHandlers';
 
 const DnDViewer = () => {
   const {
     isFloorPlanView,
-    showCollision,
     showOutsideDroppableWarning,
-    handleDragStart,
-    handleDragMove,
-    handleDragEnd,
-    modifiers,
     selectedComponents,
-    handleSelect,
+    setSelectedComponents,
+    showCollision,
     draggableRefs,
     show3d,
-    isAnyItemSelected
+    isAnyItemSelected,
+    selectedElevation,
+    scaleFactor,
+    setShowOutsideDroppableWarning,
+    selectedContainer,
+    handleDragStart,
+    handleDragEnd,
+    handleSelect,
+    handleDragMove,
+    modifiers
   } = useContext(PageDataContext);
 
   const [hoveredPiece, setHoveredPiece] = useState(null);

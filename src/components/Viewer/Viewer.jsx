@@ -49,6 +49,7 @@ const Viewer = React.memo(() => {
   } = useContext(PageDataContext);
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
+  const [showDragToMove, setShowDragToMove] = useState(false);
 
   const isAnyItemSelected = selectedComponents.some(
     (component) => component.isSelected
