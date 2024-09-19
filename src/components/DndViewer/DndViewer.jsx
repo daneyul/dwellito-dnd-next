@@ -15,6 +15,7 @@ import { createSnapModifier } from '@dnd-kit/modifiers';
 import useDragHandlers from '@/utils/hooks/useDragHandlers';
 import { ConditionalButtons } from '../ConditionalButtons/ConditionalButtons';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
+import { LeftArrow, RightArrow } from '../Arrows/Arrows';
 
 const DnDViewer = () => {
   const {
@@ -27,6 +28,10 @@ const DnDViewer = () => {
     setShowOutsideDroppableWarning,
     scaleFactor,
     selectedContainer,
+    selectedElevationIndex,
+    setSelectedElevationIndex,
+    mappedElevations,
+    setSelectedElevation
   } = useContext(PageDataContext);
 
   const [hoveredPiece, setHoveredPiece] = useState(null);
@@ -45,7 +50,7 @@ const DnDViewer = () => {
     showCollision,
     setShowCollision,
     selectedComponent,
-    setSelectedComponent
+    setSelectedComponent,
   } = useDragHandlers({
     selectedComponents,
     setSelectedComponents,
@@ -130,12 +135,34 @@ const DnDViewer = () => {
     );
   }, [selectedComponent, setSelectedComponents]);
 
+  const handleNext = useCallback(() => {
+    setSelectedComponent(null);
+    setSelectedElevationIndex((prevIndex) => {
+      const newIndex = (prevIndex + 1) % mappedElevations.length;
+      setSelectedElevation(mappedElevations[newIndex]); // Update selectedElevation
+      return newIndex;
+    });
+  }, [mappedElevations.length, setSelectedElevation, setSelectedElevationIndex]);
+
+  const handlePrevious = useCallback(() => {
+    setSelectedComponent(null);
+    setSelectedElevationIndex((prevIndex) => {
+      const newIndex = (prevIndex - 1 + mappedElevations.length) % mappedElevations.length;
+      setSelectedElevation(mappedElevations[newIndex]); // Update selectedElevation
+      return newIndex;
+    });
+  }, [mappedElevations.length, setSelectedElevation, setSelectedElevationIndex]);
+
+  const showLeftArrow = selectedElevationIndex > 0 && !show3d;
+  const showRightArrow =
+    selectedElevationIndex < mappedElevations.length - 1 && !show3d;
+
   return (
     <div
       style={{
         visibility: show3d ? 'hidden' : 'visible',
         position: 'absolute',
-        width: "100%"
+        width: '100%',
       }}
       className={style.drawings}
     >
@@ -168,6 +195,8 @@ const DnDViewer = () => {
         )}
       </DndContext>
       {showDragToMove && <DragToMove isFloorPlanView={isFloorPlanView} />}
+      {showLeftArrow && <LeftArrow handlePrevious={handlePrevious} />}
+      {showRightArrow && <RightArrow handleNext={handleNext} />}
       <ConditionalButtons
         isAnyItemSelected={isAnyItemSelected}
         show3d={show3d}

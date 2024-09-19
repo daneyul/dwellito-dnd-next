@@ -45,6 +45,7 @@ export function Models() {
     cameraReady,
     setCameraReady,
     supplier,
+    show3d
   } = useContext(PageDataContext);
 
   const { active, progress, item, loaded, total } = useProgress();
@@ -120,7 +121,11 @@ export function Models() {
       const canvasContainer = document.getElementById('canvas-container');
 
       // Check if the clicked element is inside the canvas container
-      if (!showExterior && canvasContainer && canvasContainer.contains(event.target)) {
+      if (
+        !showExterior &&
+        canvasContainer &&
+        canvasContainer.contains(event.target)
+      ) {
         if (isLocked) {
           document.exitPointerLock();
         } else {
@@ -212,116 +217,126 @@ export function Models() {
 
   return (
     <div
-      id='canvas-container'
-      style={{ width: 'auto', height: '100vh', position: 'relative' }}
+      style={{
+        visibility: show3d ? 'visible' : 'hidden',
+        position: 'absolute',
+        width: '100%',
+      }}
     >
-      <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
-        <color attach='background' args={['#fdfdf7']} />
-        <Electrical
-          supplierSlug={supplier}
-          handleExhaustFanBoundingBox={handleExhaustFanBoundingBox}
-          selectedComponents={selectedComponents}
-        />
-        <ContainerShell />
-        <CsgGeometries
-          doors={doors}
-          windows={windows}
-          vents={vents}
-          doorBoundingBoxes={doorBoundingBoxes}
-          windowBoundingBoxes={windowBoundingBoxes}
-          ventBoundingBoxes={ventBoundingBoxes}
-          exhaustFanBoundingBox={exhaustFanBoundingBox}
-          paint={paint}
-        />
-        {doors.map((door, index) => (
-          <Door
-            key={door.id}
-            component={door}
-            onBoundingBoxChange={(data) => handleDoorBoundingBox(index, data)}
-            supplier={supplier}
+      <div
+        id='canvas-container'
+        style={{ width: 'auto', height: '100vh', position: 'relative' }}
+      >
+        <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
+          <color attach='background' args={['#fdfdf7']} />
+          <Electrical
+            supplierSlug={supplier}
+            handleExhaustFanBoundingBox={handleExhaustFanBoundingBox}
+            selectedComponents={selectedComponents}
           />
-        ))}
-        {windows.map((window, index) => (
-          <Window
-            containerHeightIsStandard={containerHeightIsStandard}
-            key={index}
-            component={window}
-            onBoundingBoxChange={(data) => handleWindowBoundingBox(index, data)}
-            supplier={supplier}
+          <ContainerShell />
+          <CsgGeometries
+            doors={doors}
+            windows={windows}
+            vents={vents}
+            doorBoundingBoxes={doorBoundingBoxes}
+            windowBoundingBoxes={windowBoundingBoxes}
+            ventBoundingBoxes={ventBoundingBoxes}
+            exhaustFanBoundingBox={exhaustFanBoundingBox}
+            paint={paint}
           />
-        ))}
-        {vents.map((vent, index) => (
-          <Vent
-            key={index}
-            component={vent}
-            onBoundingBoxChange={(data) => handleVentBoundingBox(index, data)}
-            supplier={supplier}
+          {doors.map((door, index) => (
+            <Door
+              key={door.id}
+              component={door}
+              onBoundingBoxChange={(data) => handleDoorBoundingBox(index, data)}
+              supplier={supplier}
+            />
+          ))}
+          {windows.map((window, index) => (
+            <Window
+              containerHeightIsStandard={containerHeightIsStandard}
+              key={index}
+              component={window}
+              onBoundingBoxChange={(data) =>
+                handleWindowBoundingBox(index, data)
+              }
+              supplier={supplier}
+            />
+          ))}
+          {vents.map((vent, index) => (
+            <Vent
+              key={index}
+              component={vent}
+              onBoundingBoxChange={(data) => handleVentBoundingBox(index, data)}
+              supplier={supplier}
+            />
+          ))}
+          <ambientLight intensity={0.15} />
+          <spotLight
+            intensity={0.65}
+            angle={0.2}
+            penumbra={1}
+            position={[140, 140, 140]}
+            castShadow
+            shadow-mapSize={[720, 720]}
           />
-        ))}
-        <ambientLight intensity={0.15} />
-        <spotLight
-          intensity={0.65}
-          angle={0.2}
-          penumbra={1}
-          position={[140, 140, 140]}
-          castShadow
-          shadow-mapSize={[720, 720]}
-        />
-        <spotLight
-          intensity={0.65}
-          angle={0.2}
-          penumbra={1}
-          position={[-140, 140, -140]}
-          castShadow
-          shadow-mapSize={[720, 720]}
-        />
-        <AccumulativeShadows
-          color='#fdfdf7'
-          colorBlend={1}
-          opacity={1}
-          scale={300}
-          position={[0, -0.5, 0]}
-        >
-          <RandomizedLight
-            amount={8}
-            radius={35}
-            ambient={0.5}
-            intensity={3}
-            position={[-5, 10, -5]}
-            size={20}
+          <spotLight
+            intensity={0.65}
+            angle={0.2}
+            penumbra={1}
+            position={[-140, 140, -140]}
+            castShadow
+            shadow-mapSize={[720, 720]}
           />
-        </AccumulativeShadows>
-        <Environment files='/adamsbridge.hdr' />
-        <EffectComposer disableNormalPass multisampling={0}>
-          <N8AO
-            halfRes
-            color='black'
-            aoRadius={2}
-            intensity={1}
-            aoSamples={6}
-            denoiseSamples={4}
-          />
-          <SMAA />
-        </EffectComposer>
-        <CameraRig />
-        {!showExterior ? (
-          <PointerLockControls
-            ref={controlsRef}
-            enabled={!showExterior}
-            selector='#canvas-container'
-          />
-        ) : (
-          <OrbitControls
-            makeDefault
-            ref={orbitRef}
-            minPolarAngle={0}
-            maxPolarAngle={Math.PI / 2}
-            enablePan={false}
-            enableRotate={showExterior}
-            dampingFactor={0.15}
-          />
-        )}
-      </Canvas>
+          <AccumulativeShadows
+            color='#fdfdf7'
+            colorBlend={1}
+            opacity={1}
+            scale={300}
+            position={[0, -0.5, 0]}
+          >
+            <RandomizedLight
+              amount={8}
+              radius={35}
+              ambient={0.5}
+              intensity={3}
+              position={[-5, 10, -5]}
+              size={20}
+            />
+          </AccumulativeShadows>
+          <Environment files='/adamsbridge.hdr' />
+          <EffectComposer disableNormalPass multisampling={0}>
+            <N8AO
+              halfRes
+              color='black'
+              aoRadius={2}
+              intensity={1}
+              aoSamples={6}
+              denoiseSamples={4}
+            />
+            <SMAA />
+          </EffectComposer>
+          <CameraRig />
+          {!showExterior ? (
+            <PointerLockControls
+              ref={controlsRef}
+              enabled={!showExterior}
+              selector='#canvas-container'
+            />
+          ) : (
+            <OrbitControls
+              makeDefault
+              ref={orbitRef}
+              minPolarAngle={0}
+              maxPolarAngle={Math.PI / 2}
+              enablePan={false}
+              enableRotate={showExterior}
+              dampingFactor={0.15}
+            />
+          )}
+        </Canvas>
+      </div>
     </div>
   );
 }

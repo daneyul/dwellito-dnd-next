@@ -100,7 +100,7 @@ export const checkDistance = ({
       }
     } else {
       return DIMENSIONS.BOUNDARIES.x;
-    };
+    }
   };
 
   const left = deScale(component?.position.x, scaleFactor) + boundaries();
@@ -112,7 +112,9 @@ export const checkDistance = ({
 
   return {
     left: isLeft ? Math.round(right * 100) / 100 : Math.round(left * 100) / 100,
-    right: isLeft ? Math.round(left * 100) / 100: Math.round(right * 100) / 100,
+    right: isLeft
+      ? Math.round(left * 100) / 100
+      : Math.round(right * 100) / 100,
     top: Math.round(top * 100) / 100,
   };
 };
@@ -196,7 +198,6 @@ export const getUniqueElevationObjects = (selectedComponents) => {
   return uniqueElevationObjects;
 };
 
-
 export const DROPPABLE_FLOOR_PLAN_WIDTH = (DIMENSIONS, selectedContainer) => {
   if (selectedContainer.name === `10' Custom Cube`) {
     return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
@@ -230,7 +231,9 @@ export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (
       DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2.7
     );
   } else if (selectedContainer.name === `40' Custom Cube`) {
-    return DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2.7;
+    return (
+      DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2.7
+    );
   }
 };
 
@@ -393,7 +396,10 @@ export const calculateCSSPos = ({
           }px`,
           top: '50%',
         };
-      } else if (piece.name === COMPONENT_NAMES.WRAP_LIGHT || piece.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE) {
+      } else if (
+        piece.name === COMPONENT_NAMES.WRAP_LIGHT ||
+        piece.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE
+      ) {
         transform = 'translateY(-50%) translateX(-50%)';
         positionStyles = {
           left: `50%`,
@@ -414,7 +420,9 @@ export const calculateCSSPos = ({
       } else if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
         transform = 'rotate(180deg) translateY(100%)';
         positionStyles = {
-          right: `${piece.position.x}px`,
+          right: `${
+            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+          }px`,
           top: '10px',
         };
       } else if (piece.elevation[0].name === ELEVATION_NAMES.RIGHT) {

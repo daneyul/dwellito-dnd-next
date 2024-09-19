@@ -188,16 +188,6 @@ const PageDataProvider = ({ children, data }) => {
     }
   }, [slug, containerData]);
 
-  // For each elevation change, reset the isSelected state for all components
-  useEffect(() => {
-    setSelectedComponents((prevComponents) =>
-      prevComponents.map((component) => ({
-        ...component,
-        isSelected: false,
-      }))
-    );
-  }, [selectedElevation]);
-
   const contextValue = {
     selectedComponents,
     setSelectedComponents,
