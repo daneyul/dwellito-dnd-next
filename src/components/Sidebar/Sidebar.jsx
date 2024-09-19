@@ -1,4 +1,4 @@
-import { memo, useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import style from './sidebar.module.scss';
 import { PageDataContext } from '@/components/Content/Content';
 import {
@@ -140,7 +140,7 @@ const PartitionsSelector = memo(({ partitions }) => {
   );
 });
 
-const Sidebar = memo(() => {
+const Sidebar = React.memo(() => {
   const {
     containerHeightIsStandard,
     setSelectedContainerHeight,

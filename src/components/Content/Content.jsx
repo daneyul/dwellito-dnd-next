@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useMemo, memo } from 'react';
 import { GoogleTagManager } from '@next/third-parties/google';
 import Viewer from '@/components/Viewer/Viewer';
 import Sidebar from '@/components/Sidebar/Sidebar';
@@ -59,7 +59,6 @@ const PageDataProvider = ({ children, data }) => {
   const [showExterior, setShowExterior] = useState(true);
   const [cameraReady, setCameraReady] = useState(true);
   const [hasLighting, setHasLighting] = useState(false);
-  const [showDragToMove, setShowDragToMove] = useState(false);
   const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] =
     useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -260,80 +259,142 @@ const PageDataProvider = ({ children, data }) => {
     };
   }, [draggableRefs]);
 
+  const contextValue = useMemo(() => ({
+    selectedComponents,
+    setSelectedComponents,
+    selectedElevation,
+    setSelectedElevation,
+    orderTotal,
+    setOrderTotal,
+    showCollision,
+    setShowCollision,
+    setSelectedElevation,
+    draggableRefs,
+    hasCollisions,
+    selectedElevationIndex,
+    setSelectedElevationIndex,
+    show3d,
+    setShow3d,
+    exteriorFinish,
+    setExteriorFinish,
+    interiorFinish,
+    setInteriorFinish,
+    interiorTrim,
+    setInteriorTrim,
+    interiorFinishPrice,
+    showExterior,
+    setShowExterior,
+    mappedElevations,
+    setMappedElevations,
+    selectedContainer,
+    containerId,
+    slug,
+    supplier,
+    scaleFactor,
+    setScaleFactor,
+    flooring,
+    setFlooring,
+    threeDModelLoaded,
+    setThreeDModelLoaded,
+    selectedContainerHeight,
+    setSelectedContainerHeight,
+    cameraReady,
+    setCameraReady,
+    containerSize,
+    floorPlan,
+    isFloorPlanView,
+    hasLighting,
+    showOutsideDroppableWarning,
+    setShowOutsideDroppableWarning,
+    dialogOpen,
+    setDialogOpen,
+    modifiers,
+    handleDragStart,
+    handleDragEnd,
+    handleDragMove,
+    handleSelect,
+    handleDeleteSelected,
+    modifiers,
+    interiorFinishes,
+    containerHeightIsStandard,
+    containerSizeStr,
+    interiorTrimPrice,
+    hasRedCorners,
+    setHasRedCorners,
+  }), [
+    selectedComponents,
+    setSelectedComponents,
+    selectedElevation,
+    setSelectedElevation,
+    orderTotal,
+    setOrderTotal,
+    showCollision,
+    setShowCollision,
+    setSelectedElevation,
+    draggableRefs,
+    hasCollisions,
+    selectedElevationIndex,
+    setSelectedElevationIndex,
+    show3d,
+    setShow3d,
+    exteriorFinish,
+    setExteriorFinish,
+    interiorFinish,
+    setInteriorFinish,
+    interiorTrim,
+    setInteriorTrim,
+    interiorFinishPrice,
+    showExterior,
+    setShowExterior,
+    mappedElevations,
+    setMappedElevations,
+    selectedContainer,
+    containerId,
+    slug,
+    supplier,
+    scaleFactor,
+    setScaleFactor,
+    flooring,
+    setFlooring,
+    threeDModelLoaded,
+    setThreeDModelLoaded,
+    selectedContainerHeight,
+    setSelectedContainerHeight,
+    cameraReady,
+    setCameraReady,
+    containerSize,
+    floorPlan,
+    isFloorPlanView,
+    hasLighting,
+    showOutsideDroppableWarning,
+    setShowOutsideDroppableWarning,
+    dialogOpen,
+    setDialogOpen,
+    modifiers,
+    handleDragStart,
+    handleDragEnd,
+    handleDragMove,
+    handleSelect,
+    handleDeleteSelected,
+    modifiers,
+    interiorFinishes,
+    containerHeightIsStandard,
+    containerSizeStr,
+    interiorTrimPrice,
+    hasRedCorners,
+    setHasRedCorners
+  ]);
+
   return (
     <PageDataContext.Provider
-      value={{
-        selectedComponents,
-        setSelectedComponents,
-        selectedElevation,
-        setSelectedElevation,
-        orderTotal,
-        setOrderTotal,
-        showCollision,
-        setShowCollision,
-        setSelectedElevation,
-        draggableRefs,
-        hasCollisions,
-        selectedElevationIndex,
-        setSelectedElevationIndex,
-        show3d,
-        setShow3d,
-        exteriorFinish,
-        setExteriorFinish,
-        interiorFinish,
-        setInteriorFinish,
-        interiorTrim,
-        setInteriorTrim,
-        interiorFinishPrice,
-        showExterior,
-        setShowExterior,
-        mappedElevations,
-        setMappedElevations,
-        selectedContainer,
-        containerId,
-        slug,
-        supplier,
-        scaleFactor,
-        setScaleFactor,
-        flooring,
-        setFlooring,
-        threeDModelLoaded,
-        setThreeDModelLoaded,
-        selectedContainerHeight,
-        setSelectedContainerHeight,
-        cameraReady,
-        setCameraReady,
-        containerSize,
-        floorPlan,
-        isFloorPlanView,
-        hasLighting,
-        showDragToMove,
-        setShowDragToMove,
-        showOutsideDroppableWarning,
-        setShowOutsideDroppableWarning,
-        dialogOpen,
-        setDialogOpen,
-        modifiers,
-        handleDragStart,
-        handleDragEnd,
-        handleDragMove,
-        handleSelect,
-        handleDeleteSelected,
-        modifiers,
-        interiorFinishes,
-        containerHeightIsStandard,
-        containerSizeStr,
-        interiorTrimPrice,
-        hasRedCorners,
-        setHasRedCorners
-      }}
+      value={contextValue}
     >
       {children}
     </PageDataContext.Provider>
   );
 };
 
-const Content = ({ data }) => {
+const Content = React.memo(({ data }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   return (
     <Theme>
@@ -361,6 +422,6 @@ const Content = ({ data }) => {
       </PageDataProvider>
     </Theme>
   );
-};
+});
 
 export default Content;

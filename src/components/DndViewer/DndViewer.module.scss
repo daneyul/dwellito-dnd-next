@@ -1,0 +1,6 @@
+.drawings {
+  display: none;
+  @include respond-to(md) {
+    display: block;
+  }
+}

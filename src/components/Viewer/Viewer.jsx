@@ -1,6 +1,13 @@
 import Collision from '@/components/Collision/Collision';
 import { DndContext } from '@dnd-kit/core';
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, {
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import ToggleView from '../ToggleView/ToggleView';
 import { Models } from '../Models/Models';
 import ToggleCamera from '../ToggleCamera/ToggleCamera';
@@ -18,8 +25,9 @@ import { LeftArrow, RightArrow } from '../Arrows/Arrows';
 import { DraggableContainer } from '../DraggableContainer';
 import { ConditionalButtons } from '../ConditionalButtons/ConditionalButtons';
 import Droppable from '../Droppable';
+import DnDViewer from '../DndViewer/DndViewer';
 
-const Viewer = () => {
+const Viewer = React.memo(() => {
   const {
     selectedComponents,
     setSelectedComponents,
@@ -36,15 +44,11 @@ const Viewer = () => {
     show3d,
     mappedElevations,
     handleDeleteSelected,
-    showDragToMove,
-    setShowDragToMove,
     showOutsideDroppableWarning,
     handleDragMove,
   } = useContext(PageDataContext);
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
-
-  const [hoveredPiece, setHoveredPiece] = useState(null);
 
   const isAnyItemSelected = selectedComponents.some(
     (component) => component.isSelected
@@ -66,22 +70,6 @@ const Viewer = () => {
   useEffect(() => {
     setSelectedElevation(mappedElevations[selectedElevationIndex]);
   }, [selectedElevationIndex, setSelectedElevation]);
-
-  useEffect(() => {
-    const shouldShowDragToMove = () => {
-      const baseConditions =
-        hoveredPiece && !show3d && !isAnyItemSelected && !hoveredPiece?.fixed;
-
-      const additionalConditions =
-        hoveredPiece?.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-        hoveredPiece?.name === COMPONENT_NAMES.OUTLET ||
-        hoveredPiece?.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN;
-
-      return baseConditions && additionalConditions;
-    };
-
-    setShowDragToMove(shouldShowDragToMove());
-  }, [hoveredPiece, show3d, isAnyItemSelected, setShowDragToMove]);
 
   const showLeftArrow = selectedElevationIndex > 0 && !show3d;
   const showRightArrow =
@@ -120,43 +108,15 @@ const Viewer = () => {
       <div className={style.viewer}>
         <div
           style={{
-            visibility: show3d ? 'visible' : 'hidden',
+            // visibility: show3d ? 'visible' : 'hidden',
+            visibility: 'visible',
             position: 'absolute',
-            width: '100%',
+            width: '50%',
           }}
         >
           <Models />
         </div>
-        <div
-          style={{
-            visibility: show3d ? 'hidden' : 'visible',
-            position: 'absolute',
-            width: '100%',
-          }}
-          className={style.drawings}
-        >
-          <OutsideDroppable showWarning={showOutsideDroppableWarning} />
-          <Collision showCollision={showCollision} />
-          <DndContext
-            onDragStart={handleDragStart}
-            onDragMove={handleDragMove}
-            onDragEnd={handleDragEnd}
-            modifiers={modifiers}
-          >
-            {isFloorPlanView ? (
-              <MultipleDroppables setHoveredPiece={setHoveredPiece} />
-            ) : (
-              <Droppable>
-                <DraggableContainer
-                  selectedComponents={selectedComponents}
-                  handleSelect={handleSelect}
-                  draggableRefs={draggableRefs}
-                  setHoveredPiece={setHoveredPiece}
-                />
-              </Droppable>
-            )}
-          </DndContext>
-        </div>
+        <DnDViewer />
         {showLeftArrow && <LeftArrow handlePrevious={handlePrevious} />}
         {showRightArrow && <RightArrow handleNext={handleNext} />}
         <ConditionalButtons
@@ -168,13 +128,12 @@ const Viewer = () => {
           handleRotate={handleRotate}
           selectedComponent={selectedComponent}
         />
-        {showDragToMove && <DragToMove isFloorPlanView={isFloorPlanView} />}
         <ToggleCamera />
         <ToggleView />
         <ElevationToggle />
       </div>
     </>
   );
-};
+});
 
 export default Viewer;

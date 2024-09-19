@@ -79,7 +79,6 @@ const Electrical = ({
       [selectedComponents]
     );
 
-    console.log(airConditioners)
     return (
       <>
         {airConditioners.length > 0 &&

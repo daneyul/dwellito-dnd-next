@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useContext, useEffect, useRef, useState } from 'react';
+import { memo, useContext, useEffect, useRef, useState } from 'react';
 import style from './orderSummaryModal.module.scss';
 import * as Dialog from '@radix-ui/react-dialog';
 import { PageDataContext } from '@/components/Content/Content';
@@ -27,7 +27,7 @@ import useSaveSelections from '@/utils/hooks/useSaveSelections';
 import Toast from '../Toast/Toast';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
 
-const OrderSummaryModal = () => {
+const OrderSummaryModal = memo(() => {
   const {
     containerHeightIsStandard,
     orderTotal,
@@ -721,6 +721,6 @@ const OrderSummaryModal = () => {
       </Dialog.Root>
     </>
   );
-};
+});
 
 export default OrderSummaryModal;

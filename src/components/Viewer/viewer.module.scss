@@ -10,10 +10,3 @@
     justify-content: center;
   }
 }
-
-.drawings {
-  display: none;
-  @include respond-to(md) {
-    display: block;
-  }
-}
