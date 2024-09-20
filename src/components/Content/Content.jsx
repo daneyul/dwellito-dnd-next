@@ -63,11 +63,7 @@ const PageDataProvider = ({ children, data }) => {
 
   // Selections
   const [selectedComponents, setSelectedComponents] = useState(
-    querySelections ||
-      DEFAULT_COMPONENTS.map((component) => ({
-        ...component,
-        lastValidPosition: { ...component.position },
-      }))
+    querySelections || DEFAULT_COMPONENTS
   );
   const [exteriorFinish, setExteriorFinish] = useState(
     queryExterior ||
@@ -150,7 +146,7 @@ const PageDataProvider = ({ children, data }) => {
       interiorTrim,
       exteriorFinish,
       flooring,
-      hasRedCorners
+      hasRedCorners,
     });
 
   const [mappedElevations, setMappedElevations] = useState(
@@ -163,9 +159,7 @@ const PageDataProvider = ({ children, data }) => {
 
   useEffect(() => {
     const includesLighting = selectedComponents.some(
-      (component) =>
-        component.name === COMPONENT_NAMES.WRAP_LIGHT ||
-        component.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE
+      (component) => component.isWrapLight
     );
     setHasLighting(includesLighting);
   }, [selectedComponents]);
@@ -243,9 +237,7 @@ const PageDataProvider = ({ children, data }) => {
   };
 
   return (
-    <PageDataContext.Provider
-      value={contextValue}
-    >
+    <PageDataContext.Provider value={contextValue}>
       {children}
     </PageDataContext.Provider>
   );

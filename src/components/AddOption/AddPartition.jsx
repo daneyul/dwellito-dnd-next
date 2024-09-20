@@ -26,6 +26,8 @@ const AddPartition = ({ options }) => {
     interiorIsSprayFoamCeilingWalls,
   } = useContext(PageDataContext);
 
+  
+
   const handleSelect = (item) => {
     setShow3d(false);
     setSelectedElevation(mappedElevations[3]);

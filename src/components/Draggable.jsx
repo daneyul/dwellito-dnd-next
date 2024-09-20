@@ -135,8 +135,7 @@ const Draggable = ({
     if (piece.objType === COMPONENT_TYPES.ELECTRICAL) {
       if (isFloorPlanView) {
         if (
-          piece.name === COMPONENT_NAMES.WRAP_LIGHT ||
-          piece.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE
+          piece.isWrapLight
         ) {
           if (slug === CONTAINER_SIZE_10) {
             return piece.floorPlanImg.TEN;
@@ -209,8 +208,7 @@ const Draggable = ({
       return toScale(piece.objThickness, scaleFactor);
     } else {
       if (
-        piece.name === COMPONENT_NAMES.WRAP_LIGHT ||
-        piece.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE
+        piece.isWrapLight
       ) {
         if (slug === CONTAINER_SIZE_10) {
           return toScale(piece.objWidth.TEN, scaleFactor);

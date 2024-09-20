@@ -373,7 +373,7 @@ const OrderSummaryModal = () => {
             });
 
             const imgSrc =
-              component.name === COMPONENT_NAMES.WRAP_LIGHT
+              component.isWrapLight
                 ? component.floorPlanImg[containerSizeStr()]
                 : component.floorPlanImg;
 

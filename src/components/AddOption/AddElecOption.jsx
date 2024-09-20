@@ -7,7 +7,7 @@ import {
 } from '../../utils/2D/utils';
 import style from './addOption.module.css';
 import { PageDataContext } from '../Content/Content';
-import { COMPONENT_NAMES, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 
 const AddElecOption = ({ options }) => {
   const {
@@ -54,21 +54,11 @@ const AddElecOption = ({ options }) => {
           if (
             supplier === SUPPLIER_SLUGS.CUSTOM_CUBES ||
             item.ceilingOnly ||
-            item.name === COMPONENT_NAMES.OUTLET ||
-            item.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN
+            item.moveableInFloorPlan
           ) {
             setShow3d(false);
             setSelectedElevation(mappedElevations[3]);
             setSelectedElevationIndex(3);
-            handleAddComponent({
-              item,
-              selectedComponents,
-              setSelectedComponents,
-              selectedElevation: mappedElevations[3],
-              floorPlan,
-            });
-          } else if (item.name === COMPONENT_NAMES.BUTYL_TAPE) {
-            setShow3d(false);
             handleAddComponent({
               item,
               selectedComponents,

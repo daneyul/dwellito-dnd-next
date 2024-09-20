@@ -155,7 +155,7 @@ const useDragHandlers = ({
           component.id === draggedId
             ? {
                 ...component,
-                position: { ...component.lastValidPosition },
+                position: { x: initialPosition.x, y: initialPosition.y },
               }
             : component
         )
@@ -173,11 +173,7 @@ const useDragHandlers = ({
                 position: {
                   x: initialPosition.x + delta.x,
                   y: initialPosition.y + delta.y,
-                },
-                lastValidPosition: {
-                  x: initialPosition.x + delta.x,
-                  y: initialPosition.y + delta.y,
-                },
+                }
               };
             } else if (isOnElevationLeft) {
               // If elevation is left, update the x position in reverse
@@ -186,11 +182,7 @@ const useDragHandlers = ({
                 position: {
                   x: initialPosition.x - delta.x,
                   y: initialPosition.y + delta.y,
-                },
-                lastValidPosition: {
-                  x: initialPosition.x - delta.x,
-                  y: initialPosition.y + delta.y,
-                },
+                }
               };
             } else if (isOnElevationBack) {
               // If elevation is back, update the x position based on delta.y
@@ -199,11 +191,7 @@ const useDragHandlers = ({
                 position: {
                   x: initialPosition.x - delta.y,
                   y: initialPosition.y,
-                },
-                lastValidPosition: {
-                  x: initialPosition.x - delta.y,
-                  y: initialPosition.y,
-                },
+                }
               };
             } else {
               // General case for floor plan view
@@ -212,11 +200,7 @@ const useDragHandlers = ({
                 position: {
                   x: initialPosition.x + delta.x,
                   y: initialPosition.y + delta.y,
-                },
-                lastValidPosition: {
-                  x: initialPosition.x + delta.x,
-                  y: initialPosition.y + delta.y,
-                },
+                }
               };
             }
           } else {
@@ -228,11 +212,7 @@ const useDragHandlers = ({
                 position: {
                   x: initialPosition.x - delta.x,
                   y: initialPosition.y + delta.y,
-                },
-                lastValidPosition: {
-                  x: initialPosition.x - delta.x,
-                  y: initialPosition.y + delta.y,
-                },
+                }
               };
             } else {
               // General case for non-floor plan view
@@ -241,11 +221,7 @@ const useDragHandlers = ({
                 position: {
                   x: initialPosition.x + delta.x,
                   y: initialPosition.y + delta.y,
-                },
-                lastValidPosition: {
-                  x: initialPosition.x + delta.x,
-                  y: initialPosition.y + delta.y,
-                },
+                }
               };
             }
           }
@@ -320,9 +296,7 @@ const useDragHandlers = ({
     );
 
     if (
-      draggedComponent.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-      draggedComponent.name === COMPONENT_NAMES.OUTLET ||
-      draggedComponent.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN
+      draggedComponent.moveableInFloorPlan
     ) {
       const isOutsideDroppable = ![
         DROPPABLE_LEFT,
@@ -338,14 +312,24 @@ const useDragHandlers = ({
     const componentToSelect = selectedComponents.find(
       (component) => component.id === selectedId
     );
-
-    // If the clicked component is already selected, deselect it.
+  
+    // If the clicked component is already selected
     if (selectedComponent?.id === selectedId) {
-      setSelectedComponent(null);
+      // Check if the position has changed
+      const hasMoved =
+        selectedComponent.position.x !== initialPosition?.x ||
+        selectedComponent.position.y !== initialPosition?.y;
+  
+      if (!hasMoved) {
+        // If the component has NOT moved, deselect it
+        setSelectedComponent(null);
+      }
     } else {
-      setSelectedComponent(componentToSelect); // Select the new component
+      // Select the new component
+      setSelectedComponent(componentToSelect);
     }
   };
+  
 
   const handleDeleteSelected = () => {
     if (!selectedComponent) return;

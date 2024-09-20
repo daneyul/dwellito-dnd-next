@@ -66,6 +66,7 @@ export const atAndS = [
     model: '',
     fixed: true,
     ceilingOnly: true,
+    isWrapLight: true
   },
   {
     name: COMPONENT_NAMES.EMERGENCY_LIGHT,

@@ -397,8 +397,7 @@ export const calculateCSSPos = ({
           top: '50%',
         };
       } else if (
-        piece.name === COMPONENT_NAMES.WRAP_LIGHT ||
-        piece.name === COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE
+        piece.isWrapLight
       ) {
         transform = 'translateY(-50%) translateX(-50%)';
         positionStyles = {
@@ -408,10 +407,7 @@ export const calculateCSSPos = ({
       }
     } else {
       if (
-        piece.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-        piece.name === COMPONENT_NAMES.OUTLET ||
-        piece.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN ||
-        piece.objType === COMPONENT_TYPES.PARTITION
+        piece.moveableInFloorPlan
       ) {
         positionStyles = {
           left: `${piece.position.x}px`,

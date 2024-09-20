@@ -98,6 +98,7 @@ export const customCubes = [
     model: 'heater',
     fixed: false,
     rotate: 0,
+    moveableInFloorPlan: true
   },
   {
     name: COMPONENT_NAMES.OUTLET,
@@ -116,6 +117,7 @@ export const customCubes = [
     model: 'outlet',
     fixed: false,
     rotate: 0,
+    moveableInFloorPlan: true
   },
   {
     name: COMPONENT_NAMES.EXHAUST_FAN,
@@ -161,5 +163,6 @@ export const customCubes = [
     model: '',
     fixed: true,
     ceilingOnly: true,
+    isWrapLight: true
   },
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));

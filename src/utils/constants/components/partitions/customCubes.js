@@ -54,4 +54,4 @@ export const customCubes = [
     imgName: `${COMPONENT_TYPES.PARTITION}/partition-door.svg`,
     floorPlanImg: `${COMPONENT_TYPES.PARTITION}/partition-door.svg`,
   }
-].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));
+].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES, moveableInFloorPlan: true }));
