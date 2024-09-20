@@ -220,15 +220,16 @@ const OrderSummaryModal = () => {
     const endpoint = 'https://hooks.zapier.com/hooks/catch/18577479/2yjklei/';
 
     try {
-      const options = {
-        method: 'POST',
-        body: JSONdata,
-        mode: 'no-cors',
-      };
-      const response = await fetch(endpoint, options);
-      if (!response.ok) {
-        throw new Error('Failed to send Zapier request');
-      }
+      // const options = {
+      //   method: 'POST',
+      //   body: JSONdata,
+      //   mode: 'no-cors',
+      // };
+      // const response = await fetch(endpoint, options);
+      // if (!response.ok) {
+      //   throw new Error('Failed to send Zapier request');
+      // }
+      console.log(responseData)
       console.log('Zapier request sent successfully');
       setOpenToast(true);
       setDialogOpen(false);
@@ -383,6 +384,10 @@ const OrderSummaryModal = () => {
               true
             );
 
+            const distanceText = component.moveableInFloorPlan ? `${distance.left}" from left, ${distance.top}" from
+                    top (on floor plan view)` : `${distance.left}" from left, ${distance.top}" from
+                    top`
+
             return (
               <li key={component.id} className={style.lineItem}>
                 <div className={style.thumbnailContainer}>
@@ -396,15 +401,14 @@ const OrderSummaryModal = () => {
                   <div className={style.partNumber}>{component.desc}</div>
                   <div className={style.desc}>{component.name}</div>
                   <div className={style.distance}>
-                    {distance.left}&quot; from left, {distance.top}&quot; from
-                    top (on floor plan view)
+                    {distanceText}
                   </div>
                 </div>
-                {!isAtAndS && (
                   <div className={style.price}>
-                    ${itemPrice.toLocaleString()}
+                    {
+                      !isAtAndS && `$${itemPrice.toLocaleString()}`
+                    }
                   </div>
-                )}
               </li>
             );
           })}

@@ -296,7 +296,7 @@ const useDragHandlers = ({
     );
 
     if (
-      draggedComponent.moveableInFloorPlan
+      draggedComponent.moveableInFloorPlan && draggedComponent.objType !== COMPONENT_TYPES.PARTITION
     ) {
       const isOutsideDroppable = ![
         DROPPABLE_LEFT,

@@ -7,6 +7,7 @@ import {
 export const atAndS = [
   {
     name: COMPONENT_NAMES.ADJUSTABLE_SWIVEL_FLOOD_LIGHT,
+    desc: COMPONENT_NAMES.ADJUSTABLE_SWIVEL_FLOOD_LIGHT,
     position: {
       x: 20,
       y: 20,
@@ -26,6 +27,7 @@ export const atAndS = [
   },
   {
     name: COMPONENT_NAMES.AIR_CONDITIONER,
+    desc: COMPONENT_NAMES.AIR_CONDITIONER,
     position: {
       x: 105,
       y: 40,
@@ -38,12 +40,13 @@ export const atAndS = [
     objWidth: 23,
     objHeight: 16,
     objType: COMPONENT_TYPES.ELECTRICAL,
-    price: 1075,
+    price: 0,
     model: 'airconditioner',
     fixed: false,
   },
   {
     name: COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE,
+    desc: COMPONENT_NAMES.WHITE_STRIP_LIGHT_FIXTURE,
     position: {
       x: 18,
       y: 0,
@@ -62,7 +65,7 @@ export const atAndS = [
     },
     objHeight: 6,
     objType: COMPONENT_TYPES.ELECTRICAL,
-    price: 375,
+    price: 0,
     model: '',
     fixed: true,
     ceilingOnly: true,
@@ -70,6 +73,7 @@ export const atAndS = [
   },
   {
     name: COMPONENT_NAMES.EMERGENCY_LIGHT,
+    desc: COMPONENT_NAMES.EMERGENCY_LIGHT,
     position: {
       x: 105,
       y: 40,
@@ -82,12 +86,13 @@ export const atAndS = [
     objHeight: 23,
     objThickness: 8,
     objType: COMPONENT_TYPES.ELECTRICAL,
-    price: 1075,
+    price: 0,
     model: 'emergency-light',
     fixed: false,
   },
   {
     name: COMPONENT_NAMES.SECURITY_FLOOD_LIGHT,
+    desc: COMPONENT_NAMES.SECURITY_FLOOD_LIGHT,
     position: {
       x: 105,
       y: 40,
@@ -100,7 +105,7 @@ export const atAndS = [
     objHeight: 5,
     objThickness: 6,
     objType: COMPONENT_TYPES.ELECTRICAL,
-    price: 1075,
+    price: 0,
     model: 'security-floodlight',
     fixed: false,
   }
