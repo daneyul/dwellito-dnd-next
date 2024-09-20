@@ -163,7 +163,7 @@ export function Models() {
       camera.updateProjectionMatrix();
 
       if (!cameraReady) {
-        camera.position.lerp(targetPosition, 0.1);
+        camera.position.lerp(targetPosition, 0.2);
         camera.lookAt(lookAtPosition);
 
         // Check if the camera is close enough to the target position
