@@ -5,7 +5,7 @@ const DragToMove = () => {
   return (
     <div
       className={style.container}
-      style={{ bottom: "calc(9rem + 58px)"  }}
+      style={{ bottom: "-58px"  }}
     >
       <DragIcon />
       <div className={style.text}>Drag to move</div>

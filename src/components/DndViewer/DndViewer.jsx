@@ -16,6 +16,7 @@ import useDragHandlers from '@/utils/hooks/useDragHandlers';
 import { ConditionalButtons } from '../ConditionalButtons/ConditionalButtons';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { LeftArrow, RightArrow } from '../Arrows/Arrows';
+import DragToMove from '../DragToMove/DragToMove';
 
 const DnDViewer = () => {
   const {
