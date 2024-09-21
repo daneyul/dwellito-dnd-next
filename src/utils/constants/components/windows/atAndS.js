@@ -35,38 +35,6 @@ export const atAndS = [
     floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/vertical-slider-46x27.svg`,
   },
   {
-    name: COMPONENT_NAMES.VERTICAL_SLIDER_WINDOW_36_53,
-    position: {
-      x: DIMENSIONS.WINDOW.VERTICAL_SLIDER_WINDOW_36_53.POSITION.x,
-      y: DIMENSIONS.WINDOW.VERTICAL_SLIDER_WINDOW_36_53.POSITION.y,
-    },
-    imgName: `${COMPONENT_TYPES.WINDOW}/front-view/vertical-slider-36x53.svg`,
-    desc: '',
-    objWidth: DIMENSIONS.WINDOW.VERTICAL_SLIDER_WINDOW_36_53.WIDTH,
-    objHeight: DIMENSIONS.WINDOW.VERTICAL_SLIDER_WINDOW_36_53.HEIGHT,
-    objFpHeight: DIMENSIONS.WINDOW.VERTICAL_SLIDER_WINDOW_36_53.FP_HEIGHT,
-    objType: COMPONENT_TYPES.WINDOW,
-    price: 0,
-    model: 'vertical-slider-36x53',
-    floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/vertical-slider-36x53.svg`,
-  },
-  {
-    name: COMPONENT_NAMES.VERTICAL_SLIDER_WINDOW_30_60,
-    position: {
-      x: DIMENSIONS.WINDOW.VERTICAL_SLIDER_WINDOW_30_60.POSITION.x,
-      y: DIMENSIONS.WINDOW.VERTICAL_SLIDER_WINDOW_30_60.POSITION.y,
-    },
-    imgName: `${COMPONENT_TYPES.WINDOW}/front-view/vertical-slider-30x60.svg`,
-    desc: '',
-    objWidth: DIMENSIONS.WINDOW.VERTICAL_SLIDER_WINDOW_30_60.WIDTH,
-    objHeight: DIMENSIONS.WINDOW.VERTICAL_SLIDER_WINDOW_30_60.HEIGHT,
-    objFpHeight: DIMENSIONS.WINDOW.VERTICAL_SLIDER_WINDOW_30_60.FP_HEIGHT,
-    objType: COMPONENT_TYPES.WINDOW,
-    price: 0,
-    model: 'vertical-slider-30x60',
-    floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/vertical-slider-30x60.svg`,
-  },
-  {
     name: COMPONENT_NAMES.WINDOW_SECURITY_BARS,
     position: {
       x: DIMENSIONS.WINDOW.WINDOW_SECURITY_BARS.POSITION.x,
