@@ -49,7 +49,6 @@ export function Models() {
   } = useContext(PageDataContext);
 
   const { active, progress, item, loaded, total } = useProgress();
-  // console.log(active, progress, item, loaded, total)
 
   useEffect(() => {
     setThreeDModelLoaded(progress === 100);
