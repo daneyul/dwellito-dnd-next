@@ -416,7 +416,7 @@ export const calculateCSSPos = ({
       } else if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
         transform = 'rotate(180deg) translateY(100%)';
         positionStyles = {
-          right: `${
+          left: `${
             piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
           }px`,
           top: '10px',
