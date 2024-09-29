@@ -51,30 +51,10 @@ const SecurityBars = ({ component, onBoundingBoxChange, supplier }) => (
   />
 );
 
-const Skylight = ({
-  component,
-  onBoundingBoxChange,
-  supplier,
-  containerHeightIsStandard,
-}) => {
-  const yPos = containerHeightIsStandard ? 2.45 : 2.75;
-  return (
-    <GenericWindow
-      component={component}
-      onBoundingBoxChange={onBoundingBoxChange}
-      modelPath={`/models/${supplier}/windows/${component.model}.glb`}
-      customPosition={[1.35, yPos, 1.15]}
-      customScale={100}
-      customRotation={[0, Math.PI / 2, 0]}
-    />
-  );
-};
-
 export {
   HorizontalSlider,
   VerticalSlider46x27,
   VerticalSlider36x53,
   VerticalSlider30x60,
   SecurityBars,
-  Skylight,
 };

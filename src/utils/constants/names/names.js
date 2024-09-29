@@ -73,7 +73,6 @@ const AT_AND_S_COMPONENTS = {
   VERTICAL_SLIDER_WINDOW_36_53: "Vertical Slider Window 36x53",
   VERTICAL_SLIDER_WINDOW_30_60: "Vertical Slider Window 30x60",
   WINDOW_SECURITY_BARS: "Window with Security Bars 36x36",
-  SKYLIGHT: `Skylight 22.5x46.5`,
   LOUVER_VENT: 'Louver Vent 15x15',
   ALUMINUM_EXHAUST_SHUTTER: 'Aluminum Exhaust Shutter 36x36',
   WHITE_STRIP_LIGHT_FIXTURE: `T8 LED White Strip Light Fixture`,

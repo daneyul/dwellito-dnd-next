@@ -170,15 +170,6 @@ const Draggable = ({
       } else {
         return piece.frontImg;
       }
-    } else if (piece.name === COMPONENT_NAMES.SKYLIGHT) {
-      if (selectedElevation.name === ELEVATION_NAMES.BACK) {
-        return piece.frontImg;
-      } else if (
-        selectedElevation.name === ELEVATION_NAMES.RIGHT ||
-        selectedElevation.name === ELEVATION_NAMES.LEFT
-      ) {
-        return piece.sideImg;
-      }
     } else if (selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN) {
       return piece.floorPlanImg;
     } else {

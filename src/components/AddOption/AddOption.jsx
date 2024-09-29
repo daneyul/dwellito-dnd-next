@@ -28,16 +28,7 @@ const AddOption = ({ options }) => {
 
   const handleSelect = (item) => {
     setShow3d(false);
-    if (item.name === COMPONENT_NAMES.SKYLIGHT) {
-      setShow3d(false);
-      handleAddComponent({
-        item,
-        selectedComponents,
-        setSelectedComponents,
-        selectedElevation,
-        floorPlan,
-      });
-    } else if (isFloorPlanView) {
+    if (isFloorPlanView) {
       setSelectedElevation(rightElevation);
       handleAddComponent({
         item,

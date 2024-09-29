@@ -93,11 +93,7 @@ export const checkDistance = ({
 
   const boundaries = () => {
     if (isFloorPlanView) {
-      if (component.name === COMPONENT_NAMES.SKYLIGHT) {
-        return DIMENSIONS.BOUNDARIES.x;
-      } else {
-        return 0;
-      }
+      return 0;
     } else {
       return DIMENSIONS.BOUNDARIES.x;
     }
@@ -145,11 +141,6 @@ export const handleAddComponent = ({
       (component) => component.name === COMPONENT_NAMES.ROOF_VENT
     );
 
-    const isSkylight = item.name === COMPONENT_NAMES.SKYLIGHT;
-    const skylightObjData = windowComponents.find(
-      (component) => component.name === COMPONENT_NAMES.SKYLIGHT
-    );
-
     const roofVent = {
       ...roofVentObjData,
       id: uuid(),
@@ -157,18 +148,9 @@ export const handleAddComponent = ({
       elevation: [floorPlan],
     };
 
-    const skylight = {
-      ...skylightObjData,
-      id: uuid(),
-      position: { ...skylightObjData.position },
-      elevation: [floorPlan],
-    };
-
     setSelectedComponents((prevSelectedComponents) => {
       if (isRoofVent) {
         return [...prevSelectedComponents, roofVent];
-      } else if (isSkylight) {
-        return [...prevSelectedComponents, skylight];
       } else {
         return [...prevSelectedComponents, newItem];
       }

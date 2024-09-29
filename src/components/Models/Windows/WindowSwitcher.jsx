@@ -1,7 +1,6 @@
 import {
   HorizontalSlider,
   SecurityBars,
-  Skylight,
   VerticalSlider30x60,
   VerticalSlider36x53,
   VerticalSlider46x27,
@@ -23,7 +22,6 @@ const Window = ({
     [COMPONENT_NAMES.VERTICAL_SLIDER_WINDOW_36_53]: VerticalSlider36x53,
     [COMPONENT_NAMES.VERTICAL_SLIDER_WINDOW_30_60]: VerticalSlider30x60,
     [COMPONENT_NAMES.WINDOW_SECURITY_BARS]: SecurityBars,
-    [COMPONENT_NAMES.SKYLIGHT]: Skylight,
   };
 
   const WindowComponent = componentMap[component.name];

@@ -474,7 +474,6 @@ const OrderSummaryModal = () => {
   const MiscSection = () => {
     const components = selectedComponents.filter(
       (component) =>
-        component.name === COMPONENT_NAMES.SKYLIGHT ||
         component.name === COMPONENT_NAMES.BUTYL_TAPE
     );
 
