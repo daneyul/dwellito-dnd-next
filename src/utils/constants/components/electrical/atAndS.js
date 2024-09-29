@@ -72,6 +72,33 @@ export const atAndS = [
     isWrapLight: true
   },
   {
+    name: COMPONENT_NAMES.CAN_LIGHT_FIXTURE,
+    desc: COMPONENT_NAMES.CAN_LIGHT_FIXTURE,
+    position: {
+      x: 18,
+      y: 0,
+    },
+    floorPlanImg: {
+      TEN: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/10/can-light-dash.svg`,
+      TWENTY: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/20/can-light-dash.svg`,
+      FORTY: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/40/can-light-dash.svg`,
+    },
+    sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/can-light.svg`,
+    desc: '',
+    objWidth: {
+      TEN: 50,
+      TWENTY: 170,
+      FORTY: 403,
+    },
+    objHeight: 6,
+    objType: COMPONENT_TYPES.ELECTRICAL,
+    price: 0,
+    model: '',
+    fixed: true,
+    ceilingOnly: true,
+    isCanLight: true
+  },
+  {
     name: COMPONENT_NAMES.EMERGENCY_LIGHT,
     desc: COMPONENT_NAMES.EMERGENCY_LIGHT,
     position: {

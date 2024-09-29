@@ -8,7 +8,6 @@ import style from './content.module.scss';
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 import {
-  COMPONENT_NAMES,
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40,
@@ -55,7 +54,8 @@ const PageDataProvider = ({ children, data }) => {
   const [show3d, setShow3d] = useState(false);
   const [showExterior, setShowExterior] = useState(true);
   const [cameraReady, setCameraReady] = useState(true);
-  const [hasLighting, setHasLighting] = useState(false);
+  const [hasWrapLighting, setHasWrapLighting] = useState(false);
+  const [hasCanLighting, setHasCanLighting] = useState(false);
   const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] =
     useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -161,7 +161,14 @@ const PageDataProvider = ({ children, data }) => {
     const includesLighting = selectedComponents.some(
       (component) => component.isWrapLight
     );
-    setHasLighting(includesLighting);
+    setHasWrapLighting(includesLighting);
+  }, [selectedComponents]);
+
+  useEffect(() => {
+    const includesLighting = selectedComponents.some(
+      (component) => component.isCanLight
+    );
+    setHasCanLighting(includesLighting);
   }, [selectedComponents]);
 
   // Update selectedComponents when selectedContainerHeight changes
@@ -223,7 +230,8 @@ const PageDataProvider = ({ children, data }) => {
     containerSize,
     floorPlan,
     isFloorPlanView,
-    hasLighting,
+    hasWrapLighting,
+    hasCanLighting,
     showOutsideDroppableWarning,
     setShowOutsideDroppableWarning,
     dialogOpen,

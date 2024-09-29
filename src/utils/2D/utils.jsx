@@ -379,7 +379,7 @@ export const calculateCSSPos = ({
           top: '50%',
         };
       } else if (
-        piece.isWrapLight
+        piece.isWrapLight || piece.isCanLight
       ) {
         transform = 'translateY(-50%) translateX(-50%)';
         positionStyles = {

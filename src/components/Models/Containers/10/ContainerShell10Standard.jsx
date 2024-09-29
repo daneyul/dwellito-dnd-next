@@ -14,7 +14,7 @@ export default function ContainerShell10Standard({ paint }) {
     selectedContainer,
     flooring,
     selectedContainerHeight,
-    hasLighting,
+    hasWrapLighting,
     interiorFinishes,
     containerSize,
     supplier,
@@ -169,7 +169,7 @@ export default function ContainerShell10Standard({ paint }) {
           scale={0.01}
         />
       </group>
-      {hasLighting ? <Lighting /> : null}
+      {hasWrapLighting ? <Lighting /> : null}
       {hasRedCorners ? <Corners /> : null}
       <Interiors />
     </group>

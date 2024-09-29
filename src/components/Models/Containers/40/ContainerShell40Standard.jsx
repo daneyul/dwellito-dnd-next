@@ -15,7 +15,8 @@ export default function ContainerShell40Standard({ paint }) {
     selectedContainer,
     flooring,
     selectedContainerHeight,
-    hasLighting,
+    hasWrapLighting,
+    hasCanLighting,
     containerSize,
     supplier,
     hasRedCorners,
@@ -63,7 +64,7 @@ export default function ContainerShell40Standard({ paint }) {
   }, [selectedContainer.name, DIMENSIONS]);
 
   const Lighting = () => {
-    if (hasLighting) {
+    if (hasWrapLighting) {
       if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
         const { nodes: lightingNodes, materials: lightingMaterials } = useGLTF(
           `/models/container/${containerSize()}/${selectedContainerHeight}/led-lights.glb`
@@ -73,49 +74,65 @@ export default function ContainerShell40Standard({ paint }) {
             <mesh
               castShadow
               receiveShadow
-              geometry={lightingNodes['40FT_Container_Exterior_Blank_Whole_9'].geometry}
+              geometry={
+                lightingNodes['40FT_Container_Exterior_Blank_Whole_9'].geometry
+              }
               material={lightingMaterials.White_Mtl}
             />
             <mesh
               castShadow
               receiveShadow
-              geometry={lightingNodes['40FT_Container_Exterior_Blank_Whole_8'].geometry}
+              geometry={
+                lightingNodes['40FT_Container_Exterior_Blank_Whole_8'].geometry
+              }
               material={lightingMaterials.Emissive_Light}
             />
             <mesh
               castShadow
               receiveShadow
-              geometry={lightingNodes['40FT_Container_Exterior_Blank_Whole_7'].geometry}
+              geometry={
+                lightingNodes['40FT_Container_Exterior_Blank_Whole_7'].geometry
+              }
               material={lightingMaterials.White_Mtl}
             />
             <mesh
               castShadow
               receiveShadow
-              geometry={lightingNodes['40FT_Container_Exterior_Blank_Whole_6'].geometry}
+              geometry={
+                lightingNodes['40FT_Container_Exterior_Blank_Whole_6'].geometry
+              }
               material={lightingMaterials.Emissive_Light}
             />
             <mesh
               castShadow
               receiveShadow
-              geometry={lightingNodes['40FT_Container_Exterior_Blank_Whole_5'].geometry}
+              geometry={
+                lightingNodes['40FT_Container_Exterior_Blank_Whole_5'].geometry
+              }
               material={lightingMaterials.White_Mtl}
             />
             <mesh
               castShadow
               receiveShadow
-              geometry={lightingNodes['40FT_Container_Exterior_Blank_Whole_4'].geometry}
+              geometry={
+                lightingNodes['40FT_Container_Exterior_Blank_Whole_4'].geometry
+              }
               material={lightingMaterials.Emissive_Light}
             />
             <mesh
               castShadow
               receiveShadow
-              geometry={lightingNodes['40FT_Container_Exterior_Blank_Whole_3'].geometry}
+              geometry={
+                lightingNodes['40FT_Container_Exterior_Blank_Whole_3'].geometry
+              }
               material={lightingMaterials.White_Mtl}
             />
             <mesh
               castShadow
               receiveShadow
-              geometry={lightingNodes['40FT_Container_Exterior_Blank_Whole_2'].geometry}
+              geometry={
+                lightingNodes['40FT_Container_Exterior_Blank_Whole_2'].geometry
+              }
               material={lightingMaterials.Emissive_Light}
             />
             <mesh
@@ -129,7 +146,9 @@ export default function ContainerShell40Standard({ paint }) {
             <mesh
               castShadow
               receiveShadow
-              geometry={lightingNodes['40FT_Container_Exterior_Blank_Whole'].geometry}
+              geometry={
+                lightingNodes['40FT_Container_Exterior_Blank_Whole'].geometry
+              }
               material={lightingMaterials.White_Mtl}
             />
           </group>
@@ -162,6 +181,163 @@ export default function ContainerShell40Standard({ paint }) {
           </group>
         );
       }
+    } else if (hasCanLighting) {
+      const { nodes, materials } = useGLTF(
+        `/models/container/${containerSize()}/${selectedContainerHeight}/can-lights.glb`
+      );
+
+      return (
+        <group dispose={null}>
+          <group scale={0.305}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_1.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_10.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_11.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_12.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_2.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_3.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_4.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_5.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_6.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_7.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_8.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_9.geometry}
+              material={materials.White_Mtl}
+            />
+          </group>
+          <group scale={0.305}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_13.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_14.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_15.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_16.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_17.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_18.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_19.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_20.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_21.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_22.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_23.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_24.geometry}
+              material={materials.Emissive_Light}
+            />
+          </group>
+        </group>
+      );
     } else {
       return null;
     }

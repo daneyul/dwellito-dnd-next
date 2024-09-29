@@ -18,7 +18,7 @@ export default function ContainerShell20High({
     selectedContainer,
     flooring,
     selectedContainerHeight,
-    hasLighting,
+    hasWrapLighting,
     supplier,
     containerSize,
     hasRedCorners
@@ -178,7 +178,7 @@ export default function ContainerShell20High({
           scale={0.01}
         />
       </group>
-      {hasLighting ? <Lighting /> : null}
+      {hasWrapLighting ? <Lighting /> : null}
       {hasRedCorners ? <Corners /> : null}
       <Interiors />
     </group>
