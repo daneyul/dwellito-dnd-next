@@ -1,8 +1,8 @@
 import CustomCubes from '../../public/logos/customCubes/logo.svg';
 
 const logos = {
-  "custom-cubes": CustomCubes,
-  "at-and-s": "/logos/atAndS/logo.png",
+  'custom-cubes': CustomCubes,
+  'at-and-s': '/logos/atAndS/logo.png',
 };
 
 const Logo = ({ type }) => {
@@ -10,10 +10,14 @@ const Logo = ({ type }) => {
 
   return (
     <>
-      {type === "custom-cubes" ? (
+      {type === 'custom-cubes' ? (
         <SelectedLogo />
       ) : (
-        <img src={SelectedLogo} alt={`${type} logo`} />
+        <img
+          src={SelectedLogo}
+          style={{ maxWidth: '100%', maxHeight: '100%' }}
+          alt={`${type} logo`}
+        />
       )}
     </>
   );
