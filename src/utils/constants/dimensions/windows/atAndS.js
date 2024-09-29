@@ -1,5 +1,5 @@
 export const AT_AND_S_WINDOW_DIMENSIONS = {
-  HORIZONTAL_SLIDER_WINDOW: {
+  HORIZONTAL_SLIDER_WINDOW_46_27: {
     WIDTH: 53,
     HEIGHT: 34,
     FP_HEIGHT: 3,
@@ -17,18 +17,9 @@ export const AT_AND_S_WINDOW_DIMENSIONS = {
       y: 40,
     },
   },
-  VERTICAL_SLIDER_WINDOW_36_53: {
-    WIDTH: 43,
-    HEIGHT: 60,
-    FP_HEIGHT: 3,
-    POSITION: {
-      x: 0,
-      y: 40,
-    },
-  },
-  VERTICAL_SLIDER_WINDOW_30_60: {
-    WIDTH: 37,
-    HEIGHT: 67,
+  HORIZONTAL_SLIDER_WINDOW_47_12: {
+    WIDTH: 55,
+    HEIGHT: 20,
     FP_HEIGHT: 3,
     POSITION: {
       x: 0,

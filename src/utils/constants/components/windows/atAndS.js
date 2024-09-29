@@ -1,22 +1,22 @@
 import { DIMENSIONS } from '../../dimensions/dimensions';
-import { COMPONENT_NAMES, COMPONENT_TYPES, ELEVATION_NAMES, SUPPLIER_SLUGS } from '../../names/names';
+import { COMPONENT_NAMES, COMPONENT_TYPES, SUPPLIER_SLUGS } from '../../names/names';
 
 export const atAndS = [
   {
-    name: COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW,
+    name: COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW_46_27,
     position: {
-      x: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW.POSITION.x,
-      y: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW.POSITION.y,
+      x: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW_46_27.POSITION.x,
+      y: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW_46_27.POSITION.y,
     },
-    imgName: `${COMPONENT_TYPES.WINDOW}/front-view/horizontal-slider.svg`,
+    imgName: `${COMPONENT_TYPES.WINDOW}/front-view/horizontal-slider-46x27.svg`,
     desc: '',
-    objWidth: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW.WIDTH,
-    objHeight: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW.HEIGHT,
-    objFpHeight: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW.FP_HEIGHT,
+    objWidth: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW_46_27.WIDTH,
+    objHeight: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW_46_27.HEIGHT,
+    objFpHeight: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW_46_27.FP_HEIGHT,
     objType: COMPONENT_TYPES.WINDOW,
     price: 0,
-    model: 'horizontal-slider',
-    floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/horizontal-slider.svg`,
+    model: 'horizontal-slider-46x27',
+    floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/horizontal-slider-46x27.svg`,
   },
   {
     name: COMPONENT_NAMES.VERTICAL_SLIDER_WINDOW_46_27,
@@ -35,19 +35,19 @@ export const atAndS = [
     floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/vertical-slider-46x27.svg`,
   },
   {
-    name: COMPONENT_NAMES.WINDOW_SECURITY_BARS,
+    name: COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW_47_12,
     position: {
-      x: DIMENSIONS.WINDOW.WINDOW_SECURITY_BARS.POSITION.x,
-      y: DIMENSIONS.WINDOW.WINDOW_SECURITY_BARS.POSITION.y,
+      x: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW_47_12.POSITION.x,
+      y: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW_47_12.POSITION.y,
     },
-    imgName: `${COMPONENT_TYPES.WINDOW}/front-view/security-bars.svg`,
+    imgName: `${COMPONENT_TYPES.WINDOW}/front-view/horizontal-slider-47x12.svg`,
     desc: '',
-    objWidth: DIMENSIONS.WINDOW.WINDOW_SECURITY_BARS.WIDTH,
-    objHeight: DIMENSIONS.WINDOW.WINDOW_SECURITY_BARS.HEIGHT,
-    objFpHeight: DIMENSIONS.WINDOW.WINDOW_SECURITY_BARS.FP_HEIGHT,
+    objWidth: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW_47_12.WIDTH,
+    objHeight: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW_47_12.HEIGHT,
+    objFpHeight: DIMENSIONS.WINDOW.HORIZONTAL_SLIDER_WINDOW_47_12.FP_HEIGHT,
     objType: COMPONENT_TYPES.WINDOW,
     price: 0,
-    model: 'security-bars',
-    floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/window.svg`,
+    model: 'horizontal-slider-47x12',
+    floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/horizontal-slider-47x12.svg`,
   },
 ].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));
