@@ -18,7 +18,7 @@ export default function ContainerShell40High({ paint }) {
     containerSize,
     supplier,
     flooring,
-    hasRedCorners
+    hasRedCorners,
   } = useContext(PageDataContext);
 
   // Load all 3d objects
@@ -63,34 +63,124 @@ export default function ContainerShell40High({ paint }) {
   }, [selectedContainer.name, DIMENSIONS]);
 
   const Lighting = () => {
-    return (
-      <>
-        <group
-          position={[6.077, 1.138, -4.275]}
-          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-          scale={[1, 0.915, 1]}
-        >
-          <group scale={0.01}>
+    if (hasLighting) {
+      if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+        const { nodes: lightingNodes, materials: lightingMaterials } = useGLTF(
+          `/models/container/${containerSize()}/${selectedContainerHeight}/led-lights.glb`
+        );
+        return (
+          <group scale={0.001} dispose={null}>
             <mesh
               castShadow
               receiveShadow
               geometry={
-                nodes['40FT_HC_Container_Exterior_Blank_Whole_1'].geometry
+                lightingNodes['40FT_HC_Container_Exterior_Blank_Whole_9'].geometry
               }
-              material={materials.Emissive_Light}
+              material={lightingMaterials.White_Mtl}
             />
             <mesh
               castShadow
               receiveShadow
               geometry={
-                nodes['40FT_HC_Container_Exterior_Blank_Whole_3'].geometry
+                lightingNodes['40FT_HC_Container_Exterior_Blank_Whole_8'].geometry
               }
-              material={materials.White_Mtl}
+              material={lightingMaterials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                lightingNodes['40FT_HC_Container_Exterior_Blank_Whole_7'].geometry
+              }
+              material={lightingMaterials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                lightingNodes['40FT_HC_Container_Exterior_Blank_Whole_6'].geometry
+              }
+              material={lightingMaterials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                lightingNodes['40FT_HC_Container_Exterior_Blank_Whole_5'].geometry
+              }
+              material={lightingMaterials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                lightingNodes['40FT_HC_Container_Exterior_Blank_Whole_4'].geometry
+              }
+              material={lightingMaterials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                lightingNodes['40FT_HC_Container_Exterior_Blank_Whole_3'].geometry
+              }
+              material={lightingMaterials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                lightingNodes['40FT_HC_Container_Exterior_Blank_Whole_2'].geometry
+              }
+              material={lightingMaterials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                lightingNodes['40FT_HC_Container_Exterior_Blank_Whole_10'].geometry
+              }
+              material={lightingMaterials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={
+                lightingNodes['40FT_HC_Container_Exterior_Blank_Whole'].geometry
+              }
+              material={lightingMaterials.White_Mtl}
             />
           </group>
-        </group>
-      </>
-    );
+        );
+      } else {
+        return (
+          <group
+            position={[6.077, 1.138, -4.275]}
+            rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+            scale={[1, 0.915, 1]}
+          >
+            <group scale={0.01}>
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={
+                  nodes['40FT_HC_Container_Exterior_Blank_Whole_1'].geometry
+                }
+                material={materials.Emissive_Light}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={
+                  nodes['40FT_HC_Container_Exterior_Blank_Whole_3'].geometry
+                }
+                material={materials.White_Mtl}
+              />
+            </group>
+          </group>
+        );
+      }
+    }
   };
 
   const Corners = () => {
@@ -156,25 +246,9 @@ export default function ContainerShell40High({ paint }) {
             castShadow
             receiveShadow
             geometry={
-              nodes['40FT_HC_Container_Exterior_Blank_Whole_1'].geometry
-            }
-            material={materials.Emissive_Light}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
               nodes['40FT_HC_Container_Exterior_Blank_Whole_2'].geometry
             }
             material={exteriorPaint}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={
-              nodes['40FT_HC_Container_Exterior_Blank_Whole_3'].geometry
-            }
-            material={materials.White_Mtl}
           />
         </group>
       </group>
@@ -191,7 +265,7 @@ export default function ContainerShell40High({ paint }) {
           scale={0.01}
         />
       </group>
-      {hasLighting ? <Lighting /> : null}
+      <Lighting />
       {hasRedCorners ? <Corners /> : null}
       <Interiors />
     </group>
