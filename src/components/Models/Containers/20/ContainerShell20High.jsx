@@ -8,10 +8,7 @@ import { EXTERIORS, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import AtAndS from './Interiors/High/AtAndS';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
 
-export default function ContainerShell20High({
-  paint
-}) {
-
+export default function ContainerShell20High({ paint }) {
   const {
     exteriorFinish,
     interiorFinishes,
@@ -19,9 +16,10 @@ export default function ContainerShell20High({
     flooring,
     selectedContainerHeight,
     hasWrapLighting,
+    hasCanLighting,
     supplier,
     containerSize,
-    hasRedCorners
+    hasRedCorners,
   } = useContext(PageDataContext);
 
   // Load all 3d objects
@@ -66,34 +64,122 @@ export default function ContainerShell20High({
   }, [selectedContainer.name, DIMENSIONS]);
 
   const Lighting = () => {
-    return (
-      <>
-        <group
-          position={[6.019, 1.138, -4.273]}
-          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-          scale={[1, 0.915, 1]}
-        >
-          <group scale={0.01}>
+    if (hasCanLighting) {
+      const { nodes, materials } = useGLTF(
+        `/models/container/${containerSize()}/${selectedContainerHeight}/can-lights.glb`
+      );
+      return (
+        <group dispose={null}>
+          <group scale={0.305}>
             <mesh
               castShadow
               receiveShadow
-              geometry={
-                nodes['20FT_HC_Container_Exterior_Blank_Whole_1'].geometry
-              }
+              geometry={nodes.Object_1.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_2.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_3.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_4.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_5.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_6.geometry}
+              material={materials.White_Mtl}
+            />
+          </group>
+          <group scale={0.305}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_10.geometry}
               material={materials.Emissive_Light}
             />
             <mesh
               castShadow
               receiveShadow
-              geometry={
-                nodes['20FT_HC_Container_Exterior_Blank_Whole_3'].geometry
-              }
-              material={materials.White_Mtl}
+              geometry={nodes.Object_11.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_12.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_7.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_8.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_9.geometry}
+              material={materials.Emissive_Light}
             />
           </group>
         </group>
-      </>
-    );
+      );
+    } else if (hasWrapLighting) {
+      return (
+        <>
+          <group
+            position={[6.019, 1.138, -4.273]}
+            rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+            scale={[1, 0.915, 1]}
+          >
+            <group scale={0.01}>
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={
+                  nodes['20FT_HC_Container_Exterior_Blank_Whole_1'].geometry
+                }
+                material={materials.Emissive_Light}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={
+                  nodes['20FT_HC_Container_Exterior_Blank_Whole_3'].geometry
+                }
+                material={materials.White_Mtl}
+              />
+            </group>
+          </group>
+        </>
+      );
+    } else {
+      return null;
+    }
   };
 
   const Corners = () => {
@@ -122,25 +208,25 @@ export default function ContainerShell20High({
     if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
       return (
         <CustomCubes
-        interiorFinishes={interiorFinishes}
-        containerSize={containerSize}
-        selectedContainerHeight={selectedContainerHeight}
-        flooring={flooring}
-        supplier={supplier}
-      />
-      )
+          interiorFinishes={interiorFinishes}
+          containerSize={containerSize}
+          selectedContainerHeight={selectedContainerHeight}
+          flooring={flooring}
+          supplier={supplier}
+        />
+      );
     } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
       return (
         <AtAndS
-        interiorFinishes={interiorFinishes}
-        containerSize={containerSize}
-        selectedContainerHeight={selectedContainerHeight}
-        flooring={flooring}
-        supplier={supplier}
-      />
-      )
+          interiorFinishes={interiorFinishes}
+          containerSize={containerSize}
+          selectedContainerHeight={selectedContainerHeight}
+          flooring={flooring}
+          supplier={supplier}
+        />
+      );
     }
-  }
+  };
 
   const containerMesh = (
     <group
@@ -178,7 +264,7 @@ export default function ContainerShell20High({
           scale={0.01}
         />
       </group>
-      {hasWrapLighting ? <Lighting /> : null}
+      <Lighting />
       {hasRedCorners ? <Corners /> : null}
       <Interiors />
     </group>

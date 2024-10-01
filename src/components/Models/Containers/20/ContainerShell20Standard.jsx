@@ -1,28 +1,25 @@
 import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
 import { PageDataContext } from '@/components/Content/Content';
-import { getExteriorPaint, useFlooringGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { getExteriorPaint } from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import CustomCubes from './Interiors/Standard/CustomCubes';
 import AtAndS from './Interiors/Standard/AtAndS';
 import { EXTERIORS, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
 
-export default function ContainerShell20Standard({
-  paint
-}) {
-
+export default function ContainerShell20Standard({ paint }) {
   const {
     exteriorFinish,
     selectedContainer,
     flooring,
     selectedContainerHeight,
     hasWrapLighting,
+    hasCanLighting,
     interiorFinishes,
     containerSize,
     supplier,
-    hasRedCorners
+    hasRedCorners,
   } = useContext(PageDataContext);
 
   // Load all 3d objects
@@ -67,30 +64,122 @@ export default function ContainerShell20Standard({
   }, [selectedContainer.name, DIMENSIONS]);
 
   const Lighting = () => {
-    return (
-      <>
-        <group
-          position={[6.019, 1.138, -4.273]}
-          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-          scale={[1, 0.915, 1]}
-        >
-          <group scale={0.01}>
+    if (hasCanLighting) {
+      const { nodes, materials } = useGLTF(
+        `/models/container/${containerSize()}/${selectedContainerHeight}/can-lights.glb`
+      );
+      return (
+        <group dispose={null}>
+          <group scale={0.305}>
             <mesh
               castShadow
               receiveShadow
-              geometry={nodes['20FT_Container_Exterior_Blank_Whole_1'].geometry}
+              geometry={nodes.Object_1.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_2.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_3.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_4.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_5.geometry}
+              material={materials.White_Mtl}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_6.geometry}
+              material={materials.White_Mtl}
+            />
+          </group>
+          <group scale={0.305}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_10.geometry}
               material={materials.Emissive_Light}
             />
             <mesh
               castShadow
               receiveShadow
-              geometry={nodes['20FT_Container_Exterior_Blank_Whole_3'].geometry}
-              material={materials.White_Mtl}
+              geometry={nodes.Object_11.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_12.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_7.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_8.geometry}
+              material={materials.Emissive_Light}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_9.geometry}
+              material={materials.Emissive_Light}
             />
           </group>
         </group>
-      </>
-    );
+      );
+    } else if (hasWrapLighting) {
+      return (
+        <>
+          <group
+            position={[6.019, 1.138, -4.273]}
+            rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+            scale={[1, 0.915, 1]}
+          >
+            <group scale={0.01}>
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={
+                  nodes['20FT_Container_Exterior_Blank_Whole_1'].geometry
+                }
+                material={materials.Emissive_Light}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={
+                  nodes['20FT_Container_Exterior_Blank_Whole_3'].geometry
+                }
+                material={materials.White_Mtl}
+              />
+            </group>
+          </group>
+        </>
+      );
+    } else {
+      return null;
+    }
   };
 
   const Corners = () => {
@@ -173,7 +262,7 @@ export default function ContainerShell20Standard({
           scale={0.01}
         />
       </group>
-      {hasWrapLighting ? <Lighting /> : null}
+      <Lighting />
       {hasRedCorners ? <Corners /> : null}
       <Interiors />
     </group>

@@ -52,15 +52,28 @@ export function CsgGeometries({
     }
   }, [selectedContainer.name, DIMENSIONS]);
 
-  const cRightNodes = useGLTF(
+  const exteriorRightNodes = useGLTF(
     `/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`
   ).nodes;
-  const cBackNodes = useGLTF(
+  const exteriorBackNodes = useGLTF(
     `/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`
   ).nodes;
-  const cLeftNodes = useGLTF(
+  const exteriorLeftNodes = useGLTF(
     `/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`
   ).nodes;
+
+  // const interiorRightNodes = useGLTF(
+  //   `/models/container/${size}/${selectedContainerHeight}/interior-right.glb`
+  // ).nodes;
+  // const interiorLeftNodes = useGLTF(
+  //   `/models/container/${size}/${selectedContainerHeight}/interior-left.glb`
+  // ).nodes;
+  // const interiorBackNodes = useGLTF(
+  //   `/models/container/${size}/${selectedContainerHeight}/interior-back.glb`
+  // ).nodes;
+  // const interiorFrontNodes = useGLTF(
+  //   `/models/container/${size}/${selectedContainerHeight}/interior-front.glb`
+  // ).nodes;
 
   const csg = useRef();
 
@@ -179,19 +192,19 @@ export function CsgGeometries({
       <Geometry ref={csg} useGroups>
         <CsgInteriors />
         <Base
-          geometry={cRightNodes.mesh_0.geometry}
+          geometry={exteriorRightNodes.mesh_0.geometry}
           material={exteriorPaint}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
         <Base
-          geometry={cBackNodes.mesh_0.geometry}
+          geometry={exteriorBackNodes.mesh_0.geometry}
           material={exteriorPaint}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
         <Base
-          geometry={cLeftNodes.mesh_0.geometry}
+          geometry={exteriorLeftNodes.mesh_0.geometry}
           material={exteriorPaint}
           scale={10}
           position={[adjustForX, 0, adjustForY]}

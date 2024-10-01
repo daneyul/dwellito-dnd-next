@@ -7,10 +7,11 @@ import {
 } from '../../utils/2D/utils';
 import style from './addOption.module.css';
 import { PageDataContext } from '../Content/Content';
-import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { CONTAINER_SIZE_10, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 
 const AddElecOption = ({ options }) => {
   const {
+    slug,
     setSelectedComponents,
     floorPlan,
     setShow3d,
@@ -23,7 +24,14 @@ const AddElecOption = ({ options }) => {
     supplier,
   } = useContext(PageDataContext);
 
-  return options.map((item) => {
+  const filteredOptions = options.filter((item) => {
+    if (slug === CONTAINER_SIZE_10 && item.isCanLight) {
+      return false;
+    }
+    return true;
+  });
+
+  return filteredOptions.map((item) => {
     const imgSrc = !!item.sidebarImg ? item.sidebarImg : item.floorPlanImg;
     const alreadySelected = selectedComponents.some(
       (component) => component.name === item.name

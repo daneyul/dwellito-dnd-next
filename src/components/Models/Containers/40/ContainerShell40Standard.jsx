@@ -66,6 +66,7 @@ export default function ContainerShell40Standard({ paint }) {
   const Lighting = () => {
     if (hasWrapLighting) {
       if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+        // Render AT&S wrap lighting with 5 lights
         const { nodes: lightingNodes, materials: lightingMaterials } = useGLTF(
           `/models/container/${containerSize()}/${selectedContainerHeight}/led-lights.glb`
         );
@@ -154,6 +155,7 @@ export default function ContainerShell40Standard({ paint }) {
           </group>
         );
       } else {
+        // Render Custom Cubes wrap lighting with 6 lights
         return (
           <group
             position={[6.077, 1.138, -4.275]}
