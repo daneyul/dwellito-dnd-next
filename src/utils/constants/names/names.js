@@ -69,6 +69,7 @@ const AT_AND_S_COMPONENTS = {
   ROLLUP_DOOR_7: `Roll Up Door (White) 7x7'`,
   ROLLUP_DOOR_8: `Roll Up Door (White) 8x8'`,
   HORIZONTAL_SLIDER_WINDOW_46_27: "Horizontal Slider Window 46x27",
+  HORIZONTAL_SLIDER_WINDOW_SECURITY_46_27: "Horizontal Slider Window w/ Security 46x27",
   VERTICAL_SLIDER_WINDOW_46_27: "Vertical Slider Window 46x27",
   HORIZONTAL_SLIDER_WINDOW_47_12: "Horizontal Slider Window 47x12",
   LOUVER_VENT: 'Louver Vent 15x15',

@@ -11,6 +11,16 @@ const HorizontalSlider46x27 = ({ component, onBoundingBoxChange, supplier }) => 
   />
 );
 
+const HorizontalSliderSecurity46x27 = ({ component, onBoundingBoxChange, supplier }) => (
+  <GenericWindow
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/${supplier}/windows/${component.model}.glb`}
+    customPosition={[-0.02, 1.95, 0]}
+    customScale={2.5}
+  />
+);
+
 const VerticalSlider46x27 = ({ component, onBoundingBoxChange, supplier }) => (
   <GenericWindow
     component={component}
@@ -33,6 +43,7 @@ const HorizontalSlider47x12 = ({ component, onBoundingBoxChange, supplier }) => 
 
 export {
   HorizontalSlider46x27,
+  HorizontalSliderSecurity46x27,
   VerticalSlider46x27,
   HorizontalSlider47x12
 };

@@ -8,6 +8,15 @@ export const AT_AND_S_WINDOW_DIMENSIONS = {
       y: 40,
     },
   },
+  HORIZONTAL_SLIDER_WINDOW_SECURITY_46_27: {
+    WIDTH: 46,
+    HEIGHT: 27,
+    FP_HEIGHT: 3,
+    POSITION: {
+      x: 0,
+      y: 40,
+    },
+  },
   VERTICAL_SLIDER_WINDOW_46_27: {
     WIDTH: 53,
     HEIGHT: 34,
