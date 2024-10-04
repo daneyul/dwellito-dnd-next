@@ -51,7 +51,7 @@ const AddOption = ({ options }) => {
         <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
           <HoverCard.Trigger className={style.imgContainer}>
             <img
-              src={generateImgSrc(supplier, item.imgName)}
+              src={generateImgSrc(supplier, item.sidebarImg)}
               alt={item.name}
               className={style.objImg}
             />
@@ -68,7 +68,7 @@ const AddOption = ({ options }) => {
         <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
           <HoverCard.Trigger className={style.imgContainer}>
             <img
-              src={generateImgSrc(supplier, item.imgName)}
+              src={generateImgSrc(supplier, item.sidebarImg)}
               alt={item.name}
               className={style.objImg}
             />
@@ -85,7 +85,7 @@ const AddOption = ({ options }) => {
         <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
           <HoverCard.Trigger className={style.imgContainer}>
             <img
-              src={generateImgSrc(supplier, item.imgName)}
+              src={generateImgSrc(supplier, item.sidebarImg)}
               alt={item.name}
               onClick={() => handleSelect(item)}
               className={style.objImg}
