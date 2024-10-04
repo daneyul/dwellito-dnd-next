@@ -158,7 +158,7 @@ export function useBoundingBoxes({ doors, windows, vents }) {
         } else {
           updatedData = {
             ...updatedData,
-            size: new Vector3(data.size.x - 1.5, data.size.y - 1.4, data.size.z),
+            size: new Vector3(data.size.x - 1.7, data.size.y - 1.7, data.size.z),
             center: new Vector3(
               data.center.x - 0.1,
               data.center.y - 0.1,
