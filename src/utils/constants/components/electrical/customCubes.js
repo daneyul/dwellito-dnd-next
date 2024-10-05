@@ -130,7 +130,7 @@ export const customCubes = [
       x: 0,
       y: 42,
     },
-    sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/exhaust-fan.svg`,
+    sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/sidebar/exhaust-fan.png`,
     frontImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/exhaust-fan.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/exhaust-fan.svg`,
     desc: 'P203-1-307',
