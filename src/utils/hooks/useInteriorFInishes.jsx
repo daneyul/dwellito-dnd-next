@@ -40,7 +40,7 @@ const useInteriorFinishes = ({ interiorFinish }) => {
   const interiorIsBarnWood = interiorFinish === barnWoodInterior;
   const interiorIsMdfPanel = interiorFinish === mdfPanelInterior;
   const interiorIsLuanWall = interiorFinish === luanWallInterior;
-  const interiorIsNone = interiorFinish === none;
+  const interiorIsNone = interiorFinish.name === none.name;
 
   return {
     interiorIsPlywood,

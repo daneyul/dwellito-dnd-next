@@ -1,30 +1,67 @@
-import { INTERIOR_TRIM_NAMES } from "@/utils/constants/names/names";
-import { Base } from "@react-three/csg";
-import { useGLTF } from "@react-three/drei";
-import { use } from "react";
+import { INTERIOR_TRIM_NAMES } from '@/utils/constants/names/names';
+import { Base } from '@react-three/csg';
+import { useGLTF } from '@react-three/drei';
 
-const { useInteriorGLTFModels, useInteriorTrimGLTFModels } = require("@/utils/hooks/useGLTFModels");
+const {
+  useInteriorGLTFModels,
+  useInteriorTrimGLTFModels,
+} = require('@/utils/hooks/useGLTFModels');
 
-// const None = ({
-//   interiorIsNone,
-//   interiorFinishes
-// }) => {
-//   if (interiorFinishes.interiorIsNone) {
-//     const rightNodes = useGLTF(
-//       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/right.glb`
-//     ).nodes;
-//     const leftNodes = useGLTF(
-//       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/left.glb`
-//     ).nodes;
-//     const backNodes = useGLTF(
-//       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/back.glb`
-//     ).nodes;
-//     const frontNodes = useGLTF(
-//       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/front.glb`
-//     )
-//     const 
-//   }
-// }
+const None = ({
+  interiorFinishes,
+  supplier,
+  size,
+  selectedContainerHeight,
+  adjustForX,
+  adjustForY,
+}) => {
+  if (interiorFinishes.interiorIsNone) {
+    const { lightGreyMaterial } = useInteriorGLTFModels(supplier);
+    const rightNodes = useGLTF(
+      `/models/container/${size}/${selectedContainerHeight}/interior-right.glb`
+    ).nodes;
+    const leftNodes = useGLTF(
+      `/models/container/${size}/${selectedContainerHeight}/interior-left.glb`
+    ).nodes;
+    const backNodes = useGLTF(
+      `/models/container/${size}/${selectedContainerHeight}/interior-back.glb`
+    ).nodes;
+    const frontNodes = useGLTF(
+      `/models/container/${size}/${selectedContainerHeight}/interior-front.glb`
+    );
+    return (
+      <>
+        {/* {Object.keys(leftNodes).map((key) => (
+          <Base
+            key={key}
+            geometry={leftNodes[key].geometry}
+            material={lightGreyMaterial.lightgrey}
+            scale={0.1}
+            position={[adjustForX, 0, adjustForY]}
+          />
+        ))}
+        {Object.keys(backNodes).map((key) => (
+          <Base
+            key={key}
+            geometry={backNodes[key].geometry}
+            material={lightGreyMaterial.lightgrey}
+            scale={0.1}
+            position={[adjustForX, 0, adjustForY]}
+          />
+        ))}
+        {Object.keys(frontNodes).map((key) => (
+          <Base
+            key={key}
+            geometry={frontNodes[key].geometry}
+            material={lightGreyMaterial.lightgrey}
+            scale={0.1}
+            position={[adjustForX, 0, adjustForY]}
+          />
+        ))} */}
+      </>
+    );
+  }
+};
 
 const CharredWood = ({
   interiorFinishes,
@@ -255,7 +292,7 @@ const BaseBoard = ({
       return (
         <Base
           geometry={baseboard.mesh_0.geometry}
-          material={battenAdobeWhiteMaterial["Red Oak Wood Grain Texture"]}
+          material={battenAdobeWhiteMaterial['Red Oak Wood Grain Texture']}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
@@ -265,7 +302,7 @@ const BaseBoard = ({
       return (
         <Base
           geometry={baseboard.mesh_0.geometry}
-          material={luanBattenOakMaterial["Red Oak Wood Grain Texture"]}
+          material={luanBattenOakMaterial['Red Oak Wood Grain Texture']}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
@@ -275,7 +312,7 @@ const BaseBoard = ({
       return (
         <Base
           geometry={baseboard.mesh_0.geometry}
-          material={luanBattenWhiteMaterial["Red Oak Wood Grain Texture"]}
+          material={luanBattenWhiteMaterial['Red Oak Wood Grain Texture']}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
@@ -297,6 +334,12 @@ const AtAndS = ({
 }) => {
   return (
     <>
+      <None
+        interiorFinishes={interiorFinishes}
+        supplier={supplier}
+        size={size}
+        selectedContainerHeight={selectedContainerHeight}
+      />
       <BaseBoard
         interiorTrim={interiorTrim}
         size={size}

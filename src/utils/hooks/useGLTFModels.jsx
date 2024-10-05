@@ -107,11 +107,12 @@ export const useInteriorGLTFModels = (supplier) => {
     const { materials: luanWallMaterial } = useGLTF(
       `/models/${supplier}/materials/interior/luan-wall.glb`
     );
-    const { materials: noneMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior/none.glb`
+    const { materials: lightGreyMaterial } = useGLTF(
+      `/models/${supplier}/materials/interior/lightgrey.glb`
     );
     return {
       luanWallMaterial,
+      lightGreyMaterial
     };
   }
 };
