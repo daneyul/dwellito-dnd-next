@@ -5,6 +5,27 @@ import { use } from "react";
 
 const { useInteriorGLTFModels, useInteriorTrimGLTFModels } = require("@/utils/hooks/useGLTFModels");
 
+// const None = ({
+//   interiorIsNone,
+//   interiorFinishes
+// }) => {
+//   if (interiorFinishes.interiorIsNone) {
+//     const rightNodes = useGLTF(
+//       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/right.glb`
+//     ).nodes;
+//     const leftNodes = useGLTF(
+//       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/left.glb`
+//     ).nodes;
+//     const backNodes = useGLTF(
+//       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/back.glb`
+//     ).nodes;
+//     const frontNodes = useGLTF(
+//       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/front.glb`
+//     )
+//     const 
+//   }
+// }
+
 const CharredWood = ({
   interiorFinishes,
   supplier,

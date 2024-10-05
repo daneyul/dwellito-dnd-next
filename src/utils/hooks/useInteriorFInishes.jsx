@@ -25,6 +25,9 @@ const mdfPanelInterior = INTERIOR_FINISH_OPTIONS.find(
 const luanWallInterior = INTERIOR_FINISH_OPTIONS.find(
   (option) => option.name === INTERIOR_FINISH_NAMES.LUAN_WALL
 );
+const none = INTERIOR_FINISH_OPTIONS.find(
+  (option) => option.name === INTERIOR_FINISH_NAMES.NONE
+);
 
 const useInteriorFinishes = ({ interiorFinish }) => {
   const interiorIsPlywood = interiorFinish === plywoodInterior;
@@ -37,6 +40,7 @@ const useInteriorFinishes = ({ interiorFinish }) => {
   const interiorIsBarnWood = interiorFinish === barnWoodInterior;
   const interiorIsMdfPanel = interiorFinish === mdfPanelInterior;
   const interiorIsLuanWall = interiorFinish === luanWallInterior;
+  const interiorIsNone = interiorFinish === none;
 
   return {
     interiorIsPlywood,
@@ -47,6 +51,7 @@ const useInteriorFinishes = ({ interiorFinish }) => {
     interiorIsBarnWood,
     interiorIsMdfPanel,
     interiorIsLuanWall,
+    interiorIsNone
   };
 };
 
