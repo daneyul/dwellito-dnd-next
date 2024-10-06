@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import style from './toggleView.module.scss';
-import { PageDataContext } from '../Content/Content';
 import HighlightIcon from '../svgs/HighlightIcon';
 import ViewerIcon from '../svgs/ViewerIcon';
 import { Spinner } from '@radix-ui/themes';
 import { ELEVATION_NAMES } from '@/utils/constants/names/names';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const ToggleView = () => {
   const {
@@ -14,7 +14,7 @@ const ToggleView = () => {
     mappedElevations,
     isFloorPlanView,
     setSelectedElevation
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   const rightElevation = mappedElevations.find(
     (elevation) => elevation.name === ELEVATION_NAMES.RIGHT

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { generateImgSrc, toScale } from '../utils/2D/utils';
-import { PageDataContext } from './Content/Content';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
@@ -14,6 +13,7 @@ import {
   SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
 import Draggable from './Draggable';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const MultipleDroppables = ({
   setHoveredPiece,
@@ -29,7 +29,7 @@ const MultipleDroppables = ({
     draggableRefs,
     supplier,
     floorPlan,
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   const objectHeight = containerHeightIsStandard
     ? selectedElevation.objScHeight

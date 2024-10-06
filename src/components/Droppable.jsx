@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { generateImgSrc, toScale } from '../utils/2D/utils';
 import Image from 'next/image';
-import { PageDataContext } from './Content/Content';
 import { elevationData } from '@/utils/constants/elevationData';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const Droppable = ({ children }) => {
   const { scaleFactor, selectedElevation, containerHeightIsStandard, supplier } =
-    useContext(PageDataContext);
+    useContext(ContainerDataContext);
   const { setNodeRef } = useDroppable({
     id: 'droppable',
   });

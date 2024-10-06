@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import style from './toggleCamera.module.scss';
-import { PageDataContext } from '../Content/Content';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const ToggleCamera = () => {
   const { show3d, showExterior, setShowExterior, setCameraReady } =
-    useContext(PageDataContext);
+    useContext(ContainerDataContext);
 
   if (show3d) {
     return (

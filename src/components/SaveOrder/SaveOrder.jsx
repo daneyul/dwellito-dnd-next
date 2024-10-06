@@ -1,9 +1,9 @@
 import style from './saveOrder.module.scss';
 import { useContext } from 'react';
-import { PageDataContext } from '../Content/Content';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const SaveOrder = () => {
-  const { setDialogOpen } = useContext(PageDataContext);
+  const { setDialogOpen } = useContext(ContainerDataContext);
 
   return (
     <div className={style.container}>

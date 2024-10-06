@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import style from './elevationToggle.module.scss';
-import { PageDataContext } from '../Content/Content';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const ElevationToggle = () => {
   const {
@@ -9,7 +9,7 @@ const ElevationToggle = () => {
     setSelectedElevation,
     show3d,
     setSelectedElevationIndex
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   if (!show3d) {
     return (

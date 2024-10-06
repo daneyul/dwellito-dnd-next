@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import style from './sidebar.module.scss';
-import { PageDataContext } from '@/components/Content/Content';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
@@ -27,6 +26,7 @@ import SingleSelect from '../SingleSelect/SingleSelect';
 import AddElecOption from '../AddOption/AddElecOption';
 import AddPartition from '../AddOption/AddPartition';
 import SaveOrder from '../SaveOrder/SaveOrder';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const LogoSection = ({ supplier }) => (
   <>
@@ -145,7 +145,7 @@ const Sidebar = () => {
     slug,
     supplier,
     containerSize,
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   const canSelectContainerHeight = slug !== CONTAINER_SIZE_10;
   const containerPrice = containerHeightIsStandard

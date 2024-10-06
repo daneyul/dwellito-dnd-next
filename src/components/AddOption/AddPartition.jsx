@@ -2,12 +2,12 @@
 import { useContext } from 'react';
 import { generateImgSrc, handleAddComponent } from '../../utils/2D/utils';
 import style from './addOption.module.css';
-import { PageDataContext } from '../Content/Content';
 import * as HoverCard from '@radix-ui/react-hover-card';
 import {
   COMPONENT_NAMES,
   INTERIOR_FINISH_NAMES,
 } from '@/utils/constants/names/names';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const AddPartition = ({ options }) => {
   const {
@@ -24,7 +24,7 @@ const AddPartition = ({ options }) => {
     interiorIsPlywood,
     interiorIsSprayFoamCeiling,
     interiorIsSprayFoamCeilingWalls,
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   
 

@@ -14,7 +14,6 @@ import { Vector3 } from 'three';
 import Window from './Windows/WindowSwitcher';
 import Vent from './Vents/VentSwitcher';
 import { CsgGeometries } from './Containers/CsgGeometries/CsgGeometries';
-import { PageDataContext } from '../Content/Content';
 import {
   COMPONENT_TYPES,
   CONTAINER_SIZE_10,
@@ -34,6 +33,7 @@ import {
   INTERIOR_CAM_ROT,
 } from '@/utils/constants/camera/camPos';
 import Electrical from './Electrical/Electrical';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 export function Models() {
   const {
@@ -46,7 +46,7 @@ export function Models() {
     setCameraReady,
     supplier,
     show3d
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   const { active, progress, item, loaded, total } = useProgress();
 

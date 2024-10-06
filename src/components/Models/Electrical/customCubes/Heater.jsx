@@ -1,4 +1,3 @@
-import { PageDataContext } from '@/components/Content/Content';
 import { checkDistance } from '@/utils/2D/utils';
 import { calcPosition } from '@/utils/3D/utils';
 import { COMPONENT_NAMES } from '@/utils/constants/names/names';
@@ -6,6 +5,7 @@ import { useGLTF } from '@react-three/drei';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { useContext, useEffect, useState, useRef } from 'react';
 import * as THREE from 'three';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const calcElecRotationDegrees = (twoDimDegrees) => {
   // Normalize the degrees to a value between 0 and 360
@@ -25,7 +25,7 @@ const calcElecRotationRadians = (twoDimDegrees) => {
 
 const Heater = ({ component }) => {
   const { selectedComponents, selectedContainer, scaleFactor, supplier } =
-    useContext(PageDataContext);
+    useContext(ContainerDataContext);
 
   if (
     !selectedComponents.some(

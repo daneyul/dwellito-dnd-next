@@ -1,12 +1,12 @@
-import { PageDataContext } from '@/components/Content/Content';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { COMPONENT_NAMES, CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40 } from '@/utils/constants/names/names';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import { useGLTF } from '@react-three/drei';
 import { useContext } from 'react';
 
 const CustomCubesAirConditioner = () => {
   const { containerSize, slug, selectedComponents, supplier } =
-    useContext(PageDataContext);
+    useContext(ContainerDataContext);
 
   if (
     !selectedComponents.some(

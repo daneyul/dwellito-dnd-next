@@ -1,7 +1,6 @@
 import React, { useContext, useMemo, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
-import { PageDataContext } from '@/components/Content/Content';
 import {
   getExteriorPaint,
 } from '@/utils/hooks/useGLTFModels';
@@ -9,6 +8,7 @@ import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/CustomCubes';
 import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import AtAndS from './Interiors/AtAndS';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 export function CsgGeometries({
   doorBoundingBoxes,
@@ -28,7 +28,7 @@ export function CsgGeometries({
     containerSize,
     supplier,
     interiorTrim
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   const size = containerSize();
 

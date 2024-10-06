@@ -2,7 +2,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import style from './orderSummaryModal.module.scss';
 import * as Dialog from '@radix-ui/react-dialog';
-import { PageDataContext } from '@/components/Content/Content';
 import {
   checkDistance,
   generateImgSrc,
@@ -26,6 +25,7 @@ import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/useSaveSelections';
 import Toast from '../Toast/Toast';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const OrderSummaryModal = () => {
   const {
@@ -44,7 +44,7 @@ const OrderSummaryModal = () => {
     supplier,
     containerSizeStr,
     hasRedCorners,
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const [zipCode, setZipCode] = useState('');
   const [openToast, setOpenToast] = useState(false);

@@ -8,11 +8,11 @@ import {
   generateImgSrc,
 } from '../../utils/2D/utils';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import { PageDataContext } from '../Content/Content';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const SaveBtn = ({ selectedComponents, orderTotal }) => {
   const [open, setOpen] = useState(false);
-  const { selectedContainer, scaleFactor, supplier } = useContext(PageDataContext);
+  const { selectedContainer, scaleFactor, supplier } = useContext(ContainerDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const tax = 1000;
 

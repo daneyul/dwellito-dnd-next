@@ -1,6 +1,5 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import style from './DndViewer.module.scss';
-import { PageDataContext } from '../Content/Content';
 import OutsideDroppable from '../Collision/OutsideDroppable';
 import Collision from '../Collision/Collision';
 import { DndContext } from '@dnd-kit/core';
@@ -17,6 +16,7 @@ import { ConditionalButtons } from '../ConditionalButtons/ConditionalButtons';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { LeftArrow, RightArrow } from '../Arrows/Arrows';
 import DragToMove from '../DragToMove/DragToMove';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const DnDViewer = () => {
   const {
@@ -33,7 +33,7 @@ const DnDViewer = () => {
     setSelectedElevationIndex,
     mappedElevations,
     setSelectedElevation
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   const [hoveredPiece, setHoveredPiece] = useState(null);
   const [showDragToMove, setShowDragToMove] = useState(false);

@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import ChevronLeftBlue from '../ChevronLeftBlue';
 import style from './editDesignBtn.module.scss';
-import { PageDataContext } from '@/components/Content/Content';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const EditDesignBtn = () => {
-  const { toggleOrder } = useContext(PageDataContext);
+  const { toggleOrder } = useContext(ContainerDataContext);
   return (
     <div className={style.buttonContainer} onClick={toggleOrder}>
       <div className={style.buttonWrapper}>

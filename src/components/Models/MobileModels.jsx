@@ -12,7 +12,6 @@ import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
 import Window from './Windows/WindowSwitcher';
 import { CsgGeometries } from './Containers/CsgGeometries/CsgGeometries';
-import { PageDataContext } from '../Content/Content';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
@@ -32,6 +31,7 @@ import ContainerShell20High from './Containers/20/ContainerShell20High';
 import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
 import ContainerShell40High from './Containers/40/ContainerShell40High';
 import { containerData } from '@/utils/constants/containerData';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 export function MobileModels() {
   const {
@@ -44,7 +44,7 @@ export function MobileModels() {
     setSelectedComponents,
     selectedContainer,
     containerHeightIsStandard,
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   const doorName = () => {
     if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {

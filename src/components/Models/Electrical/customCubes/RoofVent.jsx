@@ -1,4 +1,3 @@
-import { PageDataContext } from '@/components/Content/Content';
 import {
   COMPONENT_NAMES,
   CONTAINER_SIZE_10,
@@ -8,10 +7,11 @@ import {
 import { useGLTF } from '@react-three/drei';
 import { useContext } from 'react';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const RoofVent = () => {
   const { containerHeightIsStandard, slug, selectedComponents, supplier } =
-    useContext(PageDataContext);
+    useContext(ContainerDataContext);
 
   if (
     !selectedComponents.some(

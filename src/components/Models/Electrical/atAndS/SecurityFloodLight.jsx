@@ -1,4 +1,3 @@
-import { PageDataContext } from '@/components/Content/Content';
 import { checkDistance } from '@/utils/2D/utils';
 import { Box3, Vector3 } from 'three';
 import { calcPosition, calcRotation } from '@/utils/3D/utils';
@@ -6,6 +5,7 @@ import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
 import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const SecurityFloodLight = ({ component }) => {
   const {
@@ -13,7 +13,7 @@ const SecurityFloodLight = ({ component }) => {
     selectedComponents,
     selectedContainer,
     scaleFactor
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   if (
     !selectedComponents.some(

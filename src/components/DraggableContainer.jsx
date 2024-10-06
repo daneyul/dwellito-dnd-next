@@ -1,8 +1,8 @@
 import { droppableWidth, toScale } from '@/utils/2D/utils';
 import { useContext } from 'react';
-import { PageDataContext } from './Content/Content';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import Draggable from './Draggable';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 export const DraggableContainer = ({
   selectedComponents,
@@ -13,7 +13,7 @@ export const DraggableContainer = ({
   setShowCollision,
 }) => {
   const { scaleFactor, selectedElevation, selectedContainer } =
-    useContext(PageDataContext);
+    useContext(ContainerDataContext);
   return (
     <div
       style={{

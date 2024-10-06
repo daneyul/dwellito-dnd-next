@@ -6,8 +6,8 @@ import {
   handleAddComponent,
 } from '../../utils/2D/utils';
 import style from './addOption.module.css';
-import { PageDataContext } from '../Content/Content';
 import { CONTAINER_SIZE_10, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const AddElecOption = ({ options }) => {
   const {
@@ -22,7 +22,7 @@ const AddElecOption = ({ options }) => {
     selectedComponents,
     interiorFinish,
     supplier,
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   const filteredOptions = options.filter((item) => {
     if (slug === CONTAINER_SIZE_10 && item.isCanLight) {

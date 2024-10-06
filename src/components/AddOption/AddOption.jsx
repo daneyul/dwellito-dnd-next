@@ -3,8 +3,8 @@ import { useContext } from 'react';
 import { generateImgSrc, handleAddComponent } from '../../utils/2D/utils';
 import style from './addOption.module.css';
 import * as HoverCard from '@radix-ui/react-hover-card';
-import { PageDataContext } from '../Content/Content';
 import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names/names';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const AddOption = ({ options }) => {
   const {
@@ -17,7 +17,7 @@ const AddOption = ({ options }) => {
     mappedElevations,
     floorPlan,
     supplier
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   const rightElevation = mappedElevations.find(
     (elevation) => elevation.name === ELEVATION_NAMES.RIGHT

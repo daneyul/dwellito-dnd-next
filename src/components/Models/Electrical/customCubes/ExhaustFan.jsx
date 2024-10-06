@@ -1,4 +1,3 @@
-import { PageDataContext } from '@/components/Content/Content';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import {
   COMPONENT_NAMES,
@@ -6,13 +5,14 @@ import {
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40
 } from '@/utils/constants/names/names';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import { useGLTF } from '@react-three/drei';
 import { useContext, useEffect, useRef } from 'react';
 import { Box3, Vector3 } from 'three';
 
 const ExhaustFan = ({ onBoundingBoxChange }) => {
   const { containerSize, slug, selectedComponents, supplier } =
-    useContext(PageDataContext);
+    useContext(ContainerDataContext);
     
   const isSelected = selectedComponents.some(
     (component) => component.name === COMPONENT_NAMES.EXHAUST_FAN

@@ -2,11 +2,11 @@ import AddOption from '../AddOption/AddOption';
 import style from './selector.module.scss';
 import { useContext } from 'react';
 import { COMPONENT_TYPES, SUPPLIER_NAMES } from '@/utils/constants/names/names';
-import { PageDataContext } from '../Content/Content';
 import { componentData } from '@/utils/constants/componentData';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const Selector = () => {
-  const { containerHeightIsStandard, supplier } = useContext(PageDataContext);
+  const { containerHeightIsStandard, supplier } = useContext(ContainerDataContext);
 
   const doors = componentData.filter(
     (item) =>

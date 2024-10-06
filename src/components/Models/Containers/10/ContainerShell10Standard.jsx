@@ -1,12 +1,12 @@
 import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
-import { PageDataContext } from '@/components/Content/Content';
 import { getExteriorPaint } from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/CustomCubes';
 import AtAndS from './Interiors/AtAndS';
 import { EXTERIORS, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 export default function ContainerShell10Standard({ paint }) {
   const {
@@ -19,7 +19,7 @@ export default function ContainerShell10Standard({ paint }) {
     containerSize,
     supplier,
     hasRedCorners
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   // Load all 3d objects
   const { nodes, materials } = useGLTF(

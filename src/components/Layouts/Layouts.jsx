@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from 'react';
 import style from './layout.module.scss';
-import { PageDataContext } from '../Content/Content';
 import { containerData } from '@/utils/constants/containerData';
 import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const Layout = ({ name, imgSrc, isSelected, price, supplier }) => {
   return (
@@ -23,7 +23,7 @@ const Layout = ({ name, imgSrc, isSelected, price, supplier }) => {
 
 const Layouts = () => {
   const { containerId, containerHeightIsStandard, supplier } =
-    useContext(PageDataContext);
+    useContext(ContainerDataContext);
 
   return (
     <div className={style.container}>

@@ -1,7 +1,6 @@
 import { useContext, useMemo, useCallback } from 'react';
 import Subtitle from '../Subtitle/Subtitle';
 import style from './singleSelect.module.scss';
-import { PageDataContext } from '@/components/Content/Content';
 import {
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
@@ -17,6 +16,7 @@ import { INTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/interiorDa
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 /* eslint-disable @next/next/no-img-element */
 const SingleSelect = ({ type }) => {
@@ -38,7 +38,7 @@ const SingleSelect = ({ type }) => {
     interiorTrimPrice,
     hasRedCorners,
     setHasRedCorners,
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   const isExterior = type === EXTERIOR;
   const isInterior = type === INTERIOR;

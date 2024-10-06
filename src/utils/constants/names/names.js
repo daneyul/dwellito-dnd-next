@@ -6,6 +6,11 @@ export const COMPONENT_TYPES = {
   PARTITION: 'partition',
 };
 
+export const CONFIGURATOR_TYPES = {
+  CONTAINER: 'container',
+  SHED: 'shed',
+}
+
 export const EXTERIOR = 'exterior';
 export const INTERIOR = 'interior';
 export const INTERIOR_TRIM = 'interior-trim'
@@ -107,6 +112,14 @@ export const CONTAINER_SIZE_STR_10 = "TEN";
 export const CONTAINER_SIZE_STR_20 = "TWENTY";
 export const CONTAINER_SIZE_STR_40 = "FORTY";
 
+export const SHED_ONE_STORY = '1-story';
+export const SHED_TWO_STORY = '2-story';
+
+export const SHED_SIZE_1_STORY_12x24 = '1-story-12x24';
+export const SHED_SIZE_1_STORY_16x24 = '1-story-16x24';
+export const SHED_SIZE_1_STORY_20x24 = '1-story-20x24';
+export const SHED_SIZE_1_STORY_32x24 = '1-story-32x24';
+
 export const INTERIOR_FINISH_NAMES = {
   NONE: "None",
   PLYWOOD:
@@ -138,11 +151,13 @@ export const DROPPABLE = 'droppable';
 export const SUPPLIER_SLUGS = {
   CUSTOM_CUBES: 'custom-cubes',
   AT_AND_S: 'at-and-s',
+  COMPACT_COTTAGES: 'compact-cottages',
 }
 
 export const SUPPLIER_NAMES = {
   CUSTOM_CUBES: 'Custom Cubes',
   AT_AND_S: 'AT&S',
+  COMPACT_COTTAGES: 'Compact Cottages',
 }
 
 export const EXTERIORS = {
@@ -163,6 +178,8 @@ export const findSupplierName = (supplierSlug) => {
       return SUPPLIER_NAMES.CUSTOM_CUBES;
     case SUPPLIER_SLUGS.AT_AND_S:
       return SUPPLIER_NAMES.AT_AND_S;
+    case SUPPLIER_SLUGS.COMPACT_COTTAGES:
+      return SUPPLIER_NAMES.COMPACT_COTTAGES;
     default:
       return '';
   }

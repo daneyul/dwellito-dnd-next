@@ -1,11 +1,13 @@
 import { CONTAINER_DIMENSIONS } from "./containers/containerDimensions";
 import { DOOR_DIMENSIONS } from "./doors/doorDimensions";
 import { PARTITION_DIMENSIONS } from "./partitions/partitionDimensions";
+import { SHED_DIMENSIONS } from "./sheds/shedDimensions";
 import { VENT_DIMENSIONS } from "./vents/ventDimensions";
 import { WINDOW_DIMENSIONS } from "./windows/windowDimensions";
 
 export const DIMENSIONS = {
   CONTAINER: CONTAINER_DIMENSIONS,
+  SHED: SHED_DIMENSIONS,
   DOOR: DOOR_DIMENSIONS,
   WINDOW: WINDOW_DIMENSIONS,
   VENT: VENT_DIMENSIONS,

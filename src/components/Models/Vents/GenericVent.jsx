@@ -1,11 +1,11 @@
 /* eslint-disable react/display-name */
-import { PageDataContext } from '@/components/Content/Content';
 import { checkDistance } from '@/utils/2D/utils';
 import { calcPosition, calcRotation } from '@/utils/3D/utils';
 import { useGLTF } from '@react-three/drei';
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Box3, Vector3 } from 'three';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const GenericVent = React.memo(
   ({
@@ -18,7 +18,7 @@ const GenericVent = React.memo(
   }) => {
     const { nodes, materials } = useGLTF(modelPath);
     const { selectedComponents, selectedContainer, scaleFactor } =
-      useContext(PageDataContext);
+      useContext(ContainerDataContext);
     const selectedElevation = component.elevation[0];
     const [width, setWidth] = useState(0);
     const distanceObject = checkDistance({

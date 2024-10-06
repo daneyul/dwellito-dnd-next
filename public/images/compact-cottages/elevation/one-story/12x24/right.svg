@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="297.25" height="118.38" viewBox="0 0 297.25 118.38">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #010101;
+        stroke-miterlimit: 10;
+        stroke-width: .25px;
+      }
+    </style>
+  </defs>
+  <g id="Default">
+    <path class="cls-1" d="m297.12,0H.12v110.25h1v8h295v-8h1V0Z"/>
+  </g>
+  <g id="Make2D">
+    <g id="Make2D::Visible">
+      <g id="Make2D::Visible::Curves">
+        <path class="cls-2" d="m.12,110.25h4.5"/>
+        <path class="cls-2" d="m.12,110.25V0"/>
+        <path class="cls-2" d="m292.63,110.25h4.5"/>
+        <path class="cls-2" d="m292.63,110.25V0"/>
+        <path class="cls-2" d="m297.12,110.25V0"/>
+        <path class="cls-2" d="m4.63,110.25V0"/>
+        <path class="cls-2" d="m4.63,110.25h288"/>
+        <path class="cls-2" d="m296.13,118.25v-8"/>
+        <path class="cls-2" d="m1.13,110.25v8"/>
+        <path class="cls-2" d="m1.13,118.25h295"/>
+      </g>
+      <g id="Make2D::Visible::SceneSilhouetteCurves">
+        <path class="cls-2" d="m1.13,118.25h295"/>
+        <path class="cls-2" d="m1.13,110.25v8"/>
+        <path class="cls-2" d="m297.12,110.25V0"/>
+        <path class="cls-2" d="m.12,110.25h4.5"/>
+        <path class="cls-2" d="m.12,110.25V0"/>
+        <path class="cls-2" d="m296.13,118.25v-8"/>
+      </g>
+    </g>
+  </g>
+</svg>

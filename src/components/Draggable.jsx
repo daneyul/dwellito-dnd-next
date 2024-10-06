@@ -8,7 +8,6 @@ import React, {
 } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
 import { toScale, generateImgSrc, calculateCSSPos } from '../utils/2D/utils';
-import { PageDataContext } from './Content/Content';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
@@ -24,6 +23,7 @@ import {
   ELEVATION_NAMES,
 } from '@/utils/constants/names/names';
 import { useCombinedRefs } from '@dnd-kit/utilities';
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 function useCollidableDraggable({ id, data: customData }) {
   const {
@@ -68,7 +68,7 @@ const Draggable = ({
     supplier,
     selectedElevation,
     isFloorPlanView,
-  } = useContext(PageDataContext);
+  } = useContext(ContainerDataContext);
 
   const {
     attributes,
