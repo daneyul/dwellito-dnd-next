@@ -13,7 +13,7 @@ import { elevationData } from '@/utils/constants/elevationData';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
-import useOrderTotal from '@/utils/hooks/useOrderTotal';
+import useOrderTotal from '../hooks/useContainerOrderTotal';
 import useInteriorFinishes from '@/utils/hooks/useInteriorFInishes';
 import {
   CONFIGURATOR_TYPES,

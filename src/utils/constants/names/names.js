@@ -4,6 +4,7 @@ export const COMPONENT_TYPES = {
   VENT: 'vent',
   ELECTRICAL: 'electrical',
   PARTITION: 'partition',
+  ROOF: 'roof'
 };
 
 export const CONFIGURATOR_TYPES = {
@@ -89,6 +90,11 @@ const AT_AND_S_COMPONENTS = {
   BUTYL_TAPE: 'Butyl Tape - Gray',
 }
 
+export const COMPACT_COTTAGES_COMPONENTS = {
+  SLANT_ROOF: 'Slant Roof',
+  GABLE_ROOF: 'Gable Roof',
+}
+
 export const COMPONENT_NAMES = {
   ...CUSTOM_CUBE_COMPONENTS,
   ...AT_AND_S_COMPONENTS
@@ -119,6 +125,11 @@ export const SHED_SIZE_1_STORY_12x24 = '1-story-12x24';
 export const SHED_SIZE_1_STORY_16x24 = '1-story-16x24';
 export const SHED_SIZE_1_STORY_20x24 = '1-story-20x24';
 export const SHED_SIZE_1_STORY_32x24 = '1-story-32x24';
+
+export const SHED_SIZE_2_STORY_12x24 = '1-story-12x24';
+export const SHED_SIZE_2_STORY_16x24 = '1-story-16x24';
+export const SHED_SIZE_2_STORY_20x24 = '1-story-20x24';
+export const SHED_SIZE_2_STORY_32x24 = '1-story-32x24';
 
 export const INTERIOR_FINISH_NAMES = {
   NONE: "None",
@@ -170,6 +181,9 @@ export const EXTERIORS = {
   NUCOR_GREEN: 'Nucor Green',
   KEIWIT_YELLOW: 'Keiwit Yellow',
   SAF_RED: 'SAF Red (Corners Only)',
+  DARK_BLUE: 'Dark Blue',
+  GREY: 'Grey',
+  BLACK: 'Black',
 }
 
 export const findSupplierName = (supplierSlug) => {

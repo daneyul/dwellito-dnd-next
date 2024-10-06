@@ -3,6 +3,7 @@ import CustomCubes from '../../public/logos/customCubes/logo.svg';
 const logos = {
   'custom-cubes': CustomCubes,
   'at-and-s': '/logos/atAndS/logo.png',
+  'compact-cottages': '/logos/compactCottages/logo.png',
 };
 
 const Logo = ({ type }) => {

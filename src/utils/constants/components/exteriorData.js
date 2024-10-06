@@ -87,7 +87,43 @@ const atAndS = [
   },
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));
 
+const compactCottages = [
+  {
+    name: EXTERIORS.BLACK,
+    glbObject: 'black',
+    hex: '#000000',
+    fileName: 'black',
+    img: 'black.png',
+    price: 0
+  },
+  {
+    name: EXTERIORS.DARK_BLUE,
+    glbObject: 'darkblue',
+    hex: '#47626a',
+    fileName: 'darkblue',
+    img: 'darkblue.png',
+    price: 0
+  },
+  {
+    name: EXTERIORS.WHITE,
+    glbObject: 'white',
+    hex: '#bdbab3',
+    fileName: 'white',
+    img: 'white.png',
+    price: 0
+  },
+  {
+    name: EXTERIORS.GREY,
+    glbObject: 'grey',
+    hex: '#7e776f',
+    fileName: 'grey',
+    img: 'grey.png',
+    price: 0
+  },
+].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.COMPACT_COTTAGES }));
+
 export const EXTERIOR_FINISH_OPTIONS = [
   ...customCubes,
-  ...atAndS
+  ...atAndS,
+  ...compactCottages
 ];

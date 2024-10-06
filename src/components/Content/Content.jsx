@@ -2,7 +2,6 @@
 import React from 'react';
 import { GoogleTagManager } from '@next/third-parties/google';
 import Viewer from '@/components/Viewer/Viewer';
-import Sidebar from '@/components/Sidebar/Sidebar';
 import PriceTotal from '@/components/PriceTotal/PriceTotal';
 import style from './content.module.scss';
 import '@radix-ui/themes/styles.css';
@@ -14,31 +13,22 @@ import { useMediaQuery } from 'react-responsive';
 import ContainerDataProvider from '@/utils/contexts/ContainerDataProvider';
 import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import ShedDataProvider from '@/utils/contexts/ShedDataProvider';
+import ShedSidebar from '../Sidebar/ShedSidebar';
+import ContainerSidebar from '../Sidebar/ContainerSidebar';
 
 const Content = ({ data }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   return (
     <Theme>
       <GoogleTagManager gtmId='GTM-NVCQ2ZW3' />
-      {data.slug === SUPPLIER_SLUGS.COMPACT_COTTAGES ? (
+      {data.supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES ? (
         <ShedDataProvider data={data}>
           <div className={style.pageWrapper}>
             <div className={style.content}>
-              {isMobile ? (
-                <>
-                  <MobileModels />
-                  <div className={style.mobileContainer}>
-                    <MobileForm />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <Viewer />
-                  <Sidebar />
-                  <PriceTotal />
-                  <OrderSummaryModal />
-                </>
-              )}
+              {/* <Viewer /> */}
+              <ShedSidebar />
+              {/* <PriceTotal />
+              <OrderSummaryModal /> */}
             </div>
           </div>
         </ShedDataProvider>
@@ -56,7 +46,7 @@ const Content = ({ data }) => {
               ) : (
                 <>
                   <Viewer />
-                  <Sidebar />
+                  <ContainerSidebar />
                   <PriceTotal />
                   <OrderSummaryModal />
                 </>

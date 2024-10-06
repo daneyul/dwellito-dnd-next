@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import style from './sidebar.module.scss';
+import style from './containerSidebar.module.scss';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
@@ -19,14 +19,14 @@ import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import Logo from '../Logo';
 import Badges from '../Badges/Badges';
 import BasePriceDesc from '../BasePriceDesc/BasePriceDesc';
-import Layouts from '../Layouts/Layouts';
 import Subtitle from '../Subtitle/Subtitle';
 import Selector from '../Selector/Selector';
-import SingleSelect from '../SingleSelect/SingleSelect';
+import ContainerSingleSelect from '../SingleSelect/ContainerSingleSelect';
 import AddElecOption from '../AddOption/AddElecOption';
 import AddPartition from '../AddOption/AddPartition';
-import SaveOrder from '../SaveOrder/SaveOrder';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import ContainerSaveOrder from '../SaveOrder/ContainerSaveOrder';
+import ContainerLayouts from '../Layouts/ContainerLayouts';
 
 const LogoSection = ({ supplier }) => (
   <>
@@ -106,7 +106,7 @@ const ExteriorSelector = ({ supplier }) => (
         css={{ fontWeight: 400, marginBottom: '1rem' }}
       />
     )}
-    <SingleSelect type={EXTERIOR} />
+    <ContainerSingleSelect type={EXTERIOR} />
   </>
 );
 
@@ -118,7 +118,7 @@ const InteriorSelector = () => {
         text='Select your wall finish'
         css={{ fontWeight: 400, marginBottom: '1rem' }}
       />
-      <SingleSelect type={INTERIOR} />
+      <ContainerSingleSelect type={INTERIOR} />
     </>
   );
 };
@@ -137,7 +137,7 @@ const PartitionsSelector = ({ partitions }) => {
   );
 };
 
-const Sidebar = () => {
+const ContainerSidebar = () => {
   const {
     containerHeightIsStandard,
     setSelectedContainerHeight,
@@ -215,7 +215,7 @@ const Sidebar = () => {
             setSelectedContainerHeight={setSelectedContainerHeight}
           />
           <PriceSection containerPrice={containerPrice} supplier={supplier}/>
-          <Layouts />
+          <ContainerLayouts />
         </>
       );
     } else {
@@ -223,7 +223,7 @@ const Sidebar = () => {
         <>
           <Badges />
           <PriceSection containerPrice={containerPrice} supplier={supplier} />
-          <Layouts />
+          <ContainerLayouts />
           <HeightSelector
             canSelectContainerHeight={canSelectContainerHeight}
             containerHeightIsStandard={containerHeightIsStandard}
@@ -258,13 +258,13 @@ const Sidebar = () => {
               text='Select your flooring'
               css={{ fontWeight: 400, marginBottom: '1rem' }}
             />
-            <SingleSelect type={FLOORING} />
+            <ContainerSingleSelect type={FLOORING} />
           </>
         )}
-        <SaveOrder />
+        <ContainerSaveOrder />
       </div>
     </>
   );
 };
 
-export default Sidebar;
+export default ContainerSidebar;

@@ -1,8 +1,8 @@
+import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import style from './saveOrder.module.scss';
 import { useContext } from 'react';
-import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
-const SaveOrder = () => {
+const ContainerSaveOrder = () => {
   const { setDialogOpen } = useContext(ContainerDataContext);
 
   return (
@@ -13,4 +13,4 @@ const SaveOrder = () => {
   );
 };
 
-export default SaveOrder;
+export default ContainerSaveOrder;

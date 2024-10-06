@@ -1,6 +1,6 @@
 import { useContext, useMemo, useCallback } from 'react';
 import Subtitle from '../Subtitle/Subtitle';
-import style from './singleSelect.module.scss';
+import style from './containerSingleSelect.module.scss';
 import {
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
@@ -19,7 +19,7 @@ import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrim
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 /* eslint-disable @next/next/no-img-element */
-const SingleSelect = ({ type }) => {
+const ContainerSingleSelect = ({ type }) => {
   const {
     exteriorFinish,
     setExteriorFinish,
@@ -181,4 +181,4 @@ const SingleSelect = ({ type }) => {
   );
 };
 
-export default SingleSelect;
+export default ContainerSingleSelect;

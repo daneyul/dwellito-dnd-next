@@ -21,7 +21,7 @@ const Layout = ({ name, imgSrc, isSelected, price, supplier }) => {
   );
 };
 
-const Layouts = () => {
+const ContainerLayouts = () => {
   const { containerId, containerHeightIsStandard, supplier } =
     useContext(ContainerDataContext);
 
@@ -54,4 +54,4 @@ const Layouts = () => {
   );
 };
 
-export default Layouts;
+export default ContainerLayouts;
