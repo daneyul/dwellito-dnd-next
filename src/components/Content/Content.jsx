@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useRef } from 'react';
 import { GoogleTagManager } from '@next/third-parties/google';
 import Viewer from '@/components/Viewer/Viewer';
 import Sidebar from '@/components/Sidebar/Sidebar';
@@ -60,6 +60,7 @@ const PageDataProvider = ({ children, data }) => {
     useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [scaleFactor, setScaleFactor] = useState(2.5);
+  const [sessionLength, setSessionLength] = useState(0);
 
   // Selections
   const [selectedComponents, setSelectedComponents] = useState(
@@ -189,6 +190,17 @@ const PageDataProvider = ({ children, data }) => {
     }
   }, [slug, containerData]);
 
+  // Session length
+  const timerRef = useRef();
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setSessionLength((prevLength) => prevLength + 1); // increment every second
+    }, 1000);
+
+    return () => clearInterval(timerRef.current); // Clean up on unmount
+  }, []);
+
   const contextValue = {
     selectedComponents,
     setSelectedComponents,
@@ -242,6 +254,8 @@ const PageDataProvider = ({ children, data }) => {
     interiorTrimPrice,
     hasRedCorners,
     setHasRedCorners,
+    sessionLength,
+    setSessionLength,
   };
 
   return (

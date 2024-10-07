@@ -44,6 +44,7 @@ const OrderSummaryModal = () => {
     supplier,
     containerSizeStr,
     hasRedCorners,
+    sessionLength
   } = useContext(PageDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const [zipCode, setZipCode] = useState('');
@@ -214,6 +215,8 @@ const OrderSummaryModal = () => {
       },
       surface: surfaceData,
       mobileVisitor: false,
+      currency: supplier === SUPPLIER_SLUGS.CUSTOM_CUBES ? 'CAD' : 'USD',
+      sessionLength: sessionLength,
     };
 
     const JSONdata = JSON.stringify(responseData);
