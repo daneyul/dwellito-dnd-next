@@ -220,22 +220,20 @@ const OrderSummaryModal = () => {
     const endpoint = 'https://hooks.zapier.com/hooks/catch/18577479/2yjklei/';
 
     try {
-      // const options = {
-      //   method: 'POST',
-      //   body: JSONdata,
-      //   mode: 'no-cors',
-      // };
-      // const response = await fetch(endpoint, options);
-      // if (!response.ok) {
-      //   throw new Error('Failed to send Zapier request');
-      // }
-      console.log(responseData)
-      console.log('Zapier request sent successfully');
+      const options = {
+        method: 'POST',
+        body: JSONdata,
+        mode: 'no-cors',
+      };
+      const response = await fetch(endpoint, options);
+      if (!response.ok) {
+        throw new Error('Failed to send Zapier request');
+      }
       setOpenToast(true);
       setDialogOpen(false);
     } catch (error) {
       console.error('Error sending Zapier request:', error);
-      throw error; // Propagate error to handleSubmit for error handling
+      throw error;
     }
   };
 
