@@ -2,6 +2,9 @@ import { v4 as uuid } from 'uuid';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
 } from '../constants/names/names';
@@ -181,11 +184,11 @@ export const getUniqueElevationObjects = (selectedComponents) => {
 };
 
 export const DROPPABLE_FLOOR_PLAN_WIDTH = (DIMENSIONS, selectedContainer) => {
-  if (selectedContainer.name === `10' Custom Cube`) {
+  if (selectedContainer.slug === CONTAINER_SIZE_10) {
     return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
-  } else if (selectedContainer.name === `20' Custom Cube`) {
+  } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
     return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
-  } else if (selectedContainer.name === `40' Custom Cube`) {
+  } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
     return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
   }
 };
@@ -194,11 +197,11 @@ export const DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES = (
   DIMENSIONS,
   selectedContainer
 ) => {
-  if (selectedContainer.name === `10' Custom Cube`) {
+  if (selectedContainer.slug === CONTAINER_SIZE_10) {
     return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
-  } else if (selectedContainer.name === `20' Custom Cube`) {
+  } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
     return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
-  } else if (selectedContainer.name === `40' Custom Cube`) {
+  } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
     return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
   }
 };
@@ -206,13 +209,13 @@ export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (
   DIMENSIONS,
   selectedContainer
 ) => {
-  if (selectedContainer.name === `10' Custom Cube`) {
+  if (selectedContainer.slug === CONTAINER_SIZE_10) {
     return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2.7;
-  } else if (selectedContainer.name === `20' Custom Cube`) {
+  } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
     return (
       DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2.7
     );
-  } else if (selectedContainer.name === `40' Custom Cube`) {
+  } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
     return (
       DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2.7
     );

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from 'react';
 import { generateImgSrc, handleAddComponent } from '../../utils/2D/utils';
-import style from './addOption.module.css';
+import style from './addElecOption.module.scss';
 import { PageDataContext } from '../Content/Content';
 import * as HoverCard from '@radix-ui/react-hover-card';
 import {

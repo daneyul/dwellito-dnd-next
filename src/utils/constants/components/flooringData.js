@@ -5,3 +5,5 @@ export const FLOORING_OPTIONS = [
   ...customCubes,
   ...atAndS
 ];
+
+export const noneOption = FLOORING_OPTIONS.find(option => option.name === 'None');
