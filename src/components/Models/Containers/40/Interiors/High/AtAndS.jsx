@@ -1,4 +1,4 @@
-import { FLOORING_OPTIONS } from "@/utils/constants/components/flooringData";
+import { noneOption } from "@/utils/constants/components/flooringData";
 import { useFlooringGLTFModels, useInteriorGLTFModels } from "@/utils/hooks/useGLTFModels";
 import { useGLTF } from "@react-three/drei";
 
@@ -659,7 +659,7 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
 };
 
 const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }) => {
-  if (flooring.name !== FLOORING_OPTIONS[0].name) {
+  if (flooring.name !== noneOption?.name) {
     const { echoFloor, timberFloor } = useFlooringGLTFModels(supplier);
     const { nodes: flooringNodes } = useGLTF(
       `/models/container/${containerSize()}/${selectedContainerHeight}/flooring.glb`

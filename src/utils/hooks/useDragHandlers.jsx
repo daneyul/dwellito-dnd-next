@@ -58,8 +58,7 @@ const useDragHandlers = ({
     const isFixed = draggedItem.fixed;
     const isDraggableOnFloorPlan =
       draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-      draggedItem.name === COMPONENT_NAMES.OUTLET ||
-      draggedItem.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN;
+      draggedItem.name === COMPONENT_NAMES.OUTLET
 
     // Store the initial position in local state
     setInitialPosition({ ...draggedItem.position });

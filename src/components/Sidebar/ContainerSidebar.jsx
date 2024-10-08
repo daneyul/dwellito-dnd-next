@@ -7,7 +7,6 @@ import {
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_40,
   CONTAINER_STANDARD,
-  findSupplierName,
   EXTERIOR,
   FLOORING,
   INTERIOR,
@@ -17,8 +16,7 @@ import {
 import { componentData } from '@/utils/constants/componentData';
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import Logo from '../Logo';
-import Badges from '../Badges/Badges';
-import BasePriceDesc from '../BasePriceDesc/BasePriceDesc';
+import Layouts from '../Layouts/Layouts';
 import Subtitle from '../Subtitle/Subtitle';
 import Selector from '../Selector/Selector';
 import ContainerSingleSelect from '../SingleSelect/ContainerSingleSelect';
@@ -28,72 +26,57 @@ import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import ContainerSaveOrder from '../SaveOrder/ContainerSaveOrder';
 import ContainerLayouts from '../Layouts/ContainerLayouts';
 
-const LogoSection = ({ supplier }) => (
-  <>
-    <div className={style.logo}>
-      <Logo type={supplier} />
-    </div>
-    <div className={style.header}>{findSupplierName(supplier)}</div>
-    <div className={style.supplier}>By {findSupplierName(supplier)}</div>
-    <div className={style.description}>
-      {findSupplierName(supplier)} offers shipping containers for sale and
-      modifications. Whether it's for storage purposes or mobile office space we
-      got it!
-    </div>
-  </>
-);
-
-const PriceSection = ({ containerPrice, supplier }) => {
-  if (supplier !== SUPPLIER_SLUGS.AT_AND_S) {
-    return <BasePriceDesc price={containerPrice} />;
-  }
+const LogoSection = ({ supplier }) => {
+  return (
+    <>
+      <div className={style.logo}>
+        <Logo type={supplier} />
+      </div>
+      <div className={style.header}>Configure</div>
+    </>
+  );
 };
 
-const HeightSelector = 
-  ({
-    canSelectContainerHeight,
-    containerHeightIsStandard,
-    setSelectedContainerHeight,
-  }) => (
-    <div
-      className={style.containerHeights}
-      style={{ display: canSelectContainerHeight ? 'block' : 'none' }}
-    >
-      <Subtitle text='Select the height' />
-      <Subtitle
-        text='Start with your ideal height.'
-        css={{ fontWeight: 400, marginBottom: '1rem' }}
-      />
-      <div className={style.containerHeightSelectWrapper}>
-        <button
-          onClick={() => setSelectedContainerHeight(CONTAINER_STANDARD)}
-          className={
-            containerHeightIsStandard
-              ? style.containerButtonSelected
-              : style.containerButton
-          }
-        >
-          <span style={{ fontWeight: 700, marginRight: '0.25rem' }}>
-            Standard
-          </span>
-          <span>8' 5"</span>
-        </button>
-        <button
-          onClick={() => setSelectedContainerHeight(CONTAINER_HIGH)}
-          className={
-            !containerHeightIsStandard
-              ? style.containerButtonSelected
-              : style.containerButton
-          }
-        >
-          <span style={{ fontWeight: 700, marginRight: '0.25rem' }}>
-            High Cube
-          </span>
-          <span>9' 6"</span>
-        </button>
-      </div>
+const HeightSelector = ({
+  canSelectContainerHeight,
+  containerHeightIsStandard,
+  setSelectedContainerHeight,
+}) => (
+  <div
+    className={style.containerHeights}
+    style={{ display: canSelectContainerHeight ? 'block' : 'none' }}
+  >
+    <Subtitle text='Select the height' />
+    <div className={style.containerHeightSelectWrapper}>
+      <button
+        onClick={() => setSelectedContainerHeight(CONTAINER_STANDARD)}
+        className={
+          containerHeightIsStandard
+            ? style.containerButtonSelected
+            : style.containerButton
+        }
+      >
+        <img src="/images/containers/thumbnails/heights/standard.png" alt='layout' className={style.layoutImg} />
+        <div style={{ fontWeight: 700, width: "100%", }}>
+          Standard (8' 5")
+        </div>
+      </button>
+      <button
+        onClick={() => setSelectedContainerHeight(CONTAINER_HIGH)}
+        className={
+          !containerHeightIsStandard
+            ? style.containerButtonSelected
+            : style.containerButton
+        }
+      >
+        <img src="/images/containers/thumbnails/heights/high.png" alt='layout' className={style.layoutImg} />
+        <div style={{ fontWeight: 700, width: "100%" }}>
+          High Cube (9' 6")
+        </div>
+      </button>
     </div>
-  );
+  </div>
+);
 
 const ExteriorSelector = ({ supplier }) => (
   <>
@@ -205,6 +188,7 @@ const ContainerSidebar = () => {
   });
 
   const ContainerSelection = () => {
+<<<<<<< HEAD:src/components/Sidebar/ContainerSidebar.jsx
     if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
       return (
         <>
@@ -232,6 +216,18 @@ const ContainerSidebar = () => {
         </>
       );
     }
+=======
+    return (
+      <>
+        <Layouts />
+        <HeightSelector
+          canSelectContainerHeight={canSelectContainerHeight}
+          containerHeightIsStandard={containerHeightIsStandard}
+          setSelectedContainerHeight={setSelectedContainerHeight}
+        />
+      </>
+    );
+>>>>>>> 3d02b43e4bc330507c36a1a92ce683790abd4942:src/components/Sidebar/Sidebar.jsx
   };
 
   return (
@@ -239,8 +235,8 @@ const ContainerSidebar = () => {
       <div className={style.desktopContainer}>
         <LogoSection supplier={supplier} />
         <ContainerSelection />
-        <ExteriorSelector supplier={supplier} />
         <Selector />
+        <ExteriorSelector supplier={supplier} />
         <InteriorSelector />
         <PartitionsSelector partitions={partitions} />
         <Subtitle

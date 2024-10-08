@@ -2,17 +2,6 @@ import { SUPPLIER_SLUGS } from "../../names/names";
 
 export const customCubes = [
   {
-    name: 'None',
-    type: '',
-    fileName: '',
-    glbObject: '',
-    img: 'none.png',
-    hex: '#FFFFFF',
-    price10: 0,
-    price20: 0,
-    price40: 0,
-  },
-  {
     name: 'Vinyl Plank Flooring - 12mil Echo',
     type: 'Echo',
     fileName: 'echo',
@@ -33,5 +22,16 @@ export const customCubes = [
     price10: 610,
     price20: 950,
     price40: 1845,
+  },
+  {
+    name: 'None',
+    type: '',
+    fileName: '',
+    glbObject: '',
+    img: 'none.png',
+    hex: '#FFFFFF',
+    price10: 0,
+    price20: 0,
+    price40: 0,
   },
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));

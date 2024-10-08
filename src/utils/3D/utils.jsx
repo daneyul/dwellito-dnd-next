@@ -1,4 +1,4 @@
-import { ELEVATION_NAMES } from '../constants/names/names';
+import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40, ELEVATION_NAMES } from '../constants/names/names';
 import { DIMENSIONS } from '../constants/dimensions/dimensions';
 import { elevationData } from '../constants/elevationData';
 
@@ -48,29 +48,29 @@ const rightSideCoordinates = ({
   selectedContainer,
 }) => {
   const adjustForX = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
   const adjustForZ = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return -(parseFloat(distanceObject.top) + 4);
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return -(parseFloat(distanceObject.top) + 4);
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return -(parseFloat(distanceObject.top / 1.4) + 4);
     }
   };
@@ -89,47 +89,47 @@ const leftSideCoordinates = ({
   width,
 }) => {
   const adjustForX = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
   const adjustForZ = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return -(parseFloat(distanceObject.top) + 4);
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return -(parseFloat(distanceObject.top) + 4);
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return -(parseFloat(distanceObject.top / 1.4) + 4);
     }
   };
 
   let xPosition = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return (
         distanceObject.right / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX() +
         width + 0.6
       );
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return (
         distanceObject.right / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX() +
         width + 0.6
       );
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return (
         distanceObject.right / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX() +
@@ -138,20 +138,20 @@ const leftSideCoordinates = ({
     }
   };
   let yPosition = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return (
         -DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY() -
         0.2
       );
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return (
         -DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY() -
         0.2
       );
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return (
         -DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH /
           SCALE_FACTOR_FOR_CALCULATIONS +
@@ -169,38 +169,38 @@ const frontSideCoordinates = ({
   selectedContainer,
 }) => {
   const adjustForX = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
   let xPosition = 0 + adjustForX();
   let yPosition = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return (
         (DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - distanceObject.left) /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY()
       );
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return (
         (DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - distanceObject.left) /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY()
       );
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return (
         (DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - distanceObject.left) /
           SCALE_FACTOR_FOR_CALCULATIONS +
@@ -218,36 +218,36 @@ const backSideCoordinates = ({
   selectedContainer,
 }) => {
   const adjustForX = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
 
   let xPosition = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return (
         DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX() + 0.2
       );
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return (
         DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX() + 0.5
       );
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return (
         DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX() + 1.2
@@ -267,20 +267,20 @@ const electricalCoordinates = (
   selectedContainer
 ) => {
   const adjustForX = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
@@ -289,19 +289,19 @@ const electricalCoordinates = (
     distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX();
 
   let yPosition = () => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return (
         (DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - distanceObject.top) /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY()
       );
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return (
         -(DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - distanceObject.top) /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY()
       );
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return (
         (DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - distanceObject.top) /
           SCALE_FACTOR_FOR_CALCULATIONS +
