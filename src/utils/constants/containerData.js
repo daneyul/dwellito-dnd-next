@@ -6,7 +6,7 @@ import {
 
 export const containerData = [
   {
-    name: `10' Custom Cube`,
+    name: `10' Container`,
     slug: CONTAINER_SIZE_10,
     id: 1,
     width: `8' width`,
@@ -19,7 +19,7 @@ export const containerData = [
     size: CONTAINER_SIZE_10
   },
   {
-    name: `20' Custom Cube`,
+    name: `20' Container`,
     slug: CONTAINER_SIZE_20,
     id: 2,
     width: `8' width`,
@@ -32,7 +32,7 @@ export const containerData = [
     size: CONTAINER_SIZE_20
   },
   {
-    name: `40' Custom Cube`,
+    name: `40' Container`,
     slug: CONTAINER_SIZE_40,
     id: 3,
     width: `8' width`,

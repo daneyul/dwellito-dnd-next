@@ -155,7 +155,7 @@ export const customCubes = [
       TWENTY: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/20/wrap-light-dash.svg`,
       FORTY: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/40/wrap-light-dash.svg`,
     },
-    sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/sidebar/wrap-light.jpg`,
+    sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/sidebar/wrap-light.png`,
     desc: 'P602-1-01',
     objWidth: {
       TEN: 50,
