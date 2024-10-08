@@ -4,7 +4,7 @@ import { getExteriorPaint } from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/Standard/CustomCubes';
 import AtAndS from './Interiors/Standard/AtAndS';
-import { EXTERIORS, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40, EXTERIORS, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
@@ -27,41 +27,31 @@ export default function ContainerShell20Standard({ paint }) {
     `/models/container/${containerSize()}/${selectedContainerHeight}/container-shell.glb`
   );
 
-  const { nodes: cornerNodes } = useGLTF(
-    `/models/container/${containerSize()}/${selectedContainerHeight}/corners.glb`
-  );
-
   const exteriorPaint = useMemo(() => {
     return getExteriorPaint(supplier, exteriorFinish, paint);
   }, [supplier, exteriorFinish, paint]);
 
-  const redPaint = EXTERIOR_FINISH_OPTIONS.find(
-    (item) => item.name === EXTERIORS.SAF_RED
-  );
-
-  const cornerPaint = getExteriorPaint(supplier, redPaint, paint);
-
   const ref = useRef();
 
   const adjustForX = useMemo(() => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
-  }, [selectedContainer.name, DIMENSIONS]);
+  }, [selectedContainer.slug, DIMENSIONS]);
 
   const adjustForY = useMemo(() => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
-  }, [selectedContainer.name, DIMENSIONS]);
+  }, [selectedContainer.slug, DIMENSIONS]);
 
   const Lighting = () => {
     if (hasCanLighting) {
@@ -183,6 +173,14 @@ export default function ContainerShell20Standard({ paint }) {
   };
 
   const Corners = () => {
+    const { nodes: cornerNodes } = useGLTF(
+      `/models/container/${containerSize()}/${selectedContainerHeight}/corners.glb`
+    );
+    const redPaint = EXTERIOR_FINISH_OPTIONS.find(
+    (item) => item.name === EXTERIORS.SAF_RED
+  );
+
+  const cornerPaint = getExteriorPaint(supplier, redPaint, paint);
     return (
       <group scale={0.001}>
         {Object.keys(cornerNodes).map((nodeKey) => {

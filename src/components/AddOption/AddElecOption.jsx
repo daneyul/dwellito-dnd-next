@@ -5,7 +5,7 @@ import {
   getComponentPrice,
   handleAddComponent,
 } from '../../utils/2D/utils';
-import style from './addOption.module.css';
+import style from './addElecOption.module.scss';
 import { CONTAINER_SIZE_10, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 

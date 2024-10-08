@@ -6,15 +6,15 @@ import PriceTotal from '@/components/PriceTotal/PriceTotal';
 import style from './content.module.scss';
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
-import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
 import { MobileModels } from '../Models/MobileModels';
 import MobileForm from '../MobileForm/MobileForm';
 import { useMediaQuery } from 'react-responsive';
-import ContainerDataProvider from '@/utils/contexts/ContainerDataProvider';
-import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import ShedDataProvider from '@/utils/contexts/ShedDataProvider';
+import ContainerDataProvider from '@/utils/contexts/ContainerDataProvider';
 import ShedSidebar from '../Sidebar/ShedSidebar';
 import ContainerSidebar from '../Sidebar/ContainerSidebar';
+import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 
 const Content = ({ data }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });

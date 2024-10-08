@@ -1,4 +1,4 @@
-import { FLOORING_OPTIONS } from "@/utils/constants/components/flooringData";
+import { noneOption } from "@/utils/constants/components/flooringData";
 import { useFlooringGLTFModels } from "@/utils/hooks/useGLTFModels";
 import { useGLTF } from "@react-three/drei";
 
@@ -255,7 +255,7 @@ const Flooring = ({
   containerSize,
   selectedContainerHeight,
 }) => {
-  if (flooring.name !== FLOORING_OPTIONS[0].name) {
+  if (flooring.name !== noneOption?.name) {
     const { echoFloor, timberFloor } = useFlooringGLTFModels(supplier);
     const { nodes: flooringNodes } = useGLTF(
       `/models/container/${containerSize()}/${selectedContainerHeight}/flooring.glb`

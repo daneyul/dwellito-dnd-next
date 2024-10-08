@@ -18,6 +18,7 @@ import {
   COMPONENT_TYPES,
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
 } from '@/utils/constants/names/names';
 import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
 import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
@@ -77,31 +78,31 @@ export function Models() {
   );
 
   const exteriorCamPos = () => {
-    if (selectedContainer === containerData[0]) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return EXTERIOR_CAM_POS.TEN;
-    } else if (selectedContainer === containerData[1]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return EXTERIOR_CAM_POS.TWENTY;
-    } else if (selectedContainer === containerData[2]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return EXTERIOR_CAM_POS.FORTY;
     }
   };
 
   const interiorCamPos = () => {
-    if (selectedContainer === containerData[0]) {
+    if (selectedContainer.slug === containerData[0]) {
       return INTERIOR_CAM_POS.TEN;
-    } else if (selectedContainer === containerData[1]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return INTERIOR_CAM_POS.TWENTY;
-    } else if (selectedContainer === containerData[2]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return INTERIOR_CAM_POS.FORTY;
     }
   };
 
   const interiorCamRot = () => {
-    if (selectedContainer === containerData[0]) {
+    if (selectedContainer.slug === containerData[0]) {
       return INTERIOR_CAM_ROT.TEN;
-    } else if (selectedContainer === containerData[1]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return INTERIOR_CAM_ROT.TWENTY;
-    } else if (selectedContainer === containerData[2]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return INTERIOR_CAM_ROT.FORTY;
     }
   };
