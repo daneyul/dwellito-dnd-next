@@ -186,6 +186,38 @@ const ContainerSidebar = () => {
   });
 
   const ContainerSelection = () => {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:src/components/Sidebar/ContainerSidebar.jsx
+    if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+      return (
+        <>
+          <Badges />
+          <HeightSelector
+            canSelectContainerHeight={canSelectContainerHeight}
+            containerHeightIsStandard={containerHeightIsStandard}
+            setSelectedContainerHeight={setSelectedContainerHeight}
+          />
+          <PriceSection containerPrice={containerPrice} supplier={supplier}/>
+          <ContainerLayouts />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Badges />
+          <PriceSection containerPrice={containerPrice} supplier={supplier} />
+          <ContainerLayouts />
+          <HeightSelector
+            canSelectContainerHeight={canSelectContainerHeight}
+            containerHeightIsStandard={containerHeightIsStandard}
+            setSelectedContainerHeight={setSelectedContainerHeight}
+          />
+        </>
+      );
+    }
+=======
+>>>>>>> 83913fabfd9069d000f74ec30b0ea4fcee47c4bc
     return (
       <>
         <ContainerLayouts />
@@ -196,6 +228,10 @@ const ContainerSidebar = () => {
         />
       </>
     );
+<<<<<<< HEAD
+=======
+>>>>>>> 3d02b43e4bc330507c36a1a92ce683790abd4942:src/components/Sidebar/Sidebar.jsx
+>>>>>>> 83913fabfd9069d000f74ec30b0ea4fcee47c4bc
   };
 
   return (
