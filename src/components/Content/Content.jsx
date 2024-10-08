@@ -109,20 +109,20 @@ const PageDataProvider = ({ children, data }) => {
   );
   const containerId = selectedContainer.id;
   const containerSize = () => {
-    if (selectedContainer === containerData[0]) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return CONTAINER_SIZE_10;
-    } else if (selectedContainer === containerData[1]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return CONTAINER_SIZE_20;
-    } else if (selectedContainer === containerData[2]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return CONTAINER_SIZE_40;
     }
   };
   const containerSizeStr = () => {
-    if (selectedContainer === containerData[0]) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return CONTAINER_SIZE_STR_10;
-    } else if (selectedContainer === containerData[1]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return CONTAINER_SIZE_STR_20;
-    } else if (selectedContainer === containerData[2]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return CONTAINER_SIZE_STR_40;
     }
   };

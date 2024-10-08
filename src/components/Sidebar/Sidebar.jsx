@@ -17,8 +17,6 @@ import {
 import { componentData } from '@/utils/constants/componentData';
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
 import Logo from '../Logo';
-import Badges from '../Badges/Badges';
-import BasePriceDesc from '../BasePriceDesc/BasePriceDesc';
 import Layouts from '../Layouts/Layouts';
 import Subtitle from '../Subtitle/Subtitle';
 import Selector from '../Selector/Selector';

@@ -7,7 +7,7 @@ import {
 } from '@/utils/hooks/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/CustomCubes';
-import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import AtAndS from './Interiors/AtAndS';
 
 export function CsgGeometries({
@@ -33,24 +33,24 @@ export function CsgGeometries({
   const size = containerSize();
 
   const adjustForX = useMemo(() => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
-  }, [selectedContainer.name, DIMENSIONS]);
+  }, [selectedContainer.slug, DIMENSIONS]);
 
   const adjustForY = useMemo(() => {
-    if (selectedContainer.name === `10' Custom Cube`) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `20' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.name === `40' Custom Cube`) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
-  }, [selectedContainer.name, DIMENSIONS]);
+  }, [selectedContainer.slug, DIMENSIONS]);
 
   const exteriorRightNodes = useGLTF(
     `/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`
