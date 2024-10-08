@@ -6,13 +6,13 @@ import {
   getInteriorTrimFromUrl,
   getSelectionsFromUrl,
 } from '@/utils/2D/utils';
-import { INTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/interiorData';
-import { containerData } from '@/utils/constants/containerData';
+import { INTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/interiors/interiorData';
+import { containerData } from '../constants/components/containers/containerData';
 import { DEFAULT_COMPONENTS } from '@/utils/constants/componentData';
-import { elevationData } from '@/utils/constants/elevationData';
-import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
-import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
-import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
+import { containerElevationData } from '../constants/components/container-elevations/containerElevationData';
+import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
+import { FLOORING_OPTIONS } from '@/utils/constants/components/flooring/flooringData';
+import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiors/interiorTrimData';
 import useOrderTotal from '../hooks/useContainerOrderTotal';
 import useInteriorFinishes from '@/utils/hooks/useInteriorFInishes';
 import {
@@ -77,7 +77,7 @@ const ContainerDataProvider = ({ children, data }) => {
   const [hasRedCorners, setHasRedCorners] = useState(false);
 
   // Elevation
-  const DEFAULT_ELEVATION = elevationData.find(
+  const DEFAULT_ELEVATION = containerElevationData.find(
     (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug && item.type === CONFIGURATOR_TYPES.CONTAINER
   );
   const [selectedElevation, setSelectedElevation] = useState(DEFAULT_ELEVATION);
@@ -98,26 +98,26 @@ const ContainerDataProvider = ({ children, data }) => {
   );
   const containerId = selectedContainer.id;
   const containerSize = () => {
-    if (selectedContainer === containerData[0]) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return CONTAINER_SIZE_10;
-    } else if (selectedContainer === containerData[1]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return CONTAINER_SIZE_20;
-    } else if (selectedContainer === containerData[2]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return CONTAINER_SIZE_40;
     }
   };
   const containerSizeStr = () => {
-    if (selectedContainer === containerData[0]) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return CONTAINER_SIZE_STR_10;
-    } else if (selectedContainer === containerData[1]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return CONTAINER_SIZE_STR_20;
-    } else if (selectedContainer === containerData[2]) {
+    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
       return CONTAINER_SIZE_STR_40;
     }
   };
 
   // Floor Plan
-  const floorPlan = elevationData.find((elevation) => {
+  const floorPlan = containerElevationData.find((elevation) => {
     return (
       elevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
       elevation.homePlan === slug
@@ -143,7 +143,7 @@ const ContainerDataProvider = ({ children, data }) => {
   });
 
   const [mappedElevations, setMappedElevations] = useState(
-    elevationData.filter((elevation) => {
+    containerElevationData.filter((elevation) => {
       if (elevation.homePlan === selectedContainer.slug) {
         return elevation;
       }

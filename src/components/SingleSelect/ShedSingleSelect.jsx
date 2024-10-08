@@ -3,7 +3,7 @@ import Subtitle from '../Subtitle/Subtitle';
 import style from './shedSingleSelect.module.scss';
 import { EXTERIOR } from '@/utils/constants/names/names';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
-import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
+import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 
 /* eslint-disable @next/next/no-img-element */
 const ShedSingleSelect = ({ type }) => {

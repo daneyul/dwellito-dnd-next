@@ -1,7 +1,6 @@
 const {
-  FLOORING_OPTIONS,
   noneOption,
-} = require('@/utils/constants/components/flooringData');
+} = require('@/utils/constants/components/flooring/flooringData');
 const { useFlooringGLTFModels } = require('@/utils/hooks/useGLTFModels');
 const { useGLTF } = require('@react-three/drei');
 

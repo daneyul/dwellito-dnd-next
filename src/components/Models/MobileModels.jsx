@@ -30,7 +30,7 @@ import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
 import ContainerShell20High from './Containers/20/ContainerShell20High';
 import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
 import ContainerShell40High from './Containers/40/ContainerShell40High';
-import { containerData } from '@/utils/constants/containerData';
+import { containerData } from '@/utils/constants/components/containers/containerData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 export function MobileModels() {

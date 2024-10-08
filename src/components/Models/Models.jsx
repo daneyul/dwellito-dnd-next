@@ -27,7 +27,7 @@ import ContainerShell20High from './Containers/20/ContainerShell20High';
 import ContainerShell40High from './Containers/40/ContainerShell40High';
 import { useBoundingBoxes } from '@/utils/hooks/useBoundingBoxes';
 import { useExteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
-import { containerData } from '@/utils/constants/containerData';
+import { containerData } from '@/utils/constants/components/containers/containerData';
 import {
   EXTERIOR_CAM_POS,
   INTERIOR_CAM_POS,

@@ -1,9 +1,9 @@
-import { DIMENSIONS } from '../dimensions/dimensions';
+import { DIMENSIONS } from '../../../dimensions/dimensions';
 import {
   CONFIGURATOR_TYPES,
   ELEVATION_NAMES,
   SHED_SIZE_1_STORY_12x24,
-} from '../names/names';
+} from '../../../names/names';
 
 export const sheds = [
   {

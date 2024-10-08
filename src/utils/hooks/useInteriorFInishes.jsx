@@ -1,4 +1,4 @@
-import { INTERIOR_FINISH_OPTIONS } from '../constants/components/interiorData';
+import { INTERIOR_FINISH_OPTIONS } from '../constants/components/interiors/interiorData';
 import { INTERIOR_FINISH_NAMES } from '../constants/names/names';
 
 const plywoodInterior = INTERIOR_FINISH_OPTIONS.find(

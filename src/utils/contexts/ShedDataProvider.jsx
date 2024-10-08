@@ -1,19 +1,7 @@
 import React, { useState, createContext } from 'react';
-import {
-  getExteriorFinishFromUrl,
-  getFlooringFromUrl,
-  getInteriorFinishFromUrl,
-  getInteriorTrimFromUrl,
-  getSelectionsFromUrl,
-} from '@/utils/2D/utils';
-import { INTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/interiorData';
-import { DEFAULT_COMPONENTS } from '@/utils/constants/componentData';
-import { elevationData } from '@/utils/constants/elevationData';
-import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
-import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
-import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
+import { containerElevationData } from '../constants/components/container-elevations/containerElevationData';
+import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import useOrderTotal from '../hooks/useShedOrderTotal';
-import useInteriorFinishes from '@/utils/hooks/useInteriorFInishes';
 import {
   CONFIGURATOR_TYPES,
   ELEVATION_NAMES,
@@ -26,11 +14,6 @@ export const ShedDataContext = createContext();
 const ShedDataProvider = ({ children, data }) => {
   const slug = data.slug;
   const supplier = data.supplier;
-  const querySelections = getSelectionsFromUrl(data.querySelectionData);
-  const queryInterior = getInteriorFinishFromUrl(data.querySelectionData);
-  const queryExterior = getExteriorFinishFromUrl(data.querySelectionData);
-  const queryFlooring = getFlooringFromUrl(data.querySelectionData);
-  const queryInteriorTrim = getInteriorTrimFromUrl(data.querySelectionData);
 
   // State
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
@@ -43,17 +26,17 @@ const ShedDataProvider = ({ children, data }) => {
   const [scaleFactor, setScaleFactor] = useState(2.5);
 
   // Selections
-  const [selectedComponents, setSelectedComponents] = useState(
-    querySelections || DEFAULT_COMPONENTS
-  );
+  const [selectedComponents, setSelectedComponents] = useState([]);
   const [exteriorFinish, setExteriorFinish] = useState(
-    queryExterior ||
-      EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
+    EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
   );
 
   // Elevation
-  const DEFAULT_ELEVATION = elevationData.find(
-    (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug && item.type === CONFIGURATOR_TYPES.SHED
+  const DEFAULT_ELEVATION = containerElevationData.find(
+    (item) =>
+      item.name === ELEVATION_NAMES.RIGHT &&
+      item.homePlan === slug &&
+      item.type === CONFIGURATOR_TYPES.SHED
   );
   const [selectedElevation, setSelectedElevation] = useState(DEFAULT_ELEVATION);
   const [selectedElevationIndex, setSelectedElevationIndex] = useState(0);
@@ -64,14 +47,9 @@ const ShedDataProvider = ({ children, data }) => {
   }, {});
 
   // Shed
-  const [selectedShedHeight, setSelectedShedHeight] =
-    useState(SHED_ONE_STORY);
-  const shedHeightIsOneStory =
-  selectedShedHeight ===     useState(SHED_ONE_STORY);
-    ;
-  const selectedShed = shedData.find(
-    (shed) => shed.slug === slug
-  );
+  const [selectedShedHeight, setSelectedShedHeight] = useState(SHED_ONE_STORY);
+  const shedHeightIsOneStory = selectedShedHeight === useState(SHED_ONE_STORY);
+  const selectedShed = shedData.find((shed) => shed.slug === slug);
   const shedId = selectedShed.id;
   const shedSize = () => {
     if (selectedShed === shedData[0]) {
@@ -80,7 +58,7 @@ const ShedDataProvider = ({ children, data }) => {
   };
 
   // Floor Plan
-  const floorPlan = elevationData.find((elevation) => {
+  const floorPlan = containerElevationData.find((elevation) => {
     return (
       elevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
       elevation.homePlan === slug &&
@@ -89,10 +67,7 @@ const ShedDataProvider = ({ children, data }) => {
   });
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
-  const {
-    orderTotal,
-    setOrderTotal,
-  } = useOrderTotal({
+  const { orderTotal, setOrderTotal } = useOrderTotal({
     shedHeightIsOneStory,
     selectedShed,
     slug,
@@ -101,7 +76,7 @@ const ShedDataProvider = ({ children, data }) => {
   });
 
   const [mappedElevations, setMappedElevations] = useState(
-    elevationData.filter((elevation) => {
+    containerElevationData.filter((elevation) => {
       if (elevation.homePlan === selectedShed.slug) {
         return elevation;
       }

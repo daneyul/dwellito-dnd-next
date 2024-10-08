@@ -1,18 +1,18 @@
-import { DIMENSIONS } from '../dimensions/dimensions';
+import { DIMENSIONS } from '../../dimensions/dimensions';
 import {
   CONFIGURATOR_TYPES,
   CONTAINER_SIZE_10,
   CONTAINER_SIZE_20,
   CONTAINER_SIZE_40,
   ELEVATION_NAMES,
-} from '../names/names';
+} from '../../names/names';
 
-export const containers = [
+export const containerElevationData = [
   {
     name: ELEVATION_NAMES.RIGHT,
     id: 'elevation-right-10',
     homePlan: CONTAINER_SIZE_10,
-    imgScName: 'elevation/10/standard/right.svg',
+    imgScName: 'container-elevations10/standard/right.svg',
     objWidth: DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH,
     objScHeight: DIMENSIONS.CONTAINER.TEN.SIDE.SC_HEIGHT,
     objHcHeight: DIMENSIONS.CONTAINER.TEN.SIDE.HC_HEIGHT,
@@ -22,8 +22,8 @@ export const containers = [
     name: ELEVATION_NAMES.RIGHT,
     id: 'elevation-right-20',
     homePlan: CONTAINER_SIZE_20,
-    imgScName: 'elevation/20/standard/right.svg',
-    imgHcName: 'elevation/20/high/right.svg',
+    imgScName: 'container-elevations/20/standard/right.svg',
+    imgHcName: 'container-elevations/20/high/right.svg',
     objWidth: DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH,
     objScHeight: DIMENSIONS.CONTAINER.TWENTY.SIDE.SC_HEIGHT,
     objHcHeight: DIMENSIONS.CONTAINER.TWENTY.SIDE.HC_HEIGHT,
@@ -33,8 +33,8 @@ export const containers = [
     name: ELEVATION_NAMES.RIGHT,
     id: 'elevation-right-40',
     homePlan: CONTAINER_SIZE_40,
-    imgScName: 'elevation/40/standard/right.svg',
-    imgHcName: 'elevation/40/high/right.svg',
+    imgScName: 'container-elevations/40/standard/right.svg',
+    imgHcName: 'container-elevations/40/high/right.svg',
     objWidth: DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH,
     objScHeight: DIMENSIONS.CONTAINER.FORTY.SIDE.SC_HEIGHT,
     objHcHeight: DIMENSIONS.CONTAINER.FORTY.SIDE.HC_HEIGHT,
@@ -43,7 +43,7 @@ export const containers = [
   {
     name: ELEVATION_NAMES.BACK,
     id: 'elevation-back-10',
-    imgScName: 'elevation/10/standard/back.svg',
+    imgScName: 'container-elevations/10/standard/back.svg',
     homePlan: CONTAINER_SIZE_10,
     objWidth: DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH,
     objScHeight: DIMENSIONS.CONTAINER.TEN.FRONT.SC_HEIGHT,
@@ -53,8 +53,8 @@ export const containers = [
   {
     name: ELEVATION_NAMES.BACK,
     id: 'elevation-back-20',
-    imgScName: 'elevation/20/standard/back.svg',
-    imgHcName: 'elevation/20/high/back.svg',
+    imgScName: 'container-elevations/20/standard/back.svg',
+    imgHcName: 'container-elevations/20/high/back.svg',
     homePlan: CONTAINER_SIZE_20,
     objWidth: DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH,
     objScHeight: DIMENSIONS.CONTAINER.TWENTY.FRONT.SC_HEIGHT,
@@ -64,8 +64,8 @@ export const containers = [
   {
     name: ELEVATION_NAMES.BACK,
     id: 'elevation-back-40',
-    imgScName: 'elevation/40/standard/back.svg',
-    imgHcName: 'elevation/40/high/back.svg',
+    imgScName: 'container-elevations/40/standard/back.svg',
+    imgHcName: 'container-elevations/40/high/back.svg',
     homePlan: CONTAINER_SIZE_40,
     objWidth: DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH,
     objScHeight: DIMENSIONS.CONTAINER.FORTY.FRONT.SC_HEIGHT,
@@ -75,7 +75,7 @@ export const containers = [
   {
     name: ELEVATION_NAMES.LEFT,
     id: 'elevation-left-10',
-    imgScName: 'elevation/10/standard/left.svg',
+    imgScName: 'container-elevations/10/standard/left.svg',
     homePlan: CONTAINER_SIZE_10,
     objWidth: DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH,
     objScHeight: DIMENSIONS.CONTAINER.TEN.SIDE.SC_HEIGHT,
@@ -85,8 +85,8 @@ export const containers = [
   {
     name: ELEVATION_NAMES.LEFT,
     id: 'elevation-left-20',
-    imgScName: 'elevation/20/standard/left.svg',
-    imgHcName: 'elevation/20/high/left.svg',
+    imgScName: 'container-elevations/20/standard/left.svg',
+    imgHcName: 'container-elevations/20/high/left.svg',
     homePlan: CONTAINER_SIZE_20,
     objWidth: DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH,
     objScHeight: DIMENSIONS.CONTAINER.TWENTY.SIDE.SC_HEIGHT,
@@ -96,8 +96,8 @@ export const containers = [
   {
     name: ELEVATION_NAMES.LEFT,
     id: 'elevation-left-40',
-    imgScName: 'elevation/40/standard/left.svg',
-    imgHcName: 'elevation/40/high/left.svg',
+    imgScName: 'container-elevations/40/standard/left.svg',
+    imgHcName: 'container-elevations/40/high/left.svg',
     homePlan: CONTAINER_SIZE_40,
     objWidth: DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH,
     objScHeight: DIMENSIONS.CONTAINER.FORTY.SIDE.SC_HEIGHT,

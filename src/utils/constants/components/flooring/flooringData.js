@@ -1,5 +1,6 @@
-import { atAndS } from "./flooring/atAndS";
-import { customCubes } from "./flooring/customCubes";
+import { atAndS } from "./atAndS";
+import { customCubes } from "./customCubes";
+
 
 export const FLOORING_OPTIONS = [
   ...customCubes,

@@ -1,49 +1,46 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from 'react';
 import style from './layout.module.scss';
-import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
-import { shedData } from '@/utils/constants/shedData';
+import { roofData } from '@/utils/constants/components/roofs/roofData';
 
-const Layout = ({ name, imgSrc, isSelected, price, supplier }) => {
+const Layout = ({ name, imgSrc, isSelected, price }) => {
   return (
     <div
       className={
         isSelected ? style.layoutContainerSelected : style.layoutContainer
       }
     >
-      <div>
-        <div style={{ fontWeight: '700' }}>{name}</div>
-        {supplier === SUPPLIER_SLUGS.AT_AND_S ? null : <div className={style.price}>${price.toLocaleString()}</div>}
-      </div>
       <img src={imgSrc} alt='layout' className={style.layoutImg} />
+      <div style={{ width: "100%" }}>
+        <div style={{ fontWeight: '700' }}>{name}</div>
+        <div className={style.price}>${price.toLocaleString()}</div>
+      </div>
     </div>
   );
 };
 
 const RoofOptions = () => {
-  const { shedId, supplier } =
+  const { supplier, selectedComponents } =
     useContext(ShedDataContext);
 
   return (
     <div className={style.container}>
-      {shedData.map((shed, index) => {
-        const thumbnail = shed.thumbnail;
-        const shedName = shed.name;
-        const shedImage = `/images/${supplier}/elevation/${thumbnail}`;
-        const isSelected = shed.id === shedId;
-        const shedPrice = shed.price
+      {roofData.map((roof) => {
+        const thumbnail = roof.thumbnail;
+        const roofName = roof.name;
+        const roofImage = `/images/${supplier}/${thumbnail}`;
+        const isSelected = selectedComponents.includes((roof))
+        const roofPrice = roof.price
 
         return (
-          <a href={`/${supplier}/${shed.slug}`} key={index}>
-            <Layout
-              name={shedName}
-              imgSrc={shedImage}
+          <Layout
+              name={roofName}
+              imgSrc={roofImage}
               isSelected={isSelected}
-              price={shedPrice}
+              price={roofPrice}
               supplier={supplier}
             />
-          </a>
         );
       })}
     </div>

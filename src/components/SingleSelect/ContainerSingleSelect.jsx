@@ -12,10 +12,10 @@ import {
   INTERIOR_TRIM,
   SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
-import { INTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/interiorData';
-import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
-import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';
-import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiorTrimData';
+import { INTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/interiors/interiorData';
+import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
+import { FLOORING_OPTIONS } from '@/utils/constants/components/flooring/flooringData';
+import { INTERIOR_TRIM_OPTIONS } from '@/utils/constants/components/interiors/interiorTrimData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 /* eslint-disable @next/next/no-img-element */

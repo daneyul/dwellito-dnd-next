@@ -1,6 +1,6 @@
 import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40, ELEVATION_NAMES } from '../constants/names/names';
 import { DIMENSIONS } from '../constants/dimensions/dimensions';
-import { elevationData } from '../constants/elevationData';
+import { containerElevationData } from '../constants/components/container-elevations/containerElevationData';
 
 const degrees = {
   90: Math.PI / 2,
@@ -9,7 +9,7 @@ const degrees = {
 };
 
 const calcRotation = (elevation, selectedContainer) => {
-  const matchingElevation = elevationData.find(
+  const matchingElevation = containerElevationData.find(
     (item) =>
       item.homePlan === selectedContainer.slug && item.name === elevation.name
   );
@@ -320,7 +320,7 @@ const calcPosition = (
   selectedContainer,
   width
 ) => {
-  const matchingElevation = elevationData.find(
+  const matchingElevation = containerElevationData.find(
     (item) =>
       item.homePlan === selectedContainer.slug && item.name === elevation.name
   );

@@ -11,7 +11,7 @@ import {
   SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
 import AtAndS from './Interiors/High/AtAndS';
-import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
+import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 export default function ContainerShell40High({ paint }) {

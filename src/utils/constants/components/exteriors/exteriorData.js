@@ -1,4 +1,4 @@
-import { EXTERIORS, SUPPLIER_SLUGS } from "../names/names";
+import { EXTERIORS, SUPPLIER_SLUGS } from "../../names/names";
 
 const customCubes = [
   {

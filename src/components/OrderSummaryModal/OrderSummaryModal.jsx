@@ -24,7 +24,7 @@ import {
 import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/useSaveSelections';
 import Toast from '../Toast/Toast';
-import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
+import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const OrderSummaryModal = () => {

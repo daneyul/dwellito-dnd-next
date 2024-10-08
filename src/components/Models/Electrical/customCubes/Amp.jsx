@@ -1,5 +1,10 @@
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import { COMPONENT_NAMES, CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40 } from '@/utils/constants/names/names';
+import {
+  COMPONENT_NAMES,
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
+} from '@/utils/constants/names/names';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import { useGLTF } from '@react-three/drei';
 import { useContext } from 'react';

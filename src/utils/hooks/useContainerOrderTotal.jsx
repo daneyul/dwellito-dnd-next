@@ -9,7 +9,7 @@ import {
   EXTERIORS,
 } from '@/utils/constants/names/names';
 import { getComponentPrice } from '../2D/utils';
-import { EXTERIOR_FINISH_OPTIONS } from '../constants/components/exteriorData';
+import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 
 const useOrderTotal = ({
   containerHeightIsStandard,

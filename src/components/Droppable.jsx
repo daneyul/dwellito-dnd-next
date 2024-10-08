@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { generateImgSrc, toScale } from '../utils/2D/utils';
 import Image from 'next/image';
-import { elevationData } from '@/utils/constants/elevationData';
+import { containerElevationData } from '@/utils/constants/components/container-elevations/containerElevationData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 const Droppable = ({ children }) => {
@@ -31,7 +31,7 @@ const Droppable = ({ children }) => {
 
   return (
     <div ref={setNodeRef} style={{ ...CustomStyle }}>
-      {elevationData.map((elevation, index) => (
+      {containerElevationData.map((elevation, index) => (
         <Image
           key={index}
           src={generateImgSrc(supplier, elevationImg)}

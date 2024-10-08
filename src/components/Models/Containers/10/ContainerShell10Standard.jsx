@@ -5,7 +5,7 @@ import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/CustomCubes';
 import AtAndS from './Interiors/AtAndS';
 import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40, EXTERIORS, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
-import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriorData';
+import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 export default function ContainerShell10Standard({ paint }) {

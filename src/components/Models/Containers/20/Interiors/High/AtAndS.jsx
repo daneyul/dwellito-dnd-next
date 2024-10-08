@@ -1,4 +1,4 @@
-import { noneOption } from '@/utils/constants/components/flooringData';
+import { noneOption } from '@/utils/constants/components/flooring/flooringData';
 import { useGLTF } from '@react-three/drei';
 
 const {
