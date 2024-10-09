@@ -139,6 +139,7 @@ export const handleAddComponent = ({
       position: { ...item.position },
       elevation: [...item.elevation, selectedElevation],
     };
+    const isRoof = item.objType === COMPONENT_TYPES.ROOF;
     const isRoofVent = item.name === COMPONENT_NAMES.ROOF_VENT;
     const roofVentObjData = ventComponents.find(
       (component) => component.name === COMPONENT_NAMES.ROOF_VENT
@@ -146,14 +147,23 @@ export const handleAddComponent = ({
 
     const roofVent = {
       ...roofVentObjData,
-      id: uuid(),
       position: { ...roofVentObjData.position },
       elevation: [floorPlan],
     };
 
     setSelectedComponents((prevSelectedComponents) => {
-      if (isRoofVent) {
-        return [...prevSelectedComponents, roofVent];
+      if (isRoof) {
+        // Remove any existing roof items and add the new roof item
+        const filteredComponents = prevSelectedComponents.filter(
+          (component) => component.objType !== COMPONENT_TYPES.ROOF
+        );
+        return [...filteredComponents, item];
+      } else if (isRoofVent) {
+        // Remove any existing roof vent items and add the new roof vent item
+        const filteredComponents = prevSelectedComponents.filter(
+          (component) => component.name !== COMPONENT_NAMES.ROOF_VENT
+        );
+        return [...filteredComponents, roofVent];
       } else {
         return [...prevSelectedComponents, newItem];
       }

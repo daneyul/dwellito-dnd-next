@@ -6,8 +6,10 @@ import {
   CONFIGURATOR_TYPES,
   ELEVATION_NAMES,
   SHED_ONE_STORY,
+  SHED_SIZE_ONE_STORY_12x24,
 } from '@/utils/constants/names/names';
 import { shedData } from '../constants/shedData';
+import { shedElevationData } from '../constants/components/shed-elevations/shedElevationData';
 
 export const ShedDataContext = createContext();
 
@@ -32,9 +34,9 @@ const ShedDataProvider = ({ children, data }) => {
   );
 
   // Elevation
-  const DEFAULT_ELEVATION = containerElevationData.find(
+  const DEFAULT_ELEVATION = shedElevationData.find(
     (item) =>
-      item.name === ELEVATION_NAMES.RIGHT &&
+      item.name === ELEVATION_NAMES.FRONT &&
       item.homePlan === slug &&
       item.type === CONFIGURATOR_TYPES.SHED
   );
@@ -51,14 +53,14 @@ const ShedDataProvider = ({ children, data }) => {
   const shedHeightIsOneStory = selectedShedHeight === useState(SHED_ONE_STORY);
   const selectedShed = shedData.find((shed) => shed.slug === slug);
   const shedId = selectedShed.id;
-  const shedSize = () => {
-    if (selectedShed === shedData[0]) {
+  const shedStories = () => {
+    if (selectedShed.slug === SHED_SIZE_ONE_STORY_12x24) {
       return SHED_ONE_STORY;
     }
   };
 
   // Floor Plan
-  const floorPlan = containerElevationData.find((elevation) => {
+  const floorPlan = shedElevationData.find((elevation) => {
     return (
       elevation.name === ELEVATION_NAMES.FLOOR_PLAN &&
       elevation.homePlan === slug &&
@@ -76,7 +78,7 @@ const ShedDataProvider = ({ children, data }) => {
   });
 
   const [mappedElevations, setMappedElevations] = useState(
-    containerElevationData.filter((elevation) => {
+    shedElevationData.filter((elevation) => {
       if (elevation.homePlan === selectedShed.slug) {
         return elevation;
       }
@@ -114,7 +116,7 @@ const ShedDataProvider = ({ children, data }) => {
     setSelectedShedHeight,
     cameraReady,
     setCameraReady,
-    shedSize,
+    shedStories,
     floorPlan,
     isFloorPlanView,
     showOutsideDroppableWarning,
