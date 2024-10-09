@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
-import { generateImgSrc, toScale } from '../utils/2D/utils';
+import { generateImgSrc, toScale } from '../../utils/2D/utils';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
@@ -12,10 +12,10 @@ import {
   ELEVATION_NAMES,
   SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
-import Draggable from './Draggable';
+import Draggable from '../Draggable';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
-const MultipleDroppables = ({
+const ContainerMultipleDroppables = ({
   setHoveredPiece,
   setShowCollision,
   handleSelect,
@@ -261,4 +261,4 @@ const MultipleDroppables = ({
   );
 };
 
-export default MultipleDroppables;
+export default ContainerMultipleDroppables;

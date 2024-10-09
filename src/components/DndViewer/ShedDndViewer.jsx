@@ -3,7 +3,7 @@ import style from './DndViewer.module.scss';
 import OutsideDroppable from '../Collision/OutsideDroppable';
 import Collision from '../Collision/Collision';
 import { DndContext } from '@dnd-kit/core';
-import MultipleDroppables from '../MultipleDroppables';
+import MultipleDroppables from '../MultipleDroppables/ContainerMultipleDroppables';
 import Droppable from '../Models/Droppable/ContainerDroppable';
 import { DraggableContainer } from '../DraggableContainer/ContainerDraggableContainer';
 import {
@@ -20,6 +20,7 @@ import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import ShedDroppable from '../Models/Droppable/ShedDroppable';
 import { ShedDraggableContainer } from '../DraggableContainer/ShedDraggableContainer';
+import ShedMultipleDroppables from '../MultipleDroppables/ShedMultipleDroppables';
 
 const ShedDnDViewer = () => {
   const {
@@ -179,7 +180,7 @@ const ShedDnDViewer = () => {
         modifiers={modifiers}
       >
         {isFloorPlanView ? (
-          <MultipleDroppables
+          <ShedMultipleDroppables
             handleSelect={handleSelect}
             setHoveredPiece={setHoveredPiece}
             setShowCollision={setShowCollision}

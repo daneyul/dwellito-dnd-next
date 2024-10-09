@@ -24,7 +24,7 @@ const ShedDroppable = ({ children }) => {
     margin: '0 auto',
     position: 'relative',
   };
-
+  
   return (
     <div ref={setNodeRef} style={{ ...CustomStyle }}>
       {shedElevationData.map((elevation, index) => (
