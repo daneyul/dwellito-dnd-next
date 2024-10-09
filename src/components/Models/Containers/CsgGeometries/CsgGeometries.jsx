@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
 import {
   getExteriorPaint,
-} from '@/utils/hooks/useGLTFModels';
+} from '@/utils/hooks/containers/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/CustomCubes';
 import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40, SUPPLIER_SLUGS } from '@/utils/constants/names/names';

@@ -21,8 +21,8 @@ import {
   SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
 import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
-import { useBoundingBoxes } from '@/utils/hooks/useBoundingBoxes';
-import { useExteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { useBoundingBoxes } from '@/utils/hooks/containers/useBoundingBoxes';
+import { useExteriorGLTFModels } from '@/utils/hooks/containers/useGLTFModels';
 import { MOBILE_CAM_POS } from '@/utils/constants/camera/camPos';
 import { handleAddComponent } from '@/utils/2D/utils';
 import { componentData } from '@/utils/constants/componentData';

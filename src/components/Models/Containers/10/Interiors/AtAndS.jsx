@@ -1,5 +1,5 @@
 import { noneOption } from '@/utils/constants/components/flooring/flooringData';
-import { useFlooringGLTFModels, useInteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { useFlooringGLTFModels, useInteriorGLTFModels } from '@/utils/hooks/containers/useGLTFModels';
 import { useGLTF } from '@react-three/drei';
 
 const CharredWood = ({

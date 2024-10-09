@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import style from './elevationToggle.module.scss';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
-const ElevationToggle = () => {
+const ContainerElevationToggle = () => {
   const {
     mappedElevations,
     selectedElevation,
@@ -35,4 +35,4 @@ const ElevationToggle = () => {
   }
 };
 
-export default ElevationToggle;
+export default ContainerElevationToggle;

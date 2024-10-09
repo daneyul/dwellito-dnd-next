@@ -1,4 +1,4 @@
-.container {
+.container, .shedContainer {
   display: none;
   @include respond-to(md) {
     display: grid;
@@ -15,6 +15,18 @@
     padding: space(1);
     box-shadow: 0px 1px 4px 0px rgba(100, 106, 150, 0.08),
       0px 6px 32px 0px rgba(100, 106, 150, 0.12);
+  }
+}
+
+.container {
+  @include respond-to(md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.shedContainer {
+  @include respond-to(md) {
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 

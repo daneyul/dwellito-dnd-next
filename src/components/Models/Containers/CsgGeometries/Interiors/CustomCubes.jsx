@@ -1,4 +1,4 @@
-import { useInteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
+import { useInteriorGLTFModels } from '@/utils/hooks/containers/useGLTFModels';
 import { Base } from '@react-three/csg';
 import { useGLTF } from '@react-three/drei';
 

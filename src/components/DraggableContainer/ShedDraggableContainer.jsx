@@ -1,10 +1,10 @@
 import { droppableWidth, toScale } from '@/utils/2D/utils';
 import { useContext } from 'react';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import Draggable from './Draggable';
-import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import Draggable from '../Draggable';
+import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 
-export const DraggableContainer = ({
+export const ShedDraggableContainer = ({
   selectedComponents,
   selectedComponent,
   handleSelect,
@@ -12,14 +12,14 @@ export const DraggableContainer = ({
   setHoveredPiece,
   setShowCollision,
 }) => {
-  const { scaleFactor, selectedElevation, selectedContainer } =
-    useContext(ContainerDataContext);
+  const { scaleFactor, selectedElevation, selectedShed } =
+    useContext(ShedDataContext);
   return (
     <div
       style={{
         width: `${toScale(
-          droppableWidth(selectedElevation, DIMENSIONS, selectedContainer),
-          scaleFactor
+          droppableWidth(selectedElevation, DIMENSIONS, selectedShed),
+        scaleFactor
         )}px`,
         height: '100%',
         position: 'absolute',

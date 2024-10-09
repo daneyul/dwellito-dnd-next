@@ -4,8 +4,8 @@ import OutsideDroppable from '../Collision/OutsideDroppable';
 import Collision from '../Collision/Collision';
 import { DndContext } from '@dnd-kit/core';
 import MultipleDroppables from '../MultipleDroppables';
-import Droppable from '../Droppable';
-import { DraggableContainer } from '../DraggableContainer';
+import Droppable from '../Models/Droppable/ContainerDroppable';
+import { DraggableContainer } from '../DraggableContainer/ContainerDraggableContainer';
 import {
   COMPONENT_NAMES,
   ELEVATION_NAMES,
@@ -17,8 +17,11 @@ import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { LeftArrow, RightArrow } from '../Arrows/Arrows';
 import DragToMove from '../DragToMove/DragToMove';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
+import ShedDroppable from '../Models/Droppable/ShedDroppable';
+import { ShedDraggableContainer } from '../DraggableContainer/ShedDraggableContainer';
 
-const DnDViewer = () => {
+const ShedDnDViewer = () => {
   const {
     showOutsideDroppableWarning,
     selectedComponents,
@@ -33,7 +36,7 @@ const DnDViewer = () => {
     setSelectedElevationIndex,
     mappedElevations,
     setSelectedElevation
-  } = useContext(ContainerDataContext);
+  } = useContext(ShedDataContext);
 
   const [hoveredPiece, setHoveredPiece] = useState(null);
   const [showDragToMove, setShowDragToMove] = useState(false);
@@ -183,8 +186,8 @@ const DnDViewer = () => {
             selectedComponent={selectedComponent}
           />
         ) : (
-          <Droppable>
-            <DraggableContainer
+          <ShedDroppable>
+            <ShedDraggableContainer
               selectedComponents={selectedComponents}
               handleSelect={handleSelect}
               draggableRefs={draggableRefs}
@@ -192,7 +195,7 @@ const DnDViewer = () => {
               setShowCollision={setShowCollision}
               selectedComponent={selectedComponent}
             />
-          </Droppable>
+          </ShedDroppable>
         )}
       </DndContext>
       {showDragToMove && <DragToMove isFloorPlanView={isFloorPlanView} />}
@@ -211,4 +214,4 @@ const DnDViewer = () => {
   );
 };
 
-export default DnDViewer;
+export default ShedDnDViewer;

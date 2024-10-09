@@ -1,24 +1,20 @@
 import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
-import { generateImgSrc, toScale } from '../utils/2D/utils';
+import { generateImgSrc, toScale } from '../../../utils/2D/utils';
 import Image from 'next/image';
-import { containerElevationData } from '@/utils/constants/components/container-elevations/containerElevationData';
-import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import { shedElevationData } from '@/utils/constants/components/shed-elevations/shedElevationData';
+import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 
-const Droppable = ({ children }) => {
-  const { scaleFactor, selectedElevation, containerHeightIsStandard, supplier } =
-    useContext(ContainerDataContext);
+const ShedDroppable = ({ children }) => {
+  const { scaleFactor, selectedElevation, supplier } =
+    useContext(ShedDataContext);
   const { setNodeRef } = useDroppable({
     id: 'droppable',
   });
 
-  const objectHeight = containerHeightIsStandard
-    ? selectedElevation.objScHeight
-    : selectedElevation.objHcHeight;
+  const objectHeight = selectedElevation.objHeight;
 
-  const elevationImg = containerHeightIsStandard
-    ? selectedElevation.imgScName
-    : selectedElevation.imgHcName;
+  const elevationImg = selectedElevation.imgName;
 
   const CustomStyle = {
     display: 'flex',
@@ -31,7 +27,7 @@ const Droppable = ({ children }) => {
 
   return (
     <div ref={setNodeRef} style={{ ...CustomStyle }}>
-      {containerElevationData.map((elevation, index) => (
+      {shedElevationData.map((elevation, index) => (
         <Image
           key={index}
           src={generateImgSrc(supplier, elevationImg)}
@@ -48,4 +44,4 @@ const Droppable = ({ children }) => {
   );
 };
 
-export default Droppable;
+export default ShedDroppable;

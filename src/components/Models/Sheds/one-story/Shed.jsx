@@ -1,29 +1,32 @@
 import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
-import { getExteriorPaint } from '@/utils/hooks/containers/useGLTFModels';
+import { getExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/CustomCubes';
 import AtAndS from './Interiors/AtAndS';
-import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40, EXTERIORS, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import {
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
+  EXTERIORS,
+  SUPPLIER_SLUGS,
+} from '@/utils/constants/names/names';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
-import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 
-export default function ContainerShell10Standard({ paint }) {
+export default function Shed({ paint }) {
   const {
     exteriorFinish,
-    selectedContainer,
+    selectedShed,
     flooring,
-    selectedContainerHeight,
-    hasWrapLighting,
-    interiorFinishes,
-    containerSize,
+    selectedShedHeight,
+    shedSize,
     supplier,
-    hasRedCorners
-  } = useContext(ContainerDataContext);
+  } = useContext(ShedDataContext);
 
   // Load all 3d objects
-  const { nodes, materials } = useGLTF(
-    `/models/container/${containerSize()}/${selectedContainerHeight}/container-shell.glb`
+  const { nodes: groundBlock, materials: groundBlockMaterials } = useGLTF(
+    `/models/shed/${containerSize()}/${selectedContainerHeight}/container-shell.glb`
   );
 
   const exteriorPaint = useMemo(() => {
@@ -110,7 +113,7 @@ export default function ContainerShell10Standard({ paint }) {
     const redPaint = EXTERIOR_FINISH_OPTIONS.find(
       (item) => item.name === EXTERIORS.SAF_RED
     );
-  
+
     const cornerPaint = getExteriorPaint(supplier, redPaint, paint);
     return (
       <group scale={0.001}>

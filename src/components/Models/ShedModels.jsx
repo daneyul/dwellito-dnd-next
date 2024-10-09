@@ -12,42 +12,30 @@ import Door from './Doors/DoorSwitcher';
 import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
 import Window from './Windows/WindowSwitcher';
-import Vent from './Vents/VentSwitcher';
-import { CsgGeometries } from './Containers/CsgGeometries/CsgGeometries';
 import {
   COMPONENT_TYPES,
-  CONTAINER_SIZE_10,
-  CONTAINER_SIZE_20,
-  CONTAINER_SIZE_40,
 } from '@/utils/constants/names/names';
-import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
-import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
-import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
-import ContainerShell20High from './Containers/20/ContainerShell20High';
-import ContainerShell40High from './Containers/40/ContainerShell40High';
-import { useBoundingBoxes } from '@/utils/hooks/useBoundingBoxes';
-import { useExteriorGLTFModels } from '@/utils/hooks/useGLTFModels';
-import { containerData } from '@/utils/constants/components/containers/containerData';
 import {
   EXTERIOR_CAM_POS,
   INTERIOR_CAM_POS,
   INTERIOR_CAM_ROT,
 } from '@/utils/constants/camera/camPos';
 import Electrical from './Electrical/Electrical';
-import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
+import { useExteriorGLTFModels } from '@/utils/hooks/sheds/useGLTFModels';
 
-export function Models() {
+export function ShedModels() {
   const {
     selectedComponents,
     showExterior,
-    selectedContainer,
+    selectedShed,
     setThreeDModelLoaded,
-    containerHeightIsStandard,
+    shedHeightIsOneStory,
     cameraReady,
     setCameraReady,
     supplier,
     show3d
-  } = useContext(ContainerDataContext);
+  } = useContext(ShedDataContext);
 
   const { active, progress, item, loaded, total } = useProgress();
 
@@ -69,42 +57,16 @@ export function Models() {
       ),
     [selectedComponents, COMPONENT_TYPES]
   );
-  const vents = useMemo(
-    () =>
-      selectedComponents.filter(
-        (component) => component.objType === COMPONENT_TYPES.VENT
-      ),
-    [selectedComponents, COMPONENT_TYPES]
-  );
-
   const exteriorCamPos = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
-      return EXTERIOR_CAM_POS.TEN;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
-      return EXTERIOR_CAM_POS.TWENTY;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
-      return EXTERIOR_CAM_POS.FORTY;
-    }
+    return EXTERIOR_CAM_POS.TWENTY;
   };
 
   const interiorCamPos = () => {
-    if (selectedContainer.slug === containerData[0]) {
-      return INTERIOR_CAM_POS.TEN;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
-      return INTERIOR_CAM_POS.TWENTY;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
-      return INTERIOR_CAM_POS.FORTY;
-    }
+    return INTERIOR_CAM_POS.TWENTY;
   };
 
   const interiorCamRot = () => {
-    if (selectedContainer.slug === containerData[0]) {
-      return INTERIOR_CAM_ROT.TEN;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
-      return INTERIOR_CAM_ROT.TWENTY;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
-      return INTERIOR_CAM_ROT.FORTY;
-    }
+    return INTERIOR_CAM_ROT.TWENTY;
   };
 
   const camFov = showExterior ? 35 : 80;
@@ -181,38 +143,18 @@ export function Models() {
     });
   }
 
-  const {
-    doorBoundingBoxes,
-    windowBoundingBoxes,
-    ventBoundingBoxes,
-    exhaustFanBoundingBox,
-    handleExhaustFanBoundingBox,
-    handleDoorBoundingBox,
-    handleWindowBoundingBox,
-    handleVentBoundingBox,
-  } = useBoundingBoxes({ doors, windows, vents });
+  // const {
+  //   doorBoundingBoxes,
+  //   windowBoundingBoxes,
+  //   handleExhaustFanBoundingBox,
+  //   handleDoorBoundingBox,
+  //   handleWindowBoundingBox,
+  //   handleVentBoundingBox,
+  // } = useBoundingBoxes({ doors, windows });
 
   const paint = useExteriorGLTFModels(supplier);
-  const ContainerShell = () => {
-    if (selectedContainer.size === CONTAINER_SIZE_10) {
-      if (containerHeightIsStandard) {
-        return <ContainerShell10Standard paint={paint} />;
-      } else {
-        return null;
-      }
-    } else if (selectedContainer.size === CONTAINER_SIZE_20) {
-      if (containerHeightIsStandard) {
-        return <ContainerShell20Standard paint={paint} />;
-      } else {
-        return <ContainerShell20High paint={paint} />;
-      }
-    } else if (selectedContainer === containerData[2]) {
-      if (containerHeightIsStandard) {
-        return <ContainerShell40Standard paint={paint} />;
-      } else {
-        return <ContainerShell40High paint={paint} />;
-      }
-    }
+  const ShedShell = () => {
+    return <ContainerShell10Standard paint={paint} />;
   };
 
   return (
@@ -229,22 +171,16 @@ export function Models() {
       >
         <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
           <color attach='background' args={['#fdfdf7']} />
-          <Electrical
-            supplierSlug={supplier}
-            handleExhaustFanBoundingBox={handleExhaustFanBoundingBox}
-            selectedComponents={selectedComponents}
-          />
-          <ContainerShell />
-          <CsgGeometries
+          <ShedShell />
+          {/* <CsgGeometries
             doors={doors}
             windows={windows}
-            vents={vents}
             doorBoundingBoxes={doorBoundingBoxes}
             windowBoundingBoxes={windowBoundingBoxes}
             ventBoundingBoxes={ventBoundingBoxes}
             exhaustFanBoundingBox={exhaustFanBoundingBox}
             paint={paint}
-          />
+          /> */}
           {doors.map((door, index) => (
             <Door
               key={door.id}
@@ -261,14 +197,6 @@ export function Models() {
               onBoundingBoxChange={(data) =>
                 handleWindowBoundingBox(index, data)
               }
-              supplier={supplier}
-            />
-          ))}
-          {vents.map((vent, index) => (
-            <Vent
-              key={index}
-              component={vent}
-              onBoundingBoxChange={(data) => handleVentBoundingBox(index, data)}
               supplier={supplier}
             />
           ))}

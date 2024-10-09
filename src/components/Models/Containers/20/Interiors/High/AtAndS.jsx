@@ -4,7 +4,7 @@ import { useGLTF } from '@react-three/drei';
 const {
   useInteriorGLTFModels,
   useFlooringGLTFModels,
-} = require('@/utils/hooks/useGLTFModels');
+} = require('@/utils/hooks/containers/useGLTFModels');
 
 const CharredWood = ({
   interiorFinishes,

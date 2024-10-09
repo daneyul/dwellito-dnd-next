@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { GoogleTagManager } from '@next/third-parties/google';
-import Viewer from '@/components/Viewer/Viewer';
 import PriceTotal from '@/components/PriceTotal/PriceTotal';
 import style from './content.module.scss';
 import '@radix-ui/themes/styles.css';
@@ -15,6 +14,8 @@ import ShedSidebar from '../Sidebar/ShedSidebar';
 import ContainerSidebar from '../Sidebar/ContainerSidebar';
 import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
 import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import ContainerViewer from '../Viewer/ContainerViewer';
+import ShedViewer from '../Viewer/ShedViewer';
 
 const Content = ({ data }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -25,7 +26,7 @@ const Content = ({ data }) => {
         <ShedDataProvider data={data}>
           <div className={style.pageWrapper}>
             <div className={style.content}>
-              {/* <Viewer /> */}
+              <ShedViewer />
               <ShedSidebar />
               {/* <PriceTotal />
               <OrderSummaryModal /> */}
@@ -45,7 +46,7 @@ const Content = ({ data }) => {
                 </>
               ) : (
                 <>
-                  <Viewer />
+                  <ContainerViewer />
                   <ContainerSidebar />
                   <PriceTotal />
                   <OrderSummaryModal />

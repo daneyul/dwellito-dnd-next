@@ -37,8 +37,6 @@ const RoofOptions = () => {
         const roofImage = `/images/${supplier}/roof/${selectedShed.size}/${thumbnail}`;
         const isSelected = selectedComponents.includes(roof);
         const roofPrice = roof.price;
-        console.log(roof)
-        console.log(selectedComponents)
 
         return (
           <Layout

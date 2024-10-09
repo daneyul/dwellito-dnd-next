@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import style from './toggleCamera.module.scss';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
-const ToggleCamera = () => {
+const ContainerToggleCamera = () => {
   const { show3d, showExterior, setShowExterior, setCameraReady } =
     useContext(ContainerDataContext);
 
@@ -31,4 +31,4 @@ const ToggleCamera = () => {
     );
   }
 };
-export default ToggleCamera;
+export default ContainerToggleCamera;

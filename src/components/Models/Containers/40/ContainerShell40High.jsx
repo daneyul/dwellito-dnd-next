@@ -1,6 +1,6 @@
 import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
-import { getExteriorPaint } from '@/utils/hooks/useGLTFModels';
+import { getExteriorPaint } from '@/utils/hooks/containers/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { CustomCubes } from './Interiors/High/CustomCubes';
 import {

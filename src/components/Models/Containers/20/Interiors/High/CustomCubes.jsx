@@ -1,7 +1,7 @@
 const {
   noneOption,
 } = require('@/utils/constants/components/flooring/flooringData');
-const { useFlooringGLTFModels } = require('@/utils/hooks/useGLTFModels');
+const { useFlooringGLTFModels } = require('@/utils/hooks/containers/useGLTFModels');
 const { useGLTF } = require('@react-three/drei');
 
 const Plywood = ({

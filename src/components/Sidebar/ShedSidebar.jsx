@@ -27,7 +27,7 @@ const LogoSection = ({ supplier }) => (
 const ExteriorSelector = () => (
   <>
     <div className={style.selectionTagName} style={{ marginTop: '2rem' }}>
-      Choose Exterior Paint
+      Exterior Siding
     </div>
     <ShedSingleSelect type={EXTERIOR} />
   </>

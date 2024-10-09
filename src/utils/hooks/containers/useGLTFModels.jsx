@@ -1,5 +1,5 @@
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
-import { SUPPLIER_SLUGS } from '../constants/names/names';
 
 export const useExteriorGLTFModels = (supplier) => {
   if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {

@@ -6,7 +6,7 @@ import { Spinner } from '@radix-ui/themes';
 import { ELEVATION_NAMES } from '@/utils/constants/names/names';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
-const ToggleView = () => {
+const ContainerToggleView = () => {
   const {
     show3d,
     setShow3d,
@@ -61,4 +61,4 @@ const ToggleView = () => {
     </div>
   );
 };
-export default ToggleView;
+export default ContainerToggleView;

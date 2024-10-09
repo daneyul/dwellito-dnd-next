@@ -12,30 +12,6 @@ export const SHED_DIMENSIONS = {
         WIDTH: 118,
         HEIGHT: 96,
       },
-    },
-    SIXTEEN_TWENTY_FOUR: {
-      WIDTH: 96,
-      HEIGHT: 102,
-      FLOOR_PLAN: {
-        WIDTH: 118,
-        HEIGHT: 96,
-      },
-    },
-    TWENTY_TWENTY_FOUR: {
-      WIDTH: 118,
-      HEIGHT: 102,
-      FLOOR_PLAN: {
-        WIDTH: 118,
-        HEIGHT: 96,
-      },
-    },
-    THIRTY_TWO_TWENTY_FOUR: {
-      WIDTH: 96,
-      HEIGHT: 102,
-      FLOOR_PLAN: {
-        WIDTH: 118,
-        HEIGHT: 96,
-      },
-    },
+    }
   }
 };
