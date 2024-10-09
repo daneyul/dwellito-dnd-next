@@ -149,6 +149,7 @@ export const INTERIOR_TRIM_NAMES= {
 export const DROPPABLE_LEFT = 'droppable-left';
 export const DROPPABLE_RIGHT = 'droppable-right';
 export const DROPPABLE_BACK = 'droppable-back';
+export const DROPPABLE_FRONT = 'droppable-front';
 export const DROPPABLE_MIDDLE = 'droppable-middle';
 export const DROPPABLE_PARTITIONS = 'droppable-partitions';
 export const DROPPABLE = 'droppable';

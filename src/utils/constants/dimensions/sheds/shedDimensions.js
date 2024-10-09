@@ -6,11 +6,17 @@ export const SHED_DIMENSIONS = {
       DEPTH: 24.382746504059998,
     },
     TWELVE_TWENTY_FOUR: {
-      WIDTH: 146,
-      HEIGHT: 118,
+      SIDE: {
+        WIDTH: 297,
+        HEIGHT: 118,
+      },
+      FRONT: {
+        WIDTH: 146,
+        HEIGHT: 118,
+      },
       FLOOR_PLAN: {
-        WIDTH: 118,
-        HEIGHT: 96,
+        WIDTH: 297,
+        HEIGHT: 118,
       },
     }
   }

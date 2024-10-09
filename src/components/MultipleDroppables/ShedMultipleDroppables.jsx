@@ -2,15 +2,12 @@ import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { generateImgSrc, toScale } from '../../utils/2D/utils';
 import {
-  COMPONENT_NAMES,
   COMPONENT_TYPES,
   DROPPABLE_BACK,
+  DROPPABLE_FRONT,
   DROPPABLE_LEFT,
-  DROPPABLE_MIDDLE,
-  DROPPABLE_PARTITIONS,
   DROPPABLE_RIGHT,
   ELEVATION_NAMES,
-  SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
 import Draggable from '../Draggable';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
@@ -19,21 +16,18 @@ const ShedMultipleDroppables = ({
   setHoveredPiece,
   setShowCollision,
   handleSelect,
-  selectedComponent
+  selectedComponent,
 }) => {
   const {
     scaleFactor,
     selectedElevation,
-    containerHeightIsStandard,
     selectedComponents,
     draggableRefs,
     supplier,
     floorPlan,
   } = useContext(ShedDataContext);
 
-  const objectHeight = containerHeightIsStandard
-    ? selectedElevation.objScHeight
-    : selectedElevation.objHcHeight;
+  const objectHeight = selectedElevation.objHeight;
 
   const { setNodeRef: setLeftDroppableRef } = useDroppable({
     id: DROPPABLE_LEFT,
@@ -41,14 +35,11 @@ const ShedMultipleDroppables = ({
   const { setNodeRef: setRightDroppableRef } = useDroppable({
     id: DROPPABLE_RIGHT,
   });
+  const { setNodeRef: setFrontDroppableRef } = useDroppable({
+    id: DROPPABLE_FRONT,
+  });
   const { setNodeRef: setBackDroppableRef } = useDroppable({
     id: DROPPABLE_BACK,
-  });
-  const { setNodeRef: setMiddleDroppableRef } = useDroppable({
-    id: DROPPABLE_MIDDLE,
-  });
-  const { setNodeRef: setParititionsDroppableRef } = useDroppable({
-    id: DROPPABLE_PARTITIONS,
   });
 
   const CustomStyle = {
@@ -58,55 +49,13 @@ const ShedMultipleDroppables = ({
     position: 'relative',
   };
 
-  const filterComponents = ({ elevationName, isLeft }) => {
-    if (isLeft) {
-      return selectedComponents.filter(
-        (piece) =>
-          (piece.elevation.some(
-            (elevation) => elevation.name === elevationName
-          ) &&
-            !piece.ceilingOnly) ||
-          piece.name === COMPONENT_NAMES.OUTLET ||
-          piece.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN ||
-          (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES &&
-            piece.objType === COMPONENT_TYPES.ELECTRICAL &&
-            !piece.ceilingOnly &&
-            !piece.notRendered &&
-            (piece.fixedSide === elevationName ||
-              !piece.fixedSide ||
-              !piece.alwaysShowOn))
-      );
-    } else {
-      return selectedComponents.filter(
-        (piece) =>
-          (piece.elevation.some(
-            (elevation) => elevation.name === elevationName
-          ) &&
-            !piece.ceilingOnly &&
-            !piece.notRendered) ||
-          (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES &&
-            piece.objType === COMPONENT_TYPES.ELECTRICAL &&
-            piece.fixedSide === elevationName)
-      );
-    }
-  };
-
-  const filterCeilingComponents = () => {
-    return selectedComponents.filter(
-      (piece) =>
-        (piece.objType === COMPONENT_TYPES.ELECTRICAL &&
-          piece.fixed &&
-          !piece.notRendered &&
-          !piece.fixedSide) ||
-        (piece.name === COMPONENT_NAMES.ROOF_VENT &&
-          piece.fixed &&
-          !piece.fixedSide)
-    );
-  };
-
-  const filterPartitions = () => {
-    return selectedComponents.filter(
-      (piece) => piece.objType === COMPONENT_TYPES.PARTITION
+  const filterComponents = ({ elevationName }) => {
+    return selectedComponents.filter((piece) =>
+      piece.elevation.some(
+        (elevation) =>
+          elevation.name === elevationName &&
+          piece.objType !== COMPONENT_TYPES.ROOF
+      )
     );
   };
 
@@ -122,7 +71,7 @@ const ShedMultipleDroppables = ({
       }}
     >
       <img
-        src={generateImgSrc(supplier, floorPlan.imgScName)}
+        src={generateImgSrc(supplier, floorPlan.imgName)}
         style={{ position: 'absolute', width: '100%', height: 'auto' }}
       />
       <div
@@ -208,54 +157,30 @@ const ShedMultipleDroppables = ({
         )}
       </div>
       <div
-        ref={setMiddleDroppableRef}
+        ref={setFrontDroppableRef}
         style={{
           ...CustomStyle,
           position: 'absolute',
-          width: `${toScale(floorPlan.objWidth, scaleFactor)}px`,
-          height: `${toScale(18, scaleFactor)}px`,
-          top: '50%',
-          transform: 'translateY(-50%)',
+          width: toScale(18, scaleFactor),
+          height: `${toScale(objectHeight, scaleFactor)}px`,
+          left: 0,
         }}
       >
-        {filterCeilingComponents().map((piece) => (
-          <Draggable
-            piece={piece}
-            key={piece.id}
-            id={piece.id}
-            onSelect={() => handleSelect(piece.id)}
-            ref={draggableRefs[piece.id]}
-            onHover={() => setHoveredPiece(piece)}
-            onLeave={() => setHoveredPiece(null)}
-            setShowCollision={setShowCollision}
-            selectedComponent={selectedComponent}
-          />
-        ))}
-      </div>
-      <div
-        ref={setParititionsDroppableRef}
-        style={{
-          ...CustomStyle,
-          position: 'absolute',
-          width: `${toScale(floorPlan.objWidth, scaleFactor)}px`,
-          height: `${toScale(floorPlan.objScHeight, scaleFactor)}px`,
-          top: '50%',
-          transform: 'translateY(-50%)',
-        }}
-      >
-        {filterPartitions().map((piece) => (
-          <Draggable
-            piece={piece}
-            key={piece.id}
-            id={piece.id}
-            onSelect={() => handleSelect(piece.id)}
-            ref={draggableRefs[piece.id]}
-            onHover={() => setHoveredPiece(piece)}
-            onLeave={() => setHoveredPiece(null)}
-            setShowCollision={setShowCollision}
-            selectedComponent={selectedComponent}
-          />
-        ))}
+        {filterComponents({ elevationName: ELEVATION_NAMES.FRONT }).map(
+          (piece) => (
+            <Draggable
+              piece={piece}
+              key={piece.id}
+              id={piece.id}
+              onSelect={() => handleSelect(piece.id)}
+              ref={draggableRefs[piece.id]}
+              onHover={() => setHoveredPiece(piece)}
+              onLeave={() => setHoveredPiece(null)}
+              setShowCollision={setShowCollision}
+              selectedComponent={selectedComponent}
+            />
+          )
+        )}
       </div>
     </section>
   );
