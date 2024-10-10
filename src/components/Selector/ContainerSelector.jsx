@@ -1,9 +1,10 @@
-import AddOption from '../AddOption/AddOption';
+
 import style from './selector.module.scss';
 import { useContext } from 'react';
 import { COMPONENT_TYPES, SUPPLIER_NAMES } from '@/utils/constants/names/names';
 import { componentData } from '@/utils/constants/componentData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import AddOption from '../AddOption/Container/AddOption';
 
 const ContainerSelector = () => {
   const { containerHeightIsStandard, supplier } = useContext(ContainerDataContext);

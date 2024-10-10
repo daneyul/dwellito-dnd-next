@@ -17,12 +17,12 @@ import { FLOORING_OPTIONS } from '@/utils/constants/components/flooring/flooring
 import Logo from '../Logo';
 import Subtitle from '../Subtitle/Subtitle';
 import ContainerSingleSelect from '../SingleSelect/ContainerSingleSelect';
-import AddElecOption from '../AddOption/AddElecOption';
-import AddPartition from '../AddOption/AddPartition';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import ContainerSaveOrder from '../SaveOrder/ContainerSaveOrder';
 import ContainerLayouts from '../Layouts/ContainerLayouts';
 import ContainerSelector from '../Selector/ContainerSelector';
+import AddElecOption from '../AddOption/Container/AddElecOption';
+import AddPartition from '../AddOption/Container/AddPartition';
 
 const LogoSection = ({ supplier }) => {
   return (

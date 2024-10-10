@@ -1,13 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from 'react';
-import {
-  generateImgSrc,
-  getComponentPrice,
-  handleAddComponent,
-} from '../../utils/2D/utils';
-import style from './addElecOption.module.scss';
+import style from '../addElecOption.module.scss';
 import { CONTAINER_SIZE_10, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import { generateImgSrc, getComponentPrice, handleAddComponent } from '@/utils/2D/utils';
 
 const AddElecOption = ({ options }) => {
   const {

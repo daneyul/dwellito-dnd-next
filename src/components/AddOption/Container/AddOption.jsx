@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from 'react';
-import { generateImgSrc, handleAddComponent } from '../../utils/2D/utils';
-import style from './addOption.module.scss';
+import { generateImgSrc, handleAddComponent } from '../../../utils/2D/utils';
+import style from '../addOption.module.scss';
 import * as HoverCard from '@radix-ui/react-hover-card';
 import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names/names';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';

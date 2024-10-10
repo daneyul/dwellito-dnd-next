@@ -1,4 +1,4 @@
-import AddOption from '../AddOption/AddOption';
+import AddOption from '../AddOption/Shed/AddOption';
 import style from './selector.module.scss';
 import { useContext } from 'react';
 import { COMPONENT_TYPES } from '@/utils/constants/names/names';

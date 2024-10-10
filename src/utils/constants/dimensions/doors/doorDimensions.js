@@ -1,7 +1,9 @@
 import { AT_AND_S_DOOR_DIMENSIONS } from "./atAndS";
+import { COMPACT_COTTAGES_DOOR_DIMENSIONS } from "./compactCottages";
 import { CUSTOM_CUBE_DOOR_DIMENSIONS } from "./customCubes";
 
 export const DOOR_DIMENSIONS = {
   ...CUSTOM_CUBE_DOOR_DIMENSIONS,
   ...AT_AND_S_DOOR_DIMENSIONS,
+  ...COMPACT_COTTAGES_DOOR_DIMENSIONS,
 };
