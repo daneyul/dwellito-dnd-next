@@ -2,179 +2,558 @@ import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
 import { getExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import CustomCubes from './Interiors/CustomCubes';
-import AtAndS from './Interiors/AtAndS';
-import {
-  CONTAINER_SIZE_10,
-  CONTAINER_SIZE_20,
-  CONTAINER_SIZE_40,
-  EXTERIORS,
-  SUPPLIER_SLUGS,
-} from '@/utils/constants/names/names';
-import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
+import { COMPACT_COTTAGES_COMPONENTS } from '@/utils/constants/names/names';
 
 export default function Shed({ paint }) {
-  const {
-    exteriorFinish,
-    selectedShed,
-    flooring,
-    selectedShedHeight,
-    shedSize,
-    supplier,
-  } = useContext(ShedDataContext);
+  const { selectedShedHeight, selectedRoof, supplier, selectedShed } =
+    useContext(ShedDataContext);
 
   // Load all 3d objects
-  const { nodes: groundBlock, materials: groundBlockMaterials } = useGLTF(
-    `/models/shed/${containerSize()}/${selectedContainerHeight}/container-shell.glb`
+  const { nodes: groundBlockNodes, materials: groundBlockMaterials } = useGLTF(
+    `/models/shed/${selectedShedHeight}/1storey_12x24_GFBlock.glb`
   );
 
-  const exteriorPaint = useMemo(() => {
-    return getExteriorPaint(supplier, exteriorFinish, paint);
-  }, [supplier, exteriorFinish, paint]);
+  // const exteriorPaint = useMemo(() => {
+  //   return getExteriorPaint(supplier, exteriorFinish, paint);
+  // }, [supplier, exteriorFinish, paint]);
 
   const ref = useRef();
 
   const adjustForX = useMemo(() => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
-      return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
-      return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
-      return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
-    }
-  }, [selectedContainer.slug, DIMENSIONS]);
+    return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2);
+  }, [DIMENSIONS]);
 
   const adjustForY = useMemo(() => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
-      return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
-      return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
-      return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
-    }
-  }, [selectedContainer.slug, DIMENSIONS]);
+    return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
+  }, [DIMENSIONS]);
 
-  const Lighting = () => {
-    return (
-      <>
-        <group
-          position={[6.026, 1.138, -4.271]}
-          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-          scale={[1, 0.915, 1]}
-        >
-          <group scale={0.01}>
+  const Roof = () => {
+    if (selectedRoof.name === COMPACT_COTTAGES_COMPONENTS.SLANT_ROOF) {
+      const { nodes, materials } = useGLTF(
+        `/models/${supplier}/roofs/${selectedShedHeight}/${selectedShed.size}/slant.glb`
+      );
+      return (
+        <group scale={8} dispose={null} position={[adjustForX, 0, adjustForY]}>
+          <group scale={0.025}>
             <mesh
               castShadow
               receiveShadow
-              geometry={nodes['10FT_Container_Exterior_Blank_Whole_1'].geometry}
-              material={materials.Emissive_Light}
+              geometry={nodes.Object_10.geometry}
+              material={materials.Framing_Wood}
             />
             <mesh
               castShadow
               receiveShadow
-              geometry={nodes['10FT_Container_Exterior_Blank_Whole_3'].geometry}
-              material={materials.White_Mtl}
+              geometry={nodes.Object_11.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_12.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_13.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_14.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_2.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_3.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_4.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_5.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_6.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_7.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_8.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_9.geometry}
+              material={materials.Framing_Wood}
             />
           </group>
-        </group>
-      </>
-    );
-  };
-
-  const Interiors = () => {
-    if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
-      return (
-        <CustomCubes
-          interiorFinishes={interiorFinishes}
-          flooring={flooring}
-          supplier={supplier}
-          containerSize={containerSize}
-          selectedContainerHeight={selectedContainerHeight}
-        />
-      );
-    } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
-      return (
-        <AtAndS
-          interiorFinishes={interiorFinishes}
-          flooring={flooring}
-          supplier={supplier}
-          containerSize={containerSize}
-          selectedContainerHeight={selectedContainerHeight}
-        />
-      );
-    }
-  };
-
-  const Corners = () => {
-    const { nodes: cornerNodes } = useGLTF(
-      `/models/container/${containerSize()}/${selectedContainerHeight}/corners.glb`
-    );
-    const redPaint = EXTERIOR_FINISH_OPTIONS.find(
-      (item) => item.name === EXTERIORS.SAF_RED
-    );
-
-    const cornerPaint = getExteriorPaint(supplier, redPaint, paint);
-    return (
-      <group scale={0.001}>
-        {Object.keys(cornerNodes).map((nodeKey) => {
-          const node = cornerNodes[nodeKey];
-          if (node.isMesh) {
-            return (
-              <mesh
-                key={nodeKey}
-                castShadow
-                receiveShadow
-                geometry={node.geometry}
-                material={cornerPaint}
-              />
-            );
-          }
-          return null;
-        })}
-      </group>
-    );
-  };
-
-  const containerMesh = (
-    <group
-      dispose={null}
-      scale={[10, 10, 10]}
-      position={[adjustForX, 0, adjustForY]}
-      ref={ref}
-    >
-      <group
-        position={[6.026, 1.138, -4.271]}
-        rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-        scale={[1, 0.915, 1]}
-      >
-        <group scale={0.01}>
+          <group scale={0.025}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_15.geometry}
+              material={materials.Vertical_Trim}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_16.geometry}
+              material={materials.Vertical_Trim}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_17.geometry}
+              material={materials.Vertical_Trim}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_18.geometry}
+              material={materials.Vertical_Trim}
+            />
+          </group>
+          <group scale={0.025}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_19.geometry}
+              material={materials.Roof_Siding}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_20.geometry}
+              material={materials.Roof_Siding}
+            />
+          </group>
+          <group scale={0.025}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_21.geometry}
+              material={materials.Roof_interior}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_22.geometry}
+              material={materials.Roof_interior}
+            />
+          </group>
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes['10FT_Container_Exterior_Blank_Whole_2'].geometry}
-            material={exteriorPaint}
+            geometry={nodes.Object_1.geometry}
+            material={materials['galvanized  alum metal']}
+            scale={0.025}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_23.geometry}
+            material={materials.Roof_Exterior}
+            scale={0.025}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_24.geometry}
+            material={materials.Roof_Ceiling}
+            scale={0.025}
           />
         </group>
-      </group>
+      );
+    } else {
+      const { nodes, materials } = useGLTF(
+        `/models/${supplier}/roofs/${selectedShedHeight}/${selectedShed.size}/gable.glb`
+      );
+      return (
+        <group scale={8} dispose={null} position={[adjustForX, 0, adjustForY]}>
+          <group scale={0.025}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_1.geometry}
+              material={materials.Vertical_Trim}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_2.geometry}
+              material={materials.Vertical_Trim}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_3.geometry}
+              material={materials.Vertical_Trim}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_4.geometry}
+              material={materials.Vertical_Trim}
+            />
+          </group>
+          <group scale={0.025}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_5.geometry}
+              material={materials.Roof_Siding}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_6.geometry}
+              material={materials.Roof_Siding}
+            />
+          </group>
+          <group scale={0.025}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_10.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_11.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_12.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_13.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_14.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_15.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_16.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_17.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_18.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_19.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_20.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_8.geometry}
+              material={materials.Framing_Wood}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_9.geometry}
+              material={materials.Framing_Wood}
+            />
+          </group>
+          <group scale={0.025}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_23.geometry}
+              material={materials.Roof_interior}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_24.geometry}
+              material={materials.Roof_interior}
+            />
+          </group>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_7.geometry}
+            material={materials.Roof_Ceiling}
+            scale={0.025}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_21.geometry}
+            material={materials['galvanized  alum metal']}
+            scale={0.025}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_22.geometry}
+            material={materials.Roof_Exterior}
+            scale={0.025}
+          />
+        </group>
+      );
+    }
+  };
+
+  const shedMesh = (
+    <>
       <group
-        position={[6.077, -1.705, -1]}
-        rotation={[Math.PI, 0, -Math.PI / 2]}
-        scale={[1, 0.915, 1]}
+        scale={8}
+        dispose={null}
+        position={[adjustForX, 0, adjustForY]}
+        ref={ref}
       >
+        <group scale={0.025}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_1.geometry}
+            material={groundBlockMaterials.Vertical_Trim}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_2.geometry}
+            material={groundBlockMaterials.Vertical_Trim}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_3.geometry}
+            material={groundBlockMaterials.Vertical_Trim}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_4.geometry}
+            material={groundBlockMaterials.Vertical_Trim}
+          />
+        </group>
+        <group scale={0.025}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_10.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_11.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_12.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_13.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_14.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_15.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_16.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_17.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_18.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_19.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_20.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_21.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_22.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_23.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_24.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_25.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_26.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_27.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={groundBlockNodes.Object_28.geometry}
+            material={groundBlockMaterials.Framing_Wood}
+          />
+        </group>
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes['20FT_Container_Exterior_Blank_Ceiling'].geometry}
-          material={exteriorPaint}
-          scale={0.01}
+          geometry={groundBlockNodes.Object_5.geometry}
+          material={groundBlockMaterials.GF_interior}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={groundBlockNodes.Object_6.geometry}
+          material={groundBlockMaterials.GF_Exterior}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={groundBlockNodes.Object_7.geometry}
+          material={groundBlockMaterials.Base_Board}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={groundBlockNodes.Object_8.geometry}
+          material={groundBlockMaterials.GF_Flooring}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={groundBlockNodes.Object_9.geometry}
+          material={groundBlockMaterials.Plywood_Subfloor}
+          scale={0.025}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={groundBlockNodes.Object_29.geometry}
+          material={groundBlockMaterials['Big concrete blocks']}
+          scale={0.025}
         />
       </group>
-      {hasWrapLighting ? <Lighting /> : null}
-      {hasRedCorners ? <Corners /> : null}
-      <Interiors />
-    </group>
+      <Roof />
+    </>
   );
 
-  return containerMesh;
+  return shedMesh;
 }

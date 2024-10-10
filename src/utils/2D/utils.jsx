@@ -261,6 +261,11 @@ export const droppableWidth = (
         DIMENSIONS,
         selectedContainer
       );
+    case ELEVATION_NAMES.FRONT:
+      return DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES(
+        DIMENSIONS,
+        selectedContainer
+      );
     case ELEVATION_NAMES.FLOOR_PLAN:
       return DROPPABLE_FLOOR_PLAN_WIDTH(DIMENSIONS, selectedContainer);
     default:

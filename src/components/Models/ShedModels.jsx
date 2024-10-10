@@ -8,10 +8,8 @@ import {
 } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useContext, useEffect, useMemo, useRef, useState } from 'react';
-import Door from './Doors/DoorSwitcher';
 import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
-import Window from './Windows/WindowSwitcher';
 import {
   COMPONENT_TYPES,
 } from '@/utils/constants/names/names';
@@ -20,9 +18,9 @@ import {
   INTERIOR_CAM_POS,
   INTERIOR_CAM_ROT,
 } from '@/utils/constants/camera/camPos';
-import Electrical from './Electrical/Electrical';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import { useExteriorGLTFModels } from '@/utils/hooks/sheds/useGLTFModels';
+import Shed from './Sheds/one-story/Shed';
 
 export function ShedModels() {
   const {
@@ -154,7 +152,7 @@ export function ShedModels() {
 
   const paint = useExteriorGLTFModels(supplier);
   const ShedShell = () => {
-    return <ContainerShell10Standard paint={paint} />;
+    return <Shed paint={paint} />;
   };
 
   return (
@@ -181,7 +179,7 @@ export function ShedModels() {
             exhaustFanBoundingBox={exhaustFanBoundingBox}
             paint={paint}
           /> */}
-          {doors.map((door, index) => (
+          {/* {doors.map((door, index) => (
             <Door
               key={door.id}
               component={door}
@@ -199,7 +197,7 @@ export function ShedModels() {
               }
               supplier={supplier}
             />
-          ))}
+          ))} */}
           <ambientLight intensity={0.15} />
           <spotLight
             intensity={0.65}

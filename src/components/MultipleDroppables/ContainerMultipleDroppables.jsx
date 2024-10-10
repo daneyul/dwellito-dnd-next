@@ -12,8 +12,8 @@ import {
   ELEVATION_NAMES,
   SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
-import Draggable from '../Draggable';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import ContainerDraggable from '../Models/Draggable/ContainerDraggable';
 
 const ContainerMultipleDroppables = ({
   setHoveredPiece,
@@ -139,7 +139,7 @@ const ContainerMultipleDroppables = ({
           isLeft: true,
         }).map((piece) => {
           return (
-            <Draggable
+            <ContainerDraggable
               piece={piece}
               key={piece.id}
               id={piece.id}
@@ -166,7 +166,7 @@ const ContainerMultipleDroppables = ({
         {filterComponents({ elevationName: ELEVATION_NAMES.RIGHT }).map(
           (piece) => {
             return (
-              <Draggable
+              <ContainerDraggable
                 piece={piece}
                 key={piece.id}
                 id={piece.id}
@@ -193,7 +193,7 @@ const ContainerMultipleDroppables = ({
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.BACK }).map(
           (piece) => (
-            <Draggable
+            <ContainerDraggable
               piece={piece}
               key={piece.id}
               id={piece.id}
@@ -219,7 +219,7 @@ const ContainerMultipleDroppables = ({
         }}
       >
         {filterCeilingComponents().map((piece) => (
-          <Draggable
+          <ContainerDraggable
             piece={piece}
             key={piece.id}
             id={piece.id}
@@ -244,7 +244,7 @@ const ContainerMultipleDroppables = ({
         }}
       >
         {filterPartitions().map((piece) => (
-          <Draggable
+          <ContainerDraggable
             piece={piece}
             key={piece.id}
             id={piece.id}

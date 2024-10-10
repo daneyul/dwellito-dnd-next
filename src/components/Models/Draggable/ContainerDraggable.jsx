@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
-import { toScale, generateImgSrc, calculateCSSPos } from '../utils/2D/utils';
+import { toScale, generateImgSrc, calculateCSSPos } from '../../../utils/2D/utils';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
@@ -51,7 +51,7 @@ function useCollidableDraggable({ id, data: customData }) {
   };
 }
 
-const Draggable = ({
+const ContainerDraggable = ({
   id,
   styles,
   piece,
@@ -320,4 +320,4 @@ const Draggable = ({
   );
 };
 
-export default Draggable;
+export default ContainerDraggable;

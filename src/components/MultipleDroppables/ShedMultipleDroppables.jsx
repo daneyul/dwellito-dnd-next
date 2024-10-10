@@ -9,8 +9,8 @@ import {
   DROPPABLE_RIGHT,
   ELEVATION_NAMES,
 } from '@/utils/constants/names/names';
-import Draggable from '../Draggable';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
+import ShedDraggable from '../Models/Draggable/ShedDraggable';
 
 const ShedMultipleDroppables = ({
   setHoveredPiece,
@@ -88,7 +88,7 @@ const ShedMultipleDroppables = ({
           isLeft: true,
         }).map((piece) => {
           return (
-            <Draggable
+            <ShedDraggable
               piece={piece}
               key={piece.id}
               id={piece.id}
@@ -115,7 +115,7 @@ const ShedMultipleDroppables = ({
         {filterComponents({ elevationName: ELEVATION_NAMES.RIGHT }).map(
           (piece) => {
             return (
-              <Draggable
+              <ShedDraggable
                 piece={piece}
                 key={piece.id}
                 id={piece.id}
@@ -142,7 +142,7 @@ const ShedMultipleDroppables = ({
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.BACK }).map(
           (piece) => (
-            <Draggable
+            <ShedDraggable
               piece={piece}
               key={piece.id}
               id={piece.id}
@@ -168,7 +168,7 @@ const ShedMultipleDroppables = ({
       >
         {filterComponents({ elevationName: ELEVATION_NAMES.FRONT }).map(
           (piece) => (
-            <Draggable
+            <ShedDraggable
               piece={piece}
               key={piece.id}
               id={piece.id}

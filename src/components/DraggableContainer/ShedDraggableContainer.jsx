@@ -1,8 +1,8 @@
 import { droppableWidth, toScale } from '@/utils/2D/utils';
 import { useContext } from 'react';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import Draggable from '../Draggable';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
+import ShedDraggable from '../Models/Draggable/ShedDraggable';
 
 export const ShedDraggableContainer = ({
   selectedComponents,
@@ -30,7 +30,7 @@ export const ShedDraggableContainer = ({
       {selectedComponents
         .filter((item) => !item.notRendered)
         .map((piece) => (
-          <Draggable
+          <ShedDraggable
             piece={piece}
             key={piece.id}
             id={piece.id}

@@ -34,7 +34,7 @@ const RoofOptions = () => {
       {roofs.map((roof) => {
         const thumbnail = roof.thumbnail;
         const roofName = roof.name;
-        const roofImage = `/images/${supplier}/roof/${selectedShed.size}/${thumbnail}`;
+        const roofImage = `/images/${supplier}/roof/${selectedShed.height}/${thumbnail}`;
         const isSelected = selectedComponents.includes(roof);
         const roofPrice = roof.price;
 

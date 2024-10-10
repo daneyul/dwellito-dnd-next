@@ -118,12 +118,11 @@ export const CONTAINER_SIZE_STR_10 = "TEN";
 export const CONTAINER_SIZE_STR_20 = "TWENTY";
 export const CONTAINER_SIZE_STR_40 = "FORTY";
 
-export const SHED_ONE_STORY = 'one-story';
+export const ONE_STORY = 'one-story';
 
-export const SHED_SIZE_ONE_STORY_12x24 = 'one-story-12x24';
-export const SHED_SIZE_ONE_STORY_16x24 = 'one-story-16x24';
-export const SHED_SIZE_ONE_STORY_20x24 = 'one-story-20x24';
-export const SHED_SIZE_ONE_STORY_32x24 = 'one-story-32x24';
+export const SHED_ONE_STORY_12x24 = 'one-story-12x24';
+
+export const SHED_12x24 = '12x24';
 
 export const INTERIOR_FINISH_NAMES = {
   NONE: "None",

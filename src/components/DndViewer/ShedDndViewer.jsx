@@ -126,20 +126,6 @@ const ShedDnDViewer = () => {
     [selectedComponent]
   );
 
-  const handleRotate = useCallback(() => {
-    setSelectedComponents((prevComponents) =>
-      prevComponents.map((piece) => {
-        if (piece.id === selectedComponent.id) {
-          return {
-            ...piece,
-            rotate: piece.rotate + 90,
-          };
-        }
-        return piece;
-      })
-    );
-  }, [selectedComponent, setSelectedComponents]);
-
   const handleNext = useCallback(() => {
     setSelectedComponent(null);
     setSelectedElevationIndex((prevIndex) => {
@@ -208,7 +194,6 @@ const ShedDnDViewer = () => {
         handleDeleteSelected={handleDeleteSelected}
         isDraggableOnFloorPlan={isDraggableOnFloorPlan}
         isFloorPlanView={isFloorPlanView}
-        handleRotate={handleRotate}
         selectedComponent={selectedComponent}
       />
     </div>

@@ -1,11 +1,11 @@
 export const SHED_DIMENSIONS = {
   ONE_STORY: {
-    THREE_D: {
-      WIDTH: 30.30408388,
-      HEIGHT: 25.908830686145798,
-      DEPTH: 24.382746504059998,
-    },
     TWELVE_TWENTY_FOUR: {
+      THREE_D: {
+        WIDTH: 29.2,
+        HEIGHT: 23.65,
+        DEPTH: 59.4,
+      },
       SIDE: {
         WIDTH: 297,
         HEIGHT: 118,

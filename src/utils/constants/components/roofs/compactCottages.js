@@ -1,8 +1,8 @@
 import {
   COMPACT_COTTAGES_COMPONENTS,
   COMPONENT_TYPES,
-  SHED_ONE_STORY,
-  SHED_SIZE_1_STORY_12x24,
+  ONE_STORY,
+  SHED_ONE_STORY_12x24,
   SUPPLIER_SLUGS,
 } from '../../names/names';
 
@@ -12,8 +12,8 @@ export const compactCottages = [
     thumbnail: '/12x24/slant/front.svg',
     id: 'slant-roof',
     price: 100,
-    shed: SHED_SIZE_1_STORY_12x24,
-    size: SHED_ONE_STORY,
+    shed: SHED_ONE_STORY_12x24,
+    height: ONE_STORY,
     objType: COMPONENT_TYPES.ROOF
   },
   {
@@ -21,8 +21,8 @@ export const compactCottages = [
     thumbnail: '/12x24/gable/front.svg',
     id: 'gable-roof',
     price: 100,
-    shed: SHED_SIZE_1_STORY_12x24,
-    size: SHED_ONE_STORY,
+    shed: SHED_ONE_STORY_12x24,
+    height: ONE_STORY,
     objType: COMPONENT_TYPES.ROOF
   }
 ].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.COMPACT_COTTAGES }));

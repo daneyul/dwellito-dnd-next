@@ -1,15 +1,16 @@
-import React, { useState, createContext } from 'react';
-import { containerElevationData } from '../constants/components/container-elevations/containerElevationData';
+import React, { useState, createContext, useEffect } from 'react';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import useOrderTotal from '../hooks/useShedOrderTotal';
 import {
+  COMPACT_COTTAGES_COMPONENTS,
+  COMPONENT_TYPES,
   CONFIGURATOR_TYPES,
   ELEVATION_NAMES,
-  SHED_ONE_STORY,
-  SHED_SIZE_ONE_STORY_12x24,
+  ONE_STORY,
 } from '@/utils/constants/names/names';
 import { shedData } from '../constants/shedData';
 import { shedElevationData } from '../constants/components/shed-elevations/shedElevationData';
+import { componentData } from '../constants/componentData';
 
 export const ShedDataContext = createContext();
 
@@ -33,6 +34,29 @@ const ShedDataProvider = ({ children, data }) => {
     EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
   );
 
+  // Set a default roof
+  useEffect(() => {
+    const slantRoofComponent = componentData.find(
+      (component) => component.name === COMPACT_COTTAGES_COMPONENTS.SLANT_ROOF
+    );
+
+    if (slantRoofComponent) {
+      setSelectedComponents((prevComponents) => {
+        // Check if the slant roof component is already in the selectedComponents
+        const isAlreadySelected = prevComponents.some(
+          (component) => component.id === slantRoofComponent.id
+        );
+
+        if (!isAlreadySelected) {
+          return [...prevComponents, slantRoofComponent];
+        }
+        return prevComponents;
+      });
+    }
+  }, []);
+
+  const selectedRoof = selectedComponents.find((item) => item.objType === COMPONENT_TYPES.ROOF);
+
   // Elevation
   const DEFAULT_ELEVATION = shedElevationData.find(
     (item) =>
@@ -49,15 +73,10 @@ const ShedDataProvider = ({ children, data }) => {
   }, {});
 
   // Shed
-  const [selectedShedHeight, setSelectedShedHeight] = useState(SHED_ONE_STORY);
-  const shedHeightIsOneStory = selectedShedHeight === useState(SHED_ONE_STORY);
+  const [selectedShedHeight, setSelectedShedHeight] = useState(ONE_STORY);
+  const shedHeightIsOneStory = selectedShedHeight === useState(ONE_STORY);
   const selectedShed = shedData.find((shed) => shed.slug === slug);
   const shedId = selectedShed.id;
-  const shedStories = () => {
-    if (selectedShed.slug === SHED_SIZE_ONE_STORY_12x24) {
-      return SHED_ONE_STORY;
-    }
-  };
 
   // Floor Plan
   const floorPlan = shedElevationData.find((elevation) => {
@@ -116,7 +135,6 @@ const ShedDataProvider = ({ children, data }) => {
     setSelectedShedHeight,
     cameraReady,
     setCameraReady,
-    shedStories,
     floorPlan,
     isFloorPlanView,
     showOutsideDroppableWarning,
@@ -124,6 +142,7 @@ const ShedDataProvider = ({ children, data }) => {
     dialogOpen,
     setDialogOpen,
     shedHeightIsOneStory,
+    selectedRoof
   };
 
   return (

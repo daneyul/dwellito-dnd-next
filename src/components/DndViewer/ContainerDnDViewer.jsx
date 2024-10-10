@@ -3,9 +3,7 @@ import style from './DndViewer.module.scss';
 import OutsideDroppable from '../Collision/OutsideDroppable';
 import Collision from '../Collision/Collision';
 import { DndContext } from '@dnd-kit/core';
-import MultipleDroppables from '../MultipleDroppables/ContainerMultipleDroppables';
-import Droppable from '../Models/Droppable/ContainerDroppable';
-import { ContainerDraggableContainer, DraggableContainer } from '../DraggableContainer/ContainerDraggableContainer';
+import { ContainerDraggableContainer } from '../DraggableContainer/ContainerDraggableContainer';
 import {
   COMPONENT_NAMES,
   ELEVATION_NAMES,

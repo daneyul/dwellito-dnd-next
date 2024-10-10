@@ -1,8 +1,8 @@
 import { droppableWidth, toScale } from '@/utils/2D/utils';
 import { useContext } from 'react';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import Draggable from '../Draggable';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import ContainerDraggable from '../Models/Draggable/ContainerDraggable';
 
 export const ContainerDraggableContainer = ({
   selectedComponents,
@@ -30,7 +30,7 @@ export const ContainerDraggableContainer = ({
       {selectedComponents
         .filter((item) => !item.notRendered)
         .map((piece) => (
-          <Draggable
+          <ContainerDraggable
             piece={piece}
             key={piece.id}
             id={piece.id}
