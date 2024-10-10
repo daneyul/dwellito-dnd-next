@@ -16,13 +16,13 @@ import { componentData } from '@/utils/constants/componentData';
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooring/flooringData';
 import Logo from '../Logo';
 import Subtitle from '../Subtitle/Subtitle';
-import Selector from '../Selector/Selector';
 import ContainerSingleSelect from '../SingleSelect/ContainerSingleSelect';
 import AddElecOption from '../AddOption/AddElecOption';
 import AddPartition from '../AddOption/AddPartition';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import ContainerSaveOrder from '../SaveOrder/ContainerSaveOrder';
 import ContainerLayouts from '../Layouts/ContainerLayouts';
+import ContainerSelector from '../Selector/ContainerSelector';
 
 const LogoSection = ({ supplier }) => {
   return (
@@ -203,7 +203,7 @@ const ContainerSidebar = () => {
       <div className={style.desktopContainer}>
         <LogoSection supplier={supplier} />
         <ContainerSelection />
-        <Selector />
+        <ContainerSelector />
         <ExteriorSelector supplier={supplier} />
         <InteriorSelector />
         <PartitionsSelector partitions={partitions} />

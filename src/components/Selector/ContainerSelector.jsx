@@ -5,7 +5,7 @@ import { COMPONENT_TYPES, SUPPLIER_NAMES } from '@/utils/constants/names/names';
 import { componentData } from '@/utils/constants/componentData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
-const Selector = () => {
+const ContainerSelector = () => {
   const { containerHeightIsStandard, supplier } = useContext(ContainerDataContext);
 
   const doors = componentData.filter(
@@ -133,4 +133,4 @@ const Selector = () => {
   );
 };
 
-export default Selector;
+export default ContainerSelector;

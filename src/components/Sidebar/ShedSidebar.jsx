@@ -7,6 +7,7 @@ import ShedSingleSelect from '../SingleSelect/ShedSingleSelect';
 import ShedSaveOrder from '../SaveOrder/ShedSaveOrder';
 import Subtitle from '../Subtitle/Subtitle';
 import RoofOptions from '../Layouts/RoofOptions';
+import ShedSelector from '../Selector/ShedSelector';
 
 const LogoSection = ({ supplier }) => (
   <div className={style.logo}>
@@ -48,7 +49,7 @@ const ShedSidebar = () => {
         <LogoSection supplier={supplier} />
         <RoofSelector />
         <ExteriorSelector />
-        {/* <Selector /> */}
+        {/* <ShedSelector /> */}
         <ShedSaveOrder />
       </div>
     </>

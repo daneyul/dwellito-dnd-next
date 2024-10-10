@@ -93,6 +93,9 @@ const AT_AND_S_COMPONENTS = {
 export const COMPACT_COTTAGES_COMPONENTS = {
   SLANT_ROOF: 'Slant Roof',
   GABLE_ROOF: 'Gable Roof',
+  EXTERIOR_DOOR_1: '3ft x 6ft8in Paneled Door 1',
+  EXTERIOR_DOOR_2: '3ft x 6ft8in Paneled Door 2',
+  EXTERIOR_DOOR_3: '3ft x 6ft8in Half Light Door'
 }
 
 export const COMPONENT_NAMES = {
