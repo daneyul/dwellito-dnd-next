@@ -3,17 +3,12 @@ import React, {
   useCallback,
   useContext,
   useEffect,
-  useMemo,
   useState,
 } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
-import { toScale, generateImgSrc, calculateCSSPos } from '../../../utils/2D/utils';
+import { toScale, generateImgSrc, calculateCSSPos, calculateShedComponentCSSPos } from '../../../utils/2D/utils';
 import {
-  COMPONENT_NAMES,
   COMPONENT_TYPES,
-  CONTAINER_SIZE_10,
-  CONTAINER_SIZE_20,
-  CONTAINER_SIZE_40,
   DROPPABLE,
   DROPPABLE_BACK,
   DROPPABLE_LEFT,
@@ -115,9 +110,14 @@ const ShedDraggable = ({
     [onSelect]
   );
 
-  const imgSrc = useMemo(() => {
-    return piece.imgName;
-  }, [piece]);
+  const imgSrc = () => {
+    if (isFloorPlanView) {
+      return piece.floorPlanImg;
+    } else {
+      return piece.imgName
+    }
+  };
+  
 
   const isFixed = piece.fixed;
 
@@ -133,51 +133,24 @@ const ShedDraggable = ({
   }
 
   const imgWidth = () => {
-    return toScale(piece.objThickness, scaleFactor);
+    return toScale(piece.objWidth, scaleFactor);
   };
 
   // Calculate CSS position
-  const calculatedPos = calculateCSSPos({
+  const calculatedPos = calculateShedComponentCSSPos({
     isFloorPlanView,
     isFixed,
     piece,
     scaleFactor,
-    adjForContainerHeight,
     selectedElevation,
   });
 
-  const isRight = piece.elevation[0].name === ELEVATION_NAMES.RIGHT;
-  const isLeft = piece.elevation[0].name === ELEVATION_NAMES.LEFT;
-  const isBack = piece.elevation[0].name === ELEVATION_NAMES.BACK;
-
   const determineTransformX = (dragTransform) => {
-    if (isFloorPlanView) {
-      if (isRight) {
-        return dragTransform?.x;
-      } else if (isLeft) {
-        return -dragTransform?.x;
-      } else if (isBack) {
-        return -dragTransform?.y;
-      } else {
-        return dragTransform?.x;
-      }
-    } else {
-      return dragTransform?.x;
-    }
+    return dragTransform?.x;
   };
 
   const determineTransformY = (dragTransform) => {
-    if (isFloorPlanView) {
-      if (isRight || isLeft) {
-        return dragTransform?.y;
-      } else if (isBack) {
-        return 0;
-      } else {
-        return dragTransform?.y;
-      }
-    } else {
-      return dragTransform?.y;
-    }
+    return dragTransform?.y;
   };
 
   const combinedTransforms = [
@@ -219,7 +192,7 @@ const ShedDraggable = ({
         onMouseDown={handleMouseDown}
       >
         <img
-          src={generateImgSrc(supplier, imgSrc)}
+          src={generateImgSrc(supplier, imgSrc())}
           alt={piece.name}
           style={{
             width: `${imgWidth()}px`,

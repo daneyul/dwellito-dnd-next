@@ -1,5 +1,6 @@
+
 import {
-  COMPACT_COTTAGES_COMPONENTS,
+  COMPONENT_NAMES,
   COMPONENT_TYPES,
   ONE_STORY,
   SHED_ONE_STORY_12x24,
@@ -8,7 +9,7 @@ import {
 
 export const compactCottages = [
   {
-    name: COMPACT_COTTAGES_COMPONENTS.SLANT_ROOF,
+    name: COMPONENT_NAMES.SLANT_ROOF,
     thumbnail: '/12x24/slant/front.svg',
     id: 'slant-roof',
     price: 100,
@@ -26,7 +27,7 @@ export const compactCottages = [
     }
   },
   {
-    name: COMPACT_COTTAGES_COMPONENTS.GABLE_ROOF,
+    name: COMPONENT_NAMES.GABLE_ROOF,
     thumbnail: '/12x24/gable/front.svg',
     id: 'gable-roof',
     price: 100,

@@ -3,7 +3,7 @@ import { useContext, useMemo, useRef } from 'react';
 import { getExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
-import { COMPACT_COTTAGES_COMPONENTS } from '@/utils/constants/names/names';
+import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 
 export default function Shed({ paint }) {
   const { selectedShedHeight, selectedRoof, supplier, selectedShed } =
@@ -29,7 +29,7 @@ export default function Shed({ paint }) {
   }, [DIMENSIONS]);
 
   const Roof = () => {
-    if (selectedRoof.name === COMPACT_COTTAGES_COMPONENTS.SLANT_ROOF) {
+    if (selectedRoof.name === COMPONENT_NAMES.SLANT_ROOF) {
       const { nodes, materials } = useGLTF(
         `/models/${supplier}/roofs/${selectedShedHeight}/${selectedShed.size}/slant.glb`
       );

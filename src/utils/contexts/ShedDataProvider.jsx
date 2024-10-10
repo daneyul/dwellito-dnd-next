@@ -1,8 +1,9 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext } from 'react';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import useOrderTotal from '../hooks/useShedOrderTotal';
 import {
   COMPACT_COTTAGES_COMPONENTS,
+  COMPONENT_NAMES,
   COMPONENT_TYPES,
   CONFIGURATOR_TYPES,
   ELEVATION_NAMES,
@@ -30,7 +31,7 @@ const ShedDataProvider = ({ children, data }) => {
 
   // Selections
   const slantRoofComponent = componentData.find(
-    (component) => component.name === COMPACT_COTTAGES_COMPONENTS.SLANT_ROOF
+    (component) => component.name === COMPONENT_NAMES.SLANT_ROOF
   );
   const [selectedComponents, setSelectedComponents] = useState([slantRoofComponent]);
   const [exteriorFinish, setExteriorFinish] = useState(

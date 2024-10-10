@@ -18,21 +18,18 @@ const AddOption = ({ options }) => {
     supplier
   } = useContext(ShedDataContext);
 
-  const rightElevation = mappedElevations.find(
-    (elevation) => elevation.name === ELEVATION_NAMES.RIGHT
-  );
-  const backElevation = mappedElevations.find(
-    (elevation) => elevation.name === ELEVATION_NAMES.BACK
+  const frontElevation = mappedElevations.find(
+    (elevation) => elevation.name === ELEVATION_NAMES.FRONT
   );
 
   const handleSelect = (item) => {
     setShow3d(false);
     if (isFloorPlanView) {
-      setSelectedElevation(rightElevation);
+      setSelectedElevation(frontElevation);
       handleAddComponent({
         item,
         setSelectedComponents,
-        selectedElevation: rightElevation,
+        selectedElevation: frontElevation,
         floorPlan
       });
     } else {

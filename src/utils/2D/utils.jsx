@@ -359,7 +359,7 @@ export const snapToEdgesModifier = ({ transform, active, over }) => {
 };
 
 // This calculates the CSS positions based on the piece's position and elevation
-export const calculateCSSPos = ({
+export const calculateContainerComponentCSSPos = ({
   isFloorPlanView,
   isFixed,
   piece,
@@ -376,14 +376,14 @@ export const calculateCSSPos = ({
         transform = `rotate(90deg) translateX(10px)`;
         positionStyles = {
           bottom: '0',
-          right: `${adjForContainerHeight(
+          right: `${adjForHeight(
             piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
           )}px`,
         };
       } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
         transform = 'translateX(50%)';
         positionStyles = {
-          bottom: `${adjForContainerHeight(
+          bottom: `${adjForHeight(
             piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
           )}px`,
           right: '0',
@@ -396,9 +396,7 @@ export const calculateCSSPos = ({
           }px`,
           top: '50%',
         };
-      } else if (
-        piece.isWrapLight || piece.isCanLight
-      ) {
+      } else if (piece.isWrapLight || piece.isCanLight) {
         transform = 'translateY(-50%) translateX(-50%)';
         positionStyles = {
           left: `50%`,
@@ -406,9 +404,7 @@ export const calculateCSSPos = ({
         };
       }
     } else {
-      if (
-        piece.moveableInFloorPlan
-      ) {
+      if (piece.moveableInFloorPlan) {
         positionStyles = {
           left: `${piece.position.x}px`,
           top: `${piece.position.y}px`,
@@ -438,6 +434,14 @@ export const calculateCSSPos = ({
           right: `0`,
           transformOrigin: 'right bottom',
         };
+      } else if (piece.elevation[0].name === ELEVATION_NAMES.FRONT) {
+        transform = 'translateY(100%)';
+        positionStyles = {
+          bottom: '10px',
+          left: `${
+            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+          }px`,
+        };
       }
     }
   } else if (isFixed && !!piece.alwaysShowOn) {
@@ -445,13 +449,13 @@ export const calculateCSSPos = ({
       // For fixed components on elevation views, show front view
       if (piece.name === COMPONENT_NAMES.EXHAUST_FAN) {
         positionStyles = {
-          right: `${adjForContainerHeight(piece.position.x)}px`,
-          top: `${adjForContainerHeight(piece.position.y)}px`,
+          right: `${adjForHeight(piece.position.x)}px`,
+          top: `${adjForHeight(piece.position.y)}px`,
         };
       } else {
         positionStyles = {
-          left: `${adjForContainerHeight(piece.position.x)}px`,
-          top: `${adjForContainerHeight(piece.position.y)}px`,
+          left: `${adjForHeight(piece.position.x)}px`,
+          top: `${adjForHeight(piece.position.y)}px`,
         };
       }
     } else if (!piece.fixedSide) {
@@ -496,14 +500,29 @@ export const calculateCSSPos = ({
     if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
       positionStyles = {
         right: `${piece.position.x}px`,
-        top: `${adjForContainerHeight(piece.position.y)}px`,
+        top: `${adjForHeight(piece.position.y)}px`,
       };
     } else
       positionStyles = {
         left: `${piece.position.x}px`,
-        top: `${adjForContainerHeight(piece.position.y)}px`,
+        top: `${adjForHeight(piece.position.y)}px`,
       };
   }
+
+  return {
+    ...positionStyles,
+    transform,
+  };
+};
+
+export const calculateShedComponentCSSPos = ({ piece }) => {
+  let transform = '';
+  let positionStyles = {};
+
+  positionStyles = {
+    left: `${piece.position.x}px`,
+    top: `${piece.position.y}px`,
+  };
 
   return {
     ...positionStyles,

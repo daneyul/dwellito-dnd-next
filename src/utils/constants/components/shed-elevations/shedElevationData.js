@@ -41,16 +41,7 @@ export const shedElevationData = [
     objWidth: DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.SIDE.WIDTH,
     objHeight: DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.SIDE.HEIGHT,
     type: CONFIGURATOR_TYPES.SHED,
-  },
-  {
-    name: ELEVATION_NAMES.FLOOR_PLAN,
-    id: 'elevation-floor-one-story',
-    imgName: 'elevation/one-story/12x24/floor-plan.svg',
-    homePlan: SHED_ONE_STORY_12x24,
-    objWidth: DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.FLOOR_PLAN.WIDTH,
-    objHeight: DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.FLOOR_PLAN.HEIGHT,
-    type: CONFIGURATOR_TYPES.SHED,
-  },
+  }
 ].map((item) => ({
   width: '100%',
   height: 'auto',

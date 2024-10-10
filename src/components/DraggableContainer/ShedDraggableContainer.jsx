@@ -12,15 +12,13 @@ export const ShedDraggableContainer = ({
   setHoveredPiece,
   setShowCollision,
 }) => {
-  const { scaleFactor, selectedElevation, selectedShed } =
+  const { scaleFactor, selectedElevation } =
     useContext(ShedDataContext);
+    
   return (
     <div
       style={{
-        width: `${toScale(
-          droppableWidth(selectedElevation, DIMENSIONS, selectedShed),
-        scaleFactor
-        )}px`,
+        width: `${toScale(selectedElevation.objWidth, scaleFactor)}px`,
         height: '100%',
         position: 'absolute',
         left: '50%',

@@ -3,9 +3,6 @@ import style from './DndViewer.module.scss';
 import OutsideDroppable from '../Collision/OutsideDroppable';
 import Collision from '../Collision/Collision';
 import { DndContext } from '@dnd-kit/core';
-import MultipleDroppables from '../MultipleDroppables/ContainerMultipleDroppables';
-import Droppable from '../Models/Droppable/ContainerDroppable';
-import { DraggableContainer } from '../DraggableContainer/ContainerDraggableContainer';
 import {
   COMPONENT_NAMES,
   ELEVATION_NAMES,
@@ -16,7 +13,6 @@ import { ConditionalButtons } from '../ConditionalButtons/ConditionalButtons';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { LeftArrow, RightArrow } from '../Arrows/Arrows';
 import DragToMove from '../DragToMove/DragToMove';
-import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import ShedDroppable from '../Models/Droppable/ShedDroppable';
 import { ShedDraggableContainer } from '../DraggableContainer/ShedDraggableContainer';
@@ -36,7 +32,7 @@ const ShedDnDViewer = () => {
     selectedElevationIndex,
     setSelectedElevationIndex,
     mappedElevations,
-    setSelectedElevation
+    setSelectedElevation,
   } = useContext(ShedDataContext);
 
   const [hoveredPiece, setHoveredPiece] = useState(null);
@@ -133,16 +129,25 @@ const ShedDnDViewer = () => {
       setSelectedElevation(mappedElevations[newIndex]); // Update selectedElevation
       return newIndex;
     });
-  }, [mappedElevations.length, setSelectedElevation, setSelectedElevationIndex]);
+  }, [
+    mappedElevations.length,
+    setSelectedElevation,
+    setSelectedElevationIndex,
+  ]);
 
   const handlePrevious = useCallback(() => {
     setSelectedComponent(null);
     setSelectedElevationIndex((prevIndex) => {
-      const newIndex = (prevIndex - 1 + mappedElevations.length) % mappedElevations.length;
+      const newIndex =
+        (prevIndex - 1 + mappedElevations.length) % mappedElevations.length;
       setSelectedElevation(mappedElevations[newIndex]); // Update selectedElevation
       return newIndex;
     });
-  }, [mappedElevations.length, setSelectedElevation, setSelectedElevationIndex]);
+  }, [
+    mappedElevations.length,
+    setSelectedElevation,
+    setSelectedElevationIndex,
+  ]);
 
   const showLeftArrow = selectedElevationIndex > 0 && !show3d;
   const showRightArrow =
@@ -165,25 +170,16 @@ const ShedDnDViewer = () => {
         onDragEnd={handleDragEnd}
         modifiers={modifiers}
       >
-        {isFloorPlanView ? (
-          <ShedMultipleDroppables
+        <ShedDroppable>
+          <ShedDraggableContainer
+            selectedComponents={selectedComponents}
             handleSelect={handleSelect}
+            draggableRefs={draggableRefs}
             setHoveredPiece={setHoveredPiece}
             setShowCollision={setShowCollision}
             selectedComponent={selectedComponent}
           />
-        ) : (
-          <ShedDroppable>
-            <ShedDraggableContainer
-              selectedComponents={selectedComponents}
-              handleSelect={handleSelect}
-              draggableRefs={draggableRefs}
-              setHoveredPiece={setHoveredPiece}
-              setShowCollision={setShowCollision}
-              selectedComponent={selectedComponent}
-            />
-          </ShedDroppable>
-        )}
+        </ShedDroppable>
       </DndContext>
       {showDragToMove && <DragToMove isFloorPlanView={isFloorPlanView} />}
       {showLeftArrow && <LeftArrow handlePrevious={handlePrevious} />}

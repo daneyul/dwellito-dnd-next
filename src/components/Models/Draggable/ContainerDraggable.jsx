@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
-import { toScale, generateImgSrc, calculateCSSPos } from '../../../utils/2D/utils';
+import { toScale, generateImgSrc, calculateContainerComponentCSSPos } from '../../../utils/2D/utils';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
@@ -215,7 +215,7 @@ const ContainerDraggable = ({
   };
 
   // Calculate CSS position
-  const calculatedPos = calculateCSSPos({
+  const calculatedPos = calculateContainerComponentCSSPos({
     isFloorPlanView,
     isFixed,
     piece,

@@ -138,6 +138,8 @@ const useDragHandlers = ({
       draggedItem.elevation[0].name === ELEVATION_NAMES.LEFT;
     const isOnElevationBack =
       draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
+    const isOnElevationFront =
+      draggedItem.elevation[0].name === ELEVATION_NAMES.FRONT;
   
     const isDraggableOnFloorPlan =
       draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
@@ -189,6 +191,14 @@ const useDragHandlers = ({
                 ...piece,
                 position: {
                   x: initialPosition.x - delta.y,
+                  y: initialPosition.y,
+                }
+              };
+            } else if (isOnElevationFront) {
+              return {
+                ...piece,
+                position: {
+                  x: initialPosition.x + delta.y,
                   y: initialPosition.y,
                 }
               };
