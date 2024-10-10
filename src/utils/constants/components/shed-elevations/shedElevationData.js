@@ -27,7 +27,7 @@ export const shedElevationData = [
   {
     name: ELEVATION_NAMES.BACK,
     id: 'elevation-back-one-story',
-    imgName: 'elevation/one-story/12x24/back.svg',
+    imgName: 'elevation/one-story/12x24/front.svg',
     homePlan: SHED_ONE_STORY_12x24,
     objWidth: DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.FRONT.WIDTH,
     objHeight: DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.FRONT.HEIGHT,

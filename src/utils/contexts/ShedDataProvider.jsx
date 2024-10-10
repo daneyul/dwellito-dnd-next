@@ -29,31 +29,13 @@ const ShedDataProvider = ({ children, data }) => {
   const [scaleFactor, setScaleFactor] = useState(2.5);
 
   // Selections
-  const [selectedComponents, setSelectedComponents] = useState([]);
+  const slantRoofComponent = componentData.find(
+    (component) => component.name === COMPACT_COTTAGES_COMPONENTS.SLANT_ROOF
+  );
+  const [selectedComponents, setSelectedComponents] = useState([slantRoofComponent]);
   const [exteriorFinish, setExteriorFinish] = useState(
     EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
   );
-
-  // Set a default roof
-  useEffect(() => {
-    const slantRoofComponent = componentData.find(
-      (component) => component.name === COMPACT_COTTAGES_COMPONENTS.SLANT_ROOF
-    );
-
-    if (slantRoofComponent) {
-      setSelectedComponents((prevComponents) => {
-        // Check if the slant roof component is already in the selectedComponents
-        const isAlreadySelected = prevComponents.some(
-          (component) => component.id === slantRoofComponent.id
-        );
-
-        if (!isAlreadySelected) {
-          return [...prevComponents, slantRoofComponent];
-        }
-        return prevComponents;
-      });
-    }
-  }, []);
 
   const selectedRoof = selectedComponents.find((item) => item.objType === COMPONENT_TYPES.ROOF);
 

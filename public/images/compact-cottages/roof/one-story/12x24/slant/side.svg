@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="302.25" height="52.92" viewBox="0 0 302.25 52.92">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #010101;
+        stroke-miterlimit: 10;
+        stroke-width: .25px;
+      }
+    </style>
+  </defs>
+  <g id="Default">
+    <path class="cls-1" d="m2.63,52.8v-3.21H.63v-7.87H.12V.12h302v41.59h-.5v7.87h-2v3.21H2.63Z"/>
+  </g>
+  <g id="Make2D">
+    <g id="Make2D::Visible">
+      <g id="Make2D::Visible::Curves">
+        <path class="cls-2" d="m.12,41.71v-.75"/>
+        <path class="cls-2" d="m295.13,49.58v3.21"/>
+        <path class="cls-2" d="m2.63,49.58v3.21"/>
+        <path class="cls-2" d="m.12.12v40.84"/>
+        <path class="cls-2" d="m7.13,52.8h288"/>
+        <path class="cls-2" d="m299.63,52.8h-4.5"/>
+        <path class="cls-2" d="m302.12,41.71v-.75"/>
+        <path class="cls-2" d="m302.12.12H.12"/>
+        <path class="cls-2" d="m7.13,52.8H2.63"/>
+        <path class="cls-2" d="m.12,41.71h302"/>
+        <path class="cls-2" d="m.12,40.96h302"/>
+        <path class="cls-2" d="m.63,41.71v7.87"/>
+        <path class="cls-2" d="m299.63,49.58v3.21"/>
+        <path class="cls-2" d="m302.12,40.96V.12"/>
+        <path class="cls-2" d="m7.13,49.58v3.21"/>
+        <path class="cls-2" d="m.63,49.58h301"/>
+        <path class="cls-2" d="m301.63,41.71v7.87"/>
+      </g>
+      <g id="Make2D::Visible::SceneSilhouetteCurves">
+        <path class="cls-2" d="m302.12,40.96V.12"/>
+        <path class="cls-2" d="m299.63,49.58v3.21"/>
+        <path class="cls-2" d="m301.63,41.71v7.87"/>
+        <path class="cls-2" d="m7.13,52.8h288"/>
+        <path class="cls-2" d="m.12,41.71h302"/>
+        <path class="cls-2" d="m302.12.12H.12"/>
+        <path class="cls-2" d="m.63,49.58h301"/>
+        <path class="cls-2" d="m7.13,52.8H2.63"/>
+        <path class="cls-2" d="m.63,41.71v7.87"/>
+        <path class="cls-2" d="m2.63,49.58v3.21"/>
+        <path class="cls-2" d="m299.63,52.8h-4.5"/>
+        <path class="cls-2" d="m.12.12v40.84"/>
+        <path class="cls-2" d="m.12,41.71v-.75"/>
+        <path class="cls-2" d="m302.12,41.71v-.75"/>
+      </g>
+    </g>
+  </g>
+</svg>
