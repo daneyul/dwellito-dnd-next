@@ -9,7 +9,7 @@ import {
   ELEVATION_NAMES,
 } from '@/utils/constants/names/names';
 import { createSnapModifier } from '@dnd-kit/modifiers';
-import useDragHandlers from '@/utils/hooks/useDragHandlers';
+import useDragHandlers from '@/utils/hooks/containers/useDragHandlers';
 import { ConditionalButtons } from '../ConditionalButtons/ConditionalButtons';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { LeftArrow, RightArrow } from '../Arrows/Arrows';

@@ -12,7 +12,7 @@ import {
   DROPPABLE_LEFT,
   DROPPABLE_RIGHT,
   ELEVATION_NAMES,
-} from '../constants/names/names';
+} from '@/utils/constants/names/names';
 import { useState } from 'react';
 
 const useDragHandlers = ({
@@ -44,6 +44,7 @@ const useDragHandlers = ({
     );
 
     if (!draggedItem) return null;
+    
 
     const isOnElevationRight =
       draggedItem.elevation[0].name === ELEVATION_NAMES.RIGHT;
@@ -51,14 +52,11 @@ const useDragHandlers = ({
       draggedItem.elevation[0].name === ELEVATION_NAMES.LEFT;
     const isOnElevationBack =
       draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
+    const isOnElevationFront =
+      draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
 
     const isDoor = draggedItem.objType === COMPONENT_TYPES.DOOR;
     const isWindow = draggedItem.objType === COMPONENT_TYPES.WINDOW;
-    const isPartition = draggedItem.objType === COMPONENT_TYPES.PARTITION;
-    const isFixed = draggedItem.fixed;
-    const isDraggableOnFloorPlan =
-      draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-      draggedItem.name === COMPONENT_NAMES.OUTLET
 
     // Store the initial position in local state
     setInitialPosition({ ...draggedItem.position });
@@ -71,14 +69,12 @@ const useDragHandlers = ({
         if (isDoor) {
           setModifiers([
             ...defaultModifiers,
-            restrictToHorizontalAxis,
-            snapToIncrement({ increment: 10.9, scaleFactor }),
+            restrictToHorizontalAxis
           ]);
         } else if (isWindow) {
           setModifiers([
             ...defaultModifiers,
-            restrictToHorizontalAxis,
-            snapToIncrement({ increment: 5.45, scaleFactor }),
+            restrictToHorizontalAxis
           ]);
         } else {
           setModifiers([...defaultModifiers, restrictToHorizontalAxis]);
@@ -87,14 +83,12 @@ const useDragHandlers = ({
         if (isDoor) {
           setModifiers([
             ...defaultModifiers,
-            restrictToVerticalAxis,
-            snapToIncrement({ increment: 10.9, scaleFactor }),
+            restrictToVerticalAxis
           ]);
         } else if (isWindow) {
           setModifiers([
             ...defaultModifiers,
-            restrictToVerticalAxis,
-            snapToIncrement({ increment: 5.45, scaleFactor }),
+            restrictToVerticalAxis
           ]);
         } else {
           setModifiers([...defaultModifiers, restrictToVerticalAxis]);
@@ -106,13 +100,11 @@ const useDragHandlers = ({
       }
     } else if (isDoor) {
       setModifiers([
-        ...doorWindowModifiers,
-        snapToIncrement({ increment: 10.9, scaleFactor }),
+        ...doorWindowModifiers
       ]);
     } else if (isWindow) {
       setModifiers([
-        ...doorWindowModifiers,
-        snapToIncrement({ increment: 5.45, scaleFactor }),
+        ...doorWindowModifiers
       ]);
     } else if (isFixed) {
       setModifiers([...fixedModifiers]);
