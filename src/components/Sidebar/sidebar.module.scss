@@ -87,6 +87,10 @@
   gap: space(2);
 }
 
+.containerButton {
+  background: none;
+}
+
 .containerButton,
 .containerButtonSelected {
   display: flex;

@@ -193,13 +193,13 @@ const PageDataProvider = ({ children, data }) => {
   // Session length
   const timerRef = useRef();
 
-  useEffect(() => {
-    timerRef.current = setInterval(() => {
-      setSessionLength((prevLength) => prevLength + 1); // increment every second
-    }, 1000);
+  // useEffect(() => {
+  //   timerRef.current = setInterval(() => {
+  //     setSessionLength((prevLength) => prevLength + 1); // increment every second
+  //   }, 1000);
 
-    return () => clearInterval(timerRef.current); // Clean up on unmount
-  }, []);
+  //   return () => clearInterval(timerRef.current); // Clean up on unmount
+  // }, []);
 
   const contextValue = {
     selectedComponents,

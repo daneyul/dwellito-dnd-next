@@ -12,7 +12,6 @@ import {
   FLOORING,
   INTERIOR,
   SUPPLIER_NAMES,
-  SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
 import { componentData } from '@/utils/constants/componentData';
 import { FLOORING_OPTIONS } from '@/utils/constants/components/flooringData';

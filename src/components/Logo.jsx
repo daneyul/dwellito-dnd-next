@@ -15,7 +15,7 @@ const Logo = ({ type }) => {
       ) : (
         <img
           src={SelectedLogo}
-          style={{ maxWidth: '100%', maxHeight: '100%' }}
+          style={{ maxWidth: '50%', maxHeight: '100%' }}
           alt={`${type} logo`}
         />
       )}
