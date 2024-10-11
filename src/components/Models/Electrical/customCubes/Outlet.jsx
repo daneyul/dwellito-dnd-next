@@ -1,6 +1,6 @@
-import { checkDistance } from '@/utils/2D/utils';
+import { checkDistance } from '@/utils/2D/containers/utils';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import { calcPosition } from '@/utils/3D/utils';
+import { calcPosition } from '@/utils/3D/containers/utils';
 import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
 import { useContext, useEffect, useState, useRef } from 'react';

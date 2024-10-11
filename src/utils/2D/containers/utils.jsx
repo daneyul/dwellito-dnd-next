@@ -8,10 +8,10 @@ import {
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
   SUPPLIER_SLUGS,
-} from '../constants/names/names';
-import { ventComponents } from '../constants/components/vents/vents';
-import { DIMENSIONS } from '../constants/dimensions/dimensions';
-import { windowComponents } from '../constants/components/windows/windows';
+} from '../../constants/names/names';
+import { ventComponents } from '../../constants/components/vents/vents';
+import { DIMENSIONS } from '../../constants/dimensions/dimensions';
+import { windowComponents } from '../../constants/components/windows/windows';
 
 export const generateImgSrc = (supplier, imgName) =>
   `../../../images/${supplier}/${imgName}`;

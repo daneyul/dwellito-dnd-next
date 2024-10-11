@@ -8,7 +8,7 @@ import {
   INTERIOR_TRIM_NAMES,
   EXTERIORS,
 } from '@/utils/constants/names/names';
-import { getComponentPrice } from '../2D/utils';
+import { getComponentPrice } from '../2D/containers/utils';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 
 const useOrderTotal = ({

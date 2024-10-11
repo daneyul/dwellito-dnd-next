@@ -1,4 +1,4 @@
-import { toScale } from '@/utils/2D/utils';
+import { toScale } from '@/utils/2D/sheds/utils';
 import { useContext } from 'react';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import ShedDraggable from '../Models/Draggable/ShedDraggable';

@@ -1,7 +1,7 @@
-import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40, ELEVATION_NAMES } from '../constants/names/names';
-import { DIMENSIONS } from '../constants/dimensions/dimensions';
-import { containerElevationData } from '../constants/components/elevations/containerElevationData';
-import { elevationData } from '../constants/components/elevations/elevationData';
+import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40, ELEVATION_NAMES } from '../../constants/names/names';
+import { DIMENSIONS } from '../../constants/dimensions/dimensions';
+import { containerElevationData } from '../../constants/components/elevations/containerElevationData';
+import { elevationData } from '../../constants/components/elevations/elevationData';
 
 const degrees = {
   90: Math.PI / 2,

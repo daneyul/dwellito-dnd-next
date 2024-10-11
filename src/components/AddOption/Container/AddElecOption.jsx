@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import style from '../addElecOption.module.scss';
 import { CONTAINER_SIZE_10, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
-import { generateImgSrc, getComponentPrice, handleAddComponent } from '@/utils/2D/utils';
+import { generateImgSrc, getComponentPrice, handleAddComponent } from '@/utils/2D/containers/utils';
 
 const AddElecOption = ({ options }) => {
   const {

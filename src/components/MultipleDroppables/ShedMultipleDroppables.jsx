@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
-import { generateImgSrc, toScale } from '../../utils/2D/utils';
+import { generateImgSrc, toScale } from '../../utils/2D/containers/utils';
 import {
   COMPONENT_TYPES,
   DROPPABLE_BACK,

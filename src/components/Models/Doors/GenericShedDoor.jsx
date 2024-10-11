@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Box3, Vector3 } from 'three';
 import { useGLTF } from '@react-three/drei';
-import { checkDistance } from '@/utils/2D/utils';
-import { calcPosition, calcRotation } from '@/utils/3D/utils';
+import { checkDistance } from '@/utils/2D/sheds/utils';
+import { calcPosition, calcRotation } from '@/utils/3D/sheds/utils';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ELEVATION_NAMES } from '@/utils/constants/names/names';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
@@ -70,14 +70,6 @@ const GenericShedDoor = ({
     (nodeKey) => nodes[nodeKey].isMesh
   );
 
-  console.log(calcPosition({
-    elevation: selectedElevation,
-    distanceObject,
-    SCALE_FACTOR_FOR_CALCULATIONS: DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
-    selectedBase: selectedShed,
-    width,
-  }))
-
   return (
     <group
       ref={ref}
@@ -85,7 +77,7 @@ const GenericShedDoor = ({
       position={calcPosition({
         elevation: selectedElevation,
         distanceObject,
-        SCALE_FACTOR_FOR_CALCULATIONS: DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
+        SCALE_FACTOR_FOR_CALCULATIONS: 5,
         selectedBase: selectedShed,
         width,
       })}

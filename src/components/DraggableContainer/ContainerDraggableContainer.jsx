@@ -1,4 +1,4 @@
-import { droppableWidth, toScale } from '@/utils/2D/utils';
+import { droppableWidth, toScale } from '@/utils/2D/containers/utils';
 import { useContext } from 'react';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';

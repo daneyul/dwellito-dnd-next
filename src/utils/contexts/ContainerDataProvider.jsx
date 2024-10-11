@@ -5,7 +5,7 @@ import {
   getInteriorFinishFromUrl,
   getInteriorTrimFromUrl,
   getSelectionsFromUrl,
-} from '@/utils/2D/utils';
+} from '@/utils/2D/containers/utils';
 import { INTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/interiors/interiorData';
 import { containerData } from '../constants/components/containers/containerData';
 import { DEFAULT_COMPONENTS } from '@/utils/constants/componentData';

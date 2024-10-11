@@ -6,7 +6,7 @@ import {
   getUniqueElevationObjects,
   checkDistance,
   generateImgSrc,
-} from '../../utils/2D/utils';
+} from '../../utils/2D/containers/utils';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 

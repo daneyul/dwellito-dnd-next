@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
-import { checkDistance } from '@/utils/2D/utils';
-import { calcPosition, calcRotation } from '@/utils/3D/utils';
+import { checkDistance } from '@/utils/2D/containers/utils';
+import { calcPosition, calcRotation } from '@/utils/3D/containers/utils';
 import { useGLTF } from '@react-three/drei';
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Box3, Vector3 } from 'three';

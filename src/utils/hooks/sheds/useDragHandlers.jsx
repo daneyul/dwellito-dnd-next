@@ -4,7 +4,7 @@ import {
   restrictToParentElement,
 } from '@dnd-kit/modifiers';
 
-import { checkCloseness } from '@/utils/2D/utils';
+import { checkCloseness } from '@/utils/2D/sheds/utils';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,

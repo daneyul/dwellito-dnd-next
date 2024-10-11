@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 import style from './layout.module.scss';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
-import { handleAddComponent } from '@/utils/2D/utils';
+import { handleAddComponent } from '@/utils/2D/sheds/utils';
 import { componentData } from '@/utils/constants/componentData';
 import { COMPONENT_TYPES } from '@/utils/constants/names/names';
 

@@ -4,7 +4,7 @@ import {
   restrictToParentElement,
 } from '@dnd-kit/modifiers';
 
-import { checkCloseness, snapToIncrement } from '@/utils/2D/utils';
+import { checkCloseness, snapToIncrement } from '@/utils/2D/containers/utils';
 import { useState } from 'react';
 import { COMPONENT_NAMES,
   COMPONENT_TYPES,

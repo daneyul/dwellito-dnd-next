@@ -24,7 +24,7 @@ import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
 import { useBoundingBoxes } from '@/utils/hooks/containers/useBoundingBoxes';
 import { useExteriorGLTFModels } from '@/utils/hooks/containers/useGLTFModels';
 import { MOBILE_CAM_POS } from '@/utils/constants/camera/camPos';
-import { handleAddComponent } from '@/utils/2D/utils';
+import { handleAddComponent } from '@/utils/2D/containers/utils';
 import { componentData } from '@/utils/constants/componentData';
 import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
 import ContainerShell20High from './Containers/20/ContainerShell20High';

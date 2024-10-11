@@ -7,7 +7,7 @@ import {
   INTERIOR_FINISH_NAMES,
 } from '@/utils/constants/names/names';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
-import { generateImgSrc, handleAddComponent } from '@/utils/2D/utils';
+import { generateImgSrc, handleAddComponent } from '@/utils/2D/containers/utils';
 
 const AddPartition = ({ options }) => {
   const {

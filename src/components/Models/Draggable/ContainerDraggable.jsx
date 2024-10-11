@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
-import { toScale, generateImgSrc, calculateContainerComponentCSSPos } from '../../../utils/2D/utils';
+import { toScale, generateImgSrc, calculateContainerComponentCSSPos } from '../../../utils/2D/containers/utils';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
