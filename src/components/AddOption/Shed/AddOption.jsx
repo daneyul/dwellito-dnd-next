@@ -35,6 +35,10 @@ const AddOption = ({ options }) => {
     });
   };
 
+  const isDoor = (item) => {
+    return item.objType === COMPONENT_TYPES.DOOR;
+  };
+
   const canPlaceDoor = (item) => {
     return (
       selectedElevation.name === ELEVATION_NAMES.FRONT &&
@@ -43,7 +47,24 @@ const AddOption = ({ options }) => {
   };
 
   return options.map((item) => {
-    if (canPlaceDoor(item)) {
+    if (isDoor(item) && !canPlaceDoor(item)) {
+      return (
+        <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
+          <HoverCard.Trigger className={style.imgContainer}>
+            <img
+              src={generateImgSrc(supplier, item.sidebarImg)}
+              alt={item.name}
+              className={style.objImgDisabled}
+            />
+          </HoverCard.Trigger>
+          <HoverCard.Portal>
+            <HoverCard.Content className={style.tooltipText} side='top'>
+              Doors can only be placed on the front elevation
+            </HoverCard.Content>
+          </HoverCard.Portal>
+        </HoverCard.Root>
+      );
+    } else {
       return (
         <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
           <HoverCard.Trigger className={style.imgContainer}>
@@ -57,23 +78,6 @@ const AddOption = ({ options }) => {
           <HoverCard.Portal>
             <HoverCard.Content className={style.tooltipText} side='top'>
               {item.name}
-            </HoverCard.Content>
-          </HoverCard.Portal>
-        </HoverCard.Root>
-      );
-    } else {
-      return (
-        <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
-          <HoverCard.Trigger className={style.imgContainer}>
-            <img
-              src={generateImgSrc(supplier, item.sidebarImg)}
-              alt={item.name}
-              className={style.objImgDisabled}
-            />
-          </HoverCard.Trigger>
-          <HoverCard.Portal>
-            <HoverCard.Content className={style.tooltipText} side='top'>
-              Doors can only be placed on the front elevation
             </HoverCard.Content>
           </HoverCard.Portal>
         </HoverCard.Root>

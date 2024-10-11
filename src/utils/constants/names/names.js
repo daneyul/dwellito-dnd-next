@@ -95,7 +95,13 @@ export const COMPACT_COTTAGES_COMPONENTS = {
   GABLE_ROOF: 'Gable Roof',
   EXTERIOR_DOOR_1: '3ft x 6ft8in Paneled Door 1',
   EXTERIOR_DOOR_2: '3ft x 6ft8in Paneled Door 2',
-  EXTERIOR_DOOR_3: '3ft x 6ft8in Half Light Door'
+  EXTERIOR_DOOR_3: '3ft x 6ft8in Half Light Door',
+  WINDOW_24_24: '24x24 Window',
+  WINDOW_30_36: '30x36 Window',
+  WINDOW_48_24: '48x24 Window',
+  WINDOW_48_48: '48x48 Window',
+  WINDOW_48_60: '48x60 Window',
+  WINDOW_60_48: '60x48 Window',
 }
 
 export const COMPONENT_NAMES = {
