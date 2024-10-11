@@ -5,7 +5,7 @@ export const COMPACT_COTTAGES_DOOR_DIMENSIONS = {
     FP_HEIGHT: 29 ,
     POSITION: {
       x: 0,
-      y: 42,
+      y: 51,
     },
   },
   EXTERIOR_DOOR_2: {
@@ -14,7 +14,7 @@ export const COMPACT_COTTAGES_DOOR_DIMENSIONS = {
     FP_HEIGHT: 29 ,
     POSITION: {
       x: 0,
-      y: 42,
+      y: 51,
     },
   },
   EXTERIOR_DOOR_3: {
@@ -23,7 +23,7 @@ export const COMPACT_COTTAGES_DOOR_DIMENSIONS = {
     FP_HEIGHT: 58,
     POSITION: {
       x: 0,
-      y: 42,
+      y: 51,
     },
   },
 }

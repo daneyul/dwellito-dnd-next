@@ -7,6 +7,7 @@ import {
   CONTAINER_SIZE_40,
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
+  SUPPLIER_SLUGS,
 } from '../constants/names/names';
 import { ventComponents } from '../constants/components/vents/vents';
 import { DIMENSIONS } from '../constants/dimensions/dimensions';
@@ -78,6 +79,7 @@ export const checkDistance = ({
   selectedElevation,
   DIMENSIONS,
   selectedContainer,
+  selectedShed,
   scaleFactor,
 }) => {
   if (!component) {
@@ -88,11 +90,11 @@ export const checkDistance = ({
   const isLeft = selectedElevation.name === ELEVATION_NAMES.LEFT;
 
   // Use the function to get dynamic width
-  const droppableWidthValue = droppableWidth(
+  const droppableWidthValue = selectedContainer ? droppableWidth(
     selectedElevation,
     DIMENSIONS,
     selectedContainer
-  );
+  ) : 0;
 
   const boundaries = () => {
     if (isFloorPlanView) {
@@ -124,6 +126,7 @@ export const handleAddComponent = ({
   setSelectedComponents,
   selectedElevation,
   floorPlan,
+  supplier,
 }) => {
   if (
     item.fixed &&
@@ -144,6 +147,7 @@ export const handleAddComponent = ({
     const roofVentObjData = ventComponents.find(
       (component) => component.name === COMPONENT_NAMES.ROOF_VENT
     );
+    const isCottageDoor = item.objType === COMPONENT_TYPES.DOOR && supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES;
 
     const roofVent = {
       ...roofVentObjData,
@@ -153,17 +157,23 @@ export const handleAddComponent = ({
 
     setSelectedComponents((prevSelectedComponents) => {
       if (isRoof) {
-        // Remove any existing roof items and add the new roof item
+        // Remove any existing roof items and add the new roof
         const filteredComponents = prevSelectedComponents.filter(
           (component) => component.objType !== COMPONENT_TYPES.ROOF
         );
         return [...filteredComponents, item];
       } else if (isRoofVent) {
-        // Remove any existing roof vent items and add the new roof vent item
+        // Remove any existing roof vent items and add the new roof vent
         const filteredComponents = prevSelectedComponents.filter(
           (component) => component.name !== COMPONENT_NAMES.ROOF_VENT
         );
         return [...filteredComponents, roofVent];
+      } else if (isCottageDoor) {
+        // Remove any existing door items and add the new door
+        const filteredComponents = prevSelectedComponents.filter(
+          (component) => component.objType !== COMPONENT_TYPES.DOOR
+        );
+        return [...filteredComponents, newItem];
       } else {
         return [...prevSelectedComponents, newItem];
       }
@@ -376,14 +386,14 @@ export const calculateContainerComponentCSSPos = ({
         transform = `rotate(90deg) translateX(10px)`;
         positionStyles = {
           bottom: '0',
-          right: `${adjForHeight(
+          right: `${adjForContainerHeight(
             piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
           )}px`,
         };
       } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
         transform = 'translateX(50%)';
         positionStyles = {
-          bottom: `${adjForHeight(
+          bottom: `${adjForContainerHeight(
             piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
           )}px`,
           right: '0',
@@ -449,13 +459,13 @@ export const calculateContainerComponentCSSPos = ({
       // For fixed components on elevation views, show front view
       if (piece.name === COMPONENT_NAMES.EXHAUST_FAN) {
         positionStyles = {
-          right: `${adjForHeight(piece.position.x)}px`,
-          top: `${adjForHeight(piece.position.y)}px`,
+          right: `${adjForContainerHeight(piece.position.x)}px`,
+          top: `${adjForContainerHeight(piece.position.y)}px`,
         };
       } else {
         positionStyles = {
-          left: `${adjForHeight(piece.position.x)}px`,
-          top: `${adjForHeight(piece.position.y)}px`,
+          left: `${adjForContainerHeight(piece.position.x)}px`,
+          top: `${adjForContainerHeight(piece.position.y)}px`,
         };
       }
     } else if (!piece.fixedSide) {
@@ -500,12 +510,12 @@ export const calculateContainerComponentCSSPos = ({
     if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
       positionStyles = {
         right: `${piece.position.x}px`,
-        top: `${adjForHeight(piece.position.y)}px`,
+        top: `${adjForContainerHeight(piece.position.y)}px`,
       };
     } else
       positionStyles = {
         left: `${piece.position.x}px`,
-        top: `${adjForHeight(piece.position.y)}px`,
+        top: `${adjForContainerHeight(piece.position.y)}px`,
       };
   }
 

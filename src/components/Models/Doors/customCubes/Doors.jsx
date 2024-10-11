@@ -1,8 +1,8 @@
 import React from 'react';
-import GenericDoor from '../GenericDoor';
+import GenericContainerDoor  from '../GenericContainerDoor';
 
 const LhrSecurity = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -12,7 +12,7 @@ const LhrSecurity = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const LhrSecurityGlass = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -22,7 +22,7 @@ const LhrSecurityGlass = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const RhrSecurity = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -32,7 +32,7 @@ const RhrSecurity = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const RhrSecurityGlass = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -42,7 +42,7 @@ const RhrSecurityGlass = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const Double = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -51,7 +51,7 @@ const Double = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const Sliding6 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -60,7 +60,7 @@ const Sliding6 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const HdHcRollup6 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -71,7 +71,7 @@ const HdHcRollup6 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const HdHcRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -82,7 +82,7 @@ const HdHcRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const HdHcRollup10 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -93,7 +93,7 @@ const HdHcRollup10 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const HdHcRollup12 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -104,7 +104,7 @@ const HdHcRollup12 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const HdHcRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -114,7 +114,7 @@ const HdHcRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
   />
 );
 const HdStRollup6 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -125,7 +125,7 @@ const HdStRollup6 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const HdStRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -136,7 +136,7 @@ const HdStRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const HdStRollup10 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -147,7 +147,7 @@ const HdStRollup10 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const HdStRollup12 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -158,7 +158,7 @@ const HdStRollup12 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const HdStRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -169,7 +169,7 @@ const HdStRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const EcHcRollup6 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -180,7 +180,7 @@ const EcHcRollup6 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const EcHcRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -191,7 +191,7 @@ const EcHcRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const EcHcRollup10 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -202,7 +202,7 @@ const EcHcRollup10 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const EcHcRollup12 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -213,7 +213,7 @@ const EcHcRollup12 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const EcHcRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -224,7 +224,7 @@ const EcHcRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const EcStRollup6 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -235,7 +235,7 @@ const EcStRollup6 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const EcStRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -246,7 +246,7 @@ const EcStRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const EcStRollup10 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -257,7 +257,7 @@ const EcStRollup10 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const EcStRollup12 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -268,7 +268,7 @@ const EcStRollup12 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const EcStRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}

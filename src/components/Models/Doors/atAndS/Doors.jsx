@@ -1,8 +1,8 @@
 import React from 'react';
-import GenericDoor from '../GenericDoor';
+import GenericContainerDoor from '../GenericContainerDoor';
 
 const SteelDoor = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -13,7 +13,7 @@ const SteelDoor = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const VisionLite = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -24,7 +24,7 @@ const VisionLite = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const Rollup7 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -35,7 +35,7 @@ const Rollup7 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const Rollup8 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
@@ -46,7 +46,7 @@ const Rollup8 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const GlassGarage = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericDoor
+  <GenericContainerDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}

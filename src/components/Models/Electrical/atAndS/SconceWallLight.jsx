@@ -56,13 +56,13 @@ const SconceWallLight = ({ component }) => {
     }
   }, [ref.current]);
 
-  const position = calcPosition(
+  const position = calcPosition({
     selectedElevation,
     distanceObject,
-    DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
-    selectedContainer,
+    SCALE_FACTOR_FOR_CALCULATIONS: DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
+    selectedBase: selectedContainer,
     width
-  );
+  });
 
   const rotation = useMemo(
     () => [0, calcRotation(selectedElevation, selectedContainer), 0],

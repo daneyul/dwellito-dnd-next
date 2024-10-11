@@ -5,9 +5,9 @@ import { checkDistance } from '@/utils/2D/utils';
 import { calcPosition, calcRotation } from '@/utils/3D/utils';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ELEVATION_NAMES } from '@/utils/constants/names/names';
-import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 
-const GenericDoor = ({
+const GenericShedDoor = ({
   component,
   onBoundingBoxChange,
   modelPath,
@@ -17,21 +17,21 @@ const GenericDoor = ({
   isHrDoor,
 }) => {
   const { nodes, materials } = useGLTF(modelPath);
-  const { selectedComponents, selectedContainer, scaleFactor } =
-    useContext(ContainerDataContext);
+  const { selectedComponents, selectedShed, scaleFactor } =
+    useContext(ShedDataContext);
   const selectedElevation = component.elevation[0];
   const [width, setWidth] = useState(0);
   const distanceObject = checkDistance({
     component,
     selectedElevation,
     DIMENSIONS,
-    selectedContainer,
+    selectedShed,
     scaleFactor,
   });
   const ref = useRef();
 
   const rotation = useMemo(
-    () => [0, calcRotation(selectedElevation, selectedContainer), 0],
+    () => [0, calcRotation(selectedElevation, selectedShed), 0],
     [selectedElevation]
   );
 
@@ -70,18 +70,25 @@ const GenericDoor = ({
     (nodeKey) => nodes[nodeKey].isMesh
   );
 
+  console.log(calcPosition({
+    elevation: selectedElevation,
+    distanceObject,
+    SCALE_FACTOR_FOR_CALCULATIONS: DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
+    selectedBase: selectedShed,
+    width,
+  }))
+
   return (
     <group
       ref={ref}
       dispose={null}
-      scale={[10, 10, 10]}
-      position={calcPosition(
-        selectedElevation,
+      position={calcPosition({
+        elevation: selectedElevation,
         distanceObject,
-        DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
-        selectedContainer,
-        width
-      )}
+        SCALE_FACTOR_FOR_CALCULATIONS: DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
+        selectedBase: selectedShed,
+        width,
+      })}
       rotation={rotation}
     >
       <group
@@ -89,7 +96,7 @@ const GenericDoor = ({
         rotation={customRotation}
         scale={customScale}
       >
-        <group scale={0.01}>
+        <group>
           {meshKeys.map((nodeKey) => {
             const node = nodes[nodeKey];
             return (
@@ -108,4 +115,4 @@ const GenericDoor = ({
   );
 };
 
-export default GenericDoor;
+export default GenericShedDoor;

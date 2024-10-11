@@ -3,8 +3,8 @@ import {
   OrbitControls,
   Environment,
   RandomizedLight,
-  useProgress,
   PointerLockControls,
+  useProgress,
 } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useContext, useEffect, useMemo, useRef, useState } from 'react';
@@ -21,21 +21,21 @@ import {
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import { useExteriorGLTFModels } from '@/utils/hooks/sheds/useGLTFModels';
 import Shed from './Sheds/one-story/Shed';
+import Door from './Doors/DoorSwitcher';
+import { useBoundingBoxes } from '@/utils/hooks/sheds/useBoundingBoxes';
 
 export function ShedModels() {
   const {
     selectedComponents,
     showExterior,
-    selectedShed,
     setThreeDModelLoaded,
-    shedHeightIsOneStory,
     cameraReady,
     setCameraReady,
     supplier,
     show3d
   } = useContext(ShedDataContext);
 
-  const { active, progress, item, loaded, total } = useProgress();
+  const { progress } = useProgress();
 
   useEffect(() => {
     setThreeDModelLoaded(progress === 100);
@@ -48,13 +48,7 @@ export function ShedModels() {
       ),
     [selectedComponents, COMPONENT_TYPES]
   );
-  const windows = useMemo(
-    () =>
-      selectedComponents.filter(
-        (component) => component.objType === COMPONENT_TYPES.WINDOW
-      ),
-    [selectedComponents, COMPONENT_TYPES]
-  );
+
   const exteriorCamPos = () => {
     return EXTERIOR_CAM_POS.TWENTY;
   };
@@ -141,14 +135,9 @@ export function ShedModels() {
     });
   }
 
-  // const {
-  //   doorBoundingBoxes,
-  //   windowBoundingBoxes,
-  //   handleExhaustFanBoundingBox,
-  //   handleDoorBoundingBox,
-  //   handleWindowBoundingBox,
-  //   handleVentBoundingBox,
-  // } = useBoundingBoxes({ doors, windows });
+  const {
+    handleDoorBoundingBox,
+  } = useBoundingBoxes({ doors });
 
   const paint = useExteriorGLTFModels(supplier);
   const ShedShell = () => {
@@ -170,16 +159,7 @@ export function ShedModels() {
         <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
           <color attach='background' args={['#fdfdf7']} />
           <ShedShell />
-          {/* <CsgGeometries
-            doors={doors}
-            windows={windows}
-            doorBoundingBoxes={doorBoundingBoxes}
-            windowBoundingBoxes={windowBoundingBoxes}
-            ventBoundingBoxes={ventBoundingBoxes}
-            exhaustFanBoundingBox={exhaustFanBoundingBox}
-            paint={paint}
-          /> */}
-          {/* {doors.map((door, index) => (
+          {doors.map((door, index) => (
             <Door
               key={door.id}
               component={door}
@@ -187,17 +167,6 @@ export function ShedModels() {
               supplier={supplier}
             />
           ))}
-          {windows.map((window, index) => (
-            <Window
-              containerHeightIsStandard={containerHeightIsStandard}
-              key={index}
-              component={window}
-              onBoundingBoxChange={(data) =>
-                handleWindowBoundingBox(index, data)
-              }
-              supplier={supplier}
-            />
-          ))} */}
           <ambientLight intensity={0.15} />
           <spotLight
             intensity={0.65}

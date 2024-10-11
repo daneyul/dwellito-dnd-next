@@ -53,7 +53,7 @@ const AddOption = ({ options }) => {
             <img
               src={generateImgSrc(supplier, item.sidebarImg)}
               alt={item.name}
-              className={style.objImg}
+              className={style.objImgDisabled}
             />
           </HoverCard.Trigger>
           <HoverCard.Portal>

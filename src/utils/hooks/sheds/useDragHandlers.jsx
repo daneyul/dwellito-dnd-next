@@ -4,11 +4,12 @@ import {
   restrictToParentElement,
 } from '@dnd-kit/modifiers';
 
-import { checkCloseness, snapToIncrement } from '@/utils/2D/utils';
+import { checkCloseness } from '@/utils/2D/utils';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
   DROPPABLE_BACK,
+  DROPPABLE_FRONT,
   DROPPABLE_LEFT,
   DROPPABLE_RIGHT,
   ELEVATION_NAMES,
@@ -79,7 +80,7 @@ const useDragHandlers = ({
         } else {
           setModifiers([...defaultModifiers, restrictToHorizontalAxis]);
         }
-      } else if (isOnElevationBack) {
+      } else if (isOnElevationBack || isOnElevationFront) {
         if (isDoor) {
           setModifiers([
             ...defaultModifiers,
@@ -93,8 +94,6 @@ const useDragHandlers = ({
         } else {
           setModifiers([...defaultModifiers, restrictToVerticalAxis]);
         }
-      } else if (isPartition) {
-        setModifiers([...defaultModifiers, restrictToHorizontalAxis]);
       } else {
         setModifiers([]);
       }
@@ -106,10 +105,6 @@ const useDragHandlers = ({
       setModifiers([
         ...doorWindowModifiers
       ]);
-    } else if (isFixed) {
-      setModifiers([...fixedModifiers]);
-    } else if (isDraggableOnFloorPlan) {
-      setModifiers([]);
     } else {
       setModifiers([...defaultModifiers]);
     }
@@ -303,6 +298,7 @@ const useDragHandlers = ({
         DROPPABLE_LEFT,
         DROPPABLE_RIGHT,
         DROPPABLE_BACK,
+        DROPPABLE_FRONT
       ].includes(over?.id);
 
       setShowOutsideDroppableWarning(isOutsideDroppable);

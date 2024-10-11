@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { generateImgSrc, toScale } from '../../../utils/2D/utils';
 import Image from 'next/image';
-import { shedElevationData } from '@/utils/constants/components/shed-elevations/shedElevationData';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import { ELEVATION_NAMES } from '@/utils/constants/names/names';
+import { shedElevationData } from '@/utils/constants/components/elevations/shedElevationData';
 
 const ShedDroppable = ({ children }) => {
   const { scaleFactor, selectedElevation, supplier, selectedRoof } =

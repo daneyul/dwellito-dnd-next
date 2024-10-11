@@ -66,12 +66,12 @@ const Outlet = ({ component }) => {
 
   const rotationDegrees = calcElecRotationDegrees(component.rotate);
   const rotationRadians = calcElecRotationRadians(component.rotate);
-  const basePosition = calcPosition(
+  const basePosition = calcPosition({
     selectedElevation,
     distanceObject,
-    DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
-    selectedContainer
-  );
+    SCALE_FACTOR_FOR_CALCULATIONS: DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
+    selectedBase: selectedContainer
+  });
 
   // Adjust the position based on the rotation
   let adjustedPosition = [...basePosition];

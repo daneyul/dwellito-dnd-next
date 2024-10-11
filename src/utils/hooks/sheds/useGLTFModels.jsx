@@ -48,6 +48,25 @@ export const useExteriorGLTFModels = (supplier) => {
       nucorGreen,
       slateGrey,
     };
+  } else if (supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES) {
+    const { materials: blackPaint } = useGLTF(
+      `/models/${supplier}/materials/exterior/black.glb`
+    );
+    const { materials: whitePaint } = useGLTF(
+      `/models/${supplier}/materials/exterior/white.glb`
+    );
+    const { materials: greyPaint } = useGLTF(
+      `/models/${supplier}/materials/exterior/grey.glb`
+    );
+    const { materials: darkbluePaint } = useGLTF(
+      `/models/${supplier}/materials/exterior/darkblue.glb`
+    );
+    return {
+      blackPaint,
+      whitePaint,
+      greyPaint,
+      darkbluePaint,
+    };
   }
 };
 
@@ -82,8 +101,20 @@ export const getExteriorPaint = (supplier, exteriorFinish, paint) => {
       default:
         return null;
     }
+  } else if (supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES) {
+    switch (exteriorFinish.name) {
+      case 'Black':
+        return paint.blackPaint?.[exteriorFinish.glbObject];
+      case 'White':
+        return paint.whitePaint?.[exteriorFinish.glbObject];
+      case 'Grey':
+        return paint.greyPaint?.[exteriorFinish.glbObject];
+      case 'Dark Blue':
+        return paint.darkbluePaint?.[exteriorFinish.glbObject];
+      default:
+        return null;
+    }
   }
-  return null;
 };
 
 export const useInteriorGLTFModels = (supplier) => {

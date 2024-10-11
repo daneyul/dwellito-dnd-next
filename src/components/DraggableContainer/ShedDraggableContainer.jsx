@@ -1,6 +1,5 @@
-import { droppableWidth, toScale } from '@/utils/2D/utils';
+import { toScale } from '@/utils/2D/utils';
 import { useContext } from 'react';
-import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import ShedDraggable from '../Models/Draggable/ShedDraggable';
 

@@ -1,6 +1,7 @@
 import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40, ELEVATION_NAMES } from '../constants/names/names';
 import { DIMENSIONS } from '../constants/dimensions/dimensions';
-import { containerElevationData } from '../constants/components/container-elevations/containerElevationData';
+import { containerElevationData } from '../constants/components/elevations/containerElevationData';
+import { elevationData } from '../constants/components/elevations/elevationData';
 
 const degrees = {
   90: Math.PI / 2,
@@ -8,10 +9,10 @@ const degrees = {
   270: Math.PI + Math.PI / 2,
 };
 
-const calcRotation = (elevation, selectedContainer) => {
+const calcRotation = (elevation, selectedBase) => {
   const matchingElevation = containerElevationData.find(
     (item) =>
-      item.homePlan === selectedContainer.slug && item.name === elevation.name
+      item.homePlan === selectedBase.slug && item.name === elevation.name
   );
 
   if (matchingElevation) {
@@ -45,32 +46,32 @@ const calcElecRotation = (twoDimDegrees) => {
 const rightSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  selectedContainer,
+  selectedBase,
 }) => {
   const adjustForX = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
   const adjustForZ = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return -(parseFloat(distanceObject.top) + 4);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return -(parseFloat(distanceObject.top) + 4);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return -(parseFloat(distanceObject.top / 1.4) + 4);
     }
   };
@@ -85,51 +86,51 @@ const rightSideCoordinates = ({
 const leftSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  selectedContainer,
+  selectedBase,
   width,
 }) => {
   const adjustForX = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
   const adjustForZ = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return -(parseFloat(distanceObject.top) + 4);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return -(parseFloat(distanceObject.top) + 4);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return -(parseFloat(distanceObject.top / 1.4) + 4);
     }
   };
 
   let xPosition = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return (
         distanceObject.right / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX() +
         width + 0.6
       );
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return (
         distanceObject.right / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX() +
         width + 0.6
       );
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return (
         distanceObject.right / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX() +
@@ -138,20 +139,20 @@ const leftSideCoordinates = ({
     }
   };
   let yPosition = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return (
         -DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY() -
         0.2
       );
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return (
         -DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY() -
         0.2
       );
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return (
         -DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH /
           SCALE_FACTOR_FOR_CALCULATIONS +
@@ -166,41 +167,41 @@ const leftSideCoordinates = ({
 const frontSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  selectedContainer,
+  selectedBase,
 }) => {
   const adjustForX = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
   let xPosition = 0 + adjustForX();
   let yPosition = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return (
         (DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - distanceObject.left) /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY()
       );
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return (
         (DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - distanceObject.left) /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY()
       );
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return (
         (DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - distanceObject.left) /
           SCALE_FACTOR_FOR_CALCULATIONS +
@@ -215,39 +216,39 @@ const frontSideCoordinates = ({
 const backSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  selectedContainer,
+  selectedBase,
 }) => {
   const adjustForX = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
 
   let xPosition = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return (
         DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX() + 0.2
       );
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return (
         DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX() + 0.5
       );
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return (
         DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForX() + 1.2
@@ -264,23 +265,23 @@ const backSideCoordinates = ({
 const electricalCoordinates = (
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  selectedContainer
+  selectedBase
 ) => {
   const adjustForX = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return -(DIMENSIONS.CONTAINER.TEN.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return -(DIMENSIONS.CONTAINER.TWENTY.THREE_D.WIDTH / 2);
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return -(DIMENSIONS.CONTAINER.FORTY.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return DIMENSIONS.CONTAINER.TEN.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return DIMENSIONS.CONTAINER.TWENTY.THREE_D.DEPTH / 2;
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return DIMENSIONS.CONTAINER.FORTY.THREE_D.DEPTH / 2;
     }
   };
@@ -289,19 +290,19 @@ const electricalCoordinates = (
     distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX();
 
   let yPosition = () => {
-    if (selectedContainer.slug === CONTAINER_SIZE_10) {
+    if (selectedBase.slug === CONTAINER_SIZE_10) {
       return (
         (DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - distanceObject.top) /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY()
       );
-    } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_20) {
       return (
         -(DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - distanceObject.top) /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY()
       );
-    } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
+    } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return (
         (DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - distanceObject.top) /
           SCALE_FACTOR_FOR_CALCULATIONS +
@@ -313,16 +314,16 @@ const electricalCoordinates = (
   return [xPosition, 0, yPosition()];
 };
 
-const calcPosition = (
+const calcPosition = ({
   elevation,
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  selectedContainer,
+  selectedBase,
   width
-) => {
-  const matchingElevation = containerElevationData.find(
+}) => {
+  const matchingElevation = elevationData.find(
     (item) =>
-      item.homePlan === selectedContainer.slug && item.name === elevation.name
+      item.homePlan === selectedBase.slug && item.name === elevation.name
   );
 
   if (matchingElevation) {
@@ -331,32 +332,32 @@ const calcPosition = (
         return leftSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          selectedContainer,
+          selectedBase,
           width,
         });
       case ELEVATION_NAMES.FRONT:
         return frontSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          selectedContainer,
+          selectedBase,
         });
       case ELEVATION_NAMES.RIGHT:
         return rightSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          selectedContainer,
+          selectedBase,
         });
       case ELEVATION_NAMES.BACK:
         return backSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          selectedContainer,
+          selectedBase,
         });
       case ELEVATION_NAMES.FLOOR_PLAN:
         return electricalCoordinates(
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          selectedContainer
+          selectedBase
         );
       default:
         break;

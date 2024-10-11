@@ -24,10 +24,18 @@ const Layout = ({ name, imgSrc, isSelected, price, handleAdd }) => {
 };
 
 const RoofOptions = () => {
-  const { supplier, selectedElevation, selectedComponents, setSelectedComponents, selectedShed, floorPlan } =
-    useContext(ShedDataContext);
+  const {
+    supplier,
+    selectedElevation,
+    selectedComponents,
+    setSelectedComponents,
+    selectedShed,
+    floorPlan,
+  } = useContext(ShedDataContext);
 
-  const roofs = componentData.filter((item) => item.objType === COMPONENT_TYPES.ROOF)
+  const roofs = componentData.filter(
+    (item) => item.objType === COMPONENT_TYPES.ROOF
+  );
 
   return (
     <div className={style.container}>
@@ -35,7 +43,9 @@ const RoofOptions = () => {
         const thumbnail = roof.thumbnail;
         const roofName = roof.name;
         const roofImage = `/images/${supplier}/roof/${selectedShed.height}/${thumbnail}`;
-        const isSelected = selectedComponents.includes(roof);
+        const isSelected = selectedComponents.some(
+          (component) => component.id === roof.id
+        );
         const roofPrice = roof.price;
 
         return (
@@ -45,12 +55,12 @@ const RoofOptions = () => {
             isSelected={isSelected}
             price={roofPrice}
             supplier={supplier}
-            handleAdd={ () =>
+            handleAdd={() =>
               handleAddComponent({
                 item: roof,
                 setSelectedComponents,
                 selectedElevation,
-                floorPlan
+                floorPlan,
               })
             }
           />

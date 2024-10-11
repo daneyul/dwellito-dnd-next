@@ -2,7 +2,6 @@ import React, { useState, createContext } from 'react';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import useOrderTotal from '../hooks/useShedOrderTotal';
 import {
-  COMPACT_COTTAGES_COMPONENTS,
   COMPONENT_NAMES,
   COMPONENT_TYPES,
   CONFIGURATOR_TYPES,
@@ -10,7 +9,7 @@ import {
   ONE_STORY,
 } from '@/utils/constants/names/names';
 import { shedData } from '../constants/shedData';
-import { shedElevationData } from '../constants/components/shed-elevations/shedElevationData';
+import { shedElevationData } from '../constants/components/elevations/shedElevationData';
 import { componentData } from '../constants/componentData';
 
 export const ShedDataContext = createContext();

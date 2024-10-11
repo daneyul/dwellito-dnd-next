@@ -78,13 +78,13 @@ const GenericWindow =
         ref={ref}
         dispose={null}
         scale={[10, 10, 10]}
-        position={calcPosition(
+        position={calcPosition({
           selectedElevation,
           distanceObject,
-          DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
-          selectedContainer,
+          SCALE_FACTOR_FOR_CALCULATIONS: DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
+          selectedBase: selectedContainer,
           width
-        )}
+        })}
         rotation={rotation}
       >
         <group position={customPosition} rotation={customRotation} scale={customScale}>
