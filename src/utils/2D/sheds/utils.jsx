@@ -88,7 +88,7 @@ export const checkDistance = ({
 
 
   const left = deScale(component?.position.x, scaleFactor);
-  const right = (deScale(component?.position.x, scaleFactor) + component.objWidth)
+  const right = selectedElevation.objWidth - (deScale(component?.position.x, scaleFactor) + component.objWidth)
   const top = deScale(component?.position.y, scaleFactor);
 
   return {

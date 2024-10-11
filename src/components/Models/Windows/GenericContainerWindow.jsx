@@ -7,7 +7,7 @@ import { Box3, Vector3 } from 'three';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
-const GenericWindow =
+const GenericContainerWindow =
   ({
     component,
     onBoundingBoxChange,
@@ -111,4 +111,4 @@ const GenericWindow =
     );
   }
 
-export default GenericWindow;
+export default GenericContainerWindow;

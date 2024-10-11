@@ -1,8 +1,8 @@
 import React from 'react';
-import GenericWindow from '../GenericWindow';
+import GenericContainerWindow from '../GenericContainerWindow';
 
 const WoSecurity = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericWindow
+  <GenericContainerWindow
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}
@@ -12,7 +12,7 @@ const WoSecurity = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const WSecurity = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericWindow
+  <GenericContainerWindow
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}

@@ -1,20 +1,18 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { Box3, Vector3 } from 'three';
-import { useGLTF } from '@react-three/drei';
+/* eslint-disable react/display-name */
 import { checkDistance } from '@/utils/2D/sheds/utils';
 import { calcPosition, calcRotation } from '@/utils/3D/sheds/utils';
-import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import { ELEVATION_NAMES } from '@/utils/constants/names/names';
+import { useGLTF } from '@react-three/drei';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { Box3, Vector3 } from 'three';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 
-const GenericShedDoor = ({
+const GenericShedWindow = ({
   component,
   onBoundingBoxChange,
   modelPath,
   customPosition,
   customRotation,
   customScale,
-  isHrDoor,
 }) => {
   const { nodes, materials } = useGLTF(modelPath);
   const { selectedComponents, selectedShed, scaleFactor } =
@@ -35,38 +33,36 @@ const GenericShedDoor = ({
 
   useEffect(() => {
     if (ref.current) {
-      // Ensure transformations are applied
-      ref.current.updateMatrixWorld(true);
-  
-      // Recalculate bounding box after transformations are applied
+      // Recalculate the bounding box
       const bbox = new Box3().setFromObject(ref.current);
       const size = new Vector3();
       const center = new Vector3();
       bbox.getSize(size);
       bbox.getCenter(center);
-  
-      // Adjust width and center if necessary
-      const adjustedWidth = isHrDoor && selectedElevation.name === ELEVATION_NAMES.LEFT 
-        ? size.x - 0.7 
-        : size.x;
-  
-      setWidth(adjustedWidth);
-      onBoundingBoxChange({ size, center, selectedElevation });
+
+      // Update state and notify about bounding box change
+      setWidth(size.x);
+      onBoundingBoxChange({
+        size,
+        center: new Vector3(center.x, center.y, center.z),
+        selectedElevation,
+      });
     }
-  }, [selectedComponents, isHrDoor, selectedElevation.name, ref.current]);
+  }, [selectedComponents, selectedElevation.name, ref.current]);
 
   useEffect(() => {
     if (materials.Glass) {
       materials.Glass.transparent = true;
-      materials.Glass.opacity = 0.6; // Adjust opacity as needed
-      materials.Glass.roughness = 0.1; // Glass is generally smooth
-      materials.Glass.metalness = 0.0; // Glass isn't metallic
+      materials.Glass.opacity = 0.6;
+      materials.Glass.roughness = 0.1;
+      materials.Glass.metalness = 0.0;
+    } else if (materials['Frosted Clear Glass']) {
+      materials['Frosted Clear Glass'].transparent = true;
+      materials['Frosted Clear Glass'].opacity = 0.6;
+      materials['Frosted Clear Glass'].roughness = 0.1;
+      materials['Frosted Clear Glass'].metalness = 0.0;
     }
   }, [materials]);
-
-  const meshKeys = Object.keys(nodes).filter(
-    (nodeKey) => nodes[nodeKey].isMesh
-  );
 
   return (
     <group
@@ -86,23 +82,25 @@ const GenericShedDoor = ({
         rotation={customRotation}
         scale={customScale}
       >
-        <group>
-          {meshKeys.map((nodeKey) => {
-            const node = nodes[nodeKey];
+        {Object.keys(nodes).map((nodeKey) => {
+          const node = nodes[nodeKey];
+          if (node.isMesh) {
+            const material = materials[node.material.name];
             return (
               <mesh
                 key={nodeKey}
                 castShadow
                 receiveShadow
                 geometry={node.geometry}
-                material={materials[node.material.name]}
+                material={material || materials.default}
               />
             );
-          })}
-        </group>
+          }
+          return null;
+        })}
       </group>
     </group>
   );
 };
 
-export default GenericShedDoor;
+export default GenericShedWindow;

@@ -1,8 +1,8 @@
 import React from 'react';
-import GenericWindow from '../GenericWindow';
+import GenericContainerWindow from '../GenericContainerWindow';
 
 const HorizontalSlider46x27 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericWindow
+  <GenericContainerWindow
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}
@@ -12,7 +12,7 @@ const HorizontalSlider46x27 = ({ component, onBoundingBoxChange, supplier }) => 
 );
 
 const HorizontalSliderSecurity46x27 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericWindow
+  <GenericContainerWindow
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}
@@ -22,7 +22,7 @@ const HorizontalSliderSecurity46x27 = ({ component, onBoundingBoxChange, supplie
 );
 
 const VerticalSlider46x27 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericWindow
+  <GenericContainerWindow
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}
@@ -32,7 +32,7 @@ const VerticalSlider46x27 = ({ component, onBoundingBoxChange, supplier }) => (
 );
 
 const HorizontalSlider47x12 = ({ component, onBoundingBoxChange, supplier }) => (
-  <GenericWindow
+  <GenericContainerWindow
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}

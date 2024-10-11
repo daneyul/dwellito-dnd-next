@@ -23,6 +23,7 @@ import { useExteriorGLTFModels } from '@/utils/hooks/sheds/useGLTFModels';
 import Shed from './Sheds/one-story/Shed';
 import Door from './Doors/DoorSwitcher';
 import { useBoundingBoxes } from '@/utils/hooks/sheds/useBoundingBoxes';
+import Window from './Windows/WindowSwitcher';
 
 export function ShedModels() {
   const {
@@ -45,6 +46,14 @@ export function ShedModels() {
     () =>
       selectedComponents.filter(
         (comp) => comp.objType === COMPONENT_TYPES.DOOR
+      ),
+    [selectedComponents, COMPONENT_TYPES]
+  );
+
+  const windows = useMemo(
+    () =>
+      selectedComponents.filter(
+        (comp) => comp.objType === COMPONENT_TYPES.WINDOW
       ),
     [selectedComponents, COMPONENT_TYPES]
   );
@@ -137,7 +146,8 @@ export function ShedModels() {
 
   const {
     handleDoorBoundingBox,
-  } = useBoundingBoxes({ doors });
+    handleWindowBoundingBox,
+  } = useBoundingBoxes({ doors, windows });
 
   const paint = useExteriorGLTFModels(supplier);
   const ShedShell = () => {
@@ -164,6 +174,14 @@ export function ShedModels() {
               key={door.id}
               component={door}
               onBoundingBoxChange={(data) => handleDoorBoundingBox(index, data)}
+              supplier={supplier}
+            />
+          ))}
+          {windows.map((window, index) => (
+            <Window
+              key={window.id}
+              component={window}
+              onBoundingBoxChange={(data) => handleWindowBoundingBox(index, data)}
               supplier={supplier}
             />
           ))}
