@@ -50,7 +50,7 @@ const frontSideCoordinates = ({
 
   let xPosition =
     distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX();
-  let yPosition = 0 + adjustForY() - 0.4;
+  let yPosition = 0 + adjustForY() - 0.2;
   let zPosition = adjustForZ() / SCALE_FACTOR_FOR_CALCULATIONS;
 
   return [xPosition, zPosition, yPosition];
