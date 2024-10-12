@@ -16,7 +16,6 @@ import DragToMove from '../DragToMove/DragToMove';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import ShedDroppable from '../Models/Droppable/ShedDroppable';
 import { ShedDraggableContainer } from '../DraggableContainer/ShedDraggableContainer';
-import ShedMultipleDroppables from '../MultipleDroppables/ShedMultipleDroppables';
 
 const ShedDnDViewer = () => {
   const {

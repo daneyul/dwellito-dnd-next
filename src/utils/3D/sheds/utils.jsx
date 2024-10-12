@@ -45,12 +45,12 @@ const frontSideCoordinates = ({
     return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
   };
   const adjustForZ = () => {
-    return -(parseFloat(distanceObject.top));
+    return -parseFloat(distanceObject.top);
   };
 
   let xPosition =
     distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX();
-  let yPosition = 0 + adjustForY() - 0.1;
+  let yPosition = 0 + adjustForY() - 0.4;
   let zPosition = adjustForZ() / SCALE_FACTOR_FOR_CALCULATIONS;
 
   return [xPosition, zPosition, yPosition];
@@ -59,30 +59,22 @@ const backSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
   selectedBase,
-  width,
 }) => {
   const adjustForX = () => {
     return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2);
   };
   const adjustForY = () => {
-    return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2
+    return -DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
   };
   const adjustForZ = () => {
-    return -(parseFloat(distanceObject.top));
+    return -parseFloat(distanceObject.top);
   };
 
   let xPosition = () => {
-    return (
-      distanceObject.right / SCALE_FACTOR_FOR_CALCULATIONS +
-      adjustForX() +
-      width
-    )
+    return distanceObject.right / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX() + 5.6;
   };
   let yPosition = () => {
-    return (
-      -DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.FRONT.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS + 
-      adjustForY()
-    )
+    return adjustForY() + 0.8;
   };
   let zPosition = adjustForZ() / SCALE_FACTOR_FOR_CALCULATIONS;
   return [xPosition(), zPosition, yPosition()];
@@ -90,24 +82,22 @@ const backSideCoordinates = ({
 const leftSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  selectedBase,
 }) => {
   const adjustForX = () => {
-    return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2);
+    return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2) + 0.4;
   };
-  const adjustForY = () => {
-    return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
-  };
-  let xPosition = 0 + adjustForX();
+  const adjustForY = -5.1;
+  let xPosition = adjustForX();
   let yPosition = () => {
     return (
-      (DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.FRONT.WIDTH - distanceObject.left) /
+      (DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.FRONT.WIDTH -
+        distanceObject.left) /
         SCALE_FACTOR_FOR_CALCULATIONS +
-      adjustForY()
-    )
+      adjustForY
+    );
   };
   let zPosition =
-    -(parseFloat(distanceObject.top)) / SCALE_FACTOR_FOR_CALCULATIONS;
+    -parseFloat(distanceObject.top) / SCALE_FACTOR_FOR_CALCULATIONS;
   return [xPosition, zPosition, yPosition()];
 };
 const rightSideCoordinates = ({
@@ -116,17 +106,14 @@ const rightSideCoordinates = ({
   selectedBase,
 }) => {
   const adjustForX = () => {
-    return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2);
+    return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2;
   };
   const adjustForY = () => {
     return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
   };
 
   let xPosition = () => {
-    return (
-      DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.SIDE.WIDTH / SCALE_FACTOR_FOR_CALCULATIONS +
-      adjustForX()
-    )
+    return adjustForX() - 0.8;
   };
 
   let yPosition =
@@ -142,7 +129,7 @@ const calcPosition = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
   selectedBase,
-  width
+  width,
 }) => {
   const matchingElevation = elevationData.find(
     (item) =>

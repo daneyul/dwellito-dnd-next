@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
-import { toScale, generateImgSrc, calculateCSSPos, calculateShedComponentCSSPos } from '../../../utils/2D/containers/utils';
+import { toScale, generateImgSrc, calculateShedComponentCSSPos } from '../../../utils/2D/sheds/utils';
 import {
   COMPONENT_TYPES,
   DROPPABLE,
@@ -15,7 +15,6 @@ import {
   DROPPABLE_MIDDLE,
   DROPPABLE_PARTITIONS,
   DROPPABLE_RIGHT,
-  ELEVATION_NAMES,
 } from '@/utils/constants/names/names';
 import { useCombinedRefs } from '@dnd-kit/utilities';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';

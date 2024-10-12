@@ -45,12 +45,7 @@ const useDragHandlers = ({
     );
 
     if (!draggedItem) return null;
-    
 
-    const isOnElevationRight =
-      draggedItem.elevation[0].name === ELEVATION_NAMES.RIGHT;
-    const isOnElevationLeft =
-      draggedItem.elevation[0].name === ELEVATION_NAMES.LEFT;
     const isOnElevationBack =
       draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
     const isOnElevationFront =
@@ -64,33 +59,11 @@ const useDragHandlers = ({
 
     // Set modifiers
     if (isFloorPlanView) {
-      if (isFixed) {
-        setModifiers([...fixedModifiers]);
-      } else if (isOnElevationRight || isOnElevationLeft) {
+      if (isOnElevationBack || isOnElevationFront) {
         if (isDoor) {
-          setModifiers([
-            ...defaultModifiers,
-            restrictToHorizontalAxis
-          ]);
+          setModifiers([...defaultModifiers, restrictToVerticalAxis]);
         } else if (isWindow) {
-          setModifiers([
-            ...defaultModifiers,
-            restrictToHorizontalAxis
-          ]);
-        } else {
-          setModifiers([...defaultModifiers, restrictToHorizontalAxis]);
-        }
-      } else if (isOnElevationBack || isOnElevationFront) {
-        if (isDoor) {
-          setModifiers([
-            ...defaultModifiers,
-            restrictToVerticalAxis
-          ]);
-        } else if (isWindow) {
-          setModifiers([
-            ...defaultModifiers,
-            restrictToVerticalAxis
-          ]);
+          setModifiers([...defaultModifiers, restrictToVerticalAxis]);
         } else {
           setModifiers([...defaultModifiers, restrictToVerticalAxis]);
         }
@@ -98,13 +71,9 @@ const useDragHandlers = ({
         setModifiers([]);
       }
     } else if (isDoor) {
-      setModifiers([
-        ...doorWindowModifiers
-      ]);
+      setModifiers([...doorWindowModifiers]);
     } else if (isWindow) {
-      setModifiers([
-        ...doorWindowModifiers
-      ]);
+      setModifiers([...doorWindowModifiers]);
     } else {
       setModifiers([...defaultModifiers]);
     }
@@ -116,174 +85,49 @@ const useDragHandlers = ({
     const draggedItem = selectedComponents.find(
       (component) => component.id === draggedId
     );
-  
+
     if (!initialPosition || !draggedItem) return;
-  
-    const isOnElevationRight =
-      draggedItem.elevation[0].name === ELEVATION_NAMES.RIGHT;
-    const isOnElevationLeft =
-      draggedItem.elevation[0].name === ELEVATION_NAMES.LEFT;
-    const isOnElevationBack =
-      draggedItem.elevation[0].name === ELEVATION_NAMES.BACK;
-    const isOnElevationFront =
-      draggedItem.elevation[0].name === ELEVATION_NAMES.FRONT;
-  
-    const isDraggableOnFloorPlan =
-      draggedItem.name === COMPONENT_NAMES.BASEBOARD_HEATER ||
-      draggedItem.name === COMPONENT_NAMES.OUTLET ||
-      draggedItem.name === COMPONENT_NAMES.INDOOR_OUTDOOR_FAN;
-  
-    const isOutsideBounds =
-      !over || ![DROPPABLE_LEFT, DROPPABLE_RIGHT, DROPPABLE_BACK].includes(over.id);
-  
-    if (isDraggableOnFloorPlan && isOutsideBounds) {
-      // Reset position of heater or outlet if outside droppable area
-      setSelectedComponents((prevComponents) =>
-        prevComponents.map((component) =>
-          component.id === draggedId
-            ? {
-                ...component,
-                position: { x: initialPosition.x, y: initialPosition.y },
-              }
-            : component
-        )
-      );
-      setShowOutsideDroppableWarning(false);
-    } else {
-      // Update position of dragged component based on the elevation
-      let updatedPieces = selectedComponents.map((piece) => {
-        if (piece.id === draggedId) {
-          if (isFloorPlanView) {
-            if (isOnElevationRight) {
-              // If elevation is right, update the x position
-              return {
-                ...piece,
-                position: {
-                  x: initialPosition.x + delta.x,
-                  y: initialPosition.y + delta.y,
-                }
-              };
-            } else if (isOnElevationLeft) {
-              // If elevation is left, update the x position in reverse
-              return {
-                ...piece,
-                position: {
-                  x: initialPosition.x - delta.x,
-                  y: initialPosition.y + delta.y,
-                }
-              };
-            } else if (isOnElevationBack) {
-              // If elevation is back, update the x position based on delta.y
-              return {
-                ...piece,
-                position: {
-                  x: initialPosition.x - delta.y,
-                  y: initialPosition.y,
-                }
-              };
-            } else if (isOnElevationFront) {
-              return {
-                ...piece,
-                position: {
-                  x: initialPosition.x + delta.y,
-                  y: initialPosition.y,
-                }
-              };
-            } else {
-              // General case for floor plan view
-              return {
-                ...piece,
-                position: {
-                  x: initialPosition.x + delta.x,
-                  y: initialPosition.y + delta.y,
-                }
-              };
-            }
-          } else {
-            // Handle non-floor plan views
-            if (isOnElevationLeft) {
-              // If elevation is left, update the x position in reverse
-              return {
-                ...piece,
-                position: {
-                  x: initialPosition.x - delta.x,
-                  y: initialPosition.y + delta.y,
-                }
-              };
-            } else {
-              // General case for non-floor plan view
-              return {
-                ...piece,
-                position: {
-                  x: initialPosition.x + delta.x,
-                  y: initialPosition.y + delta.y,
-                }
-              };
-            }
-          }
-        }
-        return piece;
-      });
-  
-      // Reset collision and closeness flags
-      updatedPieces = updatedPieces.map((piece) => ({
-        ...piece,
-        isColliding: false,
-        isTooClose: false,
-      }));
-  
-      // Check for collisions and closeness
-      updatedPieces.forEach((piece, index) => {
-        if (piece.id !== draggedId) {
-          const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
-          if (!draggedPiece) return;
-  
-          if (piece.objType !== COMPONENT_TYPES.PARTITION) {
-            if (
-              checkCloseness(
-                draggedPiece,
-                piece,
-                selectedElevation,
-                scaleFactor
-              )
-            ) {
-              updatedPieces[index].isColliding = true;
-              const draggedPieceIndex = updatedPieces.findIndex(
-                ({ id }) => id === draggedId
-              );
-              updatedPieces[draggedPieceIndex].isColliding = true;
-            }
-  
-            if (
-              checkCloseness(
-                draggedPiece,
-                piece,
-                selectedElevation,
-                scaleFactor
-              )
-            ) {
-              updatedPieces[index].isTooClose = true;
-              const draggedPieceIndex = updatedPieces.findIndex(
-                ({ id }) => id === draggedId
-              );
-              updatedPieces[draggedPieceIndex].isTooClose = true;
-            }
-          }
-        }
-      });
-  
-      setSelectedComponents(updatedPieces);
-  
-      // Set collision and closeness states
-      const collisionDetected = updatedPieces.some((piece) => piece.isColliding);
-      const closenessDetected = updatedPieces.some((piece) => piece.isTooClose);
-      setHasCollisions(collisionDetected);
-      setIsTooClose(closenessDetected);
-    }
-  
+
+    // Update position of dragged component based on the elevation
+    let updatedPieces = selectedComponents.map((piece) => {
+      if (piece.id === draggedId) {
+        return {
+          ...piece,
+          position: {
+            x: initialPosition.x + delta.x,
+            y: initialPosition.y + delta.y,
+          },
+        };
+      }
+      return piece;
+    });
+
+    // Reset collision and closeness flags
+    updatedPieces = updatedPieces.map((piece) => ({
+      ...piece,
+      isColliding: false,
+      isTooClose: false,
+    }));
+
+    // Check for collisions and closeness
+    updatedPieces.forEach((piece) => {
+      if (piece.id !== draggedId) {
+        const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
+        if (!draggedPiece) return;
+      }
+    });
+
+    setSelectedComponents(updatedPieces);
+
+    // Set collision and closeness states
+    const collisionDetected = updatedPieces.some((piece) => piece.isColliding);
+    const closenessDetected = updatedPieces.some((piece) => piece.isTooClose);
+    setHasCollisions(collisionDetected);
+    setIsTooClose(closenessDetected);
+
     // Reset the local state after drag ends
     setInitialPosition(null);
-  };  
+  };
 
   const handleDragMove = (event) => {
     const { over, active } = event;
@@ -292,13 +136,14 @@ const useDragHandlers = ({
     );
 
     if (
-      draggedComponent.moveableInFloorPlan && draggedComponent.objType !== COMPONENT_TYPES.PARTITION
+      draggedComponent.moveableInFloorPlan &&
+      draggedComponent.objType !== COMPONENT_TYPES.PARTITION
     ) {
       const isOutsideDroppable = ![
         DROPPABLE_LEFT,
         DROPPABLE_RIGHT,
         DROPPABLE_BACK,
-        DROPPABLE_FRONT
+        DROPPABLE_FRONT,
       ].includes(over?.id);
 
       setShowOutsideDroppableWarning(isOutsideDroppable);
@@ -309,14 +154,14 @@ const useDragHandlers = ({
     const componentToSelect = selectedComponents.find(
       (component) => component.id === selectedId
     );
-  
+
     // If the clicked component is already selected
     if (selectedComponent?.id === selectedId) {
       // Check if the position has changed
       const hasMoved =
         selectedComponent.position.x !== initialPosition?.x ||
         selectedComponent.position.y !== initialPosition?.y;
-  
+
       if (!hasMoved) {
         // If the component has NOT moved, deselect it
         setSelectedComponent(null);
@@ -326,16 +171,17 @@ const useDragHandlers = ({
       setSelectedComponent(componentToSelect);
     }
   };
-  
 
   const handleDeleteSelected = () => {
     if (!selectedComponent) return;
-  
+
     setSelectedComponents((prevComponents) => {
       // Filter out the selected component
-      return prevComponents.filter((component) => component.id !== selectedComponent.id);
+      return prevComponents.filter(
+        (component) => component.id !== selectedComponent.id
+      );
     });
-  
+
     // Clear the local selectedComponent state
     handleSelect(null);
   };
@@ -351,7 +197,7 @@ const useDragHandlers = ({
     showCollision,
     setShowCollision,
     selectedComponent,
-    setSelectedComponent
+    setSelectedComponent,
   };
 };
 
