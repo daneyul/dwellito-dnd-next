@@ -11,7 +11,7 @@ import Door from './Doors/DoorSwitcher';
 import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
 import Window from './Windows/WindowSwitcher';
-import { CsgGeometries } from './Containers/CsgGeometries/CsgGeometries';
+import { CsgGeometries } from './Containers/CsgGeometries/Container/CsgGeometries';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,

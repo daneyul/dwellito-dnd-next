@@ -24,6 +24,7 @@ import Shed from './Sheds/one-story/Shed';
 import Door from './Doors/DoorSwitcher';
 import { useBoundingBoxes } from '@/utils/hooks/sheds/useBoundingBoxes';
 import Window from './Windows/WindowSwitcher';
+import { CsgGeometries } from './Containers/CsgGeometries/Shed/CsgGeometries';
 
 export function ShedModels() {
   const {
@@ -145,6 +146,8 @@ export function ShedModels() {
   }
 
   const {
+    doorBoundingBoxes,
+    windowBoundingBoxes,
     handleDoorBoundingBox,
     handleWindowBoundingBox,
   } = useBoundingBoxes({ doors, windows });
@@ -168,6 +171,13 @@ export function ShedModels() {
       >
         <Canvas shadows camera={{ position: cameraPos, fov: camFov }}>
           <color attach='background' args={['#fdfdf7']} />
+          <CsgGeometries
+            doors={doors}
+            windows={windows}
+            doorBoundingBoxes={doorBoundingBoxes}
+            windowBoundingBoxes={windowBoundingBoxes}
+            paint={paint}
+          />
           <ShedShell />
           {doors.map((door, index) => (
             <Door

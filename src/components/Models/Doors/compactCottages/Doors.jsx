@@ -7,7 +7,7 @@ const ExteriorDoor1 = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customScale={0.2}
-    customPosition={[-13.8, 5, 0.9]}
+    customPosition={[-13.8, 5, 0.8]}
   />
 );
 

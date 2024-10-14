@@ -13,7 +13,7 @@ import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
 import Window from './Windows/WindowSwitcher';
 import Vent from './Vents/VentSwitcher';
-import { CsgGeometries } from './Containers/CsgGeometries/CsgGeometries';
+import { CsgGeometries } from './Containers/CsgGeometries/Container/CsgGeometries';
 import {
   COMPONENT_TYPES,
   CONTAINER_SIZE_10,

@@ -62,19 +62,6 @@ export function CsgGeometries({
     `/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`
   ).nodes;
 
-  // const interiorRightNodes = useGLTF(
-  //   `/models/container/${size}/${selectedContainerHeight}/interior-right.glb`
-  // ).nodes;
-  // const interiorLeftNodes = useGLTF(
-  //   `/models/container/${size}/${selectedContainerHeight}/interior-left.glb`
-  // ).nodes;
-  // const interiorBackNodes = useGLTF(
-  //   `/models/container/${size}/${selectedContainerHeight}/interior-back.glb`
-  // ).nodes;
-  // const interiorFrontNodes = useGLTF(
-  //   `/models/container/${size}/${selectedContainerHeight}/interior-front.glb`
-  // ).nodes;
-
   const csg = useRef();
 
   const exteriorPaint = useMemo(() => {

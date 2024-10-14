@@ -4,19 +4,25 @@ import { getExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import { COMPONENT_NAMES } from '@/utils/constants/names/names';
+import { Base, Geometry } from '@react-three/csg';
 
 export default function Shed({ paint }) {
-  const { selectedShedHeight, selectedRoof, supplier, selectedShed } =
-    useContext(ShedDataContext);
+  const {
+    selectedShedHeight,
+    selectedRoof,
+    supplier,
+    selectedShed,
+    exteriorFinish,
+  } = useContext(ShedDataContext);
 
   // Load all 3d objects
   const { nodes: groundBlockNodes, materials: groundBlockMaterials } = useGLTF(
     `/models/shed/${selectedShedHeight}/1storey_12x24_GFBlock.glb`
   );
 
-  // const exteriorPaint = useMemo(() => {
-  //   return getExteriorPaint(supplier, exteriorFinish, paint);
-  // }, [supplier, exteriorFinish, paint]);
+  const exteriorPaint = useMemo(() => {
+    return getExteriorPaint(supplier, exteriorFinish, paint);
+  }, [supplier, exteriorFinish, paint]);
 
   const ref = useRef();
 
@@ -511,20 +517,6 @@ export default function Shed({ paint }) {
         <mesh
           castShadow
           receiveShadow
-          geometry={groundBlockNodes.Object_5.geometry}
-          material={groundBlockMaterials.GF_interior}
-          scale={0.025}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={groundBlockNodes.Object_6.geometry}
-          material={groundBlockMaterials.GF_Exterior}
-          scale={0.025}
-        />
-        <mesh
-          castShadow
-          receiveShadow
           geometry={groundBlockNodes.Object_7.geometry}
           material={groundBlockMaterials.Base_Board}
           scale={0.025}
@@ -551,7 +543,7 @@ export default function Shed({ paint }) {
           scale={0.025}
         />
       </group>
-      <Roof />
+      {/* <Roof /> */}
     </>
   );
 

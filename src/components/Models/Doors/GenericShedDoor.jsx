@@ -3,8 +3,6 @@ import { Box3, Vector3 } from 'three';
 import { useGLTF } from '@react-three/drei';
 import { checkDistance } from '@/utils/2D/sheds/utils';
 import { calcPosition, calcRotation } from '@/utils/3D/sheds/utils';
-import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import { ELEVATION_NAMES } from '@/utils/constants/names/names';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 
 const GenericShedDoor = ({
@@ -13,8 +11,7 @@ const GenericShedDoor = ({
   modelPath,
   customPosition,
   customRotation,
-  customScale,
-  isHrDoor,
+  customScale
 }) => {
   const { nodes, materials } = useGLTF(modelPath);
   const { selectedComponents, selectedShed, scaleFactor } =
@@ -35,25 +32,17 @@ const GenericShedDoor = ({
 
   useEffect(() => {
     if (ref.current) {
-      // Ensure transformations are applied
-      ref.current.updateMatrixWorld(true);
-  
-      // Recalculate bounding box after transformations are applied
+      ref.current.updateWorldMatrix(true);
       const bbox = new Box3().setFromObject(ref.current);
       const size = new Vector3();
       const center = new Vector3();
       bbox.getSize(size);
       bbox.getCenter(center);
-  
-      // Adjust width and center if necessary
-      const adjustedWidth = isHrDoor && selectedElevation.name === ELEVATION_NAMES.LEFT 
-        ? size.x - 0.7 
-        : size.x;
-  
-      setWidth(adjustedWidth);
+
+      setWidth(size.x);
       onBoundingBoxChange({ size, center, selectedElevation });
     }
-  }, [selectedComponents, isHrDoor, selectedElevation.name, ref.current]);
+  }, [selectedComponents, ref.current]);
 
   useEffect(() => {
     if (materials.Glass) {
