@@ -14,8 +14,8 @@ export function useBoundingBoxes({ doors, windows }) {
       if (typeof data.size.y === 'number') {
         updatedData = {
           ...updatedData,
-          size: new Vector3(data.size.x, data.size.y, data.size.z),
-          center: new Vector3(data.center.x, data.center.y, data.center.z),
+          size: new Vector3(data.size.x - 2.9, data.size.y - 5.8, data.size.z),
+          center: new Vector3(data.center.x, data.center.y + 1.3, data.center.z - 0.8),
         };
       }
 
