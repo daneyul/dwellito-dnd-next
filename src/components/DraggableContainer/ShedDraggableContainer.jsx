@@ -22,8 +22,7 @@ export const ShedDraggableContainer = ({
         height: '100%',
         position: 'absolute',
         left: '50%',
-        transform: 'translateX(-50%)',
-        border: '1px solid red',
+        transform: 'translateX(-50%)'
       }}
     >
       {selectedComponents
