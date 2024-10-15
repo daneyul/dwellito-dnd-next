@@ -6,9 +6,18 @@ export async function generateMetadata({ params }) {
   const supplierName = findSupplierName(supplierSlug);
 
   const title = `Configurator - ${supplierName}`;
-  const iconPath = supplierSlug === SUPPLIER_SLUGS.CUSTOM_CUBES 
-    ? '/favicon/custom-cubes.png' 
-    : '/favicon/at-and-s.png';
+  let iconPath;
+  switch (supplierSlug) {
+    case SUPPLIER_SLUGS.CUSTOM_CUBES:
+      iconPath = '/favicon/custom-cubes.png';
+      break;
+    case SUPPLIER_SLUGS.AT_AND_S:
+      iconPath = '/favicon/at-and-s.png';
+      break;
+    case SUPPLIER_SLUGS.COMPACT_COTTAGES:
+      iconPath = '/favicon/compact-cottages.png';
+      break;
+  }
 
   return {
     title,

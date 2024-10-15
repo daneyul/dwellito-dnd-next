@@ -4,14 +4,11 @@ import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 import * as THREE from 'three';
+import Roof from './Roof';
 
 const Shed = ({ exteriorPaint }) => {
-  const {
-    selectedShedHeight,
-    selectedRoof,
-    supplier,
-    selectedShed
-  } = useContext(ShedDataContext);
+  const { selectedShedHeight, selectedRoof, supplier, selectedShed } =
+    useContext(ShedDataContext);
 
   // Load all 3d objects
   const { nodes: groundBlockNodes, materials: groundBlockMaterials } = useGLTF(
@@ -27,337 +24,6 @@ const Shed = ({ exteriorPaint }) => {
   const adjustForY = useMemo(() => {
     return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
   }, [DIMENSIONS]);
-  
-
-  const Roof = () => {
-    if (selectedRoof.name === COMPONENT_NAMES.SLANT_ROOF) {
-      const { nodes, materials } = useGLTF(
-        `/models/${supplier}/roofs/${selectedShedHeight}/${selectedShed.size}/slant.glb`
-      );
-      return (
-        <group scale={8} dispose={null} position={[adjustForX, 0, adjustForY]}>
-          <group scale={0.025}>
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_10.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_11.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_12.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_13.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_14.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_2.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_3.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_4.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_5.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_6.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_7.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_8.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_9.geometry}
-              material={materials.Framing_Wood}
-            />
-          </group>
-          <group scale={0.025}>
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_15.geometry}
-              material={materials.Vertical_Trim}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_16.geometry}
-              material={materials.Vertical_Trim}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_17.geometry}
-              material={materials.Vertical_Trim}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_18.geometry}
-              material={materials.Vertical_Trim}
-            />
-          </group>
-          <group scale={0.025}>
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_19.geometry}
-              material={materials.Roof_Siding}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_20.geometry}
-              material={materials.Roof_Siding}
-            />
-          </group>
-          <group scale={0.025}>
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_21.geometry}
-              material={materials.Roof_interior}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_22.geometry}
-              material={materials.Roof_interior}
-            />
-          </group>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Object_1.geometry}
-            material={materials['galvanized  alum metal']}
-            scale={0.025}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Object_23.geometry}
-            material={new THREE.MeshStandardMaterial({ map: exteriorPaint })}
-            scale={0.025}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Object_24.geometry}
-            material={materials.Roof_Ceiling}
-            scale={0.025}
-          />
-        </group>
-      );
-    } else {
-      const { nodes, materials } = useGLTF(
-        `/models/${supplier}/roofs/${selectedShedHeight}/${selectedShed.size}/gable.glb`
-      );
-      return (
-        <group scale={8} dispose={null} position={[adjustForX, 0, adjustForY]}>
-          <group scale={0.025}>
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_1.geometry}
-              material={materials.Vertical_Trim}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_2.geometry}
-              material={materials.Vertical_Trim}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_3.geometry}
-              material={materials.Vertical_Trim}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_4.geometry}
-              material={materials.Vertical_Trim}
-            />
-          </group>
-          <group scale={0.025}>
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_5.geometry}
-              material={materials.Roof_Siding}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_6.geometry}
-              material={materials.Roof_Siding}
-            />
-          </group>
-          <group scale={0.025}>
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_10.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_11.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_12.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_13.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_14.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_15.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_16.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_17.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_18.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_19.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_20.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_8.geometry}
-              material={materials.Framing_Wood}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_9.geometry}
-              material={materials.Framing_Wood}
-            />
-          </group>
-          <group scale={0.025}>
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_23.geometry}
-              material={materials.Roof_interior}
-            />
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_24.geometry}
-              material={materials.Roof_interior}
-            />
-          </group>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Object_7.geometry}
-            material={materials.Roof_Ceiling}
-            scale={0.025}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Object_21.geometry}
-            material={materials['galvanized  alum metal']}
-            scale={0.025}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Object_22.geometry}
-            material={new THREE.MeshStandardMaterial({ map: exteriorPaint })}
-            scale={0.025}
-          />
-        </group>
-      );
-    }
-  };
 
   const shedMesh = (
     <>
@@ -538,11 +204,19 @@ const Shed = ({ exteriorPaint }) => {
           scale={0.025}
         />
       </group>
-      <Roof />
+      <Roof
+        exteriorPaint={exteriorPaint}
+        selectedRoof={selectedRoof}
+        supplier={supplier}
+        selectedShedHeight={selectedShedHeight}
+        selectedShed={selectedShed}
+        adjustForX={adjustForX}
+        adjustForY={adjustForY}
+      />
     </>
   );
 
   return shedMesh;
-}
+};
 
 export default Shed;
