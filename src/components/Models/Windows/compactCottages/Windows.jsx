@@ -7,7 +7,7 @@ const Window24x24 = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}
     customScale={0.2}
-    customPosition={[0, 20.2, 1.2]}
+    customPosition={[0, 20.2, 0.9]}
   />
 );
 
@@ -17,7 +17,7 @@ const Window30x36 = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}
     customScale={0.2}
-    customPosition={[0, 17.7, 0.9]}
+    customPosition={[0, 17.8, 0.5]}
   />
 );
 
@@ -27,7 +27,7 @@ const Window48x24 = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}
     customScale={0.2}
-    customPosition={[0,20.2, 0.9]}
+    customPosition={[0,20.2, 0.5]}
   />
 );
 
@@ -37,7 +37,7 @@ const Window48x48 = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}
     customScale={0.2}
-    customPosition={[0, 15.3, 0.9]}
+    customPosition={[0, 15.3, 0.5]}
   />
 );
 
@@ -47,7 +47,7 @@ const Window48x60 = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}
     customScale={0.2}
-    customPosition={[0, 13, 0.9]}
+    customPosition={[0, 13, 0.5]}
   />
 );
 
@@ -57,7 +57,7 @@ const Window60x48 = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}
     customScale={0.2}
-    customPosition={[0, 15.4, 0.9]}
+    customPosition={[0, 15.4, 0.5]}
   />
 );
 

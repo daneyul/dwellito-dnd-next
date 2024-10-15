@@ -36,7 +36,7 @@ const calcRotation = (elevation, selectedBase) => {
 const frontSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  selectedBase,
+  width,
 }) => {
   const adjustForX = () => {
     return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2);
@@ -58,7 +58,7 @@ const frontSideCoordinates = ({
 const backSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  selectedBase,
+  width,
 }) => {
   const adjustForX = () => {
     return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2);
@@ -71,10 +71,15 @@ const backSideCoordinates = ({
   };
 
   let xPosition = () => {
-    return distanceObject.right / SCALE_FACTOR_FOR_CALCULATIONS + adjustForX() + 5.6;
+    return (
+      distanceObject.right / SCALE_FACTOR_FOR_CALCULATIONS +
+      adjustForX() +
+      width -
+      0.3
+    );
   };
   let yPosition = () => {
-    return adjustForY() + 0.8;
+    return adjustForY() + 0.7;
   };
   let zPosition = adjustForZ() / SCALE_FACTOR_FOR_CALCULATIONS;
   return [xPosition(), zPosition, yPosition()];
@@ -82,28 +87,28 @@ const backSideCoordinates = ({
 const leftSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
+  width,
 }) => {
   const adjustForX = () => {
-    return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2) + 0.4;
-  };
-  const adjustForY = -5.1;
-  let xPosition = adjustForX();
-  let yPosition = () => {
     return (
-      (DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.FRONT.WIDTH -
-        distanceObject.left) /
-        SCALE_FACTOR_FOR_CALCULATIONS +
-      adjustForY
+      -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2) + 0.2
     );
   };
+  const adjustForY = () => {
+    return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
+  };
+
+  let xPosition = adjustForX();
+  let yPosition = -adjustForY() + 0.2;
   let zPosition =
     -parseFloat(distanceObject.top) / SCALE_FACTOR_FOR_CALCULATIONS;
-  return [xPosition, zPosition, yPosition()];
+
+  return [xPosition, zPosition, yPosition];
 };
 const rightSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  selectedBase,
+  width,
 }) => {
   const adjustForX = () => {
     return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2;
@@ -113,14 +118,14 @@ const rightSideCoordinates = ({
   };
 
   let xPosition = () => {
-    return adjustForX() - 0.8;
+    return adjustForX() - 0.7;
   };
 
   let yPosition =
     -distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY();
 
   let zPosition =
-    -(parseFloat(distanceObject.top) + 4) / SCALE_FACTOR_FOR_CALCULATIONS;
+    -(parseFloat(distanceObject.top)) / SCALE_FACTOR_FOR_CALCULATIONS;
   return [xPosition(), zPosition, yPosition];
 };
 
@@ -142,32 +147,31 @@ const calcPosition = ({
         return leftSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          selectedBase,
           width,
         });
       case ELEVATION_NAMES.FRONT:
         return frontSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          selectedBase,
+          width,
         });
       case ELEVATION_NAMES.RIGHT:
         return rightSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          selectedBase,
+          width,
         });
       case ELEVATION_NAMES.BACK:
         return backSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          selectedBase,
+          width,
         });
       case ELEVATION_NAMES.FLOOR_PLAN:
         return electricalCoordinates(
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
-          selectedBase
+          width
         );
       default:
         break;

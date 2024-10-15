@@ -79,7 +79,6 @@ export const checkDistance = ({
   selectedElevation,
   DIMENSIONS,
   selectedContainer,
-  selectedShed,
   scaleFactor,
 }) => {
   if (!component) {
@@ -100,7 +99,7 @@ export const checkDistance = ({
     if (isFloorPlanView) {
       return 0;
     } else {
-      return DIMENSIONS.BOUNDARIES.x;
+      return DIMENSIONS.CONTAINER_BOUNDARIES.x;
     }
   };
 
@@ -205,11 +204,11 @@ export const getUniqueElevationObjects = (selectedComponents) => {
 
 export const DROPPABLE_FLOOR_PLAN_WIDTH = (DIMENSIONS, selectedContainer) => {
   if (selectedContainer.slug === CONTAINER_SIZE_10) {
-    return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+    return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2;
   } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
-    return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+    return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2;
   } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
-    return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+    return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2;
   }
 };
 
@@ -218,11 +217,11 @@ export const DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES = (
   selectedContainer
 ) => {
   if (selectedContainer.slug === CONTAINER_SIZE_10) {
-    return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+    return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2;
   } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
-    return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+    return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2;
   } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
-    return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - DIMENSIONS.BOUNDARIES.x * 2;
+    return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2;
   }
 };
 export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (
@@ -230,14 +229,14 @@ export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (
   selectedContainer
 ) => {
   if (selectedContainer.slug === CONTAINER_SIZE_10) {
-    return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2.7;
+    return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2.7;
   } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
     return (
-      DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2.7
+      DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2.7
     );
   } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
     return (
-      DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - DIMENSIONS.BOUNDARIES.x * 2.7
+      DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2.7
     );
   }
 };
@@ -253,7 +252,7 @@ export const droppableWidth = (
       ELEVATION_NAMES,
       selectedElevation,
     });
-    return 0; // Or any default value you see fit
+    return 0;
   }
   switch (selectedElevation.name) {
     case ELEVATION_NAMES.LEFT:
@@ -280,7 +279,7 @@ export const droppableWidth = (
       return DROPPABLE_FLOOR_PLAN_WIDTH(DIMENSIONS, selectedContainer);
     default:
       console.warn('Unknown elevation name:', selectedElevation.name);
-      return 0; // Or any default value you see fit
+      return 0;
   }
 };
 
@@ -387,14 +386,14 @@ export const calculateContainerComponentCSSPos = ({
         positionStyles = {
           bottom: '0',
           right: `${adjForContainerHeight(
-            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           )}px`,
         };
       } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
         transform = 'translateX(50%)';
         positionStyles = {
           bottom: `${adjForContainerHeight(
-            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           )}px`,
           right: '0',
         };
@@ -402,7 +401,7 @@ export const calculateContainerComponentCSSPos = ({
         transform = 'translateY(-50%)';
         positionStyles = {
           left: `${
-            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           }px`,
           top: '50%',
         };
@@ -423,7 +422,7 @@ export const calculateContainerComponentCSSPos = ({
         transform = 'rotate(180deg) translateY(100%)';
         positionStyles = {
           left: `${
-            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           }px`,
           top: '10px',
         };
@@ -432,14 +431,14 @@ export const calculateContainerComponentCSSPos = ({
         positionStyles = {
           bottom: '10px',
           left: `${
-            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           }px`,
         };
       } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
         transform = `rotate(270deg) translateX(100%) translateY(calc(100% - 12px))`;
         positionStyles = {
           bottom: `${
-            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           }px`,
           right: `0`,
           transformOrigin: 'right bottom',
@@ -449,7 +448,7 @@ export const calculateContainerComponentCSSPos = ({
         positionStyles = {
           bottom: '10px',
           left: `${
-            piece.position.x + toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)
+            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           }px`,
         };
       }
@@ -491,13 +490,13 @@ export const calculateContainerComponentCSSPos = ({
     } else if (selectedElevation.name === ELEVATION_NAMES.RIGHT) {
       transform = 'translateX(100%)';
       positionStyles = {
-        right: `${4 - toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+        right: `${4 - toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)}px`,
         top: `${piece.position.y}px`,
       };
     } else if (selectedElevation.name === ELEVATION_NAMES.LEFT) {
       transform = 'translateX(-100%) scaleX(-1)';
       positionStyles = {
-        left: `${3 - toScale(DIMENSIONS.BOUNDARIES.x, scaleFactor)}px`,
+        left: `${3 - toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)}px`,
         top: `${piece.position.y}px`,
       };
     } else {

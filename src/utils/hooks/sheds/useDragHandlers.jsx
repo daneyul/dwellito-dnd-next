@@ -4,9 +4,8 @@ import {
   restrictToParentElement,
 } from '@dnd-kit/modifiers';
 
-import { checkCloseness } from '@/utils/2D/sheds/utils';
+import { snapToIncrement } from '@/utils/2D/sheds/utils';
 import {
-  COMPONENT_NAMES,
   COMPONENT_TYPES,
   DROPPABLE_BACK,
   DROPPABLE_FRONT,
@@ -20,10 +19,9 @@ const useDragHandlers = ({
   selectedComponents,
   setSelectedComponents,
   snapToGridModifier,
-  selectedElevation,
-  scaleFactor,
   isFloorPlanView,
   setShowOutsideDroppableWarning,
+  scaleFactor,
 }) => {
   const [modifiers, setModifiers] = useState([]);
   const [hasCollisions, setHasCollisions] = useState(false);
@@ -33,7 +31,6 @@ const useDragHandlers = ({
   // Modifiers
   const defaultModifiers = [restrictToParentElement, snapToGridModifier];
   const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];
-  const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis];
 
   const [initialPosition, setInitialPosition] = useState(null);
   const [selectedComponent, setSelectedComponent] = useState(null);
@@ -71,9 +68,15 @@ const useDragHandlers = ({
         setModifiers([]);
       }
     } else if (isDoor) {
-      setModifiers([...doorWindowModifiers]);
+      setModifiers([
+        ...doorWindowModifiers,
+        snapToIncrement({ increment: 24, scaleFactor }),
+      ]);
     } else if (isWindow) {
-      setModifiers([...doorWindowModifiers]);
+      setModifiers([
+        ...doorWindowModifiers,
+        snapToIncrement({ increment: 24, scaleFactor }),
+      ]);
     } else {
       setModifiers([...defaultModifiers]);
     }

@@ -2,16 +2,12 @@ import { v4 as uuid } from 'uuid';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
-  CONTAINER_SIZE_10,
-  CONTAINER_SIZE_20,
-  CONTAINER_SIZE_40,
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
   SUPPLIER_SLUGS,
 } from '../../constants/names/names';
 import { ventComponents } from '../../constants/components/vents/vents';
-import { DIMENSIONS } from '../../constants/dimensions/dimensions';
-import { windowComponents } from '../../constants/components/windows/windows';
+import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 
 export const generateImgSrc = (supplier, imgName) =>
   `../../../images/${supplier}/${imgName}`;
@@ -86,9 +82,17 @@ export const checkDistance = ({
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
   const isLeft = selectedElevation.name === ELEVATION_NAMES.LEFT;
 
+  const droppableWidthValue = droppableWidth(
+    selectedElevation,
+    DIMENSIONS);
 
-  const left = deScale(component?.position.x, scaleFactor);
-  const right = selectedElevation.objWidth - (deScale(component?.position.x, scaleFactor) + component.objWidth)
+  const boundaries = DIMENSIONS.SHED_BOUNDARIES.x;
+
+  const left = deScale(component?.position.x, scaleFactor) + boundaries;
+  const right =
+    droppableWidthValue -
+    (deScale(component?.position.x, scaleFactor) + component.objWidth) +
+    boundaries;
   const top = deScale(component?.position.y, scaleFactor);
 
   return {
@@ -126,7 +130,9 @@ export const handleAddComponent = ({
     const roofVentObjData = ventComponents.find(
       (component) => component.name === COMPONENT_NAMES.ROOF_VENT
     );
-    const isCottageDoor = item.objType === COMPONENT_TYPES.DOOR && supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES;
+    const isCottageDoor =
+      item.objType === COMPONENT_TYPES.DOOR &&
+      supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES;
 
     setSelectedComponents((prevSelectedComponents) => {
       if (isRoof) {
@@ -168,6 +174,37 @@ export const getUniqueElevationObjects = (selectedComponents) => {
   );
 
   return uniqueElevationObjects;
+};
+
+export const DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES = (DIMENSIONS) => {
+  return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.SIDE.WIDTH - DIMENSIONS.SHED_BOUNDARIES.x * 2;
+};
+export const DROPPABLE_FRONT_WIDTH_WITH_BOUNDARIES = (DIMENSIONS) => {
+  return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.FRONT.WIDTH - DIMENSIONS.SHED_BOUNDARIES.x * 2;
+};
+
+export const droppableWidth = (selectedElevation, DIMENSIONS) => {
+  if (!DIMENSIONS || !selectedElevation) {
+    console.warn('Missing necessary parameters:', {
+      DIMENSIONS,
+      ELEVATION_NAMES,
+      selectedElevation,
+    });
+    return 0;
+  }
+  switch (selectedElevation.name) {
+    case ELEVATION_NAMES.LEFT:
+      return DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES(DIMENSIONS);
+    case ELEVATION_NAMES.RIGHT:
+      return DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES(DIMENSIONS);
+    case ELEVATION_NAMES.BACK:
+      return DROPPABLE_FRONT_WIDTH_WITH_BOUNDARIES(DIMENSIONS);
+    case ELEVATION_NAMES.FRONT:
+      return DROPPABLE_FRONT_WIDTH_WITH_BOUNDARIES(DIMENSIONS);
+    default:
+      console.warn('Unknown elevation name:', selectedElevation.name);
+      return 0;
+  }
 };
 
 export const checkCloseness = (
@@ -348,15 +385,6 @@ export const getFlooringFromUrl = (querySelectionData) => {
     }
   }
   return null;
-};
-
-export const getInteriorTrimFromUrl = (querySelectionData) => {
-  if (querySelectionData) {
-    const jsonSelections = base64ToJson(querySelectionData);
-    if (jsonSelections && jsonSelections.interiorTrim) {
-      return jsonSelections.interiorTrim;
-    }
-  }
 };
 
 export const getComponentPrice = (component, interiorFinish, isElectrical) => {

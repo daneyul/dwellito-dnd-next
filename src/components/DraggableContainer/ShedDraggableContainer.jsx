@@ -1,7 +1,8 @@
-import { toScale } from '@/utils/2D/sheds/utils';
+import { droppableWidth, toScale } from '@/utils/2D/sheds/utils';
 import { useContext } from 'react';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import ShedDraggable from '../Models/Draggable/ShedDraggable';
+import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 
 export const ShedDraggableContainer = ({
   selectedComponents,
@@ -17,11 +18,12 @@ export const ShedDraggableContainer = ({
   return (
     <div
       style={{
-        width: `${toScale(selectedElevation.objWidth, scaleFactor)}px`,
+        width: `${toScale(droppableWidth(selectedElevation, DIMENSIONS), scaleFactor)}px`,
         height: '100%',
         position: 'absolute',
         left: '50%',
         transform: 'translateX(-50%)',
+        border: '1px solid red',
       }}
     >
       {selectedComponents
