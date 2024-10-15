@@ -62,15 +62,15 @@ export function ShedModels() {
   );
 
   const exteriorCamPos = () => {
-    return EXTERIOR_CAM_POS.TWENTY;
+    return EXTERIOR_CAM_POS.ONE_STORY;
   };
 
   const interiorCamPos = () => {
-    return INTERIOR_CAM_POS.TWENTY;
+    return INTERIOR_CAM_POS.ONE_STORY;
   };
 
   const interiorCamRot = () => {
-    return INTERIOR_CAM_ROT.TWENTY;
+    return INTERIOR_CAM_ROT.ONE_STORY;
   };
 
   const camFov = showExterior ? 35 : 80;

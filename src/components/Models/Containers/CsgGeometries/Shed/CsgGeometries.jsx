@@ -1,7 +1,6 @@
 import React, { useContext, useMemo, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
-import { getExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 
@@ -12,7 +11,7 @@ export function CsgGeometries({
   windows,
   exteriorPaint
 }) {
-  const { exteriorFinish, selectedShedHeight, supplier } =
+  const { selectedShedHeight } =
     useContext(ShedDataContext);
 
   const adjustForX = -(
