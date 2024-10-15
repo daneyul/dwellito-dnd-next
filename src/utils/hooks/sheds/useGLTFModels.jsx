@@ -1,38 +1,34 @@
 import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
+import { useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 
-export const getExteriorPaint = (supplier, exteriorFinish) => {
+export const useExteriorPaint = (supplier, exteriorFinish) => {
   if (supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES) {
     const path = `/models/${supplier}/materials/exterior/`;
-    const loader = new THREE.TextureLoader();
 
-    let texture;
+    const textureMap = {
+      'Black': `${path}black.jpg`,
+      'White': `${path}white.jpg`,
+      'Grey': `${path}grey.jpg`,
+      'Dark Blue': `${path}darkblue.jpg`,
+    };
 
-    switch (exteriorFinish.name) {
-      case 'Black':
-        texture = loader.load(path + 'black.jpg');
-        break;
-      case 'White':
-        texture = loader.load(path + 'white.jpg');
-        break;
-      case 'Grey':
-        texture = loader.load(path + 'grey.jpg');
-        break;
-      case 'Dark Blue':
-        texture = loader.load(path + 'darkblue.jpg');
-        break;
-      default:
-        return null;
+    const textureURL = textureMap[exteriorFinish.name];
+
+    if (!textureURL) {
+      return null;
     }
 
-    // Apply wrapping and repeat settings
+    const texture = useLoader(THREE.TextureLoader, textureURL);
+
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set(0.05, 0.05); // Adjust as needed
+    texture.repeat.set(0.05, 0.05); // Texture scale
 
     return texture;
   }
+  return null;
 };
 
 export const useInteriorGLTFModels = (supplier) => {

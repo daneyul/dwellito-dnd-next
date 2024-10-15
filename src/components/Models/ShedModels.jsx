@@ -23,7 +23,7 @@ import Door from './Doors/DoorSwitcher';
 import { useBoundingBoxes } from '@/utils/hooks/sheds/useBoundingBoxes';
 import Window from './Windows/WindowSwitcher';
 import { CsgGeometries } from './Containers/CsgGeometries/Shed/CsgGeometries';
-import { getExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
+import { useExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import Shed from './Sheds/one-story/Shed';
 
 export function ShedModels() {
@@ -155,7 +155,7 @@ export function ShedModels() {
   } = useBoundingBoxes({ doors, windows });
 
   const exteriorPaint = useMemo(() => {
-    return getExteriorPaint(supplier, exteriorFinish);
+    return useExteriorPaint(supplier, exteriorFinish);
   }, [supplier, exteriorFinish]);
 
   return (
