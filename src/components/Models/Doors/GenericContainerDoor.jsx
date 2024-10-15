@@ -77,7 +77,7 @@ const GenericContainerDoor = ({
       scale={[10, 10, 10]}
       position={
         calcPosition({
-          selectedElevation,
+          elevation: selectedElevation,
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS:DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
           selectedBase: selectedContainer,

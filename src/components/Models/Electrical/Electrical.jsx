@@ -8,10 +8,8 @@ import RoofVent from './customCubes/RoofVent';
 import AtAndSAirConditioner from './atAndS/AirConditioner';
 import SwivelFloodLight from './atAndS/SwivelFloodLight';
 import { useMemo } from 'react';
-import SconceWallLight from './atAndS/SconceWallLight';
 import EmergencyLight from './atAndS/EmergencyLight';
 import SecurityFloodLight from './atAndS/SecurityFloodLight';
-import IndoorOutdoorFan from './atAndS/IndoorOutdoorFan';
 
 const Electrical = ({
   supplierSlug,

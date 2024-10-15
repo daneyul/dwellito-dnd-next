@@ -67,7 +67,7 @@ const Heater = ({ component }) => {
   const rotationDegrees = calcElecRotationDegrees(component.rotate);
   const rotationRadians = calcElecRotationRadians(component.rotate);
   const basePosition = calcPosition({
-    selectedElevation,
+    elevation: selectedElevation,
     distanceObject,
     SCALE_FACTOR_FOR_CALCULATIONS: 4,
     selectedBase: selectedContainer

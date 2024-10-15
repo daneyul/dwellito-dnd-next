@@ -57,7 +57,7 @@ const SwivelFloodLight = ({ component }) => {
   }, [ref.current]);
 
   const position = calcPosition({
-    selectedElevation,
+    elevation: selectedElevation,
     distanceObject,
     SCALE_FACTOR_FOR_CALCULATIONS: DIMENSIONS.SCALE_FACTOR_FOR_CALCULATIONS,
     selectedBase: selectedContainer,
