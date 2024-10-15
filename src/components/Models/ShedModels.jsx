@@ -19,12 +19,12 @@ import {
   INTERIOR_CAM_ROT,
 } from '@/utils/constants/camera/camPos';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
-import { useExteriorGLTFModels } from '@/utils/hooks/sheds/useGLTFModels';
-import Shed from './Sheds/one-story/Shed';
 import Door from './Doors/DoorSwitcher';
 import { useBoundingBoxes } from '@/utils/hooks/sheds/useBoundingBoxes';
 import Window from './Windows/WindowSwitcher';
 import { CsgGeometries } from './Containers/CsgGeometries/Shed/CsgGeometries';
+import { getExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
+import Shed from './Sheds/one-story/Shed';
 
 export function ShedModels() {
   const {
@@ -34,10 +34,12 @@ export function ShedModels() {
     cameraReady,
     setCameraReady,
     supplier,
-    show3d
+    show3d,
+    exteriorFinish
   } = useContext(ShedDataContext);
 
   const { progress } = useProgress();
+  
 
   useEffect(() => {
     setThreeDModelLoaded(progress === 100);
@@ -152,10 +154,9 @@ export function ShedModels() {
     handleWindowBoundingBox,
   } = useBoundingBoxes({ doors, windows });
 
-  const paint = useExteriorGLTFModels(supplier);
-  const ShedShell = () => {
-    return <Shed paint={paint} />;
-  };
+  const exteriorPaint = useMemo(() => {
+    return getExteriorPaint(supplier, exteriorFinish);
+  }, [supplier, exteriorFinish]);
 
   return (
     <div
@@ -176,9 +177,9 @@ export function ShedModels() {
             windows={windows}
             doorBoundingBoxes={doorBoundingBoxes}
             windowBoundingBoxes={windowBoundingBoxes}
-            paint={paint}
+            exteriorPaint={exteriorPaint}
           />
-          <ShedShell />
+          <Shed exteriorPaint={exteriorPaint}/>
           {doors.map((door, index) => (
             <Door
               key={door.id}

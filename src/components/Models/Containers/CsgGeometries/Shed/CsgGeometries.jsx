@@ -10,7 +10,7 @@ export function CsgGeometries({
   windowBoundingBoxes,
   doors,
   windows,
-  paint,
+  exteriorPaint
 }) {
   const { exteriorFinish, selectedShedHeight, supplier } =
     useContext(ShedDataContext);
@@ -30,8 +30,6 @@ export function CsgGeometries({
   ).nodes;
 
   const csg = useRef();
-
-  const exteriorPaint = getExteriorPaint(supplier, exteriorFinish, paint);
 
   const doorBoundingBoxGeometries = useMemo(() => {
     return doors.map((door, index) => {
@@ -73,10 +71,11 @@ export function CsgGeometries({
         <Geometry useGroups>
           <Base
             geometry={exteriorNodes.Exterior_wall.geometry}
-            material={exteriorPaint}
             scale={0.2}
             position={[adjustForX, 0, adjustForY]}
-          />
+          >
+            <meshStandardMaterial map={exteriorPaint} />
+          </Base>
           <Base
             geometry={interiorNodes.interior_wall.geometry}
             scale={0.2}

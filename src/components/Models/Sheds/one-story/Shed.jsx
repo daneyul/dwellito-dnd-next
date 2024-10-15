@@ -1,28 +1,22 @@
 import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
-import { getExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import { COMPONENT_NAMES } from '@/utils/constants/names/names';
-import { Base, Geometry } from '@react-three/csg';
+import * as THREE from 'three';
 
-export default function Shed({ paint }) {
+const Shed = ({ exteriorPaint }) => {
   const {
     selectedShedHeight,
     selectedRoof,
     supplier,
-    selectedShed,
-    exteriorFinish,
+    selectedShed
   } = useContext(ShedDataContext);
 
   // Load all 3d objects
   const { nodes: groundBlockNodes, materials: groundBlockMaterials } = useGLTF(
     `/models/shed/${selectedShedHeight}/1storey_12x24_GFBlock.glb`
   );
-
-  const exteriorPaint = useMemo(() => {
-    return getExteriorPaint(supplier, exteriorFinish, paint);
-  }, [supplier, exteriorFinish, paint]);
 
   const ref = useRef();
 
@@ -33,6 +27,7 @@ export default function Shed({ paint }) {
   const adjustForY = useMemo(() => {
     return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
   }, [DIMENSIONS]);
+  
 
   const Roof = () => {
     if (selectedRoof.name === COMPONENT_NAMES.SLANT_ROOF) {
@@ -186,7 +181,7 @@ export default function Shed({ paint }) {
             castShadow
             receiveShadow
             geometry={nodes.Object_23.geometry}
-            material={materials.Roof_Exterior}
+            material={new THREE.MeshStandardMaterial({ map: exteriorPaint })}
             scale={0.025}
           />
           <mesh
@@ -356,7 +351,7 @@ export default function Shed({ paint }) {
             castShadow
             receiveShadow
             geometry={nodes.Object_22.geometry}
-            material={materials.Roof_Exterior}
+            material={new THREE.MeshStandardMaterial({ map: exteriorPaint })}
             scale={0.025}
           />
         </group>
@@ -543,9 +538,11 @@ export default function Shed({ paint }) {
           scale={0.025}
         />
       </group>
-      {/* <Roof /> */}
+      <Roof />
     </>
   );
 
   return shedMesh;
 }
+
+export default Shed;

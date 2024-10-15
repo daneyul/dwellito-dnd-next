@@ -31,7 +31,7 @@ export function useBoundingBoxes({ doors, windows }) {
       updatedData = {
         ...updatedData,
         size: new Vector3(data.size.x, data.size.y, data.size.z),
-        center: new Vector3(data.center.x, data.center.y, data.center.z),
+        center: new Vector3(data.center.x, data.center.y, data.center.z - 0.5),
       };
 
       setWindowBoundingBoxes((prev) => ({ ...prev, [index]: updatedData }));

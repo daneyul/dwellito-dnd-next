@@ -1,43 +1,37 @@
 import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
+import * as THREE from 'three';
 
-export const useExteriorGLTFModels = (supplier) => {
+export const getExteriorPaint = (supplier, exteriorFinish) => {
   if (supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES) {
-    const { materials: blackPaint } = useGLTF(
-      `/models/${supplier}/materials/exterior/black.glb`
-    );
-    const { materials: whitePaint } = useGLTF(
-      `/models/${supplier}/materials/exterior/white.glb`
-    );
-    const { materials: greyPaint } = useGLTF(
-      `/models/${supplier}/materials/exterior/grey.glb`
-    );
-    const { materials: darkbluePaint } = useGLTF(
-      `/models/${supplier}/materials/exterior/darkblue.glb`
-    );
-    return {
-      blackPaint,
-      whitePaint,
-      greyPaint,
-      darkbluePaint,
-    };
-  }
-};
+    const path = `/models/${supplier}/materials/exterior/`;
+    const loader = new THREE.TextureLoader();
 
-export const getExteriorPaint = (supplier, exteriorFinish, paint) => {
-  if (supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES) {
+    let texture;
+
     switch (exteriorFinish.name) {
       case 'Black':
-        return paint.blackPaint?.[exteriorFinish.glbObject];
+        texture = loader.load(path + 'black.jpg');
+        break;
       case 'White':
-        return paint.whitePaint?.[exteriorFinish.glbObject];
+        texture = loader.load(path + 'white.jpg');
+        break;
       case 'Grey':
-        return paint.greyPaint?.[exteriorFinish.glbObject];
+        texture = loader.load(path + 'grey.jpg');
+        break;
       case 'Dark Blue':
-        return paint.darkbluePaint?.[exteriorFinish.glbObject];
+        texture = loader.load(path + 'darkblue.jpg');
+        break;
       default:
         return null;
     }
+
+    // Apply wrapping and repeat settings
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(0.05, 0.05); // Adjust as needed
+
+    return texture;
   }
 };
 
