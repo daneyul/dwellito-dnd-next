@@ -3,7 +3,7 @@ import { useDroppable } from '@dnd-kit/core';
 import { generateImgSrc, toScale } from '../../../utils/2D/containers/utils';
 import Image from 'next/image';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
-import { ELEVATION_NAMES } from '@/utils/constants/names/names';
+import { COMPONENT_NAMES, ELEVATION_NAMES } from '@/utils/constants/names/names';
 import { shedElevationData } from '@/utils/constants/components/elevations/shedElevationData';
 
 const ShedDroppable = ({ children }) => {
@@ -12,6 +12,8 @@ const ShedDroppable = ({ children }) => {
   const { setNodeRef } = useDroppable({
     id: 'droppable',
   });
+
+  const selectedRoofisSlant = selectedRoof.name === COMPONENT_NAMES.SLANT_ROOF;
 
   const objectHeight = selectedElevation.objHeight;
 
@@ -40,6 +42,8 @@ const ShedDroppable = ({ children }) => {
     [ELEVATION_NAMES.RIGHT]: selectedRoof?.objLength,
   };
 
+  const roofOffset = selectedRoofisSlant ? 2.5 : 3;
+
   return (
     <div ref={setNodeRef} style={{ ...CustomStyle }}>
       {shedElevationData.map((elevation, index) => {
@@ -56,7 +60,7 @@ const ShedDroppable = ({ children }) => {
                   selectedElevation.id === elevation.id ? 'block' : 'none',
                 position: 'absolute',
                 transform: `translateY(-100%) translateX(-${toScale(
-                  2.5,
+                  roofOffset,
                   scaleFactor
                 )}px)`,
               }}

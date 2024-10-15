@@ -123,17 +123,10 @@ export const handleAddComponent = ({
       elevation: [...item.elevation, selectedElevation],
     };
     const isRoof = item.objType === COMPONENT_TYPES.ROOF;
-    const isRoofVent = item.name === COMPONENT_NAMES.ROOF_VENT;
     const roofVentObjData = ventComponents.find(
       (component) => component.name === COMPONENT_NAMES.ROOF_VENT
     );
     const isCottageDoor = item.objType === COMPONENT_TYPES.DOOR && supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES;
-
-    const roofVent = {
-      ...roofVentObjData,
-      position: { ...roofVentObjData.position },
-      elevation: [floorPlan],
-    };
 
     setSelectedComponents((prevSelectedComponents) => {
       if (isRoof) {
