@@ -2,8 +2,6 @@ import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
-import { COMPONENT_NAMES } from '@/utils/constants/names/names';
-import * as THREE from 'three';
 import Roof from './Roof';
 
 const Shed = ({ exteriorPaint }) => {
