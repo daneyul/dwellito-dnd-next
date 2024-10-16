@@ -29,7 +29,6 @@ const Content = ({ data }) => {
             <div className={style.content}>
               <ShedViewer />
               <ShedSidebar />
-              {/* <PriceTotal /> */}
               <ShedOrderSummaryModal />
             </div>
           </div>

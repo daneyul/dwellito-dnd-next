@@ -110,7 +110,7 @@ export const useInteriorGLTFModels = (supplier) => {
     const { materials: whiteShiplapMaterial } = useGLTF(
       `/models/${supplier}/materials/interior/white-shiplap.glb`
     );
-    
+
     return {
       luanWallMaterial,
       whiteShiplapMaterial,
@@ -119,19 +119,31 @@ export const useInteriorGLTFModels = (supplier) => {
 };
 
 export const useFlooringGLTFModels = (supplier) => {
-  const { materials: echoFloor } = useGLTF(
-    `/models/${supplier}/materials/flooring/echo.glb`
-  );
-  const { materials: timberFloor } = useGLTF(
-    `/models/${supplier}/materials/flooring/timber.glb`
-  );
-  const { materials: rubberFloor } = useGLTF(
-    `/models/${supplier}/materials/flooring/rubber-coin.glb`
-  );
-
-  return {
-    echoFloor,
-    timberFloor,
-    rubberFloor,
+  if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
+    const { materials: echoFloor } = useGLTF(
+      `/models/${supplier}/materials/flooring/echo.glb`
+    );
+    const { materials: timberFloor } = useGLTF(
+      `/models/${supplier}/materials/flooring/timber.glb`
+    );
+    return {
+      echoFloor,
+      timberFloor
+    };
+  } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
+    const { materials: echoFloor } = useGLTF(
+      `/models/${supplier}/materials/flooring/echo.glb`
+    );
+    const { materials: timberFloor } = useGLTF(
+      `/models/${supplier}/materials/flooring/timber.glb`
+    );
+    const { materials: rubberFloor } = useGLTF(
+      `/models/${supplier}/materials/flooring/rubber-coin.glb`
+    );
+    return {
+      echoFloor,
+      timberFloor,
+      rubberFloor,
+    };
   };
 };

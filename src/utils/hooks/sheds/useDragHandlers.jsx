@@ -4,7 +4,7 @@ import {
   restrictToParentElement,
 } from '@dnd-kit/modifiers';
 
-import { snapToIncrement } from '@/utils/2D/sheds/utils';
+import { checkCloseness, snapToIncrement } from '@/utils/2D/sheds/utils';
 import {
   COMPONENT_TYPES,
   DROPPABLE_BACK,
@@ -18,6 +18,7 @@ import { useState } from 'react';
 const useDragHandlers = ({
   selectedComponents,
   setSelectedComponents,
+  selectedElevation,
   snapToGridModifier,
   isFloorPlanView,
   setShowOutsideDroppableWarning,
@@ -113,10 +114,40 @@ const useDragHandlers = ({
     }));
 
     // Check for collisions and closeness
-    updatedPieces.forEach((piece) => {
+    updatedPieces.forEach((piece, index) => {
       if (piece.id !== draggedId) {
         const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
         if (!draggedPiece) return;
+
+        if (
+          checkCloseness(
+            draggedPiece,
+            piece,
+            selectedElevation,
+            scaleFactor
+          )
+        ) {
+          updatedPieces[index].isColliding = true;
+          const draggedPieceIndex = updatedPieces.findIndex(
+            ({ id }) => id === draggedId
+          );
+          updatedPieces[draggedPieceIndex].isColliding = true;
+        }
+
+        if (
+          checkCloseness(
+            draggedPiece,
+            piece,
+            selectedElevation,
+            scaleFactor
+          )
+        ) {
+          updatedPieces[index].isTooClose = true;
+          const draggedPieceIndex = updatedPieces.findIndex(
+            ({ id }) => id === draggedId
+          );
+          updatedPieces[draggedPieceIndex].isTooClose = true;
+        }
       }
     });
 

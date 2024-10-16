@@ -1,36 +1,143 @@
-<svg width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_1378_19763)">
-<path d="M21.3999 0.450073L21.3999 9.15007L22.1499 9.15007L22.1499 16.6501L2.1499 16.6501L2.1499 9.15007L2.8999 9.15007L2.8999 0.450072L21.3999 0.450073Z" fill="white"/>
-<path d="M2.8999 1.59009L21.3999 1.59009" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.3999 1.20007L2.8999 1.20007" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.8999 0.810058L21.3999 0.810059" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M0.649902 9.15002L23.6499 9.15002" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.1499 9.15002L22.1499 9.15002" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.3999 1.95007L21.3999 16.6501" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.3999 16.65L2.8999 16.65" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.8999 16.6501L2.8999 1.95007" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.8999 1.95007L21.3999 1.95007" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.3999 0.450073L21.3999 1.95007" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.3999 1.95007L2.8999 1.95007" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.8999 1.95007L2.8999 0.450073" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.8999 0.450072L21.3999 0.450073" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.3999 1.59009L2.8999 1.59009" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.8999 1.20007L21.3999 1.20007" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.3999 0.810059L2.8999 0.810058" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M22.1499 9.15002L22.1499 16.65" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M22.1499 16.65L2.1499 16.65" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.1499 16.65L2.1499 9.15002" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.1499 9.15002L22.1499 9.15002" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M23.6499 9.15002L22.1499 9.15002" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M22.1499 9.15002L22.1499 10.65" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M22.1499 10.65L2.1499 10.65" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.1499 10.65L2.1499 9.15002" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.1499 9.15002L0.649902 9.15002" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M22.1499 9.15002L2.1499 9.15002" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<clipPath id="clip0_1378_19763">
-<rect width="16.3" height="23.1" fill="white" transform="translate(23.7 0.400024) rotate(90)"/>
-</clipPath>
-</defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="25.81" height="20.9" viewBox="0 0 25.81 20.9">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #010101;
+        stroke-miterlimit: 10;
+        stroke-width: .25px;
+      }
+    </style>
+  </defs>
+  <g id="Make2D">
+    <g id="Make2D::Visible">
+      <g id="Make2D::Visible::Curves">
+        <path class="cls-1" d="m.65.71v-.17s.02-.15.04-.2c.02-.06.05-.1.11-.13,1.36,0,2.17,0,3,0,.94,0,1.9,0,2.85,0,0,0,.01,0,.02,0h.72s.01,0,.02,0c1.25,0,2.2,0,3.36,0,.13,0,.26-.01.39-.04h.02s.11-.03.16-.05c.94,0,1.88,0,2.82,0l.16.04c.14.03.28.05.42.05,3.15,0,6.3,0,9.44,0,.07,0,.1,0,.1,0,.13,0,.27,0,.4,0,.12.05.15.22.15.33,0,0,0,0,0,.03v1.43s0,.05,0,.1v.18s.01.04.02.06c.02.03.04.06.04.11,0,0,0,.03,0,.07v.48h.44v-.03s.03-.04.06-.05h.03s.03.01.03.01h.03s.02-.01.02-.01c.03,0,.05.02.06.05v.03s.11,0,.11,0c.02,0,.03.01.03.03v17.4s-.01.03-.03.03v.1h-.65v.07s-.03.04-.06.05h-.03s-.03-.01-.03-.01h-.03s-.02.01-.02.01c-.03,0-.05-.02-.06-.05v-.06h-.43v.06s-.03.04-.06.05h-.03s-.03-.01-.03-.01h-.03s-.02.01-.02.01c-.03,0-.05-.02-.06-.05v-.06H1.7v.06s-.03.04-.06.05h-.03s-.03-.01-.03-.01h-.03s-.02.01-.02.01c-.03,0-.05-.02-.06-.05v-.06h-.43v.06s-.03.04-.06.05h-.03s-.03-.01-.03-.01h-.03s-.02.01-.02.01c-.03,0-.05-.02-.06-.05v-.06H.16v-.1s-.03-.01-.03-.03V3.02s.01-.03.03-.03h.11v-.03s.03-.04.06-.05h.03s.03.01.03.01h.03s.02-.01.02-.01c.03,0,.05.02.06.05v.03h.11v-.48s0-.07,0-.07c0-.05.02-.08.04-.11.01-.02.03-.04.02-.06v-.18s0-.07,0-.1c0,0,0,0,0-.06V.71s0-.01,0-.03v.03Z"/>
+      </g>
+    </g>
+  </g>
+  <g id="Make2D-2" data-name="Make2D">
+    <g id="Make2D::Visible-2" data-name="Make2D::Visible">
+      <g id="Make2D::Visible::Curves-2" data-name="Make2D::Visible::Curves">
+        <path class="cls-2" d="m.12,3.04s.01-.03.03-.03h25.5s.03.01.03.03v17.5s-.01.03-.03.03H.16s-.03-.01-.03-.03V3.04Z"/>
+        <path class="cls-2" d="m2.09,4.48c-.11,0-.25.05-.35.14-.09.09-.14.22-.15.35,0,.09,0,.17,0,.26,0,.09,0,.17,0,.26,0,.13.05.25.14.35.05.05.11.09.17.11.03.01.06.02.09.03.03,0,.06,0,.09,0,.89,0,1.8,0,2.7,0s1.8,0,2.7,0c1.8,0,3.6,0,5.41,0,3.6,0,7.21,0,10.81,0,.11,0,.25-.05.35-.14.09-.09.14-.22.15-.35,0-.09,0-.17,0-.26,0-.09,0-.17,0-.26,0-.13-.05-.25-.14-.35-.05-.05-.11-.09-.17-.11-.03-.01-.06-.02-.09-.03-.03,0-.06,0-.09,0-.44,0-.9,0-1.35,0-.45,0-.9,0-1.35,0-.9,0-1.8,0-2.7,0-1.8,0-3.6,0-5.41,0-1.8,0-3.6,0-5.41,0s-3.6,0-5.41,0Z"/>
+        <path class="cls-2" d="m.66,2h.05s.06,0,.09,0c0,0,0,0,0-.08V.42c-.06.02-.1.06-.12.11,0,.01-.03.16-.03.18v1.23c0,.06,0,.06,0,.06.01.03.01.07,0,.1,0,.06,0,.17,0,.41v.5"/>
+        <path class="cls-2" d="m25.66,20.53s0,.03,0,.03v.1H.16v-.1"/>
+        <path class="cls-2" d="m14.45.89v-.06h.06v.06"/>
+        <path class="cls-2" d="m12.59.77v-.33h.06v.33"/>
+        <path class="cls-2" d="m12.59.89v-.06h.06v.06"/>
+        <path class="cls-2" d="m18.12.42s-.02,0-.03,0c0,0-.02,0-.02,0-5.5,0-11,0-16.55,0-.03,0-.07,0-.1,0v.33s.05.05.09.05c.02,0,.04,0,.06,0h16.5s.05,0,.06,0c.02,0,.04,0,.05-.01.03-.01.04-.02.04-.04v-.33s-.07,0-.1,0v.33h-.01s-.01.02-.01.02H1.56s-.04,0-.05-.02c0-.02,0-.03,0-.04v-.29"/>
+        <path class="cls-2" d="m16.32.77v-.33h.06v.33"/>
+        <path class="cls-2" d="m16.32.89v-.06h.06v.06"/>
+        <path class="cls-2" d="m10.99.22l.18-.05s.11-.03.16-.04c.94,0,1.88,0,2.82,0l.13.09"/>
+        <path class="cls-2" d="m.65.71v-.17s.02-.15.04-.2c.02-.06.05-.11.11-.13,1.36,0,2.17,0,3,0,.94,0,1.9,0,2.85,0"/>
+        <path class="cls-2" d="m24.82,3.01v-.91s0-.1,0-.1V.57s0-.03,0-.03c0-.1-.03-.28-.15-.33-.13,0-.27,0-.4,0,0,0-.03,0-.1,0-3.72,0-7.45,0-11.17,0"/>
+        <path class="cls-2" d="m19.15.41h4.97s.08,0,.11,0c.03,0,.04,0,.04,0v.41s-.01.03-.02.03c-.04.02-.08.04-.13.03h-4.97s-.04,0-.06,0c-.01,0-.02,0-.03,0-.03,0-.05-.02-.06-.05v-.41s.02,0,.04,0c.01,0,.03,0,.05,0,0,0,.02,0,.03,0,0,0,0,0,.03,0Z"/>
+        <path class="cls-2" d="m19,.47s.1-.02.15-.02h4.97v-.03"/>
+        <path class="cls-2" d="m18.22.42h.05s.08,0,.11,0c.03,0,.04,0,.04,0v.41s-.01.03-.04.04c-.01,0-.03.01-.05.02,0,0-.02,0-.06,0H1.36c-.06.01-.12-.01-.15-.07,0-.04,0-.08,0-.12v-.29s.02,0,.04,0c.01,0,.03,0,.05,0,0,0,.02,0,.04,0h.06"/>
+        <path class="cls-2" d="m23.72,5.87c-3.6,0-7.21,0-10.81,0-1.8,0-3.61,0-5.41,0-.9,0-1.8,0-2.7,0s-1.81,0-2.68,0c-.03,0-.06,0-.09,0-.03,0-.05-.01-.07-.02-.04-.02-.09-.05-.13-.08s-.07-.08-.08-.13-.02-.09-.03-.14c0-.07,0-.17,0-.26,0-.09,0-.18,0-.25,0-.11.04-.2.11-.27.07-.07.18-.11.27-.11,1.8,0,3.6,0,5.41,0,1.8,0,3.6,0,5.41,0s3.6,0,5.41,0c.9,0,1.8,0,2.7,0,.45,0,.9,0,1.35,0,.45,0,.91,0,1.33,0,.03,0,.06,0,.09,0,.03,0,.05,0,.07.02.04.02.09.05.13.09.07.07.1.16.11.27,0,.08,0,.17,0,.25,0,.09,0,.18,0,.25,0,.11-.04.2-.11.27-.07.07-.18.11-.27.11Z"/>
+        <path class="cls-2" d="m8.85.59h-1.8"/>
+        <path class="cls-2" d="m12.59.59h-1.81"/>
+        <path class="cls-2" d="m10.72.59h-1.81"/>
+        <path class="cls-2" d="m8.91.49h1.81"/>
+        <path class="cls-2" d="m10.78.49h1.44"/>
+        <path class="cls-2" d="m14.51.49h1.81"/>
+        <path class="cls-2" d="m3.25.59h-1.72"/>
+        <path class="cls-2" d="m13.01.49h1.45"/>
+        <path class="cls-2" d="m8.85.83h.06v.06"/>
+        <path class="cls-2" d="m14.49.22l-.18-.05"/>
+        <path class="cls-2" d="m.8.42v-.2"/>
+        <path class="cls-2" d="m19.15.41v.03"/>
+        <path class="cls-2" d="m10.72.89v-.06h.06v.06"/>
+        <path class="cls-2" d="m1.51.61h1.74"/>
+        <path class="cls-2" d="m3.25.71c-.58,0-1.16,0-1.74,0"/>
+        <path class="cls-2" d="m12.98.21h-.72s-.03,0-.03.02v.1s.02.02.03.02h.72s.03,0,.03-.02v-.1s-.02-.02-.03-.02"/>
+        <path class="cls-2" d="m7.38.21h-.72s-.03,0-.03.02v.1s.02.02.03.02h.72s.03,0,.03-.02v-.1s-.02-.02-.03-.02"/>
+        <path class="cls-2" d="m5.12.77v-.33h.06v.33"/>
+        <path class="cls-2" d="m14.45.59h-1.81"/>
+        <path class="cls-2" d="m5.18.71h1.81"/>
+        <path class="cls-2" d="m5.12.89v-.06h.06v.06"/>
+        <path class="cls-2" d="m5.18.61h1.81"/>
+        <path class="cls-2" d="m1.51.49h1.73"/>
+        <path class="cls-2" d="m6.99.77v-.33h.06v.33"/>
+        <path class="cls-2" d="m24.67.42c.06.02.1.06.11.12.01.04.03.13.04.18"/>
+        <path class="cls-2" d="m24.12.45c.05,0,.1,0,.15.02"/>
+        <path class="cls-2" d="m6.99.89v-.06h.06v.06"/>
+        <path class="cls-2" d="m13.01.34v.2"/>
+        <path class="cls-2" d="m12.23.34v.2"/>
+        <path class="cls-2" d="m3.25.77v-.33h.06v.33"/>
+        <path class="cls-2" d="m7.41.34v.2"/>
+        <path class="cls-2" d="m12.65.53h1.81"/>
+        <path class="cls-2" d="m3.25.89v-.06h.06v.06"/>
+        <path class="cls-2" d="m10.78.53h1.81"/>
+        <path class="cls-2" d="m7.04.53h1.81"/>
+        <path class="cls-2" d="m8.85.83v.06-.06Z"/>
+        <path class="cls-2" d="m10.76.22c.14,0,.28-.01.42-.05"/>
+        <path class="cls-2" d="m6.63.34v.2"/>
+        <path class="cls-2" d="m24.67,3.01v-.9s0-.1,0-.1V.21"/>
+        <path class="cls-2" d="m7.4.22c1.27,0,2.53,0,3.8,0l.13-.09"/>
+        <path class="cls-2" d="m14.51.71h1.81"/>
+        <path class="cls-2" d="m18.22.75v.14"/>
+        <path class="cls-2" d="m1.41.89v-.13"/>
+        <path class="cls-2" d="m12.64.71h1.81"/>
+        <path class="cls-2" d="m8.91.53h1.81"/>
+        <path class="cls-2" d="m14.15.13l.16.04c.14.03.28.05.42.05"/>
+        <path class="cls-2" d="m7.05.61h1.8"/>
+        <path class="cls-2" d="m14.51.53h1.81"/>
+        <path class="cls-2" d="m7.05.71h1.8"/>
+        <path class="cls-2" d="m8.91.71h1.81"/>
+        <path class="cls-2" d="m8.85.77v-.33h.06v.33"/>
+        <path class="cls-2" d="m5.12.59h-1.81"/>
+        <path class="cls-2" d="m10.78.71h1.81"/>
+        <path class="cls-2" d="m8.91.61h1.81"/>
+        <path class="cls-2" d="m3.31.61h1.81"/>
+        <path class="cls-2" d="m18.12.59h-1.74"/>
+        <path class="cls-2" d="m16.38.61h1.74"/>
+        <path class="cls-2" d="m10.72.77v-.33h.06v.33"/>
+        <path class="cls-2" d="m3.31.53h1.81"/>
+        <path class="cls-2" d="m16.38.53h1.74"/>
+        <path class="cls-2" d="m10.78.61h1.81"/>
+        <path class="cls-2" d="m3.31.49h1.81"/>
+        <path class="cls-2" d="m16.38.49h1.74"/>
+        <path class="cls-2" d="m16.38.71h1.74"/>
+        <path class="cls-2" d="m.81,3.01v-.9s0-.1,0-.1h24"/>
+        <path class="cls-2" d="m14.45.77v-.33h.06v.33"/>
+        <path class="cls-2" d="m11.2.22c.35,0,.69,0,1.04,0"/>
+        <path class="cls-2" d="m12.64.61h1.81"/>
+        <path class="cls-2" d="m.6,3.01v-.48s0-.07,0-.07c0-.05.02-.08.04-.11.01-.02.03-.04.02-.06"/>
+        <path class="cls-2" d="m3.32.71h1.8"/>
+        <path class="cls-2" d="m14.51.61h1.81"/>
+        <path class="cls-2" d="m7.41.49h1.44"/>
+        <path class="cls-2" d="m24.88,3.01v-.48s0-.07,0-.07c0-.05-.02-.08-.04-.11-.01-.02-.03-.04-.02-.06"/>
+        <path class="cls-2" d="m5.18.53h1.81"/>
+        <path class="cls-2" d="m16.32.59h-1.81"/>
+        <path class="cls-2" d="m5.18.49h1.45"/>
+        <path class="cls-2" d="m6.98.59h-1.81"/>
+      </g>
+    </g>
+    <path class="cls-2" d="m1.51.69v-.15c.59,0,1.16-.01,1.74,0"/>
+  </g>
+  <g id="Default">
+    <path class="cls-2" d="m.81,20.73h.23"/>
+    <path class="cls-2" d="m1.47,20.66v.06s.03.04.06.05h.03s.03-.01.03-.01h.03s.02.01.02.01c.03,0,.05-.02.06-.05v-.06"/>
+    <path class="cls-2" d="m1.47,20.73h.23"/>
+    <path class="cls-2" d="m25,20.73h-.23"/>
+    <path class="cls-2" d="m25,20.66v.06s-.03.04-.06.05h-.03s-.03-.01-.03-.01h-.03s-.02.01-.02.01c-.03,0-.05-.02-.06-.05v-.06"/>
+    <path class="cls-2" d="m24.34,20.66v.06s-.03.04-.06.05h-.03s-.03-.01-.03-.01h-.03s-.02.01-.02.01c-.03,0-.05-.02-.06-.05v-.06"/>
+    <path class="cls-2" d="m24.34,20.73h-.23"/>
+    <path class="cls-2" d="m25.55,2.97h-.23"/>
+    <path class="cls-2" d="m24.32,3.01v-.03s-.03-.04-.06-.05h-.03s-.03.01-.03.01h-.03s-.02-.01-.02-.01c-.03,0-.05.02-.06.05v.03"/>
+    <path class="cls-2" d="m24.32,2.97h-.23"/>
+    <path class="cls-2" d="m.26,2.97h.23"/>
+    <path class="cls-2" d="m.26,3.01v-.03s.03-.04.06-.05h.03s.03.01.03.01h.03s.02-.01.02-.01c.03,0,.05.02.06.05v.03"/>
+    <path class="cls-2" d="m1.49,3.01v-.03s.03-.04.06-.05h.03s.03.01.03.01h.03s.02-.01.02-.01c.03,0,.05.02.06.05v.03"/>
+    <path class="cls-2" d="m1.49,2.97h.23"/>
+    <path class="cls-2" d="m25.55,3.01v-.03s-.03-.04-.06-.05h-.03s-.03.01-.03.01h-.03s-.02-.01-.02-.01c-.03,0-.05.02-.06.05v.03"/>
+    <path class="cls-2" d="m.81,20.66v.06s.03.04.06.05h.03s.03-.01.03-.01h.03s.02.01.02.01c.03,0,.05-.02.06-.05v-.06"/>
+  </g>
 </svg>

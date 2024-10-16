@@ -6,6 +6,7 @@
   position: relative;
   font-family: 'Chromatica', sans-serif;
   height: 24px;
+  z-index: 100;
 }
 
 .containerHover {
