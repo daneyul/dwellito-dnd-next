@@ -12,10 +12,11 @@ import ShedDataProvider from '@/utils/contexts/ShedDataProvider';
 import ContainerDataProvider from '@/utils/contexts/ContainerDataProvider';
 import ShedSidebar from '../Sidebar/ShedSidebar';
 import ContainerSidebar from '../Sidebar/ContainerSidebar';
-import OrderSummaryModal from '../OrderSummaryModal/OrderSummaryModal';
 import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import ContainerViewer from '../Viewer/ContainerViewer';
 import ShedViewer from '../Viewer/ShedViewer';
+import { OrderSummaryModal as ContainerOrderSummaryModal } from '../OrderSummaryModal/Container/OrderSummaryModal';
+import { OrderSummaryModal as ShedOrderSummaryModal } from '../OrderSummaryModal/Shed/OrderSummaryModal';
 
 const Content = ({ data }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -28,8 +29,8 @@ const Content = ({ data }) => {
             <div className={style.content}>
               <ShedViewer />
               <ShedSidebar />
-              {/* <PriceTotal />
-              <OrderSummaryModal /> */}
+              {/* <PriceTotal /> */}
+              <ShedOrderSummaryModal />
             </div>
           </div>
         </ShedDataProvider>
@@ -49,7 +50,7 @@ const Content = ({ data }) => {
                   <ContainerViewer />
                   <ContainerSidebar />
                   <PriceTotal />
-                  <OrderSummaryModal />
+                  <ContainerOrderSummaryModal />
                 </>
               )}
             </div>

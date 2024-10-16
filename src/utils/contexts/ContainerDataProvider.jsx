@@ -49,6 +49,21 @@ const ContainerDataProvider = ({ children, data }) => {
     useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [scaleFactor, setScaleFactor] = useState(2.5);
+  const [sessionStart, setSessionStart] = useState(null);
+  const [sessionLength, setSessionLength] = useState(0);
+
+  // Initialize session start time
+  useEffect(() => {
+    const startTime = new Date();
+    setSessionStart(startTime);
+
+    // Cleanup function to calculate session length when unmounting
+    return () => {
+      const endTime = new Date();
+      const duration = (endTime - startTime) / 1000; // Duration in seconds
+      setSessionLength(duration);
+    };
+  }, []);
 
   // Selections
   const [selectedComponents, setSelectedComponents] = useState(
@@ -235,6 +250,7 @@ const ContainerDataProvider = ({ children, data }) => {
     interiorTrimPrice,
     hasRedCorners,
     setHasRedCorners,
+    sessionLength
   };
 
   return (

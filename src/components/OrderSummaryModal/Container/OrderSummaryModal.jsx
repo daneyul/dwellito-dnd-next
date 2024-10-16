@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext, useEffect, useRef, useState } from 'react';
-import style from './orderSummaryModal.module.scss';
+import style from '../orderSummaryModal.module.scss';
 import * as Dialog from '@radix-ui/react-dialog';
 import {
   checkDistance,
@@ -22,12 +22,12 @@ import {
   SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
 import * as Form from '@radix-ui/react-form';
-import useSaveSelections from '@/utils/hooks/useSaveSelections';
-import Toast from '../Toast/Toast';
+import useSaveSelections from '@/utils/hooks/containers/useSaveSelections';
+import Toast from '../../Toast/Toast';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
-const OrderSummaryModal = () => {
+export const OrderSummaryModal = () => {
   const {
     containerHeightIsStandard,
     orderTotal,
@@ -204,7 +204,7 @@ const OrderSummaryModal = () => {
       customerName: `${data.fname} ${data.lname}`,
       address: data.address,
       zipCode: zipCode,
-      url: `https://custom.configure.so/custom-cubes/${slug}/?data=${convertedSelections}`,
+      url: `https://custom.configure.so/${supplier}/${slug}/?data=${convertedSelections}`,
       interiorFinish: {
         name: interiorFinish.name,
         price: interiorFinishPrice,
@@ -726,5 +726,3 @@ const OrderSummaryModal = () => {
     </>
   );
 };
-
-export default OrderSummaryModal;

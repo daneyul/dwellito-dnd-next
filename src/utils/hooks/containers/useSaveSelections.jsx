@@ -1,4 +1,4 @@
-import { jsonToBase64 } from "../2D/containers/utils";
+import { jsonToBase64 } from "@/utils/2D/containers/utils";
 
 const useSaveSelections = ({
   selectedComponents,

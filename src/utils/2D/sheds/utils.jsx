@@ -79,7 +79,6 @@ export const checkDistance = ({
     return null;
   }
 
-  const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
   const isLeft = selectedElevation.name === ELEVATION_NAMES.LEFT;
 
   const droppableWidthValue = droppableWidth(
@@ -88,12 +87,12 @@ export const checkDistance = ({
 
   const boundaries = DIMENSIONS.SHED_BOUNDARIES.x;
 
-  const left = deScale(component?.position.x, scaleFactor) + boundaries;
+  const left = deScale(component?.position?.x, scaleFactor) + boundaries;
   const right =
     droppableWidthValue -
     (deScale(component?.position.x, scaleFactor) + component.objWidth) +
     boundaries;
-  const top = deScale(component?.position.y, scaleFactor);
+  const top = deScale(component?.position?.y, scaleFactor);
 
   return {
     left: isLeft ? Math.round(right * 100) / 100 : Math.round(left * 100) / 100,
