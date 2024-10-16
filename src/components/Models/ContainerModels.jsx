@@ -88,7 +88,7 @@ export function ContainerModels() {
   };
 
   const interiorCamPos = () => {
-    if (selectedContainer.slug === containerData[0]) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return INTERIOR_CAM_POS.TEN;
     } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return INTERIOR_CAM_POS.TWENTY;
@@ -98,7 +98,7 @@ export function ContainerModels() {
   };
 
   const interiorCamRot = () => {
-    if (selectedContainer.slug === containerData[0]) {
+    if (selectedContainer.slug === CONTAINER_SIZE_10) {
       return INTERIOR_CAM_ROT.TEN;
     } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
       return INTERIOR_CAM_ROT.TWENTY;

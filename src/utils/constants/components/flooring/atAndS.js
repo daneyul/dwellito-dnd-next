@@ -23,4 +23,15 @@ export const atAndS = [
     price20: 950,
     price40: 1845,
   },
+  {
+    name: 'Rubber Coin',
+    type: 'Rubber',
+    fileName: 'rubber',
+    glbObject: 'Concrete Raw - Safety Non Slip',
+    img: 'rubber-coin.png',
+    hex: '#000000',
+    price10: 610,
+    price20: 950,
+    price40: 1845,
+  },
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));

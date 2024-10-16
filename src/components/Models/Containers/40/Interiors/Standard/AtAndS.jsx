@@ -333,7 +333,7 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
 
 const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }) => {
   if (flooring.name !== noneOption?.name) {
-    const { echoFloor, timberFloor } = useFlooringGLTFModels(supplier);
+    const { echoFloor, timberFloor, rubberFloor } = useFlooringGLTFModels(supplier);
     const { nodes: flooringNodes } = useGLTF(
       `/models/container/${containerSize()}/${selectedContainerHeight}/flooring.glb`
     );
@@ -344,10 +344,13 @@ const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }
           return echoFloor[flooring.glbObject];
         case 'Timber':
           return timberFloor[flooring.glbObject];
+        case 'Rubber':
+          return rubberFloor[flooring.glbObject];
         default:
           return null;
       }
     };
+    
     return (
       <>
         <mesh

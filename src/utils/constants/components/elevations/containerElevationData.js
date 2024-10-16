@@ -12,7 +12,7 @@ export const containerElevationData = [
     name: ELEVATION_NAMES.RIGHT,
     id: 'elevation-right-10',
     homePlan: CONTAINER_SIZE_10,
-    imgScName: 'container-elevations10/standard/right.svg',
+    imgScName: 'container-elevations/10/standard/right.svg',
     objWidth: DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH,
     objScHeight: DIMENSIONS.CONTAINER.TEN.SIDE.SC_HEIGHT,
     objHcHeight: DIMENSIONS.CONTAINER.TEN.SIDE.HC_HEIGHT,

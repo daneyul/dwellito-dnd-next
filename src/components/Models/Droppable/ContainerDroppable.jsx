@@ -19,7 +19,7 @@ const ContainerDroppable = ({ children }) => {
   const elevationImg = containerHeightIsStandard
     ? selectedElevation.imgScName
     : selectedElevation.imgHcName;
-
+    
   const CustomStyle = {
     display: 'flex',
     width: `${toScale(selectedElevation.objWidth, scaleFactor)}px`,

@@ -125,9 +125,13 @@ export const useFlooringGLTFModels = (supplier) => {
   const { materials: timberFloor } = useGLTF(
     `/models/${supplier}/materials/flooring/timber.glb`
   );
+  const { materials: rubberFloor } = useGLTF(
+    `/models/${supplier}/materials/flooring/rubber-coin.glb`
+  );
 
   return {
     echoFloor,
     timberFloor,
+    rubberFloor,
   };
 };

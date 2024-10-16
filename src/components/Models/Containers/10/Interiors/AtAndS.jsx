@@ -152,7 +152,7 @@ const Flooring = ({
   selectedContainerHeight,
 }) => {
   if (flooring.name !== noneOption?.name) {
-    const { echoFloor, timberFloor } = useFlooringGLTFModels(supplier);
+    const { echoFloor, timberFloor, rubberFloor } = useFlooringGLTFModels(supplier);
     const { nodes: flooringNodes } = useGLTF(
       `/models/container/${containerSize()}/${selectedContainerHeight}/flooring.glb`
     );
