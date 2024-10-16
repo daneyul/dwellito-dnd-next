@@ -163,6 +163,8 @@ const Flooring = ({
           return echoFloor[flooring.glbObject];
         case 'Timber':
           return timberFloor[flooring.glbObject];
+        case 'Rubber':
+          return rubberFloor[flooring.glbObject];
         default:
           return null;
       }
