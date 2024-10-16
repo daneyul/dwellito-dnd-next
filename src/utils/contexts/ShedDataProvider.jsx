@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect, useRef } from 'react';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import useOrderTotal from '../hooks/useShedOrderTotal';
 import {
@@ -27,20 +27,16 @@ const ShedDataProvider = ({ children, data }) => {
     useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [scaleFactor, setScaleFactor] = useState(2.5);
-  const [sessionStart, setSessionStart] = useState(null);
   const [sessionLength, setSessionLength] = useState(0);
 
-  // Initialize session start time
-  useEffect(() => {
-    const startTime = new Date();
-    setSessionStart(startTime);
+  const timerRef = useRef();
 
-    // Cleanup function to calculate session length when unmounting
-    return () => {
-      const endTime = new Date();
-      const duration = (endTime - startTime) / 1000; // Duration in seconds
-      setSessionLength(duration);
-    };
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setSessionLength((prevLength) => prevLength + 1); // increment every second
+    }, 1000);
+
+    return () => clearInterval(timerRef.current); // Clean up on unmount
   }, []);
 
   // Selections

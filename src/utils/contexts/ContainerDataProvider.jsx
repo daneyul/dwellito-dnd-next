@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useRef } from 'react';
 import {
   getExteriorFinishFromUrl,
   getFlooringFromUrl,
@@ -49,20 +49,15 @@ const ContainerDataProvider = ({ children, data }) => {
     useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [scaleFactor, setScaleFactor] = useState(2.5);
-  const [sessionStart, setSessionStart] = useState(null);
   const [sessionLength, setSessionLength] = useState(0);
+  const timerRef = useRef();
 
-  // Initialize session start time
   useEffect(() => {
-    const startTime = new Date();
-    setSessionStart(startTime);
+    timerRef.current = setInterval(() => {
+      setSessionLength((prevLength) => prevLength + 1); // increment every second
+    }, 1000);
 
-    // Cleanup function to calculate session length when unmounting
-    return () => {
-      const endTime = new Date();
-      const duration = (endTime - startTime) / 1000; // Duration in seconds
-      setSessionLength(duration);
-    };
+    return () => clearInterval(timerRef.current); // Clean up on unmount
   }, []);
 
   // Selections
