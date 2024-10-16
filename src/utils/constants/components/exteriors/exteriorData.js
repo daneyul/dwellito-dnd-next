@@ -53,27 +53,27 @@ const customCubes = [
 
 const atAndS = [
   {
-    name: EXTERIORS.NUCOR_GREEN,
-    glbObject: 'Nucor Green',
-    hex: '#1B6433',
-    fileName: 'nucor-green',
-    img: 'nucor-green.png',
-    price: 10,
-  },
-  {
-    name: EXTERIORS.KEIWIT_YELLOW,
-    glbObject: 'Keiwit Yellow',
-    hex: '#FACD23',
-    fileName: 'keiwit-yellow',
-    img: 'keiwit-yellow.png',
+    name: EXTERIORS.BEIGE,
+    glbObject: 'beige',
+    hex: '#99A2A4',
+    fileName: 'beige',
+    img: 'beige.png',
     price: 0,
   },
   {
-    name: EXTERIORS.SLATE_GREY,
+    name: EXTERIORS.WHITE,
+    glbObject: 'purewhite-sw7005',
+    hex: '#FFFFFF',
+    fileName: 'white',
+    img: 'white.png',
+    price: 0,
+  },
+  {
+    name: EXTERIORS.LIGHT_GREY,
     glbObject: 'Slate Grey',
     hex: '#99A2A4',
-    fileName: 'slate-grey',
-    img: 'slate-grey.png',
+    fileName: 'lightgrey',
+    img: 'lightgrey.png',
     price: 0,
   },
   {

@@ -33,20 +33,20 @@ export const useExteriorGLTFModels = (supplier) => {
     const { materials: safRed } = useGLTF(
       `/models/${supplier}/materials/exterior/saf-red.glb`
     );
-    const { materials: keiwitYellow } = useGLTF(
-      `/models/${supplier}/materials/exterior/keiwit-yellow.glb`
+    const { materials: white } = useGLTF(
+      `/models/${supplier}/materials/exterior/white.glb`
     );
-    const { materials: nucorGreen } = useGLTF(
-      `/models/${supplier}/materials/exterior/nucor-green.glb`
+    const { materials: lightGrey } = useGLTF(
+      `/models/${supplier}/materials/exterior/lightgrey.glb`
     );
-    const { materials: slateGrey } = useGLTF(
-      `/models/${supplier}/materials/exterior/slate-grey.glb`
+    const { materials: beige } = useGLTF(
+      `/models/${supplier}/materials/exterior/beige.glb`
     );
     return {
       safRed,
-      keiwitYellow,
-      nucorGreen,
-      slateGrey,
+      white,
+      lightGrey,
+      beige,
     };
   }
 };
@@ -73,12 +73,12 @@ export const getExteriorPaint = (supplier, exteriorFinish, paint) => {
     switch (exteriorFinish.name) {
       case 'SAF Red (Corners Only)':
         return paint.safRed?.[exteriorFinish.glbObject];
-      case 'Keiwit Yellow':
-        return paint.keiwitYellow?.[exteriorFinish.glbObject];
-      case 'Nucor Green':
-        return paint.nucorGreen?.[exteriorFinish.glbObject];
-      case 'Slate Grey':
-        return paint.slateGrey?.[exteriorFinish.glbObject];
+      case 'White':
+        return paint.white?.[exteriorFinish.glbObject];
+      case 'Light Grey':
+        return paint.lightGrey?.[exteriorFinish.glbObject];
+      case 'Beige':
+        return paint.beige?.[exteriorFinish.glbObject];
       default:
         return null;
     }
@@ -107,8 +107,13 @@ export const useInteriorGLTFModels = (supplier) => {
     const { materials: luanWallMaterial } = useGLTF(
       `/models/${supplier}/materials/interior/luan-wall.glb`
     );
+    const { materials: whiteShiplapMaterial } = useGLTF(
+      `/models/${supplier}/materials/interior/white-shiplap.glb`
+    );
+    
     return {
       luanWallMaterial,
+      whiteShiplapMaterial,
     };
   }
 };

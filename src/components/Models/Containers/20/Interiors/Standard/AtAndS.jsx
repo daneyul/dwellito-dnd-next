@@ -5,288 +5,96 @@ import {
 } from '@/utils/hooks/containers/useGLTFModels';
 import { useGLTF } from '@react-three/drei';
 
-const CharredWood = ({
+const WhiteShiplap = ({
   interiorFinishes,
   containerSize,
   selectedContainerHeight,
   supplier,
 }) => {
-  if (interiorFinishes.interiorIsCharredWood) {
+  if (interiorFinishes.interiorIsWhiteShiplap) {
+    const { whiteShiplapMaterial } = useInteriorGLTFModels(supplier);
     const { nodes: rearTopNodes } = useGLTF(
       `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
     );
-    const { charredWoodMaterial } = useInteriorGLTFModels(supplier);
     return (
       <>
-        <group
-          position={[3.965, 2.48, -0.081]}
-          rotation={[Math.PI, 0, -Math.PI]}
-          scale={[-1, 1, 1]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes['20FT_Blank_Plywood_reartop'].geometry}
-            material={charredWoodMaterial['Ash_Grey']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[0.092, 0.148, -1.742]}
-          rotation={[-Math.PI / 2, 0, Math.PI / 2]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop.geometry}
-            material={charredWoodMaterial['Ash_Grey']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[4.923, 2.48, -0.081]}
-          rotation={[Math.PI, 0, -Math.PI]}
-          scale={[-1, 1, 1]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_1.geometry}
-            material={charredWoodMaterial['Ash_Grey']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[0.092, 0.148, -0.623]}
-          rotation={[-Math.PI / 2, 0, Math.PI / 2]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_3.geometry}
-            material={charredWoodMaterial['Ash_Grey']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[2.517, 2.48, -0.081]}
-          rotation={[Math.PI, 0, -Math.PI]}
-          scale={[-1, 1, 1]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_4.geometry}
-            material={charredWoodMaterial['Ash_Grey']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[1.07, 2.48, -0.081]}
-          rotation={[Math.PI, 0, -Math.PI]}
-          scale={[-1, 1, 1]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_5.geometry}
-            material={charredWoodMaterial['Ash_Grey']}
-            scale={0.01}
-          />
-        </group>
-      </>
-    );
-  } else {
-    return null;
-  }
-};
-
-const BarnWood = ({
-  interiorFinishes,
-  containerSize,
-  selectedContainerHeight,
-  supplier,
-}) => {
-  if (interiorFinishes.interiorIsBarnWood) {
-    const { nodes: rearTopNodes } = useGLTF(
-      `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
-    );
-    const { barnWoodMaterial } = useInteriorGLTFModels(supplier);
-    return (
-      <>
-        <group
-          position={[3.965, 2.48, -0.081]}
-          rotation={[Math.PI, 0, -Math.PI]}
-          scale={[-1, 1, 1]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes['20FT_Blank_Plywood_reartop'].geometry}
-            material={barnWoodMaterial['Barn Wood Wall Panels']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[0.092, 0.148, -1.742]}
-          rotation={[-Math.PI / 2, 0, Math.PI / 2]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop.geometry}
-            material={barnWoodMaterial['Barn Wood Wall Panels']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[4.923, 2.48, -0.081]}
-          rotation={[Math.PI, 0, -Math.PI]}
-          scale={[-1, 1, 1]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_1.geometry}
-            material={barnWoodMaterial['Barn Wood Wall Panels']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[0.092, 0.148, -0.623]}
-          rotation={[-Math.PI / 2, 0, Math.PI / 2]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_3.geometry}
-            material={barnWoodMaterial['Barn Wood Wall Panels']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[2.517, 2.48, -0.081]}
-          rotation={[Math.PI, 0, -Math.PI]}
-          scale={[-1, 1, 1]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_4.geometry}
-            material={barnWoodMaterial['Barn Wood Wall Panels']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[1.07, 2.48, -0.081]}
-          rotation={[Math.PI, 0, -Math.PI]}
-          scale={[-1, 1, 1]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_5.geometry}
-            material={barnWoodMaterial['Barn Wood Wall Panels']}
-            scale={0.01}
-          />
-        </group>
-      </>
-    );
-  } else {
-    return null;
-  }
-};
-
-const MdfPanel = ({
-  interiorFinishes,
-  containerSize,
-  selectedContainerHeight,
-  supplier,
-}) => {
-  if (interiorFinishes.interiorIsMdfPanel) {
-    const { nodes: rearTopNodes } = useGLTF(
-      `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
-    );
-    const { mdfPanelMaterial } = useInteriorGLTFModels(supplier);
-    return (
-      <>
-        <group
-          position={[3.965, 2.48, -0.081]}
-          rotation={[Math.PI, 0, -Math.PI]}
-          scale={[-1, 1, 1]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes['20FT_Blank_Plywood_reartop'].geometry}
-            material={mdfPanelMaterial['Authentic Pallet MDF Panel']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[0.092, 0.148, -1.742]}
-          rotation={[-Math.PI / 2, 0, Math.PI / 2]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop.geometry}
-            material={mdfPanelMaterial['Authentic Pallet MDF Panel']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[4.923, 2.48, -0.081]}
-          rotation={[Math.PI, 0, -Math.PI]}
-          scale={[-1, 1, 1]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_1.geometry}
-            material={mdfPanelMaterial['Authentic Pallet MDF Panel']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[0.092, 0.148, -0.623]}
-          rotation={[-Math.PI / 2, 0, Math.PI / 2]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_3.geometry}
-            material={mdfPanelMaterial['Authentic Pallet MDF Panel']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[2.517, 2.48, -0.081]}
-          rotation={[Math.PI, 0, -Math.PI]}
-          scale={[-1, 1, 1]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_4.geometry}
-            material={mdfPanelMaterial['Authentic Pallet MDF Panel']}
-            scale={0.01}
-          />
-        </group>
-        <group
-          position={[1.07, 2.48, -0.081]}
-          rotation={[Math.PI, 0, -Math.PI]}
-          scale={[-1, 1, 1]}
-        >
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_5.geometry}
-            material={mdfPanelMaterial['Authentic Pallet MDF Panel']}
-            scale={0.01}
-          />
-        </group>
-      </>
+      <group
+        position={[3.965, 2.48, -0.081]}
+        rotation={[Math.PI, 0, -Math.PI]}
+        scale={[-1, 1, 1]}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={rearTopNodes['20FT_Blank_Plywood_reartop'].geometry}
+          material={whiteShiplapMaterial['Barn Wood Wall Panels']}
+          scale={0.01}
+        />
+      </group>
+      <group
+        position={[0.092, 0.148, -1.742]}
+        rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop.geometry}
+          material={whiteShiplapMaterial['Barn Wood Wall Panels']}
+          scale={0.01}
+        />
+      </group>
+      <group
+        position={[4.923, 2.48, -0.081]}
+        rotation={[Math.PI, 0, -Math.PI]}
+        scale={[-1, 1, 1]}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_1.geometry}
+          material={whiteShiplapMaterial['Barn Wood Wall Panels']}
+          scale={0.01}
+        />
+      </group>
+      <group
+        position={[0.092, 0.148, -0.623]}
+        rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_3.geometry}
+          material={whiteShiplapMaterial['Barn Wood Wall Panels']}
+          scale={0.01}
+        />
+      </group>
+      <group
+        position={[2.517, 2.48, -0.081]}
+        rotation={[Math.PI, 0, -Math.PI]}
+        scale={[-1, 1, 1]}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_4.geometry}
+          material={whiteShiplapMaterial['Barn Wood Wall Panels']}
+          scale={0.01}
+        />
+      </group>
+      <group
+        position={[1.07, 2.48, -0.081]}
+        rotation={[Math.PI, 0, -Math.PI]}
+        scale={[-1, 1, 1]}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={rearTopNodes.Obj_20FT_Blank_Plywood_reartop_5.geometry}
+          material={whiteShiplapMaterial['Barn Wood Wall Panels']}
+          scale={0.01}
+        />
+      </group>
+    </>
     );
   } else {
     return null;
@@ -439,19 +247,7 @@ const AtAndS = ({
 }) => {
   return (
     <>
-      <CharredWood
-        interiorFinishes={interiorFinishes}
-        containerSize={containerSize}
-        selectedContainerHeight={selectedContainerHeight}
-        supplier={supplier}
-      />
-      <BarnWood
-        interiorFinishes={interiorFinishes}
-        containerSize={containerSize}
-        selectedContainerHeight={selectedContainerHeight}
-        supplier={supplier}
-      />
-      <MdfPanel
+      <WhiteShiplap
         interiorFinishes={interiorFinishes}
         containerSize={containerSize}
         selectedContainerHeight={selectedContainerHeight}

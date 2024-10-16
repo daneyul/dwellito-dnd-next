@@ -142,9 +142,7 @@ export const INTERIOR_FINISH_NAMES = {
     '½” Pre- Finished Drywall, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
   SPRAY_FOAM_CEILING: '1” Spray Foam (Ceiling Only)',
   SPRAY_FOAM_CEILING_WALLS: '1” Spray Foam (Ceiling & Walls)',
-  CHARRED_WOOD: 'Charred Wood Ash Gray Pine Shiplap Board',
-  MDF_PANEL: 'Authentic Pallet MDF Panel',
-  BARN_WOOD: 'Barn Wood Wall Panels',
+  WHITE_SHIPLAP: 'White Shiplap',
   LUAN_WALL: 'Luan Wall Panels'
 };
 
@@ -182,10 +180,9 @@ export const EXTERIORS = {
   GREEN: 'Green',
   SLATE_GREY: 'Slate Grey',
   RED: 'Red',
-  NUCOR_GREEN: 'Nucor Green',
-  KEIWIT_YELLOW: 'Keiwit Yellow',
   SAF_RED: 'SAF Red (Corners Only)',
   DARK_BLUE: 'Dark Blue',
+  LIGHT_GREY: 'Light Grey',
   GREY: 'Grey',
   BLACK: 'Black',
 }

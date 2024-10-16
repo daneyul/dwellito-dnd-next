@@ -58,6 +58,15 @@ const atAndS = [
     price40H: 13805,
     img: 'luan.png',
   },
+  {
+    name: INTERIOR_FINISH_NAMES.WHITE_SHIPLAP,
+    price10: 4850,
+    price20S: 7110,
+    price20H: 8020,
+    price40S: 12450,
+    price40H: 13805,
+    img: 'white-shiplap.png',
+  },
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));
 
 export const INTERIOR_FINISH_OPTIONS = [

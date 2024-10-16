@@ -13,17 +13,11 @@ const sprayfoamCeilingInterior = INTERIOR_FINISH_OPTIONS.find(
 const sprayfoamCeilingWallsInterior = INTERIOR_FINISH_OPTIONS.find(
   (option) => option.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING_WALLS
 );
-const charredWoodInterior = INTERIOR_FINISH_OPTIONS.find(
-  (option) => option.name === INTERIOR_FINISH_NAMES.CHARRED_WOOD
-);
-const barnWoodInterior = INTERIOR_FINISH_OPTIONS.find(
-  (option) => option.name === INTERIOR_FINISH_NAMES.BARN_WOOD
-);
-const mdfPanelInterior = INTERIOR_FINISH_OPTIONS.find(
-  (option) => option.name === INTERIOR_FINISH_NAMES.MDF_PANEL
-);
 const luanWallInterior = INTERIOR_FINISH_OPTIONS.find(
   (option) => option.name === INTERIOR_FINISH_NAMES.LUAN_WALL
+);
+const whiteShiplapInterior = INTERIOR_FINISH_OPTIONS.find(
+  (option) => option.name === INTERIOR_FINISH_NAMES.WHITE_SHIPLAP
 );
 const none = INTERIOR_FINISH_OPTIONS.find(
   (option) => option.name === INTERIOR_FINISH_NAMES.NONE
@@ -36,9 +30,7 @@ const useInteriorFinishes = ({ interiorFinish }) => {
     interiorFinish === sprayfoamCeilingInterior;
   const interiorIsSprayFoamCeilingWalls =
     interiorFinish === sprayfoamCeilingWallsInterior;
-  const interiorIsCharredWood = interiorFinish === charredWoodInterior;
-  const interiorIsBarnWood = interiorFinish === barnWoodInterior;
-  const interiorIsMdfPanel = interiorFinish === mdfPanelInterior;
+  const interiorIsWhiteShiplap = interiorFinish === whiteShiplapInterior;
   const interiorIsLuanWall = interiorFinish === luanWallInterior;
   const interiorIsNone = interiorFinish === none;
 
@@ -47,9 +39,7 @@ const useInteriorFinishes = ({ interiorFinish }) => {
     interiorIsDrywall,
     interiorIsSprayFoamCeiling,
     interiorIsSprayFoamCeilingWalls,
-    interiorIsCharredWood,
-    interiorIsBarnWood,
-    interiorIsMdfPanel,
+    interiorIsWhiteShiplap,
     interiorIsLuanWall,
     interiorIsNone
   };
