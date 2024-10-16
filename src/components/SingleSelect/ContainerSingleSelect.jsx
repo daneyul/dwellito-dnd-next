@@ -49,13 +49,19 @@ const ContainerSingleSelect = ({ type }) => {
     (selection, setState, additionalActions = () => {}) => {
       if (isExterior && selection.name === EXTERIORS.SAF_RED) {
         setHasRedCorners(!hasRedCorners);
+      } else if (isExterior) {
+        setState(selection);
+        setShow3d(true);
+        setShowExterior(isExterior);
+        setCameraReady(true);
+        additionalActions();
       } else {
         setState(selection);
+        setShow3d(true);
+        setShowExterior(isExterior);
+        setCameraReady(false);
+        additionalActions();
       }
-      setShow3d(true);
-      setShowExterior(isExterior);
-      setCameraReady(false);
-      additionalActions();
     },
     [setShow3d, setShowExterior, setCameraReady, isExterior, hasRedCorners, setHasRedCorners]
   );

@@ -20,11 +20,19 @@ const ShedSingleSelect = ({ type }) => {
 
   const handleSelectionClick = useCallback(
     (selection, setState, additionalActions = () => {}) => {
-      setState(selection);
-      setShow3d(true);
-      setShowExterior(isExterior);
-      setCameraReady(false);
-      additionalActions();
+      if (isExterior) {
+        setState(selection);
+        setShow3d(true);
+        setShowExterior(isExterior);
+        setCameraReady(true);
+        additionalActions();
+      } else {
+        setState(selection);
+        setShow3d(true);
+        setShowExterior(isExterior);
+        setCameraReady(false);
+        additionalActions();
+      }
     },
     [setShow3d, setShowExterior, setCameraReady, isExterior]
   );
