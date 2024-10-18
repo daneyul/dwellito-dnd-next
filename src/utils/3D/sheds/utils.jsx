@@ -95,11 +95,11 @@ const leftSideCoordinates = ({
     );
   };
   const adjustForY = () => {
-    return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2 - 5;
   };
 
   let xPosition = adjustForX();
-  let yPosition = -distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY() - 5;
+  let yPosition = -distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY();
   let zPosition =
     -parseFloat(distanceObject.top) / SCALE_FACTOR_FOR_CALCULATIONS;
 
