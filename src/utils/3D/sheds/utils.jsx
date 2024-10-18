@@ -99,7 +99,7 @@ const leftSideCoordinates = ({
   };
 
   let xPosition = adjustForX();
-  let yPosition = -adjustForY() + 0.2;
+  let yPosition = -distanceObject.left / SCALE_FACTOR_FOR_CALCULATIONS + adjustForY() - 5;
   let zPosition =
     -parseFloat(distanceObject.top) / SCALE_FACTOR_FOR_CALCULATIONS;
 
