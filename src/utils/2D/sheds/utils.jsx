@@ -79,8 +79,6 @@ export const checkDistance = ({
     return null;
   }
 
-  const isLeft = selectedElevation.name === ELEVATION_NAMES.LEFT;
-
   const droppableWidthValue = droppableWidth(
     selectedElevation,
     DIMENSIONS);
@@ -95,10 +93,8 @@ export const checkDistance = ({
   const top = deScale(component?.position?.y, scaleFactor);
 
   return {
-    left: isLeft ? Math.round(right * 100) / 100 : Math.round(left * 100) / 100,
-    right: isLeft
-      ? Math.round(left * 100) / 100
-      : Math.round(right * 100) / 100,
+    left: Math.round(left * 100) / 100,
+    right: Math.round(right * 100) / 100,
     top: Math.round(top * 100) / 100,
   };
 };
