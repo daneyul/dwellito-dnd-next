@@ -11,6 +11,7 @@ import {
 import { shedData } from '../constants/shedData';
 import { shedElevationData } from '../constants/components/elevations/shedElevationData';
 import { componentData } from '../constants/componentData';
+import { handleAddComponent } from '../2D/sheds/utils';
 
 export const ShedDataContext = createContext();
 
@@ -96,6 +97,86 @@ const ShedDataProvider = ({ children, data }) => {
       }
     })
   );
+
+  // Load fixed components for now
+  const doorName = COMPONENT_NAMES.EXTERIOR_DOOR_1;
+
+  const windowName = COMPONENT_NAMES.WINDOW_48_48;
+
+  const rightElevation = mappedElevations.find(
+    (elevation) => elevation.name === ELEVATION_NAMES.RIGHT
+  );
+  const leftElevation = mappedElevations.find(
+    (elevation) => elevation.name === ELEVATION_NAMES.LEFT
+  );
+  const frontElevation = mappedElevations.find(
+    (elevation) => elevation.name === ELEVATION_NAMES.FRONT
+  );
+  const door = componentData.find((door) => door.name === doorName);
+  const window = componentData.find((window) => window.name === windowName);
+  const modifiedDoor = {
+    ...door,
+    position: {
+      ...door.position,
+      x: 168,
+    },
+  };
+  const modifiedWindowFront = {
+    ...window,
+    position: {
+      ...window.position,
+      x: 0,
+    },
+  };
+  const modifiedWindowRight = {
+    ...window,
+    position: {
+      ...window.position,
+      x: 0,
+    },
+  };
+  const modifiedWindowLeft1 = {
+    ...window,
+    position: {
+      ...window.position,
+      x: 0,
+    },
+  };
+  const modifiedWindowLeft2 = {
+    ...window,
+    position: {
+      ...window.position,
+      x: 490,
+    },
+  };
+
+  useEffect(() => {
+    handleAddComponent({
+      item: modifiedDoor,
+      setSelectedComponents,
+      selectedElevation: frontElevation,
+    });
+    handleAddComponent({
+      item: modifiedWindowFront,
+      setSelectedComponents,
+      selectedElevation: frontElevation,
+    });
+    handleAddComponent({
+      item: modifiedWindowRight,
+      setSelectedComponents,
+      selectedElevation: rightElevation,
+    });
+    handleAddComponent({
+      item: modifiedWindowLeft1,
+      setSelectedComponents,
+      selectedElevation: leftElevation,
+    });
+    handleAddComponent({
+      item: modifiedWindowLeft2,
+      setSelectedComponents,
+      selectedElevation: leftElevation,
+    });
+  }, []);
 
   const contextValue = {
     selectedComponents,

@@ -49,7 +49,7 @@ const ShedSidebar = () => {
         <LogoSection supplier={supplier} />
         <RoofSelector />
         <ExteriorSelector />
-        <ShedSelector />
+        {/* <ShedSelector /> */}
         <ShedSaveOrder />
       </div>
     </>

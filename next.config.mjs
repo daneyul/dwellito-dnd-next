@@ -2,6 +2,7 @@ import path from 'path';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false,
   sassOptions: {
     includePaths: [
       path.join(path.dirname(new URL(import.meta.url).pathname), 'styles'),

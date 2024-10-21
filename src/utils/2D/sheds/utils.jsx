@@ -104,7 +104,6 @@ export const handleAddComponent = ({
   selectedComponents,
   setSelectedComponents,
   selectedElevation,
-  floorPlan,
   supplier,
 }) => {
   if (

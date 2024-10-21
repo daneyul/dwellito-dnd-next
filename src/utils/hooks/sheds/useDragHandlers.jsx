@@ -32,6 +32,7 @@ const useDragHandlers = ({
   // Modifiers
   const defaultModifiers = [restrictToParentElement, snapToGridModifier];
   const doorWindowModifiers = [...defaultModifiers, restrictToHorizontalAxis];
+  const fixedModifiers = [restrictToHorizontalAxis, restrictToVerticalAxis];
 
   const [initialPosition, setInitialPosition] = useState(null);
   const [selectedComponent, setSelectedComponent] = useState(null);
@@ -71,11 +72,13 @@ const useDragHandlers = ({
     } else if (isDoor) {
       setModifiers([
         ...doorWindowModifiers,
+        ...fixedModifiers,
         snapToIncrement({ increment: 24, scaleFactor }),
       ]);
     } else if (isWindow) {
       setModifiers([
         ...doorWindowModifiers,
+        ...fixedModifiers,
         snapToIncrement({ increment: 24, scaleFactor }),
       ]);
     } else {

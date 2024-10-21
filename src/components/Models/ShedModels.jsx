@@ -11,7 +11,9 @@ import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
 import {
+  COMPONENT_NAMES,
   COMPONENT_TYPES,
+  ELEVATION_NAMES,
 } from '@/utils/constants/names/names';
 import {
   EXTERIOR_CAM_POS,
@@ -25,21 +27,24 @@ import Window from './Windows/WindowSwitcher';
 import { CsgGeometries } from './Containers/CsgGeometries/Shed/CsgGeometries';
 import { useExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import Shed from './Sheds/one-story/Shed';
+import { componentData } from '@/utils/constants/componentData';
+import { handleAddComponent } from '@/utils/2D/sheds/utils';
 
 export function ShedModels() {
   const {
     selectedComponents,
+    setSelectedComponents,
     showExterior,
     setThreeDModelLoaded,
     cameraReady,
     setCameraReady,
     supplier,
     show3d,
-    exteriorFinish
+    exteriorFinish,
+    mappedElevations
   } = useContext(ShedDataContext);
 
   const { progress } = useProgress();
-  
 
   useEffect(() => {
     setThreeDModelLoaded(progress === 100);
@@ -179,7 +184,7 @@ export function ShedModels() {
             windowBoundingBoxes={windowBoundingBoxes}
             exteriorPaint={exteriorPaint}
           />
-          <Shed exteriorPaint={exteriorPaint}/>
+          <Shed exteriorPaint={exteriorPaint} />
           {doors.map((door, index) => (
             <Door
               key={door.id}
@@ -192,7 +197,9 @@ export function ShedModels() {
             <Window
               key={window.id}
               component={window}
-              onBoundingBoxChange={(data) => handleWindowBoundingBox(index, data)}
+              onBoundingBoxChange={(data) =>
+                handleWindowBoundingBox(index, data)
+              }
               supplier={supplier}
             />
           ))}

@@ -46,8 +46,6 @@ export function MobileModels() {
     containerHeightIsStandard,
   } = useContext(ContainerDataContext);
 
-  console.log(selectedComponents);
-
   const doorName = () => {
     if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
       return COMPONENT_NAMES.PERSONNEL_LHR_SECURITY;
@@ -60,7 +58,7 @@ export function MobileModels() {
     if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
       return COMPONENT_NAMES.WINDOW;
     } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
-      return COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW_46_27;
+      return COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW;
     }
   };
 
