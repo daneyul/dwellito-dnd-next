@@ -58,7 +58,7 @@ export function MobileModels() {
     if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
       return COMPONENT_NAMES.WINDOW;
     } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
-      return COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW;
+      return COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW_46_27;
     }
   };
 
