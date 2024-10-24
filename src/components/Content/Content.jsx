@@ -17,6 +17,7 @@ import ContainerViewer from '../Viewer/ContainerViewer';
 import ShedViewer from '../Viewer/ShedViewer';
 import { OrderSummaryModal as ContainerOrderSummaryModal } from '../OrderSummaryModal/Container/OrderSummaryModal';
 import { OrderSummaryModal as ShedOrderSummaryModal } from '../OrderSummaryModal/Shed/OrderSummaryModal';
+import SessionLengthProvider from '@/utils/contexts/SessionLengthProvider';
 
 const Content = ({ data }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -49,7 +50,9 @@ const Content = ({ data }) => {
                   <ContainerViewer />
                   <ContainerSidebar />
                   <PriceTotal />
-                  <ContainerOrderSummaryModal />
+                  <SessionLengthProvider>
+                    <ContainerOrderSummaryModal />
+                  </SessionLengthProvider>
                 </>
               )}
             </div>

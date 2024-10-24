@@ -49,16 +49,6 @@ const ContainerDataProvider = ({ children, data }) => {
     useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [scaleFactor, setScaleFactor] = useState(2.5);
-  const [sessionLength, setSessionLength] = useState(0);
-  const timerRef = useRef();
-
-  useEffect(() => {
-    timerRef.current = setInterval(() => {
-      setSessionLength((prevLength) => prevLength + 1); // increment every second
-    }, 1000);
-
-    return () => clearInterval(timerRef.current); // Clean up on unmount
-  }, []);
 
   // Selections
   const [selectedComponents, setSelectedComponents] = useState(
@@ -244,8 +234,7 @@ const ContainerDataProvider = ({ children, data }) => {
     containerSizeStr,
     interiorTrimPrice,
     hasRedCorners,
-    setHasRedCorners,
-    sessionLength
+    setHasRedCorners
   };
 
   return (

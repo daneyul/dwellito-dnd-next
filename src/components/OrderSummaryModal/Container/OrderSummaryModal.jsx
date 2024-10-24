@@ -26,6 +26,7 @@ import useSaveSelections from '@/utils/hooks/containers/useSaveSelections';
 import Toast from '../../Toast/Toast';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import { SessionLengthContext } from '@/utils/contexts/SessionLengthProvider';
 
 export const OrderSummaryModal = () => {
   const {
@@ -43,13 +44,14 @@ export const OrderSummaryModal = () => {
     setDialogOpen,
     supplier,
     containerSizeStr,
-    hasRedCorners,
-    sessionLength
+    hasRedCorners
   } = useContext(ContainerDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const [zipCode, setZipCode] = useState('');
   const [openToast, setOpenToast] = useState(false);
   const inputRef = useRef(null);
+  const { sessionLength } = useContext(SessionLengthContext);
+
   const isAtAndS = supplier === SUPPLIER_SLUGS.AT_AND_S;
 
   const handleInputChange = (e) => {
