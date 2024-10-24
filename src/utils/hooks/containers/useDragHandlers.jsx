@@ -166,21 +166,12 @@ const useDragHandlers = ({
       let updatedPieces = selectedComponents.map((piece) => {
         if (piece.id === draggedId) {
           if (isFloorPlanView) {
-            if (isOnElevationRight) {
+            if (isOnElevationRight || isOnElevationLeft) {
               // If elevation is right, update the x position
               return {
                 ...piece,
                 position: {
                   x: initialPosition.x + delta.x,
-                  y: initialPosition.y + delta.y,
-                }
-              };
-            } else if (isOnElevationLeft) {
-              // If elevation is left, update the x position in reverse
-              return {
-                ...piece,
-                position: {
-                  x: initialPosition.x - delta.x,
                   y: initialPosition.y + delta.y,
                 }
               };

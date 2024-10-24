@@ -420,20 +420,38 @@ export const calculateContainerComponentCSSPos = ({
         };
       } else if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
         transform = 'rotate(180deg) translateY(100%)';
-        positionStyles = {
+        if (piece.name === COMPONENT_NAMES.WINDOW || piece.name === COMPONENT_NAMES.WINDOW_SECURITY) {
+          positionStyles = {
           left: `${
             piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           }px`,
-          top: '10px',
-        };
+            top: '14px',
+          };
+        } else {
+          positionStyles = {
+            left: `${
+              piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            }px`,
+            top: '10px',
+          };
+        }
       } else if (piece.elevation[0].name === ELEVATION_NAMES.RIGHT) {
         transform = 'translateY(100%)';
-        positionStyles = {
-          bottom: '10px',
+        if (piece.name === COMPONENT_NAMES.WINDOW || piece.name === COMPONENT_NAMES.WINDOW_SECURITY) {
+          positionStyles = {
+            bottom: '14px',
           left: `${
             piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           }px`,
-        };
+          };
+        } else {
+          positionStyles = {
+            bottom: '10px',
+            left: `${
+              piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            }px`,
+          };
+        }
       } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
         transform = `rotate(270deg) translateX(100%) translateY(calc(100% - 12px))`;
         positionStyles = {
