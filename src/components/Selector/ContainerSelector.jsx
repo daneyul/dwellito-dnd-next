@@ -1,7 +1,7 @@
 
 import style from './selector.module.scss';
 import { useContext } from 'react';
-import { COMPONENT_TYPES, SUPPLIER_NAMES } from '@/utils/constants/names/names';
+import { COMPONENT_TYPES, SUPPLIER_NAMES, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { componentData } from '@/utils/constants/componentData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import AddOption from '../AddOption/Container/AddOption';
@@ -82,7 +82,7 @@ const ContainerSelector = () => {
 
   const RollupSection = () => (
     <>
-      {supplier !== SUPPLIER_NAMES.CUSTOM_CUBES && rollUpDoors.length > 0 && (
+      {supplier !== SUPPLIER_SLUGS.CUSTOM_CUBES && rollUpDoors.length > 0 && (
         <>
           <div className={style.subTitle}>Roll Up Doors</div>
           <div className={style.objectContainer}>
@@ -90,7 +90,7 @@ const ContainerSelector = () => {
           </div>
         </>
       )}
-      {supplier === SUPPLIER_NAMES.CUSTOM_CUBES && economyDoors.length > 0 && (
+      {supplier === SUPPLIER_SLUGS.CUSTOM_CUBES && economyDoors.length > 0 && (
         <>
           <div className={style.subTitle}>Economy Roll Up Doors</div>
           <div className={style.objectContainer}>
@@ -98,7 +98,7 @@ const ContainerSelector = () => {
           </div>
         </>
       )}
-      {supplier === SUPPLIER_NAMES.CUSTOM_CUBES && heavyDutyDoors.length > 0 && (
+      {supplier === SUPPLIER_SLUGS.CUSTOM_CUBES && heavyDutyDoors.length > 0 && (
         <>
           <div className={style.subTitle}>Heavy Duty Roll Up Doors</div>
           <div className={style.objectContainer}>
