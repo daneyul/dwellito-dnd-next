@@ -244,13 +244,16 @@ const useDragHandlers = ({
         isTooClose: false,
       }));
   
-      // Check for collisions and closeness
       updatedPieces.forEach((piece, index) => {
         if (piece.id !== draggedId) {
           const draggedPiece = updatedPieces.find(({ id }) => id === draggedId);
           if (!draggedPiece) return;
   
-          if (piece.objType !== COMPONENT_TYPES.PARTITION) {
+          // Disable collision if one of the pieces is a partition
+          if (
+            piece.objType !== COMPONENT_TYPES.PARTITION &&
+            draggedPiece.objType !== COMPONENT_TYPES.PARTITION
+          ) {
             if (
               checkCloseness(
                 draggedPiece,
@@ -289,6 +292,7 @@ const useDragHandlers = ({
       // Set collision and closeness states
       const collisionDetected = updatedPieces.some((piece) => piece.isColliding);
       const closenessDetected = updatedPieces.some((piece) => piece.isTooClose);
+      console.log(collisionDetected)
       setHasCollisions(collisionDetected);
       setIsTooClose(closenessDetected);
     }

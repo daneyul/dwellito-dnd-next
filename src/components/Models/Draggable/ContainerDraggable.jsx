@@ -7,7 +7,11 @@ import React, {
   useState,
 } from 'react';
 import { useDndContext, useDraggable, useDroppable } from '@dnd-kit/core';
-import { toScale, generateImgSrc, calculateContainerComponentCSSPos } from '../../../utils/2D/containers/utils';
+import {
+  toScale,
+  generateImgSrc,
+  calculateContainerComponentCSSPos,
+} from '../../../utils/2D/containers/utils';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
@@ -59,7 +63,7 @@ const ContainerDraggable = ({
   onHover,
   onLeave,
   setShowCollision,
-  selectedComponent
+  selectedComponent,
 }) => {
   const {
     scaleFactor,
@@ -91,9 +95,15 @@ const ContainerDraggable = ({
     DROPPABLE_PARTITIONS,
   ];
 
+  const excludedObjects = [COMPONENT_TYPES.PARTITION];
+
   // Filter out the droppable element from collisions
   const filteredCollisions = collisions?.filter(
-    (collision) => !excludedDroppables.includes(collision.id)
+    (collision) =>
+      !excludedDroppables.includes(collision.id) &&
+      !excludedObjects.includes(
+        collision.data.droppableContainer.data.current.objType
+      )
   );
 
   useEffect(() => {
@@ -134,9 +144,7 @@ const ContainerDraggable = ({
   const imgSrc = useMemo(() => {
     if (piece.objType === COMPONENT_TYPES.ELECTRICAL) {
       if (isFloorPlanView) {
-        if (
-          piece.isWrapLight || piece.isCanLight
-        ) {
+        if (piece.isWrapLight || piece.isCanLight) {
           if (slug === CONTAINER_SIZE_10) {
             return piece.floorPlanImg.TEN;
           } else if (slug === CONTAINER_SIZE_20) {
@@ -198,9 +206,7 @@ const ContainerDraggable = ({
     ) {
       return toScale(piece.objThickness, scaleFactor);
     } else {
-      if (
-        piece.isWrapLight || piece.isCanLight
-      ) {
+      if (piece.isWrapLight || piece.isCanLight) {
         if (slug === CONTAINER_SIZE_10) {
           return toScale(piece.objWidth.TEN, scaleFactor);
         } else if (slug === CONTAINER_SIZE_20) {

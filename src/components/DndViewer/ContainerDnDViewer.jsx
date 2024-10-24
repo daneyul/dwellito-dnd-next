@@ -87,14 +87,11 @@ const ContainerDnDViewer = () => {
 
   // Delay showing the Collision component when there are collisions
   useEffect(() => {
-    let timer;
     if (hasCollisions) {
-      timer = setTimeout(() => setShowCollision(true), 500);
+      setShowCollision(true)
     } else {
       setShowCollision(false);
     }
-
-    return () => clearTimeout(timer);
   }, [hasCollisions]);
 
   useEffect(() => {
