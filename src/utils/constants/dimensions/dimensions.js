@@ -17,6 +17,9 @@ export const DIMENSIONS = {
   CONTAINER_BOUNDARIES: {
     x: 17,
   },
+  CONTAINER_BACK_BOUNDARIES: {
+    x: 9
+  },
   SHED_BOUNDARIES: {
     x: 24,
   },
