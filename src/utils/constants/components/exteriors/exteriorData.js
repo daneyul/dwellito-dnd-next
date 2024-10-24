@@ -53,6 +53,14 @@ const customCubes = [
 
 const atAndS = [
   {
+    name: EXTERIORS.STOCK,
+    glbObject: 'envirogreen',
+    hex: '#74A2BB',
+    fileName: 'blue',
+    img: 'stock.png',
+    price: 0,
+  },
+  {
     name: EXTERIORS.BEIGE,
     glbObject: 'beige',
     hex: '#99A2A4',
@@ -74,6 +82,22 @@ const atAndS = [
     hex: '#99A2A4',
     fileName: 'lightgrey',
     img: 'lightgrey.png',
+    price: 0,
+  },
+  {
+    name: EXTERIORS.BLUE,
+    glbObject: 'blue',
+    hex: '#74A2BB',
+    fileName: 'blue',
+    img: 'blue.png',
+    price: 0,
+  },
+  {
+    name: EXTERIORS.GREEN,
+    glbObject: 'Generatorgreen',
+    hex: '#9CB8A0',
+    fileName: 'blue',
+    img: 'green.png',
     price: 0,
   },
   {

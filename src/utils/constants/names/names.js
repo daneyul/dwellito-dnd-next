@@ -4,17 +4,17 @@ export const COMPONENT_TYPES = {
   VENT: 'vent',
   ELECTRICAL: 'electrical',
   PARTITION: 'partition',
-  ROOF: 'roof'
+  ROOF: 'roof',
 };
 
 export const CONFIGURATOR_TYPES = {
   CONTAINER: 'container',
   SHED: 'shed',
-}
+};
 
 export const EXTERIOR = 'exterior';
 export const INTERIOR = 'interior';
-export const INTERIOR_TRIM = 'interior-trim'
+export const INTERIOR_TRIM = 'interior-trim';
 export const FLOORING = 'flooring';
 
 const CUSTOM_CUBE_COMPONENTS = {
@@ -65,7 +65,7 @@ const CUSTOM_CUBE_COMPONENTS = {
   WRAP_LIGHT: `4ft LED Wrap Light`,
   PARTITION_ST: 'Partition wall with no interior door - ST',
   PARTITION_HC: 'Partition wall with no interior door - HC',
-  PARTITION_DOOR: 'Partition wall with interior door'
+  PARTITION_DOOR: 'Partition wall with interior door',
 };
 
 const AT_AND_S_COMPONENTS = {
@@ -74,10 +74,11 @@ const AT_AND_S_COMPONENTS = {
   GLASS_GARAGE_DOOR: `Glass Garage Door 10'`,
   ROLLUP_DOOR_7: `Roll Up Door (White) 7x7'`,
   ROLLUP_DOOR_8: `Roll Up Door (White) 8x8'`,
-  HORIZONTAL_SLIDER_WINDOW_46_27: "Horizontal Slider Window 46x27",
-  HORIZONTAL_SLIDER_WINDOW_SECURITY_46_27: "Horizontal Slider Window w/ Security 46x27",
-  VERTICAL_SLIDER_WINDOW_46_27: "Vertical Slider Window 46x27",
-  HORIZONTAL_SLIDER_WINDOW_47_12: "Horizontal Slider Window 47x12",
+  HORIZONTAL_SLIDER_WINDOW_46_27: 'Horizontal Slider Window 46x27',
+  HORIZONTAL_SLIDER_WINDOW_SECURITY_46_27:
+    'Horizontal Slider Window w/ Security 46x27',
+  VERTICAL_SLIDER_WINDOW_46_27: 'Vertical Slider Window 46x27',
+  HORIZONTAL_SLIDER_WINDOW_47_12: 'Horizontal Slider Window 47x12',
   LOUVER_VENT: 'Louver Vent 15x15',
   ALUMINUM_EXHAUST_SHUTTER: 'Aluminum Exhaust Shutter 36x36',
   WHITE_STRIP_LIGHT_FIXTURE: `T8 LED White Strip Light Fixtures`,
@@ -88,7 +89,7 @@ const AT_AND_S_COMPONENTS = {
   ADJUSTABLE_SWIVEL_FLOOD_LIGHT: `Adjustable Swivel Flood Light`,
   SECURITY_FLOOD_LIGHT: 'Security Flood Light',
   BUTYL_TAPE: 'Butyl Tape - Gray',
-}
+};
 
 export const COMPACT_COTTAGES_COMPONENTS = {
   SLANT_ROOF: 'Slant Roof',
@@ -102,13 +103,13 @@ export const COMPACT_COTTAGES_COMPONENTS = {
   WINDOW_48_48: '48x48 Window',
   WINDOW_48_60: '48x60 Window',
   WINDOW_60_48: '60x48 Window',
-}
+};
 
 export const COMPONENT_NAMES = {
   ...CUSTOM_CUBE_COMPONENTS,
   ...AT_AND_S_COMPONENTS,
-  ...COMPACT_COTTAGES_COMPONENTS
-}
+  ...COMPACT_COTTAGES_COMPONENTS,
+};
 
 export const ELEVATION_NAMES = {
   FRONT: 'Front',
@@ -124,9 +125,9 @@ export const CONTAINER_HIGH = 'high';
 export const CONTAINER_SIZE_10 = '10';
 export const CONTAINER_SIZE_20 = '20';
 export const CONTAINER_SIZE_40 = '40';
-export const CONTAINER_SIZE_STR_10 = "TEN";
-export const CONTAINER_SIZE_STR_20 = "TWENTY";
-export const CONTAINER_SIZE_STR_40 = "FORTY";
+export const CONTAINER_SIZE_STR_10 = 'TEN';
+export const CONTAINER_SIZE_STR_20 = 'TWENTY';
+export const CONTAINER_SIZE_STR_40 = 'FORTY';
 
 export const ONE_STORY = 'one-story';
 
@@ -135,7 +136,7 @@ export const SHED_ONE_STORY_12x24 = 'one-story-12x24';
 export const SHED_12x24 = '12x24';
 
 export const INTERIOR_FINISH_NAMES = {
-  NONE: "None",
+  NONE: 'None',
   PLYWOOD:
     '½” Cabinet Grade Plywood, Steel Stud Framing, ½” Spray Foam + R12 Batts insulation',
   DRYWALL:
@@ -143,15 +144,15 @@ export const INTERIOR_FINISH_NAMES = {
   SPRAY_FOAM_CEILING: '1” Spray Foam (Ceiling Only)',
   SPRAY_FOAM_CEILING_WALLS: '1” Spray Foam (Ceiling & Walls)',
   WHITE_SHIPLAP: 'White Shiplap',
-  LUAN_WALL: 'Luan Wall Panels'
+  LUAN_WALL: 'Luan Wall Panels',
 };
 
-export const INTERIOR_TRIM_NAMES= {
-  NONE: "None",
+export const INTERIOR_TRIM_NAMES = {
+  NONE: 'None',
   BATTEN_ADOBE_WHITE: `Batten - Adobe White 1x96"`,
   LUAN_BATTEN_OAK: `Luan Batten - Oak 1-½"x8'`,
   LUAN_BATTEN_WHITE: `Luan Batten - White 1-½"x8'`,
-}
+};
 
 export const DROPPABLE_LEFT = 'droppable-left';
 export const DROPPABLE_RIGHT = 'droppable-right';
@@ -165,13 +166,13 @@ export const SUPPLIER_SLUGS = {
   CUSTOM_CUBES: 'custom-cubes',
   AT_AND_S: 'at-and-s',
   COMPACT_COTTAGES: 'compact-cottages',
-}
+};
 
 export const SUPPLIER_NAMES = {
   CUSTOM_CUBES: 'Custom Cubes',
   AT_AND_S: 'AT&S',
   COMPACT_COTTAGES: 'Compact Cottages',
-}
+};
 
 export const EXTERIORS = {
   BEIGE: 'Beige',
@@ -185,7 +186,8 @@ export const EXTERIORS = {
   LIGHT_GREY: 'Light Grey',
   GREY: 'Grey',
   BLACK: 'Black',
-}
+  STOCK: 'Stock',
+};
 
 export const findSupplierName = (supplierSlug) => {
   switch (supplierSlug) {
@@ -198,4 +200,4 @@ export const findSupplierName = (supplierSlug) => {
     default:
       return '';
   }
-}
+};

@@ -42,11 +42,23 @@ export const useExteriorGLTFModels = (supplier) => {
     const { materials: beige } = useGLTF(
       `/models/${supplier}/materials/exterior/beige.glb`
     );
+    const { materials: blue } = useGLTF(
+      `/models/${supplier}/materials/exterior/blue.glb`
+    );
+    const { materials: green } = useGLTF(
+      `/models/${supplier}/materials/exterior/green.glb`
+    );
+    const { materials: stock } = useGLTF(
+      `/models/${supplier}/materials/exterior/stock.glb`
+    );
     return {
       safRed,
       white,
       lightGrey,
       beige,
+      blue,
+      green,
+      stock,
     };
   }
 };
@@ -79,6 +91,13 @@ export const getExteriorPaint = (supplier, exteriorFinish, paint) => {
         return paint.lightGrey?.[exteriorFinish.glbObject];
       case 'Beige':
         return paint.beige?.[exteriorFinish.glbObject];
+      case 'Blue':
+        return paint.blue?.[exteriorFinish.glbObject];
+      case 'Green':
+        console.log(paint);
+        return paint.green?.[exteriorFinish.glbObject];
+      case 'Stock':
+        return paint.stock?.[exteriorFinish.glbObject];
       default:
         return null;
     }
