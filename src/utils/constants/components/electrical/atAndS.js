@@ -16,6 +16,7 @@ export const atAndS = [
     sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/sidebar/swivel-floodlight.jpg`,
     sideImg: `${COMPONENT_TYPES.ELECTRICAL}/side-view/swivel-floodlight.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/swivel-floodlight.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/left/swivel-floodlight.svg`,
     desc: '',
     objWidth: 6,
     objHeight: 13,
@@ -24,6 +25,7 @@ export const atAndS = [
     price: 0,
     model: 'swivel-floodlight',
     fixed: false,
+    isExteriorLight: true,
   },
   {
     name: COMPONENT_NAMES.AIR_CONDITIONER,
@@ -36,6 +38,7 @@ export const atAndS = [
     sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/sidebar/ac.webp`,
     sideImg: `${COMPONENT_TYPES.ELECTRICAL}/side-view/ac.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/ac.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/left/ac.svg`,
     desc: '',
     objWidth: 26,
     objHeight: 16,
@@ -109,6 +112,7 @@ export const atAndS = [
     frontImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/emergency-light.svg`,
     sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/sidebar/emergency-light.webp`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/emergency-light.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/left/emergency-light.svg`,
     desc: '',
     objWidth: 16,
     objHeight: 23,
@@ -117,6 +121,7 @@ export const atAndS = [
     price: 0,
     model: 'emergency-light',
     fixed: false,
+    isExteriorLight: true,
   },
   {
     name: COMPONENT_NAMES.SECURITY_FLOOD_LIGHT,
@@ -128,6 +133,7 @@ export const atAndS = [
     frontImg: `${COMPONENT_TYPES.ELECTRICAL}/front-view/security-floodlight.svg`,
     sideImg: `${COMPONENT_TYPES.ELECTRICAL}/side-view/security-floodlight.svg`,
     floorPlanImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/security-floodlight.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.ELECTRICAL}/floor-plan/left/security-floodlight.svg`,
     sidebarImg: `${COMPONENT_TYPES.ELECTRICAL}/sidebar/security-floodlight.jpg`,
     desc: '',
     objWidth: 9,
@@ -137,5 +143,6 @@ export const atAndS = [
     price: 0,
     model: 'security-floodlight',
     fixed: false,
+    isExteriorLight: true,
   }
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));

@@ -72,6 +72,7 @@ const ContainerDraggable = ({
     supplier,
     selectedElevation,
     isFloorPlanView,
+    selectedContainer
   } = useContext(ContainerDataContext);
 
   const {
@@ -107,7 +108,7 @@ const ContainerDraggable = ({
   );
 
   useEffect(() => {
-    if (filteredCollisions?.length > 1) {
+    if (filteredCollisions?.length > 1 && !isFloorPlanView) {
       setShowCollision(true);
     } else {
       setShowCollision(false);
@@ -152,6 +153,8 @@ const ContainerDraggable = ({
           } else if (slug === CONTAINER_SIZE_40) {
             return piece.floorPlanImg.FORTY;
           }
+        } else if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
+          return piece.floorPlanLeftImg;
         } else {
           return piece.floorPlanImg;
         }
@@ -232,6 +235,8 @@ const ContainerDraggable = ({
     scaleFactor,
     adjForContainerHeight,
     selectedElevation,
+    supplier,
+    selectedContainer
   });
 
   const isRight = piece.elevation[0].name === ELEVATION_NAMES.RIGHT;

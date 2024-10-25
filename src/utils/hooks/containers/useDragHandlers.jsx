@@ -86,22 +86,26 @@ const useDragHandlers = ({
         if (isDoor) {
           setModifiers([
             ...defaultModifiers,
-            restrictToVerticalAxis,
-            snapToIncrement({ increment: 10.9, scaleFactor }),
+            ...fixedModifiers,
           ]);
         } else if (isWindow) {
           setModifiers([
             ...defaultModifiers,
-            restrictToVerticalAxis,
-            snapToIncrement({ increment: 5.45, scaleFactor }),
+            ...fixedModifiers,
           ]);
         } else {
-          setModifiers([...defaultModifiers, restrictToVerticalAxis]);
+          setModifiers([...defaultModifiers]);
         }
       } else if (isPartition) {
         setModifiers([...defaultModifiers, restrictToHorizontalAxis]);
       } else {
         setModifiers([]);
+      }
+    } else if (isOnElevationBack) {
+      if (isDoor || isWindow) {
+        setModifiers([
+          ...fixedModifiers
+        ])
       }
     } else if (isDoor) {
       setModifiers([
@@ -283,7 +287,6 @@ const useDragHandlers = ({
       // Set collision and closeness states
       const collisionDetected = updatedPieces.some((piece) => piece.isColliding);
       const closenessDetected = updatedPieces.some((piece) => piece.isTooClose);
-      console.log(collisionDetected)
       setHasCollisions(collisionDetected);
       setIsTooClose(closenessDetected);
     }

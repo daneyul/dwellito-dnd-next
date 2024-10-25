@@ -18,6 +18,7 @@ export const customCubes = [
     price: 1895,
     model: 'SM_Window 48x36_Hinged_Security_01',
     floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/window-security.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/left/window-security.svg`,
   },
   {
     name: COMPONENT_NAMES.WINDOW,
@@ -35,5 +36,6 @@ export const customCubes = [
     price: 1190,
     model: 'SM_Window_48x36_01_No_Security',
     floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/window.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/left/window.svg`,
   },
 ].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.CUSTOM_CUBES }));

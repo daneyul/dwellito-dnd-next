@@ -18,6 +18,7 @@ export const atAndS = [
     price: 0,
     model: 'horizontal-slider-46x27',
     floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/horizontal-slider-46x27.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/left/horizontal-slider-46x27.svg`,
   },
   {
     name: COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW_SECURITY_46_27,
@@ -35,6 +36,7 @@ export const atAndS = [
     price: 0,
     model: 'horizontal-slider-security-46x27',
     floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/horizontal-slider-security-46x27.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/left/horizontal-slider-security-46x27.svg`,
   },
   {
     name: COMPONENT_NAMES.VERTICAL_SLIDER_WINDOW_46_27,
@@ -52,6 +54,7 @@ export const atAndS = [
     price: 0,
     model: 'vertical-slider-46x27',
     floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/vertical-slider-46x27.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/left/vertical-slider-46x27.svg`,
   },
   {
     name: COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW_47_12,
@@ -69,5 +72,6 @@ export const atAndS = [
     price: 0,
     model: 'horizontal-slider-47x12',
     floorPlanImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/horizontal-slider-47x12.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.WINDOW}/floor-plan/left/horizontal-slider-47x12.svg`,
   },
 ].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));

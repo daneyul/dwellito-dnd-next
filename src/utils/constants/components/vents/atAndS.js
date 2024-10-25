@@ -18,6 +18,7 @@ export const atAndS = [
     price: 0,
     model: 'louver-vent',
     floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/louver-vent.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.VENT}/floor-plan/left/louver-vent.svg`,
   },
   {
     name: COMPONENT_NAMES.ALUMINUM_EXHAUST_SHUTTER,
@@ -35,5 +36,6 @@ export const atAndS = [
     price: 0,
     model: 'exhaust-shutter',
     floorPlanImg: `${COMPONENT_TYPES.VENT}/floor-plan/exhaust-shutter.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.VENT}/floor-plan/left/exhaust-shutter.svg`,
   }
 ].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));

@@ -1,0 +1,26 @@
+<svg width="25" height="3" viewBox="0 0 25 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1665_5892)">
+<path d="M24.05 2.25L22.05 2.25L21.7 1.9L2.29999 1.9L1.99999 2.2L0.0499878 2.2L0.0499876 0.250002L24.05 0.25L24.05 2.25Z" fill="white"/>
+<path d="M1.04999 0.170044L1.04999 0.0500441" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1.04999 0.0500508L23.05 0.0500488" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23.05 0.0500441L23.05 0.170044" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23.05 0.170044L1.04999 0.170046" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.29999 1.80005L2.29999 0.170049" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.29999 0.170046L21.8 0.170044" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.8 0.170049L21.8 1.80005" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.8 1.80005L2.29999 1.80005" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.05 2.25L22.05 2.25" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22.05 2.25L22.05 0.25" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22.05 0.25L24.05 0.25" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.05 0.25L24.05 2.25" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.04999 2.25L0.0499878 2.25" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0.0499878 2.25L0.0499876 0.25" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0.0499878 0.25L2.04999 0.25" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.04999 0.25L2.04999 2.25" stroke="black" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_1665_5892">
+<rect width="24.1" height="2.3" fill="white" transform="translate(24.1 2.30005) rotate(180)"/>
+</clipPath>
+</defs>
+</svg>

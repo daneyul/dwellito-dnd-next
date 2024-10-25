@@ -19,6 +19,7 @@ export const atAndS = [
     isRollUp: false,
     isHeavyDuty: false,
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/steel-door.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/steel-door.svg`,
   },
   {
     name: COMPONENT_NAMES.VISION_LITE,
@@ -37,6 +38,7 @@ export const atAndS = [
     isRollUp: false,
     isHeavyDuty: false,
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/vision-lite.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/vision-lite.svg`,
   },
   {
     name: COMPONENT_NAMES.ROLLUP_DOOR_7,
@@ -53,7 +55,8 @@ export const atAndS = [
     price: 0,
     model: 'rollup-door-7',
     isRollUp: true,
-    isHeavyDuty: false
+    isHeavyDuty: false,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-7.svg`,
   },
   {
     name: COMPONENT_NAMES.ROLLUP_DOOR_8,
@@ -71,7 +74,9 @@ export const atAndS = [
     model: 'rollup-door-8',
     isRollUp: true,
     isHeavyDuty: false,
-    highContainerOnly: true
+    highContainerOnly: true,
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-8.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-8.svg`,
   },
   {
     name: COMPONENT_NAMES.GLASS_GARAGE_DOOR,
@@ -89,6 +94,8 @@ export const atAndS = [
     model: 'glass-garage',
     isRollUp: true,
     isHeavyDuty: false,
-    highContainerOnly: true
+    highContainerOnly: true,
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/glass-garage.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/glass-garage.svg`,
   },
 ].map(item => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));

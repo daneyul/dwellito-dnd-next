@@ -89,11 +89,9 @@ export const checkDistance = ({
   const isLeft = selectedElevation.name === ELEVATION_NAMES.LEFT;
 
   // Use the function to get dynamic width
-  const droppableWidthValue = selectedContainer ? droppableWidth(
-    selectedElevation,
-    DIMENSIONS,
-    selectedContainer
-  ) : 0;
+  const droppableWidthValue = selectedContainer
+    ? droppableWidth(selectedElevation, DIMENSIONS, selectedContainer)
+    : 0;
 
   const boundaries = () => {
     if (isFloorPlanView) {
@@ -146,7 +144,9 @@ export const handleAddComponent = ({
     const roofVentObjData = ventComponents.find(
       (component) => component.name === COMPONENT_NAMES.ROOF_VENT
     );
-    const isCottageDoor = item.objType === COMPONENT_TYPES.DOOR && supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES;
+    const isCottageDoor =
+      item.objType === COMPONENT_TYPES.DOOR &&
+      supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES;
 
     const roofVent = {
       ...roofVentObjData,
@@ -204,11 +204,20 @@ export const getUniqueElevationObjects = (selectedComponents) => {
 
 export const DROPPABLE_FLOOR_PLAN_WIDTH = (DIMENSIONS, selectedContainer) => {
   if (selectedContainer.slug === CONTAINER_SIZE_10) {
-    return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2;
+    return (
+      DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH -
+      DIMENSIONS.CONTAINER_BOUNDARIES.x * 2
+    );
   } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
-    return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2;
+    return (
+      DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH -
+      DIMENSIONS.CONTAINER_BOUNDARIES.x * 2
+    );
   } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
-    return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2;
+    return (
+      DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH -
+      DIMENSIONS.CONTAINER_BOUNDARIES.x * 2
+    );
   }
 };
 
@@ -217,11 +226,20 @@ export const DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES = (
   selectedContainer
 ) => {
   if (selectedContainer.slug === CONTAINER_SIZE_10) {
-    return DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2;
+    return (
+      DIMENSIONS.CONTAINER.TEN.SIDE.WIDTH -
+      DIMENSIONS.CONTAINER_BOUNDARIES.x * 2
+    );
   } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
-    return DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2;
+    return (
+      DIMENSIONS.CONTAINER.TWENTY.SIDE.WIDTH -
+      DIMENSIONS.CONTAINER_BOUNDARIES.x * 2
+    );
   } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
-    return DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH - DIMENSIONS.CONTAINER_BOUNDARIES.x * 2;
+    return (
+      DIMENSIONS.CONTAINER.FORTY.SIDE.WIDTH -
+      DIMENSIONS.CONTAINER_BOUNDARIES.x * 2
+    );
   }
 };
 export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (
@@ -229,14 +247,19 @@ export const DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES = (
   selectedContainer
 ) => {
   if (selectedContainer.slug === CONTAINER_SIZE_10) {
-    return DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH - DIMENSIONS.CONTAINER_BACK_BOUNDARIES.x * 2.7;
+    return (
+      DIMENSIONS.CONTAINER.TEN.FRONT.WIDTH -
+      DIMENSIONS.CONTAINER_BACK_BOUNDARIES.x * 2.7
+    );
   } else if (selectedContainer.slug === CONTAINER_SIZE_20) {
     return (
-      DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH - DIMENSIONS.CONTAINER_BACK_BOUNDARIES.x * 2.7
+      DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH -
+      DIMENSIONS.CONTAINER_BACK_BOUNDARIES.x * 2.7
     );
   } else if (selectedContainer.slug === CONTAINER_SIZE_40) {
     return (
-      DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - DIMENSIONS.CONTAINER_BACK_BOUNDARIES.x * 2.7
+      DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH -
+      DIMENSIONS.CONTAINER_BACK_BOUNDARIES.x * 2.7
     );
   }
 };
@@ -375,6 +398,8 @@ export const calculateContainerComponentCSSPos = ({
   scaleFactor,
   adjForContainerHeight,
   selectedElevation,
+  supplier,
+  selectedContainer,
 }) => {
   let transform = '';
   let positionStyles = {};
@@ -386,14 +411,16 @@ export const calculateContainerComponentCSSPos = ({
         positionStyles = {
           bottom: '0',
           right: `${adjForContainerHeight(
-            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           )}px`,
         };
       } else if (piece.fixedSide === ELEVATION_NAMES.BACK) {
         transform = 'translateX(50%)';
         positionStyles = {
           bottom: `${adjForContainerHeight(
-            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           )}px`,
           right: '0',
         };
@@ -401,7 +428,8 @@ export const calculateContainerComponentCSSPos = ({
         transform = 'translateY(-50%)';
         positionStyles = {
           left: `${
-            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            piece.position.x +
+            toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           }px`,
           top: '50%',
         };
@@ -420,67 +448,155 @@ export const calculateContainerComponentCSSPos = ({
         };
       } else if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
         transform = 'translateY(-100%)';
-        if (piece.name === COMPONENT_NAMES.WINDOW || piece.name === COMPONENT_NAMES.WINDOW_SECURITY) {
-          positionStyles = {
-          left: `${
-            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
-          }px`,
-            top: '14px'
-          };
-        } else if (piece.isRollUp) {
+        if (
+          piece.name === COMPONENT_NAMES.WINDOW ||
+          piece.name === COMPONENT_NAMES.WINDOW_SECURITY
+        ) {
           positionStyles = {
             left: `${
-              piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+              piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            }px`,
+            top: '16px',
+          };
+        } else if (piece.isRollUp && supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
+          positionStyles = {
+            left: `${
+              piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
             }px`,
             top: '50px',
+          };
+        } else if (piece.isRollUp && supplier === SUPPLIER_SLUGS.AT_AND_S) {
+          positionStyles = {
+            left: `${
+              piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            }px`,
+            top: '10px',
+          };
+        } else if (piece.objType === COMPONENT_TYPES.VENT) {
+          if (piece.name === COMPONENT_NAMES.LOUVER_VENT) {
+            positionStyles = {
+              left: `${
+                piece.position.x +
+                toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+              }px`,
+              top: '6px',
+            };
+          } else {
+            positionStyles = {
+              left: `${
+                piece.position.x +
+                toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+              }px`,
+              top: '8px',
+            };
+          }
+        } else if (piece.isExteriorLight) {
+          positionStyles = {
+            left: `${
+              piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            }px`,
+            top: '3px',
           };
         } else {
           positionStyles = {
             left: `${
-              piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+              piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
             }px`,
             top: '10px',
           };
         }
       } else if (piece.elevation[0].name === ELEVATION_NAMES.RIGHT) {
         transform = 'translateY(100%)';
-        if (piece.name === COMPONENT_NAMES.WINDOW || piece.name === COMPONENT_NAMES.WINDOW_SECURITY) {
+        if (
+          piece.name === COMPONENT_NAMES.WINDOW ||
+          piece.name === COMPONENT_NAMES.WINDOW_SECURITY
+        ) {
           positionStyles = {
             bottom: '14px',
-          left: `${
-            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
-          }px`,
+            left: `${
+              piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            }px`,
           };
         } else if (piece.isRollUp) {
           positionStyles = {
             bottom: '48px',
             left: `${
-              piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+              piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            }px`,
+          };
+        } else if (piece.isExteriorLight) {
+          positionStyles = {
+            bottom: '2px',
+            left: `${
+              piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
             }px`,
           };
         } else {
           positionStyles = {
             bottom: '10px',
             left: `${
-              piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+              piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
             }px`,
           };
         }
       } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
-        transform = `rotate(270deg) translateX(100%) translateY(calc(100% - 12px))`;
-        positionStyles = {
-          bottom: `${
-            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
-          }px`,
-          right: `0`,
-          transformOrigin: 'right bottom',
-        };
+        if (piece.isExteriorLight) {
+          transform = `rotate(270deg) translateX(100%) translateY(calc(100% - 12px))`;
+          positionStyles = {
+            bottom: `${
+              piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            }px`,
+            right: `-10px`,
+            transformOrigin: 'right bottom',
+          };
+        } else if (
+          piece.name === COMPONENT_NAMES.WINDOW ||
+          piece.name === COMPONENT_NAMES.WINDOW_SECURITY
+        ) {
+          transform = `rotate(270deg) translateX(50%) translateY(calc(100% - 12px))`;
+          positionStyles = {
+            bottom: `${toScale(DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH / 2, scaleFactor)}px`,
+            right: `2px`,
+            transformOrigin: 'right bottom',
+          };
+        } else if (
+          piece.objType === COMPONENT_TYPES.DOOR ||
+          piece.objType === COMPONENT_TYPES.WINDOW
+        ) {
+          transform = `rotate(270deg) translateX(50%) translateY(calc(100% - 12px))`;
+          positionStyles = {
+            bottom: `${toScale(DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH / 2, scaleFactor)}px`,
+            right: `-4px`,
+            transformOrigin: 'right bottom',
+          };
+        } else {
+          transform = `rotate(270deg) translateX(100%) translateY(calc(100% - 12px))`;
+          positionStyles = {
+            bottom: `${
+              piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            }px`,
+            right: `-4px`,
+            transformOrigin: 'right bottom',
+          };
+        }
       } else if (piece.elevation[0].name === ELEVATION_NAMES.FRONT) {
         transform = 'translateY(100%)';
         positionStyles = {
           bottom: '10px',
           left: `${
-            piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            piece.position.x +
+            toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           }px`,
         };
       }
@@ -522,13 +638,17 @@ export const calculateContainerComponentCSSPos = ({
     } else if (selectedElevation.name === ELEVATION_NAMES.RIGHT) {
       transform = 'translateX(100%)';
       positionStyles = {
-        right: `${4 - toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)}px`,
+        right: `${
+          4 - toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+        }px`,
         top: `${piece.position.y}px`,
       };
     } else if (selectedElevation.name === ELEVATION_NAMES.LEFT) {
       transform = 'translateX(-100%) scaleX(-1)';
       positionStyles = {
-        left: `${3 - toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)}px`,
+        left: `${
+          3 - toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+        }px`,
         top: `${piece.position.y}px`,
       };
     } else {
@@ -543,11 +663,33 @@ export const calculateContainerComponentCSSPos = ({
         right: `${piece.position.x}px`,
         top: `${adjForContainerHeight(piece.position.y)}px`,
       };
-    } else
+    } else if (piece.elevation[0].name === ELEVATION_NAMES.BACK) {
+      if (
+        piece.objType === COMPONENT_TYPES.DOOR ||
+        piece.objType === COMPONENT_TYPES.WINDOW
+      ) {
+        transform = 'translateX(-50%)';
+        positionStyles = {
+          left: `${
+            toScale(DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES(
+              DIMENSIONS,
+              selectedContainer
+            ) / 2, scaleFactor)
+          }px`,
+          top: `${adjForContainerHeight(piece.position.y)}px`,
+        };
+      } else {
+        positionStyles = {
+          left: `${piece.position.x}px`,
+          top: `${adjForContainerHeight(piece.position.y)}px`,
+        };
+      }
+    } else {
       positionStyles = {
         left: `${piece.position.x}px`,
         top: `${adjForContainerHeight(piece.position.y)}px`,
       };
+    }
   }
 
   return {
