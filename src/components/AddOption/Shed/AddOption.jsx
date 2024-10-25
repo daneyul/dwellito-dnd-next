@@ -18,6 +18,7 @@ const AddOption = ({ options }) => {
     mappedElevations,
     floorPlan,
     supplier,
+    setTempSelectedComponents,
   } = useContext(ShedDataContext);
 
   const frontElevation = mappedElevations.find(
@@ -29,6 +30,7 @@ const AddOption = ({ options }) => {
     handleAddComponent({
       item,
       setSelectedComponents,
+      setTempSelectedComponents,
       selectedElevation,
       floorPlan,
       supplier,

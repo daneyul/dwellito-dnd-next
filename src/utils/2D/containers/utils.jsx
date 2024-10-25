@@ -126,6 +126,7 @@ export const handleAddComponent = ({
   item,
   selectedComponents,
   setSelectedComponents,
+  setTempSelectedComponents,
   selectedElevation,
   floorPlan,
   supplier,
@@ -136,6 +137,11 @@ export const handleAddComponent = ({
   ) {
     setSelectedComponents((prevSelectedComponents) =>
       prevSelectedComponents.filter((component) => component.name !== item.name)
+    );
+    setTempSelectedComponents((prevTempSelectedComponents) =>
+      prevTempSelectedComponents.filter(
+        (component) => component.name !== item.name
+      )
     );
   } else {
     const newItem = {
@@ -180,6 +186,29 @@ export const handleAddComponent = ({
         return [...filteredComponents, newItem];
       } else {
         return [...prevSelectedComponents, newItem];
+      }
+    });
+    setTempSelectedComponents((prevTempSelectedComponents) => {
+      if (isRoof) {
+        // Remove any existing roof items and add the new roof
+        const filteredComponents = prevTempSelectedComponents.filter(
+          (component) => component.objType !== COMPONENT_TYPES.ROOF
+        );
+        return [...filteredComponents, item];
+      } else if (isRoofVent) {
+        // Remove any existing roof vent items and add the new roof vent
+        const filteredComponents = prevTempSelectedComponents.filter(
+          (component) => component.name !== COMPONENT_NAMES.ROOF_VENT
+        );
+        return [...filteredComponents, roofVent];
+      } else if (isCottageDoor) {
+        // Remove any existing door items and add the new door
+        const filteredComponents = prevTempSelectedComponents.filter(
+          (component) => component.objType !== COMPONENT_TYPES.DOOR
+        );
+        return [...filteredComponents, newItem];
+      } else {
+        return [...prevTempSelectedComponents, newItem];
       }
     });
   }

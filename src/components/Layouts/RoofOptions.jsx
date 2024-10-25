@@ -31,6 +31,7 @@ const RoofOptions = () => {
     setSelectedComponents,
     selectedShed,
     floorPlan,
+    setTempSelectedComponents,
   } = useContext(ShedDataContext);
 
   const roofs = componentData.filter(
@@ -59,6 +60,7 @@ const RoofOptions = () => {
               handleAddComponent({
                 item: roof,
                 setSelectedComponents,
+                setTempSelectedComponents,
                 selectedElevation,
                 floorPlan,
               })

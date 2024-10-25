@@ -23,6 +23,8 @@ const ContainerDnDViewer = () => {
     showOutsideDroppableWarning,
     selectedComponents,
     setSelectedComponents,
+    tempSelectedComponents,
+    setTempSelectedComponents,
     draggableRefs,
     show3d,
     selectedElevation,
@@ -55,6 +57,7 @@ const ContainerDnDViewer = () => {
   } = useDragHandlers({
     selectedComponents,
     setSelectedComponents,
+    setTempSelectedComponents,
     snapToGridModifier: createSnapModifier(DIMENSIONS.GRID_SIZE),
     selectedElevation,
     scaleFactor,

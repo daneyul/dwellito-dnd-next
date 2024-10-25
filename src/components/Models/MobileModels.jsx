@@ -42,6 +42,7 @@ export function MobileModels() {
     mappedElevations,
     floorPlan,
     setSelectedComponents,
+    setTempSelectedComponents,
     selectedContainer,
     containerHeightIsStandard,
   } = useContext(ContainerDataContext);
@@ -90,6 +91,7 @@ export function MobileModels() {
       handleAddComponent({
         item: door,
         setSelectedComponents,
+        setTempSelectedComponents,
         selectedElevation: rightElevation,
         floorPlan,
       });
@@ -97,12 +99,14 @@ export function MobileModels() {
       handleAddComponent({
         item: door,
         setSelectedComponents,
+        setTempSelectedComponents,
         selectedElevation: rightElevation,
         floorPlan,
       });
       handleAddComponent({
         item: modifiedWindow,
         setSelectedComponents,
+        setTempSelectedComponents,
         selectedElevation: rightElevation,
         floorPlan,
       });

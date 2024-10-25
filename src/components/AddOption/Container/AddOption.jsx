@@ -15,7 +15,8 @@ const AddOption = ({ options }) => {
     setSelectedElevation,
     mappedElevations,
     floorPlan,
-    supplier
+    supplier,
+    setTempSelectedComponents,
   } = useContext(ContainerDataContext);
 
   const rightElevation = mappedElevations.find(
@@ -32,6 +33,7 @@ const AddOption = ({ options }) => {
       handleAddComponent({
         item,
         setSelectedComponents,
+        setTempSelectedComponents,
         selectedElevation: rightElevation,
         floorPlan
       });
@@ -39,6 +41,7 @@ const AddOption = ({ options }) => {
       handleAddComponent({
         item,
         setSelectedComponents,
+        setTempSelectedComponents,
         selectedElevation,
         floorPlan
       });

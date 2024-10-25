@@ -18,7 +18,7 @@ const GenericContainerDoor = ({
   isHrDoor,
 }) => {
   const { nodes, materials } = useGLTF(modelPath);
-  const { selectedComponents, selectedContainer, scaleFactor } =
+  const { selectedComponents, selectedContainer, scaleFactor, show3d } =
     useContext(ContainerDataContext);
   const selectedElevation = component.elevation[0];
   const [width, setWidth] = useState(0);
@@ -56,7 +56,7 @@ const GenericContainerDoor = ({
       setWidth(adjustedWidth);
       onBoundingBoxChange({ size, center, selectedElevation });
     }
-  }, [selectedComponents, isHrDoor, selectedElevation.name, ref.current]);
+  }, [selectedComponents, isHrDoor, selectedElevation.name, ref.current, show3d]);
 
   useEffect(() => {
     if (materials.Glass) {

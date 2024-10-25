@@ -24,6 +24,7 @@ const AddPartition = ({ options }) => {
     interiorIsPlywood,
     interiorIsSprayFoamCeiling,
     interiorIsSprayFoamCeilingWalls,
+    setTempSelectedComponents,
   } = useContext(ContainerDataContext);
 
   
@@ -36,6 +37,7 @@ const AddPartition = ({ options }) => {
       item,
       selectedComponents,
       setSelectedComponents,
+      setTempSelectedComponents,
       selectedElevation: mappedElevations[3],
       floorPlan,
     });

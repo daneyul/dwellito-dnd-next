@@ -27,7 +27,6 @@ import ContainerShell20High from './Containers/20/ContainerShell20High';
 import ContainerShell40High from './Containers/40/ContainerShell40High';
 import { useBoundingBoxes } from '@/utils/hooks/containers/useBoundingBoxes';
 import { useExteriorGLTFModels } from '@/utils/hooks/containers/useGLTFModels';
-import { containerData } from '@/utils/constants/components/containers/containerData';
 import {
   EXTERIOR_CAM_POS,
   INTERIOR_CAM_POS,
@@ -38,7 +37,7 @@ import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
 export function ContainerModels() {
   const {
-    selectedComponents,
+    tempSelectedComponents,
     showExterior,
     selectedContainer,
     setThreeDModelLoaded,
@@ -55,26 +54,14 @@ export function ContainerModels() {
     setThreeDModelLoaded(progress === 100);
   }, [progress, setThreeDModelLoaded]);
 
-  const doors = useMemo(
-    () =>
-      selectedComponents.filter(
-        (comp) => comp.objType === COMPONENT_TYPES.DOOR
-      ),
-    [selectedComponents, COMPONENT_TYPES]
+  const doors = tempSelectedComponents.filter(
+    (comp) => comp.objType === COMPONENT_TYPES.DOOR
   );
-  const windows = useMemo(
-    () =>
-      selectedComponents.filter(
-        (component) => component.objType === COMPONENT_TYPES.WINDOW
-      ),
-    [selectedComponents, COMPONENT_TYPES]
+  const windows = tempSelectedComponents.filter(
+    (component) => component.objType === COMPONENT_TYPES.WINDOW
   );
-  const vents = useMemo(
-    () =>
-      selectedComponents.filter(
-        (component) => component.objType === COMPONENT_TYPES.VENT
-      ),
-    [selectedComponents, COMPONENT_TYPES]
+  const vents = tempSelectedComponents.filter(
+    (component) => component.objType === COMPONENT_TYPES.VENT
   );
 
   const exteriorCamPos = () => {
@@ -232,7 +219,7 @@ export function ContainerModels() {
           <Electrical
             supplierSlug={supplier}
             handleExhaustFanBoundingBox={handleExhaustFanBoundingBox}
-            selectedComponents={selectedComponents}
+            selectedComponents={tempSelectedComponents}
           />
           <ContainerShell />
           <CsgGeometries

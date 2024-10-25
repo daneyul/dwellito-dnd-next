@@ -55,7 +55,7 @@ const ContainerDataProvider = ({ children, data }) => {
     querySelections || DEFAULT_COMPONENTS
   );
   const [tempSelectedComponents, setTempSelectedComponents] =
-    useState(selectedComponents);
+    useState(querySelections || DEFAULT_COMPONENTS);
   const [exteriorFinish, setExteriorFinish] = useState(
     queryExterior ||
       EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]

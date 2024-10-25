@@ -9,6 +9,7 @@ const AddElecOption = ({ options }) => {
   const {
     slug,
     setSelectedComponents,
+    setTempSelectedComponents,
     floorPlan,
     setShow3d,
     selectedElevation,
@@ -67,6 +68,7 @@ const AddElecOption = ({ options }) => {
               item,
               selectedComponents,
               setSelectedComponents,
+              setTempSelectedComponents,
               selectedElevation: mappedElevations[3],
               floorPlan,
             });
@@ -74,7 +76,9 @@ const AddElecOption = ({ options }) => {
             setShow3d(false);
             handleAddComponent({
               item,
+              selectedComponents,
               setSelectedComponents,
+              setTempSelectedComponents,
               selectedElevation,
               floorPlan,
             });

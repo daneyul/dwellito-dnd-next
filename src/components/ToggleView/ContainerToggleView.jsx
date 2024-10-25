@@ -13,7 +13,9 @@ const ContainerToggleView = () => {
     threeDModelLoaded,
     mappedElevations,
     isFloorPlanView,
-    setSelectedElevation
+    setSelectedElevation,
+    selectedComponents,
+    setTempSelectedComponents
   } = useContext(ContainerDataContext);
 
   const rightElevation = mappedElevations.find(
@@ -24,8 +26,10 @@ const ContainerToggleView = () => {
     if (isFloorPlanView) {
       setShow3d(true);
       setSelectedElevation(rightElevation);
+      setTempSelectedComponents(selectedComponents);
     } else {
       setShow3d(true);
+      setTempSelectedComponents(selectedComponents);
     }
   };
 
@@ -41,9 +45,7 @@ const ContainerToggleView = () => {
       <button
         className={show3d ? style.viewerSelected : style.viewer}
         onClick={toggle3d}
-        // disabled={!threeDModelLoaded}
         style={{ cursor: 'pointer' }}
-        // style={{ cursor: !threeDModelLoaded ? 'not-allowed' : 'pointer' }}
       >
         <div
           style={{

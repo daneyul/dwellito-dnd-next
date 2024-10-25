@@ -16,6 +16,8 @@ import { COMPONENT_NAMES,
 const useDragHandlers = ({
   selectedComponents,
   setSelectedComponents,
+  tempSelectedComponents,
+  setTempSelectedComponents,
   snapToGridModifier,
   selectedElevation,
   scaleFactor,
@@ -345,6 +347,9 @@ const useDragHandlers = ({
     setSelectedComponents((prevComponents) => {
       // Filter out the selected component
       return prevComponents.filter((component) => component.id !== selectedComponent.id);
+    });
+    setTempSelectedComponents((prevTempSelectedComponents) => {
+      return prevTempSelectedComponents.filter((component) => component.id !== selectedComponent.id);
     });
   
     // Clear the local selectedComponent state
