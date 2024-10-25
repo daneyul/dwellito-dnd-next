@@ -56,7 +56,8 @@ export const atAndS = [
     model: 'rollup-door-7',
     isRollUp: true,
     isHeavyDuty: false,
-    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-7.svg`,
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-door-7.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-door-7.svg`,
   },
   {
     name: COMPONENT_NAMES.ROLLUP_DOOR_8,
@@ -75,8 +76,8 @@ export const atAndS = [
     isRollUp: true,
     isHeavyDuty: false,
     highContainerOnly: true,
-    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-8.svg`,
-    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-8.svg`,
+    floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-door-8.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-door-8.svg`,
   },
   {
     name: COMPONENT_NAMES.GLASS_GARAGE_DOOR,

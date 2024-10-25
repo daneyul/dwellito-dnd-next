@@ -528,9 +528,17 @@ export const calculateContainerComponentCSSPos = ({
               toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
             }px`,
           };
-        } else if (piece.isRollUp) {
+        } else if (piece.isRollUp && supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
           positionStyles = {
             bottom: '48px',
+            left: `${
+              piece.position.x +
+              toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            }px`,
+          };
+        } else if (piece.isRollUp && supplier === SUPPLIER_SLUGS.AT_AND_S) {
+          positionStyles = {
+            bottom: '10px',
             left: `${
               piece.position.x +
               toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
