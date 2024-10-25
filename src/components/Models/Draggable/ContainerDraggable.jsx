@@ -179,7 +179,11 @@ const ContainerDraggable = ({
         return piece.frontImg;
       }
     } else if (selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN) {
-      return piece.floorPlanImg;
+      if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
+        return piece.floorPlanLeftImg;
+      } else {
+        return piece.floorPlanImg;
+      }
     } else {
       return piece.imgName;
     }
@@ -239,7 +243,7 @@ const ContainerDraggable = ({
       if (isRight) {
         return dragTransform?.x;
       } else if (isLeft) {
-        return -dragTransform?.x;
+        return dragTransform?.x;
       } else if (isBack) {
         return -dragTransform?.y;
       } else {

@@ -419,13 +419,20 @@ export const calculateContainerComponentCSSPos = ({
           top: `${piece.position.y}px`,
         };
       } else if (piece.elevation[0].name === ELEVATION_NAMES.LEFT) {
-        transform = 'rotate(180deg) translateY(100%)';
+        transform = 'translateY(-100%)';
         if (piece.name === COMPONENT_NAMES.WINDOW || piece.name === COMPONENT_NAMES.WINDOW_SECURITY) {
           positionStyles = {
           left: `${
             piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           }px`,
-            top: '14px',
+            top: '14px'
+          };
+        } else if (piece.isRollUp) {
+          positionStyles = {
+            left: `${
+              piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            }px`,
+            top: '50px',
           };
         } else {
           positionStyles = {
@@ -443,6 +450,13 @@ export const calculateContainerComponentCSSPos = ({
           left: `${
             piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
           }px`,
+          };
+        } else if (piece.isRollUp) {
+          positionStyles = {
+            bottom: '48px',
+            left: `${
+              piece.position.x + toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
+            }px`,
           };
         } else {
           positionStyles = {

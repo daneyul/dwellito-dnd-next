@@ -18,6 +18,7 @@ export const customCubes = [
     price: 2200,
     model: 'LHR Personnel Door Hardware and Lock Box 36in x 80in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/lhr-security.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/lhr-security.svg`,
   },
   {
     name: COMPONENT_NAMES.PERSONNEL_RHR_SECURITY,
@@ -35,6 +36,7 @@ export const customCubes = [
     price: 2200,
     model: 'RHR Personnel Door Hardware and Lock Box 36in x 80in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rhr-security.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rhr-security.svg`,
   },
   {
     name: COMPONENT_NAMES.PERSONNEL_LHR_SECURITY_GLASS,
@@ -53,6 +55,7 @@ export const customCubes = [
     model:
       'LHR Personnel Door w Hardware and Lock Box 36inx 80in Window Lite Kit for Door 24inx30in Clear Glass',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/lhr.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/lhr.svg`,
   },
   {
     name: COMPONENT_NAMES.PERSONNEL_RHR_SECURITY_GLASS,
@@ -71,6 +74,7 @@ export const customCubes = [
     model:
       'RHR Personnel Door w Hardware and Lock Box 36inx 80in Window Lite Kit for Door 24inx30in Clear Glass',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rhr-security.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rhr-security.svg`,
   },
   {
     name: COMPONENT_NAMES.SLIDING_GLASS_6,
@@ -88,6 +92,7 @@ export const customCubes = [
     price: 4050,
     model: 'SM_Wide_Sliding_Glass_Door_6feet',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/sliding.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/sliding.svg`,
   },
   {
     name: COMPONENT_NAMES.DOUBLE_DOOR,
@@ -105,6 +110,7 @@ export const customCubes = [
     price: 6820,
     model: 'P202-1-503_6ft_6ft8in_Height_French Door White_and_Black Frame',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/double.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/double.svg`,
   },
   {
     name: COMPONENT_NAMES.HD_HC_ROLL_UP_6,
@@ -122,6 +128,7 @@ export const customCubes = [
     price: 2890,
     model: 'Heavy Duty Roll Up Door 72in x 88in - 80in x 104in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-6.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-6.svg`,
     highContainerOnly: true,
     isRollUp: true,
     isHeavyDuty: true,
@@ -142,6 +149,7 @@ export const customCubes = [
     price: 3055,
     model: 'Heavy Duty Roll Up Door 96in x 88in - 104in x 104in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-8.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-8.svg`,
     highContainerOnly: true,
     isRollUp: true,
     isHeavyDuty: true
@@ -162,6 +170,7 @@ export const customCubes = [
     price: 3410,
     model: 'Heavy Duty Roll Up Door 120in x 88in - 128in x 104in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-10.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-10.svg`,
     highContainerOnly: true,
     isRollUp: true,
     isHeavyDuty: true
@@ -182,6 +191,7 @@ export const customCubes = [
     price: 3795,
     model: 'Heavy Duty Roll Up Door 144in x 88in - 152in x 104in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-12.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-12.svg`,
     highContainerOnly: true,
     isRollUp: true,
     isHeavyDuty: true
@@ -202,6 +212,7 @@ export const customCubes = [
     price: 4320,
     model: 'Heavy Duty Roll Up Door 180in x 88in - 188in x 104in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-15.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-15.svg`,
     highContainerOnly: true,
     isRollUp: true,
     isHeavyDuty: true
@@ -222,6 +233,7 @@ export const customCubes = [
     price: 2890,
     model: 'Heavy Duty Roll Up Door 72in x 76in - 80in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-6.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-6.svg`,
     highContainerOnly: false,
     isRollUp: true,
     isHeavyDuty: true,
@@ -242,6 +254,7 @@ export const customCubes = [
     price: 3055,
     model: 'Heavy Duty Roll Up Door 96in x 76in - 104in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-8.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-8.svg`,
     highContainerOnly: false,
     isRollUp: true,
     isHeavyDuty: true
@@ -262,6 +275,7 @@ export const customCubes = [
     price: 3410,
     model: 'Heavy Duty Roll Up Door 120in x 76in - 128in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-10.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-10.svg`,
     highContainerOnly: false,
     isRollUp: true,
     isHeavyDuty: true
@@ -282,6 +296,7 @@ export const customCubes = [
     price: 3795,
     model: 'Heavy Duty Roll Up Door 144in x 76in - 152in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-12.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-12.svg`,
     highContainerOnly: false,
     isRollUp: true,
     isHeavyDuty: true
@@ -302,6 +317,7 @@ export const customCubes = [
     price: 4320,
     model: 'Heavy Duty Roll Up Door 180in x 76in - 188in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-15.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-15.svg`,
     highContainerOnly: false,
     isRollUp: true,
     isHeavyDuty: true
@@ -322,6 +338,7 @@ export const customCubes = [
     price: 2890,
     model: 'Economy_Rollup_Door - 6ft - 72in x 88in - 76in x 90in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-6.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-6.svg`,
     highContainerOnly: true,
     isRollUp: true,
     isHeavyDuty: false
@@ -342,6 +359,7 @@ export const customCubes = [
     price: 3055,
     model: 'Economy_Rollup_Door - 8ft - 96in x 88in - 100in x 90in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-8.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-8.svg`,
     highContainerOnly: true,
     isRollUp: true,
     isHeavyDuty: false
@@ -362,6 +380,7 @@ export const customCubes = [
     price: 3410,
     model: 'Economy_Rollup_Door - 10ft - 120in x 88in - 124in x 90in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-10.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-10.svg`,
     highContainerOnly: true,
     isRollUp: true,
     isHeavyDuty: false
@@ -382,6 +401,7 @@ export const customCubes = [
     price: 3795,
     model: 'Economy_Rollup_Door - 12ft - 144in x 88in - 148 x 90in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-12.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-12.svg`,
     highContainerOnly: true,
     isRollUp: true,
     isHeavyDuty: false
@@ -402,6 +422,7 @@ export const customCubes = [
     price: 4320,
     model: 'Economy_Rollup_Door - 15ft - 180in x 88in - 184in x 90in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-15.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-15.svg`,
     highContainerOnly: true,
     isRollUp: true,
     isHeavyDuty: false
@@ -422,6 +443,7 @@ export const customCubes = [
     price: 2890,
     model: 'Economy_Rollup_Door - 6ft - 72in x 76in - 76in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-6.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-6.svg`,
     isRollUp: true,
     isHeavyDuty: false
   },
@@ -441,6 +463,7 @@ export const customCubes = [
     price: 3055,
     model: 'Economy_Rollup_Door - 8ft - 80in x 76in - 84in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-8.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-8.svg`,
     isRollUp: true,
     isHeavyDuty: false
   },
@@ -460,6 +483,7 @@ export const customCubes = [
     price: 3410,
     model: 'Economy_Rollup_Door - 10ft ST - 120in x 76in - 124in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-10.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-10.svg`,
     isRollUp: true,
     isHeavyDuty: false
   },
@@ -479,6 +503,7 @@ export const customCubes = [
     price: 3795,
     model: 'Economy_Rollup_Door - 12ft - 144in x 76in - 148in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-12.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-12.svg`,
     isRollUp: true,
     isHeavyDuty: false
   },
@@ -498,6 +523,7 @@ export const customCubes = [
     price: 4320,
     model: 'Economy_Rollup_Door - 15ft - 180in x 76in - 184in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-15.svg`,
+    floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-15.svg`,
     isRollUp: true,
     isHeavyDuty: false
   }
