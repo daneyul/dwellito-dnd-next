@@ -54,6 +54,8 @@ const ContainerDataProvider = ({ children, data }) => {
   const [selectedComponents, setSelectedComponents] = useState(
     querySelections || DEFAULT_COMPONENTS
   );
+  const [tempSelectedComponents, setTempSelectedComponents] =
+    useState(selectedComponents);
   const [exteriorFinish, setExteriorFinish] = useState(
     queryExterior ||
       EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
@@ -78,7 +80,10 @@ const ContainerDataProvider = ({ children, data }) => {
 
   // Elevation
   const DEFAULT_ELEVATION = containerElevationData.find(
-    (item) => item.name === ELEVATION_NAMES.RIGHT && item.homePlan === slug && item.type === CONFIGURATOR_TYPES.CONTAINER
+    (item) =>
+      item.name === ELEVATION_NAMES.RIGHT &&
+      item.homePlan === slug &&
+      item.type === CONFIGURATOR_TYPES.CONTAINER
   );
   const [selectedElevation, setSelectedElevation] = useState(DEFAULT_ELEVATION);
   const [selectedElevationIndex, setSelectedElevationIndex] = useState(0);
@@ -125,22 +130,18 @@ const ContainerDataProvider = ({ children, data }) => {
   });
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
 
-  const {
-    orderTotal,
-    setOrderTotal,
-    interiorFinishPrice,
-    interiorTrimPrice,
-  } = useOrderTotal({
-    containerHeightIsStandard,
-    selectedContainer,
-    slug,
-    selectedComponents,
-    interiorFinish,
-    interiorTrim,
-    exteriorFinish,
-    flooring,
-    hasRedCorners,
-  });
+  const { orderTotal, setOrderTotal, interiorFinishPrice, interiorTrimPrice } =
+    useOrderTotal({
+      containerHeightIsStandard,
+      selectedContainer,
+      slug,
+      selectedComponents,
+      interiorFinish,
+      interiorTrim,
+      exteriorFinish,
+      flooring,
+      hasRedCorners,
+    });
 
   const [mappedElevations, setMappedElevations] = useState(
     containerElevationData.filter((elevation) => {
@@ -234,7 +235,9 @@ const ContainerDataProvider = ({ children, data }) => {
     containerSizeStr,
     interiorTrimPrice,
     hasRedCorners,
-    setHasRedCorners
+    setHasRedCorners,
+    tempSelectedComponents,
+    setTempSelectedComponents,
   };
 
   return (
