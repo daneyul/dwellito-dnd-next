@@ -12,6 +12,7 @@ const GenericContainerDoor = ({
   onBoundingBoxChange,
   modelPath,
   customPosition,
+  customBackPosition,
   customRotation,
   customScale,
   isHrDoor,
@@ -70,6 +71,8 @@ const GenericContainerDoor = ({
     (nodeKey) => nodes[nodeKey].isMesh
   );
 
+  const isBackElevation = selectedElevation.name === ELEVATION_NAMES.BACK;
+
   return (
     <group
       ref={ref}
@@ -87,7 +90,7 @@ const GenericContainerDoor = ({
       rotation={rotation}
     >
       <group
-        position={customPosition}
+        position={isBackElevation ? customBackPosition : customPosition}
         rotation={customRotation}
         scale={customScale}
       >

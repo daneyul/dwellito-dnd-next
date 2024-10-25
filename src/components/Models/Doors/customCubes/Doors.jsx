@@ -7,6 +7,7 @@ const LhrSecurity = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customPosition={[0.99, 1.6, -0.015]}
+    customBackPosition={[1.15, 1.6, -0.015]}
     isHrDoor={true}
   />
 );
@@ -17,6 +18,7 @@ const LhrSecurityGlass = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customPosition={[0.99, 1.6, -0.015]}
+    customBackPosition={[1.15, 1.6, -0.015]}
     isHrDoor={true}
   />
 );
@@ -27,6 +29,7 @@ const RhrSecurity = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customPosition={[0.99, 1.6, -0.015]}
+    customBackPosition={[1.15, 1.6, -0.015]}
     isHrDoor={true}
   />
 );
@@ -37,6 +40,7 @@ const RhrSecurityGlass = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customPosition={[0.99, 1.6, -0.015]}
+    customBackPosition={[1.15, 1.6, -0.015]}
     isHrDoor={true}
   />
 );
@@ -47,6 +51,7 @@ const Double = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customPosition={[0.81, 1.78, -0.007]}
+    customBackPosition={[0.6, 1.78, -0.007]}
   />
 );
 
@@ -56,6 +61,7 @@ const Sliding6 = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customPosition={[0.81, 1.78, 0]}
+    customBackPosition={[0.6, 1.78, 0]}
   />
 );
 

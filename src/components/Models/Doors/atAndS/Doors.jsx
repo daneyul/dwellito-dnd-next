@@ -7,6 +7,7 @@ const SteelDoor = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customPosition={[0.04, 0.7, 0.04]}
+    customBackPosition={[0.2, 0.7, 0.04]}
     customScale={2.5}
     isRollUp={false}
   />
@@ -18,6 +19,7 @@ const VisionLite = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customPosition={[0.04, 0.7, 0.04]}
+    customBackPosition={[0.2, 0.7, 0.04]}
     customScale={2.5}
     isRollUp={false}
   />
@@ -29,6 +31,7 @@ const Rollup7 = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customPosition={[0.04, 0.61, 0.01]}
+    customBackPosition={[0.04, 0.7, 0.04]}
     customScale={2.5}
     isRollUp={true}
   />
@@ -40,6 +43,7 @@ const Rollup8 = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customPosition={[0.04, 0.215, 0.01]}
+    customBackPosition={[0.04, 0.7, 0.04]}
     customScale={2.5}
     isRollUp={true}
   />
@@ -51,6 +55,7 @@ const GlassGarage = ({ component, onBoundingBoxChange, supplier }) => (
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
     customPosition={[0.02, 0.48, -0.009]}
+    customBackPosition={[0.02, 0.48, -0.009]}
     customScale={2.5}
     isRollUp={true}
   />
