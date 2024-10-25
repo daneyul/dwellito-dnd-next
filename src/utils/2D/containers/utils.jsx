@@ -87,6 +87,7 @@ export const checkDistance = ({
 
   const isFloorPlanView = selectedElevation.name === ELEVATION_NAMES.FLOOR_PLAN;
   const isLeft = selectedElevation.name === ELEVATION_NAMES.LEFT;
+  const isBack = selectedElevation.name === ELEVATION_NAMES.BACK;
 
   // Use the function to get dynamic width
   const droppableWidthValue = selectedContainer
@@ -97,7 +98,11 @@ export const checkDistance = ({
     if (isFloorPlanView) {
       return 0;
     } else {
-      return DIMENSIONS.CONTAINER_BOUNDARIES.x;
+      if (isBack) {
+        return DIMENSIONS.CONTAINER_BACK_BOUNDARIES.x;
+      } else {
+        return DIMENSIONS.CONTAINER_BOUNDARIES.x;
+      }
     }
   };
 

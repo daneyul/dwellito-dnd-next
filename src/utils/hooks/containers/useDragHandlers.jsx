@@ -106,6 +106,8 @@ const useDragHandlers = ({
         setModifiers([
           ...fixedModifiers
         ])
+      } else {
+        setModifiers([...defaultModifiers]);
       }
     } else if (isDoor) {
       setModifiers([

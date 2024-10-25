@@ -6,6 +6,7 @@ import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Box3, Vector3 } from 'three';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import { ELEVATION_NAMES } from '@/utils/constants/names/names';
 
 const GenericVent = React.memo(
   ({
@@ -13,6 +14,7 @@ const GenericVent = React.memo(
     onBoundingBoxChange,
     modelPath,
     customPosition,
+    customBackPosition,
     customRotation,
     customScale
   }) => {
@@ -54,6 +56,8 @@ const GenericVent = React.memo(
       }
     }, [selectedComponents, selectedElevation.name, ref.current]);
 
+    const isBackElevation = selectedElevation.name === ELEVATION_NAMES.BACK;
+
     return (
       <group
         ref={ref}
@@ -69,7 +73,7 @@ const GenericVent = React.memo(
         rotation={rotation}
       >
         <group
-          position={customPosition}
+          position={isBackElevation ? customBackPosition : customPosition}
           rotation={customRotation}
           scale={customScale}
         >

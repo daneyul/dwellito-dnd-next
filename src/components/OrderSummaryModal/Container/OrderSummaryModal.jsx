@@ -44,7 +44,7 @@ export const OrderSummaryModal = () => {
     setDialogOpen,
     supplier,
     containerSizeStr,
-    hasRedCorners
+    hasRedCorners,
   } = useContext(ContainerDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const [zipCode, setZipCode] = useState('');
@@ -376,10 +376,9 @@ export const OrderSummaryModal = () => {
               scaleFactor,
             });
 
-            const imgSrc =
-              component.isWrapLight
-                ? component.floorPlanImg[containerSizeStr()]
-                : component.floorPlanImg;
+            const imgSrc = component.isWrapLight
+              ? component.floorPlanImg[containerSizeStr()]
+              : component.floorPlanImg;
 
             const itemPrice = getComponentPrice(
               component,
@@ -387,9 +386,11 @@ export const OrderSummaryModal = () => {
               true
             );
 
-            const distanceText = component.moveableInFloorPlan ? `${distance.left}" from left, ${distance.top}" from
-                    top (on floor plan view)` : `${distance.left}" from left, ${distance.top}" from
-                    top`
+            const distanceText = component.moveableInFloorPlan
+              ? `${distance.left}" from left, ${distance.top}" from
+                    top (on floor plan view)`
+              : `${distance.left}" from left, ${distance.top}" from
+                    top`;
 
             return (
               <li key={component.id} className={style.lineItem}>
@@ -403,15 +404,11 @@ export const OrderSummaryModal = () => {
                 <div className={style.description}>
                   <div className={style.partNumber}>{component.desc}</div>
                   <div className={style.desc}>{component.name}</div>
-                  <div className={style.distance}>
-                    {distanceText}
-                  </div>
+                  <div className={style.distance}>{distanceText}</div>
                 </div>
-                  <div className={style.price}>
-                    {
-                      !isAtAndS && `$${itemPrice.toLocaleString()}`
-                    }
-                  </div>
+                <div className={style.price}>
+                  {!isAtAndS && `$${itemPrice.toLocaleString()}`}
+                </div>
               </li>
             );
           })}
@@ -476,8 +473,7 @@ export const OrderSummaryModal = () => {
 
   const MiscSection = () => {
     const components = selectedComponents.filter(
-      (component) =>
-        component.name === COMPONENT_NAMES.BUTYL_TAPE
+      (component) => component.name === COMPONENT_NAMES.BUTYL_TAPE
     );
 
     if (components.length === 0) return null;
@@ -544,6 +540,7 @@ export const OrderSummaryModal = () => {
     );
 
     const elevationName = `${elevation.name} Wall`;
+    const isBack = elevation.name === ELEVATION_NAMES.BACK;
 
     return (
       <div className={style.section}>
@@ -566,6 +563,9 @@ export const OrderSummaryModal = () => {
               false
             );
 
+            const isDoorOrWindow = (component.objType === COMPONENT_TYPES.WINDOW) ||
+            (component.objType === COMPONENT_TYPES.DOOR);
+
             return (
               <li key={component.id} className={style.lineItem}>
                 <div className={style.thumbnailContainer}>
@@ -579,11 +579,14 @@ export const OrderSummaryModal = () => {
                   <div className={style.partNumber}>{component.desc}</div>
                   <div className={style.desc}>{component.name}</div>
                   <div className={style.distance}>
-                    {distance.left}&quot; from left, {distance.right}&quot; from
-                    right
+                    {(isBack && isDoorOrWindow)
+                      ? 'Centered on wall'
+                      : `${distance.left}" from left, ${distance.right}" from right`}
                   </div>
                 </div>
-                <div className={style.price}>{!isAtAndS && `$${itemPrice.toLocaleString()}`}</div>
+                <div className={style.price}>
+                  {!isAtAndS && `$${itemPrice.toLocaleString()}`}
+                </div>
               </li>
             );
           })}
