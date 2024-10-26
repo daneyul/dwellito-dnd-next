@@ -44,7 +44,7 @@ export const customCubes = [
       x: DIMENSIONS.DOOR.PERSONNEL_SECURITY.POSITION.x,
       y: DIMENSIONS.DOOR.PERSONNEL_SECURITY.POSITION.y,
     },
-    imgName: `${COMPONENT_TYPES.DOOR}/lhr-security-glass.svg`,
+    imgName: `${COMPONENT_TYPES.DOOR}/front-view/lhr-security-glass.svg`,
     sidebarImg: `${COMPONENT_TYPES.DOOR}/sidebar/lhr-security-glass.webp`,
     desc: 'P202-1-101',
     objWidth: DIMENSIONS.DOOR.PERSONNEL_SECURITY.WIDTH,
