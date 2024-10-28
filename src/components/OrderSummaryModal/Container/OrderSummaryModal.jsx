@@ -43,7 +43,6 @@ export const OrderSummaryModal = () => {
     dialogOpen,
     setDialogOpen,
     supplier,
-    containerSizeStr,
     hasRedCorners,
   } = useContext(ContainerDataContext);
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);

@@ -75,7 +75,7 @@ const useOrderTotal = ({
       flooringPrice +
       containerPrice +
       redCornersPrice;
-
+      
     setOrderTotal(total);
   }, [
     containerHeightIsStandard,

@@ -826,12 +826,12 @@ export const getComponentPrice = (component, interiorFinish, isElectrical) => {
       interiorFinish.name === INTERIOR_FINISH_NAMES.SPRAY_FOAM_CEILING ||
       interiorFinish.name === INTERIOR_FINISH_NAMES.NONE
     ) {
-      return component.priceSurface;
+      return component.priceSurface || component.price;
     } else if (
       interiorFinish.name &&
       interiorFinish.name !== INTERIOR_FINISH_NAMES.NONE
     ) {
-      return component.priceRecessed;
+      return component.priceRecessed || component.price;
     }
     return component.price;
   } else {
