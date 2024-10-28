@@ -95,6 +95,7 @@ export const checkDistance = ({
     : 0;
 
   const boundaries = () => {
+    // Could have floor plan view set as a default if electrical
     if (isFloorPlanView) {
       if (component.fixedSide) {
         if (

@@ -1,6 +1,8 @@
 import { noneOption } from "@/utils/constants/components/flooring/flooringData";
+import { FLOORING_NAMES } from "@/utils/constants/names/names";
 import { useFlooringGLTFModels, useInteriorGLTFModels } from "@/utils/hooks/containers/useGLTFModels";
 import { useGLTF } from "@react-three/drei";
+import * as THREE from 'three';
 
 const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight, supplier }) => {
   if (interiorFinishes.interiorIsLuanWall) {
@@ -333,19 +335,20 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
 
 const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }) => {
   if (flooring.name !== noneOption?.name) {
-    const { echoFloor, timberFloor, rubberFloor } = useFlooringGLTFModels(supplier);
+    const { echoFloor, timberFloor, rubberCoinFloor } = useFlooringGLTFModels(supplier);
     const { nodes: flooringNodes } = useGLTF(
       `/models/container/${containerSize()}/${selectedContainerHeight}/flooring.glb`
     );
 
     const flooringMaterial = () => {
-      switch (flooring.type) {
-        case 'Echo':
+      if (flooring.name === FLOORING_NAMES.RUBBER_COIN) {
+        return new THREE.MeshStandardMaterial({ map: rubberCoinFloor });
+      }
+      switch (flooring.name) {
+        case FLOORING_NAMES.ECHO:
           return echoFloor[flooring.glbObject];
-        case 'Timber':
+        case FLOORING_NAMES.TIMBER:
           return timberFloor[flooring.glbObject];
-        case 'Rubber':
-          return rubberFloor[flooring.glbObject];
         default:
           return null;
       }
