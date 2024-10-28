@@ -383,11 +383,18 @@ export const OrderSummaryModal = () => {
               true
             );
 
-            const distanceText = component.moveableInFloorPlan
-              ? `${distance.left}" from left, ${distance.top}" from
-                    top (on floor plan view)`
-              : `${distance.left}" from left, ${distance.top}" from
+            const distanceText = () => {
+              if (component.moveableInFloorPlan) {
+                return `${distance.left}" from left, ${distance.top}" from
+                    top (on floor plan view)`;
+              } else if (component.name === COMPONENT_NAMES.EXHAUST_FAN) {
+                return `${distance.left}" from right, ${distance.top}" from
                     top`;
+              } else {
+                return `${distance.left}" from left, ${distance.top}" from
+                    top`;
+              }
+            };
 
             return (
               <li key={component.id} className={style.lineItem}>
@@ -401,7 +408,7 @@ export const OrderSummaryModal = () => {
                 <div className={style.description}>
                   <div className={style.partNumber}>{component.desc}</div>
                   <div className={style.desc}>{component.name}</div>
-                  <div className={style.distance}>{distanceText}</div>
+                  <div className={style.distance}>{distanceText()}</div>
                 </div>
                 <div className={style.price}>
                   {!isAtAndS && `$${itemPrice.toLocaleString()}`}

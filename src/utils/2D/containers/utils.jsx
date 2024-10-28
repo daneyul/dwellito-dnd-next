@@ -96,7 +96,18 @@ export const checkDistance = ({
 
   const boundaries = () => {
     if (isFloorPlanView) {
-      return 0;
+      if (component.fixedSide) {
+        if (
+          component.fixedSide === ELEVATION_NAMES.RIGHT ||
+          component.fixedSide === ELEVATION_NAMES.LEFT
+        ) {
+          return DIMENSIONS.CONTAINER_BOUNDARIES.x;
+        } else {
+          return DIMENSIONS.CONTAINER_BACK_BOUNDARIES.x;
+        }
+      } else {
+        return 0;
+      }
     } else {
       if (isBack) {
         return DIMENSIONS.CONTAINER_BACK_BOUNDARIES.x;
@@ -124,7 +135,6 @@ export const checkDistance = ({
 
 export const handleAddComponent = ({
   item,
-  selectedComponents,
   setSelectedComponents,
   selectedElevation,
   floorPlan,
@@ -151,7 +161,9 @@ export const handleAddComponent = ({
 
     // Check if the item is fixed and already selected, if so, deselect it
     if (item.fixed && updatedComponents.some((c) => c.name === item.name)) {
-      return updatedComponents.filter((component) => component.name !== item.name);
+      return updatedComponents.filter(
+        (component) => component.name !== item.name
+      );
     }
 
     // Create new item to be added with unique ID and position
