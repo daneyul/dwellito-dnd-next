@@ -376,9 +376,7 @@ export const OrderSummaryModal = () => {
               scaleFactor,
             });
 
-            const imgSrc = component.isWrapLight
-              ? component.floorPlanImg[containerSizeStr()]
-              : component.floorPlanImg;
+            const imgSrc = component.sidebarImg;
 
             const itemPrice = getComponentPrice(
               component,
@@ -483,8 +481,6 @@ export const OrderSummaryModal = () => {
         <div className={style.elevationName}>Misc</div>
         <ul style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
           {components.map((component) => {
-            const isTape = component.name === COMPONENT_NAMES.BUTYL_TAPE;
-
             const distance = checkDistance({
               component: component,
               selectedElevation: component.elevation[0],
@@ -513,12 +509,10 @@ export const OrderSummaryModal = () => {
                 <div className={style.description}>
                   <div className={style.partNumber}>{component.desc}</div>
                   <div className={style.desc}>{component.name}</div>
-                  {isTape ? null : (
-                    <div className={style.distance}>
-                      {distance.left}&quot; from left, {distance.right}&quot;
-                      from right
-                    </div>
-                  )}
+                  <div className={style.distance}>
+                    {distance.left}&quot; from left, {distance.right}&quot; from
+                    right
+                  </div>
                 </div>
                 <div className={style.price}>
                   {!isAtAndS && `$${itemPrice.toLocaleString()}`}
@@ -555,7 +549,7 @@ export const OrderSummaryModal = () => {
               scaleFactor,
             });
 
-            const imgSrc = component.frontImg || component.imgName;
+            const imgSrc = component.sidebarImg;
 
             const itemPrice = getComponentPrice(
               component,
@@ -563,8 +557,9 @@ export const OrderSummaryModal = () => {
               false
             );
 
-            const isDoorOrWindow = (component.objType === COMPONENT_TYPES.WINDOW) ||
-            (component.objType === COMPONENT_TYPES.DOOR);
+            const isDoorOrWindow =
+              component.objType === COMPONENT_TYPES.WINDOW ||
+              component.objType === COMPONENT_TYPES.DOOR;
 
             return (
               <li key={component.id} className={style.lineItem}>
@@ -579,7 +574,7 @@ export const OrderSummaryModal = () => {
                   <div className={style.partNumber}>{component.desc}</div>
                   <div className={style.desc}>{component.name}</div>
                   <div className={style.distance}>
-                    {(isBack && isDoorOrWindow)
+                    {isBack && isDoorOrWindow
                       ? 'Centered on wall'
                       : `${distance.left}" from left, ${distance.right}" from right`}
                   </div>
