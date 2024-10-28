@@ -102,7 +102,7 @@ const AddElecOption = ({ options }) => {
           </div>
         </div>
       );
-    } else if (isFloorPlanView && !item.fixed) {
+    } else if (isFloorPlanView && !item.fixed && !item.moveableInFloorPlan) {
       return (
         <HoverCard.Root openDelay={0} closeDelay={0} key={item.id}>
           <HoverCard.Trigger>
