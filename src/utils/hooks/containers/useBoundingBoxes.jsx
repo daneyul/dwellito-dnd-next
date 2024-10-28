@@ -155,6 +155,16 @@ export function useBoundingBoxes({ doors, windows, vents }) {
             size: new Vector3(data.size.x, data.size.y, data.size.z),
             center: new Vector3(data.center.x, data.center.y, data.center.z),
           };
+        } else if (windowName === COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW_47_12) {
+          updatedData = {
+            ...updatedData,
+            size: new Vector3(data.size.x - 1.7, data.size.y - 1.2, data.size.z),
+            center: new Vector3(
+              data.center.x - 0.1,
+              data.center.y - 0.1,
+              data.center.z
+            ),
+          };
         } else {
           updatedData = {
             ...updatedData,
@@ -172,6 +182,16 @@ export function useBoundingBoxes({ doors, windows, vents }) {
             ...updatedData,
             size: new Vector3(data.size.x, data.size.y, data.size.z),
             center: new Vector3(data.center.x, data.center.y, data.center.z),
+          };
+        } else if (windowName === COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW_47_12) {
+          updatedData = {
+            ...updatedData,
+            size: new Vector3(data.size.x, data.size.y - 1.2, data.size.z - 1.7),
+            center: new Vector3(
+              data.center.x - 0.1,
+              data.center.y - 0.1,
+              data.center.z
+            ),
           };
         } else {
           updatedData = {
