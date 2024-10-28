@@ -1,5 +1,7 @@
 import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
+import { useLoader } from '@react-three/fiber';
+import * as THREE from 'three';
 
 export const useExteriorGLTFModels = (supplier) => {
   if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
@@ -94,7 +96,6 @@ export const getExteriorPaint = (supplier, exteriorFinish, paint) => {
       case 'Blue':
         return paint.blue?.[exteriorFinish.glbObject];
       case 'Green':
-        console.log(paint);
         return paint.green?.[exteriorFinish.glbObject];
       case 'Stock':
         return paint.stock?.[exteriorFinish.glbObject];
@@ -156,13 +157,19 @@ export const useFlooringGLTFModels = (supplier) => {
     const { materials: timberFloor } = useGLTF(
       `/models/${supplier}/materials/flooring/timber.glb`
     );
-    const { materials: rubberFloor } = useGLTF(
-      `/models/${supplier}/materials/flooring/rubber-coin.glb`
+    const rubberCoinFloor = useLoader(
+      THREE.TextureLoader,
+      `/models/${supplier}/materials/flooring/rubber-coin.jpg`
     );
+
+    rubberCoinFloor.wrapS = THREE.RepeatWrapping;
+    rubberCoinFloor.wrapT = THREE.RepeatWrapping;
+    rubberCoinFloor.repeat.set(2.5, 2.5);
+    
     return {
       echoFloor,
       timberFloor,
-      rubberFloor,
+      rubberCoinFloor,
     };
   };
 };

@@ -1,8 +1,8 @@
-import { SUPPLIER_SLUGS } from "../../names/names";
+import { SUPPLIER_SLUGS, FLOORING_NAMES } from "../../names/names";
 
 export const atAndS = [
   {
-    name: 'Vinyl Plank Flooring - 12mil Echo',
+    name: FLOORING_NAMES.ECHO,
     type: 'Echo',
     fileName: 'echo',
     glbObject: 'Material__119',
@@ -13,7 +13,7 @@ export const atAndS = [
     price40: 1845,
   },
   {
-    name: 'Vinyl Plank Flooring - 12mil Timber',
+    name: FLOORING_NAMES.TIMBER,
     type: 'Timber',
     fileName: 'timber',
     glbObject: 'Echo',
@@ -24,7 +24,7 @@ export const atAndS = [
     price40: 1845,
   },
   {
-    name: 'Rubber Coin',
+    name: FLOORING_NAMES.RUBBER_COIN,
     type: 'Rubber',
     fileName: 'rubber',
     glbObject: 'Concrete Raw - Safety Non Slip',

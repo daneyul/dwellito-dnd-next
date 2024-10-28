@@ -27,13 +27,10 @@ import Window from './Windows/WindowSwitcher';
 import { CsgGeometries } from './Containers/CsgGeometries/Shed/CsgGeometries';
 import { useExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import Shed from './Sheds/one-story/Shed';
-import { componentData } from '@/utils/constants/componentData';
-import { handleAddComponent } from '@/utils/2D/sheds/utils';
 
 export function ShedModels() {
   const {
     selectedComponents,
-    setSelectedComponents,
     showExterior,
     setThreeDModelLoaded,
     cameraReady,
@@ -41,7 +38,6 @@ export function ShedModels() {
     supplier,
     show3d,
     exteriorFinish,
-    mappedElevations
   } = useContext(ShedDataContext);
 
   const { progress } = useProgress();

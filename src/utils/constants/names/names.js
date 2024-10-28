@@ -189,6 +189,13 @@ export const EXTERIORS = {
   STOCK: 'Stock',
 };
 
+export const FLOORING_NAMES = {
+  RUBBER_COIN: 'Rubber Coin',
+  ECHO: 'Vinyl Plank Flooring - 12mil Echo',
+  TIMBER: 'Vinyl Plank Flooring - 12mil Timber',
+  NONE: 'None',
+};
+
 export const findSupplierName = (supplierSlug) => {
   switch (supplierSlug) {
     case SUPPLIER_SLUGS.CUSTOM_CUBES:
