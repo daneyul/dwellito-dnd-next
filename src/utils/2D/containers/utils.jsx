@@ -130,20 +130,39 @@ export const handleAddComponent = ({
   floorPlan,
   supplier,
 }) => {
-  if (
-    item.fixed &&
-    selectedComponents?.some((component) => component.name === item.name)
-  ) {
-    setSelectedComponents((prevSelectedComponents) =>
-      prevSelectedComponents.filter((component) => component.name !== item.name)
-    );
-  } else {
+  // If item is a can light or wrap light, remove the opposite type before adding
+  const isCanLight = item.isCanLight;
+  const isWrapLight = item.isWrapLight;
+
+  setSelectedComponents((prevSelectedComponents) => {
+    let updatedComponents = prevSelectedComponents;
+
+    if (isCanLight) {
+      // Remove wrap light if can light is selected
+      updatedComponents = updatedComponents.filter(
+        (component) => !component.isWrapLight
+      );
+    } else if (isWrapLight) {
+      // Remove can light if wrap light is selected
+      updatedComponents = updatedComponents.filter(
+        (component) => !component.isCanLight
+      );
+    }
+
+    // Check if the item is fixed and already selected, if so, deselect it
+    if (item.fixed && updatedComponents.some((c) => c.name === item.name)) {
+      return updatedComponents.filter((component) => component.name !== item.name);
+    }
+
+    // Create new item to be added with unique ID and position
     const newItem = {
       ...item,
       id: uuid(),
       position: { ...item.position },
       elevation: [...item.elevation, selectedElevation],
     };
+
+    // Additional logic for specific types, e.g., roofs or specific supplier requirements
     const isRoof = item.objType === COMPONENT_TYPES.ROOF;
     const isRoofVent = item.name === COMPONENT_NAMES.ROOF_VENT;
     const roofVentObjData = ventComponents.find(
@@ -159,30 +178,29 @@ export const handleAddComponent = ({
       elevation: [floorPlan],
     };
 
-    setSelectedComponents((prevSelectedComponents) => {
-      if (isRoof) {
-        // Remove any existing roof items and add the new roof
-        const filteredComponents = prevSelectedComponents.filter(
-          (component) => component.objType !== COMPONENT_TYPES.ROOF
-        );
-        return [...filteredComponents, item];
-      } else if (isRoofVent) {
-        // Remove any existing roof vent items and add the new roof vent
-        const filteredComponents = prevSelectedComponents.filter(
-          (component) => component.name !== COMPONENT_NAMES.ROOF_VENT
-        );
-        return [...filteredComponents, roofVent];
-      } else if (isCottageDoor) {
-        // Remove any existing door items and add the new door
-        const filteredComponents = prevSelectedComponents.filter(
-          (component) => component.objType !== COMPONENT_TYPES.DOOR
-        );
-        return [...filteredComponents, newItem];
-      } else {
-        return [...prevSelectedComponents, newItem];
-      }
-    });
-  }
+    if (isRoof) {
+      // Remove existing roof items and add the new roof
+      updatedComponents = updatedComponents.filter(
+        (component) => component.objType !== COMPONENT_TYPES.ROOF
+      );
+      return [...updatedComponents, newItem];
+    } else if (isRoofVent) {
+      // Remove existing roof vent items and add the new roof vent
+      updatedComponents = updatedComponents.filter(
+        (component) => component.name !== COMPONENT_NAMES.ROOF_VENT
+      );
+      return [...updatedComponents, roofVent];
+    } else if (isCottageDoor) {
+      // Remove existing doors and add the new cottage door
+      updatedComponents = updatedComponents.filter(
+        (component) => component.objType !== COMPONENT_TYPES.DOOR
+      );
+      return [...updatedComponents, newItem];
+    } else {
+      // Add the new item normally
+      return [...updatedComponents, newItem];
+    }
+  });
 };
 
 export const getUniqueElevationObjects = (selectedComponents) => {
@@ -578,7 +596,10 @@ export const calculateContainerComponentCSSPos = ({
         ) {
           transform = `rotate(270deg) translateX(50%) translateY(calc(100% - 12px))`;
           positionStyles = {
-            bottom: `${toScale(DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH / 2, scaleFactor)}px`,
+            bottom: `${toScale(
+              DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH / 2,
+              scaleFactor
+            )}px`,
             right: `2px`,
             transformOrigin: 'right bottom',
           };
@@ -588,7 +609,10 @@ export const calculateContainerComponentCSSPos = ({
         ) {
           transform = `rotate(270deg) translateX(50%) translateY(calc(100% - 12px))`;
           positionStyles = {
-            bottom: `${toScale(DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH / 2, scaleFactor)}px`,
+            bottom: `${toScale(
+              DIMENSIONS.CONTAINER.TWENTY.FRONT.WIDTH / 2,
+              scaleFactor
+            )}px`,
             right: `-4px`,
             transformOrigin: 'right bottom',
           };
@@ -683,12 +707,13 @@ export const calculateContainerComponentCSSPos = ({
       ) {
         transform = 'translateX(-50%)';
         positionStyles = {
-          left: `${
-            toScale(DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES(
+          left: `${toScale(
+            DROPPABLE_BACK_WIDTH_WITH_BOUNDARIES(
               DIMENSIONS,
               selectedContainer
-            ) / 2, scaleFactor)
-          }px`,
+            ) / 2,
+            scaleFactor
+          )}px`,
           top: `${adjForContainerHeight(piece.position.y)}px`,
         };
       } else {
