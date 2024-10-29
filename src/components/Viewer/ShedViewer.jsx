@@ -11,9 +11,9 @@ const ShedViewer = () => {
     <>
       <div className={style.viewer}>
         <ShedModels />
-        <ShedDnDViewer />
+        {/* <ShedDnDViewer /> */}
         <ShedToggleCamera />
-        <ShedToggleView />
+        {/* <ShedToggleView /> */}
         <ShedElevationToggle />
       </div>
     </>

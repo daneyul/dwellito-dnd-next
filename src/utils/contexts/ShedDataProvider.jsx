@@ -21,24 +21,13 @@ const ShedDataProvider = ({ children, data }) => {
 
   // State
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
-  const [show3d, setShow3d] = useState(false);
+  const [show3d, setShow3d] = useState(true);
   const [showExterior, setShowExterior] = useState(true);
   const [cameraReady, setCameraReady] = useState(true);
   const [showOutsideDroppableWarning, setShowOutsideDroppableWarning] =
     useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [scaleFactor, setScaleFactor] = useState(2.5);
-  const [sessionLength, setSessionLength] = useState(0);
-
-  const timerRef = useRef();
-
-  useEffect(() => {
-    timerRef.current = setInterval(() => {
-      setSessionLength((prevLength) => prevLength + 1); // increment every second
-    }, 1000);
-
-    return () => clearInterval(timerRef.current); // Clean up on unmount
-  }, []);
 
   // Selections
   const slantRoofComponent = componentData.find(
@@ -216,8 +205,7 @@ const ShedDataProvider = ({ children, data }) => {
     dialogOpen,
     setDialogOpen,
     shedHeightIsOneStory,
-    selectedRoof,
-    sessionLength
+    selectedRoof
   };
 
   return (

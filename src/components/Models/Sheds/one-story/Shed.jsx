@@ -3,10 +3,16 @@ import { useContext, useMemo, useRef } from 'react';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import Roof from './Roof';
+import Interior from './Interior';
 
 const Shed = ({ exteriorPaint }) => {
-  const { selectedShedHeight, selectedRoof, supplier, selectedShed } =
-    useContext(ShedDataContext);
+  const {
+    selectedShedHeight,
+    selectedRoof,
+    supplier,
+    selectedShed,
+    showExterior,
+  } = useContext(ShedDataContext);
 
   // Load all 3d objects
   const { nodes: groundBlockNodes, materials: groundBlockMaterials } = useGLTF(
@@ -202,12 +208,20 @@ const Shed = ({ exteriorPaint }) => {
           scale={0.025}
         />
       </group>
-      <Roof
-        exteriorPaint={exteriorPaint}
-        selectedRoof={selectedRoof}
+      {showExterior && (
+        <Roof
+          exteriorPaint={exteriorPaint}
+          selectedRoof={selectedRoof}
+          supplier={supplier}
+          selectedShedHeight={selectedShedHeight}
+          selectedShed={selectedShed}
+          adjustForX={adjustForX}
+          adjustForY={adjustForY}
+        />
+      )}
+      <Interior
         supplier={supplier}
         selectedShedHeight={selectedShedHeight}
-        selectedShed={selectedShed}
         adjustForX={adjustForX}
         adjustForY={adjustForY}
       />

@@ -11,9 +11,7 @@ import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
 import {
-  COMPONENT_NAMES,
   COMPONENT_TYPES,
-  ELEVATION_NAMES,
 } from '@/utils/constants/names/names';
 import {
   EXTERIOR_CAM_POS,
@@ -74,51 +72,11 @@ export function ShedModels() {
     return INTERIOR_CAM_ROT.ONE_STORY;
   };
 
-  const camFov = showExterior ? 35 : 80;
+  const camFov = showExterior ? 35 : 20;
   const cameraPos = showExterior ? exteriorCamPos() : interiorCamPos();
   const cameraRot = showExterior ? [0, 0, 0] : interiorCamRot();
 
   const orbitRef = useRef();
-  const controlsRef = useRef();
-
-  const [isLocked, setIsLocked] = useState(false);
-
-  useEffect(() => {
-    const handleClick = (event) => {
-      const canvasContainer = document.getElementById('canvas-container');
-
-      // Check if the clicked element is inside the canvas container
-      if (
-        !showExterior &&
-        canvasContainer &&
-        canvasContainer.contains(event.target)
-      ) {
-        if (isLocked) {
-          document.exitPointerLock();
-        } else {
-          controlsRef.current?.lock(); // Lock only if clicked inside canvas-container
-        }
-      }
-    };
-
-    const handleLockChange = () => {
-      setIsLocked(document.pointerLockElement !== null);
-    };
-
-    document.addEventListener('click', handleClick);
-    document.addEventListener('pointerlockchange', handleLockChange);
-
-    return () => {
-      document.removeEventListener('click', handleClick);
-      document.removeEventListener('pointerlockchange', handleLockChange);
-    };
-  }, [showExterior, isLocked]);
-
-  useEffect(() => {
-    if (showExterior && isLocked) {
-      document.exitPointerLock();
-    }
-  }, [showExterior, isLocked]);
 
   function CameraRig() {
     const { camera } = useThree();
@@ -138,12 +96,6 @@ export function ShedModels() {
           camera.position.copy(targetPosition); // Optionally lock the position
           setCameraReady(true); // Set the camera as ready
         }
-      }
-
-      // Make sure OrbitControls is enabled/disabled based on the camera readiness
-      const controls = orbitRef.current;
-      if (controls) {
-        controls.enabled = cameraReady && showExterior;
       }
     });
   }
@@ -245,23 +197,15 @@ export function ShedModels() {
             <SMAA />
           </EffectComposer>
           <CameraRig />
-          {!showExterior ? (
-            <PointerLockControls
-              ref={controlsRef}
-              enabled={!showExterior}
-              selector='#canvas-container'
-            />
-          ) : (
-            <OrbitControls
-              makeDefault
-              ref={orbitRef}
-              minPolarAngle={0}
-              maxPolarAngle={Math.PI / 2}
-              enablePan={false}
-              enableRotate={showExterior}
-              dampingFactor={0.15}
-            />
-          )}
+          <OrbitControls
+            makeDefault
+            ref={orbitRef}
+            minPolarAngle={0}
+            maxPolarAngle={Math.PI / 2}
+            enablePan={true}
+            enableRotate={true}
+            dampingFactor={0.15}
+          />
         </Canvas>
       </div>
     </div>
