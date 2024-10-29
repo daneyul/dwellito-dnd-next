@@ -15,8 +15,18 @@ const Roof = ({
     const { nodes, materials } = useGLTF(
       `/models/${supplier}/roofs/${selectedShedHeight}/${selectedShed.size}/slant.glb`
     );
+    const { nodes: roofBattenNodes, materials: roofBattenMaterials } = useGLTF(
+      `/models/${supplier}/roofs/${selectedShedHeight}/${selectedShed.size}/roof-battens.glb`
+    );
     return (
       <group scale={8} dispose={null} position={[adjustForX, 0, adjustForY]}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={roofBattenNodes.Roof_batten.geometry}
+          material={roofBattenMaterials.Roof_batten}
+          scale={0.025}
+        />
         <mesh
           castShadow
           receiveShadow

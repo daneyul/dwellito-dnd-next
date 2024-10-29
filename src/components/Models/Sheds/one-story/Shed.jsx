@@ -18,6 +18,10 @@ const Shed = ({ exteriorPaint }) => {
   const { nodes: groundBlockNodes, materials: groundBlockMaterials } = useGLTF(
     `/models/shed/${selectedShedHeight}/1storey_12x24_GFBlock.glb`
   );
+  const {
+    nodes: groundBlockBattenNodes,
+    materials: groundBlockBattenMaterials,
+  } = useGLTF(`/models/shed/${selectedShedHeight}/battens.glb`);
 
   const ref = useRef();
 
@@ -37,6 +41,13 @@ const Shed = ({ exteriorPaint }) => {
         position={[adjustForX, 0, adjustForY]}
         ref={ref}
       >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={groundBlockBattenNodes.GF_batten.geometry}
+          material={groundBlockBattenMaterials.GF_batten}
+          scale={0.025}
+        />
         <group scale={0.025}>
           <mesh
             castShadow

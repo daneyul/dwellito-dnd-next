@@ -12,6 +12,10 @@ export const useExteriorPaint = (supplier, exteriorFinish) => {
       'White': `${path}white.jpg`,
       'Grey': `${path}grey.jpg`,
       'Dark Blue': `${path}darkblue.jpg`,
+      'Iron Ore': `${path}ironore.jpg`,
+      'Oyster Bay': `${path}oysterbay.jpg`,
+      'Sea Serpent': `${path}seaserpent.jpg`,
+      'Worldly Gray': `${path}worldlygray.jpg`,
     };
 
     const textureURL = textureMap[exteriorFinish.name];

@@ -187,6 +187,10 @@ export const EXTERIORS = {
   GREY: 'Grey',
   BLACK: 'Black',
   STOCK: 'Stock',
+  IRON_ORE: 'Iron Ore',
+  OYSTER_BAY: 'Oyster Bay',
+  SEA_SERPENT: 'Sea Serpent',
+  WORLDLY_GRAY: 'Worldly Gray',
 };
 
 export const FLOORING_NAMES = {

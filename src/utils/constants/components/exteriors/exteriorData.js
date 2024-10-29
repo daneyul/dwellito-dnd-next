@@ -144,6 +144,38 @@ const compactCottages = [
     img: 'grey.png',
     price: 0
   },
+  {
+    name: EXTERIORS.IRON_ORE,
+    glbObject: 'ironore',
+    hex: '#434341',
+    fileName: 'ironore',
+    img: 'ironore.png',
+    price: 0
+  },
+  {
+    name: EXTERIORS.OYSTER_BAY,
+    glbObject: 'oysterbay',
+    hex: '#aeb3a9',
+    fileName: 'oysterbay',
+    img: 'oysterbay.png',
+    price: 0
+  },
+  {
+    name: EXTERIORS.SEA_SERPENT,
+    glbObject: 'seaserpent',
+    hex: '#3e4b54',
+    fileName: 'seaserpent',
+    img: 'seaserpent.png',
+    price: 0
+  },
+  {
+    name: EXTERIORS.WORLDLY_GRAY,
+    glbObject: 'worldlygray',
+    hex: '#cec6bb',
+    fileName: 'worldlygray',
+    img: 'worldlygray.png',
+    price: 0
+  }
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.COMPACT_COTTAGES }));
 
 export const EXTERIOR_FINISH_OPTIONS = [

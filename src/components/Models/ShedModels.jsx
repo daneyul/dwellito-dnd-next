@@ -68,13 +68,9 @@ export function ShedModels() {
     return INTERIOR_CAM_POS.ONE_STORY;
   };
 
-  const interiorCamRot = () => {
-    return INTERIOR_CAM_ROT.ONE_STORY;
-  };
-
   const camFov = showExterior ? 35 : 20;
   const cameraPos = showExterior ? exteriorCamPos() : interiorCamPos();
-  const cameraRot = showExterior ? [0, 0, 0] : interiorCamRot();
+  const cameraRot = [0, 0, 0];
 
   const orbitRef = useRef();
 

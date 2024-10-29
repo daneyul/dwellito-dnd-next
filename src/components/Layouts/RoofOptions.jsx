@@ -31,6 +31,8 @@ const RoofOptions = () => {
     setSelectedComponents,
     selectedShed,
     floorPlan,
+    setShowExterior,
+    setCameraReady
   } = useContext(ShedDataContext);
 
   const roofs = componentData.filter(
@@ -55,14 +57,16 @@ const RoofOptions = () => {
             isSelected={isSelected}
             price={roofPrice}
             supplier={supplier}
-            handleAdd={() =>
+            handleAdd={() => {
+              setShowExterior(true);
+              setCameraReady(false);
               handleAddComponent({
                 item: roof,
                 setSelectedComponents,
                 selectedElevation,
                 floorPlan,
-              })
-            }
+              });
+            }}
           />
         );
       })}
