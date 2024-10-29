@@ -47,7 +47,7 @@ const ShedSidebar = () => {
     <>
       <div className={style.desktopShed}>
         <LogoSection supplier={supplier} />
-        <RoofSelector />
+        {/* <RoofSelector /> */}
         <ExteriorSelector />
         {/* <ShedSelector /> */}
         <ShedSaveOrder />

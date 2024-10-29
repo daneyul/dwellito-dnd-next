@@ -302,10 +302,10 @@ export const OrderSummaryModal = () => {
               }}
             >
               <Dialog.Title className={style.title}>Order Summary</Dialog.Title>
-              <RoofSection />
-              {uniqueElevationNames.map((elevation, index) => (
+              {/* <RoofSection /> */}
+              {/* {uniqueElevationNames.map((elevation, index) => (
                 <Section key={index} elevation={elevation} />
-              ))}
+              ))} */}
               <ExteriorSection />
               <Form.Root onSubmit={(e) => handleSubmit(e)}>
                 <div className={style.formTitle}>Project Details</div>
