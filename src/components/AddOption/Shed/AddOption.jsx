@@ -4,7 +4,6 @@ import { generateImgSrc, handleAddComponent } from '../../../utils/2D/containers
 import style from '../addOption.module.scss';
 import * as HoverCard from '@radix-ui/react-hover-card';
 import {
-  COMPONENT_NAMES,
   COMPONENT_TYPES,
   ELEVATION_NAMES,
 } from '@/utils/constants/names/names';
@@ -14,18 +13,11 @@ const AddOption = ({ options }) => {
   const {
     setSelectedComponents,
     selectedElevation,
-    setShow3d,
-    mappedElevations,
     floorPlan,
     supplier,
   } = useContext(ShedDataContext);
 
-  const frontElevation = mappedElevations.find(
-    (elevation) => elevation.name === ELEVATION_NAMES.FRONT
-  );
-
   const handleSelect = (item) => {
-    setShow3d(false);
     handleAddComponent({
       item,
       setSelectedComponents,

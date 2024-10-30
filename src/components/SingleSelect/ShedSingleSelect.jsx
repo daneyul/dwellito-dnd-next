@@ -23,13 +23,11 @@ const ShedSingleSelect = ({ type }) => {
       if (isExterior) {
         setState(selection);
         setShow3d(true);
-        setShowExterior(isExterior);
         setCameraReady(true);
         additionalActions();
       } else {
         setState(selection);
         setShow3d(true);
-        setShowExterior(isExterior);
         setCameraReady(false);
         additionalActions();
       }
