@@ -1,9 +1,9 @@
 import { useGLTF } from '@react-three/drei';
 
 const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY }) => {
-  const { nodes: interiorWallsNodes, materials: interiorWallsMaterials } =
+  const { nodes, materials } =
     useGLTF(
-      `/models/${supplier}/interiors/${selectedShedHeight}/interior-walls.glb`
+      `/models/${supplier}/interiors/${selectedShedHeight}/interiors.glb`
     );
   return (
     <group scale={8} dispose={null} position={[adjustForX, 0, adjustForY]}>
@@ -11,22 +11,127 @@ const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY }) => {
         <mesh
           castShadow
           receiveShadow
-          geometry={interiorWallsNodes.interior_wall1.geometry}
-          material={interiorWallsMaterials.GF_interior}
+          geometry={nodes.interior_wall1.geometry}
+          material={materials.GF_interior}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={interiorWallsNodes.interior_wall2.geometry}
-          material={interiorWallsMaterials.GF_interior}
+          geometry={nodes.interior_wall2.geometry}
+          material={materials.GF_interior}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={interiorWallsNodes.interior_wall3.geometry}
-          material={interiorWallsMaterials.GF_interior}
+          geometry={nodes.interior_wall3.geometry}
+          material={materials.GF_interior}
         />
       </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.kitchenette_white.geometry}
+        material={materials.kichenette_white}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.kitchenette_metal.geometry}
+        material={materials.kitchenette_metal}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.kitchenette_black.geometry}
+        material={materials.kitchenette_black}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.kitchenette_wood.geometry}
+        material={materials.kitchenette_wood_oak}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.kitchenette_mixer.geometry}
+        material={materials.kitchenette_mixer}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bed_grey.geometry}
+        material={materials.bed_grey}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bed_metal.geometry}
+        material={materials['kitchenette_metal.001']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bed_white.geometry}
+        material={materials.bed_white}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bathroom_sink.geometry}
+        material={materials.sink}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bathroom_sink_porcelein.geometry}
+        material={materials.sink_porcelain}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bathroom_sink_mixer.geometry}
+        material={materials.sink_mixer}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.mirrorcab_cabinet.geometry}
+        material={materials.mirrorcab}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.towel_handle.geometry}
+        material={materials.towel_handle}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bathroom_toilet.geometry}
+        material={materials.toilet_porcelain}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.mirrorcab_mirror.geometry}
+        material={materials.mirror}
+        scale={0.025}
+      />
     </group>
   );
 };
