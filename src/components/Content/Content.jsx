@@ -5,19 +5,21 @@ import PriceTotal from '@/components/PriceTotal/PriceTotal';
 import style from './content.module.scss';
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
-import { MobileModels } from '../Models/MobileModels';
+import { MobileModels as ContainerMobileModels } from '../Models/Mobile/Container/MobileModels';
+import { MobileModels as ShedMobileModels } from '../Models/Mobile/Shed/MobileModels';
 import MobileForm from '../MobileForm/MobileForm';
 import { useMediaQuery } from 'react-responsive';
 import ShedDataProvider from '@/utils/contexts/ShedDataProvider';
 import ContainerDataProvider from '@/utils/contexts/ContainerDataProvider';
 import ShedSidebar from '../Sidebar/ShedSidebar';
 import ContainerSidebar from '../Sidebar/ContainerSidebar';
-import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { EXTERIOR, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import ContainerViewer from '../Viewer/ContainerViewer';
 import ShedViewer from '../Viewer/ShedViewer';
 import { OrderSummaryModal as ContainerOrderSummaryModal } from '../OrderSummaryModal/Container/OrderSummaryModal';
 import { OrderSummaryModal as ShedOrderSummaryModal } from '../OrderSummaryModal/Shed/OrderSummaryModal';
 import SessionLengthProvider from '@/utils/contexts/SessionLengthProvider';
+import ShedSingleSelect from '../SingleSelect/ShedSingleSelect';
 
 const Content = ({ data }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -28,9 +30,35 @@ const Content = ({ data }) => {
         <ShedDataProvider data={data}>
           <div className={style.pageWrapper}>
             <div className={style.content}>
-              <ShedViewer />
-              <ShedSidebar />
-              <ShedOrderSummaryModal />
+              {isMobile ? (
+                <>
+                  <ShedMobileModels />
+                  <div className={style.mobileContainer}>
+                    <div
+                      style={{
+                        fontFamily: 'Linotype',
+                        fontSize: '24px',
+                        fontWeight: '400',
+                        color: 'black',
+                        textAlign: 'center',
+                        marginBottom: '1rem',
+                      }}
+                    >
+                      Exterior Siding
+                    </div>
+                    <ShedSingleSelect type={EXTERIOR} />
+                  </div>
+                  <div className={style.mobileContainer}>
+                    <MobileForm />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <ShedViewer />
+                  <ShedSidebar />
+                  <ShedOrderSummaryModal />
+                </>
+              )}
             </div>
           </div>
         </ShedDataProvider>
@@ -40,7 +68,7 @@ const Content = ({ data }) => {
             <div className={style.content}>
               {isMobile ? (
                 <>
-                  <MobileModels />
+                  <ContainerMobileModels />
                   <div className={style.mobileContainer}>
                     <MobileForm />
                   </div>

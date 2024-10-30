@@ -3,8 +3,7 @@ import specificDoors from "../SpecificDoors";
 
 const CompactCottages = {
   [COMPONENT_NAMES.EXTERIOR_DOOR_1]: specificDoors.ExteriorDoor1,
-    [COMPONENT_NAMES.EXTERIOR_DOOR_2]: specificDoors.ExteriorDoor2,
-    [COMPONENT_NAMES.EXTERIOR_DOOR_3]: specificDoors.ExteriorDoor3,
+    [COMPONENT_NAMES.EXTERIOR_DOOR_2]: specificDoors.ExteriorDoor2
 };
 
 export default CompactCottages;

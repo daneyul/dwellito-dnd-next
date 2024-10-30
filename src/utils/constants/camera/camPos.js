@@ -17,4 +17,7 @@ export const INTERIOR_CAM_ROT = {
   ONE_STORY: [0.8, 12, 5.65],
 };
 
-export const MOBILE_CAM_POS = [-50, 30, 80];
+export const MOBILE_CAM_POS = {
+  CONTAINER: [-50, 30, 80],
+  SHED: [-50, 30, 120],
+};

@@ -4,63 +4,42 @@ import {
   Environment,
   RandomizedLight,
 } from '@react-three/drei';
-import style from './mobileModels.module.scss';
+import style from '../mobileModels.module.scss';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useContext, useEffect, useMemo, useRef } from 'react';
-import Door from './Doors/DoorSwitcher';
+import { useContext, useEffect, useRef, useMemo } from 'react';
+import Door from '../../Doors/DoorSwitcher';
 import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
-import Window from './Windows/WindowSwitcher';
-import { CsgGeometries } from './Containers/CsgGeometries/Container/CsgGeometries';
+import Window from '../../Windows/WindowSwitcher';
+import { CsgGeometries } from '../../Containers/CsgGeometries/Shed/CsgGeometries';
 import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
-  CONTAINER_SIZE_10,
-  CONTAINER_SIZE_20,
   ELEVATION_NAMES,
-  SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
-import ContainerShell20Standard from './Containers/20/ContainerShell20Standard';
-import { useBoundingBoxes } from '@/utils/hooks/containers/useBoundingBoxes';
-import { useExteriorGLTFModels } from '@/utils/hooks/containers/useGLTFModels';
+import { useBoundingBoxes } from '@/utils/hooks/sheds/useBoundingBoxes';
 import { MOBILE_CAM_POS } from '@/utils/constants/camera/camPos';
-import { handleAddComponent } from '@/utils/2D/containers/utils';
+import { handleAddComponent } from '@/utils/2D/sheds/utils';
 import { componentData } from '@/utils/constants/componentData';
-import ContainerShell10Standard from './Containers/10/ContainerShell10Standard';
-import ContainerShell20High from './Containers/20/ContainerShell20High';
-import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
-import ContainerShell40High from './Containers/40/ContainerShell40High';
-import { containerData } from '@/utils/constants/components/containers/containerData';
-import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
+import { useExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
+import Shed from '../../Sheds/one-story/Shed';
 
 export function MobileModels() {
   const {
-    selectedComponents,
     cameraReady,
     setCameraReady,
     supplier,
     mappedElevations,
-    floorPlan,
+    selectedComponents,
     setSelectedComponents,
-    selectedContainer,
-    containerHeightIsStandard,
-  } = useContext(ContainerDataContext);
+    exteriorFinish
+  } = useContext(ShedDataContext);
 
-  const doorName = () => {
-    if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
-      return COMPONENT_NAMES.PERSONNEL_LHR_SECURITY;
-    } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
-      return COMPONENT_NAMES.STEEL_DOOR;
-    }
-  };
+  // Load fixed components for now
+  const doorName = COMPONENT_NAMES.EXTERIOR_DOOR_1;
 
-  const windowName = () => {
-    if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
-      return COMPONENT_NAMES.WINDOW;
-    } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
-      return COMPONENT_NAMES.HORIZONTAL_SLIDER_WINDOW_46_27;
-    }
-  };
+  const windowName = COMPONENT_NAMES.WINDOW_48_48;
 
   const rightElevation = mappedElevations.find(
     (elevation) => elevation.name === ELEVATION_NAMES.RIGHT
@@ -68,70 +47,80 @@ export function MobileModels() {
   const leftElevation = mappedElevations.find(
     (elevation) => elevation.name === ELEVATION_NAMES.LEFT
   );
-  const door = componentData.find((door) => door.name === doorName());
-  const window = componentData.find((window) => window.name === windowName());
-  const modifiedWindow = {
+  const frontElevation = mappedElevations.find(
+    (elevation) => elevation.name === ELEVATION_NAMES.FRONT
+  );
+  const door = componentData.find((door) => door.name === doorName);
+  const window = componentData.find((window) => window.name === windowName);
+  const modifiedDoor = {
+    ...door,
+    position: {
+      ...door.position,
+      x: 0,
+    },
+  };
+  const modifiedWindowFront = {
     ...window,
     position: {
       ...window.position,
-      x: 300,
+      x: 0,
     },
   };
-  const modifiedWindow2 = {
+  const modifiedWindowRight = {
     ...window,
     position: {
       ...window.position,
-      x: 300,
+      x: 0,
     },
   };
-  
+  const modifiedWindowLeft1 = {
+    ...window,
+    position: {
+      ...window.position,
+      x: 0,
+    },
+  };
+  const modifiedWindowLeft2 = {
+    ...window,
+    position: {
+      ...window.position,
+      x: 490,
+    },
+  };
+
   useEffect(() => {
-    if (selectedContainer.size === CONTAINER_SIZE_10) {
-      handleAddComponent({
-        item: door,
-        setSelectedComponents,
-        selectedElevation: rightElevation,
-        floorPlan,
-      });
-    } else {
-      handleAddComponent({
-        item: door,
-        setSelectedComponents,
-        selectedElevation: rightElevation,
-        floorPlan,
-      });
-      handleAddComponent({
-        item: modifiedWindow,
-        setSelectedComponents,
-        selectedElevation: rightElevation,
-        floorPlan,
-      });
-      handleAddComponent({
-        item: modifiedWindow2,
-        setSelectedComponents,
-        selectedElevation: leftElevation,
-        floorPlan,
-      });
-    }
+    handleAddComponent({
+      item: modifiedDoor,
+      setSelectedComponents,
+      selectedElevation: frontElevation,
+    });
+    handleAddComponent({
+      item: modifiedWindowFront,
+      setSelectedComponents,
+      selectedElevation: frontElevation,
+    });
+    handleAddComponent({
+      item: modifiedWindowRight,
+      setSelectedComponents,
+      selectedElevation: rightElevation,
+    });
+    handleAddComponent({
+      item: modifiedWindowLeft1,
+      setSelectedComponents,
+      selectedElevation: leftElevation,
+    });
+    handleAddComponent({
+      item: modifiedWindowLeft2,
+      setSelectedComponents,
+      selectedElevation: leftElevation,
+    });
   }, []);
 
-  const doors = useMemo(
-    () =>
-      selectedComponents.filter(
-        (comp) => comp.objType === COMPONENT_TYPES.DOOR
-      ),
-    [selectedComponents, COMPONENT_TYPES]
-  );
-  const windows = useMemo(
-    () =>
-      selectedComponents.filter(
-        (component) => component.objType === COMPONENT_TYPES.WINDOW
-      ),
-    [selectedComponents, COMPONENT_TYPES]
-  );
+  const doors = selectedComponents.filter((component) => component.objType === COMPONENT_TYPES.DOOR);
+  const windows = selectedComponents.filter((component) => component.objType === COMPONENT_TYPES.WINDOW);
 
   const camFov = 35;
-  const cameraPos = MOBILE_CAM_POS;
+  const cameraPos = MOBILE_CAM_POS.SHED;
   const cameraRot = [0, 10, 0];
 
   const orbitRef = useRef();
@@ -166,48 +155,31 @@ export function MobileModels() {
     windowBoundingBoxes,
     handleDoorBoundingBox,
     handleWindowBoundingBox,
-  } = useBoundingBoxes({ doors, windows });
+  } = useBoundingBoxes({
+    doors,
+    windows,
+  });
 
-  const paint = useExteriorGLTFModels(supplier);
-
-  const ContainerShell = () => {
-    if (selectedContainer.size === CONTAINER_SIZE_10) {
-      if (containerHeightIsStandard) {
-        return <ContainerShell10Standard paint={paint} />;
-      } else {
-        return null;
-      }
-    } else if (selectedContainer.size === CONTAINER_SIZE_20) {
-      if (containerHeightIsStandard) {
-        return <ContainerShell20Standard paint={paint} />;
-      } else {
-        return <ContainerShell20High paint={paint} />;
-      }
-    } else if (selectedContainer === containerData[2]) {
-      if (containerHeightIsStandard) {
-        return <ContainerShell40Standard paint={paint} />;
-      } else {
-        return <ContainerShell40High paint={paint} />;
-      }
-    }
-  };
+  const exteriorPaint = useMemo(() => {
+    return useExteriorPaint(supplier, exteriorFinish);
+  }, [supplier, exteriorFinish]);
 
   return (
     <div id='canvas-container' className={style.container}>
       <Canvas
         shadows
         camera={{ position: cameraPos, fov: camFov }}
-        style={{ borderRadius: '11px' }}
+        style={{ borderRadius: '11px', minHeight: '300px' }}
       >
         <color attach='background' args={['#fdfdf7']} />
-        <ContainerShell />
+        <Shed exteriorPaint={exteriorPaint} />
         <CsgGeometries
-          doors={doors}
-          windows={windows}
-          doorBoundingBoxes={doorBoundingBoxes}
-          windowBoundingBoxes={windowBoundingBoxes}
-          paint={paint}
-        />
+            doors={doors}
+            windows={windows}
+            doorBoundingBoxes={doorBoundingBoxes}
+            windowBoundingBoxes={windowBoundingBoxes}
+            exteriorPaint={exteriorPaint}
+          />
         {doors.map((door, index) => (
           <Door
             key={door.id}

@@ -3,11 +3,10 @@ import {
   OrbitControls,
   Environment,
   RandomizedLight,
-  PointerLockControls,
   useProgress,
 } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useContext, useEffect, useMemo, useRef } from 'react';
 import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
 import {
@@ -16,7 +15,6 @@ import {
 import {
   EXTERIOR_CAM_POS,
   INTERIOR_CAM_POS,
-  INTERIOR_CAM_ROT,
 } from '@/utils/constants/camera/camPos';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import Door from './Doors/DoorSwitcher';
