@@ -107,7 +107,7 @@ const ShedDataProvider = ({ children, data }) => {
     ...door,
     position: {
       ...door.position,
-      x: 168,
+      x: 0,
     },
   };
   const modifiedWindowFront = {

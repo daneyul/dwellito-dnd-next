@@ -79,9 +79,7 @@ export const checkDistance = ({
     return null;
   }
 
-  const droppableWidthValue = droppableWidth(
-    selectedElevation,
-    DIMENSIONS);
+  const droppableWidthValue = droppableWidth(selectedElevation, DIMENSIONS);
 
   const boundaries = DIMENSIONS.SHED_BOUNDARIES.x;
 
@@ -121,12 +119,10 @@ export const handleAddComponent = ({
       elevation: [...item.elevation, selectedElevation],
     };
     const isRoof = item.objType === COMPONENT_TYPES.ROOF;
-    const roofVentObjData = ventComponents.find(
-      (component) => component.name === COMPONENT_NAMES.ROOF_VENT
-    );
+    const isDoor = item.objType === COMPONENT_TYPES.DOOR;
+
     const isCottageDoor =
-      item.objType === COMPONENT_TYPES.DOOR &&
-      supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES;
+      isDoor && item.supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES;
 
     setSelectedComponents((prevSelectedComponents) => {
       if (isRoof) {
@@ -171,10 +167,16 @@ export const getUniqueElevationObjects = (selectedComponents) => {
 };
 
 export const DROPPABLE_SIDE_WIDTH_WITH_BOUNDARIES = (DIMENSIONS) => {
-  return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.SIDE.WIDTH - DIMENSIONS.SHED_BOUNDARIES.x * 2;
+  return (
+    DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.SIDE.WIDTH -
+    DIMENSIONS.SHED_BOUNDARIES.x * 2
+  );
 };
 export const DROPPABLE_FRONT_WIDTH_WITH_BOUNDARIES = (DIMENSIONS) => {
-  return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.FRONT.WIDTH - DIMENSIONS.SHED_BOUNDARIES.x * 2;
+  return (
+    DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.FRONT.WIDTH -
+    DIMENSIONS.SHED_BOUNDARIES.x * 2
+  );
 };
 
 export const droppableWidth = (selectedElevation, DIMENSIONS) => {

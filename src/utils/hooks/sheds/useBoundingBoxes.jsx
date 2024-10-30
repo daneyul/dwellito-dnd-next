@@ -12,6 +12,7 @@ export function useBoundingBoxes({ doors, windows }) {
   const handleDoorBoundingBox = useCallback(
     (index, data) => {
       let updatedData = { ...data };
+      const doorName = doors[index]?.name;
 
       // Adjust the bounding box height for personnel doors
       if (typeof data.size.y === 'number') {
@@ -19,33 +20,49 @@ export function useBoundingBoxes({ doors, windows }) {
           data.selectedElevation.name === ELEVATION_NAMES.RIGHT ||
           data.selectedElevation.name === ELEVATION_NAMES.LEFT
         ) {
-          updatedData = {
-            ...updatedData,
-            size: new Vector3(
-              data.size.x - 2.9,
-              data.size.y - 5.8,
-              data.size.z
-            ),
-            center: new Vector3(
-              data.center.x,
-              data.center.y + 1.3,
-              data.center.z - 0.8
-            ),
-          };
+          if (doorName === COMPONENT_NAMES.EXTERIOR_DOOR_1) {
+            updatedData = {
+              ...updatedData,
+              size: new Vector3(
+                data.size.x - 2.9,
+                data.size.y - 5.8,
+                data.size.z
+              ),
+              center: new Vector3(
+                data.center.x,
+                data.center.y + 1.3,
+                data.center.z - 0.8
+              ),
+            };
+          } else {
+            updatedData = {
+              ...updatedData,
+              size: new Vector3(data.size.x, data.size.y, data.size.z),
+              center: new Vector3(data.center.x, data.center.y, data.center.z),
+            };
+          }
         } else {
-          updatedData = {
-            ...updatedData,
-            size: new Vector3(
-              data.size.x - 2.9,
-              data.size.y - 5.8,
-              data.size.z
-            ),
-            center: new Vector3(
-              data.center.x,
-              data.center.y + 1.3,
-              data.center.z - 0.8
-            ),
-          };
+          if (doorName === COMPONENT_NAMES.EXTERIOR_DOOR_1) {
+            updatedData = {
+              ...updatedData,
+              size: new Vector3(
+                data.size.x - 2.9,
+                data.size.y - 5.8,
+                data.size.z
+              ),
+              center: new Vector3(
+                data.center.x,
+                data.center.y + 1.3,
+                data.center.z - 0.8
+              ),
+            };
+          } else {
+            updatedData = {
+              ...updatedData,
+              size: new Vector3(data.size.x, data.size.y, data.size.z),
+              center: new Vector3(data.center.x, data.center.y, data.center.z),
+            };
+          }
         }
       }
 

@@ -4,7 +4,7 @@ export const COMPONENT_TYPES = {
   VENT: 'vent',
   ELECTRICAL: 'electrical',
   PARTITION: 'partition',
-  ROOF: 'roof',
+  ROOF: 'roof'
 };
 
 export const CONFIGURATOR_TYPES = {
@@ -94,9 +94,8 @@ const AT_AND_S_COMPONENTS = {
 export const COMPACT_COTTAGES_COMPONENTS = {
   SLANT_ROOF: 'Slant Roof',
   GABLE_ROOF: 'Gable Roof',
-  EXTERIOR_DOOR_1: '3ft x 6ft8in Paneled Door 1',
-  EXTERIOR_DOOR_2: '3ft x 6ft8in Paneled Door 2',
-  EXTERIOR_DOOR_3: '3ft x 6ft8in Half Light Door',
+  EXTERIOR_DOOR_1: 'Stairs',
+  EXTERIOR_DOOR_2: 'Porch',
   WINDOW_24_24: '24x24 Window',
   WINDOW_30_36: '30x36 Window',
   WINDOW_48_24: '48x24 Window',

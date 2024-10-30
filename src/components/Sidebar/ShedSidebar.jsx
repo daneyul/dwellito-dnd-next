@@ -8,6 +8,7 @@ import ShedSaveOrder from '../SaveOrder/ShedSaveOrder';
 import Subtitle from '../Subtitle/Subtitle';
 import RoofOptions from '../Layouts/RoofOptions';
 import ShedSelector from '../Selector/ShedSelector';
+import FrontOptions from '../Layouts/FrontOptions';
 
 const LogoSection = ({ supplier }) => (
   <div className={style.logo}>
@@ -35,9 +36,11 @@ const ExteriorSelector = () => (
 );
 
 const RoofSelector = () => {
-  return (
-    <RoofOptions />
-  );
+  return <RoofOptions />;
+};
+
+const FrontSelector = () => {
+  return <FrontOptions />;
 };
 
 const ShedSidebar = () => {
@@ -48,6 +51,7 @@ const ShedSidebar = () => {
       <div className={style.desktopShed}>
         <LogoSection supplier={supplier} />
         {/* <RoofSelector /> */}
+        <FrontSelector />
         <ExteriorSelector />
         {/* <ShedSelector /> */}
         <ShedSaveOrder />
