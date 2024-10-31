@@ -196,10 +196,10 @@ export function CsgGeometries({
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
-        {doorBoundingBoxGeometries}
+        {/* {doorBoundingBoxGeometries}
         {windowBoundingBoxGeometries}
         {ventBoundingBoxGeometries}
-        {exhaustFanBoundingBoxGeometry}
+        {exhaustFanBoundingBoxGeometry} */}
       </Geometry>
     </mesh>
   );
