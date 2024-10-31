@@ -165,6 +165,7 @@ export const useFlooringGLTFModels = (supplier) => {
     rubberCoinFloor.wrapS = THREE.RepeatWrapping;
     rubberCoinFloor.wrapT = THREE.RepeatWrapping;
     rubberCoinFloor.repeat.set(2.5, 2.5);
+    rubberCoinFloor.colorSpace = THREE.SRGBColorSpace;
     
     return {
       echoFloor,
