@@ -2,8 +2,9 @@
   background-color: color(lightGrey);
   padding: space(6);
   font-family: 'Chromatica', sans-serif;
-  height: 100vh;
+  height: auto;
   @include respond-to(md) {
+    height: 100vh;
     padding: 0;
     background-color: color(white);
   }

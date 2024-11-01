@@ -2,13 +2,13 @@ import { useContext } from 'react';
 import style from './toggleCamera.module.scss';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 
-const ShedToggleCamera = () => {
+const ShedToggleCamera = ({ isMobile }) => {
   const { show3d, showExterior, setShowExterior, setCameraReady } =
     useContext(ShedDataContext);
 
   if (show3d) {
     return (
-      <div className={style.container}>
+      <div className={style.shedContainer}>
         <button
           className={showExterior ? style.buttonSelected : style.button}
           onClick={() => {
@@ -22,7 +22,7 @@ const ShedToggleCamera = () => {
           className={showExterior ? style.button : style.buttonSelected}
           onClick={() => {
             setShowExterior(false);
-            setCameraReady(false);
+            if (!isMobile) setCameraReady(false);
           }}
         >
           Interior
@@ -31,4 +31,5 @@ const ShedToggleCamera = () => {
     );
   }
 };
+
 export default ShedToggleCamera;

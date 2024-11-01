@@ -18,6 +18,23 @@
   }
 }
 
+.shedContainer {
+  display: block;
+  border-radius: 12px;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: color(white);
+  padding: space(1);
+  justify-content: space-between;
+}
+
 .button {
   background: none;
   transition: border 0.1s, background-color 0.1s, border-radius 0.1s, color 0.1s;

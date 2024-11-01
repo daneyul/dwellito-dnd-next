@@ -24,6 +24,7 @@ import { componentData } from '@/utils/constants/componentData';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import { useExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import Shed from '../../Sheds/one-story/Shed';
+import ShedToggleCamera from '@/components/ToggleCamera/ShedToggleCamera';
 
 export function MobileModels() {
   const {
@@ -165,11 +166,11 @@ export function MobileModels() {
   }, [supplier, exteriorFinish]);
 
   return (
-    <div id='canvas-container' className={style.container}>
+    <div id='canvas-container' className={style.container} style={{ minHeight: '300px'}}>
       <Canvas
         shadows
         camera={{ position: cameraPos, fov: camFov }}
-        style={{ borderRadius: '11px', minHeight: '300px' }}
+        style={{ borderRadius: '11px', height: '300px' }}
       >
         <color attach='background' args={['#fdfdf7']} />
         <Shed exteriorPaint={exteriorPaint} />
@@ -252,6 +253,7 @@ export function MobileModels() {
           dampingFactor={0.15}
         />
       </Canvas>
+      <ShedToggleCamera isMobile={true} />
     </div>
   );
 }
