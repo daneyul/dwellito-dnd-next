@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GoogleTagManager } from '@next/third-parties/google';
 import PriceTotal from '@/components/PriceTotal/PriceTotal';
 import style from './content.module.scss';
@@ -23,6 +23,24 @@ import ShedSingleSelect from '../SingleSelect/ShedSingleSelect';
 
 const Content = ({ data }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
+  
+  useEffect(() => {
+    if (data.supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', 'orh39zimxp');
+    }
+  }, [data.supplier]);
+
   return (
     <Theme>
       <GoogleTagManager gtmId='GTM-NVCQ2ZW3' />
