@@ -1,30 +1,69 @@
 import { useGLTF } from '@react-three/drei';
 
 const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY }) => {
-  const { nodes, materials } =
-    useGLTF(
-      `/models/${supplier}/interiors/${selectedShedHeight}/interiors.glb`
-    );
+  const { nodes, materials } = useGLTF(
+    `/models/${supplier}/interiors/${selectedShedHeight}/interiors.glb`
+  );
   return (
     <group scale={8} dispose={null} position={[adjustForX, 0, adjustForY]}>
       <group scale={0.025}>
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.interior_wall1.geometry}
-          material={materials.GF_interior}
+          geometry={nodes.GF_interiorwall1.geometry}
+          material={materials['GF_interior.001']}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.interior_wall2.geometry}
-          material={materials.GF_interior}
+          geometry={nodes.GF_interiorwall2.geometry}
+          material={materials['GF_interior.001']}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.interior_wall3.geometry}
-          material={materials.GF_interior}
+          geometry={nodes.GF_interiorwall3.geometry}
+          material={materials['GF_interior.001']}
+        />
+      </group>
+      <group scale={0.025}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_1.geometry}
+          material={materials.door_metal}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_4.geometry}
+          material={materials.door_metal}
+        />
+      </group>
+      <group scale={0.025}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_2.geometry}
+          material={materials['wood door']}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_3.geometry}
+          material={materials['wood door']}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_5.geometry}
+          material={materials['wood door']}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_6.geometry}
+          material={materials['wood door']}
         />
       </group>
       <mesh
@@ -130,6 +169,20 @@ const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY }) => {
         receiveShadow
         geometry={nodes.mirrorcab_mirror.geometry}
         material={materials.mirror}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_7.geometry}
+        material={materials.Material_8}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_9.geometry}
+        material={materials['PDM Grey metal Door_Handle_01']}
         scale={0.025}
       />
     </group>

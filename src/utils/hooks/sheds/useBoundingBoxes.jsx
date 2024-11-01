@@ -56,6 +56,20 @@ export function useBoundingBoxes({ doors, windows }) {
                 data.center.z - 0.8
               ),
             };
+          } else if (doorName === COMPONENT_NAMES.EXTERIOR_DOOR_2) {
+            updatedData = {
+              ...updatedData,
+              size: new Vector3(
+                data.size.x - 22,
+                data.size.y - 5.8,
+                data.size.z
+              ),
+              center: new Vector3(
+                data.center.x,
+                data.center.y + 1.3,
+                data.center.z - 0.8
+              ),
+            };
           } else {
             updatedData = {
               ...updatedData,

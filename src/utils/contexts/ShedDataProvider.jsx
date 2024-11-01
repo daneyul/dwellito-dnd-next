@@ -142,26 +142,31 @@ const ShedDataProvider = ({ children, data }) => {
   useEffect(() => {
     handleAddComponent({
       item: modifiedDoor,
+      selectedComponents,
       setSelectedComponents,
       selectedElevation: frontElevation,
     });
     handleAddComponent({
       item: modifiedWindowFront,
+      selectedComponents,
       setSelectedComponents,
       selectedElevation: frontElevation,
     });
     handleAddComponent({
       item: modifiedWindowRight,
+      selectedComponents,
       setSelectedComponents,
       selectedElevation: rightElevation,
     });
     handleAddComponent({
       item: modifiedWindowLeft1,
+      selectedComponents,
       setSelectedComponents,
       selectedElevation: leftElevation,
     });
     handleAddComponent({
       item: modifiedWindowLeft2,
+      selectedComponents,
       setSelectedComponents,
       selectedElevation: leftElevation,
     });

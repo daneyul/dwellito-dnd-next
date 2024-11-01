@@ -22,8 +22,7 @@ const AddOption = ({ options }) => {
       item,
       setSelectedComponents,
       selectedElevation,
-      floorPlan,
-      supplier,
+      floorPlan
     });
   };
 

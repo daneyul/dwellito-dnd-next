@@ -8,6 +8,7 @@ import {
 } from '../../constants/names/names';
 import { ventComponents } from '../../constants/components/vents/vents';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
+import { componentData } from '@/utils/constants/componentData';
 
 export const generateImgSrc = (supplier, imgName) =>
   `../../../images/${supplier}/${imgName}`;
@@ -102,7 +103,6 @@ export const handleAddComponent = ({
   selectedComponents,
   setSelectedComponents,
   selectedElevation,
-  supplier,
 }) => {
   if (
     item.fixed &&
@@ -119,10 +119,9 @@ export const handleAddComponent = ({
       elevation: [...item.elevation, selectedElevation],
     };
     const isRoof = item.objType === COMPONENT_TYPES.ROOF;
-    const isDoor = item.objType === COMPONENT_TYPES.DOOR;
 
-    const isCottageDoor =
-      isDoor && item.supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES;
+    const isExtDoor1 = item.name === COMPONENT_NAMES.EXTERIOR_DOOR_1;
+    const isExtDoor2 = item.name === COMPONENT_NAMES.EXTERIOR_DOOR_2;
 
     setSelectedComponents((prevSelectedComponents) => {
       if (isRoof) {
@@ -131,10 +130,41 @@ export const handleAddComponent = ({
           (component) => component.objType !== COMPONENT_TYPES.ROOF
         );
         return [...filteredComponents, item];
-      } else if (isCottageDoor) {
+      } else if (isExtDoor1) {
+        const window = componentData.find(
+          (window) => window.name === COMPONENT_NAMES.WINDOW_48_48
+        );
+        if (window) {
+          const modifiedWindowFront = {
+            ...window,
+            id: uuid(), // Assign a new unique ID to avoid any conflicts
+            elevation: [{ name: ELEVATION_NAMES.FRONT }],
+            position: {
+              ...window.position,
+              x: 0,
+            },
+          };
+
+          // Remove any existing door items and add the new door and window
+          const filteredComponents = prevSelectedComponents.filter(
+            (component) => component.objType !== COMPONENT_TYPES.DOOR
+          );
+
+          return [...filteredComponents, newItem, modifiedWindowFront];
+        } else {
+          // In case the window component wasn't found
+          console.error("Window component not found");
+          return [...prevSelectedComponents, newItem];
+        }
+      } else if (isExtDoor2) {
         // Remove any existing door items and add the new door
         const filteredComponents = prevSelectedComponents.filter(
-          (component) => component.objType !== COMPONENT_TYPES.DOOR
+          (component) =>
+            component.objType !== COMPONENT_TYPES.DOOR &&
+            !(component.objType === COMPONENT_TYPES.WINDOW &&
+              component.elevation.some(
+                (elevation) => elevation.name === ELEVATION_NAMES.FRONT
+              ))
         );
         return [...filteredComponents, newItem];
       } else {

@@ -30,7 +30,8 @@ const FrontOptions = () => {
     setSelectedComponents,
     floorPlan,
     setShowExterior,
-    setCameraReady
+    setCameraReady,
+    showExterior
   } = useContext(ShedDataContext);
 
   const doors = componentData.filter(
@@ -55,8 +56,10 @@ const FrontOptions = () => {
             price={0}
             supplier={supplier}
             handleAdd={() => {
-              setShowExterior(true);
-              setCameraReady(false);
+              if (!showExterior) {
+                setShowExterior(true);
+                setCameraReady(false);
+              }
               handleAddComponent({
                 item: door,
                 setSelectedComponents,
