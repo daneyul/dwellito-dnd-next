@@ -54,7 +54,7 @@ const GenericVent = React.memo(
           selectedElevation,
         });
       }
-    }, [selectedComponents, selectedElevation.name, ref.current]);
+    }, [component.position,ref.current]);
 
     const isBackElevation = selectedElevation.name === ELEVATION_NAMES.BACK;
 

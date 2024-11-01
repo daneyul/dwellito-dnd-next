@@ -18,7 +18,7 @@ const GenericContainerWindow = ({
   customScale,
 }) => {
   const { nodes, materials } = useGLTF(modelPath);
-  const { selectedComponents, selectedContainer, scaleFactor } =
+  const { selectedContainer, scaleFactor } =
     useContext(ContainerDataContext);
   const selectedElevation = component.elevation[0];
   const [width, setWidth] = useState(0);
@@ -53,7 +53,7 @@ const GenericContainerWindow = ({
         selectedElevation,
       });
     }
-  }, [selectedComponents, selectedElevation.name, ref.current]);
+  }, [component.position,ref.current]);
 
   useEffect(() => {
     if (materials.Glass) {

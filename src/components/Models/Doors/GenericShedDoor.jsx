@@ -14,7 +14,7 @@ const GenericShedDoor = ({
   customScale
 }) => {
   const { nodes, materials } = useGLTF(modelPath);
-  const { selectedComponents, selectedShed, scaleFactor } =
+  const { selectedShed, scaleFactor } =
     useContext(ShedDataContext);
   const selectedElevation = component.elevation[0];
   const [width, setWidth] = useState(0);
@@ -42,7 +42,7 @@ const GenericShedDoor = ({
       setWidth(size.x);
       onBoundingBoxChange({ size, center, selectedElevation });
     }
-  }, [selectedComponents, ref.current]);
+  }, [component, ref.current]);
 
   useEffect(() => {
     if (materials.Glass) {
