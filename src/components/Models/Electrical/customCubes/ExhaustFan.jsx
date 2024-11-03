@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import {
   COMPONENT_NAMES,

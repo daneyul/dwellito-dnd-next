@@ -78,6 +78,7 @@ const useOrderTotal = ({
       
     setOrderTotal(total);
   }, [
+    redCornersPrice,
     containerHeightIsStandard,
     selectedContainer,
     getContainerSpecificPrice,

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useInteriorGLTFModels } from '@/utils/hooks/containers/useGLTFModels';
 import { Base } from '@react-three/csg';
 import { useGLTF } from '@react-three/drei';

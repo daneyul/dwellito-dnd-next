@@ -4,9 +4,7 @@ import {
   COMPONENT_TYPES,
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
-  SUPPLIER_SLUGS,
 } from '../../constants/names/names';
-import { ventComponents } from '../../constants/components/vents/vents';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { componentData } from '@/utils/constants/componentData';
 

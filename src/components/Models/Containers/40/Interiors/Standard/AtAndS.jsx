@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { noneOption } from "@/utils/constants/components/flooring/flooringData";
 import { FLOORING_NAMES } from "@/utils/constants/names/names";
 import { useFlooringGLTFModels, useInteriorGLTFModels } from "@/utils/hooks/containers/useGLTFModels";

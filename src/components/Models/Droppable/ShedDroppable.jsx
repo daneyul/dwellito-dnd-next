@@ -48,7 +48,7 @@ const ShedDroppable = ({ children }) => {
     <div ref={setNodeRef} style={{ ...CustomStyle }}>
       {shedElevationData.map((elevation, index) => {
         return (
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }} key={index}>
             <Image
               key={index}
               src={generateImgSrc(supplier, imgMap[selectedElevation.name])}

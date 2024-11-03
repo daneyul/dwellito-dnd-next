@@ -5,10 +5,8 @@ import * as Dialog from '@radix-ui/react-dialog';
 import {
   checkDistance,
   generateImgSrc,
-  getUniqueElevationObjects,
 } from '@/utils/2D/sheds/utils';
 import {
-  COMPONENT_TYPES,
   ELEVATION_NAMES,
   SUPPLIER_SLUGS,
 } from '@/utils/constants/names/names';
@@ -26,10 +24,11 @@ export const OrderSummaryModal = () => {
     dialogOpen,
     setDialogOpen,
     supplier,
-    selectedRoof,
-    selectedShed,
   } = useContext(ShedDataContext);
-  const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
+  const { convertedSelections } = useSaveSelections({
+    selectedComponents,
+    exteriorFinish,
+  });
   const [zipCode, setZipCode] = useState('');
   const [openToast, setOpenToast] = useState(false);
   const inputRef = useRef(null);
@@ -117,10 +116,6 @@ export const OrderSummaryModal = () => {
   };
 
   const triggerZapier = async ({ data }) => {
-    const { convertedSelections } = useSaveSelections({
-      selectedComponents,
-      exteriorFinish,
-    });
     const surfaceData = {
       front: prepareSurfaceData(ELEVATION_NAMES.FRONT),
       back: prepareSurfaceData(ELEVATION_NAMES.BACK),
@@ -150,7 +145,6 @@ export const OrderSummaryModal = () => {
       surface: surfaceData,
       mobileVisitor: false,
       currency: supplier === SUPPLIER_SLUGS.CUSTOM_CUBES ? 'CAD' : 'USD',
-      sessionLength: sessionLength,
     };
 
     const JSONdata = JSON.stringify(responseData);
@@ -211,72 +205,6 @@ export const OrderSummaryModal = () => {
     </div>
   );
 
-  const RoofSection = () => (
-    <div className={style.section}>
-      <div className={style.elevationName}>Roof</div>
-      <div style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
-        <div className={style.lineItem}>
-          <div className={style.thumbnailContainer}>
-            <img
-              src={`/images/${supplier}/roof/${selectedShed.height}/${selectedRoof.thumbnail}`}
-              alt='Roof Image'
-              className={style.thumbnailImg}
-            />
-          </div>
-          <div className={style.description}>{selectedRoof.name}</div>
-          <div className={style.price} />
-        </div>
-      </div>
-    </div>
-  );
-
-  const Section = ({ elevation }) => {
-    const elevationName = `${elevation.name} Wall`;
-    const filteredComponents = selectedComponents.filter(
-      (component) =>
-        component.elevation.some((i) => i.name === elevation.name) &&
-        component.objType !== COMPONENT_TYPES.ROOF
-    );
-
-    return (
-      <div className={style.section}>
-        <div className={style.elevationName}>{elevationName}</div>
-        <ul style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
-          {filteredComponents.map((component) => {
-            const distance = checkDistance({
-              component,
-              selectedElevation: elevation,
-              scaleFactor,
-            });
-
-            const imgSrc = component.frontImg || component.imgName;
-
-            return (
-              <li key={component.id} className={style.lineItem}>
-                <div className={style.thumbnailContainer}>
-                  <img
-                    src={generateImgSrc(supplier, imgSrc)}
-                    alt={component.desc}
-                    className={style.thumbnailImg}
-                  />
-                </div>
-                <div className={style.description}>
-                  <div className={style.partNumber}>{component.desc}</div>
-                  <div className={style.desc}>{component.name}</div>
-                  <div className={style.distance}>
-                    {distance.left}&quot; from left, {distance.right}&quot; from
-                    right
-                  </div>
-                </div>
-                <div className={style.price} />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    );
-  };
-
   return (
     <>
       <Toast
@@ -302,10 +230,6 @@ export const OrderSummaryModal = () => {
               }}
             >
               <Dialog.Title className={style.title}>Order Summary</Dialog.Title>
-              {/* <RoofSection /> */}
-              {/* {uniqueElevationNames.map((elevation, index) => (
-                <Section key={index} elevation={elevation} />
-              ))} */}
               <ExteriorSection />
               <Form.Root onSubmit={(e) => handleSubmit(e)}>
                 <div className={style.formTitle}>Project Details</div>

@@ -60,7 +60,7 @@ const ShedSingleSelect = ({ type }) => {
   );
 
   const getDescription = useCallback(
-    (options, selectedOption, priceCallback) => {
+    (options, selectedOption) => {
       return options.map((selection, index) => {
         const isSelected = selectedOption === selection;
 

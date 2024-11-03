@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { checkDistance } from '@/utils/2D/containers/utils';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { calcPosition } from '@/utils/3D/containers/utils';

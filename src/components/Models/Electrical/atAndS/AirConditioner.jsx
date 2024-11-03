@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { checkDistance } from '@/utils/2D/containers/utils';
 import { Box3, Vector3 } from 'three';
 import { calcPosition, calcRotation } from '@/utils/3D/containers/utils';

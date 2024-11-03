@@ -3,8 +3,6 @@ import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
-import { Box3, Box3Helper, Vector3 } from 'three';
-import { useFrame } from '@react-three/fiber';
 
 export function CsgGeometries({
   doorBoundingBoxes,

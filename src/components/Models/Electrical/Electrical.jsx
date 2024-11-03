@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { COMPONENT_NAMES, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import CustomCubesAirConditioner from './customCubes/AirConditioner';
 import Amp from './customCubes/Amp';

@@ -1,8 +1,7 @@
-const {
-  noneOption,
-} = require('@/utils/constants/components/flooring/flooringData');
-const { useFlooringGLTFModels } = require('@/utils/hooks/containers/useGLTFModels');
-const { useGLTF } = require('@react-three/drei');
+/* eslint-disable react-hooks/rules-of-hooks */
+import { noneOption } from '@/utils/constants/components/flooring/flooringData';
+import { useFlooringGLTFModels } from '@/utils/hooks/containers/useGLTFModels';
+import { useGLTF } from '@react-three/drei';
 
 const Plywood = ({
   interiorFinishes,

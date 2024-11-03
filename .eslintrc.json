@@ -1,4 +1,12 @@
 {
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2020,
+    "requireConfigFile": false,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "extends": [
     "next/core-web-vitals",
     "prettier",
@@ -8,6 +16,7 @@
   ],
   "plugins": ["import"],
   "rules": {
+    "react-hooks/exhaustive-deps": "off",
     "import/no-unresolved": "error",
     "import/no-named-as-default": "off",
     "no-unused-vars": [

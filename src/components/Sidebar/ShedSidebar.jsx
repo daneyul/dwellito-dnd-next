@@ -6,7 +6,6 @@ import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import ShedSingleSelect from '../SingleSelect/ShedSingleSelect';
 import ShedSaveOrder from '../SaveOrder/ShedSaveOrder';
 import Subtitle from '../Subtitle/Subtitle';
-import RoofOptions from '../Layouts/RoofOptions';
 import FrontOptions from '../Layouts/FrontOptions';
 
 const LogoSection = ({ supplier }) => (

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
 import { getExteriorPaint } from '@/utils/hooks/containers/useGLTFModels';

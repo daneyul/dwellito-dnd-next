@@ -45,6 +45,12 @@ export const OrderSummaryModal = () => {
     supplier,
     hasRedCorners,
   } = useContext(ContainerDataContext);
+  const { convertedSelections } = useSaveSelections({
+    selectedComponents,
+    interiorFinish,
+    exteriorFinish,
+    flooring,
+  });
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const [zipCode, setZipCode] = useState('');
   const [openToast, setOpenToast] = useState(false);
@@ -170,12 +176,6 @@ export const OrderSummaryModal = () => {
   };
 
   const triggerZapier = async ({ data }) => {
-    const { convertedSelections } = useSaveSelections({
-      selectedComponents,
-      interiorFinish,
-      exteriorFinish,
-      flooring,
-    });
     const surfaceData = {
       front: prepareSurfaceData(ELEVATION_NAMES.FRONT),
       back: prepareSurfaceData(ELEVATION_NAMES.BACK),

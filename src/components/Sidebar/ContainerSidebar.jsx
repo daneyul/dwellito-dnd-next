@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-img-element */
 import React, { useContext } from 'react';
 import style from './containerSidebar.module.scss';
 import {
@@ -122,16 +124,12 @@ const ContainerSidebar = () => {
   const {
     containerHeightIsStandard,
     setSelectedContainerHeight,
-    selectedContainer,
     slug,
     supplier,
     containerSize,
   } = useContext(ContainerDataContext);
 
   const canSelectContainerHeight = slug !== CONTAINER_SIZE_10;
-  const containerPrice = containerHeightIsStandard
-    ? selectedContainer.priceSc
-    : selectedContainer.priceHc;
 
   const fixedElectricals = componentData.filter((item) => {
     if (containerSize() === CONTAINER_SIZE_40) {

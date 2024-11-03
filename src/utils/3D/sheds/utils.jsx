@@ -36,7 +36,6 @@ const calcRotation = (elevation, selectedBase) => {
 const frontSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  width,
 }) => {
   const adjustForX = () => {
     return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2);
@@ -87,7 +86,6 @@ const backSideCoordinates = ({
 const leftSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  width,
 }) => {
   const adjustForX = () => {
     return (
@@ -108,7 +106,6 @@ const leftSideCoordinates = ({
 const rightSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
-  width,
 }) => {
   const adjustForX = () => {
     return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2;
@@ -167,12 +164,6 @@ const calcPosition = ({
           SCALE_FACTOR_FOR_CALCULATIONS,
           width,
         });
-      case ELEVATION_NAMES.FLOOR_PLAN:
-        return electricalCoordinates(
-          distanceObject,
-          SCALE_FACTOR_FOR_CALCULATIONS,
-          width
-        );
       default:
         break;
     }

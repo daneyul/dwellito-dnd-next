@@ -52,6 +52,7 @@ const RoofOptions = () => {
 
         return (
           <Layout
+            key={roof.id}
             name={roofName}
             imgSrc={roofImage}
             isSelected={isSelected}

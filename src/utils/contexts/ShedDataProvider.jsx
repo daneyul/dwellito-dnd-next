@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect, useRef } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import useOrderTotal from '../hooks/useShedOrderTotal';
 import {
@@ -179,7 +179,6 @@ const ShedDataProvider = ({ children, data }) => {
     setSelectedElevation,
     orderTotal,
     setOrderTotal,
-    setSelectedElevation,
     draggableRefs,
     selectedElevationIndex,
     setSelectedElevationIndex,

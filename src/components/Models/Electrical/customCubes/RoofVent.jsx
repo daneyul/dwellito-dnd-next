@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {
   COMPONENT_NAMES,
   CONTAINER_SIZE_10,

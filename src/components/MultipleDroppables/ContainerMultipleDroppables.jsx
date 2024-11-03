@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { generateImgSrc, toScale } from '../../utils/2D/containers/utils';
@@ -122,6 +123,7 @@ const ContainerMultipleDroppables = ({
       }}
     >
       <img
+        alt={floorPlan.imgScName}
         src={generateImgSrc(supplier, floorPlan.imgScName)}
         style={{ position: 'absolute', width: '100%', height: 'auto' }}
       />

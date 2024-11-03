@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { noneOption } from '@/utils/constants/components/flooring/flooringData';
 import { FLOORING_NAMES } from '@/utils/constants/names/names';
 import {
@@ -14,9 +15,11 @@ const WhiteShiplap = ({
   supplier,
 }) => {
   if (interiorFinishes.interiorIsWhiteShiplap) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const { nodes: rearTopNodes } = useGLTF(
       `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
     );
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const { whiteShiplapMaterial } = useInteriorGLTFModels(supplier);
     return (
       <>

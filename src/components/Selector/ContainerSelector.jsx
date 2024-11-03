@@ -1,7 +1,7 @@
 
 import style from './selector.module.scss';
 import { useContext } from 'react';
-import { COMPONENT_TYPES, SUPPLIER_NAMES, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { COMPONENT_TYPES, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { componentData } from '@/utils/constants/componentData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import AddOption from '../AddOption/Container/AddOption';

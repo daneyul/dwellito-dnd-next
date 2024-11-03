@@ -1,4 +1,3 @@
-import { COMPONENT_NAMES } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 

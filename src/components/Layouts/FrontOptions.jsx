@@ -50,6 +50,7 @@ const FrontOptions = () => {
 
         return (
           <Layout
+            key={door.id}
             name={doorName}
             imgSrc={doorImage}
             isSelected={isSelected}

@@ -48,7 +48,7 @@ export function ContainerModels() {
     show3d
   } = useContext(ContainerDataContext);
 
-  const { active, progress, item, loaded, total } = useProgress();
+  const { progress } = useProgress();
   // console.log(active, progress, item, loaded, total)
 
   useEffect(() => {

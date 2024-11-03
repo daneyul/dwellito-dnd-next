@@ -11,7 +11,6 @@ import {
 } from '../../constants/names/names';
 import { ventComponents } from '../../constants/components/vents/vents';
 import { DIMENSIONS } from '../../constants/dimensions/dimensions';
-import { windowComponents } from '../../constants/components/windows/windows';
 
 export const generateImgSrc = (supplier, imgName) =>
   `../../../images/${supplier}/${imgName}`;

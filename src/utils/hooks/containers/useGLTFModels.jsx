@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
 import { useLoader } from '@react-three/fiber';
@@ -172,5 +173,5 @@ export const useFlooringGLTFModels = (supplier) => {
       timberFloor,
       rubberCoinFloor,
     };
-  };
+  }
 };

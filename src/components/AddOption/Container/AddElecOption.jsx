@@ -37,7 +37,7 @@ const AddElecOption = ({ options }) => {
   });
 
   return filteredOptions.map((item) => {
-    const imgSrc = !!item.sidebarImg ? item.sidebarImg : item.floorPlanImg;
+    const imgSrc = item.sidebarImg ? item.sidebarImg : item.floorPlanImg;
     const alreadySelected = selectedComponents.some(
       (component) => component.name === item.name
     );
@@ -59,6 +59,7 @@ const AddElecOption = ({ options }) => {
     if (isFloorPlanView && item.fixed) {
       return (
         <div
+          key={item.id}
           className={
             alreadySelected
               ? style.objImgContainerSelected
@@ -129,6 +130,7 @@ const AddElecOption = ({ options }) => {
     } else {
       return (
         <div
+          key={item.id}
           className={
             alreadySelected
               ? style.objImgContainerSelected

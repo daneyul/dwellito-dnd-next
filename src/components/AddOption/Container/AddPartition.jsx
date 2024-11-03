@@ -115,6 +115,7 @@ const AddPartition = ({ options }) => {
       if ((interiorNone || interiorIsSprayFoamCeiling || interiorIsSprayFoamCeilingWalls) && !interiorIsDrywall && !interiorIsPlywood) {
         return (
           <Disabled
+            key={item.id}
             text='This door only works with plywood and drywall interior finishes'
             imgSrc={imgSrc}
             item={item}
@@ -123,6 +124,7 @@ const AddPartition = ({ options }) => {
       } else {
         return (
           <Enabled
+            key={item.id}
             imgSrc={imgSrc}
             item={item}
             alreadySelected={alreadySelected}
@@ -132,6 +134,7 @@ const AddPartition = ({ options }) => {
     } else {
       return (
         <Enabled
+          key={item.id}
           imgSrc={imgSrc}
           item={item}
           alreadySelected={alreadySelected}

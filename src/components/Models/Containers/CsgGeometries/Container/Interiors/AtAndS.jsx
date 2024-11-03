@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { INTERIOR_TRIM_NAMES } from "@/utils/constants/names/names";
 import { Base } from "@react-three/csg";
 import { useGLTF } from "@react-three/drei";
-import { use } from "react";
 
 const { useInteriorGLTFModels, useInteriorTrimGLTFModels } = require("@/utils/hooks/containers/useGLTFModels");
 

@@ -87,7 +87,7 @@ const useDragHandlers = ({
   };
 
   const handleDragEnd = (event) => {
-    const { active, delta, over } = event;
+    const { active, delta } = event;
     const draggedId = active.id;
     const draggedItem = selectedComponents.find(
       (component) => component.id === draggedId

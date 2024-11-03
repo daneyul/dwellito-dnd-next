@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useRef } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import {
   getExteriorFinishFromUrl,
   getFlooringFromUrl,
@@ -190,7 +190,6 @@ const ContainerDataProvider = ({ children, data }) => {
     setSelectedElevation,
     orderTotal,
     setOrderTotal,
-    setSelectedElevation,
     draggableRefs,
     selectedElevationIndex,
     setSelectedElevationIndex,
