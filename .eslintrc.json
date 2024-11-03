@@ -1,15 +1,37 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"],
+  "extends": [
+    "next/core-web-vitals",
+    "prettier",
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "plugins": ["import"],
   "rules": {
+    "import/no-unresolved": "error",
+    "import/no-named-as-default": "off",
     "no-unused-vars": [
       "error",
       {
         "vars": "all",
         "args": "after-used",
         "caughtErrors": "all",
-        "ignoreRestSiblings": false,
-        "reportUsedIgnorePattern": false
+        "ignoreRestSiblings": false
       }
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@", "./src"],
+          ["@components", "./src/components"],
+          ["@utils", "./src/utils"],
+          ["@fonts", "./src/fonts"],
+          ["@hooks", "./src/utils/hooks"]
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

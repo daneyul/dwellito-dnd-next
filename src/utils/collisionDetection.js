@@ -13,7 +13,6 @@ export const boundingBoxCollisionDetection = ({
   active,
   collisionRect,
   droppableRects,
-  droppableContainers,
 }) => {
   if (!active) return [];
 
