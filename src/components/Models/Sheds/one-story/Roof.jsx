@@ -20,8 +20,8 @@ const Roof = ({
       <mesh
         castShadow
         receiveShadow
-        geometry={roofBattenNodes.Roof_batten.geometry}
-        material={roofBattenMaterials.Roof_batten}
+        geometry={roofBattenNodes.Roof_battens001.geometry}
+        material={roofBattenMaterials.Vertical_Trim}
         scale={0.025}
       />
       <mesh
