@@ -44,8 +44,8 @@ const Shed = ({ exteriorPaint }) => {
         <mesh
           castShadow
           receiveShadow
-          geometry={groundBlockBattenNodes.GF_batten.geometry}
-          material={groundBlockBattenMaterials.GF_batten}
+          geometry={groundBlockBattenNodes.GF_batten001.geometry}
+          material={groundBlockBattenMaterials.Vertical_Trim}
           scale={0.025}
         />
         <group scale={0.025}>
