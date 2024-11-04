@@ -69,41 +69,6 @@ const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY }) => {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.kitchenette_white.geometry}
-        material={materials.kichenette_white}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.kitchenette_metal.geometry}
-        material={materials.kitchenette_metal}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.kitchenette_black.geometry}
-        material={materials.kitchenette_black}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.kitchenette_wood.geometry}
-        material={materials.kitchenette_wood_oak}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.kitchenette_mixer.geometry}
-        material={materials.kitchenette_mixer}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.bed_grey.geometry}
         material={materials.bed_grey}
         scale={0.025}
@@ -125,50 +90,36 @@ const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY }) => {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.bathroom_sink.geometry}
-        material={materials.sink}
+        geometry={nodes.kitchenette_black.geometry}
+        material={materials['kitchenette_black.001']}
         scale={0.025}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.bathroom_sink_porcelein.geometry}
-        material={materials.sink_porcelain}
+        geometry={nodes.kitchenette_white.geometry}
+        material={materials['kichenette_white.001']}
         scale={0.025}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.bathroom_sink_mixer.geometry}
-        material={materials.sink_mixer}
+        geometry={nodes.kitchenette_mixer.geometry}
+        material={materials['kitchenette_mixer.001']}
         scale={0.025}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.mirrorcab_cabinet.geometry}
-        material={materials.mirrorcab}
+        geometry={nodes.kitchenette_wood.geometry}
+        material={materials['kitchenette_wood_oak.001']}
         scale={0.025}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.towel_handle.geometry}
-        material={materials.towel_handle}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.bathroom_toilet.geometry}
-        material={materials.toilet_porcelain}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mirrorcab_mirror.geometry}
-        material={materials.mirror}
+        geometry={nodes.kitchenette_metal.geometry}
+        material={materials['kitchenette_metal.002']}
         scale={0.025}
       />
       <mesh
@@ -183,6 +134,90 @@ const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY }) => {
         receiveShadow
         geometry={nodes.Object_9.geometry}
         material={materials['PDM Grey metal Door_Handle_01']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_2001.geometry}
+        material={materials['Tile reflective']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_3001.geometry}
+        material={materials.bathtub}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bathtub_metal.geometry}
+        material={materials.bathtub_metal}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bathroom_ground.geometry}
+        material={materials.bathroom_ground}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bathtub_glass001.geometry}
+        material={materials['Gray Glass (7)']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.towel_handle.geometry}
+        material={materials['towel_handle.001']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_2002.geometry}
+        material={materials['toilet_porcelain.001']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_1002.geometry}
+        material={materials['sink_mixer.001']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_2003.geometry}
+        material={materials['sink_porcelain.001']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_3002.geometry}
+        material={materials['sink.001']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_4001.geometry}
+        material={materials['mirrorcab.001']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_5001.geometry}
+        material={materials['mirror.001']}
         scale={0.025}
       />
     </group>
