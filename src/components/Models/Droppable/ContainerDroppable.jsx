@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { generateImgSrc, toScale } from '../../../utils/2D/containers/utils';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import { containerElevationData } from '@/utils/constants/components/elevations/containerElevationData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
@@ -29,10 +29,20 @@ const ContainerDroppable = ({ children }) => {
     position: 'relative',
   };
 
+  useEffect(() => {
+    // Preload images individually for each elevation
+    containerElevationData.forEach(elevation => {
+      const imgSrc = generateImgSrc(supplier, containerHeightIsStandard ? elevation.imgScName : elevation.imgHcName);
+      const img = new window.Image();
+      img.src = imgSrc;
+      console.log(`Preloading image: ${imgSrc}`);
+    });
+  }, []);
+
   return (
     <div ref={setNodeRef} style={{ ...CustomStyle }}>
       {containerElevationData.map((elevation, index) => (
-        <Image
+        <NextImage
           key={index}
           src={generateImgSrc(supplier, elevationImg)}
           alt='Elevation'
