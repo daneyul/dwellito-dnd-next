@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import CustomCubes from '../../public/logos/customCubes/logo.svg';
 
 const logos = {

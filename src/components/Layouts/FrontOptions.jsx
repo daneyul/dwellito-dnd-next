@@ -39,7 +39,7 @@ const FrontOptions = () => {
   );
 
   return (
-    <div className={style.container}>
+    <div className={style.container} style={{ marginBottom: '3rem'}}>
       {doors.map((door) => {
         const thumbnail = door.imgName;
         const doorName = door.name;
