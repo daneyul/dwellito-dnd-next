@@ -197,7 +197,7 @@ export function MobileModels() {
       <Canvas
         shadows
         camera={{ position: cameraPos, fov: camFov }}
-        style={{ borderRadius: '11px' }}
+        style={{ borderRadius: '11px', height: '300px' }}
       >
         <color attach='background' args={['#fdfdf7']} />
         <ContainerShell />
