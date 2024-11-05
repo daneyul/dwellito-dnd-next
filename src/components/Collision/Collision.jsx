@@ -1,4 +1,4 @@
-import style from './collision.module.css';
+import style from './collision.module.scss';
 import * as HoverCard from '@radix-ui/react-hover-card';
 
 const Collision = ({ showCollision }) => {
