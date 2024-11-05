@@ -12,11 +12,6 @@
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "prepare": "husky"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint"
-    }
-  },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
     "@dnd-kit/modifiers": "^7.0.0",

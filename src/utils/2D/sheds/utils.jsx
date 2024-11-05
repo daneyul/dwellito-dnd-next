@@ -1,13 +1,11 @@
 import { v4 as uuid } from 'uuid';
 import {
-  COMPONENT_NAMES,
   COMPONENT_TYPES,
   ELEVATION_NAMES,
   INTERIOR_FINISH_NAMES,
   SUPPLIER_SLUGS,
 } from '../../constants/names/names';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
-import { componentData } from '@/utils/constants/componentData';
 
 export const generateImgSrc = (supplier, imgName) =>
   `../../../images/${supplier}/${imgName}`;
