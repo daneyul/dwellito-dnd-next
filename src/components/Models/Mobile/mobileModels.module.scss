@@ -2,7 +2,7 @@
   border-radius: 11px;
   border: 1px solid color(grey);
   width: 100%;
-  min-height: 300px;
+  height: auto;
   position: relative;
   flex: 1;
   @include respond-to(md) {
