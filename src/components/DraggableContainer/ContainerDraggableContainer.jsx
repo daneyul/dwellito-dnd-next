@@ -11,6 +11,7 @@ export const ContainerDraggableContainer = ({
   draggableRefs,
   setHoveredPiece,
   setShowCollision,
+  showCollision,
 }) => {
   const { scaleFactor, selectedElevation, selectedContainer } =
     useContext(ContainerDataContext);
@@ -38,6 +39,7 @@ export const ContainerDraggableContainer = ({
             ref={draggableRefs[piece.id]}
             onHover={() => setHoveredPiece(piece)}
             onLeave={() => setHoveredPiece(null)}
+            showCollision={showCollision}
             setShowCollision={setShowCollision}
             selectedComponent={selectedComponent}
           />

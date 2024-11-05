@@ -62,6 +62,7 @@ const ContainerDraggable = ({
   onSelect,
   onHover,
   onLeave,
+  showCollision,
   setShowCollision,
   selectedComponent,
 }) => {
@@ -72,7 +73,7 @@ const ContainerDraggable = ({
     supplier,
     selectedElevation,
     isFloorPlanView,
-    selectedContainer
+    selectedContainer,
   } = useContext(ContainerDataContext);
 
   const {
@@ -294,6 +295,16 @@ const ContainerDraggable = ({
     zIndex: 2000,
   };
 
+  const borderColor = () => {
+    if (showCollision && piece.id === selectedComponent?.id) {
+      return '1px solid #D9534F';
+    } else if (isHovered || piece.id === selectedComponent?.id) {
+      return '1px solid #2A2CB1';
+    } else {
+      return '1px solid transparent';
+    }
+  }
+
   return (
     <>
       <div
@@ -323,10 +334,7 @@ const ContainerDraggable = ({
               isHovered || piece.id === selectedComponent?.id
                 ? '0px 4px 30px 0px rgba(128, 129, 238, 0.19)'
                 : 'none',
-            border:
-              isHovered || piece.id === selectedComponent?.id
-                ? '1px solid #2A2CB1'
-                : '1px solid transparent',
+            border: borderColor(),
             boxSizing: 'border-box',
           }}
         />

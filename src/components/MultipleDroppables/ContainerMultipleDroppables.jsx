@@ -17,6 +17,7 @@ import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import ContainerDraggable from '../Models/Draggable/ContainerDraggable';
 
 const ContainerMultipleDroppables = ({
+  showCollision,
   setHoveredPiece,
   setShowCollision,
   handleSelect,
@@ -151,6 +152,7 @@ const ContainerMultipleDroppables = ({
               onLeave={() => setHoveredPiece(null)}
               setShowCollision={setShowCollision}
               selectedComponent={selectedComponent}
+              showCollision={showCollision}
             />
           );
         })}
@@ -178,6 +180,7 @@ const ContainerMultipleDroppables = ({
                 onLeave={() => setHoveredPiece(null)}
                 setShowCollision={setShowCollision}
                 selectedComponent={selectedComponent}
+                showCollision={showCollision}
               />
             );
           }
@@ -205,6 +208,7 @@ const ContainerMultipleDroppables = ({
               onLeave={() => setHoveredPiece(null)}
               setShowCollision={setShowCollision}
               selectedComponent={selectedComponent}
+              showCollision={showCollision}
             />
           )
         )}
@@ -231,6 +235,7 @@ const ContainerMultipleDroppables = ({
             onLeave={() => setHoveredPiece(null)}
             setShowCollision={setShowCollision}
             selectedComponent={selectedComponent}
+            showCollision={showCollision}
           />
         ))}
       </div>
@@ -256,6 +261,7 @@ const ContainerMultipleDroppables = ({
             onLeave={() => setHoveredPiece(null)}
             setShowCollision={setShowCollision}
             selectedComponent={selectedComponent}
+            showCollision={showCollision}
           />
         ))}
       </div>

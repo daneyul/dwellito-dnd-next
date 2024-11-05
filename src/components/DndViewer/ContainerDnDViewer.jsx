@@ -178,6 +178,7 @@ const ContainerDnDViewer = () => {
             setHoveredPiece={setHoveredPiece}
             setShowCollision={setShowCollision}
             selectedComponent={selectedComponent}
+            showCollision={showCollision}
           />
         ) : (
           <ContainerDroppable>
@@ -187,6 +188,7 @@ const ContainerDnDViewer = () => {
               draggableRefs={draggableRefs}
               setHoveredPiece={setHoveredPiece}
               setShowCollision={setShowCollision}
+              showCollision={showCollision}
               selectedComponent={selectedComponent}
             />
           </ContainerDroppable>

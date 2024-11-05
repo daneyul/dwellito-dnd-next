@@ -1,4 +1,4 @@
-import style from './collision.module.css';
+import style from './collision.module.scss';
 
 const OutsideDroppable = ({ showWarning }) => {
   return (
