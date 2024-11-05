@@ -5,7 +5,6 @@ import Logo from '../Logo';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import ShedSingleSelect from '../SingleSelect/ShedSingleSelect';
 import ShedSaveOrder from '../SaveOrder/ShedSaveOrder';
-import Subtitle from '../Subtitle/Subtitle';
 import FrontOptions from '../Layouts/FrontOptions';
 
 const LogoSection = ({ supplier }) => (
@@ -15,12 +14,8 @@ const LogoSection = ({ supplier }) => (
       className={style.selectionTagName}
       style={{ marginTop: '2rem', textAlign: 'center' }}
     >
-      Choose Your Design
+    1224 Relief Pod
     </div>
-    <Subtitle
-      text='Get started by choosing your base design'
-      css={{ fontWeight: 400, marginBottom: '1rem', textAlign: 'center' }}
-    />
   </div>
 );
 
