@@ -136,6 +136,20 @@ const useDragHandlers = ({
     );
   
     if (!initialPosition || !draggedItem) return;
+
+    const newPosition = {
+      x: initialPosition.x + delta.x,
+      y: initialPosition.y + delta.y,
+    };
+  
+    const positionChanged =
+      draggedItem.position.x !== newPosition.x ||
+      draggedItem.position.y !== newPosition.y;
+  
+    if (!positionChanged) {
+      setInitialPosition(null);
+      return;
+    }
   
     const isOnElevationRight =
       draggedItem.elevation[0].name === ELEVATION_NAMES.RIGHT;
