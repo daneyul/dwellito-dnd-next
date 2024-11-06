@@ -3,13 +3,8 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import style from '../orderSummaryModal.module.scss';
 import * as Dialog from '@radix-ui/react-dialog';
 import {
-  checkDistance,
   generateImgSrc,
 } from '@/utils/2D/sheds/utils';
-import {
-  ELEVATION_NAMES,
-  SUPPLIER_SLUGS,
-} from '@/utils/constants/names/names';
 import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/sheds/useSaveSelections';
 import Toast from '../../Toast/Toast';
@@ -18,7 +13,6 @@ import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 export const OrderSummaryModal = () => {
   const {
     selectedComponents,
-    scaleFactor,
     exteriorFinish,
     slug,
     dialogOpen,
@@ -96,42 +90,9 @@ export const OrderSummaryModal = () => {
     setTimeout(() => (document.body.style.pointerEvents = ''), 0);
   });
 
-  const prepareSurfaceData = (elevationName) => {
-    const components = selectedComponents
-      .filter((component) => component.elevation[0].name === elevationName)
-      .map((i) => {
-        const distance = checkDistance({
-          component: i,
-          selectedElevation: i.elevation[0],
-          scaleFactor,
-        });
-        return {
-          name: i.name,
-          position: `${distance.left}' from left & ${distance.right}' from right`,
-          surface: elevationName,
-        };
-      });
-
-    return components.length > 0 ? components : null;
-  };
-
   const triggerZapier = async ({ data }) => {
-    const surfaceData = {
-      front: prepareSurfaceData(ELEVATION_NAMES.FRONT),
-      back: prepareSurfaceData(ELEVATION_NAMES.BACK),
-      left: prepareSurfaceData(ELEVATION_NAMES.LEFT),
-      right: prepareSurfaceData(ELEVATION_NAMES.RIGHT),
-    };
-
-    // Remove null values from surface data
-    Object.keys(surfaceData).forEach((key) => {
-      if (!surfaceData[key]) {
-        delete surfaceData[key];
-      }
-    });
-
     const responseData = {
-      containerType: slug,
+      shedType: slug,
       supplier: supplier,
       exteriorPaint: exteriorFinish.name,
       customerEmail: data.email,
@@ -139,12 +100,8 @@ export const OrderSummaryModal = () => {
       address: data.address,
       zipCode: zipCode,
       url: `https://custom.configure.so/${supplier}/${slug}/?data=${convertedSelections}`,
-      exteriorFinish: {
-        name: exteriorFinish.name,
-      },
-      surface: surfaceData,
       mobileVisitor: false,
-      currency: supplier === SUPPLIER_SLUGS.CUSTOM_CUBES ? 'CAD' : 'USD',
+      currency: 'USD',
     };
 
     const JSONdata = JSON.stringify(responseData);
