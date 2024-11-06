@@ -34,6 +34,7 @@ import {
 } from '@/utils/constants/camera/camPos';
 import Electrical from './Electrical/Electrical';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
+import { preloadAllModels } from '@/utils/3D/containers/preloadModels';
 
 export function ContainerModels() {
   const {
@@ -45,11 +46,17 @@ export function ContainerModels() {
     cameraReady,
     setCameraReady,
     supplier,
-    show3d
+    show3d,
+    containerSize,
+    selectedContainerHeight
   } = useContext(ContainerDataContext);
 
   const { progress } = useProgress();
-  // console.log(active, progress, item, loaded, total)
+
+  useEffect(() => {
+    preloadAllModels({ supplier, size: containerSize(), selectedContainerHeight});
+  }, [])
+
 
   useEffect(() => {
     setThreeDModelLoaded(progress === 100);
