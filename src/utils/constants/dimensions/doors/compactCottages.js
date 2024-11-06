@@ -9,7 +9,7 @@ export const COMPACT_COTTAGES_DOOR_DIMENSIONS = {
     },
   },
   EXTERIOR_DOOR_2: {
-    WIDTH: 151,
+    WIDTH: 142,
     HEIGHT: 118,
     FP_HEIGHT: 128,
     POSITION: {
