@@ -14,6 +14,15 @@ export async function preloadAllModels({ supplier, size, selectedContainerHeight
     useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/rear-top-drywall.glb`),
     useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/rear-top-plywood.glb`),
     useGLTF.preload(`/models/container/${size}/${selectedContainerHeight}/flooring.glb`),
+    useGLTF.preload(`/models/${supplier}/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`),
+    useGLTF.preload(`/models/${supplier}/drywall/${size}/${selectedContainerHeight}/drywall-left.glb`),
+    useGLTF.preload(`/models/${supplier}/drywall/${size}/${selectedContainerHeight}/drywall-back.glb`),
+    useGLTF.preload(`/models/${supplier}/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`),
+    useGLTF.preload(`/models/${supplier}/plywood/${size}/${selectedContainerHeight}/plywood-left.glb`),
+    useGLTF.preload(`/models/${supplier}/plywood/${size}/${selectedContainerHeight}/plywood-back.glb`),
+    useGLTF.preload(`/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-right.glb`),
+    useGLTF.preload(`/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-left.glb`),
+    useGLTF.preload(`/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-back.glb`),
   ];
 
   if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
