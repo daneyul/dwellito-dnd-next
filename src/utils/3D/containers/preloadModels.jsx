@@ -26,7 +26,6 @@ export async function preloadAllModels({ supplier, size, selectedContainerHeight
 
   if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
     promises.push(
-      // Interior materials
       useGLTF.preload(`/models/${supplier}/materials/interior/plywood.glb`),
       useGLTF.preload(`/models/${supplier}/materials/interior/drywall.glb`),
       useGLTF.preload(`/models/${supplier}/materials/interior/sprayfoam.glb`),
@@ -38,6 +37,5 @@ export async function preloadAllModels({ supplier, size, selectedContainerHeight
     );
   }
 
-  // Load all promises concurrently
   await Promise.all(promises);
 }
