@@ -7,6 +7,9 @@
       "jsx": true
     }
   },
+  "env": {
+    "jest": true
+  },
   "extends": [
     "next/core-web-vitals",
     "prettier",

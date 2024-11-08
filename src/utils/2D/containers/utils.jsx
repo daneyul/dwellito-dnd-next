@@ -875,3 +875,12 @@ export const getComponentPrice = (component, interiorFinish, isElectrical) => {
     return component.price;
   }
 };
+
+export const getContainerHeightFromUrl = (querySelectionData) => {
+  if (querySelectionData) {
+    const jsonSelections = base64ToJson(querySelectionData);
+    if (jsonSelections && jsonSelections.containerHeight) {
+      return jsonSelections.containerHeight;
+    }
+  }
+};

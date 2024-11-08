@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react';
 import {
+  getContainerHeightFromUrl,
   getExteriorFinishFromUrl,
   getFlooringFromUrl,
   getInteriorFinishFromUrl,
@@ -37,6 +38,7 @@ const ContainerDataProvider = ({ children, data }) => {
   const queryExterior = getExteriorFinishFromUrl(data.querySelectionData);
   const queryFlooring = getFlooringFromUrl(data.querySelectionData);
   const queryInteriorTrim = getInteriorTrimFromUrl(data.querySelectionData);
+  const queryContainerHeight = getContainerHeightFromUrl(data.querySelectionData);
 
   // State
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
@@ -54,8 +56,6 @@ const ContainerDataProvider = ({ children, data }) => {
   const [selectedComponents, setSelectedComponents] = useState(
     querySelections || DEFAULT_COMPONENTS
   );
-  const [tempSelectedComponents, setTempSelectedComponents] =
-    useState(selectedComponents);
   const [exteriorFinish, setExteriorFinish] = useState(
     queryExterior ||
       EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
@@ -95,7 +95,7 @@ const ContainerDataProvider = ({ children, data }) => {
 
   // Container
   const [selectedContainerHeight, setSelectedContainerHeight] =
-    useState(CONTAINER_STANDARD);
+    useState(queryContainerHeight || CONTAINER_STANDARD);
   const containerHeightIsStandard =
     selectedContainerHeight === CONTAINER_STANDARD;
   const selectedContainer = containerData.find(
@@ -235,8 +235,6 @@ const ContainerDataProvider = ({ children, data }) => {
     interiorTrimPrice,
     hasRedCorners,
     setHasRedCorners,
-    tempSelectedComponents,
-    setTempSelectedComponents,
   };
 
   return (
