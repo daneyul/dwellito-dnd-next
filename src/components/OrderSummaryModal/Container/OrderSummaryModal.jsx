@@ -44,12 +44,14 @@ export const OrderSummaryModal = () => {
     setDialogOpen,
     supplier,
     hasRedCorners,
+    selectedContainerHeight
   } = useContext(ContainerDataContext);
   const { convertedSelections } = useSaveSelections({
     selectedComponents,
     interiorFinish,
     exteriorFinish,
     flooring,
+    selectedContainerHeight
   });
   const uniqueElevationNames = getUniqueElevationObjects(selectedComponents);
   const [zipCode, setZipCode] = useState('');
@@ -614,6 +616,7 @@ export const OrderSummaryModal = () => {
         <Dialog.Portal>
           <Dialog.Overlay className={style.overlay}>
             <Dialog.Content
+              aria-describedby="dialog-description"
               className={style.content}
               onInteractOutside={(e) => {
                 const classes = [];

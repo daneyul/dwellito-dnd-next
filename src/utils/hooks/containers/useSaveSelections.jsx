@@ -5,6 +5,7 @@ const useSaveSelections = ({
   interiorFinish,
   exteriorFinish,
   flooring,
+  selectedContainerHeight,
 }) => {
   const selections = {
     components: {
@@ -13,6 +14,7 @@ const useSaveSelections = ({
     interior: interiorFinish,
     exterior: exteriorFinish,
     flooring: flooring,
+    containerHeight: selectedContainerHeight,
   };
 
   const convertedSelections = jsonToBase64(selections);
