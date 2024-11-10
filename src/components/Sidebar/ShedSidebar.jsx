@@ -6,6 +6,7 @@ import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import ShedSingleSelect from '../SingleSelect/ShedSingleSelect';
 import ShedSaveOrder from '../SaveOrder/ShedSaveOrder';
 import FrontOptions from '../Layouts/FrontOptions';
+import Subtitle from '../Subtitle/Subtitle';
 
 const LogoSection = ({ supplier }) => (
   <div className={style.logo}>
@@ -16,6 +17,8 @@ const LogoSection = ({ supplier }) => (
     >
     Relief Cottage 12x24 (288 sqft)
     </div>
+    <Subtitle text="Base Price" css={{ textAlign: 'center' }} />
+    <Subtitle text="$67,000" css={{ textAlign: 'center', marginBottom: '1rem' }} />
   </div>
 );
 
