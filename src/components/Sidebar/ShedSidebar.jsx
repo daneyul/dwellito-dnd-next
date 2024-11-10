@@ -14,7 +14,7 @@ const LogoSection = ({ supplier }) => (
       className={style.selectionTagName}
       style={{ marginTop: '2rem', textAlign: 'center' }}
     >
-    1224 Relief Pod
+    Relief Cottage 12x24 (288 sqft)
     </div>
   </div>
 );
