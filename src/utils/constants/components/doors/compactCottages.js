@@ -30,7 +30,7 @@ export const compactCottages = [
     objWidth: DIMENSIONS.DOOR.EXTERIOR_DOOR_2.WIDTH,
     objHeight: DIMENSIONS.DOOR.EXTERIOR_DOOR_2.HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
-    price: 0,
+    price: 2800,
     model: 'ext-door-2',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/ext-door-2.svg`,
   }
