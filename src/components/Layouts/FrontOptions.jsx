@@ -6,7 +6,7 @@ import { handleAddComponent } from '@/utils/2D/sheds/utils';
 import { componentData } from '@/utils/constants/componentData';
 import { COMPONENT_TYPES, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 
-const Layout = ({ name, imgSrc, isSelected, handleAdd }) => {
+const Layout = ({ name, imgSrc, isSelected, handleAdd, price }) => {
   return (
     <div
       className={
@@ -17,6 +17,7 @@ const Layout = ({ name, imgSrc, isSelected, handleAdd }) => {
       <img src={imgSrc} alt='layout' className={style.layoutImg} style={{ maxHeight: '100px' }}/>
       <div style={{ width: '100%' }}>
         <div style={{ fontWeight: '700' }}>{name}</div>
+        <div className={style.price}>${price.toLocaleString()}</div>
       </div>
     </div>
   );
@@ -54,7 +55,7 @@ const FrontOptions = () => {
             name={doorName}
             imgSrc={doorImage}
             isSelected={isSelected}
-            price={0}
+            price={door.price}
             supplier={supplier}
             handleAdd={() => {
               if (!showExterior) {
