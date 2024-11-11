@@ -3,9 +3,9 @@ import { COMPONENT_TYPES } from '../../names/names';
 
 export const miscComponents = [
   {
-    name: 'Paint Package',
-    price: 0,
-    thumbnail: 'misc/paint-package.webp',
+    name: 'Add Air Conditioning to Heater Unit',
+    price: 1500,
+    thumbnail: 'misc/cooling-heating.webp',
     objType: COMPONENT_TYPES.MISC
   },
   {
@@ -14,12 +14,6 @@ export const miscComponents = [
     thumbnail: 'misc/relief-discount.webp',
     objType: COMPONENT_TYPES.MISC
   },
-  {
-    name: 'Add Air Conditioning to Heater Unit',
-    price: 1500,
-    thumbnail: 'misc/cooling-heating.webp',
-    objType: COMPONENT_TYPES.MISC
-  }
 ].map((item) => ({
   id: uuid(),
   ...item
