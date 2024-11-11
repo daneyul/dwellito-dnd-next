@@ -1,7 +1,8 @@
 'use client';
 import React, { useEffect } from 'react';
 import { GoogleTagManager } from '@next/third-parties/google';
-import PriceTotal from '@/components/PriceTotal/PriceTotal';
+import { PriceTotal as ContainerPriceTotal } from '../PriceTotal/Container/PriceTotal';
+import { PriceTotal as ShedPriceTotal } from '../PriceTotal/Shed/PriceTotal';
 import style from './content.module.scss';
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
@@ -74,6 +75,7 @@ const Content = ({ data }) => {
                 <>
                   <ShedViewer />
                   <ShedSidebar />
+                  <ShedPriceTotal />
                   <ShedOrderSummaryModal />
                 </>
               )}
@@ -95,7 +97,7 @@ const Content = ({ data }) => {
                 <>
                   <ContainerViewer />
                   <ContainerSidebar />
-                  <PriceTotal />
+                  <ContainerPriceTotal />
                   <SessionLengthProvider>
                     <ContainerOrderSummaryModal />
                   </SessionLengthProvider>

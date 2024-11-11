@@ -2,13 +2,12 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import style from '../orderSummaryModal.module.scss';
 import * as Dialog from '@radix-ui/react-dialog';
-import {
-  generateImgSrc,
-} from '@/utils/2D/sheds/utils';
+import { generateImgSrc } from '@/utils/2D/sheds/utils';
 import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/sheds/useSaveSelections';
 import Toast from '../../Toast/Toast';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
+import { COMPONENT_TYPES } from '@/utils/constants/names/names';
 
 export const OrderSummaryModal = () => {
   const {
@@ -18,6 +17,7 @@ export const OrderSummaryModal = () => {
     dialogOpen,
     setDialogOpen,
     supplier,
+    orderTotal
   } = useContext(ShedDataContext);
   const { convertedSelections } = useSaveSelections({
     selectedComponents,
@@ -156,9 +156,60 @@ export const OrderSummaryModal = () => {
             />
           </div>
           <div className={style.description}>{exteriorFinish.name}</div>
-          <div className={style.price} />
+          <div className={style.price}>
+            {`$${exteriorFinish.price.toLocaleString()}`}
+          </div>
         </div>
       </div>
+    </div>
+  );
+
+  const MiscSection = () => {
+    const components = selectedComponents.filter(
+      (component) => component.objType === COMPONENT_TYPES.MISC
+    );
+
+    if (components.length === 0) return null;
+
+    return (
+      <div className={style.section}>
+        <div className={style.elevationName}>Misc</div>
+        <ul style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
+          {components.map((component) => {
+            const imgSrc = component.thumbnail;
+
+            const itemPrice = component.price;
+
+            return (
+              <li key={component.id} className={style.lineItem}>
+                <div className={style.thumbnailContainer}>
+                  <img
+                    src={generateImgSrc(supplier, imgSrc)}
+                    alt={component.desc}
+                    className={style.thumbnailImg}
+                  />
+                </div>
+                <div className={style.description}>
+                  <div className={style.partNumber}>{component.desc}</div>
+                  <div className={style.desc}>{component.name}</div>
+                </div>
+                <div className={style.price}>
+                  {itemPrice < 0
+                    ? `-$${Math.abs(itemPrice).toLocaleString()}`
+                    : `+$${itemPrice.toLocaleString()}`}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  };
+
+  const Total = ({ text, value }) => (
+    <div className={style.total}>
+      <div>{text}</div>
+      <div>{value}</div>
     </div>
   );
 
@@ -188,6 +239,11 @@ export const OrderSummaryModal = () => {
             >
               <Dialog.Title className={style.title}>Order Summary</Dialog.Title>
               <ExteriorSection />
+              <MiscSection />
+              <Total
+                text='Total'
+                value={`$${parseInt(orderTotal).toLocaleString()}`}
+              />
               <Form.Root onSubmit={(e) => handleSubmit(e)}>
                 <div className={style.formTitle}>Project Details</div>
                 <div className={style.addressWrapper}>

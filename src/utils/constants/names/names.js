@@ -4,7 +4,8 @@ export const COMPONENT_TYPES = {
   VENT: 'vent',
   ELECTRICAL: 'electrical',
   PARTITION: 'partition',
-  ROOF: 'roof'
+  ROOF: 'roof',
+  MISC: 'misc',
 };
 
 export const CONFIGURATOR_TYPES = {

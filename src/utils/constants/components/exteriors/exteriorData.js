@@ -106,12 +106,20 @@ const atAndS = [
     hex: '#A1280F',
     fileName: 'saf-red',
     img: 'saf-red.png',
-    price: 100,
+    price: 0,
     cornerOnly: true
   },
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.AT_AND_S }));
 
 const compactCottages = [
+  {
+    name:EXTERIORS.WHITE,
+    glbObject: 'white',
+    hex: '#FFFFFF',
+    fileName: 'white',
+    img: 'white.png',
+    price: 0
+  },
   {
     name: EXTERIORS.IRON_ORE,
     glbObject: 'ironore',

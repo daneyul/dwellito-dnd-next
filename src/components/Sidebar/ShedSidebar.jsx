@@ -7,6 +7,8 @@ import ShedSingleSelect from '../SingleSelect/ShedSingleSelect';
 import ShedSaveOrder from '../SaveOrder/ShedSaveOrder';
 import FrontOptions from '../Layouts/FrontOptions';
 import Subtitle from '../Subtitle/Subtitle';
+import AddMiscOption from '../AddOption/Shed/AddMiscOption';
+import { miscComponents } from '@/utils/constants/components/misc/misc';
 
 const LogoSection = ({ supplier }) => (
   <div className={style.logo}>
@@ -42,10 +44,15 @@ const ShedSidebar = () => {
     <>
       <div className={style.desktopShed}>
         <LogoSection supplier={supplier} />
-        {/* <RoofSelector /> */}
         <FrontSelector />
         <ExteriorSelector />
-        {/* <ShedSelector /> */}
+        <Subtitle
+          text='Select your add-ons'
+          css={{ fontWeight: 400, margin: '2rem 0 1rem 0' }}
+        />
+        <div className={style.fixedObjectShed}>
+          <AddMiscOption options={miscComponents} />
+        </div>
         <ShedSaveOrder />
       </div>
     </>

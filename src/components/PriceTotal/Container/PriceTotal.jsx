@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import style from './priceTotal.module.scss';
+import style from '../priceTotal.module.scss'
 import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
-const PriceTotal = () => {
+export const PriceTotal = () => {
   const { orderTotal, setDialogOpen, supplier } = useContext(ContainerDataContext);
 
   if (supplier === SUPPLIER_SLUGS.AT_AND_S) return null;
@@ -15,5 +15,3 @@ const PriceTotal = () => {
     </button>
   );
 };
-
-export default PriceTotal;

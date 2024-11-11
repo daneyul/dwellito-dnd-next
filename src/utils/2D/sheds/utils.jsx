@@ -113,16 +113,29 @@ export const handleAddComponent = ({
       ...item,
       id: uuid(),
       position: { ...item.position },
-      elevation: [...item.elevation, selectedElevation],
+      elevation:
+        item.objType === COMPONENT_TYPES.MISC
+          ? []
+          : [...item.elevation, selectedElevation],
     };
     const isRoof = item.objType === COMPONENT_TYPES.ROOF;
     const isDoor = item.objType === COMPONENT_TYPES.DOOR;
+    const isMisc = item.objType === COMPONENT_TYPES.MISC;
 
     const isCottageDoor =
       isDoor && item.supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES;
 
     setSelectedComponents((prevSelectedComponents) => {
-      if (isRoof) {
+      let updatedComponents = prevSelectedComponents;
+      // Check if the item is fixed and already selected, if so, deselect it
+      if (
+        isMisc &&
+        updatedComponents.some((c) => c.name === item.name)
+      ) {
+        return updatedComponents.filter(
+          (component) => component.name !== item.name
+        );
+      } else if (isRoof) {
         // Remove any existing roof items and add the new roof
         const filteredComponents = prevSelectedComponents.filter(
           (component) => component.objType !== COMPONENT_TYPES.ROOF
