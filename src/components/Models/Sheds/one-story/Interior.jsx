@@ -66,6 +66,15 @@ const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY }) => {
           material={materials['wood door']}
         />
       </group>
+      <group scale={0.025}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Object_2002.geometry}
+          material={materials['toilet_porcelain.001']}
+          position={[0, 0.379, 0]}
+        />
+      </group>
       <mesh
         castShadow
         receiveShadow
@@ -160,13 +169,6 @@ const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY }) => {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.bathroom_ground.geometry}
-        material={materials.bathroom_ground}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.bathtub_glass001.geometry}
         material={materials['Gray Glass (7)']}
         scale={0.025}
@@ -176,13 +178,6 @@ const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY }) => {
         receiveShadow
         geometry={nodes.towel_handle.geometry}
         material={materials['towel_handle.001']}
-        scale={0.025}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_2002.geometry}
-        material={materials['toilet_porcelain.001']}
         scale={0.025}
       />
       <mesh
@@ -218,6 +213,13 @@ const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY }) => {
         receiveShadow
         geometry={nodes.Object_5001.geometry}
         material={materials['mirror.001']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Bathroom_ground001.geometry}
+        material={materials['bathroom_ground.001']}
         scale={0.025}
       />
     </group>

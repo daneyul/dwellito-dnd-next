@@ -191,6 +191,7 @@ export const EXTERIORS = {
   OYSTER_BAY: 'Oyster Bay',
   SEA_SERPENT: 'Sea Serpent',
   WORLDLY_GRAY: 'Worldly Gray',
+  PRIMER: 'Primer',
 };
 
 export const FLOORING_NAMES = {

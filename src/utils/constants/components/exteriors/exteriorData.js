@@ -113,7 +113,7 @@ const atAndS = [
 
 const compactCottages = [
   {
-    name:EXTERIORS.WHITE,
+    name:EXTERIORS.PRIMER,
     glbObject: 'white',
     hex: '#FFFFFF',
     fileName: 'white',

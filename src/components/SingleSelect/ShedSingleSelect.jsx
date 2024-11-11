@@ -40,7 +40,7 @@ const ShedSingleSelect = ({ type }) => {
       return options
         .filter((option) => option.supplier === supplier)
         .map((selection) => {
-          const isSelected = selectedOption === selection;
+          const isSelected = selectedOption.name === selection.name;
           return (
             <div
               key={selection.name}
@@ -62,7 +62,7 @@ const ShedSingleSelect = ({ type }) => {
   const getDescription = useCallback(
     (options, selectedOption, priceCallback) => {
       return options.map((selection, index) => {
-        const isSelected = selectedOption === selection;
+        const isSelected = selectedOption.name === selection.name;
         const price = priceCallback ? priceCallback(selection) : null;
 
         return (
