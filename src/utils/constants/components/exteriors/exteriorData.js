@@ -118,7 +118,7 @@ const compactCottages = [
     hex: '#434341',
     fileName: 'ironore',
     img: 'ironore.png',
-    price: 0
+    price: 2800
   },
   {
     name: EXTERIORS.OYSTER_BAY,
@@ -126,7 +126,7 @@ const compactCottages = [
     hex: '#aeb3a9',
     fileName: 'oysterbay',
     img: 'oysterbay.png',
-    price: 0
+    price: 2800
   },
   {
     name: EXTERIORS.SEA_SERPENT,
@@ -134,7 +134,7 @@ const compactCottages = [
     hex: '#3e4b54',
     fileName: 'seaserpent',
     img: 'seaserpent.png',
-    price: 0
+    price: 2800
   },
   {
     name: EXTERIORS.WORLDLY_GRAY,
@@ -142,7 +142,7 @@ const compactCottages = [
     hex: '#cec6bb',
     fileName: 'worldlygray',
     img: 'worldlygray.png',
-    price: 0
+    price: 2800
   }
 ].map((item) => ({ ...item, supplier: SUPPLIER_SLUGS.COMPACT_COTTAGES }));
 

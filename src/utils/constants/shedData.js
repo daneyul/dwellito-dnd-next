@@ -10,7 +10,7 @@ export const shedData = [
     slug: SHED_ONE_STORY_12x24,
     id: 1,
     floorPlan: 'elevation/one-story/12x24/floor-plan.png',
-    price: 5400,
+    price: 67000,
     height: ONE_STORY,
     size: SHED_12x24
   }

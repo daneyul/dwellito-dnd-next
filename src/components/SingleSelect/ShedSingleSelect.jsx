@@ -60,14 +60,16 @@ const ShedSingleSelect = ({ type }) => {
   );
 
   const getDescription = useCallback(
-    (options, selectedOption) => {
+    (options, selectedOption, priceCallback) => {
       return options.map((selection, index) => {
         const isSelected = selectedOption === selection;
+        const price = priceCallback ? priceCallback(selection) : null;
 
         return (
           isSelected && (
             <div className={style.singleSelDescriptionContainer} key={index}>
               <Subtitle text={selection.name} />
+              {price ? <Subtitle text={`+ $${price.toLocaleString()}`} /> :  <Subtitle text={`+ $0`} />}
             </div>
           )
         );
