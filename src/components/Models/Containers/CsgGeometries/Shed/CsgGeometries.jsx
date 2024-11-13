@@ -30,8 +30,8 @@ export function CsgGeometries({
 
   const csg = useRef();
 
-  const { materials: groundBlockMaterials } = useGLTF(
-    `/models/shed/${selectedShedHeight}/1storey_12x24_GFBlock.glb`
+  const { materials: groundBlockInteriorMaterials } = useGLTF(
+    `/models/shed/${selectedShedHeight}/interior.glb`
   );
 
   const doorBoundingBoxGeometries = useMemo(() => {
@@ -83,7 +83,7 @@ export function CsgGeometries({
             geometry={interiorNodes.interior_wall.geometry}
             scale={0.2}
             position={[adjustForX, 0, adjustForY]}
-            material={groundBlockMaterials.GF_interior}
+            material={groundBlockInteriorMaterials.GF_interior}
           />
           {doorBoundingBoxGeometries}
           {windowBoundingBoxGeometries}

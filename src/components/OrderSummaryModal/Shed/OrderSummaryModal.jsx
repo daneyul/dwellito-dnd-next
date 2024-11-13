@@ -95,6 +95,8 @@ export const OrderSummaryModal = () => {
       shedType: slug,
       supplier: supplier,
       exteriorPaint: exteriorFinish.name,
+      entryType: selectedComponents.find((item) => item.objType === COMPONENT_TYPES.DOOR)?.name,
+      addOns: selectedComponents.filter((item) => item.objType === COMPONENT_TYPES.MISC).map((item) => item.name),
       customerEmail: data.email,
       customerName: `${data.fname} ${data.lname}`,
       address: data.address,
@@ -102,6 +104,7 @@ export const OrderSummaryModal = () => {
       url: `https://custom.configure.so/${supplier}/${slug}/?data=${convertedSelections}`,
       mobileVisitor: false,
       currency: 'USD',
+      priceTotal: orderTotal
     };
 
     const JSONdata = JSON.stringify(responseData);
