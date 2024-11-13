@@ -11,13 +11,19 @@ import {
 import { shedData } from '../constants/shedData';
 import { shedElevationData } from '../constants/components/elevations/shedElevationData';
 import { componentData } from '../constants/componentData';
-import { handleAddComponent } from '../2D/sheds/utils';
+import {
+  getExteriorFinishFromUrl,
+  getSelectionsFromUrl,
+  handleAddComponent,
+} from '../2D/sheds/utils';
 
 export const ShedDataContext = createContext();
 
 const ShedDataProvider = ({ children, data }) => {
   const slug = data.slug;
   const supplier = data.supplier;
+  const querySelections = getSelectionsFromUrl(data.querySelectionData);
+  const queryExterior = getExteriorFinishFromUrl(data.querySelectionData);
 
   // State
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
@@ -33,12 +39,17 @@ const ShedDataProvider = ({ children, data }) => {
   const slantRoofComponent = componentData.find(
     (component) => component.name === COMPONENT_NAMES.SLANT_ROOF
   );
-  const [selectedComponents, setSelectedComponents] = useState([slantRoofComponent]);
+  const [selectedComponents, setSelectedComponents] = useState(
+    querySelections || [slantRoofComponent]
+  );
   const [exteriorFinish, setExteriorFinish] = useState(
-    EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
+    queryExterior ||
+      EXTERIOR_FINISH_OPTIONS.filter((i) => i.supplier === supplier)[0]
   );
 
-  const selectedRoof = selectedComponents.find((item) => item.objType === COMPONENT_TYPES.ROOF);
+  const selectedRoof = selectedComponents.find(
+    (item) => item.objType === COMPONENT_TYPES.ROOF
+  );
 
   // Elevation
   const DEFAULT_ELEVATION = shedElevationData.find(
@@ -140,36 +151,38 @@ const ShedDataProvider = ({ children, data }) => {
   };
 
   useEffect(() => {
-    handleAddComponent({
-      item: modifiedDoor,
-      selectedComponents,
-      setSelectedComponents,
-      selectedElevation: frontElevation,
-    });
-    handleAddComponent({
-      item: modifiedWindowFront,
-      selectedComponents,
-      setSelectedComponents,
-      selectedElevation: frontElevation,
-    });
-    handleAddComponent({
-      item: modifiedWindowRight,
-      selectedComponents,
-      setSelectedComponents,
-      selectedElevation: rightElevation,
-    });
-    handleAddComponent({
-      item: modifiedWindowLeft1,
-      selectedComponents,
-      setSelectedComponents,
-      selectedElevation: leftElevation,
-    });
-    handleAddComponent({
-      item: modifiedWindowLeft2,
-      selectedComponents,
-      setSelectedComponents,
-      selectedElevation: leftElevation,
-    });
+    if (!querySelections) {
+      handleAddComponent({
+        item: modifiedDoor,
+        selectedComponents,
+        setSelectedComponents,
+        selectedElevation: frontElevation,
+      });
+      handleAddComponent({
+        item: modifiedWindowFront,
+        selectedComponents,
+        setSelectedComponents,
+        selectedElevation: frontElevation,
+      });
+      handleAddComponent({
+        item: modifiedWindowRight,
+        selectedComponents,
+        setSelectedComponents,
+        selectedElevation: rightElevation,
+      });
+      handleAddComponent({
+        item: modifiedWindowLeft1,
+        selectedComponents,
+        setSelectedComponents,
+        selectedElevation: leftElevation,
+      });
+      handleAddComponent({
+        item: modifiedWindowLeft2,
+        selectedComponents,
+        setSelectedComponents,
+        selectedElevation: leftElevation,
+      });
+    }
   }, []);
 
   const contextValue = {
@@ -209,7 +222,7 @@ const ShedDataProvider = ({ children, data }) => {
     dialogOpen,
     setDialogOpen,
     shedHeightIsOneStory,
-    selectedRoof
+    selectedRoof,
   };
 
   return (
