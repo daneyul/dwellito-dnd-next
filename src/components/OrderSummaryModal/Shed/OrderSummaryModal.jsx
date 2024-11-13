@@ -17,7 +17,7 @@ export const OrderSummaryModal = () => {
     dialogOpen,
     setDialogOpen,
     supplier,
-    orderTotal
+    orderTotal,
   } = useContext(ShedDataContext);
   const { convertedSelections } = useSaveSelections({
     selectedComponents,
@@ -95,8 +95,12 @@ export const OrderSummaryModal = () => {
       shedType: slug,
       supplier: supplier,
       exteriorPaint: exteriorFinish.name,
-      entryType: selectedComponents.find((item) => item.objType === COMPONENT_TYPES.DOOR)?.name,
-      addOns: selectedComponents.filter((item) => item.objType === COMPONENT_TYPES.MISC).map((item) => item.name),
+      entryType: selectedComponents.find(
+        (item) => item.objType === COMPONENT_TYPES.DOOR
+      )?.name,
+      addOns: selectedComponents
+        .filter((item) => item.objType === COMPONENT_TYPES.MISC)
+        .map((item) => item.name),
       customerEmail: data.email,
       customerName: `${data.fname} ${data.lname}`,
       address: data.address,
@@ -104,7 +108,7 @@ export const OrderSummaryModal = () => {
       url: `https://custom.configure.so/${supplier}/${slug}/?data=${convertedSelections}`,
       mobileVisitor: false,
       currency: 'USD',
-      priceTotal: orderTotal
+      priceTotal: orderTotal,
     };
 
     const JSONdata = JSON.stringify(responseData);
@@ -141,6 +145,36 @@ export const OrderSummaryModal = () => {
       setDialogOpen(false);
       setOpenToast(true);
     }
+  };
+
+  const EntryTypeSection = () => {
+    const entryType = selectedComponents.find(
+      (item) => item.objType === COMPONENT_TYPES.DOOR
+    );
+    const imgSrc = entryType.imgName;
+
+    const itemPrice = entryType.price;
+
+    return (
+      <div className={style.section}>
+        <div className={style.elevationName}>Entry Type</div>
+        <div style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
+          <div className={style.lineItem}>
+            <div className={style.thumbnailContainer}>
+              <img
+                src={generateImgSrc(supplier, imgSrc)}
+                alt={entryType.name}
+                className={style.thumbnailImg}
+              />
+            </div>
+            <div className={style.description}>{entryType.name}</div>
+            <div className={style.price}>
+              {`$${itemPrice.toLocaleString()}`}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   const ExteriorSection = () => (
@@ -241,6 +275,7 @@ export const OrderSummaryModal = () => {
               }}
             >
               <Dialog.Title className={style.title}>Order Summary</Dialog.Title>
+              <EntryTypeSection />
               <ExteriorSection />
               <MiscSection />
               <Total
