@@ -105,6 +105,7 @@ export const OrderSummaryModal = () => {
       customerName: `${data.fname} ${data.lname}`,
       address: data.address,
       zipCode: zipCode,
+      phoneNumber: data.phone,
       url: `https://custom.configure.so/${supplier}/${slug}/?data=${convertedSelections}`,
       mobileVisitor: false,
       currency: 'USD',
