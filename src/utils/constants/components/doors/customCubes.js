@@ -481,7 +481,7 @@ export const customCubes = [
     objFpHeight: DIMENSIONS.DOOR.EC_ST_ROLLUP_10_64.FP_HEIGHT,
     objType: COMPONENT_TYPES.DOOR,
     price: 3410,
-    model: 'Economy_Rollup_Door - 10ft ST - 120in x 76in - 124in x 78in',
+    model: 'Economy_Rollup_Door - 10ft - 120in x 76in - 124in x 78in',
     floorPlanImg: `${COMPONENT_TYPES.DOOR}/floor-plan/rollup-10.svg`,
     floorPlanLeftImg: `${COMPONENT_TYPES.DOOR}/floor-plan/left/rollup-10.svg`,
     isRollUp: true,
