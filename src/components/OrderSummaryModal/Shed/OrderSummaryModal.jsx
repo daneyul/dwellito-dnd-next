@@ -354,6 +354,26 @@ export const OrderSummaryModal = () => {
                     </Form.Control>
                   </Form.Field>
                 </div>
+                <div className={style.addressWrapper}>
+                  <Form.Field className={style.formField} name="phone">
+                    <div>
+                      <Form.Message
+                        className={style.message}
+                        match="valueMissing"
+                      >
+                        Please enter your phone number
+                      </Form.Message>
+                    </div>
+                    <Form.Control asChild>
+                      <input
+                        className={style.input}
+                        type="phone"
+                        required
+                        placeholder="Phone Number"
+                      />
+                    </Form.Control>
+                  </Form.Field>
+                </div>
                 <Form.Submit asChild>
                   <button className={style.button}>Submit</button>
                 </Form.Submit>
