@@ -245,7 +245,7 @@ const EcStRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.58, 2.015, -0.082]}
+    customPosition={[5.1, 2.015, 2.3]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
