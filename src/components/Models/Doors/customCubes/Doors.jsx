@@ -103,7 +103,7 @@ const HdHcRollup12 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[5.237, 1.67, 3.235]}
+    customPosition={[4.628, 1.67, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -114,7 +114,7 @@ const HdHcRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[6.152, 1.66, 3.235]}
+    customPosition={[4.628, 1.66, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -124,7 +124,7 @@ const HdStRollup6 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.66, 2.07, 3.235]}
+    customPosition={[4.66, 1.77, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -135,7 +135,7 @@ const HdStRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.66, 2.07, 3.235]}
+    customPosition={[4.66, 1.77, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -146,7 +146,7 @@ const HdStRollup10 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.66, 2.07, 3.235]}
+    customPosition={[4.66, 1.77, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -157,7 +157,7 @@ const HdStRollup12 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.66, 2.07, 3.235]}
+    customPosition={[4.66, 1.77, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -168,7 +168,7 @@ const HdStRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[6.17, 2.11, 3.235]}
+    customPosition={[4.66, 1.77, 3.235]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -179,7 +179,7 @@ const EcHcRollup6 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.578, 2.03, -0.082]}
+    customPosition={[5.07, 1.83, 2.22]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -190,7 +190,7 @@ const EcHcRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.578, 2.03, -0.082]}
+    customPosition={[5.07, 1.83, 2.22]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -201,7 +201,7 @@ const EcHcRollup10 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.578, 2.03, -0.082]}
+    customPosition={[5.07, 1.83, 2.22]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -212,7 +212,7 @@ const EcHcRollup12 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.578, 2.03, -0.082]}
+    customPosition={[5.07, 1.83, 2.22]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -223,7 +223,7 @@ const EcHcRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.578, 2.03, -0.082]}
+    customPosition={[5.07, 1.83, 2.22]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -234,7 +234,7 @@ const EcStRollup6 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.58, 2.015, -0.082]}
+    customPosition={[2.76, 2.12, 1.48]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -245,7 +245,7 @@ const EcStRollup8 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.58, 2.015, -0.082]}
+    customPosition={[5.07, 1.81, 2.22]}
     customRotation={[Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -256,7 +256,7 @@ const EcStRollup10 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.58, 2.015, -0.082]}
+    customPosition={[5.07, 1.81, 2.22]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -267,7 +267,7 @@ const EcStRollup12 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.58, 2.015, -0.082]}
+    customPosition={[5.07, 1.81, 2.22]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
@@ -278,7 +278,7 @@ const EcStRollup15 = ({ component, onBoundingBoxChange, supplier }) => (
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/doors/${component.model}.glb`}
-    customPosition={[4.58, 2.015, -0.082]}
+    customPosition={[5.07, 1.81, 2.22]}
     customRotation={[-Math.PI, 0, -Math.PI]}
     customScale={1.2}
   />
