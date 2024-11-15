@@ -5,23 +5,24 @@ import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import Roof from './Roof';
 import Interior from './Interior';
 
-const Shed = ({ exteriorPaint }) => {
+export const Shed = ({ exteriorPaint }) => {
   const {
     selectedShedHeight,
     selectedRoof,
     supplier,
     selectedShed,
     showExterior,
+    shedSize
   } = useContext(ShedDataContext);
 
   // Load all 3d objects
   const { nodes: groundBlockNodes, materials: groundBlockMaterials } = useGLTF(
-    `/models/shed/${selectedShedHeight}/1storey_12x24_GFBlock.glb`
+    `/models/shed/${selectedShedHeight}/${shedSize}/1storey_12x24_GFBlock.glb`
   );
   const {
     nodes: groundBlockBattenNodes,
     materials: groundBlockBattenMaterials,
-  } = useGLTF(`/models/shed/${selectedShedHeight}/battens.glb`);
+  } = useGLTF(`/models/shed/${selectedShedHeight}/${shedSize}/battens.glb`);
 
   const ref = useRef();
 
@@ -235,11 +236,10 @@ const Shed = ({ exteriorPaint }) => {
         selectedShedHeight={selectedShedHeight}
         adjustForX={adjustForX}
         adjustForY={adjustForY}
+        shedSize={shedSize}
       />
     </>
   );
 
   return shedMesh;
 };
-
-export default Shed;

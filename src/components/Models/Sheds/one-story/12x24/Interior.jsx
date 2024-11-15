@@ -1,8 +1,8 @@
 import { useGLTF } from '@react-three/drei';
 
-const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY }) => {
+const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY, shedSize }) => {
   const { nodes, materials } = useGLTF(
-    `/models/${supplier}/interiors/${selectedShedHeight}/interiors.glb`
+    `/models/${supplier}/interiors/${selectedShedHeight}/${shedSize}/interiors.glb`
   );
   return (
     <group scale={8} dispose={null} position={[adjustForX, 0, adjustForY]}>

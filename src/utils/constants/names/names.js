@@ -132,8 +132,10 @@ export const CONTAINER_SIZE_STR_40 = 'FORTY';
 export const ONE_STORY = 'one-story';
 
 export const SHED_ONE_STORY_12x24 = 'one-story-12x24';
+export const SHED_ONE_STORY_12x32 = 'one-story-12x32';
 
 export const SHED_12x24 = '12x24';
+export const SHED_12x32 = '12x32';
 
 export const INTERIOR_FINISH_NAMES = {
   NONE: 'None',
