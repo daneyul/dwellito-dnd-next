@@ -90,7 +90,7 @@ const Content = ({ data }) => {
                 <>
                   <ContainerMobileModels />
                   <div className={style.mobileContainer}>
-                    <MobileForm />
+                    <MobileForm supplier={data.supplier} />
                   </div>
                 </>
               ) : (

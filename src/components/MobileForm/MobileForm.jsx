@@ -4,7 +4,7 @@ import * as Form from '@radix-ui/react-form';
 import * as RadixToast from '@radix-ui/react-toast';
 import CheckCircled from '../svgs/CheckCircled';
 
-const MobileForm = () => {
+const MobileForm = ({ supplier }) => {
   const [openToast, setOpenToast] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -21,6 +21,7 @@ const MobileForm = () => {
       siteName: 'Configure',
       data__Email: data.email,
       mobileVisitor: true,
+      supplier: supplier,
     };
     const JSONdata = JSON.stringify(responseData);
     const endpoint = 'https://hooks.zapier.com/hooks/catch/18577479/2yjklei/';
