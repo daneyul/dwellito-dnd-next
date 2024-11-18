@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from 'react';
-import style from './layout.module.scss';
+import style from '../layout.module.scss';
 import { containerData } from '@/utils/constants/components/containers/containerData';
 import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';

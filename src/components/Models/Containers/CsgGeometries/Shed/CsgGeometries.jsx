@@ -77,7 +77,6 @@ export function CsgGeometries({
       );
     });
   }, [windows, windowBoundingBoxes]);
-  console.log(exteriorNodes)
 
   return (
     <group ref={csg}>

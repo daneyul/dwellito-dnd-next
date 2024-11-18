@@ -9,27 +9,23 @@ import FrontOptions from '../Layouts/FrontOptions';
 import Subtitle from '../Subtitle/Subtitle';
 import AddMiscOption from '../AddOption/Shed/AddMiscOption';
 import { miscComponents } from '@/utils/constants/components/misc/misc';
+import ShedLayouts from '../Layouts/Shed/ShedLayouts';
 
-const LogoSection = ({ supplier }) => (
+const LogoSection = ({ supplier, shed }) => (
   <div className={style.logo}>
     <Logo type={supplier} />
     <div
       className={style.selectionTagName}
       style={{ marginTop: '2rem', textAlign: 'center' }}
     >
-      Relief Cottage 12x24 (288 sqft)
+      Relief Cottage {shed.size} ({shed.sqft} sqft)
     </div>
-    <Subtitle text='Base Price' css={{ textAlign: 'center' }} />
-    <Subtitle
-      text='$67,000'
-      css={{ textAlign: 'center', marginBottom: '1rem' }}
-    />
   </div>
 );
 
 const ExteriorSelector = () => (
   <>
-    <div className={style.selectionTagName} style={{ marginTop: '2rem' }}>
+    <div className={style.selectionTagName}>
       Paint Color
     </div>
     <ShedSingleSelect type={EXTERIOR} />
@@ -37,16 +33,25 @@ const ExteriorSelector = () => (
 );
 
 const FrontSelector = () => {
-  return <FrontOptions />;
+  return (
+    <>
+      <div className={style.selectionTagName}>
+        Entry Type
+      </div>
+      <FrontOptions />
+    </>
+  );
 };
 
 const ShedSidebar = () => {
-  const { supplier } = useContext(ShedDataContext);
+  const { supplier, selectedShed } = useContext(ShedDataContext);
 
   return (
     <>
       <div className={style.desktopShed}>
-        <LogoSection supplier={supplier} />
+        <LogoSection supplier={supplier} shed={selectedShed} />
+        <ShedLayouts />
+
         <FrontSelector />
         <ExteriorSelector />
         <Subtitle
@@ -57,10 +62,11 @@ const ShedSidebar = () => {
           <AddMiscOption options={miscComponents} />
         </div>
         <div
-        style={{
-          fontSize: '14px',
-          marginTop: '0.5rem'
-        }}>
+          style={{
+            fontSize: '14px',
+            marginTop: '0.5rem',
+          }}
+        >
           We have lined up some Non-Profits and Private Donors who will help
           subsidize these Relief Cottages for those who have been displaced by
           the storm. Please only select this subsidy if you have been displaced
