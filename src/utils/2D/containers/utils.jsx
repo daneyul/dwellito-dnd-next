@@ -560,7 +560,7 @@ export const calculateContainerComponentCSSPos = ({
           };
         } else if (piece.isRollUp && supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
           positionStyles = {
-            bottom: '48px',
+            bottom: `${adjForContainerHeight(48)}px`,
             left: `${
               piece.position.x +
               toScale(DIMENSIONS.CONTAINER_BOUNDARIES.x, scaleFactor)
