@@ -12,6 +12,8 @@ import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
 import {
   COMPONENT_TYPES,
+  SHED_12x24,
+  SHED_12x32,
 } from '@/utils/constants/names/names';
 import {
   EXTERIOR_CAM_POS,
@@ -23,7 +25,23 @@ import { useBoundingBoxes } from '@/utils/hooks/sheds/useBoundingBoxes';
 import Window from './Windows/WindowSwitcher';
 import { CsgGeometries } from './Containers/CsgGeometries/Shed/CsgGeometries';
 import { useExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
-import Shed from './Sheds/one-story/Shed';
+import { Shed as Shed12x24 } from './Sheds/one-story/12x24/Shed';
+import { Shed as Shed12x32 } from './Sheds/one-story/12x32/Shed';
+
+function getShedComponent(shedSize, exteriorPaint) {
+  const shedComponents = {
+    [SHED_12x24]: Shed12x24,
+    [SHED_12x32]: Shed12x32,
+  };
+
+  const SelectedShed = shedComponents[shedSize] || null;
+
+  if (!SelectedShed) {
+    return <p>Invalid shed size selected</p>;
+  }
+
+  return <SelectedShed exteriorPaint={exteriorPaint} />;
+}
 
 export function ShedModels() {
   const {
@@ -35,6 +53,7 @@ export function ShedModels() {
     supplier,
     show3d,
     exteriorFinish,
+    shedSize,
   } = useContext(ShedDataContext);
 
   const { progress } = useProgress();
@@ -127,7 +146,7 @@ export function ShedModels() {
             windowBoundingBoxes={windowBoundingBoxes}
             exteriorPaint={exteriorPaint}
           />
-          <Shed exteriorPaint={exteriorPaint} />
+          {getShedComponent(shedSize, exteriorPaint)}
           {doors.map((door, index) => (
             <Door
               key={door.id}

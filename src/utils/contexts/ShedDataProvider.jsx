@@ -7,6 +7,7 @@ import {
   CONFIGURATOR_TYPES,
   ELEVATION_NAMES,
   ONE_STORY,
+  SHED_12x32,
 } from '@/utils/constants/names/names';
 import { shedData } from '../constants/shedData';
 import { shedElevationData } from '../constants/components/elevations/shedElevationData';
@@ -16,6 +17,7 @@ import {
   getSelectionsFromUrl,
   handleAddComponent,
 } from '../2D/sheds/utils';
+import useShedSize from '../hooks/sheds/useShedSize';
 
 export const ShedDataContext = createContext();
 
@@ -24,6 +26,7 @@ const ShedDataProvider = ({ children, data }) => {
   const supplier = data.supplier;
   const querySelections = getSelectionsFromUrl(data.querySelectionData);
   const queryExterior = getExteriorFinishFromUrl(data.querySelectionData);
+  const shedSize = useShedSize(slug);
 
   // State
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
@@ -139,7 +142,7 @@ const ShedDataProvider = ({ children, data }) => {
     ...window,
     position: {
       ...window.position,
-      x: 0,
+      x: shedSize === SHED_12x32 ? -235 : 0,
     },
   };
   const modifiedWindowLeft2 = {
@@ -223,6 +226,7 @@ const ShedDataProvider = ({ children, data }) => {
     setDialogOpen,
     shedHeightIsOneStory,
     selectedRoof,
+    shedSize
   };
 
   return (

@@ -24,7 +24,7 @@ import { handleAddComponent } from '@/utils/2D/sheds/utils';
 import { componentData } from '@/utils/constants/componentData';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import { useExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
-import Shed from '../../Sheds/one-story/Shed';
+import Shed from '../../Sheds/one-story/12x24/Shed';
 import ShedToggleCamera from '@/components/ToggleCamera/ShedToggleCamera';
 
 export function MobileModels() {

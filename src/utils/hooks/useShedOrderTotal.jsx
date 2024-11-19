@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { SHED_12x24 } from '../constants/names/names';
 
 const useOrderTotal = ({
   shedHeightIsOneStory,
@@ -15,7 +16,9 @@ const useOrderTotal = ({
       return acc + component.price;
     }, 0);
 
-    const exteriorTotal = exteriorFinish.price;
+    const exteriorTotal = exteriorFinish.size === SHED_12x24
+      ? exteriorFinish.price12x24
+      : exteriorFinish.price12x32;
 
     const total = componentsTotal + shedPrice + exteriorTotal;
 

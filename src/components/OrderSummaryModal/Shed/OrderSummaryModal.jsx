@@ -7,7 +7,7 @@ import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/sheds/useSaveSelections';
 import Toast from '../../Toast/Toast';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
-import { COMPONENT_TYPES } from '@/utils/constants/names/names';
+import { COMPONENT_TYPES, SHED_12x24 } from '@/utils/constants/names/names';
 
 export const OrderSummaryModal = () => {
   const {
@@ -178,7 +178,12 @@ export const OrderSummaryModal = () => {
     );
   };
 
-  const ExteriorSection = () => (
+  const ExteriorSection = () => {
+    const price = exteriorFinish.size === SHED_12x24
+      ? exteriorFinish.price12x24
+      : exteriorFinish.price12x32;
+
+    return (
     <div className={style.section}>
       <div className={style.elevationName}>Exterior Finish</div>
       <div style={{ listStyleType: 'none', margin: '0', padding: '0' }}>
@@ -195,12 +200,12 @@ export const OrderSummaryModal = () => {
           </div>
           <div className={style.description}>{exteriorFinish.name}</div>
           <div className={style.price}>
-            {`$${exteriorFinish.price.toLocaleString()}`}
+            {`$${price.toLocaleString()}`}
           </div>
         </div>
       </div>
     </div>
-  );
+  )};
 
   const MiscSection = () => {
     const components = selectedComponents.filter(

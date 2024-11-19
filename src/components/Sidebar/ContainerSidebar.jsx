@@ -21,7 +21,7 @@ import Subtitle from '../Subtitle/Subtitle';
 import ContainerSingleSelect from '../SingleSelect/ContainerSingleSelect';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 import ContainerSaveOrder from '../SaveOrder/ContainerSaveOrder';
-import ContainerLayouts from '../Layouts/ContainerLayouts';
+import ContainerLayouts from '../Layouts/Container/ContainerLayouts';
 import ContainerSelector from '../Selector/ContainerSelector';
 import AddElecOption from '../AddOption/Container/AddElecOption';
 import AddPartition from '../AddOption/Container/AddPartition';
