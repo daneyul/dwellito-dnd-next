@@ -40,12 +40,6 @@ const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY, shedSi
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.bathtub_ceramics.geometry}
-          material={materials['Tile reflective']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.bathtub_glass.geometry}
           material={materials['Gray Glass (7)']}
         />
@@ -181,51 +175,31 @@ const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY, shedSi
           geometry={nodes.Object_4.geometry}
           material={materials['kichenette_white.001']}
         />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_6.geometry}
-          material={materials.sink_porcelain}
-        />
       </group>
       <group scale={0.025}>
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Object_2.geometry}
-          material={materials.kitchenette_wood_oak}
+          geometry={nodes.Object_1001.geometry}
+          material={materials['Color_A06.001']}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Object_3.geometry}
-          material={materials.kitchenette_wood_oak}
+          geometry={nodes.Object_2001.geometry}
+          material={materials['*1.001']}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Object_5.geometry}
-          material={materials.kitchenette_wood_oak}
-        />
-      </group>
-      <group scale={0.025}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_10.geometry}
-          material={materials.Fencing_Mesh_Blue}
+          geometry={nodes.Object_3001.geometry}
+          material={materials['Fencing_Mesh_Blue.001']}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Object_8.geometry}
-          material={materials.Color_A06}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_9.geometry}
-          material={materials['*1']}
+          geometry={nodes.Object_4001.geometry}
+          material={materials['metal_stove.001']}
         />
       </group>
       <mesh
@@ -245,8 +219,22 @@ const Interior = ({ supplier, selectedShedHeight, adjustForX, adjustForY, shedSi
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.Object_1001.geometry}
-        material={materials['metal_stove.001']}
+        geometry={nodes.Object_5001.geometry}
+        material={materials['sink_porcelain.001']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_1002.geometry}
+        material={materials['Tile reflective.001']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_1003.geometry}
+        material={materials['kitchenette_wood_oak.003']}
         scale={0.025}
       />
     </group>
