@@ -17,6 +17,8 @@ import {
   COMPONENT_NAMES,
   COMPONENT_TYPES,
   ELEVATION_NAMES,
+  SHED_12x24,
+  SHED_12x32,
 } from '@/utils/constants/names/names';
 import { useBoundingBoxes } from '@/utils/hooks/sheds/useBoundingBoxes';
 import { MOBILE_CAM_POS } from '@/utils/constants/camera/camPos';
@@ -24,8 +26,9 @@ import { handleAddComponent } from '@/utils/2D/sheds/utils';
 import { componentData } from '@/utils/constants/componentData';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import { useExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
-import Shed from '../../Sheds/one-story/12x24/Shed';
 import ShedToggleCamera from '@/components/ToggleCamera/ShedToggleCamera';
+import { Shed as Shed12x24 } from '../../Sheds/one-story/12x24/Shed';
+import { Shed as Shed12x32 } from '../../Sheds/one-story/12x32/Shed';
 
 export function MobileModels() {
   const {
@@ -35,7 +38,8 @@ export function MobileModels() {
     mappedElevations,
     selectedComponents,
     setSelectedComponents,
-    exteriorFinish
+    exteriorFinish,
+    shedSize
   } = useContext(ShedDataContext);
 
   // Load fixed components for now
@@ -166,6 +170,21 @@ export function MobileModels() {
     return useExteriorPaint(supplier, exteriorFinish);
   }, [supplier, exteriorFinish]);
 
+  function getShedComponent(shedSize, exteriorPaint) {
+    const shedComponents = {
+      [SHED_12x24]: Shed12x24,
+      [SHED_12x32]: Shed12x32,
+    };
+  
+    const SelectedShed = shedComponents[shedSize] || null;
+  
+    if (!SelectedShed) {
+      return <p>Invalid shed size selected</p>;
+    }
+  
+    return <SelectedShed exteriorPaint={exteriorPaint} />;
+  }
+
   return (
     <div id='canvas-container' className={style.container} style={{ minHeight: '300px'}}>
       <Canvas
@@ -174,7 +193,7 @@ export function MobileModels() {
         style={{ borderRadius: '11px', height: '300px' }}
       >
         <color attach='background' args={['#fdfdf7']} />
-        <Shed exteriorPaint={exteriorPaint} />
+        {getShedComponent(shedSize, exteriorPaint)}
         <CsgGeometries
             doors={doors}
             windows={windows}

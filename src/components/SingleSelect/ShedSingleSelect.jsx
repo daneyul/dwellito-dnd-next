@@ -13,7 +13,8 @@ const ShedSingleSelect = ({ type }) => {
     setCameraReady,
     supplier,
     exteriorFinish,
-    setExteriorFinish
+    setExteriorFinish,
+    shedSize
   } = useContext(ShedDataContext);
 
   const isExterior = type === EXTERIOR;
@@ -95,7 +96,7 @@ const ShedSingleSelect = ({ type }) => {
         EXTERIOR_FINISH_OPTIONS,
         exteriorFinish,
         (selection) => {
-          return selection.size === SHED_12x24
+          return shedSize === SHED_12x24
             ? selection.price12x24
             : selection.price12x32;
         }
