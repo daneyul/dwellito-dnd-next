@@ -24,7 +24,7 @@ export const shedData = [
     id: 2,
     floorPlan: 'elevation/one-story/12x32/floor-plan.png',
     thumbnail: 'one-story/12x32.png',
-    price: 67000,
+    price: 88000,
     height: ONE_STORY,
     size: SHED_12x32,
     sqft: 384,

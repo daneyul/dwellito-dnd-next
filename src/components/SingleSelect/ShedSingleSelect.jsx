@@ -1,7 +1,7 @@
 import { useContext, useMemo, useCallback } from 'react';
 import Subtitle from '../Subtitle/Subtitle';
 import style from './shedSingleSelect.module.scss';
-import { EXTERIOR } from '@/utils/constants/names/names';
+import { EXTERIOR, SHED_12x24 } from '@/utils/constants/names/names';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 
@@ -94,7 +94,11 @@ const ShedSingleSelect = ({ type }) => {
       getDescription(
         EXTERIOR_FINISH_OPTIONS,
         exteriorFinish,
-        (selection) => selection.price
+        (selection) => {
+          return selection.size === SHED_12x24
+            ? selection.price12x24
+            : selection.price12x32;
+        }
       ),
     [exteriorFinish, getDescription]
   );
