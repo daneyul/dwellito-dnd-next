@@ -36,6 +36,7 @@ export async function preloadAllModels({
     useGLTF.preload(
       `/models/container/${size}/${selectedContainerHeight}/flooring.glb`
     ),
+    useGLTF
   ];
 
   if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
@@ -76,6 +77,8 @@ export async function preloadAllModels({
       useGLTF.preload(`/models/${supplier}/materials/exterior/blue-paint.glb`),
       useGLTF.preload(`/models/${supplier}/materials/exterior/slate-grey-paint.glb`),
       useGLTF.preload(`/models/${supplier}/materials/exterior/beige-paint.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/flooring/echo.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/flooring/timber.glb`),
     );
   } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
     promises.push(
@@ -99,6 +102,9 @@ export async function preloadAllModels({
       useGLTF.preload(`/models/${supplier}/materials/exterior/blue.glb`),
       useGLTF.preload(`/models/${supplier}/materials/exterior/green.glb`),
       useGLTF.preload(`/models/${supplier}/materials/exterior/stock.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/flooring/echo.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/flooring/timber.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/flooring/rubber-coin.jpg`),
     );
   }
 
