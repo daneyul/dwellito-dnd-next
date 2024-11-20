@@ -19,7 +19,7 @@ const MobileForm = ({ supplier }) => {
   const triggerZapier = async ({ data }) => {
     const responseData = {
       siteName: 'Configure',
-      data__Email: data.email,
+      customerEmail: data.email,
       mobileVisitor: true,
       supplier: supplier,
     };

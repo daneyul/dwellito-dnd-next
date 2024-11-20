@@ -68,7 +68,7 @@ const Content = ({ data }) => {
                     <ShedSingleSelect type={EXTERIOR} />
                   </div>
                   <div className={style.mobileContainer}>
-                    <MobileForm />
+                    <MobileForm supplier={data.supplier} />
                   </div>
                 </>
               ) : (
