@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useInteriorGLTFModels } from '@/utils/hooks/containers/useGLTFModels';
+import { INTERIOR_FINISH_NAMES } from '@/utils/constants/names/names';
+import { useInteriorMaterial } from '@/utils/hooks/containers/useGLTFModels';
 import { Base } from '@react-three/csg';
 import { useGLTF } from '@react-three/drei';
 
@@ -12,7 +13,10 @@ const Drywall = ({
   adjustForY,
 }) => {
   if (interiorFinishes.interiorIsDrywall) {
-    const { drywallMaterial } = useInteriorGLTFModels(supplier);
+    const drywallMaterial = useInteriorMaterial(supplier, {
+      name: INTERIOR_FINISH_NAMES.DRYWALL,
+      glbObject: 'Drywall_v2',
+    });
     const dRightNodes = useGLTF(
       `/models/${supplier}/drywall/${size}/${selectedContainerHeight}/drywall-right.glb`
     ).nodes;
@@ -28,7 +32,7 @@ const Drywall = ({
           <Base
             key={key}
             geometry={dBackNodes[key].geometry}
-            material={drywallMaterial['Drywall_v2']}
+            material={drywallMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -37,7 +41,7 @@ const Drywall = ({
           <Base
             key={key}
             geometry={dRightNodes[key].geometry}
-            material={drywallMaterial['Drywall_v2']}
+            material={drywallMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -46,7 +50,7 @@ const Drywall = ({
           <Base
             key={key}
             geometry={dLeftNodes[key].geometry}
-            material={drywallMaterial['Drywall_v2']}
+            material={drywallMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -67,7 +71,10 @@ const Plywood = ({
   adjustForY,
 }) => {
   if (interiorFinishes.interiorIsPlywood) {
-    const { plywoodMaterial } = useInteriorGLTFModels(supplier);
+    const plywoodMaterial = useInteriorMaterial(supplier, {
+      name: INTERIOR_FINISH_NAMES.PLYWOOD,
+      glbObject: 'Plywood_v2',
+    });
     const pRightNodes = useGLTF(
       `/models/${supplier}/plywood/${size}/${selectedContainerHeight}/plywood-right.glb`
     ).nodes;
@@ -83,7 +90,7 @@ const Plywood = ({
           <Base
             key={key}
             geometry={pBackNodes[key].geometry}
-            material={plywoodMaterial['Plywood_v2']}
+            material={plywoodMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -92,7 +99,7 @@ const Plywood = ({
           <Base
             key={key}
             geometry={pRightNodes[key].geometry}
-            material={plywoodMaterial['Plywood_v2']}
+            material={plywoodMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -101,7 +108,7 @@ const Plywood = ({
           <Base
             key={key}
             geometry={pLeftNodes[key].geometry}
-            material={plywoodMaterial['Plywood_v2']}
+            material={plywoodMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -122,7 +129,10 @@ const Sprayfoam = ({
   adjustForY,
 }) => {
   if (interiorFinishes.interiorIsSprayFoamCeilingWalls) {
-    const { sprayFoamMaterial } = useInteriorGLTFModels(supplier);
+    const sprayFoamMaterial = useInteriorMaterial(supplier, {
+      name: INTERIOR_FINISH_NAMES.SPRAYFOAM,
+      glbObject: 'Sprayfoam',
+    });
     const sRightNodes = useGLTF(
       `/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-right.glb`
     ).nodes;
@@ -138,7 +148,7 @@ const Sprayfoam = ({
           <Base
             key={key}
             geometry={sBackNodes[key].geometry}
-            material={sprayFoamMaterial['Sprayfoam']}
+            material={sprayFoamMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -147,7 +157,7 @@ const Sprayfoam = ({
           <Base
             key={key}
             geometry={sRightNodes[key].geometry}
-            material={sprayFoamMaterial['Sprayfoam']}
+            material={sprayFoamMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -156,7 +166,7 @@ const Sprayfoam = ({
           <Base
             key={key}
             geometry={sLeftNodes[key].geometry}
-            material={sprayFoamMaterial['Sprayfoam']}
+            material={sprayFoamMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />

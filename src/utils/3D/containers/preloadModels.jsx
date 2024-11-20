@@ -36,6 +36,7 @@ export async function preloadAllModels({
     useGLTF.preload(
       `/models/container/${size}/${selectedContainerHeight}/flooring.glb`
     ),
+    useGLTF
   ];
 
   if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
@@ -69,7 +70,15 @@ export async function preloadAllModels({
       ),
       useGLTF.preload(
         `/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-back.glb`
-      )
+      ),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/red-paint.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/white-paint.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/green-paint.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/blue-paint.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/slate-grey-paint.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/beige-paint.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/flooring/echo.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/flooring/timber.glb`),
     );
   } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
     promises.push(
@@ -85,7 +94,17 @@ export async function preloadAllModels({
       ),
       useGLTF.preload(
         `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/right.glb`
-      )
+      ),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/saf-red.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/white.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/lightgrey.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/beige.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/blue.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/green.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/stock.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/flooring/echo.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/flooring/timber.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/flooring/rubber-coin.jpg`),
     );
   }
 

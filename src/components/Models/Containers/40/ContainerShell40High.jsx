@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
-import { getExteriorPaint } from '@/utils/hooks/containers/useGLTFModels';
+import { useExteriorMaterial } from '@/utils/hooks/containers/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { CustomCubes } from './Interiors/High/CustomCubes';
 import {
@@ -15,7 +15,7 @@ import AtAndS from './Interiors/High/AtAndS';
 import { EXTERIOR_FINISH_OPTIONS } from '@/utils/constants/components/exteriors/exteriorData';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
-export default function ContainerShell40High({ paint }) {
+export default function ContainerShell40High() {
   const {
     exteriorFinish,
     interiorFinishes,
@@ -34,9 +34,7 @@ export default function ContainerShell40High({ paint }) {
     `/models/container/${containerSize()}/${selectedContainerHeight}/container-shell.glb`
   );
 
-  const exteriorPaint = useMemo(() => {
-    return getExteriorPaint(supplier, exteriorFinish, paint);
-  }, [supplier, exteriorFinish, paint]);
+  const exteriorPaint = useExteriorMaterial(supplier, exteriorFinish);
 
   const ref = useRef();
 
@@ -357,7 +355,7 @@ export default function ContainerShell40High({ paint }) {
       (item) => item.name === EXTERIORS.SAF_RED
     );
 
-    const cornerPaint = getExteriorPaint(supplier, redPaint, paint);
+    const cornerPaint = useExteriorMaterial(supplier, redPaint);
     return (
       <group scale={0.001}>
         {Object.keys(cornerNodes).map((nodeKey) => {

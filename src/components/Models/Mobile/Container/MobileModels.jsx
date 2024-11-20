@@ -22,7 +22,6 @@ import {
 } from '@/utils/constants/names/names';
 import ContainerShell20Standard from '../../Containers/20/ContainerShell20Standard';
 import { useBoundingBoxes } from '@/utils/hooks/containers/useBoundingBoxes';
-import { useExteriorGLTFModels } from '@/utils/hooks/containers/useGLTFModels';
 import { MOBILE_CAM_POS } from '@/utils/constants/camera/camPos';
 import { handleAddComponent } from '@/utils/2D/containers/utils';
 import { componentData } from '@/utils/constants/componentData';
@@ -168,26 +167,24 @@ export function MobileModels() {
     handleWindowBoundingBox,
   } = useBoundingBoxes({ doors, windows });
 
-  const paint = useExteriorGLTFModels(supplier);
-
   const ContainerShell = () => {
     if (selectedContainer.size === CONTAINER_SIZE_10) {
       if (containerHeightIsStandard) {
-        return <ContainerShell10Standard paint={paint} />;
+        return <ContainerShell10Standard />;
       } else {
         return null;
       }
     } else if (selectedContainer.size === CONTAINER_SIZE_20) {
       if (containerHeightIsStandard) {
-        return <ContainerShell20Standard paint={paint} />;
+        return <ContainerShell20Standard />;
       } else {
-        return <ContainerShell20High paint={paint} />;
+        return <ContainerShell20High />;
       }
     } else if (selectedContainer === containerData[2]) {
       if (containerHeightIsStandard) {
-        return <ContainerShell40Standard paint={paint} />;
+        return <ContainerShell40Standard />;
       } else {
-        return <ContainerShell40High paint={paint} />;
+        return <ContainerShell40High />;
       }
     }
   };
@@ -206,7 +203,6 @@ export function MobileModels() {
           windows={windows}
           doorBoundingBoxes={doorBoundingBoxes}
           windowBoundingBoxes={windowBoundingBoxes}
-          paint={paint}
         />
         {doors.map((door, index) => (
           <Door

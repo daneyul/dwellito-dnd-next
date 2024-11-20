@@ -26,7 +26,6 @@ import ContainerShell40Standard from './Containers/40/ContainerShell40Standard';
 import ContainerShell20High from './Containers/20/ContainerShell20High';
 import ContainerShell40High from './Containers/40/ContainerShell40High';
 import { useBoundingBoxes } from '@/utils/hooks/containers/useBoundingBoxes';
-import { useExteriorGLTFModels } from '@/utils/hooks/containers/useGLTFModels';
 import {
   EXTERIOR_CAM_POS,
   INTERIOR_CAM_POS,
@@ -199,25 +198,24 @@ export function ContainerModels() {
     handleVentBoundingBox,
   } = useBoundingBoxes({ doors, windows, vents });
 
-  const paint = useExteriorGLTFModels(supplier);
   const ContainerShell = () => {
     if (selectedContainer.size === CONTAINER_SIZE_10) {
       if (containerHeightIsStandard) {
-        return <ContainerShell10Standard paint={paint} />;
+        return <ContainerShell10Standard />;
       } else {
         return null;
       }
     } else if (selectedContainer.size === CONTAINER_SIZE_20) {
       if (containerHeightIsStandard) {
-        return <ContainerShell20Standard paint={paint} />;
+        return <ContainerShell20Standard />;
       } else {
-        return <ContainerShell20High paint={paint} />;
+        return <ContainerShell20High />;
       }
     } else if (selectedContainer.size === CONTAINER_SIZE_40) {
       if (containerHeightIsStandard) {
-        return <ContainerShell40Standard paint={paint} />;
+        return <ContainerShell40Standard />;
       } else {
-        return <ContainerShell40High paint={paint} />;
+        return <ContainerShell40High />;
       }
     }
   };
@@ -250,7 +248,6 @@ export function ContainerModels() {
             windowBoundingBoxes={windowBoundingBoxes}
             ventBoundingBoxes={ventBoundingBoxes}
             exhaustFanBoundingBox={exhaustFanBoundingBox}
-            paint={paint}
           />
           {doors.map((door, index) => (
             <Door

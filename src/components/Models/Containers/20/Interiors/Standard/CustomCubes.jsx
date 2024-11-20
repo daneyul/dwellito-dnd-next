@@ -1,26 +1,19 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { noneOption } from "@/utils/constants/components/flooring/flooringData";
-import { useFlooringGLTFModels } from "@/utils/hooks/containers/useGLTFModels";
+import { useFlooringMaterial } from "@/utils/hooks/containers/useGLTFModels";
 import { useGLTF } from "@react-three/drei";
 
 
 const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }) => {
   if (flooring.name !== noneOption?.name) {
-    const { echoFloor, timberFloor } = useFlooringGLTFModels(supplier);
     const { nodes: flooringNodes } = useGLTF(
       `/models/container/${containerSize()}/${selectedContainerHeight}/flooring.glb`
     );
 
-    const flooringMaterial = () => {
-      switch (flooring.type) {
-        case 'Echo':
-          return echoFloor[flooring.glbObject];
-        case 'Timber':
-          return timberFloor[flooring.glbObject];
-        default:
-          return null;
-      }
-    };
+    const flooringMaterial = useFlooringMaterial(supplier, {
+      name: flooring.name,
+      glbObject: flooring.glbObject,
+    });
 
     return (
       <group
@@ -33,7 +26,7 @@ const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }
           geometry={
             flooringNodes['20FT_Interior_Echo_Blank_Floor_001'].geometry
           }
-          material={flooringMaterial()}
+          material={flooringMaterial}
           scale={0.01}
         />
       </group>
