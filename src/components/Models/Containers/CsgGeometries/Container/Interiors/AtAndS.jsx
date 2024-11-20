@@ -1,30 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { INTERIOR_TRIM_NAMES } from "@/utils/constants/names/names";
-import { Base } from "@react-three/csg";
-import { useGLTF } from "@react-three/drei";
-
-const { useInteriorGLTFModels, useInteriorTrimGLTFModels } = require("@/utils/hooks/containers/useGLTFModels");
-
-// const None = ({
-//   interiorIsNone,
-//   interiorFinishes
-// }) => {
-//   if (interiorFinishes.interiorIsNone) {
-//     const rightNodes = useGLTF(
-//       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/right.glb`
-//     ).nodes;
-//     const leftNodes = useGLTF(
-//       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/left.glb`
-//     ).nodes;
-//     const backNodes = useGLTF(
-//       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/back.glb`
-//     ).nodes;
-//     const frontNodes = useGLTF(
-//       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/front.glb`
-//     )
-//     const 
-//   }
-// }
+import {
+  INTERIOR_FINISH_NAMES,
+  INTERIOR_TRIM_NAMES,
+} from '@/utils/constants/names/names';
+import { useInteriorMaterial, useInteriorTrimMaterial } from '@/utils/hooks/containers/useGLTFModels';
+import { Base } from '@react-three/csg';
+import { useGLTF } from '@react-three/drei';
 
 const WhiteShiplap = ({
   interiorFinishes,
@@ -35,7 +16,10 @@ const WhiteShiplap = ({
   adjustForY,
 }) => {
   if (interiorFinishes.interiorIsWhiteShiplap) {
-    const { whiteShiplapMaterial } = useInteriorGLTFModels(supplier);
+    const whiteShiplapMaterial = useInteriorMaterial(supplier, {
+      name: INTERIOR_FINISH_NAMES.WHITE_SHIPLAP,
+      glbObject: 'Barn Wood Wall Panels',
+    });
     const rightNodes = useGLTF(
       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/right.glb`
     ).nodes;
@@ -51,7 +35,7 @@ const WhiteShiplap = ({
           <Base
             key={key}
             geometry={rightNodes[key].geometry}
-            material={whiteShiplapMaterial['Barn Wood Wall Panels']}
+            material={whiteShiplapMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -60,7 +44,7 @@ const WhiteShiplap = ({
           <Base
             key={key}
             geometry={leftNodes[key].geometry}
-            material={whiteShiplapMaterial['Barn Wood Wall Panels']}
+            material={whiteShiplapMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -69,7 +53,7 @@ const WhiteShiplap = ({
           <Base
             key={key}
             geometry={backNodes[key].geometry}
-            material={whiteShiplapMaterial['Barn Wood Wall Panels']}
+            material={whiteShiplapMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -88,7 +72,10 @@ const LuanWall = ({
   adjustForY,
 }) => {
   if (interiorFinishes.interiorIsLuanWall) {
-    const { luanWallMaterial } = useInteriorGLTFModels(supplier);
+    const luanWallMaterial = useInteriorMaterial(supplier, {
+      name: INTERIOR_FINISH_NAMES.LUAN_WALL,
+      glbObject: 'Luan Wall Panels',
+    });
     const rightNodes = useGLTF(
       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/right.glb`
     ).nodes;
@@ -104,7 +91,7 @@ const LuanWall = ({
           <Base
             key={key}
             geometry={rightNodes[key].geometry}
-            material={luanWallMaterial['Luan Wall Panels']}
+            material={luanWallMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -113,7 +100,7 @@ const LuanWall = ({
           <Base
             key={key}
             geometry={leftNodes[key].geometry}
-            material={luanWallMaterial['Luan Wall Panels']}
+            material={luanWallMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -122,7 +109,7 @@ const LuanWall = ({
           <Base
             key={key}
             geometry={backNodes[key].geometry}
-            material={luanWallMaterial['Luan Wall Panels']}
+            material={luanWallMaterial}
             scale={10}
             position={[adjustForX, 0, adjustForY]}
           />
@@ -145,31 +132,40 @@ const BaseBoard = ({
       `/models/container/${size}/${selectedContainerHeight}/baseboard.glb`
     ).nodes;
     if (interiorTrim.name === INTERIOR_TRIM_NAMES.BATTEN_ADOBE_WHITE) {
-      const { battenAdobeWhiteMaterial } = useInteriorTrimGLTFModels(supplier);
+      const battenAdobeWhiteMaterial = useInteriorTrimMaterial(supplier, {
+        name: INTERIOR_TRIM_NAMES.BATTEN_ADOBE_WHITE,
+        glbObject: 'Red Oak Wood Grain Texture',
+      });
       return (
         <Base
           geometry={baseboard.mesh_0.geometry}
-          material={battenAdobeWhiteMaterial["Red Oak Wood Grain Texture"]}
+          material={battenAdobeWhiteMaterial}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
       );
     } else if (interiorTrim.name === INTERIOR_TRIM_NAMES.LUAN_BATTEN_OAK) {
-      const { luanBattenOakMaterial } = useInteriorTrimGLTFModels(supplier);
+      const luanBattenOakMaterial = useInteriorTrimMaterial(supplier, {
+        name: INTERIOR_TRIM_NAMES.LUAN_BATTEN_OAK,
+        glbObject: 'Red Oak Wood Grain Texture',
+      });
       return (
         <Base
           geometry={baseboard.mesh_0.geometry}
-          material={luanBattenOakMaterial["Red Oak Wood Grain Texture"]}
+          material={luanBattenOakMaterial}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
       );
     } else if (interiorTrim.name === INTERIOR_TRIM_NAMES.LUAN_BATTEN_WHITE) {
-      const { luanBattenWhiteMaterial } = useInteriorTrimGLTFModels(supplier);
+      const luanBattenWhiteMaterial = useInteriorTrimMaterial(supplier, {
+        name: INTERIOR_TRIM_NAMES.LUAN_BATTEN_WHITE,
+        glbObject: 'Red Oak Wood Grain Texture',
+      });
       return (
         <Base
           geometry={baseboard.mesh_0.geometry}
-          material={luanBattenWhiteMaterial["Red Oak Wood Grain Texture"]}
+          material={luanBattenWhiteMaterial}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
