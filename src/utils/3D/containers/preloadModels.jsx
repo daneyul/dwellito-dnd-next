@@ -69,7 +69,13 @@ export async function preloadAllModels({
       ),
       useGLTF.preload(
         `/models/${supplier}/sprayfoam/${size}/${selectedContainerHeight}/sprayfoam-back.glb`
-      )
+      ),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/red-paint.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/white-paint.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/green-paint.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/blue-paint.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/slate-grey-paint.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/beige-paint.glb`),
     );
   } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
     promises.push(
@@ -85,7 +91,14 @@ export async function preloadAllModels({
       ),
       useGLTF.preload(
         `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/right.glb`
-      )
+      ),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/saf-red.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/white.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/lightgrey.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/beige.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/blue.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/green.glb`),
+      useGLTF.preload(`/models/${supplier}/materials/exterior/stock.glb`),
     );
   }
 

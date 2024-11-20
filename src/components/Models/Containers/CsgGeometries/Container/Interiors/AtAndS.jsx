@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { INTERIOR_TRIM_NAMES } from "@/utils/constants/names/names";
-import { Base } from "@react-three/csg";
-import { useGLTF } from "@react-three/drei";
-
-const { useInteriorGLTFModels, useInteriorTrimGLTFModels } = require("@/utils/hooks/containers/useGLTFModels");
+import {
+  INTERIOR_FINISH_NAMES,
+  INTERIOR_TRIM_NAMES,
+} from '@/utils/constants/names/names';
+import { useInteriorMaterial } from '@/utils/hooks/containers/useGLTFModels';
+import { Base } from '@react-three/csg';
+import { useGLTF } from '@react-three/drei';
 
 // const None = ({
 //   interiorIsNone,
@@ -22,7 +24,7 @@ const { useInteriorGLTFModels, useInteriorTrimGLTFModels } = require("@/utils/ho
 //     const frontNodes = useGLTF(
 //       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/front.glb`
 //     )
-//     const 
+//     const
 //   }
 // }
 
@@ -35,7 +37,10 @@ const WhiteShiplap = ({
   adjustForY,
 }) => {
   if (interiorFinishes.interiorIsWhiteShiplap) {
-    const { whiteShiplapMaterial } = useInteriorGLTFModels(supplier);
+    const whiteShiplapMaterial = useInteriorMaterial(supplier, {
+      name: INTERIOR_FINISH_NAMES.WHITE_SHIPLAP,
+      glbObject: 'Barn Wood Wall Panels',
+    });
     const rightNodes = useGLTF(
       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/right.glb`
     ).nodes;
@@ -88,7 +93,10 @@ const LuanWall = ({
   adjustForY,
 }) => {
   if (interiorFinishes.interiorIsLuanWall) {
-    const { luanWallMaterial } = useInteriorGLTFModels(supplier);
+    const luanWallMaterial = useInteriorMaterial(supplier, {
+      name: INTERIOR_FINISH_NAMES.LUAN_WALL,
+      glbObject: 'Luan Wall Panels',
+    });
     const rightNodes = useGLTF(
       `/models/${supplier}/plain-walls/${size}/${selectedContainerHeight}/right.glb`
     ).nodes;
@@ -149,7 +157,7 @@ const BaseBoard = ({
       return (
         <Base
           geometry={baseboard.mesh_0.geometry}
-          material={battenAdobeWhiteMaterial["Red Oak Wood Grain Texture"]}
+          material={battenAdobeWhiteMaterial['Red Oak Wood Grain Texture']}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
@@ -159,7 +167,7 @@ const BaseBoard = ({
       return (
         <Base
           geometry={baseboard.mesh_0.geometry}
-          material={luanBattenOakMaterial["Red Oak Wood Grain Texture"]}
+          material={luanBattenOakMaterial['Red Oak Wood Grain Texture']}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />
@@ -169,7 +177,7 @@ const BaseBoard = ({
       return (
         <Base
           geometry={baseboard.mesh_0.geometry}
-          material={luanBattenWhiteMaterial["Red Oak Wood Grain Texture"]}
+          material={luanBattenWhiteMaterial['Red Oak Wood Grain Texture']}
           scale={10}
           position={[adjustForX, 0, adjustForY]}
         />

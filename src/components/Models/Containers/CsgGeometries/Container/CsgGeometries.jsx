@@ -1,12 +1,15 @@
 import React, { useContext, useMemo, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
-import {
-  getExteriorPaint,
-} from '@/utils/hooks/containers/useGLTFModels';
+import { useExteriorMaterial } from '@/utils/hooks/containers/useGLTFModels';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import CustomCubes from './Interiors/CustomCubes';
-import { CONTAINER_SIZE_10, CONTAINER_SIZE_20, CONTAINER_SIZE_40, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import {
+  CONTAINER_SIZE_10,
+  CONTAINER_SIZE_20,
+  CONTAINER_SIZE_40,
+  SUPPLIER_SLUGS,
+} from '@/utils/constants/names/names';
 import AtAndS from './Interiors/AtAndS';
 import { ContainerDataContext } from '@/utils/contexts/ContainerDataProvider';
 
@@ -27,7 +30,7 @@ export function CsgGeometries({
     selectedContainerHeight,
     containerSize,
     supplier,
-    interiorTrim
+    interiorTrim,
   } = useContext(ContainerDataContext);
 
   const size = containerSize();
@@ -64,9 +67,7 @@ export function CsgGeometries({
 
   const csg = useRef();
 
-  const exteriorPaint = useMemo(() => {
-    return getExteriorPaint(supplier, exteriorFinish, paint);
-  }, [supplier, exteriorFinish, paint]);
+  const exteriorPaint = useExteriorMaterial(supplier, exteriorFinish);
 
   const doorBoundingBoxGeometries = useMemo(() => {
     return doors.map((door, index) => {

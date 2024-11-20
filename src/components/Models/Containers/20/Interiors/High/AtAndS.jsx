@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { noneOption } from '@/utils/constants/components/flooring/flooringData';
-import { FLOORING_NAMES } from '@/utils/constants/names/names';
+import { FLOORING_NAMES, INTERIOR_FINISH_NAMES } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
 const {
   useInteriorGLTFModels,
   useFlooringGLTFModels,
+  useInteriorMaterial,
 } = require('@/utils/hooks/containers/useGLTFModels');
 
 const WhiteShiplap = ({
@@ -19,7 +20,10 @@ const WhiteShiplap = ({
     const { nodes: rearTopNodes } = useGLTF(
       `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
     );
-    const { whiteShiplapMaterial } = useInteriorGLTFModels(supplier);
+    const whiteShiplapMaterial = useInteriorMaterial(supplier, {
+      name: INTERIOR_FINISH_NAMES.WHITE_SHIPLAP,
+      glbObject: 'Barn Wood Wall Panels',
+    });
     return (
       <>
         <group
@@ -115,7 +119,10 @@ const LuanWall = ({
     const { nodes: rearTopNodes } = useGLTF(
       `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
     );
-    const { luanWallMaterial } = useInteriorGLTFModels(supplier);
+    const luanWallMaterial = useInteriorMaterial(supplier, {
+      name: INTERIOR_FINISH_NAMES.LUAN_WALL,
+      glbObject: 'Luan Wall Panels',
+    });
     return (
       <>
         <group

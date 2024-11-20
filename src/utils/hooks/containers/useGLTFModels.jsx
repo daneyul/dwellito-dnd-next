@@ -1,142 +1,61 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { EXTERIORS, INTERIOR_FINISH_NAMES, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
 import { useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 
-export const useExteriorGLTFModels = (supplier) => {
-  if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
-    const { materials: redPaint } = useGLTF(
-      `/models/${supplier}/materials/exterior/red-paint.glb`
-    );
-    const { materials: whitePaint } = useGLTF(
-      `/models/${supplier}/materials/exterior/white-paint.glb`
-    );
-    const { materials: greenPaint } = useGLTF(
-      `/models/${supplier}/materials/exterior/green-paint.glb`
-    );
-    const { materials: bluePaint } = useGLTF(
-      `/models/${supplier}/materials/exterior/blue-paint.glb`
-    );
-    const { materials: slateGreyPaint } = useGLTF(
-      `/models/${supplier}/materials/exterior/slate-grey-paint.glb`
-    );
-    const { materials: beigePaint } = useGLTF(
-      `/models/${supplier}/materials/exterior/beige-paint.glb`
-    );
-    return {
-      redPaint,
-      whitePaint,
-      greenPaint,
-      bluePaint,
-      slateGreyPaint,
-      beigePaint,
-    };
-  } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
-    const { materials: safRed } = useGLTF(
-      `/models/${supplier}/materials/exterior/saf-red.glb`
-    );
-    const { materials: white } = useGLTF(
-      `/models/${supplier}/materials/exterior/white.glb`
-    );
-    const { materials: lightGrey } = useGLTF(
-      `/models/${supplier}/materials/exterior/lightgrey.glb`
-    );
-    const { materials: beige } = useGLTF(
-      `/models/${supplier}/materials/exterior/beige.glb`
-    );
-    const { materials: blue } = useGLTF(
-      `/models/${supplier}/materials/exterior/blue.glb`
-    );
-    const { materials: green } = useGLTF(
-      `/models/${supplier}/materials/exterior/green.glb`
-    );
-    const { materials: stock } = useGLTF(
-      `/models/${supplier}/materials/exterior/stock.glb`
-    );
-    return {
-      safRed,
-      white,
-      lightGrey,
-      beige,
-      blue,
-      green,
-      stock,
-    };
-  }
+export const useExteriorMaterial = (supplier, exteriorFinish) => {
+  const materialPaths = {
+    [SUPPLIER_SLUGS.CUSTOM_CUBES]: {
+      [EXTERIORS.RED]: `/models/${supplier}/materials/exterior/red-paint.glb`,
+      [EXTERIORS.WHITE]: `/models/${supplier}/materials/exterior/white-paint.glb`,
+      [EXTERIORS.GREEN]: `/models/${supplier}/materials/exterior/green-paint.glb`,
+      [EXTERIORS.BLUE]: `/models/${supplier}/materials/exterior/blue-paint.glb`,
+      [EXTERIORS.SLATE_GREY]: `/models/${supplier}/materials/exterior/slate-grey-paint.glb`,
+      [EXTERIORS.BEIGE]: `/models/${supplier}/materials/exterior/beige-paint.glb`,
+    },
+    [SUPPLIER_SLUGS.AT_AND_S]: {
+      [EXTERIORS.SAF_RED]: `/models/${supplier}/materials/exterior/saf-red.glb`,
+      [EXTERIORS.WHITE]: `/models/${supplier}/materials/exterior/white.glb`,
+      [EXTERIORS.LIGHT_GREY]: `/models/${supplier}/materials/exterior/lightgrey.glb`,
+      [EXTERIORS.BEIGE]: `/models/${supplier}/materials/exterior/beige.glb`,
+      [EXTERIORS.BLUE]: `/models/${supplier}/materials/exterior/blue.glb`,
+      [EXTERIORS.GREEN]: `/models/${supplier}/materials/exterior/green.glb`,
+      [EXTERIORS.STOCK]: `/models/${supplier}/materials/exterior/stock.glb`,
+    },
+  };
+
+  const pathsForSupplier = materialPaths[supplier];
+  if (!pathsForSupplier) return null;
+
+  const materialPath = pathsForSupplier[exteriorFinish.name];
+  if (!materialPath) return null;
+
+  const { materials } = useGLTF(materialPath);
+  return materials?.[exteriorFinish.glbObject] || null;
 };
 
-export const getExteriorPaint = (supplier, exteriorFinish, paint) => {
-  if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
-    switch (exteriorFinish.name) {
-      case 'Red':
-        return paint.redPaint?.[exteriorFinish.glbObject];
-      case 'White':
-        return paint.whitePaint?.[exteriorFinish.glbObject];
-      case 'Green':
-        return paint.greenPaint?.[exteriorFinish.glbObject];
-      case 'Blue':
-        return paint.bluePaint?.[exteriorFinish.glbObject];
-      case 'Slate Grey':
-        return paint.slateGreyPaint?.[exteriorFinish.glbObject];
-      case 'Beige':
-        return paint.beigePaint?.[exteriorFinish.glbObject];
-      default:
-        return null;
-    }
-  } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
-    switch (exteriorFinish.name) {
-      case 'SAF Red (Corners Only)':
-        return paint.safRed?.[exteriorFinish.glbObject];
-      case 'White':
-        return paint.white?.[exteriorFinish.glbObject];
-      case 'Light Grey':
-        return paint.lightGrey?.[exteriorFinish.glbObject];
-      case 'Beige':
-        return paint.beige?.[exteriorFinish.glbObject];
-      case 'Blue':
-        return paint.blue?.[exteriorFinish.glbObject];
-      case 'Green':
-        return paint.green?.[exteriorFinish.glbObject];
-      case 'Stock':
-        return paint.stock?.[exteriorFinish.glbObject];
-      default:
-        return null;
-    }
-  }
-  return null;
-};
+export const useInteriorMaterial = (supplier, interiorFinish) => {
+  const materialPaths = {
+    [SUPPLIER_SLUGS.CUSTOM_CUBES]: {
+      [INTERIOR_FINISH_NAMES.PLYWOOD]: `/models/${supplier}/materials/interior/plywood.glb`,
+      [INTERIOR_FINISH_NAMES.DRYWALL]: `/models/${supplier}/materials/interior/drywall.glb`,
+      [INTERIOR_FINISH_NAMES.SPRAYFOAM]: `/models/${supplier}/materials/interior/sprayfoam.glb`,
+    },
+    [SUPPLIER_SLUGS.AT_AND_S]: {
+      [INTERIOR_FINISH_NAMES.LUAN_WALL]: `/models/${supplier}/materials/interior/luan-wall.glb`,
+      [INTERIOR_FINISH_NAMES.WHITE_SHIPLAP]: `/models/${supplier}/materials/interior/white-shiplap.glb`,
+    },
+  };
 
-export const useInteriorGLTFModels = (supplier) => {
-  if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
-    const { materials: plywoodMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior/plywood.glb`
-    );
-    const { materials: drywallMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior/drywall.glb`
-    );
-    const { materials: sprayFoamMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior/sprayfoam.glb`
-    );
+  const pathsForSupplier = materialPaths[supplier];
+  if (!pathsForSupplier) return null;
 
-    return {
-      plywoodMaterial,
-      drywallMaterial,
-      sprayFoamMaterial,
-    };
-  } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
-    const { materials: luanWallMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior/luan-wall.glb`
-    );
-    const { materials: whiteShiplapMaterial } = useGLTF(
-      `/models/${supplier}/materials/interior/white-shiplap.glb`
-    );
+  const materialPath = pathsForSupplier[interiorFinish.name];
+  if (!materialPath) return null;
 
-    return {
-      luanWallMaterial,
-      whiteShiplapMaterial,
-    };
-  }
+  const { materials } = useGLTF(materialPath);
+  return materials?.[interiorFinish.glbObject] || null;
 };
 
 export const useFlooringGLTFModels = (supplier) => {
