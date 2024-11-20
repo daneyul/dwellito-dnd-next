@@ -1,17 +1,23 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { noneOption } from "@/utils/constants/components/flooring/flooringData";
-import { FLOORING_NAMES } from "@/utils/constants/names/names";
-import { useFlooringGLTFModels, useInteriorGLTFModels } from "@/utils/hooks/containers/useGLTFModels";
-import { useGLTF } from "@react-three/drei";
-import * as THREE from 'three';
+import { noneOption } from '@/utils/constants/components/flooring/flooringData';
+import { INTERIOR_FINISH_NAMES } from '@/utils/constants/names/names';
+import { useFlooringMaterial, useInteriorMaterial } from '@/utils/hooks/containers/useGLTFModels';
+import { useGLTF } from '@react-three/drei';
 
-const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight, supplier }) => {
-  if (interiorFinishes.interiorIsLuanWall) {
-    const { nodes: rearTopNodes } =
-      useGLTF(
-        `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
-      );
-      const { luanWallMaterial } = useInteriorGLTFModels(supplier);
+const WhiteShiplap = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+  supplier,
+}) => {
+  if (interiorFinishes.interiorIsWhiteShiplap) {
+    const { nodes: rearTopNodes } = useGLTF(
+      `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
+    );
+    const whiteShiplapMaterial = useInteriorMaterial(supplier, {
+      name: INTERIOR_FINISH_NAMES.WHITE_SHIPLAP,
+      glbObject: 'Barn Wood Wall Panels',
+    });
     return (
       <>
         <group
@@ -21,10 +27,8 @@ const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes['40FT_Blank_Plywood_reartop'].geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes['40FT_Blank_Plywood_reartop'].geometry}
+            material={whiteShiplapMaterial}
             scale={0.01}
           />
         </group>
@@ -35,10 +39,8 @@ const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_1.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_1.geometry}
+            material={whiteShiplapMaterial}
             scale={0.01}
           />
         </group>
@@ -50,10 +52,8 @@ const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_2.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_2.geometry}
+            material={whiteShiplapMaterial}
             scale={0.01}
           />
         </group>
@@ -65,10 +65,8 @@ const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_3.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_3.geometry}
+            material={whiteShiplapMaterial}
             scale={0.01}
           />
         </group>
@@ -80,10 +78,8 @@ const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_4.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_4.geometry}
+            material={whiteShiplapMaterial}
             scale={0.01}
           />
         </group>
@@ -95,10 +91,8 @@ const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_5.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_5.geometry}
+            material={whiteShiplapMaterial}
             scale={0.01}
           />
         </group>
@@ -110,10 +104,8 @@ const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_6.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_6.geometry}
+            material={whiteShiplapMaterial}
             scale={0.01}
           />
         </group>
@@ -125,10 +117,8 @@ const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_7.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_7.geometry}
+            material={whiteShiplapMaterial}
             scale={0.01}
           />
         </group>
@@ -140,10 +130,8 @@ const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_8.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_8.geometry}
+            material={whiteShiplapMaterial}
             scale={0.01}
           />
         </group>
@@ -155,10 +143,8 @@ const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_9.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_9.geometry}
+            material={whiteShiplapMaterial}
             scale={0.01}
           />
         </group>
@@ -169,14 +155,20 @@ const WhiteShiplap = ({ interiorFinishes, containerSize, selectedContainerHeight
   }
 };
 
-
-const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, supplier }) => {
+const LuanWall = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+  supplier,
+}) => {
   if (interiorFinishes.interiorIsLuanWall) {
-    const { nodes: rearTopNodes } =
-      useGLTF(
-        `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
-      );
-      const { luanWallMaterial } = useInteriorGLTFModels(supplier);
+    const { nodes: rearTopNodes } = useGLTF(
+      `/models/container/${containerSize()}/${selectedContainerHeight}/rear-top-plywood.glb`
+    );
+    const luanWallMaterial = useInteriorMaterial(supplier, {
+      name: INTERIOR_FINISH_NAMES.LUAN_WALL,
+      glbObject: 'Luan Wall Panels',
+    });
     return (
       <>
         <group
@@ -186,10 +178,8 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes['40FT_Blank_Plywood_reartop'].geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes['40FT_Blank_Plywood_reartop'].geometry}
+            material={luanWallMaterial}
             scale={0.01}
           />
         </group>
@@ -200,10 +190,8 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_1.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_1.geometry}
+            material={luanWallMaterial}
             scale={0.01}
           />
         </group>
@@ -215,10 +203,8 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_2.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_2.geometry}
+            material={luanWallMaterial}
             scale={0.01}
           />
         </group>
@@ -230,10 +216,8 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_3.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_3.geometry}
+            material={luanWallMaterial}
             scale={0.01}
           />
         </group>
@@ -245,10 +229,8 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_4.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_4.geometry}
+            material={luanWallMaterial}
             scale={0.01}
           />
         </group>
@@ -260,10 +242,8 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_5.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_5.geometry}
+            material={luanWallMaterial}
             scale={0.01}
           />
         </group>
@@ -275,10 +255,8 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_6.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_6.geometry}
+            material={luanWallMaterial}
             scale={0.01}
           />
         </group>
@@ -290,10 +268,8 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_7.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_7.geometry}
+            material={luanWallMaterial}
             scale={0.01}
           />
         </group>
@@ -305,10 +281,8 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_8.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_8.geometry}
+            material={luanWallMaterial}
             scale={0.01}
           />
         </group>
@@ -320,10 +294,8 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
           <mesh
             castShadow
             receiveShadow
-            geometry={
-              rearTopNodes.Obj_40FT_Blank_Plywood_reartop_9.geometry
-            }
-            material={luanWallMaterial['Luan Wall Panels']}
+            geometry={rearTopNodes.Obj_40FT_Blank_Plywood_reartop_9.geometry}
+            material={luanWallMaterial}
             scale={0.01}
           />
         </group>
@@ -334,34 +306,29 @@ const LuanWall = ({ interiorFinishes, containerSize, selectedContainerHeight, su
   }
 };
 
-const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }) => {
+const Flooring = ({
+  flooring,
+  containerSize,
+  selectedContainerHeight,
+  supplier,
+}) => {
   if (flooring.name !== noneOption?.name) {
-    const { echoFloor, timberFloor, rubberCoinFloor } = useFlooringGLTFModels(supplier);
     const { nodes: flooringNodes } = useGLTF(
       `/models/container/${containerSize()}/${selectedContainerHeight}/flooring.glb`
     );
 
-    const flooringMaterial = () => {
-      if (flooring.name === FLOORING_NAMES.RUBBER_COIN) {
-        return new THREE.MeshStandardMaterial({ map: rubberCoinFloor });
-      }
-      switch (flooring.name) {
-        case FLOORING_NAMES.ECHO:
-          return echoFloor[flooring.glbObject];
-        case FLOORING_NAMES.TIMBER:
-          return timberFloor[flooring.glbObject];
-        default:
-          return null;
-      }
-    };
-    
+    const flooringMaterial = useFlooringMaterial(supplier, {
+      name: flooring.name,
+      glbObject: flooring.glbObject,
+    });
+
     return (
       <>
         <mesh
           castShadow
           receiveShadow
           geometry={flooringNodes['40FT_Interior_Blank_Floor_001'].geometry}
-          material={flooringMaterial()}
+          material={flooringMaterial}
           position={[3.089, 0.173, -1.22]}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={0.01}
@@ -373,7 +340,13 @@ const Flooring = ({ flooring, containerSize, selectedContainerHeight, supplier }
   }
 };
 
-const AtAndS = ({ interiorFinishes, containerSize, selectedContainerHeight, supplier, flooring }) => {
+const AtAndS = ({
+  interiorFinishes,
+  containerSize,
+  selectedContainerHeight,
+  supplier,
+  flooring,
+}) => {
   return (
     <>
       <WhiteShiplap
@@ -395,7 +368,7 @@ const AtAndS = ({ interiorFinishes, containerSize, selectedContainerHeight, supp
         supplier={supplier}
       />
     </>
-  )
+  );
 };
 
 export default AtAndS;

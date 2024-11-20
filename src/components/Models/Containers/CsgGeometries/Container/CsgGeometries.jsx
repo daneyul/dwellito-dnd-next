@@ -20,8 +20,7 @@ export function CsgGeometries({
   exhaustFanBoundingBox,
   doors,
   windows,
-  vents,
-  paint,
+  vents
 }) {
   const {
     exteriorFinish,

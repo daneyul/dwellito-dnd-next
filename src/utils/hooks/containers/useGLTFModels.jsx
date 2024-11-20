@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { EXTERIORS, INTERIOR_FINISH_NAMES, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { EXTERIORS, FLOORING_NAMES, INTERIOR_FINISH_NAMES, INTERIOR_TRIM_NAMES, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
 import { useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -58,39 +58,54 @@ export const useInteriorMaterial = (supplier, interiorFinish) => {
   return materials?.[interiorFinish.glbObject] || null;
 };
 
-export const useFlooringGLTFModels = (supplier) => {
-  if (supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
-    const { materials: echoFloor } = useGLTF(
-      `/models/${supplier}/materials/flooring/echo.glb`
-    );
-    const { materials: timberFloor } = useGLTF(
-      `/models/${supplier}/materials/flooring/timber.glb`
-    );
-    return {
-      echoFloor,
-      timberFloor
-    };
-  } else if (supplier === SUPPLIER_SLUGS.AT_AND_S) {
-    const { materials: echoFloor } = useGLTF(
-      `/models/${supplier}/materials/flooring/echo.glb`
-    );
-    const { materials: timberFloor } = useGLTF(
-      `/models/${supplier}/materials/flooring/timber.glb`
-    );
-    const rubberCoinFloor = useLoader(
-      THREE.TextureLoader,
-      `/models/${supplier}/materials/flooring/rubber-coin.jpg`
-    );
+export const useInteriorTrimMaterial = (supplier, interiorTrim) => {
+  const trimMaterialPaths = {
+    [SUPPLIER_SLUGS.AT_AND_S]: {
+      [INTERIOR_TRIM_NAMES.BATTEN_ADOBE_WHITE]: `/models/${supplier}/materials/interior-trim/batten-adobe-white.glb`,
+      [INTERIOR_TRIM_NAMES.LUAN_BATTEN_OAK]: `/models/${supplier}/materials/interior-trim/luan-batten-oak.glb`,
+      [INTERIOR_TRIM_NAMES.LUAN_BATTEN_WHITE]: `/models/${supplier}/materials/interior-trim/luan-batten-white.glb`,
+    },
+  };
 
-    rubberCoinFloor.wrapS = THREE.RepeatWrapping;
-    rubberCoinFloor.wrapT = THREE.RepeatWrapping;
-    rubberCoinFloor.repeat.set(2.5, 2.5);
-    rubberCoinFloor.colorSpace = THREE.SRGBColorSpace;
-    
-    return {
-      echoFloor,
-      timberFloor,
-      rubberCoinFloor,
-    };
+  const pathsForSupplier = trimMaterialPaths[supplier];
+  if (!pathsForSupplier) return null;
+
+  const materialPath = pathsForSupplier[interiorTrim.name];
+  if (!materialPath) return null;
+
+  const { materials } = useGLTF(materialPath);
+  return materials?.[interiorTrim.glbObject] || null;
+};
+
+export const useFlooringMaterial = (supplier, flooring) => {
+  const flooringMaterialPaths = {
+    [SUPPLIER_SLUGS.CUSTOM_CUBES]: {
+      [FLOORING_NAMES.ECHO]: `/models/${supplier}/materials/flooring/echo.glb`,
+      [FLOORING_NAMES.TIMBER]: `/models/${supplier}/materials/flooring/timber.glb`,
+    },
+    [SUPPLIER_SLUGS.AT_AND_S]: {
+      [FLOORING_NAMES.ECHO]: `/models/${supplier}/materials/flooring/echo.glb`,
+      [FLOORING_NAMES.TIMBER]: `/models/${supplier}/materials/flooring/timber.glb`,
+      [FLOORING_NAMES.RUBBER_COIN]: `/models/${supplier}/materials/flooring/rubber-coin.jpg`, // Texture for RubberCoin
+    },
+  };
+
+  const pathsForSupplier = flooringMaterialPaths[supplier];
+  if (!pathsForSupplier) return null;
+
+  const materialPath = pathsForSupplier[flooring.name];
+  if (!materialPath) return null;
+
+  if (flooring.name === FLOORING_NAMES.RUBBER_COIN) {
+    const texture = useLoader(THREE.TextureLoader, materialPath);
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(2.5, 2.5);
+    texture.colorSpace = THREE.SRGBColorSpace;
+
+    return new THREE.MeshStandardMaterial({ map: texture });
   }
+
+  const { materials } = useGLTF(materialPath);
+  return materials?.[flooring.glbObject] || null;
 };
