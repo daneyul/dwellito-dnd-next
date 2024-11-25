@@ -14,17 +14,20 @@ import ShedDataProvider from '@/utils/contexts/ShedDataProvider';
 import ContainerDataProvider from '@/utils/contexts/ContainerDataProvider';
 import ShedSidebar from '../Sidebar/ShedSidebar';
 import ContainerSidebar from '../Sidebar/ContainerSidebar';
-import { EXTERIOR, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import ContainerViewer from '../Viewer/ContainerViewer';
 import ShedViewer from '../Viewer/ShedViewer';
 import { OrderSummaryModal as ContainerOrderSummaryModal } from '../OrderSummaryModal/Container/OrderSummaryModal';
 import { OrderSummaryModal as ShedOrderSummaryModal } from '../OrderSummaryModal/Shed/OrderSummaryModal';
 import SessionLengthProvider from '@/utils/contexts/SessionLengthProvider';
-import ShedSingleSelect from '../SingleSelect/ShedSingleSelect';
+import ShedLayouts from '../Layouts/Shed/ShedLayouts';
+import LogoSection from './Shed/LogoSection';
+import ExteriorSection from './Shed/ExteriorSection';
+import FrontSelector from './Shed/FrontSelector';
 
 const Content = ({ data }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  
+
   useEffect(() => {
     if (data.supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
       (function (c, l, a, r, i, t, y) {
@@ -51,21 +54,18 @@ const Content = ({ data }) => {
             <div className={style.content}>
               {isMobile ? (
                 <>
-                  <ShedMobileModels />
+                  <div className={style.container}>
+                    <ShedMobileModels />
+                  </div>
                   <div className={style.mobileContainer}>
-                    <div
-                      style={{
-                        fontFamily: 'Linotype',
-                        fontSize: '24px',
-                        fontWeight: '400',
-                        color: 'black',
-                        textAlign: 'center',
-                        marginBottom: '1rem',
-                      }}
-                    >
-                      Exterior Siding
-                    </div>
-                    <ShedSingleSelect type={EXTERIOR} />
+                    <LogoSection data={data} />
+                    <ShedLayouts />
+                  </div>
+                  <div className={style.mobileContainer}>
+                    <FrontSelector />
+                  </div>
+                  <div className={style.mobileContainer}>
+                    <ExteriorSection />
                   </div>
                   <div className={style.mobileContainer}>
                     <MobileForm supplier={data.supplier} />
