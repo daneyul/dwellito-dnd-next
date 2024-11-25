@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import style from './mobileForm.module.scss';
+import style from '../mobileForm.module.scss';
 import * as Form from '@radix-ui/react-form';
 import * as RadixToast from '@radix-ui/react-toast';
-import CheckCircled from '../svgs/CheckCircled';
+import CheckCircled from '../../svgs/CheckCircled';
 
-const MobileForm = ({ supplier }) => {
+export const MobileForm = ({ supplier }) => {
   const [openToast, setOpenToast] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -96,5 +96,3 @@ const MobileForm = ({ supplier }) => {
     </>
   );
 };
-
-export default MobileForm;

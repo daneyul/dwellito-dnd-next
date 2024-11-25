@@ -171,3 +171,18 @@
   display: flex;
   line-height: 1.3;
 }
+
+.addressWrapper {
+  margin-bottom: space(4);
+}
+
+.messageWrapper {
+  margin-bottom: space(2);
+}
+
+.nameWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: space(4);
+  margin-bottom: space(4);
+}
