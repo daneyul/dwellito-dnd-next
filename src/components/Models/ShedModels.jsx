@@ -14,6 +14,7 @@ import {
   COMPONENT_TYPES,
   SHED_12x24,
   SHED_12x32,
+  SHED_16x24,
 } from '@/utils/constants/names/names';
 import {
   EXTERIOR_CAM_POS,
@@ -27,11 +28,13 @@ import { CsgGeometries } from './Containers/CsgGeometries/Shed/CsgGeometries';
 import { useExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import { Shed as Shed12x24 } from './Sheds/one-story/12x24/Shed';
 import { Shed as Shed12x32 } from './Sheds/one-story/12x32/Shed';
+import { Shed as Shed16x24 } from './Sheds/one-story/16x24/Shed';
 
 function getShedComponent(shedSize, exteriorPaint) {
   const shedComponents = {
     [SHED_12x24]: Shed12x24,
     [SHED_12x32]: Shed12x32,
+    [SHED_16x24]: Shed16x24,
   };
 
   const SelectedShed = shedComponents[shedSize] || null;

@@ -23,7 +23,7 @@ export const SHED_DIMENSIONS = {
       THREE_D: {
         WIDTH: 29.2,
         HEIGHT: 23.65,
-        DEPTH: 59.4,
+        DEPTH: 79.2,
       },
       SIDE: {
         WIDTH: 396,
@@ -35,6 +35,25 @@ export const SHED_DIMENSIONS = {
       },
       FLOOR_PLAN: {
         WIDTH: 396,
+        HEIGHT: 118,
+      },
+    },
+    SIXTEEN_TWENTY_FOUR: {
+      THREE_D: {
+        WIDTH: 38.9,
+        HEIGHT: 23.65,
+        DEPTH: 59.4,
+      },
+      SIDE: {
+        WIDTH: 297,
+        HEIGHT: 118,
+      },
+      FRONT: {
+        WIDTH: 195,
+        HEIGHT: 118,
+      },
+      FLOOR_PLAN: {
+        WIDTH: 297,
         HEIGHT: 118,
       },
     }

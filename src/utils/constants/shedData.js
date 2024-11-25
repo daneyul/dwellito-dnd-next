@@ -2,8 +2,10 @@ import {
   ONE_STORY,
   SHED_12x24,
   SHED_12x32,
+  SHED_16x24,
   SHED_ONE_STORY_12x24,
   SHED_ONE_STORY_12x32,
+  SHED_ONE_STORY_16x24,
 } from './names/names';
 
 export const shedData = [
@@ -27,6 +29,17 @@ export const shedData = [
     price: 88000,
     height: ONE_STORY,
     size: SHED_12x32,
+    sqft: 384,
+  },
+  {
+    name: SHED_16x24,
+    slug: SHED_ONE_STORY_16x24,
+    id: 3,
+    floorPlan: 'elevation/one-story/16x24/floor-plan.png',
+    thumbnail: 'one-story/16x24.png',
+    price: 100000,
+    height: ONE_STORY,
+    size: SHED_16x24,
     sqft: 384,
   },
 ];
