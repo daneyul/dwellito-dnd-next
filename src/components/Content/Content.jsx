@@ -8,23 +8,28 @@ import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 import { MobileModels as ContainerMobileModels } from '../Models/Mobile/Container/MobileModels';
 import { MobileModels as ShedMobileModels } from '../Models/Mobile/Shed/MobileModels';
-import MobileForm from '../MobileForm/MobileForm';
+import { MobileForm as ContainerMobileForm } from '../MobileForm/Container/MobileForm';
+import { MobileForm as ShedMobileForm } from '../MobileForm/Shed/MobileForm';
 import { useMediaQuery } from 'react-responsive';
 import ShedDataProvider from '@/utils/contexts/ShedDataProvider';
 import ContainerDataProvider from '@/utils/contexts/ContainerDataProvider';
 import ShedSidebar from '../Sidebar/ShedSidebar';
 import ContainerSidebar from '../Sidebar/ContainerSidebar';
-import { EXTERIOR, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import ContainerViewer from '../Viewer/ContainerViewer';
 import ShedViewer from '../Viewer/ShedViewer';
 import { OrderSummaryModal as ContainerOrderSummaryModal } from '../OrderSummaryModal/Container/OrderSummaryModal';
 import { OrderSummaryModal as ShedOrderSummaryModal } from '../OrderSummaryModal/Shed/OrderSummaryModal';
 import SessionLengthProvider from '@/utils/contexts/SessionLengthProvider';
-import ShedSingleSelect from '../SingleSelect/ShedSingleSelect';
+import ShedLayouts from '../Layouts/Shed/ShedLayouts';
+import LogoSection from './Shed/LogoSection';
+import ExteriorSection from './Shed/ExteriorSection';
+import FrontSelector from './Shed/FrontSelector';
+import AddOnsSection from './Shed/AddOnsSection';
 
 const Content = ({ data }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  
+
   useEffect(() => {
     if (data.supplier === SUPPLIER_SLUGS.CUSTOM_CUBES) {
       (function (c, l, a, r, i, t, y) {
@@ -51,24 +56,24 @@ const Content = ({ data }) => {
             <div className={style.content}>
               {isMobile ? (
                 <>
-                  <ShedMobileModels />
-                  <div className={style.mobileContainer}>
-                    <div
-                      style={{
-                        fontFamily: 'Linotype',
-                        fontSize: '24px',
-                        fontWeight: '400',
-                        color: 'black',
-                        textAlign: 'center',
-                        marginBottom: '1rem',
-                      }}
-                    >
-                      Exterior Siding
-                    </div>
-                    <ShedSingleSelect type={EXTERIOR} />
+                  <div className={style.container}>
+                    <ShedMobileModels />
                   </div>
                   <div className={style.mobileContainer}>
-                    <MobileForm supplier={data.supplier} />
+                    <LogoSection data={data} />
+                    <ShedLayouts />
+                  </div>
+                  <div className={style.mobileContainer}>
+                    <FrontSelector />
+                  </div>
+                  <div className={style.mobileContainer}>
+                    <ExteriorSection />
+                  </div>
+                  <div className={style.mobileContainer}>
+                    <AddOnsSection />
+                  </div>
+                  <div className={style.mobileContainer}>
+                    <ShedMobileForm supplier={data.supplier} />
                   </div>
                 </>
               ) : (
@@ -90,7 +95,7 @@ const Content = ({ data }) => {
                 <>
                   <ContainerMobileModels />
                   <div className={style.mobileContainer}>
-                    <MobileForm supplier={data.supplier} />
+                    <ContainerMobileForm supplier={data.supplier} />
                   </div>
                 </>
               ) : (

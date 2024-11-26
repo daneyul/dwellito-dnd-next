@@ -1,10 +1,10 @@
 .pageWrapper {
   background-color: color(lightGrey);
-  padding: space(6);
+  padding: space(6) space(6) space(12) space(6);
   font-family: 'Chromatica', sans-serif;
-  height: auto;
+  height: 100vh;
+  overflow: hidden;
   @include respond-to(md) {
-    height: 100vh;
     padding: 0;
     background-color: color(white);
   }
@@ -16,9 +16,11 @@
   position: relative;
   gap: space(4);
   height: 100%;
+  overflow-y: auto;
   @include respond-to(md) {
     gap: 0;
     flex-direction: row;
+    overflow-y: hidden;
   }
 }
 
@@ -27,6 +29,21 @@
   border-radius: 11px;
   border: 1px solid color(grey);
   padding: space(6);
+  @include respond-to(md) {
+    display: none;
+  }
+}
+
+.container {
+  width: 100%;
+  border-radius: 11px;
+  height: auto;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: color(white);
+  width: 100%;
+  flex: none;
   @include respond-to(md) {
     display: none;
   }
