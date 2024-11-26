@@ -1,13 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import style from '../mobileForm.module.scss';
 import * as Form from '@radix-ui/react-form';
 import * as RadixToast from '@radix-ui/react-toast';
 import CheckCircled from '../../svgs/CheckCircled';
+import { COMPONENT_TYPES } from '@/utils/constants/names/names';
+import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
+import useSaveSelections from '@/utils/hooks/containers/useSaveSelections';
 
 export const MobileForm = ({ supplier }) => {
+  const { slug, selectedComponents, orderTotal, exteriorFinish } = useContext(ShedDataContext);
   const [openToast, setOpenToast] = useState(false);
   const inputRef = useRef(null);
   const [zipCode, setZipCode] = useState('');
+
+  const { convertedSelections } = useSaveSelections({
+    selectedComponents,
+    exteriorFinish,
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -81,13 +90,24 @@ export const MobileForm = ({ supplier }) => {
 
   const triggerZapier = async ({ data }) => {
     const responseData = {
-      siteName: 'Configure',
-      customerEmail: data.email,
-      mobileVisitor: true,
+      shedType: slug,
       supplier: supplier,
+      exteriorPaint: exteriorFinish.name,
+      entryType: selectedComponents.find(
+        (item) => item.objType === COMPONENT_TYPES.DOOR
+      )?.name,
+      addOns: selectedComponents
+        .filter((item) => item.objType === COMPONENT_TYPES.MISC)
+        .map((item) => item.name),
+      customerEmail: data.email,
+      customerName: `${data.fname} ${data.lname}`,
+      address: data.address,
       zipCode: zipCode,
       phoneNumber: data.phone,
-      address: data.address,
+      url: `https://custom.configure.so/${supplier}/${slug}/?data=${convertedSelections}`,
+      mobileVisitor: false,
+      currency: 'USD',
+      priceTotal: orderTotal,
     };
     const JSONdata = JSON.stringify(responseData);
     const endpoint = 'https://hooks.zapier.com/hooks/catch/18577479/2yjklei/';
