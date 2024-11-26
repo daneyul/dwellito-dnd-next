@@ -25,6 +25,7 @@ import ShedLayouts from '../Layouts/Shed/ShedLayouts';
 import LogoSection from './Shed/LogoSection';
 import ExteriorSection from './Shed/ExteriorSection';
 import FrontSelector from './Shed/FrontSelector';
+import AddOnsSection from './Shed/AddOnsSection';
 
 const Content = ({ data }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -67,6 +68,9 @@ const Content = ({ data }) => {
                   </div>
                   <div className={style.mobileContainer}>
                     <ExteriorSection />
+                  </div>
+                  <div className={style.mobileContainer}>
+                    <AddOnsSection />
                   </div>
                   <div className={style.mobileContainer}>
                     <ShedMobileForm supplier={data.supplier} />
