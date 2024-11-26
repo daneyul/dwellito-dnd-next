@@ -31,21 +31,6 @@ export function CsgGeometries({
       shedDimensions = DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO;
   }
 
-  const geometryMapping = {
-    [SHED_12x24]: {
-      exterior: exteriorNodes?.Exterior_wall?.geometry,
-      interior: interiorNodes?.interior_wall?.geometry,
-    },
-    [SHED_12x32]: {
-      exterior: exteriorNodes?.GF_ExteriorWall001?.geometry,
-      interior: interiorNodes?.GF_interiorwall001?.geometry,
-    },
-    [SHED_16x24]: {
-      exterior: exteriorNodes?.Exteriorwall?.geometry,
-      interior: interiorNodes?.ineriorWall?.geometry,
-    },
-  };
-
   const adjustForX = -(shedDimensions.THREE_D.WIDTH / 2);
   const adjustForY = shedDimensions.THREE_D.DEPTH / 2;
 
@@ -101,14 +86,30 @@ export function CsgGeometries({
       <mesh receiveShadow castShadow>
         <Geometry useGroups>
           <Base
-            geometry={geometryMapping[shedSize]?.exterior}
+            geometry={
+              shedSize === SHED_12x24
+                ? exteriorNodes.Exterior_wall.geometry
+                : shedSize === SHED_12x32
+                ? exteriorNodes.GF_ExteriorWall001.geometry
+                : shedSize === SHED_16x24
+                ? exteriorNodes.GF_ExteriorWall.geometry
+                : null
+            }
             scale={0.2}
             position={[adjustForX, 0, adjustForY]}
           >
             <meshStandardMaterial map={exteriorPaint} />
           </Base>
           <Base
-            geometry={geometryMapping[shedSize]?.interior}
+            geometry={
+              shedSize === SHED_12x24
+                ? interiorNodes.interior_wall.geometry
+                : shedSize === SHED_12x32
+                ? interiorNodes.GF_interiorwall001.geometry
+                : shedSize === SHED_16x24
+                ? interiorNodes.GF_interiorWall.geometry // Update with correct node name for 16x24
+                : null
+            }
             scale={0.2}
             position={[adjustForX, 0, adjustForY]}
             material={groundBlockInteriorMaterials.GF_interior}

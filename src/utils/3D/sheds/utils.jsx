@@ -1,4 +1,4 @@
-import { ELEVATION_NAMES } from '../../constants/names/names';
+import { ELEVATION_NAMES, SHED_12x24, SHED_12x32, SHED_16x24 } from '../../constants/names/names';
 import { DIMENSIONS } from '../../constants/dimensions/dimensions';
 import { shedElevationData } from '../../constants/components/elevations/shedElevationData';
 import { elevationData } from '../../constants/components/elevations/elevationData';
@@ -36,12 +36,25 @@ const calcRotation = (elevation, selectedBase) => {
 const frontSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
+  selectedBase
 }) => {
   const adjustForX = () => {
-    return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2);
+    if (selectedBase.size === SHED_12x24) {
+      return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2);
+    } else if (selectedBase.size === SHED_12x32) {
+      return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.WIDTH / 2);
+    } else if (selectedBase.size === SHED_16x24) {
+      return -(DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.WIDTH / 2);
+    }
   };
   const adjustForY = () => {
-    return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    if (selectedBase.size === SHED_12x24) {
+      return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    } else if (selectedBase.size === SHED_12x32) {
+      return DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.DEPTH / 2;
+    } else if (selectedBase.size === SHED_16x24) {
+      return DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    }
   };
   const adjustForZ = () => {
     return -parseFloat(distanceObject.top);
@@ -58,12 +71,25 @@ const backSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
   width,
+  selectedBase,
 }) => {
   const adjustForX = () => {
-    return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2);
+    if (selectedBase.size === SHED_12x24) {
+      return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2);
+    } else if (selectedBase.size === SHED_12x32) {
+      return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.WIDTH / 2);
+    } else if (selectedBase.size === SHED_16x24) {
+      return -(DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.WIDTH / 2);
+    }
   };
   const adjustForY = () => {
-    return -DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    if (selectedBase.size === SHED_12x24) {
+      return -DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    } else if (selectedBase.size === SHED_12x32) {
+      return -DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.DEPTH / 2;
+    } else if (selectedBase.size === SHED_16x24) {
+      return -DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    }
   };
   const adjustForZ = () => {
     return -parseFloat(distanceObject.top);
@@ -86,14 +112,31 @@ const backSideCoordinates = ({
 const leftSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
+  selectedBase,
 }) => {
   const adjustForX = () => {
-    return (
-      -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2) + 0.2
-    );
+    if (selectedBase.size === SHED_12x24) {
+      return (
+        -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2) + 0.2
+      );
+    } else if (selectedBase.size === SHED_12x32) {
+      return (
+        -(DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.WIDTH / 2) + 0.2
+      );
+    } else if (selectedBase.size === SHED_16x24) {
+      return (
+        -(DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.WIDTH / 2) + 0.2
+      );
+    }
   };
   const adjustForY = () => {
-    return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    if (selectedBase.size === SHED_12x24) {
+      return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    } else if (selectedBase.size === SHED_12x32) {
+      return DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.DEPTH / 2;
+    } else if (selectedBase.size === SHED_16x24) {
+      return DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    }
   };
 
   let xPosition = adjustForX();
@@ -106,12 +149,25 @@ const leftSideCoordinates = ({
 const rightSideCoordinates = ({
   distanceObject,
   SCALE_FACTOR_FOR_CALCULATIONS,
+  selectedBase,
 }) => {
   const adjustForX = () => {
-    return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2;
+    if (selectedBase.size === SHED_12x24) {
+      return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2;
+    } else if (selectedBase.size === SHED_12x32) {
+      return DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.WIDTH / 2;
+    } else if (selectedBase.size === SHED_16x24) {
+      return DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.WIDTH / 2;
+    }
   };
   const adjustForY = () => {
-    return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    if (selectedBase.size === SHED_12x24) {
+      return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    } else if (selectedBase.size === SHED_12x32) {
+      return DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.DEPTH / 2;
+    } else if (selectedBase.size === SHED_16x24) {
+      return DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    }
   };
 
   let xPosition = () => {
@@ -145,24 +201,28 @@ const calcPosition = ({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
           width,
+          selectedBase,
         });
       case ELEVATION_NAMES.FRONT:
         return frontSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
           width,
+          selectedBase,
         });
       case ELEVATION_NAMES.RIGHT:
         return rightSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
           width,
+          selectedBase,
         });
       case ELEVATION_NAMES.BACK:
         return backSideCoordinates({
           distanceObject,
           SCALE_FACTOR_FOR_CALCULATIONS,
           width,
+          selectedBase,
         });
       default:
         break;

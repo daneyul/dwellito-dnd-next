@@ -4,6 +4,7 @@ import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
 import Roof from './Roof';
 import Interior from './Interior';
+import { SHED_12x24, SHED_12x32, SHED_16x24 } from '@/utils/constants/names/names';
 
 export const Shed = ({ exteriorPaint }) => {
   const {
@@ -23,12 +24,24 @@ export const Shed = ({ exteriorPaint }) => {
   const ref = useRef();
 
   const adjustForX = useMemo(() => {
-    return -(DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.WIDTH / 2);
-  }, [DIMENSIONS]);
+    if (selectedShed.size === SHED_12x24) {
+      return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.WIDTH / 2);
+    } else if (selectedShed.size === SHED_12x32) {
+      return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.WIDTH / 2);
+    } else if (selectedShed.size === SHED_16x24) {
+      return -(DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.WIDTH / 2);
+    }
+  }, [selectedShed]);
 
   const adjustForY = useMemo(() => {
-    return DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.DEPTH / 2;
-  }, [DIMENSIONS]);
+    if (selectedShed.size === SHED_12x24) {
+      return DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    } else if (selectedShed.size === SHED_12x32) {
+      return DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.DEPTH / 2;
+    } else if (selectedShed.size === SHED_16x24) {
+      return DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    }
+  }, [selectedShed]);
 
   const shedMesh = (
     <>

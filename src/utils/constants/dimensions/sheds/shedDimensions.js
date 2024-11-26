@@ -23,7 +23,7 @@ export const SHED_DIMENSIONS = {
       THREE_D: {
         WIDTH: 29.2,
         HEIGHT: 23.65,
-        DEPTH: 79.2,
+        DEPTH: 59.4,
       },
       SIDE: {
         WIDTH: 396,
