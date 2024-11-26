@@ -105,7 +105,7 @@ export const MobileForm = ({ supplier }) => {
       zipCode: zipCode,
       phoneNumber: data.phone,
       url: `https://custom.configure.so/${supplier}/${slug}/?data=${convertedSelections}`,
-      mobileVisitor: false,
+      mobileVisitor: true,
       currency: 'USD',
       priceTotal: orderTotal,
     };
