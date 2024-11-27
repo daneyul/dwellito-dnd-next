@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useRef } from 'react';
+import React, { useContext, useEffect, useMemo, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
 import { useExteriorMaterial } from '@/utils/hooks/containers/useGLTFModels';
@@ -20,7 +20,7 @@ export function CsgGeometries({
   exhaustFanBoundingBox,
   doors,
   windows,
-  vents
+  vents,
 }) {
   const {
     exteriorFinish,
@@ -54,15 +54,44 @@ export function CsgGeometries({
     }
   }, [selectedContainer.slug, DIMENSIONS]);
 
-  const exteriorRightNodes = useGLTF(
+  const exteriorRight = useGLTF(
     `/models/container/${size}/${selectedContainerHeight}/exterior-right.glb`
-  ).nodes;
-  const exteriorBackNodes = useGLTF(
+  );
+  const exteriorBack = useGLTF(
     `/models/container/${size}/${selectedContainerHeight}/exterior-back.glb`
-  ).nodes;
-  const exteriorLeftNodes = useGLTF(
+  );
+  const exteriorLeft = useGLTF(
     `/models/container/${size}/${selectedContainerHeight}/exterior-left.glb`
-  ).nodes;
+  );
+
+  const exteriorRightNodes = exteriorRight.nodes;
+  const exteriorBackNodes = exteriorBack.nodes;
+  const exteriorLeftNodes = exteriorLeft.nodes;
+
+  useEffect(() => {
+    return () => {
+      exteriorRightNodes.scene?.traverse((object) => {
+        if (object.isMesh) {
+          object.geometry?.dispose();
+          object.material?.dispose();
+        }
+      });
+  
+      exteriorBackNodes.scene?.traverse((object) => {
+        if (object.isMesh) {
+          object.geometry?.dispose();
+          object.material?.dispose();
+        }
+      });
+  
+      exteriorLeftNodes.scene?.traverse((object) => {
+        if (object.isMesh) {
+          object.geometry?.dispose();
+          object.material?.dispose();
+        }
+      });
+    };
+  }, [exteriorRightNodes, exteriorBackNodes, exteriorLeftNodes]);
 
   const csg = useRef();
 
@@ -71,6 +100,7 @@ export function CsgGeometries({
   const doorBoundingBoxGeometries = useMemo(() => {
     return doors.map((door, index) => {
       const bbox = doorBoundingBoxes[index];
+      bbox?.dispose?.();
       if (!bbox) return null;
       return (
         <group
@@ -83,11 +113,12 @@ export function CsgGeometries({
         </group>
       );
     });
-  }, [doors, doorBoundingBoxes]);
+  }, [doorBoundingBoxes]);
 
   const windowBoundingBoxGeometries = useMemo(() => {
     return windows.map((window, index) => {
       const bbox = windowBoundingBoxes[index];
+      bbox?.dispose?.();
       if (!bbox) return null;
       return (
         <group
@@ -100,13 +131,14 @@ export function CsgGeometries({
         </group>
       );
     });
-  }, [windows, windowBoundingBoxes]);
+  }, [windowBoundingBoxes]);
 
   const ventBoundingBoxGeometries = useMemo(() => {
     if (!ventBoundingBoxes || !vents) return null;
 
     return vents.map((vent, index) => {
       const bbox = ventBoundingBoxes[index];
+      bbox?.dispose?.();
       if (!bbox) return null;
       return (
         <group
@@ -119,7 +151,7 @@ export function CsgGeometries({
         </group>
       );
     });
-  }, [vents, ventBoundingBoxes]);
+  }, [ventBoundingBoxes]);
 
   const exhaustFanBoundingBoxGeometry = useMemo(() => {
     if (!exhaustFanBoundingBox) return null;
