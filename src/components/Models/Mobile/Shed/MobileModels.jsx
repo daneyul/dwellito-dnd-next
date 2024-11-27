@@ -4,6 +4,7 @@ import {
   OrbitControls,
   Environment,
   RandomizedLight,
+  useProgress,
 } from '@react-three/drei';
 import style from '../mobileModels.module.scss';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
@@ -29,6 +30,7 @@ import { useExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import ShedToggleCamera from '@/components/ToggleCamera/ShedToggleCamera';
 import { Shed as Shed12x24 } from '../../Sheds/one-story/12x24/Shed';
 import { Shed as Shed12x32 } from '../../Sheds/one-story/12x32/Shed';
+import { Spinner } from '@radix-ui/themes';
 
 export function MobileModels() {
   const {
@@ -39,8 +41,27 @@ export function MobileModels() {
     selectedComponents,
     setSelectedComponents,
     exteriorFinish,
-    shedSize
+    shedSize,
   } = useContext(ShedDataContext);
+
+  function Loader() {
+    const { progress } = useProgress();
+    return (
+      <div
+        style={{
+          textAlign: 'center',
+          display: progress === 100 ? 'none' : 'flex',
+          position: 'absolute',
+          zIndex: 1000,
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+      >
+        <Spinner size='2' />
+      </div>
+    );
+  }
 
   // Load fixed components for now
   const doorName = COMPONENT_NAMES.EXTERIOR_DOOR_1;
@@ -122,8 +143,12 @@ export function MobileModels() {
     });
   }, []);
 
-  const doors = selectedComponents.filter((component) => component.objType === COMPONENT_TYPES.DOOR);
-  const windows = selectedComponents.filter((component) => component.objType === COMPONENT_TYPES.WINDOW);
+  const doors = selectedComponents.filter(
+    (component) => component.objType === COMPONENT_TYPES.DOOR
+  );
+  const windows = selectedComponents.filter(
+    (component) => component.objType === COMPONENT_TYPES.WINDOW
+  );
 
   const camFov = 35;
   const cameraPos = MOBILE_CAM_POS.SHED;
@@ -175,18 +200,23 @@ export function MobileModels() {
       [SHED_12x24]: Shed12x24,
       [SHED_12x32]: Shed12x32,
     };
-  
+
     const SelectedShed = shedComponents[shedSize] || null;
-  
+
     if (!SelectedShed) {
       return <p>Invalid shed size selected</p>;
     }
-  
+
     return <SelectedShed exteriorPaint={exteriorPaint} />;
   }
 
   return (
-    <div id='canvas-container' className={style.container} style={{ minHeight: '300px'}}>
+    <div
+      id='canvas-container'
+      className={style.container}
+      style={{ minHeight: '300px', position: 'relative' }}
+    >
+      <Loader />
       <Canvas
         shadows
         camera={{ position: cameraPos, fov: camFov }}
@@ -195,12 +225,12 @@ export function MobileModels() {
         <color attach='background' args={['#fdfdf7']} />
         {getShedComponent(shedSize, exteriorPaint)}
         <CsgGeometries
-            doors={doors}
-            windows={windows}
-            doorBoundingBoxes={doorBoundingBoxes}
-            windowBoundingBoxes={windowBoundingBoxes}
-            exteriorPaint={exteriorPaint}
-          />
+          doors={doors}
+          windows={windows}
+          doorBoundingBoxes={doorBoundingBoxes}
+          windowBoundingBoxes={windowBoundingBoxes}
+          exteriorPaint={exteriorPaint}
+        />
         {doors.map((door, index) => (
           <Door
             key={door.id}
