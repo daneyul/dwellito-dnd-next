@@ -8,6 +8,7 @@ import {
   ELEVATION_NAMES,
   ONE_STORY,
   SHED_12x32,
+  SHED_16x24,
 } from '@/utils/constants/names/names';
 import { shedData } from '../constants/shedData';
 import { shedElevationData } from '../constants/components/elevations/shedElevationData';
@@ -121,7 +122,7 @@ const ShedDataProvider = ({ children, data }) => {
     ...door,
     position: {
       ...door.position,
-      x: 0,
+      x: shedSize === SHED_16x24 ? 115 : 0,
     },
   };
   const modifiedWindowFront = {

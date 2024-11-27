@@ -4,13 +4,17 @@ import { COMPONENT_TYPES } from '../../names/names';
 export const miscComponents = [
   {
     name: 'Add Air Conditioning to Heater Unit',
-    price: 1500,
+    price12x24: 1500,
+    price12x32: 3000,
+    price16x24: 3000,
     thumbnail: 'misc/cooling-heating.webp',
     objType: COMPONENT_TYPES.MISC
   },
   {
     name: 'Hurricane Helene Relief Discount',
-    price: -17000,
+    price12x24: -17000,
+    price12x32: -17000,
+    price16x24: -17000,
     thumbnail: 'misc/relief-discount.webp',
     objType: COMPONENT_TYPES.MISC
   },
