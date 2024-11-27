@@ -6,12 +6,14 @@ import {
   handleAddComponent,
 } from '@/utils/2D/sheds/utils';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
+import { SHED_12x24, SHED_12x32, SHED_16x24 } from '@/utils/constants/names/names';
 
 const AddMiscOption = ({ options }) => {
   const {
     setSelectedComponents,
     selectedComponents,
     supplier,
+    selectedShed
   } = useContext(ShedDataContext);
 
   return options.map((item) => {
@@ -19,12 +21,20 @@ const AddMiscOption = ({ options }) => {
     const alreadySelected = selectedComponents.some(
       (component) => component.name === item.name
     );
-    const itemPrice = item.price;
+    const itemPrice = () => {
+      if (selectedShed.size === SHED_12x24) {
+        return item.price12x24;
+      } else if (selectedShed.size === SHED_12x32) {
+        return item.price12x32;
+      } else if (selectedShed.size === SHED_16x24) {
+        return item.price16x24;
+      }
+    }
 
     const Price = () => {
       return (
         <div style={{ marginTop: '0.5rem', fontWeight: 700 }}>
-          {itemPrice < 0 ? `-$${Math.abs(itemPrice).toLocaleString()}` : `+$${itemPrice.toLocaleString()}`}
+          {itemPrice() < 0 ? `-$${Math.abs(itemPrice()).toLocaleString()}` : `+$${itemPrice().toLocaleString()}`}
         </div>
       );
     };
