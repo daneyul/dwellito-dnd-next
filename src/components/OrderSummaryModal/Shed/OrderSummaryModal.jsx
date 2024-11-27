@@ -7,7 +7,7 @@ import * as Form from '@radix-ui/react-form';
 import useSaveSelections from '@/utils/hooks/sheds/useSaveSelections';
 import Toast from '../../Toast/Toast';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
-import { COMPONENT_TYPES, SHED_12x24 } from '@/utils/constants/names/names';
+import { COMPONENT_TYPES, SHED_12x24, SHED_12x32, SHED_16x24 } from '@/utils/constants/names/names';
 
 export const OrderSummaryModal = () => {
   const {
@@ -18,6 +18,7 @@ export const OrderSummaryModal = () => {
     setDialogOpen,
     supplier,
     orderTotal,
+    selectedShed
   } = useContext(ShedDataContext);
   const { convertedSelections } = useSaveSelections({
     selectedComponents,
@@ -221,7 +222,15 @@ export const OrderSummaryModal = () => {
           {components.map((component) => {
             const imgSrc = component.thumbnail;
 
-            const itemPrice = component.price;
+            const itemPrice = () => {
+              if (selectedShed.size === SHED_12x24) {
+                return component.price12x24;
+              } else if (selectedShed.size === SHED_12x32) {
+                return component.price12x32;
+              } else if (selectedShed.size === SHED_16x24) {
+                return component.price16x24;
+              }
+            }
 
             return (
               <li key={component.id} className={style.lineItem}>
@@ -237,9 +246,9 @@ export const OrderSummaryModal = () => {
                   <div className={style.desc}>{component.name}</div>
                 </div>
                 <div className={style.price}>
-                  {itemPrice < 0
-                    ? `-$${Math.abs(itemPrice).toLocaleString()}`
-                    : `+$${itemPrice.toLocaleString()}`}
+                  {itemPrice() < 0
+                    ? `-$${Math.abs(itemPrice()).toLocaleString()}`
+                    : `+$${itemPrice().toLocaleString()}`}
                 </div>
               </li>
             );
