@@ -3,29 +3,47 @@ import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
-import { SHED_12x24, SHED_12x32 } from '@/utils/constants/names/names';
+import {
+  ONE_STORY,
+  SHED_12x24,
+  SHED_12x32,
+  SHED_16x24,
+  TWO_STORY,
+} from '@/utils/constants/names/names';
 
 export function CsgGeometries({
   doorBoundingBoxes,
   windowBoundingBoxes,
   doors,
   windows,
-  exteriorPaint
+  exteriorPaint,
 }) {
-  const { selectedShedHeight, shedSize } =
-    useContext(ShedDataContext);
+  const { selectedShedHeight, shedSize } = useContext(ShedDataContext);
 
   let shedDimensions;
 
-  switch (shedSize) {
-    case SHED_12x24:
-      shedDimensions = DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR;
+  switch (selectedShedHeight) {
+    case ONE_STORY:
+      switch (shedSize) {
+        case SHED_12x24:
+          shedDimensions = DIMENSIONS.SHED.ONE_STORY.TWELVE_TWENTY_FOUR;
+          break;
+        case SHED_12x32:
+          shedDimensions = DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO;
+          break;
+        default:
+          shedDimensions = DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO;
+      }
       break;
-    case SHED_12x32:
-      shedDimensions = DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO;
+    case TWO_STORY:
+      switch (shedSize) {
+        case SHED_16x24:
+          shedDimensions = DIMENSIONS.SHED.TWO_STORY.SIXTEEN_TWENTY_FOUR;
+          break;
+        default:
+          shedDimensions = DIMENSIONS.SHED.TWO_STORY.SIXTEEN_TWENTY_FOUR;
+      }
       break;
-    default:
-      shedDimensions = DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO;
   }
 
   const adjustForX = -(shedDimensions.THREE_D.WIDTH / 2);
@@ -83,14 +101,22 @@ export function CsgGeometries({
       <mesh receiveShadow castShadow>
         <Geometry useGroups>
           <Base
-            geometry={shedSize === SHED_12x24 ? exteriorNodes.Exterior_wall.geometry : exteriorNodes.GF_ExteriorWall001.geometry}
+            geometry={
+              shedSize === SHED_12x24
+                ? exteriorNodes.Exterior_wall.geometry
+                : exteriorNodes.GF_ExteriorWall001.geometry
+            }
             scale={0.2}
             position={[adjustForX, 0, adjustForY]}
           >
             <meshStandardMaterial map={exteriorPaint} />
           </Base>
           <Base
-            geometry={shedSize === SHED_12x24 ? interiorNodes.interior_wall.geometry : interiorNodes.GF_interiorwall001.geometry}
+            geometry={
+              shedSize === SHED_12x24
+                ? interiorNodes.interior_wall.geometry
+                : interiorNodes.GF_interiorwall001.geometry
+            }
             scale={0.2}
             position={[adjustForX, 0, adjustForY]}
             material={groundBlockInteriorMaterials.GF_interior}

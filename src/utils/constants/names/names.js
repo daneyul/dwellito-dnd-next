@@ -130,10 +130,12 @@ export const CONTAINER_SIZE_STR_20 = 'TWENTY';
 export const CONTAINER_SIZE_STR_40 = 'FORTY';
 
 export const ONE_STORY = 'one-story';
+export const TWO_STORY = 'two-story';
 
 export const SHED_ONE_STORY_12x24 = 'one-story-12x24';
 export const SHED_ONE_STORY_12x32 = 'one-story-12x32';
 export const SHED_ONE_STORY_16x24 = 'one-story-16x24';
+export const SHED_TWO_STORY_16x24 = 'two-story-16x24';
 
 export const SHED_12x24 = '12x24';
 export const SHED_12x32 = '12x32';

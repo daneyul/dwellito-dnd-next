@@ -18,6 +18,7 @@ import {
   handleAddComponent,
 } from '../2D/sheds/utils';
 import useShedSize from '../hooks/sheds/useShedSize';
+import useShedHeight from '../hooks/sheds/useShedHeight';
 
 export const ShedDataContext = createContext();
 
@@ -27,6 +28,7 @@ const ShedDataProvider = ({ children, data }) => {
   const querySelections = getSelectionsFromUrl(data.querySelectionData);
   const queryExterior = getExteriorFinishFromUrl(data.querySelectionData);
   const shedSize = useShedSize(slug);
+  const shedHeight = useShedHeight(slug);
 
   // State
   const [threeDModelLoaded, setThreeDModelLoaded] = useState(false);
@@ -70,7 +72,7 @@ const ShedDataProvider = ({ children, data }) => {
   }, {});
 
   // Shed
-  const [selectedShedHeight, setSelectedShedHeight] = useState(ONE_STORY);
+  const [selectedShedHeight, setSelectedShedHeight] = useState(shedHeight);
   const shedHeightIsOneStory = selectedShedHeight === useState(ONE_STORY);
   const selectedShed = shedData.find((shed) => shed.slug === slug);
   const shedId = selectedShed.id;

@@ -12,8 +12,11 @@ import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
 import {
   COMPONENT_TYPES,
+  ONE_STORY,
   SHED_12x24,
   SHED_12x32,
+  SHED_16x24,
+  TWO_STORY,
 } from '@/utils/constants/names/names';
 import {
   EXTERIOR_CAM_POS,
@@ -27,17 +30,23 @@ import { CsgGeometries } from './Containers/CsgGeometries/Shed/CsgGeometries';
 import { useExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import { Shed as Shed12x24 } from './Sheds/one-story/12x24/Shed';
 import { Shed as Shed12x32 } from './Sheds/one-story/12x32/Shed';
+import { Shed as Shed16x24 } from './Sheds/two-story/16x24/Shed';
 
-function getShedComponent(shedSize, exteriorPaint) {
+function getShedComponent(selectedShedHeight, shedSize, exteriorPaint) {
   const shedComponents = {
-    [SHED_12x24]: Shed12x24,
-    [SHED_12x32]: Shed12x32,
+    [ONE_STORY]: {
+      [SHED_12x24]: Shed12x24,
+      [SHED_12x32]: Shed12x32,
+    },
+    [TWO_STORY]: {
+      [SHED_16x24]: Shed16x24,
+    },
   };
 
-  const SelectedShed = shedComponents[shedSize] || null;
+  const SelectedShed = shedComponents[selectedShedHeight][shedSize] || null;
 
   if (!SelectedShed) {
-    return <p>Invalid shed size selected</p>;
+    console.log('Invalid shed size selected');
   }
 
   return <SelectedShed exteriorPaint={exteriorPaint} />;
@@ -54,6 +63,7 @@ export function ShedModels() {
     show3d,
     exteriorFinish,
     shedSize,
+    selectedShedHeight
   } = useContext(ShedDataContext);
 
   const { progress } = useProgress();
@@ -146,7 +156,7 @@ export function ShedModels() {
             windowBoundingBoxes={windowBoundingBoxes}
             exteriorPaint={exteriorPaint}
           />
-          {getShedComponent(shedSize, exteriorPaint)}
+          {getShedComponent(selectedShedHeight, shedSize, exteriorPaint)}
           {doors.map((door, index) => (
             <Door
               key={door.id}
