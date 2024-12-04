@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
-import { componentData } from '@/utils/constants/componentData';
-import { COMPONENT_TYPES, SUPPLIER_SLUGS } from '@/utils/constants/names/names';
+import { SUPPLIER_SLUGS } from '@/utils/constants/names/names';
 import { useGLTF } from '@react-three/drei';
 
 export async function preloadAllModels({
@@ -107,25 +106,6 @@ export async function preloadAllModels({
       useGLTF.preload(`/models/${supplier}/materials/flooring/rubber-coin.jpg`),
     );
   }
-
-  componentData
-    .filter((component) => component.supplier === supplier)
-    .forEach((component) => {
-      if (component.objType === COMPONENT_TYPES.DOOR) {
-        // Could probably rename the folder to the objType, oh well
-        promises.push(
-          useGLTF.preload(`/models/${supplier}/doors/${component.model}.glb`)
-        );
-      } else if (component.objType === COMPONENT_TYPES.WINDOW) {
-        promises.push(
-          useGLTF.preload(`/models/${supplier}/windows/${component.model}.glb`)
-        );
-      } else if (component.objType === COMPONENT_TYPES.VENT) {
-        promises.push(
-          useGLTF.preload(`/models/${supplier}/vents/${component.model}.glb`)
-        );
-      }
-    });
 
   await Promise.all(promises);
 }
