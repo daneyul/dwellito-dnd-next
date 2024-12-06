@@ -249,7 +249,6 @@ export const OrderSummaryModal = () => {
 
     try {
       await triggerZapier({ data });
-      console.log('Zapier request attempted');
       setDialogOpen(false);
     } catch (error) {
       console.error('Error triggering Zapier:', error);

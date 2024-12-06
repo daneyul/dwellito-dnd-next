@@ -65,7 +65,8 @@ const ContainerSingleSelect = ({ type }) => {
       return options
         .filter((option) => option.supplier === supplier)
         .map((selection) => {
-          const isSelected = (selection.name === EXTERIORS.SAF_RED && hasRedCorners) || selectedOption === selection;
+          const isSelected = (selection.name === EXTERIORS.SAF_RED && hasRedCorners) || selectedOption.name === selection.name;
+          
           return (
             <div
               key={selection.name}

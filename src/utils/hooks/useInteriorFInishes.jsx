@@ -24,15 +24,15 @@ const none = INTERIOR_FINISH_OPTIONS.find(
 );
 
 const useInteriorFinishes = ({ interiorFinish }) => {
-  const interiorIsPlywood = interiorFinish === plywoodInterior;
-  const interiorIsDrywall = interiorFinish === drywallInterior;
+  const interiorIsPlywood = interiorFinish.name === plywoodInterior.name;
+  const interiorIsDrywall = interiorFinish.name === drywallInterior.name;
   const interiorIsSprayFoamCeiling =
-    interiorFinish === sprayfoamCeilingInterior;
+    interiorFinish.name === sprayfoamCeilingInterior.name;
   const interiorIsSprayFoamCeilingWalls =
-    interiorFinish === sprayfoamCeilingWallsInterior;
-  const interiorIsWhiteShiplap = interiorFinish === whiteShiplapInterior;
-  const interiorIsLuanWall = interiorFinish === luanWallInterior;
-  const interiorIsNone = interiorFinish === none;
+    interiorFinish.name === sprayfoamCeilingWallsInterior.name;
+  const interiorIsWhiteShiplap = interiorFinish.name === whiteShiplapInterior.name;
+  const interiorIsLuanWall = interiorFinish.name === luanWallInterior.name;
+  const interiorIsNone = interiorFinish.name === none.name;
 
   return {
     interiorIsPlywood,
