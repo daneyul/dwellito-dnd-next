@@ -25,7 +25,6 @@ const useOrderTotal = ({
         return acc + component.price;
       }
     }, 0);
-
     const exteriorTotal = exteriorFinish.size === SHED_12x24
       ? exteriorFinish.price12x24
       : exteriorFinish.price12x32;

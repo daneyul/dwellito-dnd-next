@@ -52,6 +52,32 @@ export function ContainerModels() {
 
   const { progress } = useProgress();
 
+  const lastUpdateTimestamp = useRef(null);
+  const frameRenderedTimestamp = useRef(null);
+  const latencyLogRef = useRef([]);
+
+  const logLatency = (latency) => {
+    latencyLogRef.current.push(latency);
+    console.log(`Latency: ${latency}ms`);
+  };
+
+  useEffect(() => {
+    preloadAllModels({
+      supplier,
+      size: containerSize(),
+      selectedContainerHeight,
+    });
+  }, []);
+
+  useEffect(() => {
+    setThreeDModelLoaded(progress === 100);
+  }, [progress, setThreeDModelLoaded]);
+
+  // Measure latency when selectedComponents changes
+  useEffect(() => {
+    lastUpdateTimestamp.current = performance.now();
+  }, [selectedComponents]);
+
   useEffect(() => {
     preloadAllModels({ supplier, size: containerSize(), selectedContainerHeight});
   }, [])
@@ -167,6 +193,14 @@ export function ContainerModels() {
     useFrame(() => {
       camera.fov = camFov;
       camera.updateProjectionMatrix();
+
+      if (lastUpdateTimestamp.current) {
+        frameRenderedTimestamp.current = performance.now();
+        const latency =
+          frameRenderedTimestamp.current - lastUpdateTimestamp.current;
+        logLatency(latency);
+        lastUpdateTimestamp.current = null; // Reset after logging
+      }
 
       if (!cameraReady) {
         camera.position.lerp(targetPosition, 0.2);

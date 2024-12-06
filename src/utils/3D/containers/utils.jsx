@@ -304,7 +304,7 @@ const electricalCoordinates = (
       );
     } else if (selectedBase.slug === CONTAINER_SIZE_40) {
       return (
-        (DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH - distanceObject.top) /
+        (distanceObject.top - DIMENSIONS.CONTAINER.FORTY.FRONT.WIDTH) /
           SCALE_FACTOR_FOR_CALCULATIONS +
         adjustForY()
       );
