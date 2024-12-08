@@ -67,10 +67,14 @@ export function ShedModels() {
 
   const doors = useMemo(
     () =>
-      selectedComponents.filter(
-        (comp) => comp.objType === COMPONENT_TYPES.DOOR
-      ),
-    [selectedComponents, COMPONENT_TYPES]
+      selectedComponents.filter((comp) => {
+        console.log(comp.includedIn)
+        return (
+          comp.objType === COMPONENT_TYPES.DOOR &&
+          comp.includedIn.includes(shedSize)
+        );
+      }),
+    [selectedComponents, COMPONENT_TYPES.DOOR, shedSize]
   );
 
   const windows = useMemo(

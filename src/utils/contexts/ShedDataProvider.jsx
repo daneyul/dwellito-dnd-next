@@ -129,7 +129,7 @@ const ShedDataProvider = ({ children, data }) => {
     ...window,
     position: {
       ...window.position,
-      x: 0,
+      x: shedSize === SHED_16x24 ? -30 : 0,
     },
   };
   const modifiedWindowRight = {
