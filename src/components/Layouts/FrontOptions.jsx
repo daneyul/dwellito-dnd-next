@@ -14,7 +14,12 @@ const Layout = ({ name, imgSrc, isSelected, handleAdd, price }) => {
       }
       onClick={handleAdd}
     >
-      <img src={imgSrc} alt='layout' className={style.layoutImg} style={{ maxHeight: '100px' }}/>
+      <img
+        src={imgSrc}
+        alt='layout'
+        className={style.layoutImg}
+        style={{ maxHeight: '100px' }}
+      />
       <div style={{ width: '100%' }}>
         <div style={{ fontWeight: '700' }}>{name}</div>
         <div className={style.price}>${price.toLocaleString()}</div>
@@ -32,12 +37,18 @@ const FrontOptions = () => {
     floorPlan,
     setShowExterior,
     setCameraReady,
-    showExterior
+    showExterior,
+    shedSize,
   } = useContext(ShedDataContext);
 
   const doors = componentData.filter(
-    (item) => item.objType === COMPONENT_TYPES.DOOR && item.supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES
+    (item) =>
+      item.objType === COMPONENT_TYPES.DOOR &&
+      item.supplier === SUPPLIER_SLUGS.COMPACT_COTTAGES &&
+      item.includedIn.includes(shedSize)
   );
+
+  console.log(selectedComponents)
 
   return (
     <div className={style.container}>
