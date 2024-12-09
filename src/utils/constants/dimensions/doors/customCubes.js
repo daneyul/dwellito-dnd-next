@@ -82,47 +82,47 @@ export const CUSTOM_CUBE_DOOR_DIMENSIONS = {
   },
   HD_ST_ROLL_UP_6: {
     WIDTH: 80,
-    HEIGHT: 88,
+    HEIGHT: 93,
     FP_HEIGHT: 21,
     POSITION: {
       x: 0,
-      y: 22,
+      y: 10,
     },
   },
   HD_ST_ROLL_UP_8: {
     WIDTH: 104,
-    HEIGHT: 88,
+    HEIGHT: 93,
     FP_HEIGHT: 21,
     POSITION: {
       x: 0,
-      y: 22,
+      y: 10,
     },
   },
   HD_ST_ROLL_UP_10: {
     WIDTH: 128,
-    HEIGHT: 88,
+    HEIGHT: 93,
     FP_HEIGHT: 21,
     POSITION: {
       x: 0,
-      y: 22,
+      y: 10,
     },
   },
   HD_ST_ROLL_UP_12: {
     WIDTH: 152,
-    HEIGHT: 88,
+    HEIGHT: 93,
     FP_HEIGHT: 21,
     POSITION: {
       x: 0,
-      y: 22,
+      y: 10,
     },
   },
   HD_ST_ROLL_UP_15: {
     WIDTH: 188,
-    HEIGHT: 88,
+    HEIGHT: 93,
     FP_HEIGHT: 21,
     POSITION: {
       x: 0,
-      y: 22,
+      y: 10,
     },
   },
   EC_HC_ROLLUP_6_74: {

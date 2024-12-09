@@ -5,17 +5,27 @@ const ExteriorDoor1 = ({ component, onBoundingBoxChange, supplier }) => (
   <GenericShedDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
-    modelPath={`/models/${supplier}/doors/${component.model}.glb`}
+    modelPath={`/models/${supplier}/doors/12/${component.model}.glb`}
     customScale={0.2}
     customPosition={[-0.5, 5, 0.3]}
   />
 );
 
-const ExteriorDoor2 = ({ component, onBoundingBoxChange, supplier }) => (
+const ExteriorDoorPorch12 = ({ component, onBoundingBoxChange, supplier }) => (
   <GenericShedDoor
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
-    modelPath={`/models/${supplier}/doors/${component.model}.glb`}
+    modelPath={`/models/${supplier}/doors/12/${component.model}.glb`}
+    customScale={0.2}
+    customPosition={[-4.8, 5, 0.3]}
+  />
+);
+
+const ExteriorDoorPorch16 = ({ component, onBoundingBoxChange, supplier }) => (
+  <GenericShedDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/${supplier}/doors/16/${component.model}.glb`}
     customScale={0.2}
     customPosition={[-4.8, 5, 0.3]}
   />
@@ -24,5 +34,6 @@ const ExteriorDoor2 = ({ component, onBoundingBoxChange, supplier }) => (
 
 export {
   ExteriorDoor1,
-  ExteriorDoor2,
+  ExteriorDoorPorch12,
+  ExteriorDoorPorch16,
 };

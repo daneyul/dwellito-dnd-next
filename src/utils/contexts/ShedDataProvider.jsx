@@ -8,6 +8,8 @@ import {
   ELEVATION_NAMES,
   ONE_STORY,
   SHED_12x32,
+  SHED_16x24,
+  TWO_STORY,
 } from '@/utils/constants/names/names';
 import { shedData } from '../constants/shedData';
 import { shedElevationData } from '../constants/components/elevations/shedElevationData';
@@ -39,6 +41,7 @@ const ShedDataProvider = ({ children, data }) => {
     useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [scaleFactor, setScaleFactor] = useState(2.5);
+  const [showGroundFloor, setShowGroundFloor] = useState(null);
 
   // Selections
   const slantRoofComponent = componentData.find(
@@ -76,6 +79,7 @@ const ShedDataProvider = ({ children, data }) => {
   const shedHeightIsOneStory = selectedShedHeight === useState(ONE_STORY);
   const selectedShed = shedData.find((shed) => shed.slug === slug);
   const shedId = selectedShed.id;
+  const showSecondFloor = selectedShedHeight === TWO_STORY && !showGroundFloor;
 
   // Floor Plan
   const floorPlan = shedElevationData.find((elevation) => {
@@ -123,14 +127,14 @@ const ShedDataProvider = ({ children, data }) => {
     ...door,
     position: {
       ...door.position,
-      x: 0,
+      x: shedSize === SHED_16x24 ? 115 : 0,
     },
   };
   const modifiedWindowFront = {
     ...window,
     position: {
       ...window.position,
-      x: 0,
+      x: shedSize === SHED_16x24 ? -30 : 0,
     },
   };
   const modifiedWindowRight = {
@@ -154,6 +158,38 @@ const ShedDataProvider = ({ children, data }) => {
       x: 490,
     },
   };
+  const modifiedWindowFrontTwoStory = {
+    ...window,
+    position: {
+      ...window.position,
+      y: -200,
+      x: shedSize === SHED_16x24 ? -30 : 0,
+    },
+  };
+  const modifiedWindowRightTwoStory = {
+    ...window,
+    position: {
+      ...window.position,
+      y: -200,
+      x: 0,
+    },
+  };
+  const modifiedWindowLeft1TwoStory = {
+    ...window,
+    position: {
+      ...window.position,
+      y: -200,
+      x: 0,
+    },
+  };
+  const modifiedWindowLeft2TwoStory = {
+    ...window,
+    position: {
+      ...window.position,
+      y: -200,
+      x: 490,
+    },
+  };
 
   useEffect(() => {
     if (!querySelections) {
@@ -162,33 +198,109 @@ const ShedDataProvider = ({ children, data }) => {
         selectedComponents,
         setSelectedComponents,
         selectedElevation: frontElevation,
+        level: ONE_STORY
       });
       handleAddComponent({
         item: modifiedWindowFront,
         selectedComponents,
         setSelectedComponents,
         selectedElevation: frontElevation,
+        level: ONE_STORY
       });
       handleAddComponent({
         item: modifiedWindowRight,
         selectedComponents,
         setSelectedComponents,
         selectedElevation: rightElevation,
+        level: ONE_STORY
       });
       handleAddComponent({
         item: modifiedWindowLeft1,
         selectedComponents,
         setSelectedComponents,
         selectedElevation: leftElevation,
+        level: ONE_STORY
       });
       handleAddComponent({
         item: modifiedWindowLeft2,
         selectedComponents,
         setSelectedComponents,
         selectedElevation: leftElevation,
+        level: ONE_STORY
       });
+      if (selectedShedHeight === TWO_STORY) {
+        handleAddComponent({
+          item: modifiedWindowFrontTwoStory,
+          selectedComponents,
+          setSelectedComponents,
+          selectedElevation: frontElevation,
+          level: TWO_STORY
+        });
+        handleAddComponent({
+          item: modifiedWindowRightTwoStory,
+          selectedComponents,
+          setSelectedComponents,
+          selectedElevation: rightElevation,
+          level: TWO_STORY
+        });
+        handleAddComponent({
+          item: modifiedWindowLeft1TwoStory,
+          selectedComponents,
+          setSelectedComponents,
+          selectedElevation: leftElevation,
+          level: TWO_STORY
+        });
+        handleAddComponent({
+          item: modifiedWindowLeft2TwoStory,
+          selectedComponents,
+          setSelectedComponents,
+          selectedElevation: leftElevation,
+          level: TWO_STORY
+        });
+      }
     }
   }, []);
+
+  useEffect(() => {
+    if (!showSecondFloor) {
+      // Filter out second-story windows
+      setSelectedComponents((prevComponents) =>
+        prevComponents.filter(
+          (component) =>
+            component.level !== TWO_STORY
+        )
+      );
+    } else {
+      handleAddComponent({
+        item: modifiedWindowFrontTwoStory,
+        selectedComponents,
+        setSelectedComponents,
+        selectedElevation: frontElevation,
+        level: TWO_STORY
+      });
+      handleAddComponent({
+        item: modifiedWindowRightTwoStory,
+        selectedComponents,
+        setSelectedComponents,
+        selectedElevation: rightElevation,
+        level: TWO_STORY
+      });
+      handleAddComponent({
+        item: modifiedWindowLeft1TwoStory,
+        selectedComponents,
+        setSelectedComponents,
+        selectedElevation: leftElevation,
+        level: TWO_STORY
+      });
+      handleAddComponent({
+        item: modifiedWindowLeft2TwoStory,
+        selectedComponents,
+        setSelectedComponents,
+        selectedElevation: leftElevation,
+        level: TWO_STORY
+      });
+    }
+  }, [showSecondFloor]);
 
   const contextValue = {
     selectedComponents,
@@ -228,7 +340,10 @@ const ShedDataProvider = ({ children, data }) => {
     setDialogOpen,
     shedHeightIsOneStory,
     selectedRoof,
-    shedSize
+    shedSize,
+    showGroundFloor,
+    setShowGroundFloor,
+    showSecondFloor
   };
 
   return (

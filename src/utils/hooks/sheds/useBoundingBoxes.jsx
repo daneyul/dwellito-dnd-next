@@ -56,7 +56,7 @@ export function useBoundingBoxes({ doors, windows }) {
                 data.center.z - 0.8
               ),
             };
-          } else if (doorName === COMPONENT_NAMES.EXTERIOR_DOOR_2) {
+          } else if (doorName === COMPONENT_NAMES.EXTERIOR_DOOR_PORCH_12) {
             updatedData = {
               ...updatedData,
               size: new Vector3(
@@ -67,6 +67,20 @@ export function useBoundingBoxes({ doors, windows }) {
               center: new Vector3(
                 data.center.x + 8.6,
                 data.center.y + 1.3,
+                data.center.z - 0.8
+              ),
+            };
+          } else if (doorName === COMPONENT_NAMES.EXTERIOR_DOOR_PORCH_16) {
+            updatedData = {
+              ...updatedData,
+              size: new Vector3(
+                data.size.x - 30,
+                data.size.y,
+                data.size.z
+              ),
+              center: new Vector3(
+                data.center.x,
+                data.center.y,
                 data.center.z - 0.8
               ),
             };

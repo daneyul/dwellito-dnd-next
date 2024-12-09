@@ -3,12 +3,14 @@ export const EXTERIOR_CAM_POS = {
   TWENTY: [-100, 50, 100],
   FORTY: [-150, 50, 150],
   ONE_STORY: [-100, 50, 100],
+  TWO_STORY: [-150, 100, 150],
 };
 export const INTERIOR_CAM_POS = {
   TEN: [-13, 14, -3],
   TWENTY: [-28.68, 14, -3],
   FORTY: [-28.68, 14, -3],
   ONE_STORY: [-100, 180, 100],
+  TWO_STORY: [-150, 230, 150],
 };
 export const INTERIOR_CAM_ROT = {
   TEN: [2.15, 12, 6],

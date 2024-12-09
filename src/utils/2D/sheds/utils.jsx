@@ -100,6 +100,7 @@ export const handleAddComponent = ({
   selectedComponents,
   setSelectedComponents,
   selectedElevation,
+  level
 }) => {
   if (
     item.fixed &&
@@ -113,6 +114,7 @@ export const handleAddComponent = ({
       ...item,
       id: uuid(),
       position: { ...item.position },
+      level: level,
       elevation:
         item.objType === COMPONENT_TYPES.MISC
           ? []

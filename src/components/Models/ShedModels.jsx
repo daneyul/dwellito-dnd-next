@@ -30,16 +30,18 @@ import { CsgGeometries } from './Containers/CsgGeometries/Shed/CsgGeometries';
 import { useExteriorPaint } from '@/utils/hooks/sheds/useGLTFModels';
 import { Shed as Shed12x24 } from './Sheds/one-story/12x24/Shed';
 import { Shed as Shed12x32 } from './Sheds/one-story/12x32/Shed';
-import { Shed as Shed16x24 } from './Sheds/two-story/16x24/Shed';
+import { Shed as TwoStoryShed16x24 } from './Sheds/two-story/16x24/Shed';
+import { Shed as OneStoryShed16x24 } from './Sheds/one-story/16x24/Shed';
 
 function getShedComponent(selectedShedHeight, shedSize, exteriorPaint) {
   const shedComponents = {
     [ONE_STORY]: {
       [SHED_12x24]: Shed12x24,
       [SHED_12x32]: Shed12x32,
+      [SHED_16x24]: OneStoryShed16x24,
     },
     [TWO_STORY]: {
-      [SHED_16x24]: Shed16x24,
+      [SHED_16x24]: TwoStoryShed16x24,
     },
   };
 
@@ -74,10 +76,13 @@ export function ShedModels() {
 
   const doors = useMemo(
     () =>
-      selectedComponents.filter(
-        (comp) => comp.objType === COMPONENT_TYPES.DOOR
-      ),
-    [selectedComponents, COMPONENT_TYPES]
+      selectedComponents.filter((comp) => {
+        return (
+          comp.objType === COMPONENT_TYPES.DOOR &&
+          comp.includedIn.includes(shedSize)
+        );
+      }),
+    [selectedComponents, COMPONENT_TYPES.DOOR, shedSize]
   );
 
   const windows = useMemo(
@@ -89,11 +94,19 @@ export function ShedModels() {
   );
 
   const exteriorCamPos = () => {
-    return EXTERIOR_CAM_POS.ONE_STORY;
+    if (selectedShedHeight === ONE_STORY) {
+      return EXTERIOR_CAM_POS.ONE_STORY;
+    } else if (selectedShedHeight === TWO_STORY) {
+      return EXTERIOR_CAM_POS.TWO_STORY;
+    }
   };
 
   const interiorCamPos = () => {
-    return INTERIOR_CAM_POS.ONE_STORY;
+    if (selectedShedHeight === ONE_STORY) {
+      return INTERIOR_CAM_POS.ONE_STORY;
+    } else if (selectedShedHeight === TWO_STORY) {
+      return INTERIOR_CAM_POS.TWO_STORY;
+    }
   };
 
   const camFov = showExterior ? 35 : 20;

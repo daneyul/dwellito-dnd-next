@@ -18,7 +18,8 @@ export function CsgGeometries({
   windows,
   exteriorPaint,
 }) {
-  const { selectedShedHeight, shedSize } = useContext(ShedDataContext);
+  const { selectedShedHeight, shedSize, showSecondFloor } =
+    useContext(ShedDataContext);
 
   let shedDimensions;
 
@@ -30,6 +31,9 @@ export function CsgGeometries({
           break;
         case SHED_12x32:
           shedDimensions = DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO;
+          break;
+        case SHED_16x24:
+          shedDimensions = DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR;
           break;
         default:
           shedDimensions = DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO;
@@ -44,22 +48,30 @@ export function CsgGeometries({
           shedDimensions = DIMENSIONS.SHED.TWO_STORY.SIXTEEN_TWENTY_FOUR;
       }
       break;
+    default:
+      shedDimensions = DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO;
   }
 
   const adjustForX = -(shedDimensions.THREE_D.WIDTH / 2);
   const adjustForY = shedDimensions.THREE_D.DEPTH / 2;
 
-  const exteriorNodes = useGLTF(
-    `/models/shed/${selectedShedHeight}/${shedSize}/exterior.glb`
+  const exteriorGfNodes = useGLTF(
+    `/models/shed/${selectedShedHeight}/${shedSize}/exteriorGf.glb`
   ).nodes;
-  const interiorNodes = useGLTF(
-    `/models/shed/${selectedShedHeight}/${shedSize}/interior.glb`
+  const exteriorFfNodes = useGLTF(
+    `/models/shed/${selectedShedHeight}/${shedSize}/exteriorFf.glb`
+  ).nodes;
+  const interiorGfNodes = useGLTF(
+    `/models/shed/${selectedShedHeight}/${shedSize}/interiorGf.glb`
+  ).nodes;
+  const interiorFfNodes = useGLTF(
+    `/models/shed/${selectedShedHeight}/${shedSize}/interiorFf.glb`
   ).nodes;
 
   const csg = useRef();
 
   const { materials: groundBlockInteriorMaterials } = useGLTF(
-    `/models/shed/${selectedShedHeight}/${shedSize}/interior.glb`
+    `/models/shed/${selectedShedHeight}/${shedSize}/interiorGf.glb`
   );
 
   const doorBoundingBoxGeometries = useMemo(() => {
@@ -96,31 +108,46 @@ export function CsgGeometries({
     });
   }, [windows, windowBoundingBoxes]);
 
-  return (
-    <group ref={csg}>
-      <mesh receiveShadow castShadow>
-        <Geometry useGroups>
+  const secondFloor = () => {
+    if (showSecondFloor) {
+      return (
+        <>
           <Base
-            geometry={
-              shedSize === SHED_12x24
-                ? exteriorNodes.Exterior_wall.geometry
-                : exteriorNodes.GF_ExteriorWall001.geometry
-            }
+            geometry={exteriorFfNodes.exteriorwall.geometry}
             scale={0.2}
             position={[adjustForX, 0, adjustForY]}
           >
             <meshStandardMaterial map={exteriorPaint} />
           </Base>
           <Base
-            geometry={
-              shedSize === SHED_12x24
-                ? interiorNodes.interior_wall.geometry
-                : interiorNodes.GF_interiorwall001.geometry
-            }
+            geometry={interiorFfNodes.interiorwall.geometry}
             scale={0.2}
             position={[adjustForX, 0, adjustForY]}
             material={groundBlockInteriorMaterials.GF_interior}
           />
+        </>
+      );
+    }
+  };
+
+  return (
+    <group ref={csg}>
+      <mesh receiveShadow castShadow>
+        <Geometry useGroups>
+          <Base
+            geometry={exteriorGfNodes.exteriorwall.geometry}
+            scale={0.2}
+            position={[adjustForX, 0, adjustForY]}
+          >
+            <meshStandardMaterial map={exteriorPaint} />
+          </Base>
+          <Base
+            geometry={interiorGfNodes.interiorwall.geometry}
+            scale={0.2}
+            position={[adjustForX, 0, adjustForY]}
+            material={groundBlockInteriorMaterials.GF_interior}
+          />
+          {secondFloor()}
           {doorBoundingBoxGeometries}
           {windowBoundingBoxGeometries}
         </Geometry>

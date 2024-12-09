@@ -2,20 +2,26 @@ import { useGLTF } from '@react-three/drei';
 import { useContext, useMemo, useRef } from 'react';
 import { DIMENSIONS } from '@/utils/constants/dimensions/dimensions';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
+import Roof from './Roof';
+import Interior from './Interior';
 
-export const Shed = () => {
+export const Shed = ({ exteriorPaint }) => {
   const {
     selectedShedHeight,
-    // selectedRoof,
-    // supplier,
-    // selectedShed,
-    // showExterior,
+    selectedRoof,
+    supplier,
+    selectedShed,
+    showExterior,
     shedSize,
+    showSecondFloor
   } = useContext(ShedDataContext);
 
   // Load all 3d objects
-  const { nodes, materials } = useGLTF(
+  const { nodes: gfNodes, materials: gfMaterials } = useGLTF(
     `/models/shed/${selectedShedHeight}/${shedSize}/2storey_16x24_GFBlock.glb`
+  );
+  const { nodes: ffNodes, materials: ffMaterials } = useGLTF(
+    `/models/shed/${selectedShedHeight}/${shedSize}/2storey_16x24_FFBlock.glb`
   );
 
   const ref = useRef();
@@ -28,6 +34,85 @@ export const Shed = () => {
     return DIMENSIONS.SHED.TWO_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.DEPTH / 2;
   }, [DIMENSIONS]);
 
+  const firstFloorMesh = (
+    <>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={gfNodes.trims.geometry}
+        material={gfMaterials.Vertical_Trim}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={gfNodes.GF_floorfinish.geometry}
+        material={gfMaterials.GF_Flooring}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={gfNodes.GF_framing.geometry}
+        material={gfMaterials.Framing_Wood}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={gfNodes.concrete_foundation.geometry}
+        material={gfMaterials['Big concrete blocks']}
+        scale={0.025}
+      />
+    </>
+  );
+
+  const secondFloorMesh = (
+    <>
+      <group scale={0.025}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={ffNodes.FF_floorfinish.geometry}
+          material={ffMaterials['FF_Flooring (2)']}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={ffNodes.FF_framing.geometry}
+          material={ffMaterials['Framing_Wood (3)']}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={ffNodes.GF_Ceiling.geometry}
+          material={ffMaterials['GF_Ceiling (2)']}
+        />
+      </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={ffNodes.Object_1_2.geometry}
+        material={ffMaterials.Material_2}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={ffNodes.Object_1.geometry}
+        material={ffMaterials['FF_interior (1).001']}
+        scale={0.025}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={ffNodes.Object_2.geometry}
+        material={ffMaterials['FF_Flooring.001']}
+        scale={0.025}
+      />
+    </>
+  );
+
   const shedMesh = (
     <>
       <group
@@ -36,35 +121,28 @@ export const Shed = () => {
         position={[adjustForX, 0, adjustForY]}
         ref={ref}
       >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.trims.geometry}
-          material={materials.Vertical_Trim}
-          scale={0.025}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.GF_floorfinish.geometry}
-          material={materials.GF_Flooring}
-          scale={0.025}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.GF_framing.geometry}
-          material={materials.Framing_Wood}
-          scale={0.025}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.concrete_foundation.geometry}
-          material={materials['Big concrete blocks']}
-          scale={0.025}
-        />
+        {firstFloorMesh}
+        {showSecondFloor && secondFloorMesh}
       </group>
+      {showExterior && (
+        <Roof
+          exteriorPaint={exteriorPaint}
+          selectedRoof={selectedRoof}
+          supplier={supplier}
+          selectedShedHeight={selectedShedHeight}
+          selectedShed={selectedShed}
+          adjustForX={adjustForX}
+          adjustForY={adjustForY}
+        />
+      )}
+      <Interior
+        supplier={supplier}
+        selectedShedHeight={selectedShedHeight}
+        adjustForX={adjustForX}
+        adjustForY={adjustForY}
+        shedSize={shedSize}
+        showSecondFloor={showSecondFloor}
+      />
     </>
   );
 

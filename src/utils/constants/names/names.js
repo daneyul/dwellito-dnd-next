@@ -96,7 +96,8 @@ export const COMPACT_COTTAGES_COMPONENTS = {
   SLANT_ROOF: 'Slant Roof',
   GABLE_ROOF: 'Gable Roof',
   EXTERIOR_DOOR_1: 'Stairs',
-  EXTERIOR_DOOR_2: 'Porch',
+  EXTERIOR_DOOR_PORCH_12: `Porch 12'`,
+  EXTERIOR_DOOR_PORCH_16: `Porch 16'`,
   WINDOW_24_24: '24x24 Window',
   WINDOW_30_36: '30x36 Window',
   WINDOW_48_24: '48x24 Window',
@@ -136,6 +137,10 @@ export const SHED_ONE_STORY_12x24 = 'one-story-12x24';
 export const SHED_ONE_STORY_12x32 = 'one-story-12x32';
 export const SHED_ONE_STORY_16x24 = 'one-story-16x24';
 export const SHED_TWO_STORY_16x24 = 'two-story-16x24';
+
+export const STUDIO = 'Studio';
+export const ONE_BEDROOM = 'One Bedroom';
+export const TWO_BEDROOM = 'Two Bedroom';
 
 export const SHED_12x24 = '12x24';
 export const SHED_12x32 = '12x32';
