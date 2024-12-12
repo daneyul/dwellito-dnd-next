@@ -10,15 +10,16 @@ import Subtitle from '../Subtitle/Subtitle';
 import AddMiscOption from '../AddOption/Shed/AddMiscOption';
 import { miscComponents } from '@/utils/constants/components/misc/misc';
 import ShedLayouts from '../Layouts/Shed/ShedLayouts';
+import RoofOptions from '../Layouts/RoofOptions';
 
-const LogoSection = ({ supplier, shed }) => (
+const LogoSection = ({ supplier }) => (
   <div className={style.logo}>
     <Logo type={supplier} />
     <div
       className={style.selectionTagName}
       style={{ marginTop: '2rem', textAlign: 'center' }}
     >
-      Relief Cottage {shed.size} ({shed.sqft} sqft)
+      Choose your design
     </div>
   </div>
 );
@@ -43,15 +44,26 @@ const FrontSelector = () => {
   );
 };
 
+const RoofSelector = () => {
+  return (
+    <>
+      <div className={style.selectionTagName}>
+        Roof Type
+      </div>
+      <RoofOptions />
+    </>
+  );
+};
+
 const ShedSidebar = () => {
-  const { supplier, selectedShed } = useContext(ShedDataContext);
+  const { supplier } = useContext(ShedDataContext);
 
   return (
     <>
       <div className={style.desktopShed}>
-        <LogoSection supplier={supplier} shed={selectedShed} />
+        <LogoSection supplier={supplier} />
         <ShedLayouts />
-
+        <RoofSelector />
         <FrontSelector />
         <ExteriorSelector />
         <Subtitle

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useContext, useMemo, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Base, Geometry, Subtraction } from '@react-three/csg';
@@ -55,17 +56,23 @@ export function CsgGeometries({
   const adjustForX = -(shedDimensions.THREE_D.WIDTH / 2);
   const adjustForY = shedDimensions.THREE_D.DEPTH / 2;
 
+  let exteriorFfNodes;
+  let interiorFfNodes;
+
+  if (selectedShedHeight === TWO_STORY) {
+    exteriorFfNodes = useGLTF(
+      `/models/shed/${selectedShedHeight}/${shedSize}/exteriorFf.glb`
+    ).nodes;
+    interiorFfNodes = useGLTF(
+      `/models/shed/${selectedShedHeight}/${shedSize}/interiorFf.glb`
+    ).nodes;
+  }
+
   const exteriorGfNodes = useGLTF(
     `/models/shed/${selectedShedHeight}/${shedSize}/exteriorGf.glb`
   ).nodes;
-  const exteriorFfNodes = useGLTF(
-    `/models/shed/${selectedShedHeight}/${shedSize}/exteriorFf.glb`
-  ).nodes;
   const interiorGfNodes = useGLTF(
     `/models/shed/${selectedShedHeight}/${shedSize}/interiorGf.glb`
-  ).nodes;
-  const interiorFfNodes = useGLTF(
-    `/models/shed/${selectedShedHeight}/${shedSize}/interiorFf.glb`
   ).nodes;
 
   const csg = useRef();

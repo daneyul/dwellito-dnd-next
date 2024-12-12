@@ -123,6 +123,21 @@ const ShedDataProvider = ({ children, data }) => {
   );
   const door = componentData.find((door) => door.name === doorName);
   const window = componentData.find((window) => window.name === windowName);
+  const modifiedWindowLeftPos = () => {
+    if (selectedShedHeight === ONE_STORY) {
+      if (shedSize === SHED_12x32) {
+        return -235
+      } else {
+        return 0
+      }
+    } else {
+      if (shedSize === SHED_12x32) {
+        return -235
+      } else {
+        return 200
+      }
+    }
+  }
   const modifiedDoor = {
     ...door,
     position: {
@@ -148,7 +163,7 @@ const ShedDataProvider = ({ children, data }) => {
     ...window,
     position: {
       ...window.position,
-      x: shedSize === SHED_12x32 ? -235 : 0,
+      x: modifiedWindowLeftPos(),
     },
   };
   const modifiedWindowLeft2 = {

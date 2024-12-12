@@ -29,7 +29,6 @@ const RoofOptions = () => {
     selectedElevation,
     selectedComponents,
     setSelectedComponents,
-    selectedShed,
     floorPlan,
     setShowExterior,
     setCameraReady
@@ -44,7 +43,7 @@ const RoofOptions = () => {
       {roofs.map((roof) => {
         const thumbnail = roof.thumbnail;
         const roofName = roof.name;
-        const roofImage = `/images/${supplier}/roof/${selectedShed.height}/${thumbnail}`;
+        const roofImage = `/images/${supplier}/roof/${thumbnail}`;
         const isSelected = selectedComponents.some(
           (component) => component.id === roof.id
         );

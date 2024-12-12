@@ -1,7 +1,4 @@
-import { shedData } from '@/utils/constants/shedData';
-
-const LogoSection = ({ data }) => {
-  const selectedShed = shedData.find((shed) => shed.slug === data.slug);
+const LogoSection = () => {
   return (
     <div
       style={{
@@ -20,7 +17,7 @@ const LogoSection = ({ data }) => {
           marginBottom: '1rem',
         }}
       >
-        Relief Cottage {selectedShed.size} ({selectedShed.sqft} sqft)
+        Choose your design
       </div>
     </div>
   );
