@@ -21,7 +21,7 @@ const Roof = ({
   clonedMaterial.map = exteriorPaint;
   return (
     <group scale={8} dispose={null} position={[adjustForX, 0, adjustForY]}>
-      {selectedRoof === COMPONENT_NAMES.SLANT_ROOF ? (
+      {selectedRoof.name === COMPONENT_NAMES.SLANT_ROOF ? (
         <>
           <group scale={0.025}>
             <mesh

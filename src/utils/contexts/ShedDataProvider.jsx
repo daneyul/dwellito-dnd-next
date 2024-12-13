@@ -9,6 +9,7 @@ import {
   ONE_STORY,
   SHED_12x32,
   SHED_16x24,
+  SHED_20x24,
   TWO_STORY,
 } from '@/utils/constants/names/names';
 import { shedData } from '../constants/shedData';
@@ -133,6 +134,8 @@ const ShedDataProvider = ({ children, data }) => {
     } else {
       if (shedSize === SHED_12x32) {
         return -235
+      } else if (shedSize === SHED_20x24) {
+        return 300
       } else {
         return 200
       }
@@ -156,7 +159,7 @@ const ShedDataProvider = ({ children, data }) => {
     ...window,
     position: {
       ...window.position,
-      x: 0,
+      x: shedSize === SHED_20x24 ? 350 : 0,
     },
   };
   const modifiedWindowLeft1 = {
@@ -177,7 +180,7 @@ const ShedDataProvider = ({ children, data }) => {
     ...window,
     position: {
       ...window.position,
-      y: -200,
+      y: -225,
       x: shedSize === SHED_16x24 ? -30 : 0,
     },
   };
@@ -185,7 +188,7 @@ const ShedDataProvider = ({ children, data }) => {
     ...window,
     position: {
       ...window.position,
-      y: -200,
+      y: -225,
       x: 0,
     },
   };
@@ -193,7 +196,7 @@ const ShedDataProvider = ({ children, data }) => {
     ...window,
     position: {
       ...window.position,
-      y: -200,
+      y: -225,
       x: 0,
     },
   };
@@ -201,7 +204,7 @@ const ShedDataProvider = ({ children, data }) => {
     ...window,
     position: {
       ...window.position,
-      y: -200,
+      y: -225,
       x: 490,
     },
   };

@@ -25,5 +25,14 @@ export const COMPACT_COTTAGES_DOOR_DIMENSIONS = {
       x: 0,
       y: 51,
     },
+  },
+  EXTERIOR_DOOR_PORCH_20: {
+    WIDTH: 222,
+    HEIGHT: 118,
+    FP_HEIGHT: 128,
+    POSITION: {
+      x: 0,
+      y: 51,
+    },
   }
 }

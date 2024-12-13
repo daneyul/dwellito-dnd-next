@@ -22,17 +22,18 @@ const Roof = ({
   );
   const clonedMaterial = gableMaterials.Roof_Exterior.clone();
   clonedMaterial.map = exteriorPaint;
+  
   return (
     <group scale={8} dispose={null} position={[adjustForX, 0, adjustForY]}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={roofBattenNodes.Trims.geometry}
-        material={roofBattenMaterials.Vertical_Trim}
-        scale={0.025}
-      />
       {selectedRoof.name === COMPONENT_NAMES.SLANT_ROOF ? (
         <>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={roofBattenNodes.Trims.geometry}
+            material={roofBattenMaterials.Vertical_Trim}
+            scale={0.025}
+          />
           <mesh
             castShadow
             receiveShadow
@@ -131,9 +132,18 @@ const Roof = ({
             castShadow
             receiveShadow
             geometry={gableNodes.Roof_exteriorwall.geometry}
-            material={clonedMaterial}
             scale={0.025}
-          />
+          >
+            <primitive
+              object={gableMaterials.Roof_Exterior}
+              attach='material'
+              onUpdate={(material) => {
+                material.map = exteriorPaint;
+                material.map.encoding = THREE.sRGBEncoding;
+                material.map.needsUpdate = true;
+              }}
+            />
+          </mesh>
           <mesh
             castShadow
             receiveShadow

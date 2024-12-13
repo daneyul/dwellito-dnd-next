@@ -9,6 +9,7 @@ import {
   SHED_12x24,
   SHED_12x32,
   SHED_16x24,
+  SHED_20x24,
   TWO_STORY,
 } from '@/utils/constants/names/names';
 
@@ -21,7 +22,7 @@ export function CsgGeometries({
 }) {
   const { selectedShedHeight, shedSize, showSecondFloor } =
     useContext(ShedDataContext);
-
+    
   let shedDimensions;
 
   switch (selectedShedHeight) {
@@ -44,6 +45,9 @@ export function CsgGeometries({
       switch (shedSize) {
         case SHED_16x24:
           shedDimensions = DIMENSIONS.SHED.TWO_STORY.SIXTEEN_TWENTY_FOUR;
+          break;
+        case SHED_20x24:
+          shedDimensions = DIMENSIONS.SHED.TWO_STORY.TWENTY_TWENTY_FOUR;
           break;
         default:
           shedDimensions = DIMENSIONS.SHED.TWO_STORY.SIXTEEN_TWENTY_FOUR;

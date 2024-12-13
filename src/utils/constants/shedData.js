@@ -11,6 +11,8 @@ import {
   SHED_ONE_STORY_16x24,
   STUDIO,
   TWO_BEDROOM,
+  SHED_20x24,
+  SHED_TWO_STORY_20x24,
 } from './names/names';
 
 export const shedData = [
@@ -37,6 +39,17 @@ export const shedData = [
     sqft: 384,
   },
   {
+    name: `${ONE_BEDROOM} (${SHED_16x24})`,
+    slug: SHED_ONE_STORY_16x24,
+    id: 3,
+    floorPlan: 'elevation/one-story/16x24/floor-plan.png',
+    thumbnail: 'one-story/16x24.png',
+    price: 100000,
+    height: ONE_STORY,
+    size: SHED_16x24,
+    sqft: 384,
+  },
+  {
     name: `${TWO_BEDROOM} (${SHED_16x24})`,
     slug: SHED_TWO_STORY_16x24,
     id: 4,
@@ -48,14 +61,14 @@ export const shedData = [
     sqft: 768,
   },
   {
-    name: `${ONE_BEDROOM} (${SHED_16x24})`,
-    slug: SHED_ONE_STORY_16x24,
-    id: 3,
-    floorPlan: 'elevation/one-story/16x24/floor-plan.png',
-    thumbnail: 'one-story/16x24.png',
+    name: `${TWO_BEDROOM} (${SHED_20x24})`,
+    slug: SHED_TWO_STORY_20x24,
+    id: 5,
+    floorPlan: 'elevation/two-story/20x24/floor-plan.png',
+    thumbnail: 'two-story/20x24.png',
     price: 100000,
-    height: ONE_STORY,
-    size: SHED_16x24,
-    sqft: 384,
+    height: TWO_STORY,
+    size: SHED_20x24,
+    sqft: 960,
   },
 ];

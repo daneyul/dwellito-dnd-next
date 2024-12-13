@@ -1,4 +1,4 @@
-import { ELEVATION_NAMES, SHED_12x24, SHED_12x32, SHED_16x24 } from '../../constants/names/names';
+import { ELEVATION_NAMES, SHED_12x24, SHED_12x32, SHED_16x24, SHED_20x24 } from '../../constants/names/names';
 import { DIMENSIONS } from '../../constants/dimensions/dimensions';
 import { shedElevationData } from '../../constants/components/elevations/shedElevationData';
 import { elevationData } from '../../constants/components/elevations/elevationData';
@@ -45,6 +45,8 @@ const frontSideCoordinates = ({
       return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.WIDTH / 2);
     } else if (selectedBase.size === SHED_16x24) {
       return -(DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.WIDTH / 2);
+    } else if (selectedBase.size === SHED_20x24) {
+      return -(DIMENSIONS.SHED.TWO_STORY.TWENTY_TWENTY_FOUR.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
@@ -54,6 +56,8 @@ const frontSideCoordinates = ({
       return DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.DEPTH / 2;
     } else if (selectedBase.size === SHED_16x24) {
       return DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    } else if (selectedBase.size === SHED_20x24) {
+      return DIMENSIONS.SHED.TWO_STORY.TWENTY_TWENTY_FOUR.THREE_D.DEPTH / 2;
     }
   };
   const adjustForZ = () => {
@@ -80,6 +84,8 @@ const backSideCoordinates = ({
       return -(DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.WIDTH / 2);
     } else if (selectedBase.size === SHED_16x24) {
       return -(DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.WIDTH / 2);
+    } else if (selectedBase.size === SHED_20x24) {
+      return -(DIMENSIONS.SHED.TWO_STORY.TWENTY_TWENTY_FOUR.THREE_D.WIDTH / 2);
     }
   };
   const adjustForY = () => {
@@ -89,6 +95,8 @@ const backSideCoordinates = ({
       return -DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.DEPTH / 2;
     } else if (selectedBase.size === SHED_16x24) {
       return -DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    } else if (selectedBase.size === SHED_20x24) {
+      return -DIMENSIONS.SHED.TWO_STORY.TWENTY_TWENTY_FOUR.THREE_D.DEPTH / 2;
     }
   };
   const adjustForZ = () => {
@@ -127,6 +135,8 @@ const leftSideCoordinates = ({
       return (
         -(DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.WIDTH / 2) + 0.2
       );
+    } else if (selectedBase.size === SHED_20x24) {
+      return -(DIMENSIONS.SHED.TWO_STORY.TWENTY_TWENTY_FOUR.THREE_D.WIDTH / 2) + 0.2;
     }
   };
   const adjustForY = () => {
@@ -136,6 +146,8 @@ const leftSideCoordinates = ({
       return DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.DEPTH / 2;
     } else if (selectedBase.size === SHED_16x24) {
       return DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    } else if (selectedBase.size === SHED_20x24) {
+      return DIMENSIONS.SHED.TWO_STORY.TWENTY_TWENTY_FOUR.THREE_D.DEPTH / 2;
     }
   };
 
@@ -158,6 +170,8 @@ const rightSideCoordinates = ({
       return DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.WIDTH / 2;
     } else if (selectedBase.size === SHED_16x24) {
       return DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.WIDTH / 2;
+    } else if (selectedBase.size === SHED_20x24) {
+      return DIMENSIONS.SHED.TWO_STORY.TWENTY_TWENTY_FOUR.THREE_D.WIDTH / 2;
     }
   };
   const adjustForY = () => {
@@ -167,6 +181,8 @@ const rightSideCoordinates = ({
       return DIMENSIONS.SHED.ONE_STORY.TWELVE_THIRTY_TWO.THREE_D.DEPTH / 2;
     } else if (selectedBase.size === SHED_16x24) {
       return DIMENSIONS.SHED.ONE_STORY.SIXTEEN_TWENTY_FOUR.THREE_D.DEPTH / 2;
+    } else if (selectedBase.size === SHED_20x24) {
+      return DIMENSIONS.SHED.TWO_STORY.TWENTY_TWENTY_FOUR.THREE_D.DEPTH / 2;
     }
   };
 

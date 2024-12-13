@@ -16,6 +16,7 @@ import {
   SHED_12x24,
   SHED_12x32,
   SHED_16x24,
+  SHED_20x24,
   TWO_STORY,
 } from '@/utils/constants/names/names';
 import {
@@ -32,6 +33,7 @@ import { Shed as Shed12x24 } from './Sheds/one-story/12x24/Shed';
 import { Shed as Shed12x32 } from './Sheds/one-story/12x32/Shed';
 import { Shed as TwoStoryShed16x24 } from './Sheds/two-story/16x24/Shed';
 import { Shed as OneStoryShed16x24 } from './Sheds/one-story/16x24/Shed';
+import { Shed as TwoStoryShed20x24 } from './Sheds/two-story/20x24/Shed';
 
 function getShedComponent(selectedShedHeight, shedSize, exteriorPaint) {
   const shedComponents = {
@@ -42,6 +44,7 @@ function getShedComponent(selectedShedHeight, shedSize, exteriorPaint) {
     },
     [TWO_STORY]: {
       [SHED_16x24]: TwoStoryShed16x24,
+      [SHED_20x24]: TwoStoryShed20x24,
     },
   };
 
@@ -144,9 +147,7 @@ export function ShedModels() {
     handleWindowBoundingBox,
   } = useBoundingBoxes({ doors, windows });
 
-  const exteriorPaint = useMemo(() => {
-    return useExteriorPaint(supplier, exteriorFinish);
-  }, [supplier, exteriorFinish]);
+  const exteriorPaint = useExteriorPaint(supplier, exteriorFinish);
 
   return (
     <div

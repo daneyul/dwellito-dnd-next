@@ -10,7 +10,7 @@ export const useExteriorPaint = (supplier, exteriorFinish) => {
 
     const textureMap = {
       'Black': `${path}black.jpg`,
-      'White': `${path}white.jpg`,
+      'Primer': `${path}white.jpg`,
       'Grey': `${path}grey.jpg`,
       'Dark Blue': `${path}darkblue.jpg`,
       'Iron Ore': `${path}ironore.jpg`,
@@ -26,10 +26,14 @@ export const useExteriorPaint = (supplier, exteriorFinish) => {
     }
 
     const texture = useLoader(THREE.TextureLoader, textureURL);
-
+    
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set(0.05, 0.05); // Texture scale
+    texture.name = 'exteriorPaint';
+    texture.repeat.set(0.05, 0.05);
+    texture.encoding = THREE.sRGBEncoding; // Ensure correct encoding
+
+    texture.needsUpdate = true; // Ensure updates are rendered
 
     return texture;
   }

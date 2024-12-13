@@ -80,5 +80,24 @@ export const SHED_DIMENSIONS = {
         HEIGHT: 118,
       },
     },
+    TWENTY_TWENTY_FOUR: {
+      THREE_D: {
+        WIDTH: 48.625,
+        HEIGHT: 23.65,
+        DEPTH: 59.4,
+      },
+      SIDE: {
+        WIDTH: 297,
+        HEIGHT: 118,
+      },
+      FRONT: {
+        WIDTH: 146,
+        HEIGHT: 118,
+      },
+      FLOOR_PLAN: {
+        WIDTH: 297,
+        HEIGHT: 118,
+      },
+    },
   }
 };

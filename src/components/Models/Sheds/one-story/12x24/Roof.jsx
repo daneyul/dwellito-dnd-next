@@ -21,7 +21,7 @@ const Roof = ({
     `/models/${supplier}/roofs/${selectedShedHeight}/${selectedShed.size}/roof-battens.glb`
   );
   const clonedMaterial = gableMaterials.Roof_Exterior.clone();
-    clonedMaterial.map = exteriorPaint;
+  clonedMaterial.map = exteriorPaint;
   return (
     <group scale={8} dispose={null} position={[adjustForX, 0, adjustForY]}>
       {selectedRoof.name === COMPONENT_NAMES.SLANT_ROOF ? (

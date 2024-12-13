@@ -31,9 +31,21 @@ const ExteriorDoorPorch16 = ({ component, onBoundingBoxChange, supplier }) => (
   />
 );
 
+const ExteriorDoorPorch20 = ({ component, onBoundingBoxChange, supplier }) => (
+  <GenericShedDoor
+    component={component}
+    onBoundingBoxChange={onBoundingBoxChange}
+    modelPath={`/models/${supplier}/doors/20/${component.model}.glb`}
+    customScale={0.2}
+    customPosition={[-4.8, 5, 0.3]}
+  />
+);
+
+
 
 export {
   ExteriorDoor1,
   ExteriorDoorPorch12,
   ExteriorDoorPorch16,
+  ExteriorDoorPorch20
 };
