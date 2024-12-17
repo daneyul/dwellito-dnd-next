@@ -17,12 +17,15 @@ const Roof = ({
   const { nodes: gableNodes, materials: gableMaterials } = useGLTF(
     `/models/${supplier}/roofs/${selectedShedHeight}/${selectedShed.size}/gable.glb`
   );
-  const { nodes: roofBattenNodes, materials: roofBattenMaterials } = useGLTF(
-    `/models/${supplier}/roofs/${selectedShedHeight}/${selectedShed.size}/roof-battens.glb`
+  const { nodes: slantBattenNodes, materials: slantBattenMaterials } = useGLTF(
+    `/models/${supplier}/roofs/${selectedShedHeight}/${selectedShed.size}/slant-battens.glb`
   );
-  const clonedMaterial = gableMaterials.Roof_Exterior.clone();
+  const { nodes: gableBattenNodes, materials: gableBattenMaterials } = useGLTF(
+    `/models/${supplier}/roofs/${selectedShedHeight}/${selectedShed.size}/gable-battens.glb`
+  );
+  const clonedMaterial = gableMaterials['Roof_Exterior.001'].clone();
   clonedMaterial.map = exteriorPaint;
-  
+
   return (
     <group scale={8} dispose={null} position={[adjustForX, 0, adjustForY]}>
       {selectedRoof.name === COMPONENT_NAMES.SLANT_ROOF ? (
@@ -30,8 +33,8 @@ const Roof = ({
           <mesh
             castShadow
             receiveShadow
-            geometry={roofBattenNodes.Trims.geometry}
-            material={roofBattenMaterials.Vertical_Trim}
+            geometry={slantBattenNodes.Trims.geometry}
+            material={slantBattenMaterials.Vertical_Trim}
             scale={0.025}
           />
           <mesh
@@ -86,69 +89,74 @@ const Roof = ({
         </>
       ) : (
         <>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={gableBattenNodes.Trims.geometry}
+            material={gableBattenMaterials.Vertical_Trim}
+            scale={0.025}
+          />
           <group scale={0.025}>
             <mesh
               castShadow
               receiveShadow
-              geometry={gableNodes.Object_2.geometry}
-              material={gableMaterials.Roof_Siding}
+              geometry={gableNodes.Object_5.geometry}
+              material={gableMaterials.Roof_interior}
             />
             <mesh
               castShadow
               receiveShadow
-              geometry={gableNodes.Object_3.geometry}
-              material={gableMaterials.Roof_Siding}
+              geometry={gableNodes.Object_6.geometry}
+              material={gableMaterials.Roof_interior}
+            />
+          </group>
+          <group scale={0.025}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={gableNodes.Object_1001.geometry}
+              material={gableMaterials['Roof_Siding.001']}
+            />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={gableNodes.Object_2001.geometry}
+              material={gableMaterials['Roof_Siding.001']}
             />
           </group>
           <mesh
             castShadow
             receiveShadow
             geometry={gableNodes.Object_1.geometry}
-            material={gableMaterials.Vertical_Trim}
-            scale={0.025}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={gableNodes.Object_4.geometry}
             material={gableMaterials.Roof_Ceiling}
             scale={0.025}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={gableNodes.Object_5.geometry}
+            geometry={gableNodes.Object_2.geometry}
+            material={gableMaterials['galvanized  alum metal.001']}
+            scale={0.025}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={gableNodes.Object_7.geometry}
+            scale={0.025}
+            material={clonedMaterial}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={gableNodes.Object_8.geometry}
             material={gableMaterials.Framing_Wood}
             scale={0.025}
           />
           <mesh
             castShadow
             receiveShadow
-            geometry={gableNodes.Object_6.geometry}
-            material={gableMaterials['galvanized  alum metal']}
-            scale={0.025}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={gableNodes.Roof_exteriorwall.geometry}
-            scale={0.025}
-          >
-            <primitive
-              object={gableMaterials.Roof_Exterior}
-              attach='material'
-              onUpdate={(material) => {
-                material.map = exteriorPaint;
-                material.map.encoding = THREE.sRGBEncoding;
-                material.map.needsUpdate = true;
-              }}
-            />
-          </mesh>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={gableNodes.Object_8.geometry}
-            material={gableMaterials.Roof_interior}
+            geometry={gableNodes.Object_9.geometry}
+            material={gableMaterials.Vertical_Trim}
             scale={0.025}
           />
         </>
