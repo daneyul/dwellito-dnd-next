@@ -31,13 +31,14 @@ const Window48x24 = ({ component, onBoundingBoxChange, supplier }) => (
   />
 );
 
-const Window48x48 = ({ component, onBoundingBoxChange, supplier }) => (
+const Window48x48 = ({ component, onBoundingBoxChange, supplier, onSelect }) => (
   <GenericShedWindow
     component={component}
     onBoundingBoxChange={onBoundingBoxChange}
     modelPath={`/models/${supplier}/windows/${component.model}.glb`}
     customScale={0.2}
     customPosition={[0, 15.3, 0.5]}
+    onSelect={onSelect}
   />
 );
 

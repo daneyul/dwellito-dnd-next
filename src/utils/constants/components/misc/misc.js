@@ -8,6 +8,7 @@ export const miscComponents = [
     price12x32: 3000,
     price16x24: 3000,
     price20x24: 3000,
+    price20x32: 3000,
     thumbnail: 'misc/cooling-heating.webp',
     objType: COMPONENT_TYPES.MISC
   },
@@ -17,6 +18,7 @@ export const miscComponents = [
     price12x32: -17000,
     price16x24: -17000,
     price20x24: -17000,
+    price20x32: -17000,
     thumbnail: 'misc/relief-discount.webp',
     objType: COMPONENT_TYPES.MISC
   },

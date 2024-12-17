@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { COMPONENT_TYPES, SHED_12x24, SHED_12x32, SHED_16x24, SHED_20x24 } from '../constants/names/names';
+import { COMPONENT_TYPES, SHED_12x24, SHED_12x32, SHED_16x24, SHED_20x24, SHED_20x32 } from '../constants/names/names';
 
 const useOrderTotal = ({
   shedHeightIsOneStory,
@@ -22,6 +22,8 @@ const useOrderTotal = ({
           return acc + component.price16x24;
         } else if (selectedShed.size === SHED_20x24) {
           return acc + component.price20x24;
+        } else if (selectedShed.size === SHED_20x32) {
+          return acc + component.price20x32;
         }
       } else {
         return acc + component.price;

@@ -1,13 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import {
-  AccumulativeShadows,
   OrbitControls,
   Environment,
-  RandomizedLight,
   useProgress,
+  TransformControls,
 } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useContext, useEffect, useMemo, useRef } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { EffectComposer, N8AO, SMAA } from '@react-three/postprocessing';
 import { Vector3 } from 'three';
 import {
@@ -17,6 +16,7 @@ import {
   SHED_12x32,
   SHED_16x24,
   SHED_20x24,
+  SHED_20x32,
   TWO_STORY,
 } from '@/utils/constants/names/names';
 import {
@@ -34,6 +34,7 @@ import { Shed as Shed12x32 } from './Sheds/one-story/12x32/Shed';
 import { Shed as TwoStoryShed16x24 } from './Sheds/two-story/16x24/Shed';
 import { Shed as OneStoryShed16x24 } from './Sheds/one-story/16x24/Shed';
 import { Shed as TwoStoryShed20x24 } from './Sheds/two-story/20x24/Shed';
+import { Shed as TwoStoryShed20x32 } from './Sheds/two-story/20x32/Shed';
 
 function getShedComponent(selectedShedHeight, shedSize, exteriorPaint) {
   const shedComponents = {
@@ -45,6 +46,7 @@ function getShedComponent(selectedShedHeight, shedSize, exteriorPaint) {
     [TWO_STORY]: {
       [SHED_16x24]: TwoStoryShed16x24,
       [SHED_20x24]: TwoStoryShed20x24,
+      [SHED_20x32]: TwoStoryShed20x32,
     },
   };
 
@@ -68,10 +70,12 @@ export function ShedModels() {
     show3d,
     exteriorFinish,
     shedSize,
-    selectedShedHeight
+    selectedShedHeight,
   } = useContext(ShedDataContext);
 
   const { progress } = useProgress();
+
+  const [selectedRef, setSelectedRef] = useState(null);
 
   useEffect(() => {
     setThreeDModelLoaded(progress === 100);
@@ -179,16 +183,25 @@ export function ShedModels() {
               supplier={supplier}
             />
           ))}
-          {windows.map((window, index) => (
-            <Window
-              key={window.id}
-              component={window}
-              onBoundingBoxChange={(data) =>
-                handleWindowBoundingBox(index, data)
-              }
-              supplier={supplier}
+          {windows.map((window, index) => {
+            return (
+              <Window
+                key={window.id}
+                component={window}
+                onBoundingBoxChange={(data) =>
+                  handleWindowBoundingBox(index, data)
+                }
+                supplier={supplier}
+                onSelect={(ref) => setSelectedRef(ref)}
+              />
+            );
+          })}
+          {selectedRef && (
+            <TransformControls
+              object={selectedRef.current} // Attach to the selected window
+              onMouseUp={() => console.log('Drag ended')}
             />
-          ))}
+          )}
           <ambientLight intensity={0.15} />
           <spotLight
             intensity={0.65}
@@ -206,22 +219,6 @@ export function ShedModels() {
             castShadow
             shadow-mapSize={[720, 720]}
           />
-          <AccumulativeShadows
-            color='#fdfdf7'
-            colorBlend={1}
-            opacity={1}
-            scale={300}
-            position={[0, -0.5, 0]}
-          >
-            <RandomizedLight
-              amount={8}
-              radius={35}
-              ambient={0.5}
-              intensity={3}
-              position={[-5, 10, -5]}
-              size={20}
-            />
-          </AccumulativeShadows>
           <Environment files='/adamsbridge.hdr' />
           <EffectComposer disableNormalPass multisampling={0}>
             <N8AO

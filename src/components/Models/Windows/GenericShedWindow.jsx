@@ -13,6 +13,7 @@ const GenericShedWindow = ({
   customPosition,
   customRotation,
   customScale,
+  onSelect
 }) => {
   const { nodes, materials } = useGLTF(modelPath);
   const { selectedComponents, selectedShed, scaleFactor } =
@@ -64,42 +65,47 @@ const GenericShedWindow = ({
     }
   }, [materials]);
 
+  const handleClick = () => {
+    onSelect(ref); // Pass the window's ref to the parent
+  };
+
   return (
-    <group
-      ref={ref}
-      dispose={null}
-      position={calcPosition({
-        elevation: selectedElevation,
-        distanceObject,
-        SCALE_FACTOR_FOR_CALCULATIONS: 5,
-        selectedBase: selectedShed,
-        width,
-      })}
-      rotation={rotation}
-    >
       <group
-        position={customPosition}
-        rotation={customRotation}
-        scale={customScale}
-      >
-        {Object.keys(nodes).map((nodeKey) => {
-          const node = nodes[nodeKey];
-          if (node.isMesh) {
-            const material = materials[node.material.name];
-            return (
-              <mesh
-                key={nodeKey}
-                castShadow
-                receiveShadow
-                geometry={node.geometry}
-                material={material || materials.default}
-              />
-            );
-          }
-          return null;
+        ref={ref}
+        dispose={null}
+        position={calcPosition({
+          elevation: selectedElevation,
+          distanceObject,
+          SCALE_FACTOR_FOR_CALCULATIONS: 5,
+          selectedBase: selectedShed,
+          width,
         })}
+        rotation={rotation}
+        onClick={handleClick}
+      >
+        <group
+          position={customPosition}
+          rotation={customRotation}
+          scale={customScale}
+        >
+          {Object.keys(nodes).map((nodeKey) => {
+            const node = nodes[nodeKey];
+            if (node.isMesh) {
+              const material = materials[node.material.name];
+              return (
+                <mesh
+                  key={nodeKey}
+                  castShadow
+                  receiveShadow
+                  geometry={node.geometry}
+                  material={material || materials.default}
+                />
+              );
+            }
+            return null;
+          })}
+        </group>
       </group>
-    </group>
   );
 };
 

@@ -8,6 +8,7 @@ const Window = ({
   component,
   supplier,
   containerHeightIsStandard,
+  onSelect
 }) => {
   const componentMap = {
     ...CustomCubes,
@@ -23,6 +24,7 @@ const Window = ({
       onBoundingBoxChange={onBoundingBoxChange}
       supplier={supplier}
       containerHeightIsStandard={containerHeightIsStandard}
+      onSelect={onSelect}
     />
   ) : null;
 };

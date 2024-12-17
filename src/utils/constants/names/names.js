@@ -139,6 +139,7 @@ export const SHED_ONE_STORY_12x32 = 'one-story-12x32';
 export const SHED_ONE_STORY_16x24 = 'one-story-16x24';
 export const SHED_TWO_STORY_16x24 = 'two-story-16x24';
 export const SHED_TWO_STORY_20x24 = 'two-story-20x24';
+export const SHED_TWO_STORY_20x32 = 'two-story-20x32';
 
 export const STUDIO = 'Studio';
 export const ONE_BEDROOM = 'One Bedroom';
@@ -148,6 +149,7 @@ export const SHED_12x24 = '12x24';
 export const SHED_12x32 = '12x32';
 export const SHED_16x24 = '16x24';
 export const SHED_20x24 = '20x24';
+export const SHED_20x32 = '20x32';
 
 export const INTERIOR_FINISH_NAMES = {
   NONE: 'None',
