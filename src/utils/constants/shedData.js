@@ -13,6 +13,8 @@ import {
   TWO_BEDROOM,
   SHED_20x24,
   SHED_TWO_STORY_20x24,
+  SHED_20x32,
+  SHED_TWO_STORY_20x32,
 } from './names/names';
 
 export const shedData = [
@@ -70,5 +72,16 @@ export const shedData = [
     height: TWO_STORY,
     size: SHED_20x24,
     sqft: 960,
+  },
+  {
+    name: `${TWO_BEDROOM} (${SHED_20x32})`,
+    slug: SHED_TWO_STORY_20x32,
+    id: 6,
+    floorPlan: 'elevation/two-story/20x32/floor-plan.png',
+    thumbnail: 'two-story/20x32.png',
+    price: 100000,
+    height: TWO_STORY,
+    size: SHED_20x32,
+    sqft: 1280,
   },
 ];

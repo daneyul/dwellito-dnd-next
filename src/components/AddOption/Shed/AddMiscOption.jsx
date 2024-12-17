@@ -6,7 +6,7 @@ import {
   handleAddComponent,
 } from '@/utils/2D/sheds/utils';
 import { ShedDataContext } from '@/utils/contexts/ShedDataProvider';
-import { SHED_12x24, SHED_12x32, SHED_16x24, SHED_20x24 } from '@/utils/constants/names/names';
+import { SHED_12x24, SHED_12x32, SHED_16x24, SHED_20x24, SHED_20x32 } from '@/utils/constants/names/names';
 
 const AddMiscOption = ({ options }) => {
   const {
@@ -30,6 +30,8 @@ const AddMiscOption = ({ options }) => {
         return item.price16x24;
       } else if (selectedShed.size === SHED_20x24) {
         return item.price20x24;
+      } else if (selectedShed.size === SHED_20x32) {
+        return item.price20x32;
       }
     }
 
